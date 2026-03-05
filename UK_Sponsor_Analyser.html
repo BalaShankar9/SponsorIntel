@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UK Sponsor Licence Analyser Pro</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root {
+    --bg: #0f172a; --surface: #1e293b; --surface2: #334155;
+    --border: #475569; --text: #f1f5f9; --text-dim: #94a3b8;
+    --accent: #3b82f6; --accent-hover: #2563eb; --accent-light: #1d4ed8;
+    --green: #22c55e; --red: #ef4444; --orange: #f59e0b; --purple: #a855f7;
+    --cyan: #06b6d4; --pink: #ec4899;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+  .header h1 { font-size: 22px; font-weight: 700; }
+  .header h1 span { color: var(--accent); }
+  .header-actions { margin-left: auto; display: flex; gap: 8px; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 2px; background: var(--surface); padding: 4px; border-bottom: 1px solid var(--border); }
+  .tab { padding: 10px 20px; cursor: pointer; background: transparent; border: none; color: var(--text-dim); font-size: 14px; font-weight: 500; border-radius: 6px; transition: all 0.2s; }
+  .tab:hover { color: var(--text); background: var(--surface2); }
+  .tab.active { color: var(--accent); background: var(--surface2); }
+
+  /* Panels */
+  .panel { display: none; padding: 20px; }
+  .panel.active { display: block; }
+
+  /* Upload Zone */
+  .upload-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 60px 40px; text-align: center; cursor: pointer; transition: all 0.3s; background: var(--surface); margin: 40px auto; max-width: 600px; }
+  .upload-zone:hover, .upload-zone.dragover { border-color: var(--accent); background: rgba(59,130,246,0.05); }
+  .upload-zone svg { width: 64px; height: 64px; fill: var(--accent); margin-bottom: 16px; }
+  .upload-zone h2 { font-size: 20px; margin-bottom: 8px; }
+  .upload-zone p { color: var(--text-dim); font-size: 14px; }
+
+  /* Stats Cards */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .stat-card .label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .stat-card .value { font-size: 28px; font-weight: 700; }
+  .stat-card .sub { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+  .stat-card.blue .value { color: var(--accent); }
+  .stat-card.green .value { color: var(--green); }
+  .stat-card.orange .value { color: var(--orange); }
+  .stat-card.purple .value { color: var(--purple); }
+  .stat-card.cyan .value { color: var(--cyan); }
+  .stat-card.pink .value { color: var(--pink); }
+
+  /* Filters Bar */
+  .filters-bar { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+  .filter-group { display: flex; flex-direction: column; gap: 4px; }
+  .filter-group label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+  .filter-group input, .filter-group select { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 6px; font-size: 13px; min-width: 180px; }
+  .filter-group input:focus, .filter-group select:focus { outline: none; border-color: var(--accent); }
+
+  /* Buttons */
+  .btn { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-secondary { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { background: var(--border); }
+  .btn-success { background: var(--green); color: white; }
+  .btn-danger { background: var(--red); color: white; }
+  .btn-sm { padding: 5px 10px; font-size: 12px; }
+
+  /* Table */
+  .table-container { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .table-info { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); font-size: 13px; color: var(--text-dim); }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: var(--surface2); padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-dim); cursor: pointer; user-select: none; white-space: nowrap; position: sticky; top: 0; }
+  th:hover { color: var(--text); }
+  th .sort-icon { margin-left: 4px; opacity: 0.4; }
+  th.sorted .sort-icon { opacity: 1; color: var(--accent); }
+  td { padding: 10px 14px; border-top: 1px solid rgba(71,85,105,0.3); font-size: 13px; }
+  tr:hover td { background: rgba(59,130,246,0.05); }
+  .table-scroll { max-height: 600px; overflow-y: auto; }
+
+  /* Badges */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .badge-green { background: rgba(34,197,94,0.15); color: var(--green); }
+  .badge-orange { background: rgba(245,158,11,0.15); color: var(--orange); }
+  .badge-blue { background: rgba(59,130,246,0.15); color: var(--accent); }
+  .badge-purple { background: rgba(168,85,247,0.15); color: var(--purple); }
+
+  /* Charts */
+  .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .chart-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .chart-card h3 { font-size: 14px; margin-bottom: 16px; color: var(--text-dim); }
+  .bar-chart { display: flex; flex-direction: column; gap: 8px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { width: 140px; font-size: 12px; color: var(--text-dim); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bar-track { flex: 1; height: 24px; background: var(--bg); border-radius: 4px; overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; color: white; min-width: fit-content; }
+  .bar-count { width: 60px; font-size: 12px; color: var(--text-dim); text-align: right; }
+
+  /* Job Search */
+  .job-search-panel { max-width: 1000px; }
+  .company-select { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-end; }
+  .company-select .filter-group { flex: 1; }
+  .job-results { display: flex; flex-direction: column; gap: 12px; }
+  .job-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; transition: border-color 0.2s; }
+  .job-card:hover { border-color: var(--accent); }
+  .job-card h4 { margin-bottom: 8px; }
+  .job-card h4 a { color: var(--accent); text-decoration: none; }
+  .job-card h4 a:hover { text-decoration: underline; }
+  .job-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; flex-wrap: wrap; }
+  .job-links { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .job-links a { font-size: 12px; color: var(--accent); text-decoration: none; padding: 4px 10px; background: rgba(59,130,246,0.1); border-radius: 4px; }
+  .job-links a:hover { background: rgba(59,130,246,0.2); }
+
+  /* Enrichment Panel */
+  .enrich-section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+  .enrich-section h3 { margin-bottom: 12px; font-size: 16px; }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { padding: 4px 12px; background: var(--surface2); border-radius: 20px; font-size: 12px; color: var(--text-dim); cursor: pointer; transition: all 0.2s; border: 1px solid transparent; }
+  .tag:hover, .tag.active { color: var(--accent); border-color: var(--accent); background: rgba(59,130,246,0.1); }
+
+  /* Pagination */
+  .pagination { display: flex; gap: 4px; align-items: center; justify-content: center; padding: 16px; }
+  .pagination button { padding: 6px 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 4px; cursor: pointer; font-size: 13px; }
+  .pagination button:hover { background: var(--surface2); }
+  .pagination button.active { background: var(--accent); border-color: var(--accent); }
+  .pagination button:disabled { opacity: 0.3; cursor: default; }
+
+  /* Bookmarks */
+  .bookmark-btn { cursor: pointer; background: none; border: none; font-size: 18px; padding: 2px; }
+
+  /* Export panel */
+  .export-options { display: flex; gap: 12px; flex-wrap: wrap; }
+  .export-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; cursor: pointer; transition: all 0.2s; min-width: 200px; text-align: center; }
+  .export-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .export-card .icon { font-size: 32px; margin-bottom: 8px; }
+  .export-card h4 { font-size: 14px; margin-bottom: 4px; }
+  .export-card p { font-size: 12px; color: var(--text-dim); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--border); }
+
+  /* Toast */
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--surface2); border: 1px solid var(--border); padding: 12px 20px; border-radius: 8px; font-size: 13px; z-index: 200; animation: slideIn 0.3s ease; }
+  @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  /* Loading */
+  .spinner { display: inline-block; width: 20px; height: 20px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.6s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-overlay { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 40px; color: var(--text-dim); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .filters-bar { flex-direction: column; }
+    .filter-group input, .filter-group select { min-width: 100%; }
+    .charts-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Saved Filters */
+  .saved-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .saved-filter { padding: 4px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+  .saved-filter:hover { border-color: var(--accent); }
+  .saved-filter .remove { color: var(--red); cursor: pointer; }
+
+  /* Company detail modal */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; align-items: center; justify-content: center; }
+  .modal-overlay.show { display: flex; }
+  .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; max-width: 700px; width: 90%; max-height: 80vh; overflow-y: auto; }
+  .modal h2 { margin-bottom: 16px; }
+  .modal-close { float: right; background: none; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; }
+  .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .detail-item { background: var(--bg); padding: 12px; border-radius: 6px; }
+  .detail-item .dlabel { font-size: 11px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px; }
+  .detail-item .dvalue { font-size: 14px; font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🇬🇧 <span>UK Sponsor</span> Licence Analyser Pro</h1>
+  <div class="header-actions">
+    <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">📂 Load Data</button>
+    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" style="display:none">
+    <button class="btn btn-primary" onclick="downloadLatestData()">⬇️ Download Latest from GOV.UK</button>
+  </div>
+</div>
+
+<div class="tabs" id="tabBar">
+  <button class="tab active" data-tab="dashboard">📊 Dashboard</button>
+  <button class="tab" data-tab="explorer">🔍 Data Explorer</button>
+  <button class="tab" data-tab="analytics">📈 Analytics</button>
+  <button class="tab" data-tab="jobs">💼 Job Finder</button>
+  <button class="tab" data-tab="bookmarks">⭐ Bookmarks</button>
+  <button class="tab" data-tab="export">📥 Export</button>
+</div>
+
+<!-- UPLOAD PANEL (shown when no data) -->
+<div id="uploadPanel" class="panel active">
+  <div class="upload-zone" id="dropZone">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><polyline points="14,2 14,8 20,8" fill="none" stroke="currentColor" stroke-width="1.5"/><line x1="12" y1="18" x2="12" y2="12" stroke="currentColor" stroke-width="1.5"/><polyline points="9,15 12,12 15,15" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    <h2>Drop your Sponsor Licence Excel/CSV here</h2>
+    <p>Or click to browse • Supports .xlsx, .xls, .csv files</p>
+    <p style="margin-top:12px; font-size:12px;">Download the latest data from <a href="https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers" target="_blank" style="color:var(--accent)">GOV.UK Register of Licensed Sponsors</a></p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboardPanel" class="panel">
+  <div class="stats-grid" id="statsGrid"></div>
+  <div class="charts-grid" id="dashCharts"></div>
+</div>
+
+<!-- DATA EXPLORER -->
+<div id="explorerPanel" class="panel">
+  <div class="saved-filters" id="savedFilters"></div>
+  <div class="filters-bar" id="filtersBar">
+    <div class="filter-group">
+      <label>Search Company</label>
+      <input type="text" id="filterName" placeholder="Type company name..." oninput="applyFilters()">
+    </div>
+    <div class="filter-group">
+      <label>City / Town</label>
+      <input type="text" id="filterCity" placeholder="e.g. London, Manchester..." oninput="applyFilters()">
+    </div>
+    <div class="filter-group">
+      <label>County</label>
+      <select id="filterCounty" onchange="applyFilters()"><option value="">All Counties</option></select>
+    </div>
+    <div class="filter-group">
+      <label>Rating</label>
+      <select id="filterRating" onchange="applyFilters()">
+        <option value="">All Ratings</option>
+        <option value="A">A Rating</option>
+        <option value="B">B Rating</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Visa Route</label>
+      <select id="filterRoute" onchange="applyFilters()"><option value="">All Routes</option></select>
+    </div>
+    <div class="filter-group">
+      <label>Sponsor Type</label>
+      <select id="filterType" onchange="applyFilters()">
+        <option value="">All Types</option>
+        <option value="Worker">Worker</option>
+        <option value="Temporary Worker">Temporary Worker</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" onclick="applyFilters()">Apply</button>
+    <button class="btn btn-secondary" onclick="clearFilters()">Clear</button>
+    <button class="btn btn-secondary" onclick="saveCurrentFilter()">💾 Save Filter</button>
+  </div>
+  <div class="table-container">
+    <div class="table-info">
+      <span id="tableInfo">Showing 0 of 0 companies</span>
+      <div style="display:flex;gap:8px;">
+        <select id="pageSize" onchange="applyFilters()" style="background:var(--bg);border:1px solid var(--border);color:var(--text);padding:4px 8px;border-radius:4px;font-size:12px;">
+          <option value="50">50 per page</option>
+          <option value="100" selected>100 per page</option>
+          <option value="250">250 per page</option>
+          <option value="500">500 per page</option>
+        </select>
+      </div>
+    </div>
+    <div class="table-scroll" id="tableScroll">
+      <table>
+        <thead id="tableHead"></thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+</div>
+
+<!-- ANALYTICS -->
+<div id="analyticsPanel" class="panel">
+  <div class="stats-grid" id="analyticsStats"></div>
+  <div class="charts-grid" id="analyticsCharts"></div>
+</div>
+
+<!-- JOB FINDER -->
+<div id="jobsPanel" class="panel job-search-panel">
+  <div class="enrich-section">
+    <h3>🔍 Find Jobs at Sponsor Companies</h3>
+    <p style="color:var(--text-dim);font-size:13px;margin-bottom:16px;">Search for open positions at companies with UK sponsor licences. Click any company in the Data Explorer to search for their jobs, or use the search below.</p>
+    <div class="company-select">
+      <div class="filter-group" style="flex:2">
+        <label>Company Name</label>
+        <input type="text" id="jobCompanySearch" placeholder="Type company name to search jobs..." list="companyList">
+        <datalist id="companyList"></datalist>
+      </div>
+      <div class="filter-group">
+        <label>Job Title / Keywords</label>
+        <input type="text" id="jobKeywords" placeholder="e.g. Software Engineer, Data Analyst...">
+      </div>
+      <div class="filter-group">
+        <label>Location</label>
+        <input type="text" id="jobLocation" placeholder="e.g. London, Remote...">
+      </div>
+      <button class="btn btn-primary" onclick="searchJobs()" style="align-self:flex-end;">🔍 Search Jobs</button>
+    </div>
+  </div>
+  <div id="jobResults"></div>
+</div>
+
+<!-- BOOKMARKS -->
+<div id="bookmarksPanel" class="panel">
+  <h3 style="margin-bottom:16px;">⭐ Your Bookmarked Companies</h3>
+  <p style="color:var(--text-dim);font-size:13px;margin-bottom:16px;">Click the star icon next to any company in the Data Explorer to bookmark it. Bookmarked companies appear here for quick access and comparison.</p>
+  <div id="bookmarksList"></div>
+  <button class="btn btn-secondary" onclick="exportBookmarks()" style="margin-top:16px;">📥 Export Bookmarks to CSV</button>
+</div>
+
+<!-- EXPORT -->
+<div id="exportPanel" class="panel">
+  <h3 style="margin-bottom:16px;">📥 Export Your Data</h3>
+  <p style="color:var(--text-dim);font-size:13px;margin-bottom:24px;">Export filtered data or your full analysis in various formats.</p>
+  <div class="export-options">
+    <div class="export-card" onclick="exportCSV('filtered')">
+      <div class="icon">📄</div>
+      <h4>Filtered Data (CSV)</h4>
+      <p>Export current filtered results as CSV</p>
+    </div>
+    <div class="export-card" onclick="exportCSV('all')">
+      <div class="icon">📊</div>
+      <h4>Full Dataset (CSV)</h4>
+      <p>Export all loaded data as CSV</p>
+    </div>
+    <div class="export-card" onclick="exportJSON()">
+      <div class="icon">🔧</div>
+      <h4>JSON Format</h4>
+      <p>Export filtered data as JSON for developers</p>
+    </div>
+    <div class="export-card" onclick="exportBookmarks()">
+      <div class="icon">⭐</div>
+      <h4>Bookmarks (CSV)</h4>
+      <p>Export your bookmarked companies</p>
+    </div>
+    <div class="export-card" onclick="exportAnalyticsReport()">
+      <div class="icon">📈</div>
+      <h4>Analytics Report (HTML)</h4>
+      <p>A standalone analytics summary report</p>
+    </div>
+  </div>
+</div>
+
+<!-- Company Detail Modal -->
+<div class="modal-overlay" id="companyModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+// ======= STATE =======
+let allData = [];
+let filteredData = [];
+let currentPage = 1;
+let sortCol = null;
+let sortDir = 'asc';
+let bookmarks = JSON.parse(localStorage.getItem('sponsorBookmarks') || '[]');
+let savedFilters = JSON.parse(localStorage.getItem('sponsorFilters') || '[]');
+let columns = [];
+
+// ======= FILE LOADING =======
+const fileInput = document.getElementById('fileInput');
+const dropZone = document.getElementById('dropZone');
+
+fileInput.addEventListener('change', e => { if(e.target.files[0]) loadFile(e.target.files[0]); });
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('dragover'); if(e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]); });
+dropZone.addEventListener('click', () => fileInput.click());
+
+function loadFile(file) {
+  const ext = file.name.split('.').pop().toLowerCase();
+  if (ext === 'csv') {
+    Papa.parse(file, {
+      header: true,
+      skipEmptyLines: true,
+      complete: (results) => {
+        processData(results.data);
+      }
+    });
+  } else {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const wb = XLSX.read(e.target.result, {type: 'array'});
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json(ws, {defval: ''});
+      processData(json);
+    };
+    reader.readAsArrayBuffer(file);
+  }
+}
+
+function processData(data) {
+  if (!data || data.length === 0) { showToast('No data found in file!'); return; }
+
+  // Normalize column names
+  allData = data.map(row => {
+    const normalized = {};
+    Object.keys(row).forEach(key => {
+      const k = key.trim();
+      normalized[k] = (row[key] || '').toString().trim();
+    });
+    return normalized;
+  });
+
+  columns = Object.keys(allData[0]);
+
+  // Try to identify key columns by pattern matching
+  window.colMap = identifyColumns(columns, allData[0]);
+
+  populateFilterOptions();
+  applyFilters();
+  renderDashboard();
+  renderAnalytics();
+  renderSavedFilters();
+  populateCompanyList();
+
+  // Show main UI
+  document.getElementById('uploadPanel').classList.remove('active');
+  document.getElementById('dashboardPanel').classList.add('active');
+  document.querySelectorAll('.tab')[0].classList.add('active');
+  showToast(`Loaded ${allData.length.toLocaleString()} companies successfully!`);
+}
+
+function identifyColumns(cols, sampleRow) {
+  const map = { name: 0, city: 1, county: 2, typeRating: 3, route: 4 };
+  const lower = cols.map(c => c.toLowerCase());
+
+  // Try smart matching
+  lower.forEach((c, i) => {
+    if (c.includes('organisation') || c.includes('organization') || c.includes('company') || c.includes('name') && i === 0) map.name = i;
+    else if (c.includes('town') || c.includes('city')) map.city = i;
+    else if (c.includes('county') || c.includes('region')) map.county = i;
+    else if (c.includes('type') || c.includes('rating')) map.typeRating = i;
+    else if (c.includes('route') || c.includes('visa') || c.includes('category')) map.route = i;
+  });
+
+  return {
+    name: cols[map.name] || cols[0],
+    city: cols[map.city] || cols[1],
+    county: cols[map.county] || cols[2],
+    typeRating: cols[map.typeRating] || cols[3],
+    route: cols[map.route] || cols[4]
+  };
+}
+
+// ======= FILTERS =======
+function populateFilterOptions() {
+  const counties = [...new Set(allData.map(r => r[colMap.county]).filter(Boolean))].sort();
+  const routes = [...new Set(allData.flatMap(r => r[colMap.route] ? r[colMap.route].split(',').map(s=>s.trim()) : []))].sort();
+
+  const countySelect = document.getElementById('filterCounty');
+  countySelect.innerHTML = '<option value="">All Counties</option>' + counties.map(c => `<option value="${c}">${c}</option>`).join('');
+
+  const routeSelect = document.getElementById('filterRoute');
+  routeSelect.innerHTML = '<option value="">All Routes</option>' + routes.map(r => `<option value="${r}">${r}</option>`).join('');
+}
+
+function applyFilters() {
+  const nameQ = document.getElementById('filterName').value.toLowerCase();
+  const cityQ = document.getElementById('filterCity').value.toLowerCase();
+  const county = document.getElementById('filterCounty').value;
+  const rating = document.getElementById('filterRating').value;
+  const route = document.getElementById('filterRoute').value;
+  const type = document.getElementById('filterType').value;
+
+  filteredData = allData.filter(row => {
+    const name = (row[colMap.name] || '').toLowerCase();
+    const city = (row[colMap.city] || '').toLowerCase();
+    const cty = row[colMap.county] || '';
+    const tr = row[colMap.typeRating] || '';
+    const rt = row[colMap.route] || '';
+
+    if (nameQ && !name.includes(nameQ)) return false;
+    if (cityQ && !city.includes(cityQ)) return false;
+    if (county && cty !== county) return false;
+    if (rating && !tr.includes(rating + ' rating')) return false;
+    if (route && !rt.includes(route)) return false;
+    if (type && !tr.toLowerCase().includes(type.toLowerCase())) return false;
+    return true;
+  });
+
+  if (sortCol !== null) {
+    filteredData.sort((a, b) => {
+      const va = (a[sortCol] || '').toLowerCase();
+      const vb = (b[sortCol] || '').toLowerCase();
+      return sortDir === 'asc' ? va.localeCompare(vb) : vb.localeCompare(va);
+    });
+  }
+
+  currentPage = 1;
+  renderTable();
+}
+
+function clearFilters() {
+  document.getElementById('filterName').value = '';
+  document.getElementById('filterCity').value = '';
+  document.getElementById('filterCounty').value = '';
+  document.getElementById('filterRating').value = '';
+  document.getElementById('filterRoute').value = '';
+  document.getElementById('filterType').value = '';
+  applyFilters();
+}
+
+function saveCurrentFilter() {
+  const filter = {
+    name: document.getElementById('filterName').value,
+    city: document.getElementById('filterCity').value,
+    county: document.getElementById('filterCounty').value,
+    rating: document.getElementById('filterRating').value,
+    route: document.getElementById('filterRoute').value,
+    type: document.getElementById('filterType').value,
+    label: prompt('Name this filter preset:')
+  };
+  if (!filter.label) return;
+  savedFilters.push(filter);
+  localStorage.setItem('sponsorFilters', JSON.stringify(savedFilters));
+  renderSavedFilters();
+  showToast('Filter saved!');
+}
+
+function loadSavedFilter(idx) {
+  const f = savedFilters[idx];
+  document.getElementById('filterName').value = f.name || '';
+  document.getElementById('filterCity').value = f.city || '';
+  document.getElementById('filterCounty').value = f.county || '';
+  document.getElementById('filterRating').value = f.rating || '';
+  document.getElementById('filterRoute').value = f.route || '';
+  document.getElementById('filterType').value = f.type || '';
+  applyFilters();
+}
+
+function removeSavedFilter(idx) {
+  savedFilters.splice(idx, 1);
+  localStorage.setItem('sponsorFilters', JSON.stringify(savedFilters));
+  renderSavedFilters();
+}
+
+function renderSavedFilters() {
+  const el = document.getElementById('savedFilters');
+  el.innerHTML = savedFilters.map((f, i) => `<div class="saved-filter" onclick="loadSavedFilter(${i})">${f.label} <span class="remove" onclick="event.stopPropagation();removeSavedFilter(${i})">&times;</span></div>`).join('');
+}
+
+// ======= TABLE RENDERING =======
+function renderTable() {
+  const pageSize = parseInt(document.getElementById('pageSize').value);
+  const totalPages = Math.ceil(filteredData.length / pageSize);
+  const start = (currentPage - 1) * pageSize;
+  const pageData = filteredData.slice(start, start + pageSize);
+
+  document.getElementById('tableInfo').textContent = `Showing ${start+1}-${Math.min(start+pageSize, filteredData.length)} of ${filteredData.length.toLocaleString()} companies (${allData.length.toLocaleString()} total)`;
+
+  // Header
+  const thead = document.getElementById('tableHead');
+  thead.innerHTML = '<tr><th style="width:40px">⭐</th>' + columns.map(col => {
+    const sorted = sortCol === col;
+    const icon = sorted ? (sortDir === 'asc' ? '▲' : '▼') : '⇅';
+    return `<th class="${sorted?'sorted':''}" onclick="toggleSort('${col}')">${col} <span class="sort-icon">${icon}</span></th>`;
+  }).join('') + '<th>Actions</th></tr>';
+
+  // Body
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = pageData.map((row, i) => {
+    const idx = start + i;
+    const isBookmarked = bookmarks.some(b => b[colMap.name] === row[colMap.name]);
+    const tr = row[colMap.typeRating] || '';
+    const ratingBadge = tr.includes('A rating') ? '<span class="badge badge-green">A</span>' :
+                         tr.includes('B rating') ? '<span class="badge badge-orange">B</span>' : '';
+
+    return `<tr>
+      <td><button class="bookmark-btn" onclick="toggleBookmark(${idx})">${isBookmarked ? '⭐' : '☆'}</button></td>
+      ${columns.map(col => {
+        let val = row[col] || '';
+        if (col === colMap.typeRating) val = ratingBadge + ' ' + val;
+        if (col === colMap.route) {
+          val = val.split(',').map(r => `<span class="badge badge-blue">${r.trim()}</span>`).join(' ');
+        }
+        if (col === colMap.name) {
+          val = `<strong style="cursor:pointer;color:var(--accent)" onclick="showCompanyDetail(${idx})">${val}</strong>`;
+        }
+        return `<td>${val}</td>`;
+      }).join('')}
+      <td>
+        <button class="btn btn-sm btn-primary" onclick="searchJobsFor('${(row[colMap.name]||'').replace(/'/g,"\\'")}')">🔍 Jobs</button>
+        <button class="btn btn-sm btn-secondary" onclick="showCompanyDetail(${idx})">📋 Detail</button>
+      </td>
+    </tr>`;
+  }).join('');
+
+  // Pagination
+  const pag = document.getElementById('pagination');
+  let pagHTML = `<button ${currentPage===1?'disabled':''} onclick="goPage(${currentPage-1})">‹ Prev</button>`;
+  const maxShow = 7;
+  let startP = Math.max(1, currentPage - 3);
+  let endP = Math.min(totalPages, startP + maxShow - 1);
+  if (endP - startP < maxShow - 1) startP = Math.max(1, endP - maxShow + 1);
+  if (startP > 1) pagHTML += `<button onclick="goPage(1)">1</button><span style="color:var(--text-dim)">...</span>`;
+  for (let p = startP; p <= endP; p++) {
+    pagHTML += `<button class="${p===currentPage?'active':''}" onclick="goPage(${p})">${p}</button>`;
+  }
+  if (endP < totalPages) pagHTML += `<span style="color:var(--text-dim)">...</span><button onclick="goPage(${totalPages})">${totalPages}</button>`;
+  pagHTML += `<button ${currentPage===totalPages?'disabled':''} onclick="goPage(${currentPage+1})">Next ›</button>`;
+  pag.innerHTML = pagHTML;
+}
+
+function goPage(p) { currentPage = p; renderTable(); document.getElementById('tableScroll').scrollTop = 0; }
+
+function toggleSort(col) {
+  if (sortCol === col) { sortDir = sortDir === 'asc' ? 'desc' : 'asc'; }
+  else { sortCol = col; sortDir = 'asc'; }
+  applyFilters();
+}
+
+// ======= DASHBOARD =======
+function renderDashboard() {
+  const total = allData.length;
+  const aRated = allData.filter(r => (r[colMap.typeRating]||'').includes('A rating')).length;
+  const bRated = allData.filter(r => (r[colMap.typeRating]||'').includes('B rating')).length;
+  const workers = allData.filter(r => (r[colMap.typeRating]||'').toLowerCase().includes('worker') && !(r[colMap.typeRating]||'').toLowerCase().includes('temporary')).length;
+  const tempWorkers = allData.filter(r => (r[colMap.typeRating]||'').toLowerCase().includes('temporary')).length;
+  const cities = new Set(allData.map(r => r[colMap.city]).filter(Boolean)).size;
+  const routes = new Set(allData.flatMap(r => (r[colMap.route]||'').split(',').map(s=>s.trim())).filter(Boolean)).size;
+
+  document.getElementById('statsGrid').innerHTML = `
+    <div class="stat-card blue"><div class="label">Total Companies</div><div class="value">${total.toLocaleString()}</div><div class="sub">Licensed sponsors</div></div>
+    <div class="stat-card green"><div class="label">A-Rated</div><div class="value">${aRated.toLocaleString()}</div><div class="sub">${(aRated/total*100).toFixed(1)}% compliant</div></div>
+    <div class="stat-card orange"><div class="label">B-Rated</div><div class="value">${bRated.toLocaleString()}</div><div class="sub">${(bRated/total*100).toFixed(1)}% under action plan</div></div>
+    <div class="stat-card purple"><div class="label">Worker Licences</div><div class="value">${workers.toLocaleString()}</div></div>
+    <div class="stat-card cyan"><div class="label">Cities / Towns</div><div class="value">${cities.toLocaleString()}</div></div>
+    <div class="stat-card pink"><div class="label">Visa Routes</div><div class="value">${routes}</div></div>
+  `;
+
+  // Top cities chart
+  const cityCounts = {};
+  allData.forEach(r => { const c = r[colMap.city]; if(c) cityCounts[c] = (cityCounts[c]||0)+1; });
+  const topCities = Object.entries(cityCounts).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const maxCity = topCities[0]?.[1] || 1;
+
+  // Route distribution
+  const routeCounts = {};
+  allData.forEach(r => { (r[colMap.route]||'').split(',').map(s=>s.trim()).filter(Boolean).forEach(rt => routeCounts[rt]=(routeCounts[rt]||0)+1); });
+  const topRoutes = Object.entries(routeCounts).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  const maxRoute = topRoutes[0]?.[1] || 1;
+
+  const colors = ['#3b82f6','#22c55e','#f59e0b','#a855f7','#ec4899','#06b6d4','#ef4444','#84cc16','#f97316','#6366f1'];
+
+  document.getElementById('dashCharts').innerHTML = `
+    <div class="chart-card">
+      <h3>📍 Top 10 Cities by Number of Sponsors</h3>
+      <div class="bar-chart">${topCities.map(([city, count], i) => `
+        <div class="bar-row">
+          <div class="bar-label" title="${city}">${city}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${count/maxCity*100}%;background:${colors[i%10]}">${count > maxCity*0.15 ? count.toLocaleString() : ''}</div></div>
+          <div class="bar-count">${count.toLocaleString()}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>🛂 Visa Route Distribution</h3>
+      <div class="bar-chart">${topRoutes.map(([route, count], i) => `
+        <div class="bar-row">
+          <div class="bar-label" title="${route}">${route}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${count/maxRoute*100}%;background:${colors[(i+3)%10]}">${count > maxRoute*0.15 ? count.toLocaleString() : ''}</div></div>
+          <div class="bar-count">${count.toLocaleString()}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// ======= ANALYTICS =======
+function renderAnalytics() {
+  const total = allData.length;
+
+  // County analysis
+  const countyCounts = {};
+  allData.forEach(r => { const c = r[colMap.county] || 'Not specified'; countyCounts[c] = (countyCounts[c]||0)+1; });
+  const topCounties = Object.entries(countyCounts).sort((a,b)=>b[1]-a[1]).slice(0,15);
+  const maxCounty = topCounties[0]?.[1] || 1;
+
+  // Rating by city
+  const cityRatings = {};
+  allData.forEach(r => {
+    const city = r[colMap.city] || 'Unknown';
+    if (!cityRatings[city]) cityRatings[city] = {a:0,b:0,total:0};
+    cityRatings[city].total++;
+    if ((r[colMap.typeRating]||'').includes('A rating')) cityRatings[city].a++;
+    if ((r[colMap.typeRating]||'').includes('B rating')) cityRatings[city].b++;
+  });
+  const topCityRatings = Object.entries(cityRatings).sort((a,b)=>b[1].total-a[1].total).slice(0,10);
+
+  // Route combinations
+  const routeCombos = {};
+  allData.forEach(r => { const rt = r[colMap.route] || 'Unknown'; routeCombos[rt] = (routeCombos[rt]||0)+1; });
+  const topCombos = Object.entries(routeCombos).sort((a,b)=>b[1]-a[1]).slice(0,10);
+  const maxCombo = topCombos[0]?.[1] || 1;
+
+  const colors = ['#3b82f6','#22c55e','#f59e0b','#a855f7','#ec4899','#06b6d4','#ef4444','#84cc16','#f97316','#6366f1','#14b8a6','#f43f5e','#8b5cf6','#0ea5e9','#d946ef'];
+
+  document.getElementById('analyticsStats').innerHTML = `
+    <div class="stat-card blue"><div class="label">Unique Counties</div><div class="value">${Object.keys(countyCounts).length}</div></div>
+    <div class="stat-card green"><div class="label">A-Rating %</div><div class="value">${(allData.filter(r=>(r[colMap.typeRating]||'').includes('A rating')).length/total*100).toFixed(1)}%</div></div>
+    <div class="stat-card purple"><div class="label">Route Combinations</div><div class="value">${Object.keys(routeCombos).length}</div></div>
+    <div class="stat-card cyan"><div class="label">Avg per City</div><div class="value">${Math.round(total / new Set(allData.map(r=>r[colMap.city]).filter(Boolean)).size)}</div></div>
+  `;
+
+  document.getElementById('analyticsCharts').innerHTML = `
+    <div class="chart-card">
+      <h3>🏛️ Top 15 Counties</h3>
+      <div class="bar-chart">${topCounties.map(([county, count], i) => `
+        <div class="bar-row">
+          <div class="bar-label" title="${county}">${county}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${count/maxCounty*100}%;background:${colors[i%15]}">${count > maxCounty*0.12 ? count.toLocaleString() : ''}</div></div>
+          <div class="bar-count">${count.toLocaleString()}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>📊 Route Combinations (Top 10)</h3>
+      <div class="bar-chart">${topCombos.map(([combo, count], i) => `
+        <div class="bar-row">
+          <div class="bar-label" title="${combo}">${combo.length > 20 ? combo.substring(0,20)+'...' : combo}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${count/maxCombo*100}%;background:${colors[(i+5)%15]}">${count > maxCombo*0.12 ? count.toLocaleString() : ''}</div></div>
+          <div class="bar-count">${count.toLocaleString()}</div>
+        </div>`).join('')}
+      </div>
+    </div>
+    <div class="chart-card" style="grid-column: span 2;">
+      <h3>🏆 Top 10 Cities: A vs B Ratings</h3>
+      <div class="bar-chart">${topCityRatings.map(([city, data]) => `
+        <div class="bar-row">
+          <div class="bar-label">${city}</div>
+          <div class="bar-track" style="display:flex;gap:1px">
+            <div style="width:${data.a/data.total*100}%;height:100%;background:var(--green);border-radius:4px 0 0 4px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:white">${data.a > data.total*0.1 ? data.a : ''}</div>
+            <div style="width:${data.b/data.total*100}%;height:100%;background:var(--orange);border-radius:0 4px 4px 0;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:white">${data.b > data.total*0.1 ? data.b : ''}</div>
+          </div>
+          <div class="bar-count">${data.total.toLocaleString()}</div>
+        </div>`).join('')}
+      </div>
+      <div style="display:flex;gap:16px;margin-top:12px;font-size:12px;color:var(--text-dim)">
+        <span><span style="display:inline-block;width:12px;height:12px;background:var(--green);border-radius:2px;vertical-align:middle"></span> A Rating</span>
+        <span><span style="display:inline-block;width:12px;height:12px;background:var(--orange);border-radius:2px;vertical-align:middle"></span> B Rating</span>
+      </div>
+    </div>
+  `;
+}
+
+// ======= BOOKMARKS =======
+function toggleBookmark(idx) {
+  const row = filteredData[idx] || allData[idx];
+  const name = row[colMap.name];
+  const bIdx = bookmarks.findIndex(b => b[colMap.name] === name);
+  if (bIdx >= 0) bookmarks.splice(bIdx, 1);
+  else bookmarks.push({...row});
+  localStorage.setItem('sponsorBookmarks', JSON.stringify(bookmarks));
+  renderTable();
+  renderBookmarks();
+}
+
+function renderBookmarks() {
+  const el = document.getElementById('bookmarksList');
+  if (bookmarks.length === 0) {
+    el.innerHTML = '<p style="color:var(--text-dim)">No bookmarks yet. Star companies in the Data Explorer to add them here.</p>';
+    return;
+  }
+  el.innerHTML = `<div class="table-container"><div class="table-scroll"><table>
+    <thead><tr><th>Company</th><th>City</th><th>County</th><th>Type & Rating</th><th>Route</th><th>Actions</th></tr></thead>
+    <tbody>${bookmarks.map((row, i) => `<tr>
+      <td><strong>${row[colMap.name]}</strong></td>
+      <td>${row[colMap.city]||''}</td>
+      <td>${row[colMap.county]||''}</td>
+      <td>${row[colMap.typeRating]||''}</td>
+      <td>${row[colMap.route]||''}</td>
+      <td>
+        <button class="btn btn-sm btn-primary" onclick="searchJobsFor('${(row[colMap.name]||'').replace(/'/g,"\\'")}')">🔍 Jobs</button>
+        <button class="btn btn-sm btn-danger" onclick="bookmarks.splice(${i},1);localStorage.setItem('sponsorBookmarks',JSON.stringify(bookmarks));renderBookmarks();">✕</button>
+      </td>
+    </tr>`).join('')}</tbody>
+  </table></div></div>`;
+}
+
+// ======= JOB SEARCH =======
+function searchJobsFor(companyName) {
+  document.getElementById('jobCompanySearch').value = companyName;
+  switchTab('jobs');
+  searchJobs();
+}
+
+function searchJobs() {
+  const company = document.getElementById('jobCompanySearch').value.trim();
+  const keywords = document.getElementById('jobKeywords').value.trim();
+  const location = document.getElementById('jobLocation').value.trim() || 'United Kingdom';
+
+  if (!company && !keywords) {
+    showToast('Please enter a company name or keywords');
+    return;
+  }
+
+  const searchQuery = [company, keywords, 'UK visa sponsorship'].filter(Boolean).join(' ');
+  const encodedQuery = encodeURIComponent(searchQuery);
+  const encodedCompany = encodeURIComponent(company);
+  const encodedKeywords = encodeURIComponent(keywords || '');
+  const encodedLocation = encodeURIComponent(location);
+
+  const resultsEl = document.getElementById('jobResults');
+  resultsEl.innerHTML = `
+    <div class="enrich-section">
+      <h3>🔗 Job Search Results for "${company || keywords}"</h3>
+      <p style="color:var(--text-dim);font-size:13px;margin-bottom:16px;">Click any link below to search for open positions on major job platforms. Results will open in new tabs.</p>
+
+      <div class="job-results">
+        <div class="job-card">
+          <h4>🟦 LinkedIn Jobs</h4>
+          <p style="font-size:13px;color:var(--text-dim);">Professional network with company pages, employee insights, and direct applications</p>
+          <div class="job-links">
+            <a href="https://www.linkedin.com/jobs/search/?keywords=${encodedQuery}&location=${encodedLocation}" target="_blank">🔍 Search Jobs</a>
+            ${company ? `<a href="https://www.linkedin.com/search/results/companies/?keywords=${encodedCompany}" target="_blank">🏢 Find Company</a>` : ''}
+            <a href="https://www.linkedin.com/jobs/search/?keywords=${encodedQuery}&location=${encodedLocation}&f_WT=2" target="_blank">🏠 Remote Only</a>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <h4>🟩 Indeed</h4>
+          <p style="font-size:13px;color:var(--text-dim);">Largest job board with salary estimates and company reviews</p>
+          <div class="job-links">
+            <a href="https://uk.indeed.com/jobs?q=${encodedQuery}&l=${encodedLocation}" target="_blank">🔍 Search Jobs</a>
+            ${company ? `<a href="https://uk.indeed.com/cmp/${encodedCompany}/jobs" target="_blank">🏢 Company Jobs</a>` : ''}
+            <a href="https://uk.indeed.com/jobs?q=${encodedQuery}&l=${encodedLocation}&sc=0kf%3Aattr(DSQF7)%3B" target="_blank">💰 With Salary</a>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <h4>🔴 Reed.co.uk</h4>
+          <p style="font-size:13px;color:var(--text-dim);">UK-focused job board with visa sponsorship filter</p>
+          <div class="job-links">
+            <a href="https://www.reed.co.uk/jobs?keywords=${encodedQuery}&location=${encodedLocation}" target="_blank">🔍 Search Jobs</a>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <h4>🟪 Glassdoor</h4>
+          <p style="font-size:13px;color:var(--text-dim);">Company reviews, salary data, and interview insights</p>
+          <div class="job-links">
+            <a href="https://www.glassdoor.co.uk/Job/jobs.htm?sc.keyword=${encodedQuery}&locT=C&locKeyword=${encodedLocation}" target="_blank">🔍 Search Jobs</a>
+            ${company ? `<a href="https://www.glassdoor.co.uk/Reviews/company-reviews.htm?sc.keyword=${encodedCompany}" target="_blank">⭐ Reviews</a>` : ''}
+            ${company ? `<a href="https://www.glassdoor.co.uk/Salary/company-salaries.htm?sc.keyword=${encodedCompany}" target="_blank">💰 Salaries</a>` : ''}
+          </div>
+        </div>
+
+        <div class="job-card">
+          <h4>🌐 Google Jobs</h4>
+          <p style="font-size:13px;color:var(--text-dim);">Aggregated job listings from across the web</p>
+          <div class="job-links">
+            <a href="https://www.google.com/search?q=${encodedQuery}+jobs+${encodedLocation}&ibp=htl;jobs" target="_blank">🔍 Search Jobs</a>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <h4>🟧 Adzuna</h4>
+          <p style="font-size:13px;color:var(--text-dim);">UK job search engine with market insights</p>
+          <div class="job-links">
+            <a href="https://www.adzuna.co.uk/search?q=${encodedQuery}&loc=${encodedLocation}" target="_blank">🔍 Search Jobs</a>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <h4>🎯 Specialist Platforms</h4>
+          <p style="font-size:13px;color:var(--text-dim);">Niche job boards for specific industries and visa sponsorship</p>
+          <div class="job-links">
+            <a href="https://www.totaljobs.com/jobs?Keywords=${encodedQuery}&LTxt=${encodedLocation}" target="_blank">TotalJobs</a>
+            <a href="https://www.cwjobs.co.uk/jobs?q=${encodedQuery}&l=${encodedLocation}" target="_blank">CWJobs (Tech)</a>
+            <a href="https://www.jobs.nhs.uk/candidate/search/results?keyword=${encodedKeywords || encodedCompany}" target="_blank">NHS Jobs</a>
+            <a href="https://stackoverflow.com/jobs?q=${encodedQuery}&l=${encodedLocation}" target="_blank">StackOverflow</a>
+          </div>
+        </div>
+      </div>
+
+      ${company ? `
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+        <h4 style="margin-bottom:12px;">🔬 Research "${company}"</h4>
+        <div class="job-links">
+          <a href="https://find-and-update.company-information.service.gov.uk/search?q=${encodedCompany}" target="_blank">🏛️ Companies House</a>
+          <a href="https://www.google.com/search?q=%22${encodedCompany}%22+UK+visa+sponsorship" target="_blank">🔍 Google Research</a>
+          <a href="https://www.glassdoor.co.uk/Reviews/company-reviews.htm?sc.keyword=${encodedCompany}" target="_blank">⭐ Glassdoor Reviews</a>
+          <a href="https://uk.trustpilot.com/search?query=${encodedCompany}" target="_blank">🌟 Trustpilot</a>
+          <a href="https://www.linkedin.com/search/results/companies/?keywords=${encodedCompany}" target="_blank">🟦 LinkedIn Company</a>
+          <a href="https://www.crunchbase.com/textsearch?q=${encodedCompany}" target="_blank">📊 Crunchbase</a>
+        </div>
+      </div>` : ''}
+    </div>
+  `;
+}
+
+function populateCompanyList() {
+  const list = document.getElementById('companyList');
+  // Only add top companies (by name frequency or first 500) to avoid huge DOM
+  const names = [...new Set(allData.map(r => r[colMap.name]).filter(Boolean))].slice(0, 1000);
+  list.innerHTML = names.map(n => `<option value="${n}">`).join('');
+}
+
+// ======= COMPANY DETAIL MODAL =======
+function showCompanyDetail(idx) {
+  const row = filteredData[idx] || allData[idx];
+  const name = row[colMap.name] || 'Unknown';
+  const city = row[colMap.city] || 'N/A';
+  const county = row[colMap.county] || 'N/A';
+  const tr = row[colMap.typeRating] || 'N/A';
+  const route = row[colMap.route] || 'N/A';
+  const isBookmarked = bookmarks.some(b => b[colMap.name] === name);
+
+  const encoded = encodeURIComponent(name);
+
+  document.getElementById('modalContent').innerHTML = `
+    <h2>${name} ${isBookmarked ? '⭐' : ''}</h2>
+    <div class="detail-grid">
+      <div class="detail-item"><div class="dlabel">Location</div><div class="dvalue">📍 ${city}${county !== 'N/A' ? ', '+county : ''}</div></div>
+      <div class="detail-item"><div class="dlabel">Type & Rating</div><div class="dvalue">${tr}</div></div>
+      <div class="detail-item"><div class="dlabel">Visa Routes</div><div class="dvalue">${route.split(',').map(r => `<span class="badge badge-blue">${r.trim()}</span>`).join(' ')}</div></div>
+      <div class="detail-item"><div class="dlabel">Bookmark</div><div class="dvalue"><button class="btn btn-sm ${isBookmarked?'btn-danger':'btn-success'}" onclick="toggleBookmark(${idx});showCompanyDetail(${idx})">${isBookmarked?'Remove Bookmark':'Add Bookmark'}</button></div></div>
+    </div>
+    <h4 style="margin-bottom:12px;">🔗 Quick Research Links</h4>
+    <div class="job-links" style="flex-wrap:wrap">
+      <a href="https://find-and-update.company-information.service.gov.uk/search?q=${encoded}" target="_blank">🏛️ Companies House</a>
+      <a href="https://www.linkedin.com/search/results/companies/?keywords=${encoded}" target="_blank">🟦 LinkedIn</a>
+      <a href="https://www.glassdoor.co.uk/Reviews/company-reviews.htm?sc.keyword=${encoded}" target="_blank">⭐ Glassdoor</a>
+      <a href="https://www.google.com/search?q=%22${encoded}%22" target="_blank">🔍 Google</a>
+      <a href="https://uk.trustpilot.com/search?query=${encoded}" target="_blank">🌟 Trustpilot</a>
+      <a href="https://www.crunchbase.com/textsearch?q=${encoded}" target="_blank">📊 Crunchbase</a>
+    </div>
+    <div style="margin-top:16px">
+      <button class="btn btn-primary" onclick="searchJobsFor('${name.replace(/'/g,"\\'")}');closeModal();">🔍 Search Jobs at This Company</button>
+    </div>
+  `;
+  document.getElementById('companyModal').classList.add('show');
+}
+
+function closeModal() { document.getElementById('companyModal').classList.remove('show'); }
+document.getElementById('companyModal').addEventListener('click', e => { if(e.target.classList.contains('modal-overlay')) closeModal(); });
+
+// ======= EXPORT =======
+function exportCSV(type) {
+  const data = type === 'all' ? allData : filteredData;
+  if (data.length === 0) { showToast('No data to export'); return; }
+  const headers = columns.join(',');
+  const rows = data.map(row => columns.map(col => `"${(row[col]||'').replace(/"/g,'""')}"`).join(','));
+  downloadFile([headers, ...rows].join('\n'), `sponsor_data_${type}_${new Date().toISOString().slice(0,10)}.csv`, 'text/csv');
+  showToast(`Exported ${data.length.toLocaleString()} rows`);
+}
+
+function exportJSON() {
+  if (filteredData.length === 0) { showToast('No data to export'); return; }
+  downloadFile(JSON.stringify(filteredData, null, 2), `sponsor_data_${new Date().toISOString().slice(0,10)}.json`, 'application/json');
+  showToast(`Exported ${filteredData.length.toLocaleString()} rows as JSON`);
+}
+
+function exportBookmarks() {
+  if (bookmarks.length === 0) { showToast('No bookmarks to export'); return; }
+  const headers = columns.join(',');
+  const rows = bookmarks.map(row => columns.map(col => `"${(row[col]||'').replace(/"/g,'""')}"`).join(','));
+  downloadFile([headers, ...rows].join('\n'), `bookmarked_sponsors_${new Date().toISOString().slice(0,10)}.csv`, 'text/csv');
+  showToast(`Exported ${bookmarks.length} bookmarked companies`);
+}
+
+function exportAnalyticsReport() {
+  const total = allData.length;
+  const aRated = allData.filter(r => (r[colMap.typeRating]||'').includes('A rating')).length;
+  const bRated = allData.filter(r => (r[colMap.typeRating]||'').includes('B rating')).length;
+
+  const html = `<!DOCTYPE html><html><head><title>Sponsor Licence Analytics Report</title>
+    <style>body{font-family:sans-serif;max-width:800px;margin:40px auto;padding:20px;color:#1e293b}
+    h1{color:#1e3a5f}table{width:100%;border-collapse:collapse;margin:20px 0}th,td{padding:8px 12px;border:1px solid #e2e8f0;text-align:left}
+    th{background:#f1f5f9}.stat{display:inline-block;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:16px 24px;margin:8px;text-align:center}
+    .stat .val{font-size:24px;font-weight:700;color:#3b82f6}.stat .lbl{font-size:12px;color:#64748b}</style></head>
+    <body><h1>UK Sponsor Licence Analytics Report</h1><p>Generated: ${new Date().toLocaleDateString()}</p>
+    <div class="stat"><div class="val">${total.toLocaleString()}</div><div class="lbl">Total Companies</div></div>
+    <div class="stat"><div class="val">${aRated.toLocaleString()}</div><div class="lbl">A-Rated</div></div>
+    <div class="stat"><div class="val">${bRated.toLocaleString()}</div><div class="lbl">B-Rated</div></div>
+    <div class="stat"><div class="val">${(aRated/total*100).toFixed(1)}%</div><div class="lbl">Compliance Rate</div></div>
+    </body></html>`;
+  downloadFile(html, `analytics_report_${new Date().toISOString().slice(0,10)}.html`, 'text/html');
+  showToast('Analytics report exported');
+}
+
+function downloadFile(content, filename, type) {
+  const blob = new Blob([content], {type});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+}
+
+function downloadLatestData() {
+  window.open('https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers', '_blank');
+}
+
+// ======= TABS =======
+function switchTab(tabName) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tabName));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById(tabName + 'Panel');
+  if (panel) panel.classList.add('active');
+  if (tabName === 'bookmarks') renderBookmarks();
+}
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    if (allData.length === 0 && tab.dataset.tab !== 'dashboard') {
+      showToast('Please load data first!');
+      return;
+    }
+    switchTab(tab.dataset.tab);
+  });
+});
+
+// ======= TOAST =======
+function showToast(msg) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const el = document.createElement('div');
+  el.className = 'toast';
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 3000);
+}
+
+// ======= KEYBOARD SHORTCUTS =======
+document.addEventListener('keydown', e => {
+  if (e.ctrlKey || e.metaKey) {
+    if (e.key === 'f') { e.preventDefault(); document.getElementById('filterName')?.focus(); switchTab('explorer'); }
+    if (e.key === 'o') { e.preventDefault(); fileInput.click(); }
+  }
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+</body>
+</html>
