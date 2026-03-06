@@ -60,7 +60,7 @@ const navSections: NavSection[] = [
   {
     title: 'ADMIN',
     items: [
-      { href: '/admin/engine', label: 'Engine', icon: <Settings size={16} /> },
+      { href: '/admin', label: 'Engine', icon: <Settings size={16} /> },
     ],
     adminOnly: true,
   },
