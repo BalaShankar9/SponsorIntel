@@ -20,7 +20,7 @@ migrate-new:
 	docker compose exec backend alembic revision --autogenerate -m "$$msg"
 
 seed:
-	docker compose exec backend python -m app.utils.seed
+	docker compose exec backend python -m app.scripts.seed_data
 
 test-backend:
 	docker compose exec backend pytest --cov=app --cov-report=term-missing
