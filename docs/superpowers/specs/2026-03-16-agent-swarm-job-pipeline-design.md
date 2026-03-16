@@ -1,7 +1,7 @@
 # Agent Swarm Job Pipeline — Design Specification
 
 **Date**: 2026-03-16
-**Status**: Draft
+**Status**: Reviewed (v2 — 18 review issues addressed)
 **Author**: Claude + User
 
 ---
@@ -19,16 +19,29 @@ The goal is to build an intelligent agent swarm that continuously scrapes, valid
 ### 2.1 Deployment Topology
 
 ```
-Railway Service: "sponsorintel-backend"
+Railway Service 1: "backend" (2GB RAM)
 ├── FastAPI (web process)          — API endpoints + WebSocket
-├── Celery Worker x2 (worker)     — Processes scraping/enrichment tasks
-├── Celery Beat (beat)             — Schedules recurring tasks
-└── Ollama (ollama)                — phi-3-mini LLM for intelligent sub-agents
+├── Celery Worker (worker, --concurrency=4)  — Processes scraping/enrichment tasks
+└── Celery Beat (beat)             — Schedules recurring tasks
 
-Railway Addon: Redis              — Task broker + pub/sub + caching
-External: Supabase PostgreSQL     — Primary database (shared with frontend)
-External: Vercel                  — Frontend (reads from Supabase)
+Railway Service 2: "ollama" (3GB RAM)
+└── Ollama (phi-3-mini Q4_K_M)    — LLM for intelligent sub-agents
+
+Railway Addon: Redis               — Task broker + pub/sub + caching
+External: Supabase PostgreSQL      — Primary database (via connection pooler)
+External: Vercel                   — Frontend (reads from Supabase)
 ```
+
+**Database connection strategy**: All backend services connect via Supabase's built-in PgBouncer connection pooler (`pooler.supabase.com:6543` in transaction mode). This prevents connection exhaustion from concurrent Celery workers. Backend authenticates with `service_role` key which bypasses RLS — no write policies needed.
+
+**Ollama fallback strategy**: LLM sub-agents are designed to degrade gracefully:
+1. **Primary**: Ollama on Railway (phi-3-mini, ~5-15s/call on CPU)
+2. **Fallback trigger**: If Ollama health check fails 3 times, or avg latency > 30s, automatically switch
+3. **Fallback**: Claude Haiku API ($0.25/M input tokens). At ~500 calls/cycle with ~500 tokens avg = ~$0.06/cycle ≈ $2/mo
+4. **Graceful degradation**: If BOTH unavailable, LLM sub-agents return `None` and pipeline continues with deterministic-only enrichment. Jobs still get scraped, validated, and basic-scored — just without LLM-enhanced classification.
+5. Config: `LLM_BACKEND=ollama|anthropic|openai|disabled`
+
+**Ollama cold start**: On first Railway deploy, Ollama pulls phi-3-mini (~2.3GB). During download, `LLMService` health check returns unhealthy. Pipeline runs in deterministic-only mode until model is ready. Subsequent deploys use Railway's persistent volume — no re-download.
 
 ### 2.2 Agent Hierarchy
 
@@ -146,7 +159,9 @@ Sponsor Register (140K sponsors)
 
 Each wraps the existing scraper class with error handling, metrics, and retry logic.
 
-7. **FreeAPIHunter [DET]** — Wraps all 11 zero-auth APIs. Runs them concurrently via `asyncio.gather`. Sources: Remotive, Arbeitnow, Jobicy, TheMuse, Himalayas, RemoteOK, WWR, Teaching Vacancies, DevITJobs, CharityJob, HN Hiring.
+> **Scraper count reconciliation**: The codebase contains 23 job source scrapers (matching the `JobSource` enum) plus 15 company data/enrichment scrapers (Companies House, LinkedIn Company, Glassdoor Company, Google Maps, Google News, Trustpilot, Website Analyser, Contact Scraper, etc.) = 38 total. Only the 23 job source scrapers are relevant here. The company data scrapers are a separate enrichment pipeline already running.
+
+7. **FreeAPIHunter [DET]** — Wraps all 11 zero-auth APIs concurrently via `asyncio.gather`. Sources: Remotive, Arbeitnow, Jobicy, TheMuse, Himalayas, RemoteOK, WWR, DevITJobs, HN Hiring. (Teaching Vacancies and CharityJob have dedicated hunters below for sector-specific filtering.)
 
 8. **ReedHunter [DET]** — Wraps `ReedAPIScraper` (primary) + `ReedScraper` (HTML fallback). Manages daily API quota (500 requests).
 
@@ -177,17 +192,19 @@ Each wraps the existing scraper class with error handling, metrics, and retry lo
 **Career Page (2):**
 
 21. **CareerPageDiscoverer [LLM]**
-   - Input: sponsor website HTML (first 5KB)
+   - Input: sponsor website HTML → **preprocessed to text** (strip tags, keep link hrefs, collapse whitespace, first 2000 chars)
    - Output: career page URL or null
-   - Prompt: "Given this website HTML, find the URL to the careers/jobs page. Return just the URL or 'NONE'."
+   - Prompt: "Given this website content and links, find the URL to the careers/jobs page. Return just the URL or 'NONE'."
    - Runs for sponsors where `company_profiles.has_careers_page IS NULL`
-   - Stores result in `company_profiles.careers_page_url`
+   - Stores result in `company_profiles.careers_page_url` and sets `has_careers_page`
+   - HTML preprocessing: `BeautifulSoup(html, 'html.parser').get_text(separator=' ')` + extract all `<a href>` links
 
 22. **CareerPageParser [LLM]**
-   - Input: career page HTML (first 10KB)
+   - Input: career page HTML → **preprocessed**: extract text + all links + any structured data (JSON-LD, microdata). First 3000 chars of cleaned text.
    - Output: array of {title, location, url, snippet}
-   - Prompt: "Extract all job listings from this career page HTML. Return JSON array."
+   - Prompt: "Extract all job listings from this career page content. Return JSON array with title, location, url for each."
    - Creates Job records with `source = CAREER_PAGE`
+   - HTML preprocessing ensures token efficiency — raw HTML wastes 60-70% of context on tags
 
 #### Schedule
 
@@ -248,6 +265,8 @@ Each wraps the existing scraper class with error handling, metrics, and retry lo
      - `source_url`: keep all as `source_urls[]` on canonical
 
 **Quality Control (6):**
+
+> **Note on Validator vs QualityAgent overlap**: ValidatorAgent runs FIRST (inline during ingestion) and performs fast sanity checks — catching obvious errors before data enters the pipeline. QualityAgent runs AFTER enrichment and performs deep integrity analysis, cross-source gap filling, and ongoing monitoring. SalaryValidator (Validator) catches min>max swaps immediately; SalaryIntegrityChecker (Quality) catches range outliers using SOC benchmarks available only after enrichment. They are sequential stages, not duplicates.
 
 7. **SpamClassifier [LLM]**
    - Categories: GENUINE, RECRUITER_SPAM, GHOST_JOB, SCAM
@@ -344,23 +363,33 @@ Each wraps the existing scraper class with error handling, metrics, and retry lo
    - Returns: is_shortage (bool), threshold if applicable
 
 7. **SponsorshipScoreCalculator [DET]**
-   - Combines all signals:
+   - Combines all signals using a **two-track system** to avoid score inflation:
    ```
-   score = 0
-   IF on sponsor register           → +25
-   IF A-rated                        → +15 (B: +5)
-   IF positive keywords (strong)     → +25
-   IF positive keywords (weak)       → +15
-   IF negative keywords              → -30 (floor 0)
-   IF LLM says YES/LIKELY           → +20 / +10
-   IF LLM says UNLIKELY/NO          → -15 / -25
-   IF salary >= threshold            → +15
-   IF salary >= 1.5x threshold       → +20
-   IF salary < threshold             → -5
-   IF on shortage list               → +10
-   IF historical sponsor rate > 0.5  → +10
+   COMPANY TRACK (max 40 points):
+     On sponsor register:     +25
+     A-rated:                 +10 (B: +5)
+     Historical sponsor rate > 0.5: +5
+
+   DESCRIPTION TRACK (max 35 points):
+     Strong positive keywords ("visa sponsorship available"): +25
+     Weak positive keywords ("skilled worker"):               +15
+     LLM confirms YES:        +10 (on top of keywords)
+     Negative keywords ("no sponsorship"):                    -35 (wipes description track to 0)
+     LLM says NO:             -25
+
+   SALARY TRACK (max 15 points):
+     Salary >= threshold:     +10
+     Salary >= 1.5x threshold: +15 (replaces, not adds)
+     Salary < threshold:      -5
+
+   SHORTAGE TRACK (max 10 points):
+     On shortage list:        +10
+
+   TOTAL = company + description + salary + shortage
    Cap at 100, floor at 0.
+   Max possible: 40 + 35 + 15 + 10 = 100 (intentional ceiling)
    ```
+   This ensures the formula **cannot exceed 100 before capping** — each track has a hard ceiling.
 
 8. **VisaRouteClassifier [LLM]**
    - Input: SOC code, salary, company type, job requirements summary
@@ -942,6 +971,22 @@ CREATE TABLE swarm_reports (
     created_at TIMESTAMPTZ DEFAULT now()
 );
 
+-- Failed task log (referenced by RetryManager)
+CREATE TABLE swarm_errors (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    task_name VARCHAR(200),
+    agent VARCHAR(50),
+    sub_agent VARCHAR(100),
+    error_type VARCHAR(100),
+    error_message TEXT,
+    traceback TEXT,
+    retry_count INTEGER DEFAULT 0,
+    resolved BOOLEAN DEFAULT false,
+    created_at TIMESTAMPTZ DEFAULT now()
+);
+CREATE INDEX idx_swarm_errors_created ON swarm_errors(created_at);
+CREATE INDEX idx_swarm_errors_agent ON swarm_errors(agent);
+
 -- Source health tracking
 CREATE TABLE source_health_log (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -1008,21 +1053,60 @@ ALTER TABLE jobs ADD COLUMN source_urls TEXT[];  -- all sources for canonical jo
 -- company_profiles additions
 ALTER TABLE company_profiles ADD COLUMN name_variants JSONB;
 ALTER TABLE company_profiles ADD COLUMN careers_page_url VARCHAR(2000);
+ALTER TABLE company_profiles ADD COLUMN has_careers_page BOOLEAN;
+
+-- Indexes on log tables (for query performance as they grow)
+CREATE INDEX idx_job_validation_log_job ON job_validation_log(job_id);
+CREATE INDEX idx_job_validation_log_date ON job_validation_log(resolved_at);
+CREATE INDEX idx_job_change_log_job ON job_change_log(job_id);
+CREATE INDEX idx_job_change_log_date ON job_change_log(detected_at);
+CREATE INDEX idx_source_health_log_source ON source_health_log(source, logged_at);
+CREATE INDEX idx_swarm_metrics_date ON swarm_metrics(started_at);
+CREATE INDEX idx_swarm_alerts_type ON swarm_alerts(alert_type, created_at);
+
+-- New job column indexes
+CREATE INDEX idx_jobs_quality ON jobs(data_quality_score);
+CREATE INDEX idx_jobs_work_model ON jobs(work_model);
+CREATE INDEX idx_jobs_department ON jobs(department);
+CREATE INDEX idx_jobs_flagged ON jobs(is_flagged) WHERE is_flagged = true;
+
+-- Log retention: job_validation_log and job_change_log rows older than 90 days
+-- are archived/deleted by a weekly Celery task (LogRetentionCleaner).
+-- swarm_metrics and source_health_log: retain 30 days.
+-- swarm_errors: retain 14 days (resolved) or 90 days (unresolved).
+
+-- Clarification: source_url (VARCHAR) = primary/canonical URL for the job.
+-- source_urls (TEXT[]) = all URLs where this job was found (populated by CanonicalMerger
+-- for dedup clusters). source_url is always the first element of source_urls.
 ```
 
 ### 5.3 RLS Policies
 
 ```sql
--- All new tables: anon SELECT
-CREATE POLICY anon_select ON job_validation_log FOR SELECT TO anon USING (true);
-CREATE POLICY anon_select ON job_change_log FOR SELECT TO anon USING (true);
-CREATE POLICY anon_select ON swarm_metrics FOR SELECT TO anon USING (true);
-CREATE POLICY anon_select ON swarm_alerts FOR SELECT TO anon USING (true);
-CREATE POLICY anon_select ON swarm_reports FOR SELECT TO anon USING (true);
-CREATE POLICY anon_select ON source_health_log FOR SELECT TO anon USING (true);
+-- Public data: anon SELECT (user-facing tables)
 CREATE POLICY anon_select ON sponsor_hiring_patterns FOR SELECT TO anon USING (true);
 CREATE POLICY anon_select ON market_velocity FOR SELECT TO anon USING (true);
+
+-- Internal operational data: admin only (authenticated users with admin role)
+-- swarm_metrics, swarm_alerts, swarm_reports, source_health_log,
+-- job_validation_log, job_change_log, swarm_errors
+-- These tables have RLS enabled but NO anon policy — only service_role can read/write.
+-- Admin dashboard reads via a server-side API route that uses service_role key.
 ```
+
+**Write strategy**: Backend uses Supabase `service_role` key which bypasses RLS entirely. No INSERT/UPDATE policies needed. The service_role key is only stored in Railway environment variables, never exposed to the frontend.
+
+### 5.4 Migration Strategy
+
+All schema changes are implemented as **Alembic migrations** in `backend/alembic/versions/`. Migration order:
+
+1. `001_add_swarm_tables.py` — Create all 8 new tables (swarm_metrics, swarm_alerts, swarm_reports, swarm_errors, source_health_log, job_validation_log, job_change_log, sponsor_hiring_patterns, market_velocity)
+2. `002_add_job_columns.py` — ALTER TABLE jobs to add 17 new columns
+3. `003_add_company_profile_columns.py` — ALTER TABLE company_profiles to add name_variants, careers_page_url, has_careers_page
+4. `004_add_indexes.py` — Add indexes on log tables (job_id, created_at) and new job columns (data_quality_score, work_model, department)
+5. `005_add_rls_policies.py` — RLS policies via raw SQL in Alembic
+
+Migrations run automatically on Railway deploy via `alembic upgrade head` in the Dockerfile entrypoint. The Supabase connection pooler (`pooler.supabase.com:6543`) is used for migrations with `?pgbouncer=true` parameter.
 
 ---
 
@@ -1256,15 +1340,17 @@ New tab on `/company/[id]` when sponsor has jobs:
 ### 8.1 Services
 
 **Service 1: backend** (Dockerfile)
-- Processes: web (FastAPI), worker (Celery ×2), beat (Celery Beat)
-- RAM: 1GB
-- Cost: ~$7/mo
+- Processes: web (FastAPI on port 8000), worker (Celery, `--concurrency=4`), beat (Celery Beat)
+- All 3 processes managed by `supervisord` in one container
+- RAM: **2GB** (FastAPI ~200MB + Celery workers ~400MB each × 4 concurrency slots + headroom)
+- Playwright browser instances: max 2 concurrent (each ~300MB), only used for browser-tier scrapers
+- Cost: ~$10-12/mo
 
 **Service 2: ollama** (Docker image: `ollama/ollama`)
-- Model: phi3:mini (pulled on first start)
-- RAM: 3GB (2.5GB model + 0.5GB overhead)
+- Model: phi3:mini (pulled on first start, stored on Railway persistent volume)
+- RAM: **3GB** (2.5GB model + 0.5GB overhead)
 - Cost: ~$10/mo
-- Exposed internally at: `http://ollama:11434`
+- Exposed internally at: `http://ollama.railway.internal:11434`
 
 **Addon: Redis**
 - Railway managed Redis
@@ -1272,39 +1358,48 @@ New tab on `/company/[id]` when sponsor has jobs:
 
 ### 8.2 Environment Variables
 
+All values stored as Railway environment variables (never in code or spec):
+
 ```env
-# Supabase
-SUPABASE_URL=https://aqhvuwrgfsfkqngnjjvh.supabase.co
-SUPABASE_SERVICE_KEY=eyJ...
-DATABASE_URL=postgresql://postgres.aqhvuwrgfsfkqngnjjvh:...@aws-1-eu-west-2.pooler.supabase.com:5432/postgres
+# Supabase (set in Railway dashboard)
+SUPABASE_URL=<from Supabase dashboard>
+SUPABASE_SERVICE_KEY=<from Supabase dashboard>
+DATABASE_URL=<pooler connection string, port 6543, transaction mode>
+DATABASE_URL_SYNC=<same but with psycopg2 driver for Celery sync workers>
 
-# Redis (Railway provides)
-REDIS_URL=redis://...
+# Redis (Railway auto-provides)
+REDIS_URL=<auto-injected by Railway Redis addon>
 
-# Ollama
-OLLAMA_BASE_URL=http://ollama:11434
+# Ollama (internal Railway networking)
+OLLAMA_BASE_URL=http://ollama.railway.internal:11434
 OLLAMA_MODEL=phi3:mini
+LLM_BACKEND=ollama  # ollama | anthropic | openai | disabled
 
-# API Keys (register for free)
-REED_API_KEY=
-ADZUNA_APP_ID=
-ADZUNA_APP_KEY=
-JOOBLE_API_KEY=
+# API Keys (register for free at each provider)
+REED_API_KEY=<from reed.co.uk/developers>
+ADZUNA_APP_ID=<from developer.adzuna.com>
+ADZUNA_APP_KEY=<from developer.adzuna.com>
+JOOBLE_API_KEY=<from jooble.org/api>
+
+# Fallback LLM (optional, for when Ollama is unavailable)
+ANTHROPIC_API_KEY=<optional, for Claude Haiku fallback>
 
 # Proxy (optional, for browser scrapers)
-PROXY_URL=
+PROXY_URL=<optional, socks5 or http proxy>
 ```
 
 ### 8.3 Estimated Monthly Cost
 
 | Service | Cost |
 |---------|------|
-| Railway backend | ~$7 |
-| Railway Ollama | ~$10 |
+| Railway backend (2GB) | ~$10-12 |
+| Railway Ollama (3GB) | ~$10 |
 | Railway Redis | ~$5 |
-| Supabase (existing) | $0 (free tier) |
+| Supabase (existing) | $0 (free tier, monitor 500MB DB limit) |
 | Vercel (existing) | $0 (free tier) |
-| **Total** | **~$22/mo** |
+| **Total** | **~$27-30/mo** |
+
+> Note: Supabase free tier allows 500MB database storage. At ~1KB per job row, 20K jobs = ~20MB. With log tables growing, budget ~100MB for jobs + logs. Well within limits for months. If approaching 500MB, archive expired jobs older than 90 days to a separate table or export to CSV.
 
 ---
 
@@ -1326,9 +1421,11 @@ PROXY_URL=
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|-----------|--------|------------|
-| Browser scrapers blocked by anti-bot | High | Medium | Free APIs provide baseline; browser scrapers are bonus |
-| Ollama too slow on CPU | Medium | Medium | Batch aggressively; cache permanently; swap to API if needed |
-| Railway RAM insufficient | Low | High | Monitor usage; scale up or split services |
-| Supabase free tier row limits | Medium | Medium | 500K rows on free tier; archive old expired jobs if approaching |
-| API key scrapers rate limited | Low | Low | Budget allocation via OrchestratorAgent |
-| Job-sponsor entity resolution low accuracy | Medium | Medium | Improve with name variants + manual correction UI |
+| Browser scrapers blocked by anti-bot | High | Medium | Free APIs provide baseline (11 sources). Browser scrapers are bonus. Budget 50% failure rate for Indeed/LinkedIn. |
+| Ollama too slow on CPU for full cycle | Medium | High | Auto-fallback to Claude Haiku API (~$2/mo). `LLM_BACKEND=disabled` runs deterministic-only. Aggressive caching reduces repeat calls by ~80%. |
+| Railway RAM exceeds allocation | Medium | High | Backend at 2GB, Ollama at 3GB. Monitor via Railway dashboard. If Playwright OOMs, reduce concurrent browser sessions to 1. |
+| Supabase 500MB storage limit | Low | High | 20K jobs ≈ 20MB. Log tables capped by 90-day retention. Monitor monthly. Archive to CSV at 400MB. |
+| Supabase connection exhaustion | Medium | Medium | Use PgBouncer pooler (port 6543). Celery `worker_max_connections=5`. FastAPI pool size=5. |
+| Job-sponsor entity resolution low accuracy | Medium | Medium | NameVariantGenerator + normalisation gets ~70% match rate. Unmatched jobs still stored (useful for market data). |
+| Ollama cold start on deploy | Certain | Low | Pipeline degrades gracefully to deterministic-only. Model cached on persistent volume after first pull. |
+| Scraper maintenance burden | High | Medium | Free APIs rarely break. Browser scrapers need monthly maintenance. Source health monitoring auto-pauses broken sources. |
