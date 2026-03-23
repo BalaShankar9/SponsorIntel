@@ -1,86 +1,99 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, Bell, User, LogOut } from 'lucide-react';
+import { Bell, User, LogOut } from 'lucide-react';
 import { useAuthStore } from '@/lib/auth';
 import { cn } from '@/lib/utils';
+import { StreakCounter } from '@/components/gamification/StreakCounter';
 
-export function Topbar() {
-  const [searchQuery, setSearchQuery] = useState('');
+interface TopbarProps {
+  collapsed: boolean;
+  onToggleSidebar: () => void;
+}
+
+export function Topbar({ collapsed, onToggleSidebar }: TopbarProps) {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const { user, isAuthenticated, logout } = useAuthStore();
   const router = useRouter();
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-    }
-  };
+  const handleCommandK = useCallback(() => {
+    window.dispatchEvent(new KeyboardEvent('keydown', {
+      key: 'k',
+      metaKey: true,
+      bubbles: true,
+    }));
+  }, []);
+
+  const planLabel = user?.plan?.toUpperCase() || 'FREE';
 
   return (
-    <header className="fixed left-[220px] right-0 top-0 z-20 flex h-14 items-center justify-between border-b border-border bg-s1 px-4">
-      {/* Global Search */}
-      <form onSubmit={handleSearch} className="flex-1 max-w-xl">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-dim2" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search sponsors, companies, jobs..."
-            className="w-full rounded-md border border-border bg-s2 py-1.5 pl-10 pr-4 text-sm text-text placeholder-dim2 focus:border-accent focus:outline-none"
-          />
-          <kbd className="absolute right-3 top-1/2 -translate-y-1/2 rounded border border-border bg-s3 px-1.5 py-0.5 text-[10px] text-dim2">/</kbd>
-        </div>
-      </form>
+    <header className="sticky top-0 z-20 flex h-10 items-center justify-between border-b border-border bg-s1 px-3">
+      {/* Left spacer */}
+      <div className="w-8" />
+
+      {/* Center: Command palette trigger */}
+      <button
+        onClick={handleCommandK}
+        className="flex h-7 max-w-md flex-1 items-center justify-between rounded border border-border bg-s2 px-3 text-xs text-dim hover:border-muted hover:text-text transition-colors mx-4"
+      >
+        <span>Search sponsors, jobs, commands...</span>
+        <kbd className="ml-3 shrink-0 rounded border border-border bg-s3 px-1.5 py-0.5 text-[10px] text-muted">
+          ⌘K
+        </kbd>
+      </button>
 
       {/* Right actions */}
-      <div className="flex items-center gap-3 ml-4">
+      <div className="flex items-center gap-2">
+        {/* Streak */}
+        {isAuthenticated && (
+          <StreakCounter streak={0} compact className="mr-1" />
+        )}
         {/* Notifications */}
-        <button className="relative rounded-md p-2 text-dim hover:bg-s2 hover:text-text">
-          <Bell size={18} />
-          <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red" />
+        <button className="relative rounded p-1.5 text-dim hover:bg-s2 hover:text-text transition-colors">
+          <Bell size={15} />
+          <span className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-amber" />
         </button>
 
         {/* User */}
         <div className="relative">
           <button
             onClick={() => setShowUserMenu(!showUserMenu)}
-            className="flex items-center gap-2 rounded-md px-2 py-1 text-dim hover:bg-s2 hover:text-text"
+            className="flex items-center gap-2 rounded px-1.5 py-1 text-dim hover:bg-s2 hover:text-text transition-colors"
           >
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-accent2 text-xs font-bold text-white">
+            <span className={cn(
+              'inline-flex h-[18px] items-center rounded px-1.5 text-[9px] font-semibold uppercase tracking-wider',
+              planLabel === 'PRO' ? 'bg-amber/20 text-amber' : 'bg-s3 text-muted'
+            )}>
+              {planLabel}
+            </span>
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-s3 text-[10px] font-bold text-text">
               {user?.name?.[0]?.toUpperCase() || 'U'}
             </div>
-            <span className="text-sm">{user?.name || 'Guest'}</span>
           </button>
 
           {showUserMenu && (
-            <div className="absolute right-0 top-full mt-1 w-48 rounded-md border border-border bg-s1 py-1 shadow-xl">
+            <div className="absolute right-0 top-full mt-1 w-48 rounded border border-border bg-s1 py-1 shadow-xl animate-fadeIn">
               {isAuthenticated ? (
                 <>
                   <div className="border-b border-border px-3 py-2">
-                    <p className="text-sm font-medium text-text">{user?.name}</p>
-                    <p className="text-xs text-dim">{user?.email}</p>
-                    <span className="mt-1 inline-block rounded bg-accent2/20 px-1.5 py-0.5 text-[10px] font-medium uppercase text-accent">
-                      {user?.plan}
-                    </span>
+                    <p className="text-xs font-medium text-text">{user?.name}</p>
+                    <p className="text-[10px] text-dim">{user?.email}</p>
                   </div>
                   <button
                     onClick={() => { logout(); setShowUserMenu(false); }}
-                    className="flex w-full items-center gap-2 px-3 py-2 text-sm text-dim hover:bg-s2 hover:text-text"
+                    className="flex w-full items-center gap-2 px-3 py-1.5 text-xs text-dim hover:bg-s2 hover:text-text"
                   >
-                    <LogOut size={14} />
+                    <LogOut size={12} />
                     Sign Out
                   </button>
                 </>
               ) : (
                 <button
                   onClick={() => { router.push('/login'); setShowUserMenu(false); }}
-                  className="flex w-full items-center gap-2 px-3 py-2 text-sm text-dim hover:bg-s2 hover:text-text"
+                  className="flex w-full items-center gap-2 px-3 py-1.5 text-xs text-dim hover:bg-s2 hover:text-text"
                 >
-                  <User size={14} />
+                  <User size={12} />
                   Sign In
                 </button>
               )}
