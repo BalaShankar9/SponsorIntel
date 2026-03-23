@@ -12,6 +12,8 @@ import { formatNumber, timeAgo } from '@/lib/utils';
 import { Activity, Database, Cpu, Clock, ExternalLink, Briefcase, TrendingUp, Bot, Shield, Brain, HeartPulse, Compass, Eye, ClipboardCheck, Network } from 'lucide-react';
 import { LoadingTerminal } from '@/components/ui/LoadingTerminal';
 import { DailyBriefing } from '@/components/dashboard/DailyBriefing';
+import { useRealtimeSubscription } from '@/hooks/useRealtimeSubscription';
+import { cn } from '@/lib/utils';
 
 interface AgentStatus {
   lastRunAt: string | null;
@@ -61,6 +63,29 @@ export default function DashboardPage() {
   const [loadingAgent, setLoadingAgent] = useState(true);
   const [loadingCompanies, setLoadingCompanies] = useState(true);
   const [loadingJobs, setLoadingJobs] = useState(true);
+  const [flashedSponsorId, setFlashedSponsorId] = useState<string | null>(null);
+
+  useRealtimeSubscription({
+    table: 'sponsors',
+    event: '*',
+    enabled: true,
+    onChange: (payload) => {
+      const id = (payload.new as Record<string, unknown>)?.id as string;
+      if (id) {
+        setFlashedSponsorId(id);
+        setTimeout(() => setFlashedSponsorId(null), 500);
+      }
+    },
+  });
+
+  useRealtimeSubscription({
+    table: 'sponsor_scores',
+    event: 'UPDATE',
+    enabled: true,
+    onChange: () => {
+      // Score updates trigger visual feedback via the 15s polling interval
+    },
+  });
 
   useEffect(() => {
     function tick() {
@@ -523,7 +548,10 @@ export default function DashboardPage() {
               {topCompanies.map((c, idx) => (
                 <div
                   key={c.id}
-                  className="stagger-item grid grid-cols-[24px_1fr_50px_40px] items-center border-b border-border/15 px-3 py-1.5 hover:bg-s2/40 transition-colors"
+                  className={cn(
+                    'stagger-item grid grid-cols-[24px_1fr_50px_40px] items-center border-b border-border/15 px-3 py-1.5 hover:bg-s2/40 transition-colors',
+                    flashedSponsorId === c.id && 'data-updated'
+                  )}
                 >
                   <span className="font-data text-[10px] text-dim tabular-nums">{idx + 1}</span>
                   <div className="min-w-0 pr-2">
