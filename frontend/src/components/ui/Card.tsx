@@ -6,11 +6,17 @@ interface CardProps {
   children: React.ReactNode;
   className?: string;
   padding?: boolean;
+  interactive?: boolean;
 }
 
-export function Card({ children, className, padding = true }: CardProps) {
+export function Card({ children, className, padding = true, interactive = false }: CardProps) {
   return (
-    <div className={cn('rounded-lg border border-border bg-s1', padding && 'p-4', className)}>
+    <div className={cn(
+      'border border-border bg-s1 transition-all duration-200',
+      padding && 'p-3',
+      interactive && 'hover-gradient-border hover:shadow-glow-amber cursor-pointer hover:-translate-y-0.5 transition-transform',
+      className
+    )}>
       {children}
     </div>
   );
@@ -26,7 +32,7 @@ export function CardHeader({ children, className }: { children: React.ReactNode;
 
 export function CardTitle({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <h3 className={cn('text-sm font-semibold uppercase tracking-wider text-dim', className)}>
+    <h3 className={cn('text-[10px] font-data font-semibold uppercase tracking-[0.15em] text-dim', className)}>
       {children}
     </h3>
   );

@@ -1,25 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  @apply bg-bg text-text;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  @apply bg-bg font-ui text-text antialiased;
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #0d1117; }
-::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #484f58; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #444; }
+
+/* Selection */
+::selection {
+  background: rgba(245, 166, 35, 0.3);
+  color: #e0e0e0;
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid #f5a623;
+  outline-offset: 2px;
+}
 
 /* Data table styles */
 .data-table th {
-  @apply sticky top-0 bg-s1 px-3 py-2 text-left text-xs font-semibold uppercase tracking-wider text-dim border-b border-border cursor-pointer select-none whitespace-nowrap;
+  @apply sticky top-0 bg-s1 px-3 text-left text-[10px] font-semibold uppercase tracking-widest text-dim border-b border-border cursor-pointer select-none whitespace-nowrap;
+  height: 28px;
+  line-height: 28px;
 }
 .data-table td {
-  @apply px-3 py-2 text-sm border-t border-border/50;
+  @apply px-3 text-sm font-data border-t border-border/50;
+  height: 28px;
+  line-height: 28px;
+  font-variant-numeric: tabular-nums;
 }
 .data-table tr:hover td {
   @apply bg-s2/50;
 }
+
+/* Data value utility */
+.data-value {
+  font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tabular numbers for all data font elements */
+.font-data {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Amber glow effect */
+.amber-glow {
+  text-shadow: 0 0 10px rgba(245, 166, 35, 0.3);
+}
+
+/* Score glow effects */
+.score-green { text-shadow: 0 0 8px rgba(0, 212, 170, 0.4); }
+.score-amber { text-shadow: 0 0 8px rgba(245, 166, 35, 0.4); }
+.score-red { text-shadow: 0 0 8px rgba(255, 71, 87, 0.4); }
+
+/* Glassmorphism card */
+.glass-card {
+  @apply bg-s1/80 backdrop-blur-sm border border-border;
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, #f5a623 0%, #00d4aa 50%, #4a9eff 100%);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+/* Stat card hover */
+.stat-card {
+  @apply border border-border bg-s1 p-3 transition-all duration-200;
+}
+.stat-card:hover {
+  @apply border-amber/30 bg-s1;
+  box-shadow: 0 0 20px rgba(245, 166, 35, 0.05);
+}
+
+/* Progress bar */
+.progress-bar {
+  @apply h-1.5 rounded-full bg-s3 overflow-hidden;
+}
+.progress-bar-fill {
+  @apply h-full rounded-full transition-all duration-500 ease-out;
+}
+
+/* Loading skeleton shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(255, 255, 255, 0.03) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.2); }
+  50% { box-shadow: 0 0 12px 2px rgba(245, 166, 35, 0.15); }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes data-flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Staggered animation for list items */
+.stagger-item {
+  animation: slideInUp 200ms ease-out both;
+}
+.stagger-item:nth-child(1) { animation-delay: 0ms; }
+.stagger-item:nth-child(2) { animation-delay: 30ms; }
+.stagger-item:nth-child(3) { animation-delay: 60ms; }
+.stagger-item:nth-child(4) { animation-delay: 90ms; }
+.stagger-item:nth-child(5) { animation-delay: 120ms; }
+.stagger-item:nth-child(6) { animation-delay: 150ms; }
+.stagger-item:nth-child(7) { animation-delay: 180ms; }
+.stagger-item:nth-child(8) { animation-delay: 210ms; }
+.stagger-item:nth-child(9) { animation-delay: 240ms; }
+.stagger-item:nth-child(10) { animation-delay: 270ms; }
+
+/* Rating badge styles */
+.badge-a { @apply bg-green/15 text-green border border-green/20; }
+.badge-b { @apply bg-red/15 text-red border border-red/20; }
+
+/* Score gauge */
+.score-gauge {
+  background: conic-gradient(
+    var(--gauge-color) calc(var(--gauge-pct) * 1%),
+    #1a1a1a calc(var(--gauge-pct) * 1%)
+  );
+}
+
+/* Recharts overrides for dark theme */
+.recharts-cartesian-axis-tick-value { fill: #888 !important; font-size: 10px !important; }
+.recharts-cartesian-grid line { stroke: #1a1a1a !important; }
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #111 !important;
+  border: 1px solid #2a2a2a !important;
+  border-radius: 4px !important;
+}
+
+/* Terminal cursor blink for loading states */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-cursor::after {
+  content: '\2588';
+  animation: cursor-blink 1s step-end infinite;
+  color: #f5a623;
+  margin-left: 2px;
+}
+
+/* Subtle border glow on hover for interactive panels */
+.panel-interactive {
+  @apply border border-border transition-all duration-300;
+}
+.panel-interactive:hover {
+  border-color: rgba(245, 166, 35, 0.2);
+  box-shadow: 0 0 30px -10px rgba(245, 166, 35, 0.08);
+}
+
+/* Data update flash */
+.data-updated {
+  animation: data-flash 0.4s ease-out;
+}
+
+/* ===== Phase 6: Visual Polish ===== */
+
+/* Animated background radar grid */
+.bg-radar {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-radar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 166, 35, 0.03);
+  transform: translate(-50%, -50%) scale(0);
+  animation: background-radar 60s ease-out infinite;
+}
+
+.bg-radar::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 166, 35, 0.03);
+  transform: translate(-50%, -50%) scale(0);
+  animation: background-radar 60s ease-out infinite;
+  animation-delay: 30s;
+}
+
+/* Subtle dot grid pattern */
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Gradient border on hover for cards */
+.hover-gradient-border {
+  position: relative;
+}
+.hover-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(245,166,35,0.3) 0%, transparent 50%, rgba(74,158,255,0.2) 100%);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+.hover-gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Fresh data highlight (< 24h) */
+.fresh-data {
+  border-left: 2px solid rgba(0, 229, 255, 0.4) !important;
+  background: rgba(0, 229, 255, 0.02);
+}
+
+/* Critical alert glow halo */
+.alert-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+  box-shadow: 0 0 12px rgba(255, 71, 87, 0.15);
+}
+
+/* NEW micro-tag for freshly enriched companies */
+.micro-tag-new {
+  @apply inline-flex items-center gap-0.5 px-1 py-0 text-[7px] font-data font-bold uppercase tracking-wider;
+  @apply bg-cyan/15 text-cyan border border-cyan/20;
+  animation: fadeIn 200ms ease-out;
+}
+
+/* Score pulse animation on re-score */
+.score-pulse {
+  animation: pulse-glow-cyan 1s ease-out;
+}
+
+/* Page enter animation wrapper */
+.page-animate-in {
+  animation: page-enter 300ms ease-out;
+}
+
+/* Staggered grid items */
+.stagger-grid > * {
+  animation: stagger-in 300ms ease-out both;
+}
+.stagger-grid > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-grid > *:nth-child(2) { animation-delay: 50ms; }
+.stagger-grid > *:nth-child(3) { animation-delay: 100ms; }
+.stagger-grid > *:nth-child(4) { animation-delay: 150ms; }
+.stagger-grid > *:nth-child(5) { animation-delay: 200ms; }
+.stagger-grid > *:nth-child(6) { animation-delay: 250ms; }
+.stagger-grid > *:nth-child(7) { animation-delay: 300ms; }
+.stagger-grid > *:nth-child(8) { animation-delay: 350ms; }
