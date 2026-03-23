@@ -18,6 +18,7 @@ from app.api.v1.profile import router as profile_router
 from app.api.v1.score_breakdown import router as score_breakdown_router
 from app.api.v1.dashboard import router as dashboard_router
 from app.api.v1.saved_searches import router as saved_searches_router
+from app.api.v1.community import router as community_router
 
 
 @asynccontextmanager
@@ -60,6 +61,7 @@ app.include_router(profile_router, prefix="/api/v1")
 app.include_router(score_breakdown_router, prefix="/api/v1")
 app.include_router(dashboard_router, prefix="/api/v1")
 app.include_router(saved_searches_router, prefix="/api/v1")
+app.include_router(community_router, prefix="/api/v1")
 
 
 @app.get("/api/health")
