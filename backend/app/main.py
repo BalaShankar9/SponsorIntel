@@ -15,6 +15,8 @@ from app.api.v1.notes import router as notes_router
 from app.api.v1.websocket import router as ws_router
 from app.api.v1.admin import router as admin_router
 from app.api.v1.profile import router as profile_router
+from app.api.v1.score_breakdown import router as score_breakdown_router
+from app.api.v1.dashboard import router as dashboard_router
 
 
 @asynccontextmanager
@@ -54,6 +56,8 @@ app.include_router(notes_router, prefix="/api/v1")
 app.include_router(ws_router, prefix="/api/v1")
 app.include_router(admin_router, prefix="/api/v1")
 app.include_router(profile_router, prefix="/api/v1")
+app.include_router(score_breakdown_router, prefix="/api/v1")
+app.include_router(dashboard_router, prefix="/api/v1")
 
 
 @app.get("/api/health")
