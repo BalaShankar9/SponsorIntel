@@ -406,4 +406,16 @@ celery_app.conf.beat_schedule = {
         "task": "intel.scan_lawyers",
         "schedule": crontab(day_of_week="0", hour="3", minute="0"),  # Sunday 3 AM
     },
+    "intel-notify": {
+        "task": "intel.notify",
+        "schedule": crontab(minute="*/5"),  # every 5 min
+    },
+    "intel-weekly-digest": {
+        "task": "intel.weekly_digest",
+        "schedule": crontab(day_of_week="1", hour="6", minute="0"),  # Monday 6 AM
+    },
+    "intel-cleanup-old-content": {
+        "task": "intel.cleanup_old_content",
+        "schedule": crontab(day_of_week="0", hour="4", minute="0"),  # Sunday 4 AM
+    },
 }

@@ -222,3 +222,120 @@ def intel_scan_lawyers(self):
     except Exception as e:
         logger.error(f"intel_scan_lawyers failed: {e}")
         raise self.retry(exc=e, countdown=300)
+
+
+@celery_app.task(name="intel.notify")
+def intel_notify():
+    """Match recently analyzed items to subscriptions and create notifications."""
+    try:
+        supabase = _get_supabase_service_client()
+
+        async def _run():
+            from app.scanners.intel_notifications import process_notification_backlog
+            return await process_notification_backlog(supabase)
+
+        stats = _run_async(_run())
+        logger.info(f"intel_notify complete: {stats}")
+        return stats
+    except Exception as e:
+        logger.error(f"intel_notify failed: {e}")
+
+
+DIGEST_SYSTEM_PROMPT = """Generate a weekly immigration intelligence briefing email for a UK immigration professional. The email should be concise, scannable, and actionable.
+
+Structure your output as JSON:
+{
+  "subject_line": "string (email subject, max 80 chars)",
+  "executive_summary": "string (2-3 sentences)",
+  "top_items": [{"headline": "string", "one_liner": "string", "impact_badge": "critical|high|medium"}],
+  "stats_highlight": "string or null",
+  "calendar_preview": "string or null",
+  "sign_off": "string"
+}
+
+Tone: professional but accessible. No emojis. No exclamation marks."""
+
+DIGEST_USER_TEMPLATE = """Generate the weekly digest.
+
+Top items this week (ranked by impact):
+{top_items_json}
+
+Statistics updates this week:
+{stats_json}
+
+Upcoming calendar events (next 14 days):
+{calendar_json}
+
+Return JSON only."""
+
+
+@celery_app.task(name="intel.weekly_digest")
+def intel_weekly_digest():
+    """Generate and send weekly digest emails via Resend."""
+    import json
+    from datetime import datetime, timedelta
+
+    try:
+        supabase = _get_supabase_service_client()
+        llm = _get_llm_service()
+
+        # Fetch top items from last 7 days
+        week_ago = (datetime.utcnow() - timedelta(days=7)).isoformat()
+        items_result = supabase.table("intel_items").select(
+            "title, topic, impact_level, summary, visa_routes_affected"
+        ).in_("status", ["classified", "analyzed"]).gte(
+            "created_at", week_ago
+        ).order("created_at", desc=True).limit(20).execute()
+
+        # Fetch stats
+        stats_result = supabase.table("intel_statistics").select("*").gte(
+            "created_at", week_ago
+        ).limit(10).execute()
+
+        # Fetch upcoming calendar
+        now = datetime.utcnow()
+        two_weeks = (now + timedelta(days=14)).strftime("%Y-%m-%d")
+        cal_result = supabase.table("intel_calendar").select("*").gte(
+            "event_date", now.strftime("%Y-%m-%d")
+        ).lte("event_date", two_weeks).order("event_date").execute()
+
+        prompt = DIGEST_USER_TEMPLATE.format(
+            top_items_json=json.dumps(items_result.data or [], default=str)[:3000],
+            stats_json=json.dumps(stats_result.data or [], default=str)[:1000],
+            calendar_json=json.dumps(cal_result.data or [], default=str)[:1000],
+        )
+
+        async def _gen():
+            return await llm.structured_output_with_provider(
+                provider="groq", prompt=prompt, system=DIGEST_SYSTEM_PROMPT,
+            )
+
+        digest = _run_async(_gen())
+        logger.info(f"intel_weekly_digest generated: {digest.get('subject_line') if digest else 'failed'}")
+
+        # TODO: Send via Resend to subscribed users (email_digest channel)
+
+        return {"status": "generated", "subject": digest.get("subject_line") if digest else None}
+    except Exception as e:
+        logger.error(f"intel_weekly_digest failed: {e}")
+
+
+@celery_app.task(name="intel.cleanup_old_content")
+def intel_cleanup_old_content():
+    """Delete full content_text from items older than 90 days, keep snippets + summaries."""
+    from datetime import datetime, timedelta
+
+    try:
+        supabase = _get_supabase_service_client()
+        cutoff = (datetime.utcnow() - timedelta(days=90)).isoformat()
+
+        # Null out content_text for old items
+        result = supabase.table("intel_items").update({
+            "content_text": None,
+        }).lt("created_at", cutoff).not_.is_("content_text", "null").execute()
+
+        count = len(result.data or [])
+        logger.info(f"intel_cleanup_old_content: cleared {count} old content_text fields")
+        return {"cleaned": count}
+    except Exception as e:
+        logger.error(f"intel_cleanup_old_content failed: {e}")
