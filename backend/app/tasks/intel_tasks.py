@@ -203,3 +203,22 @@ def intel_dedup():
         return stats
     except Exception as e:
         logger.error(f"intel_dedup failed: {e}")
+
+
+@celery_app.task(name="intel.scan_lawyers", bind=True, max_retries=2)
+def intel_scan_lawyers(self):
+    """Scan OISC + SRA registers for immigration lawyers (weekly)."""
+    try:
+        supabase = _get_supabase_service_client()
+
+        async def _run():
+            from app.scanners.intel_lawyers import scan_lawyer_registers
+            return await scan_lawyer_registers(supabase)
+
+        stats = _run_async(_run())
+        _log_health(supabase, "lawyer_registers", "intel_scan_lawyers", stats)
+        logger.info(f"intel_scan_lawyers complete: {stats}")
+        return stats
+    except Exception as e:
+        logger.error(f"intel_scan_lawyers failed: {e}")
+        raise self.retry(exc=e, countdown=300)

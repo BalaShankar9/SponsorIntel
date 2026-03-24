@@ -402,4 +402,8 @@ celery_app.conf.beat_schedule = {
         "task": "intel.dedup",
         "schedule": crontab(minute="*/15"),  # every 15 min
     },
+    "intel-scan-lawyers": {
+        "task": "intel.scan_lawyers",
+        "schedule": crontab(day_of_week="0", hour="3", minute="0"),  # Sunday 3 AM
+    },
 }

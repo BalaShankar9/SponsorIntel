@@ -287,3 +287,88 @@ async def mark_notification_read(notif_id: str):
         "read_at": datetime.utcnow().isoformat(),
     }).eq("id", notif_id).execute()
     return {"status": "read"}
+
+
+# ---- Lawyer Finder ----
+
+@router.post("/lawyers/search")
+async def search_lawyers_endpoint(body: dict):
+    """Search & match lawyers based on user criteria."""
+    from app.scanners.intel_lawyer_matcher import search_lawyers
+    from app.agents.llm_service import LLMService
+
+    sb = _supabase_service()
+    s = get_settings()
+    llm = LLMService(
+        backend="groq",
+        groq_api_key=s.groq_api_key,
+        nvidia_nim_api_key=s.nvidia_nim_api_key,
+    )
+
+    result = await search_lawyers(
+        sb, llm,
+        visa_route=body.get("visa_route", ""),
+        nationality=body.get("nationality"),
+        location=body.get("location"),
+        case_complexity=body.get("case_complexity", "straightforward"),
+        budget_range=body.get("budget_range"),
+        language_pref=body.get("language_pref"),
+        page=body.get("page", 1),
+        per_page=body.get("per_page", 10),
+    )
+    return result
+
+
+@router.get("/lawyers/compare")
+async def compare_lawyers(ids: str = Query(..., description="Comma-separated lawyer IDs")):
+    """Compare 2-3 lawyers side by side."""
+    id_list = [i.strip() for i in ids.split(",") if i.strip()]
+    if len(id_list) < 2 or len(id_list) > 3:
+        raise HTTPException(status_code=400, detail="Provide 2 or 3 lawyer IDs")
+
+    sb = _supabase_anon()
+    result = sb.table("intel_lawyers").select("*").in_("id", id_list).execute()
+    return {
+        "lawyers": result.data or [],
+        "comparison_dimensions": ["rating", "fees", "accreditations", "reviews", "experience"],
+    }
+
+
+@router.get("/lawyers/{lawyer_id}")
+async def get_lawyer_detail(lawyer_id: str):
+    """Get full lawyer profile."""
+    sb = _supabase_anon()
+    result = sb.table("intel_lawyers").select("*").eq("id", lawyer_id).limit(1).execute()
+    if not result.data:
+        raise HTTPException(status_code=404, detail="Lawyer not found")
+    return result.data[0]
+
+
+@router.get("/lawyers/{lawyer_id}/reviews")
+async def get_lawyer_reviews(
+    lawyer_id: str,
+    source: Optional[str] = Query(None),
+    page: int = Query(1, ge=1),
+    per_page: int = Query(20, ge=1, le=50),
+):
+    """Get paginated reviews for a lawyer."""
+    sb = _supabase_anon()
+    query = sb.table("intel_lawyer_reviews").select("*", count="exact").eq("lawyer_id", lawyer_id)
+    if source:
+        query = query.eq("source", source)
+
+    offset = (page - 1) * per_page
+    result = query.order("review_date", desc=True).range(offset, offset + per_page - 1).execute()
+
+    # Avg rating
+    all_ratings = sb.table("intel_lawyer_reviews").select("rating").eq("lawyer_id", lawyer_id).execute()
+    ratings = [r["rating"] for r in (all_ratings.data or []) if r.get("rating")]
+    avg = sum(ratings) / len(ratings) if ratings else None
+
+    return {
+        "reviews": result.data or [],
+        "total": result.count or 0,
+        "page": page,
+        "per_page": per_page,
+        "avg_rating": round(avg, 2) if avg else None,
+    }
