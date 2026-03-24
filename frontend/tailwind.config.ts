@@ -110,6 +110,7 @@ const config: Config = {
         'cursor-blink': { '0%, 100%': { opacity: '1' }, '50%': { opacity: '0' } },
         'scan-line': { '0%': { transform: 'translateY(-100%)' }, '100%': { transform: 'translateY(100%)' } },
         'background-radar': { '0%': { transform: 'scale(0)', opacity: '0.03' }, '50%': { opacity: '0.015' }, '100%': { transform: 'scale(4)', opacity: '0' } },
+        'cyan-flash': { '0%': { borderColor: 'rgba(0, 229, 255, 0.6)', boxShadow: '0 0 16px -4px rgba(0, 229, 255, 0.3)' }, '100%': { borderColor: 'rgba(42, 42, 42, 1)', boxShadow: '0 0 0 0 transparent' } },
       },
       animation: {
         fadeIn: 'fadeIn 200ms ease-out',
@@ -134,6 +135,7 @@ const config: Config = {
         'skeleton-pulse': 'skeleton-pulse 1.5s ease-in-out infinite',
         'cursor-blink': 'cursor-blink 1s step-end infinite',
         'background-radar': 'background-radar 60s ease-out infinite',
+        'cyan-flash': 'cyan-flash 2s ease-out forwards',
       },
     },
   },

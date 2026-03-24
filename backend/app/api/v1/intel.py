@@ -372,3 +372,43 @@ async def get_lawyer_reviews(
         "per_page": per_page,
         "avg_rating": round(avg, 2) if avg else None,
     }
+
+
+# ---- Digest Preview ----
+
+@router.post("/digest/preview")
+async def digest_preview():
+    """Preview weekly digest content."""
+    from datetime import timedelta
+
+    sb = _supabase_anon()
+    week_ago = (datetime.utcnow() - timedelta(days=7)).isoformat()
+
+    # Top items
+    items = sb.table("intel_items").select(
+        "id, title, topic, impact_level, summary, visa_routes_affected, published_at"
+    ).in_("status", ["classified", "analyzed"]).gte(
+        "created_at", week_ago
+    ).order("created_at", desc=True).limit(10).execute()
+
+    # Stats
+    stats = sb.table("intel_statistics").select("*").gte(
+        "created_at", week_ago
+    ).limit(5).execute()
+
+    # Calendar
+    now = datetime.utcnow()
+    two_weeks = (now + timedelta(days=14)).strftime("%Y-%m-%d")
+    calendar = sb.table("intel_calendar").select("*").gte(
+        "event_date", now.strftime("%Y-%m-%d")
+    ).lte("event_date", two_weeks).order("event_date").execute()
+
+    return {
+        "subject": f"SponsorIntel Weekly: {len(items.data or [])} updates this week",
+        "generated_at": datetime.utcnow().isoformat(),
+        "top_items": items.data or [],
+        "statistics_snapshot": stats.data or [],
+        "upcoming_calendar": calendar.data or [],
+        "personalized_items": [],
+        "sections": [],
+    }
