@@ -41,6 +41,15 @@ class Settings(BaseSettings):
     nvidia_nim_api_key: str = ""
     nvidia_nim_base_url: str = "https://integrate.api.nvidia.com/v1"
 
+    # OpenRouter (for T4 fallback)
+    openrouter_api_key: str = ""
+
+    # Army Tier Router model overrides
+    army_t1_model: str = "llama-3.1-8b-instant"
+    army_t2_model: str = "llama-3.3-70b-versatile"
+    army_t3_model: str = "meta/llama-3.1-405b-instruct"
+    army_t4_model: str = "claude-haiku-4-5-20251001"
+
     # Reddit API (for intel social scanner)
     reddit_client_id: str = ""
     reddit_client_secret: str = ""
