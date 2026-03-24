@@ -12,6 +12,7 @@ import {
   TrendingUp,
   Zap,
   GitCompareArrows,
+  Newspaper,
   Star,
   KanbanSquare,
   Bell,
@@ -99,6 +100,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
     {
       title: 'INTEL',
       items: [
+        { href: '/intel', label: 'Intel Hub', icon: <Newspaper size={15} />, shortcut: 'G L', badge: 'live' },
         { href: '/trends', label: 'Trends', icon: <TrendingUp size={15} />, shortcut: 'G T' },
         { href: '/signals', label: 'Signals', icon: <Zap size={15} />, shortcut: 'G I' },
         { href: '/compare', label: 'Compare', icon: <GitCompareArrows size={15} />, shortcut: 'G C' },
