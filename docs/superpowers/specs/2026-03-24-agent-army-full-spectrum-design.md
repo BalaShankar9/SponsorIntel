@@ -15,7 +15,7 @@ SponsorIntel's Agent Army is a domain-specific, military-structured intelligence
 
 **Key differentiators over Ruflo and other frameworks:**
 
-- **150+ domain-specific agents** vs Ruflo's 60 general-purpose agents
+- **181 domain-specific agents** (150 operators + 25 squad leaders + 6 commanders) vs Ruflo's 60 general-purpose agents
 - **Military chain of command** with lateral intel channels vs Ruflo's flat Hive Mind
 - **5-tier self-learning LLM routing** vs Ruflo's static 3-tier system
 - **6 specialized divisions** with isolated Celery queues vs single-queue architectures
@@ -26,7 +26,7 @@ SponsorIntel's Agent Army is a domain-specific, military-structured intelligence
 
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
-| Agent count | 150+ across 6 divisions | Full-spectrum coverage of every data source and intelligence need |
+| Agent count | 181 across 6 divisions (150 operators + 31 leaders) | Full-spectrum coverage of every data source and intelligence need |
 | Coordination | Military chain of command + lateral channels | Hierarchical control with fault isolation; lateral channels for cross-division urgency |
 | LLM routing | 5-tier with self-learning | 65% cost reduction vs single-tier; continuous optimization |
 | State management | Redis (hot) + Supabase (warm) + archive (cold) | Right storage tier for right access pattern |
@@ -34,7 +34,11 @@ SponsorIntel's Agent Army is a domain-specific, military-structured intelligence
 
 ---
 
-## 2. Army Structure — 6 Divisions, 25 Squads, 150 Agents
+## 2. Army Structure — 6 Divisions, 25 Squads, 181 Agents
+
+> **Note:** Agent counts per division list operators only. Each squad also has a squad leader,
+> and each division has a commander — all of whom are `ArmyAgent` instances registered in `army_agents`.
+> Total: 150 operators + 25 squad leaders + 6 commanders = **181 agents** in the registry.
 
 ### 2.1 Division 1: ACQUISITION COMMAND (45 agents)
 
@@ -270,6 +274,12 @@ Every 24h: Mentor agent (Training Officer) reviews routing_history
   → Adjusts default tiers per task_type
   → Reports cost savings to AEGIS
   → Publishes updated routing table to army_tier_config
+
+Anti-oscillation guards:
+  → No re-attempt of downgrade for a task_type within 48h of a failed downgrade
+  → Maximum 3 downgrade attempts per week per task_type
+  → If 3 consecutive downgrades fail, lock tier for 7 days
+  → Exponential backoff on downgrade attempts: 48h → 96h → 168h
 ```
 
 ### 4.5 Cost Projection
@@ -283,7 +293,7 @@ Every 24h: Mentor agent (Training Officer) reviews routing_history
 | T4 (elite) | 5% | $0.05 | $7,500 |
 | **Total** | **100%** | | **~$11,472/mo** |
 
-Compared to routing everything through a single LLM tier (T2): ~$90,000/mo. **Estimated 87% cost reduction.**
+Compared to routing everything through T3 ($0.01/call): 100K/day * 30 * $0.01 = $30,000/mo. **Estimated 62% cost reduction.** At T2 pricing ($0.001/call) the baseline would be $3,000/mo, still yielding significant savings from T0/T1 handling 64% of operations for near-zero cost.
 
 ---
 
@@ -339,6 +349,7 @@ CREATE TABLE army_missions (
     error_message TEXT,
     retry_count INTEGER DEFAULT 0,
     parent_mission_id UUID,
+    division VARCHAR(30),              -- denormalized from army_agents for query performance
     started_at TIMESTAMPTZ,
     completed_at TIMESTAMPTZ,
     created_at TIMESTAMPTZ DEFAULT now()
@@ -347,9 +358,7 @@ CREATE TABLE army_missions (
 CREATE INDEX idx_army_missions_agent ON army_missions (agent_id, created_at DESC);
 CREATE INDEX idx_army_missions_status ON army_missions (status, created_at DESC);
 CREATE INDEX idx_army_missions_type ON army_missions (mission_type, created_at DESC);
-CREATE INDEX idx_army_missions_division ON army_missions (
-    (SELECT division FROM army_agents WHERE id = agent_id), created_at DESC
-);
+CREATE INDEX idx_army_missions_division ON army_missions (division, created_at DESC);
 ```
 
 ### 5.3 Table: `army_signals` — Lateral Intel Channel Log
@@ -427,32 +436,49 @@ CREATE TABLE army_division_status (
 ```sql
 -- army_agents: public read (visible in admin War Room), service role write
 ALTER TABLE army_agents ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Public read agents" ON army_agents FOR SELECT USING (true);
-CREATE POLICY "Service role manages agents" ON army_agents FOR ALL USING (true);
+CREATE POLICY "Public read agents" ON army_agents
+    FOR SELECT USING (true);
+CREATE POLICY "Service role manages agents" ON army_agents
+    FOR ALL USING (auth.role() = 'service_role')
+    WITH CHECK (auth.role() = 'service_role');
 
--- army_missions: admin read, service role write
+-- army_missions: public read (War Room feed), service role write
 ALTER TABLE army_missions ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Admin read missions" ON army_missions FOR SELECT USING (true);
-CREATE POLICY "Service role manages missions" ON army_missions FOR ALL USING (true);
+CREATE POLICY "Public read missions" ON army_missions
+    FOR SELECT USING (true);
+CREATE POLICY "Service role manages missions" ON army_missions
+    FOR ALL USING (auth.role() = 'service_role')
+    WITH CHECK (auth.role() = 'service_role');
 
--- army_signals: admin read, service role write
+-- army_signals: public read, service role write
 ALTER TABLE army_signals ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Admin read signals" ON army_signals FOR SELECT USING (true);
-CREATE POLICY "Service role manages signals" ON army_signals FOR ALL USING (true);
+CREATE POLICY "Public read signals" ON army_signals
+    FOR SELECT USING (true);
+CREATE POLICY "Service role manages signals" ON army_signals
+    FOR ALL USING (auth.role() = 'service_role')
+    WITH CHECK (auth.role() = 'service_role');
 
--- army_routing_history: service role only
+-- army_routing_history: service role only (internal optimization data)
 ALTER TABLE army_routing_history ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Service role manages routing" ON army_routing_history FOR ALL USING (true);
+CREATE POLICY "Service role manages routing" ON army_routing_history
+    FOR ALL USING (auth.role() = 'service_role')
+    WITH CHECK (auth.role() = 'service_role');
 
--- army_tier_config: admin read, service role write
+-- army_tier_config: public read, service role write
 ALTER TABLE army_tier_config ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Admin read tier config" ON army_tier_config FOR SELECT USING (true);
-CREATE POLICY "Service role manages tier config" ON army_tier_config FOR ALL USING (true);
+CREATE POLICY "Public read tier config" ON army_tier_config
+    FOR SELECT USING (true);
+CREATE POLICY "Service role manages tier config" ON army_tier_config
+    FOR ALL USING (auth.role() = 'service_role')
+    WITH CHECK (auth.role() = 'service_role');
 
 -- army_division_status: public read (War Room dashboard), service role write
 ALTER TABLE army_division_status ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Public read division status" ON army_division_status FOR SELECT USING (true);
-CREATE POLICY "Service role manages division status" ON army_division_status FOR ALL USING (true);
+CREATE POLICY "Public read division status" ON army_division_status
+    FOR SELECT USING (true);
+CREATE POLICY "Service role manages division status" ON army_division_status
+    FOR ALL USING (auth.role() = 'service_role')
+    WITH CHECK (auth.role() = 'service_role');
 ```
 
 ### 5.8 State Management Architecture
@@ -924,7 +950,7 @@ Add to ADMIN section in Sidebar.tsx:
 
 | Dimension | Ruflo | SponsorIntel Agent Army |
 |-----------|-------|------------------------|
-| **Total agents** | 60+ general-purpose | 150+ domain-specific |
+| **Total agents** | 60+ general-purpose | 181 domain-specific (150 operators + 31 leaders) |
 | **Agent categories** | 8 generic (researcher, coder, tester...) | 25 squads across 6 military divisions |
 | **Coordination** | Hive Mind (flat event bus) | Military chain of command + lateral intel channels |
 | **LLM routing** | 3-tier static (WASM/Haiku/Sonnet) | 5-tier self-learning (rules/8b/70b/405b/Claude) |
@@ -944,14 +970,14 @@ Add to ADMIN section in Sidebar.tsx:
 
 ## 12. Success Metrics
 
-| Metric | Current (9 agents) | Target (150 agents) |
+| Metric | Current (9 agents) | Target (181 agents) |
 |--------|-------------------|---------------------|
 | Data sources covered | 23 | 35+ |
 | Jobs scraped/day | ~5,000 | ~50,000 |
 | Enrichment throughput/hour | ~500 | ~5,000 |
 | Sponsor match rate | 54.2% | 75%+ |
 | Average enrichment latency | ~2s | ~800ms (T0/T1 handling simple cases) |
-| LLM cost/month | ~$500 (single tier) | ~$200 (5-tier optimization) |
+| LLM cost/month | ~$500 (single tier) | ~$200 (5-tier optimization, see Section 4.5 for breakdown at scale) |
 | Data quality score | ~70% | 95%+ |
 | System uptime | ~95% | 99.5%+ (self-healing) |
 | Mean time to recover (MTTR) | Manual | <5 min (auto-recovery) |
@@ -973,7 +999,7 @@ celery
 
 # May need to add:
 prometheus_client    # metrics export
-weasyprint          # PDF report generation
+reportlab           # PDF report generation (pure Python, no native deps)
 ```
 
 ### Environment Variables
@@ -994,3 +1020,276 @@ ANTHROPIC_API_KEY=sk-ant-...       # T4 elite tier
 ### Frontend
 
 No new dependencies — uses existing Tailwind, Recharts, lucide-react, Supabase Realtime.
+
+---
+
+## 14. Deployment Architecture
+
+### 14.1 Railway Multi-Service Deployment
+
+The current single-container Railway deployment cannot support 11 Celery workers. The army requires multiple Railway services:
+
+| Railway Service | Process | Memory | Purpose |
+|----------------|---------|--------|---------|
+| `web` | FastAPI + uvicorn | 512 MB | API server |
+| `beat` | Celery Beat | 256 MB | Task scheduler |
+| `worker-acquisition` | Celery worker (4 concurrency) | 2 GB | Acquisition division queue |
+| `worker-intelligence` | Celery worker (4 concurrency) | 1 GB | Intelligence division queue |
+| `worker-quality` | Celery worker (4 concurrency) | 1 GB | Quality division queue |
+| `worker-ops-research` | Celery worker (2 concurrency) | 512 MB | Operations + Research + Command queues (combined — low volume) |
+| `worker-legacy` | Celery worker (4 concurrency) | 1 GB | Existing `default` + `agents` queues (backward compat) |
+
+**Total: 7 Railway services, ~6.3 GB total RAM**
+
+### 14.2 Progressive Scaling Plan
+
+- **Phase 1-3:** Run all army queues on a single combined worker (like today). Test with reduced concurrency.
+- **Phase 4:** Split acquisition into its own worker (highest throughput).
+- **Phase 5:** Split intelligence into its own worker (LLM-heavy).
+- **Phase 6+:** Split remaining divisions as volume warrants.
+
+Each Railway service shares the same Docker image but runs a different Celery command:
+```bash
+# worker-acquisition
+celery -A app.tasks.celery_app worker -Q army_acquisition -c 4 --max-tasks-per-child=200
+
+# worker-intelligence
+celery -A app.tasks.celery_app worker -Q army_intelligence -c 4 --max-tasks-per-child=100
+```
+
+---
+
+## 15. Backpressure & Flow Control
+
+### 15.1 Problem
+
+At 50K jobs/day ingestion target, Acquisition can produce faster than Intelligence can enrich. Without backpressure, the `army_missions` pending queue grows unboundedly and Redis memory fills up.
+
+### 15.2 Solution: Pull-Based Work Queues with Depth Limits
+
+Each division pulls work from a bounded queue rather than being pushed:
+
+```
+Acquisition completes scrape batch
+    │
+    ▼
+INSERT jobs into Supabase with status='raw'
+    │
+    ▼
+Check: pending_enrichment_count < MAX_PENDING (10,000)
+   ├── YES → Emit stream:new_jobs_batch signal
+   └── NO  → Skip signal, log backpressure warning
+              Intelligence will pull when ready
+
+Intelligence division pulls:
+    SELECT * FROM jobs WHERE status='raw'
+    ORDER BY created_at ASC
+    LIMIT batch_size
+    FOR UPDATE SKIP LOCKED    -- concurrent-safe
+```
+
+### 15.3 Queue Depth Limits
+
+| Queue | Max Pending | Action When Full |
+|-------|------------|------------------|
+| Raw jobs awaiting enrichment | 10,000 | Acquisition pauses non-critical sources |
+| Enriched jobs awaiting validation | 5,000 | Intelligence slows batch size |
+| Signals awaiting processing | 1,000 | Oldest signals auto-acknowledged |
+| Missions awaiting execution | 500 per division | New tasks queued with lower priority |
+
+### 15.4 Redis Stream Trimming
+
+All Redis Streams are trimmed to prevent unbounded memory growth:
+- `stream:*` channels: MAXLEN ~10,000 entries
+- `warroom:*` channels: MAXLEN ~1,000 entries
+- Consumer groups auto-acknowledge messages older than 1 hour
+
+---
+
+## 16. Agent Health & SLA Definitions
+
+### 16.1 Agent Health States
+
+| State | Condition | Action |
+|-------|-----------|--------|
+| `active` | Last heartbeat <120s ago, error rate <10% | Normal operation |
+| `degraded` | Error rate 10-30% or heartbeat >120s | Alert squad leader, increase monitoring |
+| `paused` | Manually paused or circuit breaker open | No tasks dispatched, probe for recovery |
+| `cooldown` | 3+ consecutive failures | Exponential backoff: 30s → 60s → 120s → max 300s |
+| `disabled` | Manually disabled or >50% error rate for 1h | Requires manual re-enable via API or War Room |
+| `training` | Self-learning calibration in progress | Runs shadow tasks, results not committed |
+
+### 16.2 Division Health Aggregation
+
+| Division Status | Condition |
+|----------------|-----------|
+| `operational` | >90% of agents active |
+| `degraded` | 70-90% of agents active, or any squad fully down |
+| `critical` | <70% of agents active, or commander agent down |
+| `offline` | Commander agent unreachable for >5 minutes |
+
+### 16.3 SLA Targets
+
+| Metric | Target | Measurement |
+|--------|--------|-------------|
+| Army uptime | 99.5% | At least 4/6 divisions operational |
+| MTTR (auto-recovery) | <5 min | Time from agent failure to auto-recovery |
+| MTTR (manual) | <30 min | Time from alert to human intervention |
+| Data freshness | <2h | Max age of newest job from any active source |
+| Enrichment latency (p95) | <5s | Time from raw job insert to enriched status |
+| War Room data lag | <30s | Time from mission completion to dashboard update |
+
+---
+
+## 17. Connection Pooling
+
+### 17.1 Shared HTTP Clients
+
+The TierRouter MUST use shared `httpx.AsyncClient` instances per provider rather than creating new connections per call. At 100K operations/day, per-call client creation causes file descriptor exhaustion.
+
+```python
+class TierRouter:
+    def __init__(self, ...):
+        # Shared connection pools — created once, reused for all calls
+        self._clients = {
+            "groq": httpx.AsyncClient(
+                base_url="https://api.groq.com",
+                timeout=30,
+                limits=httpx.Limits(max_connections=20, max_keepalive_connections=10),
+            ),
+            "nvidia_nim": httpx.AsyncClient(
+                base_url="https://integrate.api.nvidia.com",
+                timeout=60,
+                limits=httpx.Limits(max_connections=10, max_keepalive_connections=5),
+            ),
+            "openrouter": httpx.AsyncClient(
+                base_url="https://openrouter.ai",
+                timeout=60,
+                limits=httpx.Limits(max_connections=10, max_keepalive_connections=5),
+            ),
+            "anthropic": httpx.AsyncClient(
+                base_url="https://api.anthropic.com",
+                timeout=60,
+                limits=httpx.Limits(max_connections=5, max_keepalive_connections=3),
+            ),
+        }
+
+    async def close(self):
+        """Call on worker shutdown."""
+        for client in self._clients.values():
+            await client.aclose()
+```
+
+### 17.2 LLM Model Configuration
+
+Model names MUST NOT be hardcoded. Store in `army_tier_config` or environment variables to allow updates without code changes:
+
+```python
+# Default model map — overridable via ARMY_TIER_MODELS env var (JSON)
+DEFAULT_MODEL_MAP = {
+    "t1_groq": os.getenv("ARMY_T1_MODEL", "llama-3.3-70b-versatile"),
+    "t2_groq": os.getenv("ARMY_T2_MODEL", "llama-3.3-70b-versatile"),
+    "t3_nvidia": os.getenv("ARMY_T3_MODEL", "meta/llama-3.1-405b-instruct"),
+    "t4_anthropic": os.getenv("ARMY_T4_MODEL", "claude-haiku-4-5-20251001"),
+}
+```
+
+---
+
+## 18. War Room Real-Time Strategy
+
+### 18.1 SSE Over Supabase Realtime for High-Volume Tables
+
+At 100K operations/day (~1,150 inserts/min), `army_missions` will saturate Supabase Realtime connections. Use Server-Sent Events (SSE) from the backend API as the primary channel:
+
+| Table | Real-Time Method | Rationale |
+|-------|-----------------|-----------|
+| `army_missions` | SSE via `GET /army/missions/live` | High volume — 1K+ inserts/min |
+| `army_signals` | SSE via `GET /army/signals/stream` | Medium volume — 10-100/min |
+| `army_division_status` | Supabase Realtime | Low volume — 6 updates/30s, perfect for Realtime |
+| `army_agents` | Supabase Realtime | Low volume — heartbeat updates |
+
+### 18.2 SSE Implementation
+
+```python
+@router.get("/army/missions/live")
+async def mission_stream():
+    """SSE stream of recent missions for War Room MissionFeed."""
+    async def event_generator():
+        pubsub = redis.pubsub()
+        await pubsub.subscribe("warroom:missions")
+        async for message in pubsub.listen():
+            if message["type"] == "message":
+                yield f"data: {message['data']}\n\n"
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
+```
+
+---
+
+## 19. Legacy Migration: swarm_metrics
+
+### 19.1 Transition Plan
+
+The existing `swarm_metrics` table continues to receive writes during Phases 1-3 (backward compatibility). Starting Phase 4:
+
+1. All new agent tasks write to `army_missions` instead of `swarm_metrics`
+2. A compatibility shim copies `army_missions` summaries to `swarm_metrics` for any legacy monitoring
+3. After Phase 6, `swarm_metrics` is deprecated — reads redirected to `army_missions` views
+4. After Phase 7, `swarm_metrics` table is archived and dropped
+
+### 19.2 AgentReport Backward Compatibility
+
+`AgentReport` is a superset of the existing `SubAgentResult`. During migration, both types are accepted:
+
+```python
+@dataclass
+class AgentReport:
+    # SubAgentResult-compatible fields:
+    success: bool              # maps to status == "success"
+    data: dict
+    error: str | None
+    duration_ms: int
+    llm_calls: int
+    # Extended fields:
+    agent_id: str
+    mission_id: UUID
+    status: str
+    items_processed: int
+    items_created: int
+    items_updated: int
+    errors: list[str]
+    tier_used: int
+    llm_cost_usd: float
+    signals_emitted: list[str]
+
+    def to_sub_agent_result(self) -> SubAgentResult:
+        """Backward-compatible conversion."""
+        return SubAgentResult(
+            success=self.status == "success",
+            data=self.data,
+            error=self.errors[0] if self.errors else None,
+            duration_ms=self.duration_ms,
+            llm_calls=self.llm_calls,
+        )
+```
+
+---
+
+## 20. Phased Rollout with Duration Estimates
+
+| Phase | Description | Duration | Depends On | Go/No-Go Criteria |
+|-------|------------|----------|------------|-------------------|
+| **1** | Base framework: ArmyAgent, TierRouter, SignalBus + DB tables | 3-4 days | None | All base classes pass unit tests, tables created in Supabase |
+| **2** | Reorganize existing 9 agents into division structure | 2-3 days | Phase 1 | All existing `agent.*` tasks still work, new `army.*` entry points functional |
+| **3** | Build Supreme Command: AEGIS + 9 staff agents | 2-3 days | Phase 2 | AEGIS can collect division reports, heartbeats flowing |
+| **4** | Add new squads: Golf, Lima, Oscar, Sierra, Tango, Uniform | 3-4 days | Phase 2 | New agents completing missions, metrics logged to army_missions |
+| **5** | War Room dashboard frontend | 2-3 days | Phase 3 | Dashboard shows live division status, mission feed, tier routing stats |
+| **6** | Self-learning routing + Mentor agent | 2 days | Phase 4 | Routing history being logged, tier adjustments happening |
+| **7** | Victor, Yankee, Zulu squads + full army activation | 2-3 days | Phase 4 | All 181 agents registered and operational, legacy task deprecation begins |
+
+**Total estimated: 16-23 days**
+
+Phases 4 and 5 can run in parallel (backend new agents + frontend dashboard).
+Phases 6 and 7 can run in parallel (self-learning + remaining squads).
+
+**Overlap potential reduces total to ~12-16 days.**
