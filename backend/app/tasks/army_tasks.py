@@ -94,3 +94,62 @@ def army_health_check():
         return loop.run_until_complete(_check())
     finally:
         loop.close()
+
+
+# ---------------------------------------------------------------------------
+# Division execution tasks
+# ---------------------------------------------------------------------------
+
+def _run_division(division: str, task_kwargs: dict | None = None):
+    """Run a specific division through AEGIS. Not a Celery task itself."""
+    import asyncio
+
+    async def _run():
+        sb = _get_supabase()
+        r = await _get_redis()
+        router = _get_tier_router(r, sb)
+        bus = _get_signal_bus(r, sb)
+
+        from app.agents.divisions.command import create_aegis
+        aegis = create_aegis(redis=r, supabase=sb, tier_router=router, signal_bus=bus)
+
+        report = await aegis.run_division(division=division, **(task_kwargs or {}))
+        await router.close()
+        await r.aclose()
+        return report.to_dict()
+
+    loop = asyncio.new_event_loop()
+    try:
+        return loop.run_until_complete(_run())
+    finally:
+        loop.close()
+
+
+@celery_app.task(name="army.acquisition.hunt", soft_time_limit=1800, time_limit=3600)
+def army_hunt_jobs(sources: list[str] | None = None):
+    """Run Acquisition division — job hunting."""
+    return _run_division("acquisition", {"sources": sources})
+
+
+@celery_app.task(name="army.intelligence.enrich", soft_time_limit=1800, time_limit=3600)
+def army_enrich_jobs(jobs: list[dict] | None = None):
+    """Run Intelligence division — enrichment + companies house."""
+    return _run_division("intelligence", {"jobs": jobs or []})
+
+
+@celery_app.task(name="army.quality.validate", soft_time_limit=1800, time_limit=3600)
+def army_validate_jobs(jobs: list[dict] | None = None):
+    """Run Quality division — validation + completeness."""
+    return _run_division("quality", {"jobs": jobs or []})
+
+
+@celery_app.task(name="army.operations.maintain", soft_time_limit=1800, time_limit=3600)
+def army_maintain():
+    """Run Operations division — freshness + orchestrator."""
+    return _run_division("operations")
+
+
+@celery_app.task(name="army.research.discover", soft_time_limit=1800, time_limit=3600)
+def army_discover():
+    """Run Research division — discovery + improvement."""
+    return _run_division("research")
