@@ -42,7 +42,6 @@ interface RecentJob {
 }
 
 // Helper: run a count query independently so one failure doesn't kill all stats
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function safeCount(table: string, filter?: (q: any) => any): Promise<number> {
   try {
     let q = supabase.from(table).select('id', { count: 'exact', head: true });

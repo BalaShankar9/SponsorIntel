@@ -90,7 +90,6 @@ export function MarketPulse() {
 
   useEffect(() => {
     // Helper: resilient count query — never throws, logs errors
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async function safeCount(table: string, filter?: (q: any) => any): Promise<number> {
       try {
         let q = supabase.from(table).select('id', { count: 'exact', head: true });
