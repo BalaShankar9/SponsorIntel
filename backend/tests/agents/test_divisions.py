@@ -54,3 +54,25 @@ class TestAcquisitionDivision:
         report = await commander.execute({"sources": ["free_apis"]})
 
         assert report.data["alpha"]["jobs_found"] == 25
+
+
+class TestIntelligenceDivision:
+    @pytest.mark.asyncio
+    async def test_create_intelligence_commander(self):
+        from app.agents.divisions.intelligence import create_intelligence_commander
+
+        redis = AsyncMock()
+        redis.set = AsyncMock()
+        redis.xadd = AsyncMock(return_value="1-0")
+        redis.publish = AsyncMock()
+
+        sb = MagicMock()
+        sb.table.return_value.insert.return_value.execute.return_value = None
+        sb.table.return_value.upsert.return_value.execute.return_value = None
+
+        commander = create_intelligence_commander(redis=redis, supabase=sb)
+
+        assert commander.agent_id == "int.cmd"
+        assert commander.division == "intelligence"
+        assert "alpha" in commander.squads
+        assert "bravo" in commander.squads
