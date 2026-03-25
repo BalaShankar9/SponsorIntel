@@ -153,3 +153,71 @@ def army_maintain():
 def army_discover():
     """Run Research division — discovery + improvement."""
     return _run_division("research")
+
+
+@celery_app.task(name="army.intelligence.scan_intel", soft_time_limit=1800, time_limit=3600)
+def army_scan_intel(sources: list[str] | None = None):
+    """Run Intel scanners via Intelligence division charlie squad."""
+    import asyncio
+
+    async def _run():
+        from app.agents.divisions.intel_agents import IntelScannerAgent
+        from app.agents.army_types import Role
+
+        sb = _get_supabase()
+        r = await _get_redis()
+
+        agent = IntelScannerAgent(
+            agent_id="int.charlie.intel_scanner",
+            division="intelligence", squad="charlie",
+            role=Role.OPERATOR,
+            persona_name="Nadia Petrova",
+            persona_title="Immigration Intelligence Analyst",
+            redis=r, supabase=sb,
+        )
+        report = await agent.execute({
+            "sources": sources or ["gov", "news", "legal", "social"],
+            "supabase": sb,
+        })
+        await r.aclose()
+        return report.to_dict()
+
+    loop = asyncio.new_event_loop()
+    try:
+        return loop.run_until_complete(_run())
+    finally:
+        loop.close()
+
+
+@celery_app.task(name="army.intelligence.process_intel", soft_time_limit=1800, time_limit=3600)
+def army_process_intel(steps: list[str] | None = None):
+    """Run Intel processors via Intelligence division delta squad."""
+    import asyncio
+
+    async def _run():
+        from app.agents.divisions.intel_agents import IntelProcessorAgent
+        from app.agents.army_types import Role
+
+        sb = _get_supabase()
+        r = await _get_redis()
+
+        agent = IntelProcessorAgent(
+            agent_id="int.delta.intel_processor",
+            division="intelligence", squad="delta",
+            role=Role.OPERATOR,
+            persona_name="Dr. Yusuf Osman",
+            persona_title="Intel Classification Specialist",
+            redis=r, supabase=sb,
+        )
+        report = await agent.execute({
+            "steps": steps or ["classify", "analyze", "dedup"],
+            "supabase": sb,
+        })
+        await r.aclose()
+        return report.to_dict()
+
+    loop = asyncio.new_event_loop()
+    try:
+        return loop.run_until_complete(_run())
+    finally:
+        loop.close()
