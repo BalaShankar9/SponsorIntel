@@ -120,3 +120,25 @@ class TestOperationsDivision:
         assert commander.division == "operations"
         assert "alpha" in commander.squads
         assert "bravo" in commander.squads
+
+
+class TestResearchDivision:
+    @pytest.mark.asyncio
+    async def test_create_research_commander(self):
+        from app.agents.divisions.research import create_research_commander
+
+        redis = AsyncMock()
+        redis.set = AsyncMock()
+        redis.xadd = AsyncMock(return_value="1-0")
+        redis.publish = AsyncMock()
+
+        sb = MagicMock()
+        sb.table.return_value.insert.return_value.execute.return_value = None
+        sb.table.return_value.upsert.return_value.execute.return_value = None
+
+        commander = create_research_commander(redis=redis, supabase=sb)
+
+        assert commander.agent_id == "res.cmd"
+        assert commander.division == "research"
+        assert "alpha" in commander.squads
+        assert "bravo" in commander.squads
