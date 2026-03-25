@@ -29,6 +29,7 @@ celery_app = Celery(
         "app.tasks.agent_tasks",
         "app.tasks.schedule",
         "app.tasks.intel_tasks",
+        "app.tasks.army_tasks",
     ],
 )
 
@@ -47,8 +48,14 @@ celery_app.conf.update(
     task_soft_time_limit=1800,  # 30 min soft limit
     task_time_limit=3600,  # 1 hour hard limit
     task_routes={
-        "tasks.*": {"queue": "default"},
-        "agent.*": {"queue": "agents"},
+        "army.acquisition.*":  {"queue": "army_acquisition"},
+        "army.intelligence.*": {"queue": "army_intelligence"},
+        "army.quality.*":      {"queue": "army_quality"},
+        "army.operations.*":   {"queue": "army_operations"},
+        "army.research.*":     {"queue": "army_research"},
+        "army.command.*":      {"queue": "army_command"},
+        "tasks.*":             {"queue": "default"},
+        "agent.*":             {"queue": "agents"},
     },
 )
 
