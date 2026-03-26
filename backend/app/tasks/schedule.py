@@ -23,6 +23,10 @@ celery_app.conf.beat_schedule = {
         "task": "data.monitor_hansard",
         "schedule": crontab(hour="7", minute="30"),
     },
+    "process-notifications": {
+        "task": "data.process_notifications",
+        "schedule": crontab(minute="*/5"),  # Every 5 minutes
+    },
 
     # ===================================================================
     # Tier 1: Zero-auth free API scrapers (every 2 hours, staggered)

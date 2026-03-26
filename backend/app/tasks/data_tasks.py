@@ -66,3 +66,41 @@ def monitor_hansard():
         return {"items_found": len(items), "items_inserted": inserted}
 
     return _run_async(_run())
+
+
+@celery_app.task(name="data.process_notifications", soft_time_limit=120, time_limit=180)
+def process_notifications():
+    """Match recent unprocessed intel items against subscriptions and notify."""
+    async def _run():
+        from app.services.notification_engine import process_intel_event
+        supabase = _get_supabase()
+
+        # Get recent analyzed items that haven't triggered notifications yet
+        from datetime import datetime, timedelta, timezone
+        since = (datetime.now(timezone.utc) - timedelta(hours=1)).isoformat()
+
+        result = supabase.table("intel_items").select("*").eq(
+            "status", "analyzed"
+        ).gte("updated_at", since).limit(50).execute()
+
+        items = result.data or []
+        total_sent = 0
+
+        for item in items:
+            event = {
+                "id": item["id"],
+                "title": item.get("title", ""),
+                "topic": item.get("topic"),
+                "impact_level": item.get("impact_level"),
+                "visa_routes": item.get("visa_routes_affected") or [],
+                "industries": item.get("industries_affected") or [],
+                "summary": item.get("summary"),
+                "content_snippet": item.get("content_snippet"),
+            }
+            sent = await process_intel_event(supabase, event)
+            total_sent += sent
+
+        logger.info(f"[DATA] Notification processing: {total_sent} notifications from {len(items)} items")
+        return {"items_processed": len(items), "notifications_sent": total_sent}
+
+    return _run_async(_run())
