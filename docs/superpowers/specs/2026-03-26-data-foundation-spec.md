@@ -28,7 +28,9 @@ Make SponsorIntel's data the most complete, freshest, and most authoritative sou
 8. For rating changes (A→B or B→A): emit signal via SignalBus, alert subscribers
 9. Store raw CSV in Supabase Storage for audit trail
 
-**Output:** `sponsor_register_sync` Celery task + `sponsor_register_diff` table
+**Note:** This replaces the existing daily `scrape_register` / `sync-gov-register` Celery Beat entry in `schedule.py`. The new task keeps the daily cadence (Home Office updates mid-week too) but adds proper diffing, change logging to the existing `sponsor_changes` table, and downstream enrichment triggers. The existing `sponsor_changes` table is reused — no new diff table.
+
+**Output:** `data.sync_sponsor_register` Celery task (replaces `sync-gov-register`)
 
 ### 2. Home Office Visa Statistics Ingestion
 
@@ -138,19 +140,10 @@ Make SponsorIntel's data the most complete, freshest, and most authoritative sou
 ### New Tables
 
 ```sql
--- Weekly register diff tracking
-CREATE TABLE sponsor_register_diffs (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    sync_run_id UUID NOT NULL,
-    organisation_name VARCHAR(500) NOT NULL,
-    change_type VARCHAR(30) NOT NULL CHECK (change_type IN ('added', 'removed', 'rating_change', 'route_change', 'town_change')),
-    old_value JSONB,
-    new_value JSONB,
-    sponsor_id UUID REFERENCES sponsors(id),
-    detected_at TIMESTAMPTZ DEFAULT now()
-);
+-- NOTE: Register diffs use the existing `sponsor_changes` table (not a new table).
+-- Change types: 'added', 'removed', 'rating_upgrade', 'rating_downgrade', 'location_change', 'route_change'
 
--- Visa grant statistics by SOC code
+-- Visa grant statistics by SOC code (SOC 2020)
 CREATE TABLE visa_statistics (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     soc_code VARCHAR(10) NOT NULL,
@@ -158,27 +151,33 @@ CREATE TABLE visa_statistics (
     grants_total INTEGER NOT NULL,
     grants_by_nationality JSONB,
     grants_by_industry JSONB,
-    period VARCHAR(20) NOT NULL,
+    period_start DATE NOT NULL,
+    period_end DATE NOT NULL,
     year INTEGER NOT NULL,
     source_url VARCHAR(2000),
     created_at TIMESTAMPTZ DEFAULT now()
 );
 
--- Shortage occupation list
-CREATE TABLE shortage_occupations (
+CREATE INDEX idx_visa_stats_soc_year ON visa_statistics (soc_code, year);
+
+-- Immigration Salary List (ISL) — replaces old Shortage Occupation List (SOL)
+-- ISL roles are exempt from going rate requirement, NOT a blanket 20% discount
+CREATE TABLE immigration_salary_list (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     soc_code VARCHAR(10) NOT NULL,
     occupation_title VARCHAR(500) NOT NULL,
     job_titles TEXT[],
-    salary_threshold_discount FLOAT DEFAULT 0.20,
-    standard_threshold INTEGER,
-    discounted_threshold INTEGER,
+    is_going_rate_exempt BOOLEAN DEFAULT TRUE,
+    standard_threshold INTEGER DEFAULT 38700,
     effective_date DATE,
+    superseded_at TIMESTAMPTZ,
     is_active BOOLEAN DEFAULT TRUE,
     created_at TIMESTAMPTZ DEFAULT now()
 );
 
--- ONS salary benchmarks
+CREATE UNIQUE INDEX idx_isl_soc_effective ON immigration_salary_list (soc_code, effective_date);
+
+-- ONS salary benchmarks (ASHE Table 14, SOC 2020)
 CREATE TABLE ons_salary_benchmarks (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     soc_code VARCHAR(10) NOT NULL,
@@ -195,21 +194,10 @@ CREATE TABLE ons_salary_benchmarks (
     created_at TIMESTAMPTZ DEFAULT now()
 );
 
--- Register sync run log
-CREATE TABLE sponsor_register_sync_log (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    ran_at TIMESTAMPTZ DEFAULT now(),
-    csv_url VARCHAR(2000),
-    csv_hash VARCHAR(64),
-    total_sponsors INTEGER,
-    new_sponsors INTEGER DEFAULT 0,
-    removed_sponsors INTEGER DEFAULT 0,
-    rating_changes INTEGER DEFAULT 0,
-    route_changes INTEGER DEFAULT 0,
-    duration_ms INTEGER,
-    status VARCHAR(20) DEFAULT 'success',
-    error_message TEXT
-);
+CREATE UNIQUE INDEX idx_ons_salary_soc_region_year ON ons_salary_benchmarks (soc_code, region, year);
+
+-- Extend existing csv_imports table for sync run tracking
+-- (add duration_ms, status, error_message columns if not present)
 ```
 
 ## API Endpoints
@@ -223,18 +211,18 @@ CREATE TABLE sponsor_register_sync_log (
 
 ## Celery Beat Schedule Additions
 
-| Task | Schedule | Description |
-|------|----------|-------------|
-| `data.sync_sponsor_register` | Every Monday 08:00 UTC | Download + diff sponsor register CSV |
-| `data.ingest_visa_stats` | First Monday of quarter | Parse Home Office visa statistics |
-| `data.check_sol_update` | First Monday of month | Check for SOL changes on GOV.UK |
-| `data.monitor_hansard` | Daily 06:00 UTC | Search Hansard for immigration debates |
+| Task | Queue | Schedule | Description |
+|------|-------|----------|-------------|
+| `data.sync_sponsor_register` | `army_intelligence` | Daily 07:00 UTC (replaces existing `sync-gov-register`) | Download + diff sponsor register CSV |
+| `data.ingest_visa_stats` | `army_intelligence` | First Monday of quarter | Parse Home Office visa statistics |
+| `data.check_isl_update` | `army_intelligence` | First Monday of month | Check for ISL changes on GOV.UK |
+| `data.monitor_hansard` | `army_intelligence` | Daily 07:30 UTC | Search Hansard for immigration debates |
 
 ## Success Criteria
 
 1. Sponsor register changes detected within 24 hours of publication
-2. Every job listing shows salary vs. visa threshold comparison
-3. SOL-eligible jobs are flagged with a visible badge
+2. ≥80% of jobs with salary data show salary vs. visa threshold comparison
+3. ISL-eligible jobs are flagged with a visible badge
 4. Parliamentary immigration debates appear in Intel feed within 24 hours
-5. Visa grant statistics available per SOC code on Trends page
-6. Companies House risk signals (late filings, charges) visible on company profiles
+5. `visa_statistics` table populated for all SOC codes with ≥100 grants in the reference period
+6. ≥60% of matched company profiles have Companies House risk signals populated (late filings, charges)
