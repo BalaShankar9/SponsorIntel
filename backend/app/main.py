@@ -75,6 +75,13 @@ async def health_check():
     return {"status": "ok", "service": "sponsorintel"}
 
 
+@app.get("/metrics")
+async def prometheus_metrics():
+    from app.services.metrics import get_metrics, get_content_type
+    from fastapi.responses import Response
+    return Response(content=get_metrics(), media_type=get_content_type())
+
+
 @app.get("/api/trigger-pipeline")
 async def trigger_pipeline(agent: str = "hunter"):
     """Quick trigger for agent pipeline (temporary, no auth)."""
