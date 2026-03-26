@@ -186,6 +186,20 @@ export default function LandingPage() {
 
   useEffect(() => {
     async function loadStats() {
+      // Try backend API first (no RLS issues)
+      try {
+        const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+        const res = await fetch(`${API_URL}/api/swarm-status`);
+        if (res.ok) {
+          const data = await res.json();
+          const metrics = data.metrics || {};
+          if (metrics.total_sponsors) setSponsorCount(metrics.total_sponsors);
+          if (metrics.total_jobs) setJobCount(metrics.total_jobs);
+          return;
+        }
+      } catch { /* fall through */ }
+
+      // Fallback: direct Supabase
       try {
         const [sponsorRes, jobRes] = await Promise.all([
           supabase.from('sponsors').select('*', { count: 'exact', head: true }),
