@@ -30,6 +30,7 @@ celery_app = Celery(
         "app.tasks.schedule",
         "app.tasks.intel_tasks",
         "app.tasks.army_tasks",
+        "app.tasks.data_tasks",
     ],
 )
 
@@ -54,6 +55,7 @@ celery_app.conf.update(
         "army.operations.*":   {"queue": "army_operations"},
         "army.research.*":     {"queue": "army_research"},
         "army.command.*":      {"queue": "army_command"},
+        "data.*":              {"queue": "army_intelligence"},
         "tasks.*":             {"queue": "default"},
         "agent.*":             {"queue": "agents"},
     },

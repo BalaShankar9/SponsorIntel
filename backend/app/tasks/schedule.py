@@ -16,8 +16,12 @@ celery_app.conf.beat_schedule = {
     # The Home Office publishes updates once daily, so daily sync is sufficient.
     # ===================================================================
     "sync-gov-register": {
-        "task": "tasks.scrape_register",
+        "task": "data.sync_sponsor_register",
         "schedule": crontab(hour="7", minute="0"),
+    },
+    "monitor-hansard": {
+        "task": "data.monitor_hansard",
+        "schedule": crontab(hour="7", minute="30"),
     },
 
     # ===================================================================
