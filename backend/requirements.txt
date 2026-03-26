@@ -42,6 +42,10 @@ feedparser==6.0.11
 prometheus_client
 reportlab
 
+# Scraper Fleet
+crawl4ai
+litellm
+
 # Data Foundation
 openpyxl
 
