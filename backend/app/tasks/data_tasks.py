@@ -104,3 +104,26 @@ def process_notifications():
         return {"items_processed": len(items), "notifications_sent": total_sent}
 
     return _run_async(_run())
+
+
+@celery_app.task(name="data.targeted_job_search", soft_time_limit=1800, time_limit=3600)
+def targeted_job_search(limit: int = 100):
+    """Search Adzuna for jobs from sponsors that have 0 job listings."""
+    async def _run():
+        from app.scripts.data_foundation.targeted_job_search import run_targeted_search
+        from app.core.config import get_settings
+        supabase = _get_supabase()
+        s = get_settings()
+
+        if not s.adzuna_app_id or not s.adzuna_app_key:
+            logger.error("[DATA] Adzuna API keys not configured")
+            return {"error": "Adzuna keys not set"}
+
+        return await run_targeted_search(
+            supabase,
+            app_id=s.adzuna_app_id,
+            app_key=s.adzuna_app_key,
+            limit=limit,
+        )
+
+    return _run_async(_run())
