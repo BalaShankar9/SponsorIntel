@@ -168,7 +168,7 @@ class LLMService:
         """Complete via Groq API (OpenAI-compatible endpoint)."""
         async with httpx.AsyncClient(timeout=timeout) as client:
             body = {
-                "model": "llama-3.1-70b-versatile",
+                "model": "llama-3.3-70b-versatile",
                 "messages": [
                     {"role": "system", "content": system or "You are a helpful assistant."},
                     {"role": "user", "content": prompt},
