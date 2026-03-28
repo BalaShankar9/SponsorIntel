@@ -170,8 +170,3 @@ async def run_targeted_search(
     stats["duration_ms"] = int((time.time() - start) * 1000)
     logger.info(f"[TARGETED] Complete: {stats}")
     return stats
-```
-
-Now add a Celery task for this and a quick API trigger:
-
-```python
