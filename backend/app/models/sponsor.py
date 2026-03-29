@@ -40,7 +40,7 @@ class Sponsor(Base):
     rating: Mapped[Optional[SponsorRating]] = mapped_column(
         Enum(SponsorRating), index=True
     )
-    sponsor_type: Mapped[Optional[SponsorType]] = mapped_column(Enum(SponsorType))
+    sponsor_type: Mapped[Optional[str]] = mapped_column(String(100))
     route: Mapped[Optional[list]] = mapped_column(ARRAY(String))
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, index=True)
     first_seen_date: Mapped[Optional[datetime]] = mapped_column(DateTime)
