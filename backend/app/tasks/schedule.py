@@ -41,6 +41,20 @@ celery_app.conf.beat_schedule = {
         "task": "data.quality_cleanup",
         "schedule": crontab(hour="3", minute="0"),  # Daily at 3 AM
     },
+    # Companies House enrichment — 30 sponsors per run, every 6 hours
+    # At 30/run, 4 runs/day = 120 sponsors/day. Full 140K cycle in ~3.2 years.
+    # Increase batch_size to accelerate (max ~120 per run due to rate limits).
+    "enrich-companies-house": {
+        "task": "data.enrich_from_companies_house",
+        "schedule": crontab(hour="*/6", minute="15"),
+        "kwargs": {"batch_size": 30},
+    },
+    # Score unscored jobs — runs every 30 min
+    "score-unscored-jobs": {
+        "task": "data.score_unscored_jobs",
+        "schedule": crontab(minute="*/30"),
+        "kwargs": {"batch_size": 200},
+    },
 
     # ===================================================================
     # Tier 1: Zero-auth free API scrapers (every 2 hours, staggered)

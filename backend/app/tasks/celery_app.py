@@ -32,6 +32,7 @@ celery_app = Celery(
         "app.tasks.army_tasks",
         "app.tasks.data_tasks",
         "app.tasks.sponsor_scanner",
+        "app.tasks.api_enrichment",
     ],
 )
 
