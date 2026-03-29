@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ExternalLink } from 'lucide-react';
-import { api } from '@/lib/api';
+import { supabase } from '@/lib/supabase';
 import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Table } from '@/components/ui/Table';
@@ -26,10 +26,25 @@ export function JobsTab({ sponsorId }: JobsTabProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get<{ data: Job[] }>(`/api/v1/jobs?sponsor_id=${sponsorId}&per_page=50`)
-      .then((res) => setJobs(res.data))
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    async function fetchJobs() {
+      try {
+        const { data, error } = await supabase
+          .from('jobs')
+          .select('*')
+          .eq('sponsor_id', sponsorId)
+          .order('posted_date', { ascending: false })
+          .limit(50);
+
+        if (!error && data) {
+          setJobs(data as Job[]);
+        }
+      } catch (err) {
+        console.error('Failed to fetch jobs:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchJobs();
   }, [sponsorId]);
 
   if (loading) return <PageSpinner />;
@@ -69,8 +84,8 @@ export function JobsTab({ sponsorId }: JobsTabProps) {
                   <td>{likelihoodBadge(job.sponsorship_likelihood)}</td>
                   <td className="text-dim">{formatDate(job.posted_date)}</td>
                   <td>
-                    {job.url && (
-                      <a href={job.url} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent">
+                    {job.source_url && (
+                      <a href={job.source_url} target="_blank" rel="noopener noreferrer" className="text-accent hover:text-accent">
                         <ExternalLink size={14} />
                       </a>
                     )}

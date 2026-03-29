@@ -29,7 +29,7 @@ The Bloomberg Terminal of UK Sponsorship Intelligence. Monitor 140,000+ UK spons
    ```
 
 4. Open in browser:
-   - Frontend: http://localhost:3000
+   - Frontend: http://localhost:3333
    - API docs: http://localhost:8000/docs
    - Admin: admin@sponsorintel.com / admin123changeme
 
@@ -37,7 +37,7 @@ The Bloomberg Terminal of UK Sponsorship Intelligence. Monitor 140,000+ UK spons
 
 | Service | Port | Description |
 |---------|------|-------------|
-| Frontend | 3000 | Next.js React app |
+| Frontend | 3333 | Next.js React app |
 | Backend | 8000 | FastAPI REST API |
 | PostgreSQL | 5432 | Primary database |
 | Redis | 6379 | Cache + Celery broker |

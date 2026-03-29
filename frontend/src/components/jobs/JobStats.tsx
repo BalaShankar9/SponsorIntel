@@ -1,8 +1,5 @@
 'use client';
 
-import { StatCard } from '@/components/ui/StatCard';
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Briefcase, TrendingUp, Target, DollarSign, Percent } from 'lucide-react';
 import { formatNumber } from '@/lib/utils';
 import type { JobStats as JobStatsType } from '@/types';
 
@@ -12,105 +9,71 @@ interface JobStatsProps {
 }
 
 const sourceBarColors: Record<string, string> = {
-  indeed: 'bg-accent',
+  indeed: 'bg-blue',
   linkedin: 'bg-cyan',
-  reed: 'bg-orange',
+  reed: 'bg-amber',
   totaljobs: 'bg-purple',
   glassdoor: 'bg-green',
-  gov_find_a_job: 'bg-pink',
+  gov_find_a_job: 'bg-red',
 };
 
 export function JobStatsPanel({ stats, loading }: JobStatsProps) {
   if (loading || !stats) {
     return (
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-px bg-border lg:grid-cols-5">
         {[...Array(5)].map((_, i) => (
-          <div key={i} className="h-24 animate-pulse rounded-lg border border-border bg-s1" />
+          <div key={i} className="h-20 animate-pulse bg-s1" />
         ))}
       </div>
     );
   }
 
   const totalBySource = Object.values(stats.by_source).reduce((a, b) => a + b, 0) || 1;
-  const sponsorshipPct = stats.total_active > 0
-    ? Math.round((stats.sponsorship_likely_count / stats.total_active) * 100)
-    : 0;
 
   return (
-    <div className="space-y-4">
-      {/* Stat Cards */}
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
-        <StatCard
-          label="Active Jobs"
-          value={formatNumber(stats.total_active)}
-          color="blue"
-          icon={<Briefcase size={18} />}
-        />
-        <StatCard
-          label="New (7 days)"
-          value={formatNumber(stats.new_7_days)}
-          color="green"
-          icon={<TrendingUp size={18} />}
-        />
-        <StatCard
-          label="Sponsorship Likely"
-          value={formatNumber(stats.sponsorship_likely_count)}
-          color="cyan"
-          icon={<Target size={18} />}
-        />
-        <StatCard
-          label="Median Salary"
-          value={stats.median_salary ? `£${formatNumber(stats.median_salary)}` : '--'}
-          color="purple"
-          icon={<DollarSign size={18} />}
-        />
-        <StatCard
-          label="% with Sponsorship"
-          value={`${sponsorshipPct}%`}
-          color="orange"
-          icon={<Percent size={18} />}
-        />
-      </div>
-
+    <div className="space-y-3">
       {/* Source Breakdown */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Source Breakdown</CardTitle>
-          </CardHeader>
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+        <div className="border border-s3 bg-s1 p-4">
+          <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">
+            SOURCE BREAKDOWN
+          </h3>
           <div className="space-y-2">
             {Object.entries(stats.by_source)
               .sort(([, a], [, b]) => b - a)
               .map(([source, count]) => (
                 <div key={source}>
-                  <div className="mb-1 flex items-center justify-between">
-                    <span className="text-xs text-dim">{source}</span>
-                    <span className="text-xs text-dim2">{count.toLocaleString()}</span>
+                  <div className="mb-0.5 flex items-center justify-between">
+                    <span className="font-data text-[10px] uppercase text-dim">{source}</span>
+                    <span className="font-data text-xs font-bold text-text">{count.toLocaleString()}</span>
                   </div>
-                  <div className="h-2 w-full rounded-full bg-s3">
+                  <div className="h-1 w-full bg-s3">
                     <div
-                      className={`h-2 rounded-full ${sourceBarColors[source] || 'bg-accent'}`}
+                      className={`h-1 ${sourceBarColors[source] || 'bg-amber'}`}
                       style={{ width: `${(count / totalBySource) * 100}%` }}
                     />
                   </div>
                 </div>
               ))}
           </div>
-        </Card>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Top Cities</CardTitle>
-          </CardHeader>
-          <div className="space-y-2">
-            {stats.by_city.slice(0, 8).map((item) => (
-              <div key={item.city} className="flex items-center justify-between">
-                <span className="text-sm text-dim">{item.city}</span>
-                <span className="text-sm font-medium text-text">{item.count.toLocaleString()}</span>
+        <div className="border border-s3 bg-s1 p-4">
+          <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">
+            TOP CITIES
+          </h3>
+          <div className="space-y-1">
+            {stats.by_city.slice(0, 10).map((item, idx) => (
+              <div key={item.city} className="flex items-center justify-between border-b border-s3/30 py-1">
+                <span className="font-data text-xs text-dim">
+                  <span className="mr-2 text-muted">{String(idx + 1).padStart(2, '0')}</span>
+                  {item.city}
+                </span>
+                <span className="font-data text-xs font-bold text-amber">{item.count.toLocaleString()}</span>
               </div>
             ))}
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );

@@ -32,9 +32,20 @@ router = APIRouter(prefix="/analytics", tags=["analytics"])
 # ---------------------------------------------------------------------------
 
 
+@router.get("/dashboard", response_model=DashboardOverview)
+async def dashboard(db: AsyncSession = Depends(get_db)):
+    """Dashboard overview counts (alias)."""
+    return await _dashboard_overview(db)
+
+
 @router.get("/overview", response_model=DashboardOverview)
 async def overview(db: AsyncSession = Depends(get_db)):
     """Dashboard overview counts."""
+    return await _dashboard_overview(db)
+
+
+async def _dashboard_overview(db: AsyncSession) -> DashboardOverview:
+    """Shared implementation for dashboard / overview endpoints."""
     now = datetime.utcnow()
     thirty_days_ago = now - timedelta(days=30)
 
@@ -131,23 +142,26 @@ async def trends(
     since = datetime.utcnow() - timedelta(days=months * 30)
 
     is_pro = user and user.plan.value in ("pro", "enterprise")
-    limit_results = 5 if not is_pro else 50
+    limit_results = 20 if not is_pro else 50
 
-    # Sponsor growth from CSV imports
+    # Sponsor growth — daily counts for last 90 days (or chosen period)
     growth_rows = (
         await db.execute(
             select(
-                func.date_trunc("month", CsvImport.imported_at).label("month"),
-                func.sum(CsvImport.added_count).label("added"),
+                func.date_trunc("day", SponsorChange.detected_at).label("day"),
+                func.count(SponsorChange.id).label("cnt"),
             )
-            .where(CsvImport.imported_at >= since)
-            .group_by(text("month"))
-            .order_by(text("month"))
+            .where(
+                SponsorChange.change_type == ChangeType.ADDED,
+                SponsorChange.detected_at >= since,
+            )
+            .group_by(text("day"))
+            .order_by(text("day"))
         )
     ).all()
 
     sponsor_growth = [
-        TrendPoint(date=str(row.month.date()) if row.month else "", value=int(row.added or 0))
+        TrendPoint(date=str(row.day.date()) if row.day else "", value=int(row.cnt or 0))
         for row in growth_rows
     ]
 
@@ -170,7 +184,7 @@ async def trends(
         )
     ).scalar() or 0
 
-    # Top cities
+    # Top cities (top 20)
     city_rows = (
         await db.execute(
             select(Sponsor.town_city, func.count(Sponsor.id).label("cnt"))
@@ -182,7 +196,7 @@ async def trends(
     ).all()
     top_cities = [{"city": r[0], "count": r[1]} for r in city_rows]
 
-    # Top industries
+    # Top industries (top 20)
     industry_rows = (
         await db.execute(
             select(
@@ -197,23 +211,52 @@ async def trends(
     ).all()
     top_industries = [{"industry": r[0], "count": r[1]} for r in industry_rows]
 
-    # Top hiring (sponsors with most active jobs)
+    # Top hiring (top 20 sponsors by job count, include score)
+    from app.models.scoring import SponsorScore
+
+    score_sq = (
+        select(
+            SponsorScore.sponsor_id,
+            SponsorScore.overall_score,
+            func.row_number()
+            .over(
+                partition_by=SponsorScore.sponsor_id,
+                order_by=SponsorScore.computed_at.desc(),
+            )
+            .label("rn"),
+        )
+        .subquery()
+    )
+    latest_score = select(score_sq).where(score_sq.c.rn == 1).subquery("ls")
+
     hiring_rows = (
         await db.execute(
             select(
                 Sponsor.id,
                 Sponsor.organisation_name,
                 func.count(Job.id).label("job_count"),
+                latest_score.c.overall_score,
             )
             .join(Job, Job.sponsor_id == Sponsor.id)
+            .outerjoin(latest_score, latest_score.c.sponsor_id == Sponsor.id)
             .where(Job.is_expired == False)  # noqa: E712
-            .group_by(Sponsor.id, Sponsor.organisation_name)
+            .group_by(
+                Sponsor.id,
+                Sponsor.organisation_name,
+                latest_score.c.overall_score,
+            )
             .order_by(text("job_count DESC"))
             .limit(limit_results)
         )
     ).all()
     top_hiring = [
-        {"id": str(r[0]), "name": r[1], "job_count": r[2]} for r in hiring_rows
+        {
+            "id": str(r[0]),
+            "name": r[1],
+            "job_count": r[2],
+            "score": r[3],
+        }
+        for r in hiring_rows
     ]
 
     return AnalyticsTrends(
@@ -366,12 +409,13 @@ async def filter_options(db: AsyncSession = Depends(get_db)):
 
 @router.get("/events")
 async def events_feed(
-    limit: int = Query(50, ge=1, le=200),
+    page: int = Query(1, ge=1),
+    size: int = Query(50, ge=1, le=200),
     event_type: Optional[str] = None,
     severity: Optional[str] = None,
     db: AsyncSession = Depends(get_db),
 ):
-    """Recent events for the live signal feed."""
+    """Recent events for the live signal feed with pagination."""
     query = select(Event).order_by(Event.created_at.desc())
 
     if event_type:
@@ -379,19 +423,30 @@ async def events_feed(
     if severity:
         query = query.where(Event.severity == severity)
 
-    query = query.limit(limit)
+    # Count total matching events
+    count_query = select(func.count()).select_from(query.subquery())
+    total = (await db.execute(count_query)).scalar() or 0
+
+    # Paginate
+    offset = (page - 1) * size
+    query = query.offset(offset).limit(size)
     result = await db.execute(query)
     events = result.scalars().all()
 
-    return [
-        {
-            "id": str(e.id),
-            "event_type": e.event_type.value,
-            "entity_type": e.entity_type,
-            "entity_id": str(e.entity_id),
-            "payload": e.payload,
-            "severity": e.severity.value,
-            "created_at": e.created_at.isoformat(),
-        }
-        for e in events
-    ]
+    return {
+        "data": [
+            {
+                "id": str(e.id),
+                "event_type": e.event_type.value,
+                "entity_type": e.entity_type,
+                "entity_id": str(e.entity_id),
+                "payload": e.payload,
+                "severity": e.severity.value,
+                "created_at": e.created_at.isoformat(),
+            }
+            for e in events
+        ],
+        "total": total,
+        "page": page,
+        "pages": max(1, -(-total // size)),
+    }

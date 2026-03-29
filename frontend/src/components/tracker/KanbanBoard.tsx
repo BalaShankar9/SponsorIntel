@@ -1,11 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Card } from '@/components/ui/Card';
-import { Badge, ScoreBadge } from '@/components/ui/Badge';
-import { Button } from '@/components/ui/Button';
-import { Modal } from '@/components/ui/Modal';
-import { ChevronRight, Briefcase, StickyNote, Calendar } from 'lucide-react';
+import { ChevronRight, Calendar, StickyNote, Check, X } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import type { WatchlistItem } from '@/types';
 import Link from 'next/link';
@@ -13,14 +9,15 @@ import Link from 'next/link';
 interface KanbanBoardProps {
   items: WatchlistItem[];
   onStatusChange: (id: string, newStatus: string) => void;
+  onNoteUpdate: (id: string, notes: string) => void;
 }
 
 const columns = [
-  { id: 'watching', label: 'Watching', color: 'text-accent', bg: 'bg-accent/10', border: 'border-accent/30' },
-  { id: 'applied', label: 'Applied', color: 'text-cyan', bg: 'bg-cyan/10', border: 'border-cyan/30' },
-  { id: 'interviewing', label: 'Interviewing', color: 'text-purple', bg: 'bg-purple/10', border: 'border-purple/30' },
-  { id: 'offered', label: 'Offered', color: 'text-green', bg: 'bg-green/10', border: 'border-green/30' },
-  { id: 'rejected', label: 'Rejected', color: 'text-red', bg: 'bg-red/10', border: 'border-red/30' },
+  { id: 'watching', label: 'WATCHING', color: 'text-amber', bg: 'bg-amber/10', border: 'border-amber/30', headerBg: 'bg-amber' },
+  { id: 'applied', label: 'APPLIED', color: 'text-blue', bg: 'bg-blue/10', border: 'border-blue/30', headerBg: 'bg-blue' },
+  { id: 'interviewing', label: 'INTERVIEW', color: 'text-cyan', bg: 'bg-cyan/10', border: 'border-cyan/30', headerBg: 'bg-cyan' },
+  { id: 'offered', label: 'OFFERED', color: 'text-green', bg: 'bg-green/10', border: 'border-green/30', headerBg: 'bg-green' },
+  { id: 'rejected', label: 'REJECTED', color: 'text-red', bg: 'bg-red/10', border: 'border-red/30', headerBg: 'bg-red' },
 ];
 
 const nextStatusMap: Record<string, string[]> = {
@@ -31,142 +28,141 @@ const nextStatusMap: Record<string, string[]> = {
   rejected: [],
 };
 
-export function KanbanBoard({ items, onStatusChange }: KanbanBoardProps) {
-  const [selectedItem, setSelectedItem] = useState<WatchlistItem | null>(null);
+function KanbanCard({
+  item,
+  onStatusChange,
+  onNoteUpdate,
+}: {
+  item: WatchlistItem;
+  onStatusChange: (id: string, newStatus: string) => void;
+  onNoteUpdate: (id: string, notes: string) => void;
+}) {
+  const [editingNote, setEditingNote] = useState(false);
+  const [noteText, setNoteText] = useState(item.notes || '');
+  const status = item.status || 'watching';
+
+  const saveNote = () => {
+    onNoteUpdate(item.id, noteText);
+    setEditingNote(false);
+  };
+
+  const cancelNote = () => {
+    setNoteText(item.notes || '');
+    setEditingNote(false);
+  };
 
   return (
-    <>
-      <div className="grid grid-cols-5 gap-3">
-        {columns.map((col) => {
-          const colItems = items.filter((i) => (i.status || 'watching') === col.id);
-          return (
-            <div key={col.id} className="space-y-2">
-              {/* Column Header */}
-              <div className={`flex items-center justify-between rounded-lg border ${col.border} ${col.bg} px-3 py-2`}>
-                <span className={`text-xs font-bold uppercase tracking-wider ${col.color}`}>
-                  {col.label}
-                </span>
-                <span className="text-xs font-bold text-dim">{colItems.length}</span>
-              </div>
-
-              {/* Cards */}
-              <div className="space-y-2">
-                {colItems.map((item) => (
-                  <div
-                    key={item.id}
-                    className="cursor-pointer rounded-lg border border-border bg-s1 p-3 transition-all hover:border-s4 hover:shadow-md"
-                    onClick={() => setSelectedItem(item)}
-                  >
-                    <div className="flex items-start justify-between">
-                      <p className="text-sm font-medium text-text leading-tight">
-                        {item.sponsor_name || 'Unknown'}
-                      </p>
-                      <ScoreBadge score={item.sponsor_score} />
-                    </div>
-                    <div className="mt-2 flex items-center gap-2 text-[10px] text-dim2">
-                      {item.applied_date && (
-                        <span className="flex items-center gap-0.5">
-                          <Calendar size={9} /> {formatDate(item.applied_date)}
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Quick move buttons */}
-                    {nextStatusMap[item.status || 'watching']?.length > 0 && (
-                      <div className="mt-2 flex gap-1">
-                        {nextStatusMap[item.status || 'watching'].map((next) => {
-                          const nextCol = columns.find((c) => c.id === next);
-                          return (
-                            <button
-                              key={next}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                onStatusChange(item.id, next);
-                              }}
-                              className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 text-[10px] font-medium transition-colors ${nextCol?.bg} ${nextCol?.color} hover:opacity-80`}
-                            >
-                              <ChevronRight size={8} /> {nextCol?.label}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                ))}
-
-                {colItems.length === 0 && (
-                  <div className="rounded-lg border border-dashed border-border/50 py-8 text-center text-xs text-dim2">
-                    No items
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
+    <div className="border border-s3 bg-s1 p-2 transition-colors hover:border-amber/30">
+      {/* Company Name + Score */}
+      <div className="flex items-start justify-between">
+        <Link
+          href={`/company/${item.sponsor_id}`}
+          className="font-data text-xs text-text hover:text-amber"
+        >
+          {item.sponsor_name || 'UNKNOWN'}
+        </Link>
+        {item.sponsor_score !== null && (
+          <span className={`font-data text-[10px] font-bold ${
+            (item.sponsor_score ?? 0) >= 70 ? 'text-green' : (item.sponsor_score ?? 0) >= 50 ? 'text-amber' : 'text-red'
+          }`}>
+            {item.sponsor_score}
+          </span>
+        )}
       </div>
 
-      {/* Detail Modal */}
-      <Modal
-        isOpen={!!selectedItem}
-        onClose={() => setSelectedItem(null)}
-        title={selectedItem?.sponsor_name || 'Company Details'}
-      >
-        {selectedItem && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <p className="text-xs text-dim">Score</p>
-                <ScoreBadge score={selectedItem.sponsor_score} />
-              </div>
-              <div>
-                <p className="text-xs text-dim">Status</p>
-                <Badge variant={selectedItem.status === 'offered' ? 'green' : selectedItem.status === 'rejected' ? 'red' : 'blue'}>
-                  {selectedItem.status || 'watching'}
-                </Badge>
-              </div>
-              <div>
-                <p className="text-xs text-dim">Priority</p>
-                <p className="text-sm text-text">{selectedItem.priority ?? '--'}</p>
-              </div>
-              <div>
-                <p className="text-xs text-dim">Applied Date</p>
-                <p className="text-sm text-text">{formatDate(selectedItem.applied_date)}</p>
-              </div>
-            </div>
+      {/* Date */}
+      <div className="mt-1 flex items-center gap-1 font-data text-[9px] text-muted">
+        <Calendar size={8} />
+        {item.applied_date ? formatDate(item.applied_date) : formatDate(item.created_at)}
+      </div>
 
-            {selectedItem.notes && (
-              <div>
-                <p className="mb-1 text-xs text-dim">Notes</p>
-                <p className="rounded-md bg-s2 p-3 text-sm text-text">{selectedItem.notes}</p>
-              </div>
-            )}
-
-            <div className="flex gap-2">
-              <Link href={`/company/${selectedItem.sponsor_id}`}>
-                <Button variant="secondary" size="sm">
-                  <Briefcase size={14} /> View Company
-                </Button>
-              </Link>
-              {nextStatusMap[selectedItem.status || 'watching']?.map((next) => {
-                const nextCol = columns.find((c) => c.id === next);
-                return (
-                  <Button
-                    key={next}
-                    variant={next === 'rejected' ? 'red' : 'primary'}
-                    size="sm"
-                    onClick={() => {
-                      onStatusChange(selectedItem.id, next);
-                      setSelectedItem(null);
-                    }}
-                  >
-                    Move to {nextCol?.label}
-                  </Button>
-                );
-              })}
+      {/* Notes */}
+      <div className="mt-1">
+        {editingNote ? (
+          <div className="space-y-1">
+            <textarea
+              value={noteText}
+              onChange={(e) => setNoteText(e.target.value)}
+              className="w-full border border-amber/30 bg-bg p-1 font-data text-[10px] text-text focus:outline-none resize-none"
+              rows={2}
+              autoFocus
+            />
+            <div className="flex gap-1">
+              <button onClick={saveNote} className="text-green hover:text-green/80">
+                <Check size={10} />
+              </button>
+              <button onClick={cancelNote} className="text-red hover:text-red/80">
+                <X size={10} />
+              </button>
             </div>
           </div>
+        ) : (
+          <button
+            onClick={() => setEditingNote(true)}
+            className="flex items-start gap-1 text-left font-data text-[9px] text-dim hover:text-amber w-full"
+          >
+            <StickyNote size={8} className="mt-0.5 shrink-0" />
+            <span className="line-clamp-2">{item.notes || 'Click to add note...'}</span>
+          </button>
         )}
-      </Modal>
-    </>
+      </div>
+
+      {/* Move Buttons */}
+      {nextStatusMap[status]?.length > 0 && (
+        <div className="mt-1.5 flex gap-1">
+          {nextStatusMap[status].map((next) => {
+            const nextCol = columns.find((c) => c.id === next);
+            return (
+              <button
+                key={next}
+                onClick={() => onStatusChange(item.id, next)}
+                className={`flex items-center gap-0.5 px-1.5 py-0.5 font-data text-[8px] font-bold uppercase transition-colors ${nextCol?.bg} ${nextCol?.color} hover:opacity-80`}
+              >
+                <ChevronRight size={7} /> {nextCol?.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export function KanbanBoard({ items, onStatusChange, onNoteUpdate }: KanbanBoardProps) {
+  return (
+    <div className="grid grid-cols-5 gap-2">
+      {columns.map((col) => {
+        const colItems = items.filter((i) => (i.status || 'watching') === col.id);
+        return (
+          <div key={col.id} className="space-y-1">
+            {/* Column Header */}
+            <div className={`flex items-center justify-between px-2 py-1.5 ${col.headerBg}`}>
+              <span className="font-data text-[10px] font-bold uppercase tracking-widest text-bg">
+                {col.label}
+              </span>
+              <span className="font-data text-[10px] font-bold text-bg/70">{colItems.length}</span>
+            </div>
+
+            {/* Cards */}
+            <div className="space-y-1">
+              {colItems.map((item) => (
+                <KanbanCard
+                  key={item.id}
+                  item={item}
+                  onStatusChange={onStatusChange}
+                  onNoteUpdate={onNoteUpdate}
+                />
+              ))}
+
+              {colItems.length === 0 && (
+                <div className="border border-dashed border-s3 py-6 text-center font-data text-[9px] text-muted">
+                  EMPTY
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 }

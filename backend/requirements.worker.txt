@@ -1,0 +1,8 @@
+# Minimal deps for enrichment workers
+httpx==0.28.1
+supabase==2.11.0
+python-dotenv==1.0.1
+orjson==3.10.13
+beautifulsoup4==4.12.3
+lxml==5.3.0
+selectolax==0.3.27

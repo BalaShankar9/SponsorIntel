@@ -1,9 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Card } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
-import { Table } from '@/components/ui/Table';
+import { useState, Fragment } from 'react';
+import Link from 'next/link';
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 import { formatDate } from '@/lib/utils';
 import type { Job } from '@/types';
@@ -13,22 +11,42 @@ interface JobTableProps {
   loading: boolean;
 }
 
-type SortKey = 'sponsorship_likelihood' | 'title_raw' | 'company_name_raw' | 'location_raw' | 'salary_min' | 'source' | 'posted_date';
+type SortKey = 'sponsorship_likelihood' | 'title_raw' | 'company_name_raw' | 'location_city' | 'salary_min' | 'source' | 'posted_date';
 
 const sourceColors: Record<string, string> = {
-  indeed: 'bg-accent',
-  linkedin: 'bg-cyan',
-  reed: 'bg-orange',
-  totaljobs: 'bg-purple',
-  glassdoor: 'bg-green',
-  gov_find_a_job: 'bg-pink',
+  indeed: 'bg-blue', linkedin: 'bg-cyan', reed: 'bg-amber', totaljobs: 'bg-purple',
+  glassdoor: 'bg-green', gov_find_a_job: 'bg-red', devitjobs: 'bg-cyan', themuse: 'bg-purple',
+  remoteok: 'bg-green', wwr: 'bg-amber', hn_hiring: 'bg-red', arbeitnow: 'bg-blue',
+  jobicy: 'bg-green', himalayas: 'bg-cyan', remotive: 'bg-purple', charityjob: 'bg-amber',
+  adzuna: 'bg-blue', jooble: 'bg-green', nhs_jobs: 'bg-blue', teaching_vacancies: 'bg-amber',
+  cwjobs: 'bg-cyan', guardian: 'bg-amber', career_page: 'bg-green',
 };
 
-function getSponsorshipBadge(likelihood: number | null) {
-  if (likelihood === null) return <Badge>--</Badge>;
-  if (likelihood >= 80) return <Badge variant="green">{likelihood}%</Badge>;
-  if (likelihood >= 50) return <Badge variant="orange">{likelihood}%</Badge>;
-  return <Badge>{likelihood}%</Badge>;
+function SponsorshipBar({ likelihood }: { likelihood: number | null }) {
+  if (likelihood === null) return <span className="font-data text-[10px] text-muted">--</span>;
+  const color = likelihood >= 70 ? 'bg-green' : likelihood >= 40 ? 'bg-amber' : 'bg-red/60';
+  const textColor = likelihood >= 70 ? 'text-green' : likelihood >= 40 ? 'text-amber' : 'text-red';
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className="h-1.5 w-12 bg-s3 rounded-sm overflow-hidden">
+        <div className={`h-full ${color} rounded-sm`} style={{ width: `${Math.min(likelihood, 100)}%` }} />
+      </div>
+      <span className={`font-data text-[10px] font-bold tabular-nums ${textColor}`}>{likelihood}%</span>
+    </div>
+  );
+}
+
+function WorkModelBadge({ model }: { model: string | null }) {
+  if (!model) return null;
+  const colors: Record<string, string> = {
+    remote: 'border-green/40 text-green', hybrid: 'border-cyan/40 text-cyan',
+    office: 'border-dim/40 text-dim', flexible: 'border-purple/40 text-purple',
+  };
+  return (
+    <span className={`ml-1 inline-block border px-1 py-px text-[8px] uppercase ${colors[model] || 'border-dim/40 text-dim'}`}>
+      {model}
+    </span>
+  );
 }
 
 export function JobTable({ jobs, loading }: JobTableProps) {
@@ -58,112 +76,192 @@ export function JobTable({ jobs, loading }: JobTableProps) {
 
   const SortIcon = ({ col }: { col: SortKey }) => {
     if (sortKey !== col) return null;
-    return sortAsc ? <ChevronUp size={12} /> : <ChevronDown size={12} />;
+    return sortAsc ? <ChevronUp size={10} className="text-amber" /> : <ChevronDown size={10} className="text-amber" />;
   };
-
-  const headers: { key: SortKey; label: string; className?: string }[] = [
-    { key: 'sponsorship_likelihood', label: 'Sponsor %', className: 'w-24' },
-    { key: 'title_raw', label: 'Title' },
-    { key: 'company_name_raw', label: 'Company' },
-    { key: 'location_raw', label: 'Location' },
-    { key: 'salary_min', label: 'Salary' },
-    { key: 'source', label: 'Source', className: 'w-24' },
-    { key: 'posted_date', label: 'Posted', className: 'w-28' },
-  ];
 
   if (loading) {
     return (
-      <Card>
-        <div className="space-y-3">
-          {[...Array(8)].map((_, i) => (
-            <div key={i} className="h-10 animate-pulse rounded bg-s2" />
-          ))}
-        </div>
-      </Card>
+      <div className="border border-s3 bg-s1">
+        {[...Array(10)].map((_, i) => (
+          <div key={i} className="h-10 animate-pulse border-b border-s3 bg-s2/20" />
+        ))}
+      </div>
     );
   }
 
   return (
-    <Card padding={false}>
-      <Table>
-        <thead>
-          <tr className="border-b border-border">
-            {headers.map((h) => (
-              <th
-                key={h.key}
-                className={`cursor-pointer px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-dim hover:text-text ${h.className || ''}`}
-                onClick={() => handleSort(h.key)}
-              >
-                <span className="inline-flex items-center gap-1">
-                  {h.label}
-                  <SortIcon col={h.key} />
+    <div className="border border-s3 bg-s1 overflow-hidden">
+      {/* Header row */}
+      <div className="grid grid-cols-[80px_1fr_180px_120px_130px_80px_70px_60px] border-b border-amber/20 bg-s2/30">
+        {[
+          { key: 'sponsorship_likelihood' as SortKey, label: 'SPONS' },
+          { key: 'title_raw' as SortKey, label: 'JOB TITLE' },
+          { key: 'company_name_raw' as SortKey, label: 'COMPANY' },
+          { key: 'location_city' as SortKey, label: 'LOCATION' },
+          { key: 'salary_min' as SortKey, label: 'SALARY' },
+          { key: 'source' as SortKey, label: 'SOURCE' },
+          { key: 'posted_date' as SortKey, label: 'DATE' },
+        ].map((h) => (
+          <button
+            key={h.key}
+            className="flex items-center gap-1 px-2 py-2 text-left font-data text-[9px] font-bold uppercase tracking-widest text-dim transition-colors hover:text-amber"
+            onClick={() => handleSort(h.key)}
+          >
+            {h.label}
+            <SortIcon col={h.key} />
+          </button>
+        ))}
+        <span className="px-2 py-2 font-data text-[9px] font-bold uppercase tracking-widest text-dim">APPLY</span>
+      </div>
+
+      {/* Body rows */}
+      <div className="divide-y divide-s3/40">
+        {sorted.map((job) => (
+          <Fragment key={job.id}>
+            <div
+              className="grid grid-cols-[80px_1fr_180px_120px_130px_80px_70px_60px] items-center cursor-pointer transition-colors hover:bg-amber/5"
+              onClick={() => setExpandedId(expandedId === job.id ? null : job.id)}
+            >
+              <div className="px-2 py-2">
+                <SponsorshipBar likelihood={job.sponsorship_likelihood} />
+              </div>
+              <div className="px-2 py-2 min-w-0">
+                <span className="font-data text-[11px] text-text truncate block">
+                  {job.title_raw}
                 </span>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {sorted.map((job) => (
-            <>
-              <tr
-                key={job.id}
-                className="cursor-pointer border-b border-border/50 transition-colors hover:bg-s2"
-                onClick={() => setExpandedId(expandedId === job.id ? null : job.id)}
-              >
-                <td className="px-4 py-2.5">{getSponsorshipBadge(job.sponsorship_likelihood)}</td>
-                <td className="px-4 py-2.5 text-sm font-medium text-text">{job.title_raw}</td>
-                <td className="px-4 py-2.5 text-sm text-dim">{job.company_name_raw}</td>
-                <td className="px-4 py-2.5 text-sm text-dim">{job.location_raw || '--'}</td>
-                <td className="px-4 py-2.5 text-sm text-dim">
-                  {job.salary_min ? `£${job.salary_min.toLocaleString()}` : '--'}
-                  {job.salary_max ? ` - £${job.salary_max.toLocaleString()}` : ''}
-                </td>
-                <td className="px-4 py-2.5">
-                  <span className="inline-flex items-center gap-1.5 text-xs text-dim">
-                    <span className={`h-2 w-2 rounded-full ${sourceColors[job.source] || 'bg-s4'}`} />
-                    {job.source}
+                <WorkModelBadge model={job.work_model} />
+              </div>
+              <div className="px-2 py-2 min-w-0">
+                {job.sponsor_id ? (
+                  <Link
+                    href={`/company/${job.sponsor_id}`}
+                    className="font-data text-[11px] text-amber hover:text-text transition-colors truncate block"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {job.company_name_raw}
+                    <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-green" title="UK Sponsor" />
+                  </Link>
+                ) : (
+                  <span className="font-data text-[11px] text-dim truncate block">{job.company_name_raw || '--'}</span>
+                )}
+              </div>
+              <div className="px-2 py-2">
+                <span className="font-data text-[10px] text-dim truncate block">
+                  {job.location_city || job.location_raw || '--'}
+                </span>
+              </div>
+              <div className="px-2 py-2">
+                {job.salary_min && job.salary_min > 100 ? (
+                  <span className="font-data text-[10px]">
+                    <span className="text-cyan">
+                      {job.salary_currency === 'USD' ? '$' : '£'}
+                      {job.salary_min.toLocaleString()}
+                    </span>
+                    {job.salary_max && job.salary_max > job.salary_min && (
+                      <span className="text-dim">
+                        –{job.salary_currency === 'USD' ? '$' : '£'}
+                        {job.salary_max.toLocaleString()}
+                      </span>
+                    )}
                   </span>
-                </td>
-                <td className="px-4 py-2.5 text-xs text-dim2">{formatDate(job.posted_date)}</td>
-              </tr>
-              {expandedId === job.id && (
-                <tr key={`${job.id}-detail`} className="border-b border-border/50">
-                  <td colSpan={7} className="bg-s2/50 px-4 py-4">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-4">
-                        <span className="text-xs text-dim">
-                          Salary: {job.salary_text_raw || 'Not specified'}
+                ) : (
+                  <span className="font-data text-[10px] text-muted">--</span>
+                )}
+              </div>
+              <div className="px-2 py-2">
+                <span className="inline-flex items-center gap-1 font-data text-[9px] text-dim uppercase">
+                  <span className={`inline-block h-1.5 w-1.5 rounded-full ${sourceColors[job.source] || 'bg-muted'}`} />
+                  {job.source}
+                </span>
+              </div>
+              <div className="px-2 py-2">
+                <span className="font-data text-[9px] text-muted">{formatDate(job.posted_date)}</span>
+              </div>
+              <div className="px-2 py-2">
+                {job.source_url ? (
+                  <a
+                    href={job.source_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-0.5 border border-green/40 bg-green/10 px-1.5 py-0.5 font-data text-[9px] font-bold text-green transition-colors hover:bg-green/20"
+                  >
+                    <ExternalLink size={9} />
+                  </a>
+                ) : (
+                  <span className="font-data text-[9px] text-muted">--</span>
+                )}
+              </div>
+            </div>
+
+            {/* Expanded detail row */}
+            {expandedId === job.id && (
+              <div className="bg-s2/30 px-4 py-3 border-t border-s3/30">
+                <div className="space-y-2">
+                  {job.description_snippet && (
+                    <p className="font-data text-[11px] text-dim leading-relaxed max-w-3xl">
+                      {job.description_snippet.slice(0, 400)}
+                      {job.description_snippet.length > 400 ? '...' : ''}
+                    </p>
+                  )}
+                  <div className="flex flex-wrap items-center gap-2">
+                    {job.sponsor_id && (
+                      <span className="border border-green/30 bg-green/10 px-2 py-0.5 font-data text-[9px] font-bold text-green uppercase">
+                        UK Sponsor Register
+                      </span>
+                    )}
+                    {job.is_on_shortage_list && (
+                      <span className="border border-amber/30 bg-amber/10 px-2 py-0.5 font-data text-[9px] font-bold text-amber uppercase">
+                        Shortage List
+                      </span>
+                    )}
+                    {job.meets_salary_threshold && (
+                      <span className="border border-cyan/30 bg-cyan/10 px-2 py-0.5 font-data text-[9px] font-bold text-cyan uppercase">
+                        Meets Visa Threshold
+                      </span>
+                    )}
+                    {job.contract_type && (
+                      <span className="border border-s3 px-1.5 py-0.5 font-data text-[9px] text-dim uppercase">{job.contract_type}</span>
+                    )}
+                    {job.seniority && (
+                      <span className="border border-s3 px-1.5 py-0.5 font-data text-[9px] text-dim uppercase">{job.seniority}</span>
+                    )}
+                    {job.salary_text_raw && (
+                      <span className="font-data text-[9px] text-dim">
+                        Salary: <span className="text-text">{job.salary_text_raw}</span>
+                      </span>
+                    )}
+                  </div>
+                  {job.skills_extracted && job.skills_extracted.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {job.skills_extracted.slice(0, 10).map((skill) => (
+                        <span key={skill} className="border border-cyan/20 bg-cyan/5 px-1.5 py-0.5 font-data text-[9px] text-cyan">
+                          {skill}
                         </span>
-                        {job.is_on_shortage_list && (
-                          <Badge variant="purple">Shortage List</Badge>
-                        )}
-                        {job.url && (
-                          <a
-                            href={job.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            View Original <ExternalLink size={10} />
-                          </a>
-                        )}
-                      </div>
+                      ))}
                     </div>
-                  </td>
-                </tr>
-              )}
-            </>
-          ))}
-          {sorted.length === 0 && (
-            <tr>
-              <td colSpan={7} className="px-4 py-12 text-center text-sm text-dim">
-                No jobs found matching your filters.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </Table>
-    </Card>
+                  )}
+                  {job.source_url && (
+                    <a
+                      href={job.source_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 border border-green/40 bg-green/10 px-3 py-1 font-data text-[10px] font-bold text-green transition-colors hover:bg-green/20"
+                    >
+                      APPLY NOW <ExternalLink size={11} />
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+          </Fragment>
+        ))}
+        {sorted.length === 0 && (
+          <div className="px-4 py-12 text-center font-data text-sm text-dim">
+            NO JOBS FOUND MATCHING FILTERS.
+          </div>
+        )}
+      </div>
+    </div>
   );
 }

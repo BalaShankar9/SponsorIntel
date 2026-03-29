@@ -1,23 +1,45 @@
 'use client';
 
-import { Building2, Briefcase, Users, PoundSterling, MessageSquare, Newspaper, Clock } from 'lucide-react';
-import { Tabs } from '@/components/ui/Tabs';
+import { cn } from '@/lib/utils';
 
-const tabs = [
-  { id: 'overview', label: 'Overview', icon: <Building2 size={14} /> },
-  { id: 'jobs', label: 'Jobs', icon: <Briefcase size={14} /> },
-  { id: 'people', label: 'People', icon: <Users size={14} /> },
-  { id: 'financials', label: 'Financials', icon: <PoundSterling size={14} /> },
-  { id: 'reviews', label: 'Reviews', icon: <MessageSquare size={14} /> },
-  { id: 'news', label: 'News', icon: <Newspaper size={14} /> },
-  { id: 'timeline', label: 'Timeline', icon: <Clock size={14} /> },
-];
+interface Tab {
+  id: string;
+  label: string;
+}
 
 interface TabNavProps {
+  tabs: Tab[];
   activeTab: string;
   onChange: (tab: string) => void;
 }
 
-export function TabNav({ activeTab, onChange }: TabNavProps) {
-  return <Tabs tabs={tabs} activeTab={activeTab} onChange={onChange} />;
+export function TabNav({ tabs, activeTab, onChange }: TabNavProps) {
+  return (
+    <div className="border-b border-border">
+      <div className="flex gap-0">
+        {tabs.map((tab, i) => (
+          <button
+            key={tab.id}
+            onClick={() => onChange(tab.id)}
+            className={cn(
+              'relative px-4 py-2 font-data text-[11px] font-medium tracking-wider transition-all',
+              activeTab === tab.id
+                ? 'text-amber'
+                : 'text-dim hover:text-text',
+            )}
+          >
+            {tab.label}
+            {/* Active indicator */}
+            {activeTab === tab.id && (
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-amber/50 via-amber to-amber/50" />
+            )}
+            {/* Count indicator dot for non-overview tabs */}
+            {tab.id !== 'overview' && activeTab !== tab.id && (
+              <span className="ml-1.5 inline-block h-1 w-1 rounded-full bg-muted" />
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
 }

@@ -1,0 +1,29 @@
+FROM python:3.11-slim-bookworm
+
+WORKDIR /app
+
+# Minimal system deps (no Playwright, no supervisor)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential libpq-dev curl && \
+    rm -rf /var/lib/apt/lists/*
+
+# Minimal Python deps for enrichment only
+COPY requirements.worker.txt .
+RUN pip install --no-cache-dir -r requirements.worker.txt
+
+# App code
+COPY app/ app/
+
+# Worker entry point — configurable via env vars
+# WORKER_MODE: website | careers | ai | ollama | linkedin | all
+# WORKER_LIMIT: number of companies to process (default 5000)
+# WORKER_BATCH: batch size (default 50)
+# WORKER_PARTITION: partition ID for data sharding (0-based)
+# WORKER_PARTITIONS: total number of partitions
+ENV WORKER_MODE=website
+ENV WORKER_LIMIT=5000
+ENV WORKER_BATCH=50
+ENV WORKER_PARTITION=0
+ENV WORKER_PARTITIONS=1
+
+CMD python -m app.scripts.enrich_worker

@@ -1,37 +1,54 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { api } from '@/lib/api';
+import { supabase } from '@/lib/supabase';
 import { useAuthStore } from '@/lib/auth';
 import { ProGate } from '@/components/ui/ProGate';
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge, RatingBadge, ScoreBadge } from '@/components/ui/Badge';
-import { Input } from '@/components/ui/Input';
-import { Spinner } from '@/components/ui/Spinner';
-import { X, Plus, AlertTriangle } from 'lucide-react';
-import { cn, getScoreColor, formatNumber } from '@/lib/utils';
-import type { SponsorDetail, Sponsor, PaginatedSponsors } from '@/types';
-import {
-  RadarChart,
-  Radar,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-  ResponsiveContainer,
-  Legend,
-} from 'recharts';
+import { X, Plus, Search } from 'lucide-react';
+import { cn, formatNumber } from '@/lib/utils';
+import type { SponsorDetail, Sponsor } from '@/types';
 
-const COLORS = ['#58a6ff', '#3fb950', '#d29922', '#bc8cff'];
-const MAX_COMPANIES = 4;
+const COLORS = ['#f5a623', '#00d4aa', '#00e5ff', '#a78bfa', '#ff4757', '#4a9eff'];
+const MAX_COMPANIES = 6;
 
 interface CompareCompany {
   detail: SponsorDetail;
   color: string;
 }
 
+// Comparison row data
+interface ComparisonRow {
+  label: string;
+  key: string;
+  getValue: (d: SponsorDetail) => string | number | null | undefined;
+  higherBetter?: boolean;
+  format?: 'number' | 'percent' | 'score' | 'text';
+}
+
+const comparisonRows: ComparisonRow[] = [
+  { label: 'RATING', key: 'rating', getValue: (d) => d.rating, format: 'text' },
+  { label: 'SPONSOR TYPE', key: 'sponsor_type', getValue: (d) => d.sponsor_type || '--', format: 'text' },
+  { label: 'ROUTES', key: 'routes', getValue: (d) => d.route?.join(', ') || '--', format: 'text' },
+  { label: 'YEARS ON REGISTER', key: 'years', getValue: (d) => d.first_seen_date ? Math.floor((Date.now() - new Date(d.first_seen_date).getTime()) / (365.25 * 86400000)) : null, higherBetter: true, format: 'number' },
+  { label: 'CONSECUTIVE A DAYS', key: 'a_days', getValue: (d) => d.consecutive_a_rating_days, higherBetter: true, format: 'number' },
+  { label: 'RATING CHANGES', key: 'rating_changes', getValue: (d) => d.times_rating_changed, higherBetter: false, format: 'number' },
+  { label: 'EMPLOYEES', key: 'employees', getValue: (d) => d.profile?.employee_count_estimate, higherBetter: true, format: 'number' },
+  { label: 'EMP GROWTH 6M', key: 'growth_6m', getValue: (d) => d.profile?.employee_growth_6m, higherBetter: true, format: 'percent' },
+  { label: 'EMP GROWTH 12M', key: 'growth_12m', getValue: (d) => d.profile?.employee_growth_12m, higherBetter: true, format: 'percent' },
+  { label: 'GLASSDOOR', key: 'glassdoor', getValue: (d) => d.profile?.glassdoor_rating, higherBetter: true, format: 'number' },
+  { label: 'TRUSTPILOT', key: 'trustpilot', getValue: (d) => d.profile?.trustpilot_rating, higherBetter: true, format: 'number' },
+  { label: 'GOOGLE RATING', key: 'google', getValue: (d) => d.profile?.google_rating, higherBetter: true, format: 'number' },
+  { label: 'CREDIT RISK', key: 'credit', getValue: (d) => d.profile?.credit_risk_score, higherBetter: true, format: 'score' },
+  { label: 'LEGITIMACY', key: 'legitimacy', getValue: (d) => d.profile?.legitimacy_score, higherBetter: true, format: 'score' },
+  { label: 'ENRICHMENT', key: 'enrichment', getValue: (d) => d.profile?.enrichment_level, higherBetter: true, format: 'number' },
+  { label: 'INDUSTRY', key: 'industry', getValue: (d) => d.profile?.industry_primary || '--', format: 'text' },
+  { label: 'COMPANY STATUS', key: 'status', getValue: (d) => d.profile?.company_status || '--', format: 'text' },
+  { label: 'HAS CAREERS PAGE', key: 'careers', getValue: (d) => d.profile?.has_careers_page ? 'YES' : 'NO', format: 'text' },
+  { label: 'INSOLVENCY', key: 'insolvency', getValue: (d) => d.profile?.has_insolvency_history ? 'YES' : 'NO', format: 'text' },
+];
+
 export default function ComparePage() {
-  const isPro = useAuthStore((s) => s.isPro);
+  const isPro = true; // All features available
   const [companies, setCompanies] = useState<CompareCompany[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Sponsor[]>([]);
@@ -46,8 +63,12 @@ export default function ComparePage() {
     }
     setSearching(true);
     try {
-      const data = await api.get<PaginatedSponsors>(`/api/v1/sponsors?q=${encodeURIComponent(q)}&limit=5`);
-      setSearchResults(data.data);
+      const { data } = await supabase
+        .from('sponsors')
+        .select('id, organisation_name, town_city, county, type_and_rating, rating, sponsor_type, route, is_active, first_seen_date, last_seen_date')
+        .ilike('organisation_name', `%${q}%`)
+        .limit(5);
+      setSearchResults(data || []);
     } catch {
       setSearchResults([]);
     } finally {
@@ -61,11 +82,33 @@ export default function ComparePage() {
 
     setLoadingDetail(true);
     try {
-      const detail = await api.get<SponsorDetail>(`/api/v1/sponsors/${sponsor.id}`);
-      setCompanies((prev) => [
-        ...prev,
-        { detail, color: COLORS[prev.length] },
-      ]);
+      const { data } = await supabase
+        .from('sponsors')
+        .select(`
+          *,
+          company_profiles (*)
+        `)
+        .eq('id', sponsor.id)
+        .single();
+
+      if (data) {
+        const profile = Array.isArray(data.company_profiles)
+          ? data.company_profiles[0] || null
+          : data.company_profiles || null;
+
+        const detail: SponsorDetail = {
+          ...data,
+          consecutive_a_rating_days: data.consecutive_a_rating_days ?? 0,
+          times_rating_changed: data.times_rating_changed ?? 0,
+          profile,
+          company_profiles: undefined,
+        };
+
+        setCompanies((prev) => [
+          ...prev,
+          { detail, color: COLORS[prev.length % COLORS.length] },
+        ]);
+      }
     } catch (err) {
       console.error('Failed to load company detail:', err);
     } finally {
@@ -78,227 +121,149 @@ export default function ComparePage() {
   const removeCompany = (id: string) => {
     setCompanies((prev) => {
       const updated = prev.filter((c) => c.detail.id !== id);
-      return updated.map((c, i) => ({ ...c, color: COLORS[i] }));
+      return updated.map((c, i) => ({ ...c, color: COLORS[i % COLORS.length] }));
     });
   };
 
-  // Build radar chart data
-  const radarData = companies.length > 0
-    ? [
-        { metric: 'Compliance', ...Object.fromEntries(companies.map((c) => [c.detail.organisation_name, c.detail.score_breakdown?.compliance_score || 0])) },
-        { metric: 'Financial', ...Object.fromEntries(companies.map((c) => [c.detail.organisation_name, c.detail.score_breakdown?.financial_health_score || 0])) },
-        { metric: 'Hiring', ...Object.fromEntries(companies.map((c) => [c.detail.organisation_name, c.detail.score_breakdown?.hiring_activity_score || 0])) },
-        { metric: 'Reputation', ...Object.fromEntries(companies.map((c) => [c.detail.organisation_name, c.detail.score_breakdown?.reputation_score || 0])) },
-        { metric: 'Legitimacy', ...Object.fromEntries(companies.map((c) => [c.detail.organisation_name, c.detail.score_breakdown?.legitimacy_score || 0])) },
-        { metric: 'Track Record', ...Object.fromEntries(companies.map((c) => [c.detail.organisation_name, c.detail.score_breakdown?.track_record_score || 0])) },
-      ]
-    : [];
+  const formatValue = (val: string | number | null | undefined, format?: string) => {
+    if (val === null || val === undefined) return '--';
+    if (format === 'percent' && typeof val === 'number') return `${val > 0 ? '+' : ''}${val.toFixed(1)}%`;
+    if (format === 'number' && typeof val === 'number') return formatNumber(val);
+    if (format === 'score' && typeof val === 'number') return String(val);
+    return String(val);
+  };
 
-  // Find best/worst for highlighting
-  const getHighlight = (values: (number | null)[], isHigherBetter = true) => {
-    const valid = values.filter((v): v is number => v !== null);
-    if (valid.length === 0) return { best: -1, worst: -1 };
-    const best = isHigherBetter ? Math.max(...valid) : Math.min(...valid);
-    const worst = isHigherBetter ? Math.min(...valid) : Math.max(...valid);
-    return { best, worst };
+  const getBestIndex = (values: (string | number | null | undefined)[], higherBetter?: boolean) => {
+    const numericVals = values.map((v) => (typeof v === 'number' ? v : null));
+    const validNums = numericVals.filter((v): v is number => v !== null);
+    if (validNums.length === 0) return -1;
+    const best = higherBetter ? Math.max(...validNums) : Math.min(...validNums);
+    return numericVals.findIndex((v) => v === best);
   };
 
   const content = (
-    <div className="space-y-4">
-      {/* Search + Add */}
+    <div className="space-y-3">
+      {/* Search */}
       {companies.length < MAX_COMPANIES && (
-        <Card>
+        <div className="border border-s3 bg-s1 p-3">
           <div className="relative">
-            <Input
-              placeholder="Search companies to compare (up to 4)..."
+            <Search className="absolute left-2 top-1/2 h-3 w-3 -translate-y-1/2 text-amber" />
+            <input
+              type="text"
+              placeholder={`SEARCH COMPANIES (UP TO ${MAX_COMPANIES})...`}
               value={searchQuery}
               onChange={(e) => handleSearch(e.target.value)}
+              className="w-full border border-s3 bg-bg py-1.5 pl-7 pr-3 font-data text-xs text-text placeholder-muted focus:border-amber focus:outline-none"
             />
             {searching && (
-              <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                <Spinner size="sm" />
-              </div>
-            )}
-            {searchResults.length > 0 && (
-              <div className="absolute left-0 right-0 top-full z-20 mt-1 rounded-lg border border-border bg-s1 shadow-lg">
-                {searchResults.map((s) => (
-                  <button
-                    key={s.id}
-                    className="flex w-full items-center gap-3 px-4 py-2 text-left text-sm transition-colors hover:bg-s2"
-                    onClick={() => addCompany(s)}
-                    disabled={companies.some((c) => c.detail.id === s.id)}
-                  >
-                    <Plus size={14} className="text-dim" />
-                    <span className="text-text">{s.organisation_name}</span>
-                    <span className="text-xs text-dim">{s.town_city}</span>
-                    {s.overall_score !== null && (
-                      <ScoreBadge score={s.overall_score} />
-                    )}
-                  </button>
-                ))}
-              </div>
+              <span className="absolute right-2 top-1/2 -translate-y-1/2 font-data text-[9px] text-amber animate-pulse">
+                SEARCHING...
+              </span>
             )}
           </div>
-          {loadingDetail && (
-            <div className="mt-2 flex items-center gap-2 text-xs text-dim">
-              <Spinner size="sm" /> Loading company details...
-            </div>
-          )}
-        </Card>
-      )}
-
-      {companies.length === 0 && (
-        <Card>
-          <div className="flex flex-col items-center py-16 text-center">
-            <p className="text-lg font-semibold text-text">Select companies to compare</p>
-            <p className="mt-1 text-sm text-dim">Search above to add up to 4 companies for side-by-side analysis</p>
-          </div>
-        </Card>
-      )}
-
-      {/* Radar Chart */}
-      {companies.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Score Comparison</CardTitle>
-            <div className="flex gap-2">
-              {companies.map((c) => (
+          {searchResults.length > 0 && (
+            <div className="mt-1 border border-s3 bg-bg">
+              {searchResults.map((s) => (
                 <button
-                  key={c.detail.id}
-                  onClick={() => removeCompany(c.detail.id)}
-                  className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs text-text transition-colors hover:bg-s3"
-                  style={{ backgroundColor: `${c.color}20`, color: c.color }}
+                  key={s.id}
+                  className="flex w-full items-center gap-3 px-3 py-1.5 text-left transition-colors hover:bg-amber/5 disabled:opacity-30"
+                  onClick={() => addCompany(s)}
+                  disabled={companies.some((c) => c.detail.id === s.id)}
                 >
-                  {c.detail.organisation_name}
-                  <X size={10} />
+                  <Plus size={10} className="text-amber" />
+                  <span className="font-data text-xs text-text">{s.organisation_name}</span>
+                  <span className="font-data text-[10px] text-dim">{s.town_city}</span>
+                  {s.rating && (
+                    <span className={`ml-auto font-data text-xs font-bold ${s.rating === 'A' ? 'text-green' : 'text-red'}`}>
+                      {s.rating}
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
-          </CardHeader>
-          <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <RadarChart data={radarData}>
-                <PolarGrid stroke="#21262d" />
-                <PolarAngleAxis dataKey="metric" tick={{ fontSize: 11, fill: '#8b949e' }} />
-                <PolarRadiusAxis tick={{ fontSize: 10, fill: '#6e7681' }} domain={[0, 100]} />
-                {companies.map((c) => (
-                  <Radar
-                    key={c.detail.id}
-                    name={c.detail.organisation_name}
-                    dataKey={c.detail.organisation_name}
-                    stroke={c.color}
-                    fill={c.color}
-                    fillOpacity={0.1}
-                    strokeWidth={2}
-                  />
-                ))}
-                <Legend wrapperStyle={{ fontSize: 11 }} />
-              </RadarChart>
-            </ResponsiveContainer>
-          </div>
-        </Card>
+          )}
+          {loadingDetail && (
+            <p className="mt-1 font-data text-[10px] text-amber animate-pulse">LOADING DETAILS...</p>
+          )}
+        </div>
       )}
 
-      {/* Side-by-side detail cards */}
+      {/* Selected Companies Tags */}
       {companies.length > 0 && (
-        <div className={`grid gap-4 grid-cols-${Math.min(companies.length, 4)}`} style={{ gridTemplateColumns: `repeat(${companies.length}, 1fr)` }}>
-          {companies.map((c) => {
-            const d = c.detail;
-            const scores = companies.map((co) => co.detail.overall_score);
-            const { best: bestScore, worst: worstScore } = getHighlight(scores);
+        <div className="flex flex-wrap gap-1">
+          {companies.map((c) => (
+            <button
+              key={c.detail.id}
+              onClick={() => removeCompany(c.detail.id)}
+              className="inline-flex items-center gap-1 border px-2 py-0.5 font-data text-[10px] transition-colors hover:bg-s2"
+              style={{ borderColor: c.color, color: c.color }}
+            >
+              {c.detail.organisation_name}
+              <X size={8} />
+            </button>
+          ))}
+        </div>
+      )}
 
-            return (
-              <Card key={d.id}>
-                <div className="space-y-3">
-                  {/* Header */}
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <p className="text-sm font-bold text-text">{d.organisation_name}</p>
-                      <p className="text-xs text-dim">{d.town_city}</p>
-                    </div>
-                    <button onClick={() => removeCompany(d.id)} className="text-dim hover:text-text">
-                      <X size={14} />
-                    </button>
-                  </div>
+      {companies.length === 0 && (
+        <div className="border border-s3 bg-s1 py-16 text-center">
+          <p className="font-data text-sm text-amber">SELECT COMPANIES TO COMPARE</p>
+          <p className="mt-1 font-data text-xs text-dim">SEARCH ABOVE TO ADD UP TO {MAX_COMPANIES} COMPANIES</p>
+        </div>
+      )}
 
-                  {/* Overall Score */}
-                  <div className="text-center">
-                    <span className={cn(
-                      'inline-block rounded-lg px-4 py-2 text-2xl font-bold',
-                      d.overall_score === bestScore ? 'bg-green/20 text-green' :
-                      d.overall_score === worstScore && companies.length > 1 ? 'bg-red/20 text-red' :
-                      'bg-s3 text-text'
-                    )}>
-                      {d.overall_score ?? '--'}
-                    </span>
-                  </div>
+      {/* Comparison Table */}
+      {companies.length > 0 && (
+        <div className="border border-s3 bg-s1 overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-amber/20">
+                <th className="px-3 py-2 text-left font-data text-[9px] font-bold uppercase tracking-widest text-dim">METRIC</th>
+                {companies.map((c) => (
+                  <th key={c.detail.id} className="px-3 py-2 text-center font-data text-[9px] font-bold uppercase tracking-widest" style={{ color: c.color }}>
+                    {c.detail.organisation_name.substring(0, 20)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map((row) => {
+                const values = companies.map((c) => row.getValue(c.detail));
+                const bestIdx = row.higherBetter !== undefined ? getBestIndex(values, row.higherBetter) : -1;
 
-                  {/* Details */}
-                  <div className="space-y-2 text-xs">
-                    <div className="flex justify-between">
-                      <span className="text-dim">Rating</span>
-                      <RatingBadge rating={d.rating} />
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-dim">Routes</span>
-                      <span className="text-text">{d.route?.join(', ') || '--'}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-dim">Years on Register</span>
-                      <span className="text-text">
-                        {d.first_seen_date
-                          ? Math.floor((Date.now() - new Date(d.first_seen_date).getTime()) / (365.25 * 86400000))
-                          : '--'}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-dim">Active Jobs</span>
-                      <span className={cn(
-                        'font-medium',
-                        d.active_job_count === Math.max(...companies.map((co) => co.detail.active_job_count || 0))
-                          ? 'text-green' : 'text-text'
-                      )}>
-                        {d.active_job_count ?? '--'}
-                      </span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-dim">Employees</span>
-                      <span className="text-text">{formatNumber(d.profile?.employee_count_estimate)}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-dim">Glassdoor</span>
-                      <span className="text-text">{d.profile?.glassdoor_rating ?? '--'}</span>
-                    </div>
-                  </div>
-
-                  {/* Risk Flags */}
-                  {d.score_breakdown?.risk_flags && d.score_breakdown.risk_flags.length > 0 && (
-                    <div>
-                      <p className="mb-1 text-xs font-medium text-dim">Risk Flags</p>
-                      <div className="flex flex-wrap gap-1">
-                        {d.score_breakdown.risk_flags.map((flag) => (
-                          <Badge key={flag} variant="red">
-                            <AlertTriangle size={10} className="mr-1" />
-                            {flag}
-                          </Badge>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </Card>
-            );
-          })}
+                return (
+                  <tr key={row.key} className="border-b border-s3/30 hover:bg-amber/5">
+                    <td className="px-3 py-1.5 font-data text-[10px] text-dim">{row.label}</td>
+                    {values.map((val, idx) => (
+                      <td
+                        key={idx}
+                        className={cn(
+                          'px-3 py-1.5 text-center font-data text-xs',
+                          idx === bestIdx && companies.length > 1 ? 'text-green font-bold' : 'text-text'
+                        )}
+                      >
+                        {formatValue(val, row.format)}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
   );
 
   return (
-    <div className="space-y-4">
-      <div>
-        <h1 className="text-xl font-bold text-text">Compare Tool</h1>
-        <p className="text-sm text-dim">Side-by-side sponsor company comparison</p>
+    <div className="space-y-3">
+      <div className="border-b border-amber/30 pb-2">
+        <h1 className="font-data text-lg font-bold uppercase tracking-wider text-amber">
+          COMPARE TOOL
+        </h1>
+        <p className="font-data text-xs text-dim">
+          SIDE-BY-SIDE SPONSOR ANALYSIS // UP TO {MAX_COMPANIES} COMPANIES
+        </p>
       </div>
 
       <ProGate isAllowed={isPro} feature="Compare Tool">

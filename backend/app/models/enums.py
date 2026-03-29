@@ -49,6 +49,7 @@ class Severity(str, enum.Enum):
 class JobSource(str, enum.Enum):
     REED = "reed"
     ADZUNA = "adzuna"
+    JOOBLE = "jooble"
     INDEED = "indeed"
     LINKEDIN = "linkedin"
     GLASSDOOR = "glassdoor"
@@ -58,6 +59,17 @@ class JobSource(str, enum.Enum):
     GUARDIAN = "guardian"
     NHS_JOBS = "nhs_jobs"
     CAREER_PAGE = "career_page"
+    REMOTIVE = "remotive"
+    ARBEITNOW = "arbeitnow"
+    JOBICY = "jobicy"
+    THEMUSE = "themuse"
+    HIMALAYAS = "himalayas"
+    REMOTEOK = "remoteok"
+    WWR = "wwr"
+    TEACHING_VACANCIES = "teaching_vacancies"
+    DEVITJOBS = "devitjobs"
+    HN_HIRING = "hn_hiring"
+    CHARITYJOB = "charityjob"
 
 
 class ContractType(str, enum.Enum):

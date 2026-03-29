@@ -1,8 +1,6 @@
 'use client';
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
-import { StatCard } from '@/components/ui/StatCard';
-import { Clock, CheckCircle, XCircle, Timer } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import type { WatchlistItem } from '@/types';
 
 interface PipelineStatsProps {
@@ -10,9 +8,9 @@ interface PipelineStatsProps {
 }
 
 const statusColors: Record<string, string> = {
-  watching: 'bg-accent',
-  applied: 'bg-cyan',
-  interviewing: 'bg-purple',
+  watching: 'bg-amber',
+  applied: 'bg-blue',
+  interviewing: 'bg-cyan',
   offered: 'bg-green',
   rejected: 'bg-red',
 };
@@ -25,7 +23,6 @@ export function PipelineStats({ items }: PipelineStatsProps) {
     ? Math.round(((offered.length + rejected.length) / applied.length) * 100)
     : 0;
 
-  // Group by status for breakdown bar
   const statusCounts: Record<string, number> = {};
   items.forEach((i) => {
     const s = i.status || 'watching';
@@ -33,52 +30,44 @@ export function PipelineStats({ items }: PipelineStatsProps) {
   });
   const total = items.length || 1;
 
-  // Upcoming follow-ups
   const upcoming = items
     .filter((i) => i.next_followup && new Date(i.next_followup) > new Date())
     .sort((a, b) => new Date(a.next_followup!).getTime() - new Date(b.next_followup!).getTime())
     .slice(0, 5);
 
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <StatCard
-          label="Total Applications"
-          value={applied.length}
-          color="blue"
-          icon={<CheckCircle size={18} />}
-        />
-        <StatCard
-          label="Response Rate"
-          value={`${responseRate}%`}
-          color="green"
-          icon={<Timer size={18} />}
-        />
-        <StatCard
-          label="Offers"
-          value={offered.length}
-          color="cyan"
-          icon={<CheckCircle size={18} />}
-        />
-        <StatCard
-          label="Rejections"
-          value={rejected.length}
-          color="red"
-          icon={<XCircle size={18} />}
-        />
+    <div className="space-y-3">
+      {/* Stat Row */}
+      <div className="grid grid-cols-4 gap-px bg-border">
+        <div className="bg-s1 px-4 py-3">
+          <p className="font-data text-[10px] uppercase tracking-widest text-dim">APPLICATIONS</p>
+          <p className="font-data text-2xl font-bold text-amber">{applied.length}</p>
+        </div>
+        <div className="bg-s1 px-4 py-3">
+          <p className="font-data text-[10px] uppercase tracking-widest text-dim">RESPONSE RATE</p>
+          <p className="font-data text-2xl font-bold text-green">{responseRate}%</p>
+        </div>
+        <div className="bg-s1 px-4 py-3">
+          <p className="font-data text-[10px] uppercase tracking-widest text-dim">OFFERS</p>
+          <p className="font-data text-2xl font-bold text-cyan">{offered.length}</p>
+        </div>
+        <div className="bg-s1 px-4 py-3">
+          <p className="font-data text-[10px] uppercase tracking-widest text-dim">REJECTIONS</p>
+          <p className="font-data text-2xl font-bold text-red">{rejected.length}</p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        {/* Status Breakdown */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Pipeline Breakdown</CardTitle>
-          </CardHeader>
-          <div className="mb-3 flex h-4 overflow-hidden rounded-full bg-s3">
+      <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+        {/* Pipeline Breakdown */}
+        <div className="border border-s3 bg-s1 p-4">
+          <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">
+            PIPELINE BREAKDOWN
+          </h3>
+          <div className="mb-3 flex h-3 overflow-hidden bg-s3">
             {Object.entries(statusCounts).map(([status, count]) => (
               <div
                 key={status}
-                className={`${statusColors[status] || 'bg-s4'} transition-all`}
+                className={`${statusColors[status] || 'bg-muted'} transition-all`}
                 style={{ width: `${(count / total) * 100}%` }}
                 title={`${status}: ${count}`}
               />
@@ -86,32 +75,32 @@ export function PipelineStats({ items }: PipelineStatsProps) {
           </div>
           <div className="flex flex-wrap gap-3">
             {Object.entries(statusCounts).map(([status, count]) => (
-              <div key={status} className="flex items-center gap-1.5 text-xs">
-                <span className={`inline-block h-2 w-2 rounded-full ${statusColors[status] || 'bg-s4'}`} />
-                <span className="capitalize text-dim">{status}</span>
-                <span className="font-medium text-text">{count}</span>
+              <div key={status} className="flex items-center gap-1.5 font-data text-[10px]">
+                <span className={`inline-block h-2 w-2 ${statusColors[status] || 'bg-muted'}`} />
+                <span className="uppercase text-dim">{status}</span>
+                <span className="font-bold text-text">{count}</span>
               </div>
             ))}
           </div>
-        </Card>
+        </div>
 
         {/* Upcoming Follow-ups */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Upcoming Follow-ups</CardTitle>
-          </CardHeader>
+        <div className="border border-s3 bg-s1 p-4">
+          <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">
+            UPCOMING FOLLOW-UPS
+          </h3>
           {upcoming.length === 0 ? (
-            <p className="text-sm text-dim">No upcoming follow-ups scheduled.</p>
+            <p className="font-data text-xs text-dim">NO UPCOMING FOLLOW-UPS SCHEDULED.</p>
           ) : (
-            <div className="space-y-2">
+            <div className="space-y-1">
               {upcoming.map((item) => (
-                <div key={item.id} className="flex items-center justify-between rounded-md bg-s2 px-3 py-2">
+                <div key={item.id} className="flex items-center justify-between border-b border-s3/30 py-1.5">
                   <div>
-                    <p className="text-sm font-medium text-text">{item.sponsor_name}</p>
-                    <p className="text-xs text-dim capitalize">{item.status}</p>
+                    <p className="font-data text-xs text-text">{item.sponsor_name}</p>
+                    <p className="font-data text-[9px] uppercase text-dim">{item.status}</p>
                   </div>
-                  <div className="flex items-center gap-1 text-xs text-orange">
-                    <Clock size={12} />
+                  <div className="flex items-center gap-1 font-data text-[10px] text-amber">
+                    <Clock size={10} />
                     {new Date(item.next_followup!).toLocaleDateString('en-GB', {
                       day: 'numeric',
                       month: 'short',
@@ -121,7 +110,7 @@ export function PipelineStats({ items }: PipelineStatsProps) {
               ))}
             </div>
           )}
-        </Card>
+        </div>
       </div>
     </div>
   );

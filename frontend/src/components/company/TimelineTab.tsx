@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Plus, Minus, ArrowUpDown, Briefcase, AlertTriangle, FileText, Users, Zap } from 'lucide-react';
-import { api } from '@/lib/api';
+import { Plus, Minus, ArrowUpDown, Briefcase, AlertTriangle, FileText, Users, Zap, Clock } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
 import { ProGate } from '@/components/ui/ProGate';
 import { PageSpinner } from '@/components/ui/Spinner';
@@ -45,10 +45,25 @@ export function TimelineTab({ sponsorId }: TimelineTabProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.get<SponsorChange[]>(`/api/v1/sponsors/${sponsorId}/changes`)
-      .then(setChanges)
-      .catch(() => setChanges([]))
-      .finally(() => setLoading(false));
+    async function fetchChanges() {
+      try {
+        const { data, error } = await supabase
+          .from('sponsor_changes')
+          .select('*')
+          .eq('sponsor_id', sponsorId)
+          .order('detected_at', { ascending: false })
+          .limit(50);
+
+        if (!error && data) {
+          setChanges(data as SponsorChange[]);
+        }
+      } catch {
+        setChanges([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchChanges();
   }, [sponsorId]);
 
   if (loading) return <PageSpinner />;
@@ -59,7 +74,11 @@ export function TimelineTab({ sponsorId }: TimelineTabProps) {
         <CardTitle>Event Timeline ({changes.length})</CardTitle>
       </CardHeader>
       {changes.length === 0 ? (
-        <p className="text-sm text-dim">No timeline events recorded yet.</p>
+        <div className="flex flex-col items-center py-8 text-center">
+          <Clock className="mb-2 h-6 w-6 text-dim" />
+          <p className="text-sm text-dim">No timeline events recorded yet.</p>
+          <p className="mt-1 text-[10px] text-dim">Changes will be tracked as sponsor data is updated.</p>
+        </div>
       ) : (
         <div className="relative ml-4 border-l border-border pl-6">
           {changes.map((change, idx) => (
@@ -82,7 +101,7 @@ export function TimelineTab({ sponsorId }: TimelineTabProps) {
                 </p>
                 {change.field_changed && (
                   <p className="mt-0.5 text-xs text-dim">
-                    {change.field_changed}: {change.old_value || '--'} → {change.new_value || '--'}
+                    {change.field_changed}: {change.old_value || '--'} &rarr; {change.new_value || '--'}
                   </p>
                 )}
               </div>

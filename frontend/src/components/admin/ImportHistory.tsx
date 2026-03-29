@@ -1,8 +1,5 @@
 'use client';
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
-
 interface ImportRecord {
   id: string;
   filename: string;
@@ -22,38 +19,38 @@ interface ImportHistoryProps {
 export function ImportHistory({ imports, loading }: ImportHistoryProps) {
   if (loading) {
     return (
-      <Card>
-        <div className="h-48 animate-pulse rounded bg-s2" />
-      </Card>
+      <div className="border border-s3 bg-s1 p-4">
+        <div className="h-48 animate-pulse bg-s2/30" />
+      </div>
     );
   }
 
   return (
-    <Card padding={false}>
-      <div className="p-4">
-        <CardHeader>
-          <CardTitle>Import History</CardTitle>
-        </CardHeader>
+    <div className="border border-s3 bg-s1">
+      <div className="px-4 py-3">
+        <h3 className="font-data text-[10px] font-bold uppercase tracking-widest text-amber">
+          IMPORT HISTORY
+        </h3>
       </div>
       <table className="w-full">
         <thead>
-          <tr className="border-b border-border">
-            <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-dim">File</th>
-            <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-dim">Date</th>
-            <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-dim">Records</th>
-            <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-dim">Added</th>
-            <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-dim">Removed</th>
-            <th className="px-4 py-2 text-right text-xs font-semibold uppercase tracking-wider text-dim">Changed</th>
-            <th className="px-4 py-2 text-center text-xs font-semibold uppercase tracking-wider text-dim">Trigger</th>
+          <tr className="border-b border-amber/20">
+            <th className="px-4 py-1.5 text-left font-data text-[9px] font-bold uppercase tracking-widest text-dim">FILE</th>
+            <th className="px-4 py-1.5 text-left font-data text-[9px] font-bold uppercase tracking-widest text-dim">DATE</th>
+            <th className="px-4 py-1.5 text-right font-data text-[9px] font-bold uppercase tracking-widest text-dim">RECORDS</th>
+            <th className="px-4 py-1.5 text-right font-data text-[9px] font-bold uppercase tracking-widest text-dim">ADDED</th>
+            <th className="px-4 py-1.5 text-right font-data text-[9px] font-bold uppercase tracking-widest text-dim">REMOVED</th>
+            <th className="px-4 py-1.5 text-right font-data text-[9px] font-bold uppercase tracking-widest text-dim">CHANGED</th>
+            <th className="px-4 py-1.5 text-center font-data text-[9px] font-bold uppercase tracking-widest text-dim">TRIGGER</th>
           </tr>
         </thead>
         <tbody>
           {imports.map((imp) => (
-            <tr key={imp.id} className="border-b border-border/50 transition-colors hover:bg-s2">
-              <td className="max-w-[200px] truncate px-4 py-2.5 text-sm font-medium text-text">
+            <tr key={imp.id} className="border-b border-s3/50 transition-colors hover:bg-amber/5">
+              <td className="max-w-[200px] truncate px-4 py-2 font-data text-xs text-text">
                 {imp.filename}
               </td>
-              <td className="px-4 py-2.5 text-xs text-dim2">
+              <td className="px-4 py-2 font-data text-[10px] text-muted">
                 {new Date(imp.date).toLocaleDateString('en-GB', {
                   day: 'numeric',
                   month: 'short',
@@ -62,34 +59,36 @@ export function ImportHistory({ imports, loading }: ImportHistoryProps) {
                   minute: '2-digit',
                 })}
               </td>
-              <td className="px-4 py-2.5 text-right text-sm text-dim">
+              <td className="px-4 py-2 text-right font-data text-xs text-dim">
                 {imp.total_records.toLocaleString()}
               </td>
-              <td className="px-4 py-2.5 text-right text-sm text-green">
+              <td className="px-4 py-2 text-right font-data text-xs font-bold text-green">
                 +{imp.added.toLocaleString()}
               </td>
-              <td className="px-4 py-2.5 text-right text-sm text-red">
+              <td className="px-4 py-2 text-right font-data text-xs font-bold text-red">
                 -{imp.removed.toLocaleString()}
               </td>
-              <td className="px-4 py-2.5 text-right text-sm text-orange">
+              <td className="px-4 py-2 text-right font-data text-xs font-bold text-amber">
                 {imp.changed.toLocaleString()}
               </td>
-              <td className="px-4 py-2.5 text-center">
-                <Badge variant={imp.trigger === 'auto' ? 'blue' : 'purple'}>
-                  {imp.trigger}
-                </Badge>
+              <td className="px-4 py-2 text-center">
+                <span className={`inline-block px-1.5 py-0.5 font-data text-[8px] font-bold ${
+                  imp.trigger === 'auto' ? 'bg-blue text-bg' : 'bg-purple text-bg'
+                }`}>
+                  {imp.trigger.toUpperCase()}
+                </span>
               </td>
             </tr>
           ))}
           {imports.length === 0 && (
             <tr>
-              <td colSpan={7} className="px-4 py-8 text-center text-sm text-dim">
-                No import history available.
+              <td colSpan={7} className="px-4 py-8 text-center font-data text-xs text-dim">
+                NO IMPORT HISTORY AVAILABLE.
               </td>
             </tr>
           )}
         </tbody>
       </table>
-    </Card>
+    </div>
   );
 }

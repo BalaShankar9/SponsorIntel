@@ -1,111 +1,135 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Plus, Minus, ArrowUpDown, Briefcase, AlertTriangle, Zap, Newspaper, Shield, TrendingUp, FileText, Users } from 'lucide-react';
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
+import Link from 'next/link';
 import { timeAgo } from '@/lib/utils';
-import { API_URL } from '@/lib/api';
-import type { LiveEvent } from '@/types';
+import { supabase } from '@/lib/supabase';
 
-const eventIcons: Record<string, React.ReactNode> = {
-  sponsor_added: <Plus size={14} />,
-  sponsor_removed: <Minus size={14} />,
-  rating_change: <ArrowUpDown size={14} />,
-  new_job_detected: <Briefcase size={14} />,
-  job_expired: <Briefcase size={14} />,
-  company_enriched: <Zap size={14} />,
-  news_detected: <Newspaper size={14} />,
-  risk_flag_raised: <AlertTriangle size={14} />,
-  risk_flag_cleared: <Shield size={14} />,
-  score_changed: <TrendingUp size={14} />,
-  csv_imported: <FileText size={14} />,
-  officer_change: <Users size={14} />,
-};
-
-const severityColors: Record<string, string> = {
-  info: 'bg-accent',
-  warning: 'bg-orange',
-  critical: 'bg-red',
-};
+interface FeedItem {
+  id: string;
+  name: string;
+  city: string | null;
+  rating: string | null;
+  created_at: string;
+}
 
 export function LiveFeed() {
-  const [events, setEvents] = useState<LiveEvent[]>([]);
-  const [connected, setConnected] = useState(false);
+  const [items, setItems] = useState<FeedItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let ws: WebSocket | null = null;
+    async function fetchRecent() {
+      try {
+        const { data } = await supabase
+          .from('sponsors')
+          .select('id, organisation_name, town_city, rating, created_at')
+          .order('created_at', { ascending: false })
+          .limit(20);
 
-    const connect = () => {
-      const wsUrl = API_URL.replace(/^http/, 'ws');
-      ws = new WebSocket(`${wsUrl}/api/v1/ws/events`);
-
-      ws.onopen = () => setConnected(true);
-      ws.onclose = () => {
-        setConnected(false);
-        setTimeout(connect, 5000);
-      };
-      ws.onerror = () => ws?.close();
-
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data) as LiveEvent;
-          setEvents((prev) => [data, ...prev].slice(0, 20));
-        } catch {
-          // ignore malformed messages
+        if (data) {
+          setItems(
+            data.map((s) => ({
+              id: s.id,
+              name: s.organisation_name,
+              city: s.town_city,
+              rating: s.rating,
+              created_at: s.created_at,
+            }))
+          );
         }
-      };
-    };
-
-    connect();
-
-    return () => {
-      ws?.close();
-    };
+      } catch (err) {
+        console.error('LiveFeed fetch error:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchRecent();
   }, []);
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = 0;
-    }
-  }, [events]);
+    if (scrollRef.current) scrollRef.current.scrollTop = 0;
+  }, [items]);
 
   return (
-    <Card padding={false}>
-      <div className="flex items-center justify-between p-4 pb-2">
-        <CardTitle>Live Feed</CardTitle>
+    <div className="border border-border bg-s1 h-full flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-border px-3 py-2">
+        <h3 className="text-[10px] font-data uppercase tracking-[0.2em] text-dim">[LIVE FEED]</h3>
         <div className="flex items-center gap-1.5">
-          <span className={`h-2 w-2 rounded-full ${connected ? 'bg-green animate-pulse' : 'bg-red'}`} />
-          <span className="text-[10px] text-dim2">{connected ? 'LIVE' : 'OFFLINE'}</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-green animate-pulse" />
+          <span className="font-data text-[9px] text-green uppercase tracking-wider">
+            Connected
+          </span>
         </div>
       </div>
-      <div ref={scrollRef} className="h-[360px] overflow-y-auto px-4 pb-4">
-        {events.length === 0 ? (
-          <div className="flex h-full items-center justify-center text-sm text-dim2">
-            Waiting for events...
+
+      {/* Scrolling feed */}
+      <div ref={scrollRef} className="flex-1 overflow-y-auto" style={{ maxHeight: '380px' }}>
+        {loading ? (
+          <div className="flex h-full items-center justify-center py-12">
+            <span className="font-data text-[11px] text-dim animate-pulse">LOADING FEED...</span>
+          </div>
+        ) : items.length === 0 ? (
+          <div className="flex h-full items-center justify-center py-12">
+            <span className="font-data text-[11px] text-dim">NO RECENT ACTIVITY</span>
           </div>
         ) : (
-          <div className="space-y-2">
-            {events.map((event, idx) => (
-              <div key={event.id || idx} className="flex items-start gap-2.5 rounded-md p-2 hover:bg-s2/50">
-                <div className="mt-0.5 flex-shrink-0 text-dim">
-                  {eventIcons[event.event_type] || <Zap size={14} />}
+          <div>
+            {items.map((item, idx) => (
+              <div
+                key={item.id}
+                className="group flex items-start gap-2 px-3 py-2 border-b border-border/30 hover:bg-s2/60 transition-colors"
+                style={{ animationDelay: `${idx * 30}ms` }}
+              >
+                {/* Index + rating dot */}
+                <div className="flex flex-col items-center gap-0.5 pt-0.5 flex-shrink-0 w-4">
+                  <span
+                    className={`h-2 w-2 rounded-full ${
+                      item.rating === 'A' ? 'bg-green' : item.rating === 'B' ? 'bg-red' : 'bg-dim'
+                    }`}
+                  />
                 </div>
+
+                {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className={`h-1.5 w-1.5 flex-shrink-0 rounded-full ${severityColors[event.severity] || 'bg-accent'}`} />
-                    <p className="truncate text-sm text-text">{event.title}</p>
+                  <div className="flex items-center gap-1.5">
+                    <span className={`font-data text-[9px] font-bold px-1 ${
+                      item.rating === 'A' ? 'text-green bg-green/10' : item.rating === 'B' ? 'text-red bg-red/10' : 'text-dim bg-s3'
+                    }`}>
+                      {item.rating || '?'}
+                    </span>
+                    <Link
+                      href={`/company/${item.id}`}
+                      className="truncate text-[11px] text-text hover:text-amber transition-colors font-data"
+                    >
+                      {item.name}
+                    </Link>
                   </div>
-                  {event.description && (
-                    <p className="mt-0.5 truncate text-xs text-dim">{event.description}</p>
+                  {item.city && (
+                    <p className="truncate text-[9px] text-dim font-data mt-0.5">{item.city}</p>
                   )}
                 </div>
-                <span className="flex-shrink-0 text-[10px] text-dim2">{timeAgo(event.created_at)}</span>
+
+                {/* Timestamp */}
+                <span className="flex-shrink-0 font-data text-[9px] text-dim pt-0.5">
+                  {timeAgo(item.created_at)}
+                </span>
               </div>
             ))}
           </div>
         )}
       </div>
-    </Card>
+
+      {/* Footer */}
+      <div className="border-t border-border px-3 py-1.5 flex items-center justify-between">
+        <span className="font-data text-[9px] text-dim">
+          SHOWING {items.length} MOST RECENT
+        </span>
+        <span className="font-data text-[9px] text-dim">
+          {new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
+        </span>
+      </div>
+    </div>
   );
 }

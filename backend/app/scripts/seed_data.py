@@ -103,12 +103,16 @@ async def seed():
 
     # 2. Find CSV file
     print("[2/5] Looking for CSV file...")
-    data_dir = Path(__file__).parent.parent.parent.parent / "data"
-    csv_files = list(data_dir.glob("*.csv"))
-
-    # Also check project root
-    root_dir = Path(__file__).parent.parent.parent.parent
-    csv_files.extend(root_dir.glob("*.csv"))
+    # Try multiple paths: relative to script, /app/data (Docker), and project root
+    search_dirs = [
+        Path(__file__).parent.parent.parent / "data",       # backend/data
+        Path(__file__).parent.parent.parent.parent / "data", # project root/data
+        Path("/app/data"),                                    # Docker mount
+    ]
+    csv_files = []
+    for d in search_dirs:
+        if d.exists():
+            csv_files.extend(d.glob("*.csv"))
 
     if not csv_files:
         print("  ERROR: No CSV file found! Place your sponsor CSV in the data/ directory.")
@@ -224,7 +228,7 @@ async def seed():
     print()
     print("  Next steps:")
     print("  1. Run: make up")
-    print("  2. Visit: http://localhost:3000")
+    print("  2. Visit: http://localhost:3333")
     print("  3. Login: admin@sponsorintel.com / admin123changeme")
     print()
 

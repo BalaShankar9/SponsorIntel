@@ -1,5 +1,35 @@
 version: "3.9"
 
+x-backend-env: &backend-env
+  DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://sponsor_user:sponsor_pass@db:5432/sponsorintel}
+  DATABASE_URL_SYNC: ${DATABASE_URL_SYNC:-postgresql+psycopg2://sponsor_user:sponsor_pass@db:5432/sponsorintel}
+  REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+  SECRET_KEY: ${SECRET_KEY:-changeme-in-production}
+  ALGORITHM: ${ALGORITHM:-HS256}
+  ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-1440}
+  # Supabase
+  SUPABASE_URL: ${SUPABASE_URL:-}
+  SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY:-}
+  SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY:-}
+  # Scraper API keys
+  REED_API_KEY: ${REED_API_KEY:-}
+  ADZUNA_APP_ID: ${ADZUNA_APP_ID:-}
+  ADZUNA_APP_KEY: ${ADZUNA_APP_KEY:-}
+  JOOBLE_API_KEY: ${JOOBLE_API_KEY:-}
+  COMPANIES_HOUSE_API_KEY: ${COMPANIES_HOUSE_API_KEY:-}
+  # Proxies
+  PROXY_RESIDENTIAL_URL: ${PROXY_RESIDENTIAL_URL:-}
+  PROXY_DATACENTER_URL: ${PROXY_DATACENTER_URL:-}
+  # LLM
+  LLM_BACKEND: ${LLM_BACKEND:-disabled}
+  OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://localhost:11434}
+  OLLAMA_MODEL: ${OLLAMA_MODEL:-phi3:mini}
+  ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+  # Notifications
+  DISCORD_WEBHOOK_URL: ${DISCORD_WEBHOOK_URL:-}
+  # Runtime
+  ENV: ${ENV:-development}
+
 services:
   db:
     image: postgres:16-alpine
@@ -38,16 +68,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://sponsor_user:sponsor_pass@db:5432/sponsorintel}
-      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
-      SECRET_KEY: ${SECRET_KEY:-changeme-in-production}
-      ALGORITHM: ${ALGORITHM:-HS256}
-      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-30}
-      PROXY_RESIDENTIAL_URL: ${PROXY_RESIDENTIAL_URL:-}
-      PROXY_DATACENTER_URL: ${PROXY_DATACENTER_URL:-}
+      <<: *backend-env
     volumes:
       - ./backend:/app
       - ./data:/app/data
+      - ./backend/data:/app/backend_data
     depends_on:
       db:
         condition: service_healthy
@@ -61,11 +86,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
-      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://sponsor_user:sponsor_pass@db:5432/sponsorintel}
-      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
-      SECRET_KEY: ${SECRET_KEY:-changeme-in-production}
-      PROXY_RESIDENTIAL_URL: ${PROXY_RESIDENTIAL_URL:-}
-      PROXY_DATACENTER_URL: ${PROXY_DATACENTER_URL:-}
+      <<: *backend-env
     volumes:
       - ./backend:/app
       - ./data:/app/data
@@ -74,7 +95,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    command: celery -A app.tasks.worker worker --loglevel=info --concurrency=4
+    command: celery -A app.tasks.celery_app worker --loglevel=info --concurrency=4 -Q default,agents
 
   celery-beat:
     build:
@@ -82,9 +103,7 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     environment:
-      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://sponsor_user:sponsor_pass@db:5432/sponsorintel}
-      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
-      SECRET_KEY: ${SECRET_KEY:-changeme-in-production}
+      <<: *backend-env
     volumes:
       - ./backend:/app
       - ./data:/app/data
@@ -93,7 +112,7 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    command: celery -A app.tasks.worker beat --loglevel=info
+    command: celery -A app.tasks.celery_app beat --loglevel=info
 
   frontend:
     build:
@@ -101,9 +120,11 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "3333:3000"
     environment:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
+      NEXT_PUBLIC_SUPABASE_URL: ${SUPABASE_URL:-}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY:-}
     volumes:
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public

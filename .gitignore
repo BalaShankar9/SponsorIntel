@@ -56,3 +56,9 @@ Desktop.ini
 *.log
 celerybeat-schedule
 celerybeat-schedule.db
+
+# Local Netlify folder
+.netlify
+backend/data/ch_bulk.csv
+backend/data/ch_bulk.zip
+*.png

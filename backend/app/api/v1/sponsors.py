@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, UploadFile, status
-from sqlalchemy import String, case, func, or_, select, text
+from sqlalchemy import String, case, func, or_, select, text  # noqa: F401
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -89,13 +89,23 @@ async def list_sponsors(
     is_active: Optional[bool] = None,
     min_score: Optional[int] = None,
     max_score: Optional[int] = None,
+    score_min: Optional[int] = None,
+    score_max: Optional[int] = None,
     has_jobs: Optional[bool] = None,
     sort: str = "organisation_name",
+    sort_by: Optional[str] = None,
     dir: str = "asc",
+    sort_order: Optional[str] = None,
     db: AsyncSession = Depends(get_db),
     user: Optional[User] = Depends(optional_auth),
 ):
     """List sponsors with filtering, sorting, and pagination."""
+    # Support alternate param names
+    min_score = min_score if min_score is not None else score_min
+    max_score = max_score if max_score is not None else score_max
+    sort = sort_by if sort_by is not None else sort
+    dir = sort_order if sort_order is not None else dir
+
     score_sq = _latest_score_subquery()
     latest_score = select(score_sq).where(score_sq.c.rn == 1).subquery("ls")
 
@@ -480,11 +490,11 @@ async def get_sponsor_jobs(
 @router.get("/{sponsor_id}/similar")
 async def get_similar_sponsors(
     sponsor_id: uuid.UUID,
-    limit: int = Query(5, ge=1, le=20),
+    limit: int = Query(10, ge=1, le=20),
     db: AsyncSession = Depends(get_db),
 ):
-    """Find sponsors with similar industry, size, and city."""
-    # Get reference sponsor + profile
+    """Find top 10 similar sponsors (same industry + city, ordered by score similarity)."""
+    # Get reference sponsor + profile + latest score
     result = await db.execute(
         select(Sponsor)
         .options(selectinload(Sponsor.profile))
@@ -494,35 +504,121 @@ async def get_similar_sponsors(
     if not sponsor:
         raise HTTPException(status_code=404, detail="Sponsor not found")
 
-    conditions = [
+    # Get reference sponsor's latest score
+    ref_score_result = await db.execute(
+        select(SponsorScore.overall_score)
+        .where(SponsorScore.sponsor_id == sponsor_id)
+        .order_by(SponsorScore.computed_at.desc())
+        .limit(1)
+    )
+    ref_score = ref_score_result.scalar() or 50  # default to 50 if no score
+
+    # Get reference sponsor's industry
+    ref_industry = None
+    if sponsor.profile:
+        ref_industry = sponsor.profile.industry_primary
+
+    # Build latest score subquery for ordering by score similarity
+    score_sq = _latest_score_subquery()
+    latest_score = select(score_sq).where(score_sq.c.rn == 1).subquery("ls")
+
+    # Build base query with score difference for ordering
+    base_conditions = [
         Sponsor.id != sponsor_id,
         Sponsor.is_active == True,  # noqa: E712
     ]
 
-    # Prefer same city
+    # Phase 1: Same industry AND same city (best match)
+    phase1_conditions = list(base_conditions)
     if sponsor.town_city:
-        conditions.append(func.lower(Sponsor.town_city) == sponsor.town_city.lower())
+        phase1_conditions.append(
+            func.lower(Sponsor.town_city) == sponsor.town_city.lower()
+        )
+    if ref_industry:
+        phase1_conditions.append(
+            CompanyProfile.industry_primary == ref_industry
+        )
 
-    query = (
-        select(Sponsor)
-        .where(*conditions)
+    phase1_query = (
+        select(
+            Sponsor,
+            latest_score.c.overall_score.label("score"),
+        )
+        .outerjoin(CompanyProfile, CompanyProfile.sponsor_id == Sponsor.id)
+        .outerjoin(latest_score, latest_score.c.sponsor_id == Sponsor.id)
+        .where(*phase1_conditions)
+        .order_by(
+            func.abs(func.coalesce(latest_score.c.overall_score, 50) - ref_score).asc()
+        )
         .limit(limit)
     )
-    sim_result = await db.execute(query)
-    similar = sim_result.scalars().all()
+    phase1_result = await db.execute(phase1_query)
+    rows = phase1_result.all()
+    similar_ids = {r[0].id for r in rows}
+    similar_data = [(r[0], r[1]) for r in rows]
 
-    # If not enough from same city, broaden
-    if len(similar) < limit and sponsor.town_city:
-        broader_result = await db.execute(
-            select(Sponsor)
+    # Phase 2: Same industry OR same city (if not enough)
+    if len(similar_data) < limit:
+        remaining = limit - len(similar_data)
+        phase2_conditions = list(base_conditions)
+        if similar_ids:
+            phase2_conditions.append(Sponsor.id.notin_(similar_ids))
+
+        or_clauses = []
+        if sponsor.town_city:
+            or_clauses.append(
+                func.lower(Sponsor.town_city) == sponsor.town_city.lower()
+            )
+        if ref_industry:
+            or_clauses.append(CompanyProfile.industry_primary == ref_industry)
+
+        if or_clauses:
+            phase2_conditions.append(or_(*or_clauses))
+
+        phase2_query = (
+            select(
+                Sponsor,
+                latest_score.c.overall_score.label("score"),
+            )
+            .outerjoin(CompanyProfile, CompanyProfile.sponsor_id == Sponsor.id)
+            .outerjoin(latest_score, latest_score.c.sponsor_id == Sponsor.id)
+            .where(*phase2_conditions)
+            .order_by(
+                func.abs(
+                    func.coalesce(latest_score.c.overall_score, 50) - ref_score
+                ).asc()
+            )
+            .limit(remaining)
+        )
+        phase2_result = await db.execute(phase2_query)
+        for r in phase2_result.all():
+            similar_ids.add(r[0].id)
+            similar_data.append((r[0], r[1]))
+
+    # Phase 3: Any active sponsor (fallback if still not enough)
+    if len(similar_data) < limit:
+        remaining = limit - len(similar_data)
+        phase3_query = (
+            select(
+                Sponsor,
+                latest_score.c.overall_score.label("score"),
+            )
+            .outerjoin(latest_score, latest_score.c.sponsor_id == Sponsor.id)
             .where(
                 Sponsor.id != sponsor_id,
                 Sponsor.is_active == True,  # noqa: E712
-                Sponsor.id.notin_([s.id for s in similar]),
+                Sponsor.id.notin_(similar_ids),
             )
-            .limit(limit - len(similar))
+            .order_by(
+                func.abs(
+                    func.coalesce(latest_score.c.overall_score, 50) - ref_score
+                ).asc()
+            )
+            .limit(remaining)
         )
-        similar.extend(broader_result.scalars().all())
+        phase3_result = await db.execute(phase3_query)
+        for r in phase3_result.all():
+            similar_data.append((r[0], r[1]))
 
     return [
         {
@@ -530,8 +626,9 @@ async def get_similar_sponsors(
             "organisation_name": s.organisation_name,
             "town_city": s.town_city,
             "rating": s.rating.value if s.rating else None,
+            "overall_score": score,
         }
-        for s in similar
+        for s, score in similar_data
     ]
 
 

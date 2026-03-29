@@ -1,100 +1,90 @@
 'use client';
 
-import { useState } from 'react';
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { useEffect, useState } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { supabase } from '@/lib/supabase';
 
 interface IndustryTrendsProps {
   loading: boolean;
 }
 
-const COLORS = ['#58a6ff', '#3fb950', '#d29922', '#bc8cff', '#f778ba'];
+interface IndustryData {
+  industry: string;
+  count: number;
+}
 
-// Sample data - in production would come from API
-const sampleData = [
-  { month: 'Apr', Technology: 4200, Healthcare: 3100, Finance: 2800, Education: 2200, Hospitality: 1900 },
-  { month: 'May', Technology: 4350, Healthcare: 3200, Finance: 2750, Education: 2300, Hospitality: 1850 },
-  { month: 'Jun', Technology: 4500, Healthcare: 3150, Finance: 2900, Education: 2250, Hospitality: 2000 },
-  { month: 'Jul', Technology: 4600, Healthcare: 3300, Finance: 2850, Education: 2350, Hospitality: 1950 },
-  { month: 'Aug', Technology: 4800, Healthcare: 3400, Finance: 2950, Education: 2400, Hospitality: 2050 },
-  { month: 'Sep', Technology: 4950, Healthcare: 3500, Finance: 3000, Education: 2500, Hospitality: 2100 },
-  { month: 'Oct', Technology: 5100, Healthcare: 3550, Finance: 3100, Education: 2450, Hospitality: 2150 },
-  { month: 'Nov', Technology: 5250, Healthcare: 3700, Finance: 3050, Education: 2550, Hospitality: 2200 },
-  { month: 'Dec', Technology: 5200, Healthcare: 3650, Finance: 3150, Education: 2500, Hospitality: 2250 },
-  { month: 'Jan', Technology: 5400, Healthcare: 3800, Finance: 3200, Education: 2600, Hospitality: 2300 },
-  { month: 'Feb', Technology: 5550, Healthcare: 3900, Finance: 3250, Education: 2650, Hospitality: 2350 },
-  { month: 'Mar', Technology: 5700, Healthcare: 4000, Finance: 3350, Education: 2700, Hospitality: 2400 },
-];
+export function IndustryTrends({ loading: parentLoading }: IndustryTrendsProps) {
+  const [data, setData] = useState<IndustryData[]>([]);
+  const [loading, setLoading] = useState(true);
 
-const industries = ['Technology', 'Healthcare', 'Finance', 'Education', 'Hospitality'];
+  useEffect(() => {
+    async function fetch() {
+      const { data: rows } = await supabase
+        .from('company_profiles')
+        .select('industry_primary')
+        .not('industry_primary', 'is', null)
+        .limit(5000);
 
-export function IndustryTrends({ loading }: IndustryTrendsProps) {
-  const [viewMode, setViewMode] = useState<'absolute' | 'percentage'>('absolute');
+      if (rows) {
+        const counts: Record<string, number> = {};
+        rows.forEach((r) => {
+          const ind = r.industry_primary as string;
+          if (ind) counts[ind] = (counts[ind] || 0) + 1;
+        });
+        const sorted = Object.entries(counts)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 15)
+          .map(([industry, count]) => ({ industry, count }));
+        setData(sorted);
+      }
+      setLoading(false);
+    }
+    fetch();
+  }, []);
 
-  if (loading) {
+  if (loading || parentLoading) {
     return (
-      <Card>
-        <div className="h-80 animate-pulse rounded bg-s2" />
-      </Card>
+      <div className="border border-border bg-s1 p-4">
+        <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">INDUSTRY DISTRIBUTION</h3>
+        <div className="h-64 animate-pulse bg-s2/30 rounded" />
+      </div>
     );
   }
 
-  const chartData = viewMode === 'percentage'
-    ? sampleData.map((d) => {
-        const total = industries.reduce((s, ind) => s + (d[ind as keyof typeof d] as number), 0);
-        const row: Record<string, unknown> = { month: d.month };
-        industries.forEach((ind) => {
-          row[ind] = total > 0 ? (((d[ind as keyof typeof d] as number) / total) * 100).toFixed(1) : 0;
-        });
-        return row;
-      })
-    : sampleData;
+  if (data.length === 0) {
+    return (
+      <div className="border border-border bg-s1 p-4">
+        <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">INDUSTRY DISTRIBUTION</h3>
+        <div className="flex h-64 items-center justify-center text-dim font-data text-xs">CLASSIFYING INDUSTRIES...</div>
+      </div>
+    );
+  }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Industry Trends (Top 5)</CardTitle>
-        <div className="flex gap-1">
-          <Button
-            variant={viewMode === 'absolute' ? 'primary' : 'ghost'}
-            size="sm"
-            onClick={() => setViewMode('absolute')}
-          >
-            #
-          </Button>
-          <Button
-            variant={viewMode === 'percentage' ? 'primary' : 'ghost'}
-            size="sm"
-            onClick={() => setViewMode('percentage')}
-          >
-            %
-          </Button>
-        </div>
-      </CardHeader>
-      <div className="h-80">
+    <div className="border border-border bg-s1 p-4">
+      <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">
+        INDUSTRY DISTRIBUTION <span className="text-dim font-normal">{'// TOP 15 BY SIC CODE'}</span>
+      </h3>
+      <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis dataKey="month" tick={{ fontSize: 11, fill: '#8b949e' }} stroke="#30363d" />
-            <YAxis tick={{ fontSize: 11, fill: '#8b949e' }} stroke="#30363d" />
-            <Tooltip
-              contentStyle={{ backgroundColor: '#0d1117', border: '1px solid #30363d', borderRadius: 8, color: '#e6edf3' }}
+          <BarChart data={data} layout="vertical" margin={{ top: 0, right: 10, left: 0, bottom: 0 }}>
+            <CartesianGrid stroke="#1a1a1a" strokeDasharray="none" horizontal={false} />
+            <XAxis type="number" tick={{ fontSize: 9, fill: '#888888', fontFamily: 'JetBrains Mono' }} stroke="#1a1a1a" />
+            <YAxis
+              type="category"
+              dataKey="industry"
+              tick={{ fontSize: 9, fill: '#888888', fontFamily: 'JetBrains Mono' }}
+              stroke="#1a1a1a"
+              width={110}
             />
-            <Legend wrapperStyle={{ fontSize: 11, color: '#8b949e' }} />
-            {industries.map((ind, i) => (
-              <Line
-                key={ind}
-                type="monotone"
-                dataKey={ind}
-                stroke={COLORS[i]}
-                strokeWidth={2}
-                dot={false}
-              />
-            ))}
-          </LineChart>
+            <Tooltip
+              contentStyle={{ backgroundColor: '#0a0a0a', border: '1px solid #f5a623', borderRadius: 0, fontFamily: 'JetBrains Mono', fontSize: 11, color: '#e0e0e0' }}
+              formatter={(value: number) => [value.toLocaleString(), 'Sponsors']}
+            />
+            <Bar dataKey="count" fill="#f5a623" radius={[0, 2, 2, 0]} name="Sponsors" />
+          </BarChart>
         </ResponsiveContainer>
       </div>
-    </Card>
+    </div>
   );
 }

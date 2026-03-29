@@ -2,6 +2,8 @@
 Google News scraper (Tier 3).
 
 Scrapes Google News for company-related articles and performs simple sentiment scoring.
+Returns dicts matching CompanyNews model fields:
+headline, source, published_at, sentiment, sentiment_score, is_risk_signal.
 """
 
 import logging
@@ -18,7 +20,8 @@ NEGATIVE_KEYWORDS = [
     "closure", "closing", "liquidation", "liquidated", "tribunal",
     "scandal", "bankrupt", "bankruptcy", "sued", "lawsuit",
     "investigation", "charged", "violation", "misconduct", "breach",
-    "downsizing", "restructuring", "cutbacks", "cuts",
+    "downsizing", "restructuring", "cutbacks", "cuts", "collapse",
+    "warning", "debt", "losses", "strike", "dispute", "controversy",
 ]
 
 POSITIVE_KEYWORDS = [
@@ -27,13 +30,17 @@ POSITIVE_KEYWORDS = [
     "investment", "invested", "launch", "launched", "innovation",
     "record revenue", "profit", "profitable", "acquisition",
     "new office", "new jobs", "recruitment drive",
-    "carbon neutral", "sustainability",
+    "carbon neutral", "sustainability", "promotion", "milestone",
+    "breakthrough", "success", "successful", "thriving",
 ]
 
 
 def compute_sentiment(text: str) -> tuple[str, float]:
     """
     Compute simple sentiment score from text.
+
+    Counts positive and negative keyword matches, then produces a normalised
+    score between -1.0 and +1.0.
 
     Returns (label, score) where:
     - label: "positive", "negative", or "neutral"
@@ -62,13 +69,14 @@ class GoogleNewsScraper(BaseScraper):
     """
     Scrapes Google News for company-related headlines.
 
-    Extracts: headline, source, URL, published date, and computes
+    Extracts: headline, source, URL, published date, snippet, and computes
     simple sentiment scoring based on keyword presence.
+    Rate limited to 8 req/min.
     """
 
     name = "google_news"
     base_url = "https://news.google.com"
-    requests_per_minute = 5
+    requests_per_minute = 8
     use_proxy = False
     use_browser = False
 
@@ -89,7 +97,7 @@ class GoogleNewsScraper(BaseScraper):
             return articles
 
         # Fallback to HTML scraping
-        url = f"{self.base_url}/search?q={quote_plus(company_name)}&hl=en-GB&gl=GB"
+        url = f"{self.base_url}/search?q={quote_plus(company_name + ' UK')}&hl=en-GB&gl=GB"
         html = await self.fetch(url)
         if not html:
             return []
@@ -97,7 +105,7 @@ class GoogleNewsScraper(BaseScraper):
         return await self.parse(html)
 
     async def parse(self, html: str, **kwargs) -> list[dict]:
-        """Parse Google News search results page."""
+        """Parse Google News search results page. Returns dicts matching CompanyNews fields."""
         try:
             from selectolax.parser import HTMLParser
         except ImportError:
@@ -109,32 +117,59 @@ class GoogleNewsScraper(BaseScraper):
         for card in tree.css("article, div.xrnccd, c-wiz article"):
             article: dict = {"source_type": "google_news"}
 
-            title_el = card.css_first("h3 a, h4 a, a.JtKRv")
-            if title_el:
-                article["headline"] = title_el.text(strip=True)
-                href = title_el.attributes.get("href", "")
-                if href.startswith("./"):
-                    href = f"{self.base_url}/{href[2:]}"
-                elif href.startswith("/"):
-                    href = f"{self.base_url}{href}"
-                article["url"] = href
+            try:
+                title_el = card.css_first("h3 a, h4 a, a.JtKRv")
+                if title_el:
+                    article["headline"] = title_el.text(strip=True)
+                    href = title_el.attributes.get("href", "")
+                    if href.startswith("./"):
+                        href = f"{self.base_url}/{href[2:]}"
+                    elif href.startswith("/"):
+                        href = f"{self.base_url}{href}"
+                    article["url"] = href
+            except Exception:
+                pass
 
-            source_el = card.css_first("div.vr1PYe, a.wEwyrc, span.source")
-            if source_el:
-                article["news_source"] = source_el.text(strip=True)
+            try:
+                source_el = card.css_first("div.vr1PYe, a.wEwyrc, span.source")
+                if source_el:
+                    article["source"] = source_el.text(strip=True)
+            except Exception:
+                pass
 
-            time_el = card.css_first("time, div.WW6dff")
-            if time_el:
-                article["published_date"] = time_el.attributes.get(
-                    "datetime", time_el.text(strip=True)
+            try:
+                time_el = card.css_first("time, div.WW6dff")
+                if time_el:
+                    article["published_at"] = time_el.attributes.get(
+                        "datetime", time_el.text(strip=True)
+                    )
+            except Exception:
+                pass
+
+            # Extract snippet text (description under headline)
+            try:
+                snippet_el = card.css_first(
+                    "div.GI74Re, span.xBbh9, p.description"
                 )
+                if snippet_el:
+                    article["snippet"] = snippet_el.text(strip=True)
+            except Exception:
+                pass
 
-            # Compute sentiment
-            if article.get("headline"):
-                label, score = compute_sentiment(article["headline"])
-                article["sentiment"] = label
-                article["sentiment_score"] = score
-                article["is_risk_signal"] = label == "negative"
+            # Compute sentiment on headline + snippet
+            try:
+                if article.get("headline"):
+                    combined_text = article["headline"]
+                    if article.get("snippet"):
+                        combined_text += " " + article["snippet"]
+                    label, score = compute_sentiment(combined_text)
+                    article["sentiment"] = label
+                    article["sentiment_score"] = score
+                    article["is_risk_signal"] = label == "negative"
+            except Exception:
+                article["sentiment"] = "neutral"
+                article["sentiment_score"] = 0.0
+                article["is_risk_signal"] = False
 
             if article.get("headline"):
                 articles.append(article)
@@ -147,23 +182,26 @@ class GoogleNewsScraper(BaseScraper):
         # Match article titles
         pattern = r'<h[34][^>]*><a[^>]*href="([^"]*)"[^>]*>([^<]+)</a>'
         for match in re.finditer(pattern, html):
-            headline = match.group(2).strip()
-            label, score = compute_sentiment(headline)
-            articles.append({
-                "source_type": "google_news",
-                "headline": headline,
-                "url": match.group(1),
-                "sentiment": label,
-                "sentiment_score": score,
-                "is_risk_signal": label == "negative",
-            })
+            try:
+                headline = match.group(2).strip()
+                label, score = compute_sentiment(headline)
+                articles.append({
+                    "source_type": "google_news",
+                    "headline": headline,
+                    "url": match.group(1),
+                    "sentiment": label,
+                    "sentiment_score": score,
+                    "is_risk_signal": label == "negative",
+                })
+            except Exception:
+                pass
         return articles
 
     async def _scrape_rss(self, company_name: str) -> list[dict]:
         """Try to scrape Google News RSS feed."""
         rss_url = (
             f"https://news.google.com/rss/search?"
-            f"q={quote_plus(company_name)}&hl=en-GB&gl=GB&ceid=GB:en"
+            f"q={quote_plus(company_name + ' UK')}&hl=en-GB&gl=GB&ceid=GB:en"
         )
 
         xml_text = await self.fetch(rss_url)
@@ -173,7 +211,7 @@ class GoogleNewsScraper(BaseScraper):
         return self._parse_rss(xml_text)
 
     def _parse_rss(self, xml_text: str) -> list[dict]:
-        """Parse Google News RSS XML."""
+        """Parse Google News RSS XML. Returns dicts matching CompanyNews fields."""
         articles = []
 
         # Extract items using regex (avoid XML library dependency)
@@ -184,30 +222,61 @@ class GoogleNewsScraper(BaseScraper):
         for item in items:
             article: dict = {"source_type": "google_news"}
 
-            title_match = re.search(r"<title>(.*?)</title>", item, re.DOTALL)
-            if title_match:
-                headline = re.sub(r"<!\[CDATA\[(.*?)\]\]>", r"\1", title_match.group(1))
-                headline = re.sub(r"<[^>]+>", "", headline).strip()
-                article["headline"] = headline
+            try:
+                title_match = re.search(r"<title>(.*?)</title>", item, re.DOTALL)
+                if title_match:
+                    headline = re.sub(r"<!\[CDATA\[(.*?)\]\]>", r"\1", title_match.group(1))
+                    headline = re.sub(r"<[^>]+>", "", headline).strip()
+                    article["headline"] = headline
+            except Exception:
+                pass
 
-            link_match = re.search(r"<link>(.*?)</link>", item)
-            if link_match:
-                article["url"] = link_match.group(1).strip()
+            try:
+                link_match = re.search(r"<link>(.*?)</link>", item)
+                if link_match:
+                    article["url"] = link_match.group(1).strip()
+            except Exception:
+                pass
 
-            source_match = re.search(r"<source[^>]*>(.*?)</source>", item)
-            if source_match:
-                article["news_source"] = source_match.group(1).strip()
+            try:
+                source_match = re.search(r"<source[^>]*>(.*?)</source>", item)
+                if source_match:
+                    article["source"] = source_match.group(1).strip()
+            except Exception:
+                pass
 
-            pub_date_match = re.search(r"<pubDate>(.*?)</pubDate>", item)
-            if pub_date_match:
-                article["published_date"] = pub_date_match.group(1).strip()
+            try:
+                pub_date_match = re.search(r"<pubDate>(.*?)</pubDate>", item)
+                if pub_date_match:
+                    article["published_at"] = pub_date_match.group(1).strip()
+            except Exception:
+                pass
+
+            # Extract snippet from description tag
+            try:
+                desc_match = re.search(r"<description>(.*?)</description>", item, re.DOTALL)
+                if desc_match:
+                    snippet = re.sub(r"<!\[CDATA\[(.*?)\]\]>", r"\1", desc_match.group(1))
+                    snippet = re.sub(r"<[^>]+>", "", snippet).strip()
+                    if snippet:
+                        article["snippet"] = snippet[:500]  # Limit snippet length
+            except Exception:
+                pass
 
             # Compute sentiment
-            if article.get("headline"):
-                label, score = compute_sentiment(article["headline"])
-                article["sentiment"] = label
-                article["sentiment_score"] = score
-                article["is_risk_signal"] = label == "negative"
+            try:
+                if article.get("headline"):
+                    combined_text = article["headline"]
+                    if article.get("snippet"):
+                        combined_text += " " + article["snippet"]
+                    label, score = compute_sentiment(combined_text)
+                    article["sentiment"] = label
+                    article["sentiment_score"] = score
+                    article["is_risk_signal"] = label == "negative"
+            except Exception:
+                article["sentiment"] = "neutral"
+                article["sentiment_score"] = 0.0
+                article["is_risk_signal"] = False
 
             if article.get("headline"):
                 articles.append(article)

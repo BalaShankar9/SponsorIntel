@@ -70,7 +70,7 @@ export const useAuthStore = create<AuthState>()(
     {
       name: 'sponsorintel-auth',
       partialize: (state) => ({ token: state.token, user: state.user }),
-      onRehydrate: (_state) => {
+      onRehydrateStorage: () => {
         return (rehydratedState) => {
           if (rehydratedState?.token) {
             api.setToken(rehydratedState.token);

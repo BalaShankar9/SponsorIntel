@@ -1,13 +1,12 @@
 'use client';
 
 import { useEffect, useState, useMemo } from 'react';
-import { api } from '@/lib/api';
+import { supabase } from '@/lib/supabase';
 import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { PageSpinner } from '@/components/ui/Spinner';
 import { Search, ChevronDown, ChevronRight, Pencil, Save, X, StickyNote, ExternalLink } from 'lucide-react';
-import { formatDate, timeAgo } from '@/lib/utils';
+import { timeAgo } from '@/lib/utils';
 import type { UserNote } from '@/types';
 import Link from 'next/link';
 
@@ -28,10 +27,31 @@ export default function NotesPage() {
   useEffect(() => {
     async function fetchNotes() {
       try {
-        const data = await api.get<(UserNote & { sponsor_name?: string })[]>('/api/v1/notes');
-        setNotes(data);
+        // Fetch notes and join sponsor name
+        const { data, error } = await supabase
+          .from('user_notes')
+          .select(`
+            *,
+            sponsors ( organisation_name )
+          `)
+          .order('updated_at', { ascending: false });
+
+        if (!error && data) {
+          const mapped = data.map((n: Record<string, unknown>) => {
+            const sponsor = n.sponsors as { organisation_name?: string } | null;
+            return {
+              ...n,
+              sponsor_name: sponsor?.organisation_name || 'Unknown Company',
+              sponsors: undefined,
+            } as unknown as UserNote & { sponsor_name?: string };
+          });
+          setNotes(mapped);
+        } else {
+          setNotes([]);
+        }
       } catch (err) {
         console.error('Failed to fetch notes:', err);
+        setNotes([]);
       } finally {
         setLoading(false);
       }
@@ -72,7 +92,7 @@ export default function NotesPage() {
 
   const handleSave = async (noteId: string) => {
     try {
-      await api.put(`/api/v1/notes/${noteId}`, { content: editContent });
+      await supabase.from('user_notes').update({ content: editContent, updated_at: new Date().toISOString() }).eq('id', noteId);
       setNotes((prev) =>
         prev.map((n) => (n.id === noteId ? { ...n, content: editContent, updated_at: new Date().toISOString() } : n))
       );

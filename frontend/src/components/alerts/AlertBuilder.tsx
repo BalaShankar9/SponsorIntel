@@ -1,10 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Input } from '@/components/ui/Input';
-import { Select } from '@/components/ui/Select';
-import { Button } from '@/components/ui/Button';
+import { useState } from 'react';
 import { Save, X } from 'lucide-react';
 import type { Alert } from '@/types';
 
@@ -22,29 +18,29 @@ export interface CreateAlertPayload {
 }
 
 const alertTypeOptions = [
-  { value: 'new_sponsor', label: 'New Sponsor' },
-  { value: 'rating_change', label: 'Rating Change' },
-  { value: 'new_job', label: 'New Job' },
-  { value: 'company_news', label: 'Company News' },
-  { value: 'risk_flag', label: 'Risk Flag' },
+  { value: 'new_sponsor', label: 'NEW SPONSOR' },
+  { value: 'rating_change', label: 'RATING CHANGE' },
+  { value: 'new_job', label: 'NEW JOB' },
+  { value: 'company_news', label: 'COMPANY NEWS' },
+  { value: 'risk_flag', label: 'RISK FLAG' },
 ];
 
 const channelOptions = [
-  { value: 'email', label: 'Email' },
-  { value: 'in_app', label: 'In-App' },
-  { value: 'both', label: 'Both' },
+  { value: 'email', label: 'EMAIL' },
+  { value: 'in_app', label: 'IN-APP' },
+  { value: 'both', label: 'BOTH' },
 ];
 
 const frequencyOptions = [
-  { value: 'immediate', label: 'Immediate' },
-  { value: 'daily', label: 'Daily Digest' },
-  { value: 'weekly', label: 'Weekly Digest' },
+  { value: 'immediate', label: 'IMMEDIATE' },
+  { value: 'daily', label: 'DAILY DIGEST' },
+  { value: 'weekly', label: 'WEEKLY DIGEST' },
 ];
 
 const ratingDirectionOptions = [
-  { value: 'upgrade', label: 'Upgrade only' },
-  { value: 'downgrade', label: 'Downgrade only' },
-  { value: 'both', label: 'Both' },
+  { value: 'upgrade', label: 'UPGRADE ONLY' },
+  { value: 'downgrade', label: 'DOWNGRADE ONLY' },
+  { value: 'both', label: 'BOTH' },
 ];
 
 export function AlertBuilder({ existingAlert, onSave, onCancel }: AlertBuilderProps) {
@@ -96,59 +92,62 @@ export function AlertBuilder({ existingAlert, onSave, onCancel }: AlertBuilderPr
     onSave({ alert_type: alertType, config, channel, frequency });
   };
 
+  const selectClass = "w-full border border-s3 bg-bg px-2 py-1.5 font-data text-xs text-text focus:border-amber focus:outline-none";
+  const inputClass = "w-full border border-s3 bg-bg px-2 py-1.5 font-data text-xs text-text placeholder-muted focus:border-amber focus:outline-none";
+  const labelClass = "font-data text-[9px] text-dim uppercase tracking-wider";
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{existingAlert ? 'Edit Alert' : 'Create Alert'}</CardTitle>
-        <Button variant="ghost" size="sm" onClick={onCancel}>
+    <div className="border border-amber/30 bg-s1 p-4">
+      <div className="mb-4 flex items-center justify-between">
+        <h3 className="font-data text-sm font-bold text-amber">
+          {existingAlert ? 'EDIT ALERT' : 'CREATE ALERT'}
+        </h3>
+        <button onClick={onCancel} className="text-dim hover:text-text">
           <X size={14} />
-        </Button>
-      </CardHeader>
+        </button>
+      </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         {/* Alert Type */}
-        <Select
-          label="Alert Type"
-          options={alertTypeOptions}
-          value={alertType}
-          onChange={(e) => setAlertType(e.target.value)}
-        />
+        <div>
+          <label className={labelClass}>ALERT TYPE</label>
+          <select value={alertType} onChange={(e) => setAlertType(e.target.value)} className={selectClass}>
+            {alertTypeOptions.map((o) => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+        </div>
 
-        {/* Dynamic conditions based on type */}
+        {/* Dynamic conditions */}
         {alertType === 'new_job' && (
-          <div className="space-y-3 rounded-md border border-border/50 bg-s2/30 p-3">
-            <p className="text-xs font-medium text-dim">Job Conditions</p>
-            <Input
-              label="Title contains"
-              placeholder="e.g. Software Engineer"
-              value={titleContains}
-              onChange={(e) => setTitleContains(e.target.value)}
-            />
-            <div className="grid grid-cols-2 gap-2">
-              <Input
-                label="Company"
-                placeholder="Any company"
-                value={jobCompany}
-                onChange={(e) => setJobCompany(e.target.value)}
-              />
-              <Input
-                label="City"
-                placeholder="Any city"
-                value={jobCity}
-                onChange={(e) => setJobCity(e.target.value)}
+          <div className="space-y-2 border border-s3 bg-bg p-3">
+            <p className="font-data text-[9px] font-bold text-amber uppercase">JOB CONDITIONS</p>
+            <div>
+              <label className={labelClass}>TITLE CONTAINS</label>
+              <input
+                type="text"
+                placeholder="E.G. SOFTWARE ENGINEER"
+                value={titleContains}
+                onChange={(e) => setTitleContains(e.target.value)}
+                className={inputClass}
               />
             </div>
-            <Input
-              label="Min Salary"
-              type="number"
-              placeholder="e.g. 40000"
-              value={minSalary}
-              onChange={(e) => setMinSalary(e.target.value)}
-            />
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className={labelClass}>COMPANY</label>
+                <input placeholder="ANY" value={jobCompany} onChange={(e) => setJobCompany(e.target.value)} className={inputClass} />
+              </div>
+              <div>
+                <label className={labelClass}>CITY</label>
+                <input placeholder="ANY" value={jobCity} onChange={(e) => setJobCity(e.target.value)} className={inputClass} />
+              </div>
+            </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-dim">
-                Min Sponsorship: {minSponsorship}%
-              </label>
+              <label className={labelClass}>MIN SALARY</label>
+              <input type="number" placeholder="40000" value={minSalary} onChange={(e) => setMinSalary(e.target.value)} className={inputClass} />
+            </div>
+            <div>
+              <label className={labelClass}>MIN SPONSORSHIP: {minSponsorship}%</label>
               <input
                 type="range"
                 min={0}
@@ -156,79 +155,82 @@ export function AlertBuilder({ existingAlert, onSave, onCancel }: AlertBuilderPr
                 step={5}
                 value={minSponsorship}
                 onChange={(e) => setMinSponsorship(Number(e.target.value))}
-                className="w-full accent-accent"
+                className="w-full accent-amber"
               />
             </div>
           </div>
         )}
 
         {alertType === 'rating_change' && (
-          <div className="space-y-3 rounded-md border border-border/50 bg-s2/30 p-3">
-            <p className="text-xs font-medium text-dim">Rating Change Conditions</p>
-            <Select
-              label="Direction"
-              options={ratingDirectionOptions}
-              value={ratingDirection}
-              onChange={(e) => setRatingDirection(e.target.value)}
-            />
-            <Input
-              label="Specific companies (comma-separated, or leave empty for all)"
-              placeholder="Company A, Company B"
-              value={ratingCompanies}
-              onChange={(e) => setRatingCompanies(e.target.value)}
-            />
+          <div className="space-y-2 border border-s3 bg-bg p-3">
+            <p className="font-data text-[9px] font-bold text-amber uppercase">RATING CONDITIONS</p>
+            <div>
+              <label className={labelClass}>DIRECTION</label>
+              <select value={ratingDirection} onChange={(e) => setRatingDirection(e.target.value)} className={selectClass}>
+                {ratingDirectionOptions.map((o) => (
+                  <option key={o.value} value={o.value}>{o.label}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className={labelClass}>COMPANIES (COMMA-SEPARATED)</label>
+              <input placeholder="ALL COMPANIES" value={ratingCompanies} onChange={(e) => setRatingCompanies(e.target.value)} className={inputClass} />
+            </div>
           </div>
         )}
 
         {alertType === 'new_sponsor' && (
-          <div className="space-y-3 rounded-md border border-border/50 bg-s2/30 p-3">
-            <p className="text-xs font-medium text-dim">New Sponsor Conditions</p>
-            <Input
-              label="Industry"
-              placeholder="Any industry"
-              value={sponsorIndustry}
-              onChange={(e) => setSponsorIndustry(e.target.value)}
-            />
-            <Input
-              label="City"
-              placeholder="Any city"
-              value={sponsorCity}
-              onChange={(e) => setSponsorCity(e.target.value)}
-            />
+          <div className="space-y-2 border border-s3 bg-bg p-3">
+            <p className="font-data text-[9px] font-bold text-amber uppercase">SPONSOR CONDITIONS</p>
+            <div>
+              <label className={labelClass}>INDUSTRY</label>
+              <input placeholder="ANY" value={sponsorIndustry} onChange={(e) => setSponsorIndustry(e.target.value)} className={inputClass} />
+            </div>
+            <div>
+              <label className={labelClass}>CITY</label>
+              <input placeholder="ANY" value={sponsorCity} onChange={(e) => setSponsorCity(e.target.value)} className={inputClass} />
+            </div>
           </div>
         )}
 
         {(alertType === 'company_news' || alertType === 'risk_flag') && (
-          <div className="rounded-md border border-border/50 bg-s2/30 p-3">
-            <p className="text-xs text-dim">
+          <div className="border border-s3 bg-bg p-3">
+            <p className="font-data text-[10px] text-dim">
               {alertType === 'company_news'
-                ? 'Get notified when companies in your watchlist have news coverage.'
-                : 'Get notified when risk flags are detected for any sponsor.'}
+                ? 'NOTIFIED WHEN WATCHLIST COMPANIES HAVE NEWS COVERAGE.'
+                : 'NOTIFIED WHEN RISK FLAGS DETECTED FOR ANY SPONSOR.'}
             </p>
           </div>
         )}
 
         {/* Channel & Frequency */}
-        <div className="grid grid-cols-2 gap-3">
-          <Select
-            label="Channel"
-            options={channelOptions}
-            value={channel}
-            onChange={(e) => setChannel(e.target.value)}
-          />
-          <Select
-            label="Frequency"
-            options={frequencyOptions}
-            value={frequency}
-            onChange={(e) => setFrequency(e.target.value)}
-          />
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+            <label className={labelClass}>CHANNEL</label>
+            <select value={channel} onChange={(e) => setChannel(e.target.value)} className={selectClass}>
+              {channelOptions.map((o) => (
+                <option key={o.value} value={o.value}>{o.label}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className={labelClass}>FREQUENCY</label>
+            <select value={frequency} onChange={(e) => setFrequency(e.target.value)} className={selectClass}>
+              {frequencyOptions.map((o) => (
+                <option key={o.value} value={o.value}>{o.label}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Save */}
-        <Button onClick={handleSave} className="w-full">
-          <Save size={14} /> {existingAlert ? 'Update Alert' : 'Create Alert'}
-        </Button>
+        <button
+          onClick={handleSave}
+          className="flex w-full items-center justify-center gap-2 bg-amber py-2 font-data text-xs font-bold uppercase text-bg transition-colors hover:bg-amber/80"
+        >
+          <Save size={12} /> {existingAlert ? 'UPDATE ALERT' : 'CREATE ALERT'}
+        </button>
       </div>
-    </Card>
+    </div>
   );
 }

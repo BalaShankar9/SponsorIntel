@@ -2,6 +2,8 @@
 Trustpilot scraper (Tier 3).
 
 Scrapes company review data from Trustpilot.
+Returns dicts with fields matching CompanyProfile model:
+trustpilot_rating, trustpilot_review_count, and recent review snippets.
 """
 
 import logging
@@ -16,12 +18,13 @@ class TrustpilotScraper(BaseScraper):
     """
     Scrapes Trustpilot company review pages.
 
-    Extracts: overall rating, review count, and recent reviews.
+    Extracts: trustpilot_rating, trustpilot_review_count, and recent reviews.
+    Rate limited to 8 req/min.
     """
 
     name = "trustpilot"
     base_url = "https://www.trustpilot.com"
-    requests_per_minute = 5
+    requests_per_minute = 8
     use_proxy = False
     use_browser = False
 
@@ -48,7 +51,7 @@ class TrustpilotScraper(BaseScraper):
         return await self.parse(html)
 
     async def parse(self, html: str, **kwargs) -> list[dict]:
-        """Parse Trustpilot review page."""
+        """Parse Trustpilot review page. Returns dict with CompanyProfile fields."""
         try:
             from selectolax.parser import HTMLParser
         except ImportError:
@@ -57,73 +60,110 @@ class TrustpilotScraper(BaseScraper):
         tree = HTMLParser(html)
         data: dict = {"source": "trustpilot"}
 
-        # Overall rating
-        rating_el = tree.css_first(
-            "span[data-rating-typography], "
-            "p.typography_heading-m__T_L_X, "
-            "span.star-rating"
-        )
-        if rating_el:
-            try:
-                data["rating"] = float(rating_el.text(strip=True))
-            except ValueError:
-                pass
+        # Overall rating -> trustpilot_rating
+        try:
+            rating_el = tree.css_first(
+                "span[data-rating-typography], "
+                "p.typography_heading-m__T_L_X, "
+                "span.star-rating"
+            )
+            if rating_el:
+                data["trustpilot_rating"] = float(rating_el.text(strip=True))
+        except (ValueError, TypeError) as e:
+            logger.warning("[%s] Could not parse rating: %s", self.name, str(e)[:80])
+            data["trustpilot_rating"] = None
 
-        # Total reviews
-        count_el = tree.css_first(
-            "span[data-reviews-count-typography], "
-            "p.typography_body-l__aP7_d, "
-            "span.headline__review-count"
-        )
-        if count_el:
-            count_match = re.search(r"([\d,]+)", count_el.text(strip=True))
-            if count_match:
-                data["review_count"] = int(count_match.group(1).replace(",", ""))
+        # Total reviews -> trustpilot_review_count
+        try:
+            count_el = tree.css_first(
+                "span[data-reviews-count-typography], "
+                "p.typography_body-l__aP7_d, "
+                "span.headline__review-count"
+            )
+            if count_el:
+                count_match = re.search(r"([\d,]+)", count_el.text(strip=True))
+                if count_match:
+                    data["trustpilot_review_count"] = int(count_match.group(1).replace(",", ""))
+        except (ValueError, TypeError) as e:
+            logger.warning("[%s] Could not parse review count: %s", self.name, str(e)[:80])
+            data["trustpilot_review_count"] = None
 
         # TrustScore text
-        score_el = tree.css_first("p[data-trust-score-caption-typography]")
-        if score_el:
-            data["trust_score_text"] = score_el.text(strip=True)
+        try:
+            score_el = tree.css_first("p[data-trust-score-caption-typography]")
+            if score_el:
+                data["trust_score_text"] = score_el.text(strip=True)
+        except Exception:
+            pass
 
-        # Recent reviews
+        # Fallback: try JSON-LD structured data
+        if "trustpilot_rating" not in data or data.get("trustpilot_rating") is None:
+            try:
+                rating_match = re.search(r'"ratingValue"\s*:\s*"?(\d+\.?\d*)', html)
+                if rating_match:
+                    data["trustpilot_rating"] = float(rating_match.group(1))
+            except Exception:
+                pass
+
+        if "trustpilot_review_count" not in data or data.get("trustpilot_review_count") is None:
+            try:
+                count_match = re.search(r'"reviewCount"\s*:\s*"?(\d+)', html)
+                if count_match:
+                    data["trustpilot_review_count"] = int(count_match.group(1))
+            except Exception:
+                pass
+
+        # Recent reviews (for CompanyReview records)
         reviews = []
-        for review_el in tree.css(
-            "article.paper_paper__EsAY_, "
-            "div.review-card, "
-            "article[data-service-review-card-paper]"
-        ):
-            review: dict = {}
+        try:
+            for review_el in tree.css(
+                "article.paper_paper__EsAY_, "
+                "div.review-card, "
+                "article[data-service-review-card-paper]"
+            ):
+                review: dict = {}
 
-            star_el = review_el.css_first("div[data-service-review-rating]")
-            if star_el:
-                stars = star_el.attributes.get("data-service-review-rating", "")
                 try:
-                    review["rating"] = float(stars)
-                except ValueError:
+                    star_el = review_el.css_first("div[data-service-review-rating]")
+                    if star_el:
+                        stars = star_el.attributes.get("data-service-review-rating", "")
+                        review["rating"] = float(stars)
+                except (ValueError, TypeError):
+                    review["rating"] = None
+
+                try:
+                    title_el = review_el.css_first(
+                        "h2[data-service-review-title-typography], "
+                        "a[data-review-title-typography]"
+                    )
+                    if title_el:
+                        review["title"] = title_el.text(strip=True)
+                except Exception:
                     pass
 
-            title_el = review_el.css_first(
-                "h2[data-service-review-title-typography], "
-                "a[data-review-title-typography]"
-            )
-            if title_el:
-                review["title"] = title_el.text(strip=True)
+                try:
+                    text_el = review_el.css_first(
+                        "p[data-service-review-text-typography], "
+                        "p.review-content__text"
+                    )
+                    if text_el:
+                        review["text_snippet"] = text_el.text(strip=True)
+                except Exception:
+                    pass
 
-            text_el = review_el.css_first(
-                "p[data-service-review-text-typography], "
-                "p.review-content__text"
-            )
-            if text_el:
-                review["text"] = text_el.text(strip=True)
+                try:
+                    date_el = review_el.css_first("time")
+                    if date_el:
+                        review["review_date"] = date_el.attributes.get(
+                            "datetime", date_el.text(strip=True)
+                        )
+                except Exception:
+                    pass
 
-            date_el = review_el.css_first("time")
-            if date_el:
-                review["date"] = date_el.attributes.get(
-                    "datetime", date_el.text(strip=True)
-                )
-
-            if review:
-                reviews.append(review)
+                if review:
+                    reviews.append(review)
+        except Exception as e:
+            logger.warning("[%s] Error parsing reviews: %s", self.name, str(e)[:100])
 
         data["reviews"] = reviews[:10]  # Limit to 10 most recent
         return [data]
@@ -131,10 +171,19 @@ class TrustpilotScraper(BaseScraper):
     def _parse_regex(self, html: str) -> dict:
         """Fallback regex parser."""
         data: dict = {"source": "trustpilot"}
-        rating_match = re.search(r'"ratingValue"\s*:\s*"?(\d+\.?\d*)', html)
-        if rating_match:
-            data["rating"] = float(rating_match.group(1))
-        count_match = re.search(r'"reviewCount"\s*:\s*"?(\d+)', html)
-        if count_match:
-            data["review_count"] = int(count_match.group(1))
+
+        try:
+            rating_match = re.search(r'"ratingValue"\s*:\s*"?(\d+\.?\d*)', html)
+            if rating_match:
+                data["trustpilot_rating"] = float(rating_match.group(1))
+        except Exception:
+            data["trustpilot_rating"] = None
+
+        try:
+            count_match = re.search(r'"reviewCount"\s*:\s*"?(\d+)', html)
+            if count_match:
+                data["trustpilot_review_count"] = int(count_match.group(1))
+        except Exception:
+            data["trustpilot_review_count"] = None
+
         return data

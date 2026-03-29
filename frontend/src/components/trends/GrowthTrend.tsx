@@ -1,6 +1,5 @@
 'use client';
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import type { TrendPoint } from '@/types';
 
@@ -12,9 +11,9 @@ interface GrowthTrendProps {
 export function GrowthTrend({ data, loading }: GrowthTrendProps) {
   if (loading) {
     return (
-      <Card>
-        <div className="h-80 animate-pulse rounded bg-s2" />
-      </Card>
+      <div className="border border-s3 bg-s1 p-4">
+        <div className="h-64 animate-pulse bg-s2/30" />
+      </div>
     );
   }
 
@@ -24,33 +23,38 @@ export function GrowthTrend({ data, loading }: GrowthTrendProps) {
   const isPositive = Number(growthPct) >= 0;
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Sponsor Growth (12 Months)</CardTitle>
-        <span className={`text-sm font-bold ${isPositive ? 'text-green' : 'text-red'}`}>
-          {isPositive ? '+' : ''}{growthPct}%
-        </span>
-      </CardHeader>
-      <div className="h-80">
+    <div className="border border-border bg-s1 p-4">
+      <div className="mb-3 flex items-center justify-between">
+        <h3 className="font-data text-[10px] font-bold uppercase tracking-widest text-amber">
+          CUMULATIVE SPONSOR GROWTH <span className="text-dim font-normal">{'// TOTAL OVER TIME'}</span>
+        </h3>
+        <div className="flex items-center gap-3">
+          <span className="font-data text-sm font-bold text-text">{lastVal.toLocaleString()}</span>
+          <span className={`font-data text-xs font-bold ${isPositive ? 'text-green' : 'text-red'}`}>
+            {isPositive ? '+' : ''}{growthPct}%
+          </span>
+        </div>
+      </div>
+      <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
             <defs>
               <linearGradient id="growthGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#58a6ff" stopOpacity={0.3} />
-                <stop offset="100%" stopColor="#58a6ff" stopOpacity={0} />
+                <stop offset="0%" stopColor="#f5a623" stopOpacity={0.3} />
+                <stop offset="100%" stopColor="#f5a623" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis dataKey="date" tick={{ fontSize: 11, fill: '#8b949e' }} stroke="#30363d" />
-            <YAxis tick={{ fontSize: 11, fill: '#8b949e' }} stroke="#30363d" />
+            <CartesianGrid stroke="#1a1a1a" strokeDasharray="none" />
+            <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#888888', fontFamily: 'JetBrains Mono' }} stroke="#1a1a1a" />
+            <YAxis tick={{ fontSize: 10, fill: '#888888', fontFamily: 'JetBrains Mono' }} stroke="#1a1a1a" />
             <Tooltip
-              contentStyle={{ backgroundColor: '#0d1117', border: '1px solid #30363d', borderRadius: 8, color: '#e6edf3' }}
-              labelStyle={{ color: '#8b949e' }}
+              contentStyle={{ backgroundColor: '#0a0a0a', border: '1px solid #f5a623', borderRadius: 0, fontFamily: 'JetBrains Mono', fontSize: 11, color: '#e0e0e0' }}
+              labelStyle={{ color: '#f5a623' }}
             />
             <Area
               type="monotone"
               dataKey="value"
-              stroke="#58a6ff"
+              stroke="#f5a623"
               fill="url(#growthGrad)"
               strokeWidth={2}
               name="Sponsors"
@@ -58,6 +62,6 @@ export function GrowthTrend({ data, loading }: GrowthTrendProps) {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-    </Card>
+    </div>
   );
 }

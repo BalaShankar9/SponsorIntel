@@ -18,49 +18,20 @@ interface UKMapProps {
   rating: string;
 }
 
-// Pre-computed UK city coordinates
-const cityCoords: Record<string, { lat: number; lng: number }> = {
-  London: { lat: 51.5074, lng: -0.1278 },
-  Manchester: { lat: 53.4808, lng: -2.2426 },
-  Birmingham: { lat: 52.4862, lng: -1.8904 },
-  Leeds: { lat: 53.8008, lng: -1.5491 },
-  Glasgow: { lat: 55.8642, lng: -4.2518 },
-  Edinburgh: { lat: 55.9533, lng: -3.1883 },
-  Liverpool: { lat: 53.4084, lng: -2.9916 },
-  Bristol: { lat: 51.4545, lng: -2.5879 },
-  Sheffield: { lat: 53.3811, lng: -1.4701 },
-  Newcastle: { lat: 54.9783, lng: -1.6178 },
-  Nottingham: { lat: 52.9548, lng: -1.1581 },
-  Leicester: { lat: 52.6369, lng: -1.1398 },
-  Coventry: { lat: 52.4068, lng: -1.5197 },
-  Cardiff: { lat: 51.4816, lng: -3.1791 },
-  Belfast: { lat: 54.5973, lng: -5.9301 },
-  Reading: { lat: 51.4543, lng: -0.9781 },
-  Cambridge: { lat: 52.2053, lng: 0.1218 },
-  Oxford: { lat: 51.752, lng: -1.2577 },
-  Southampton: { lat: 50.9097, lng: -1.4044 },
-  Brighton: { lat: 50.8225, lng: -0.1372 },
-  Aberdeen: { lat: 57.1497, lng: -2.0943 },
-  Dundee: { lat: 56.462, lng: -2.9707 },
-  Swansea: { lat: 51.6214, lng: -3.9436 },
-  Plymouth: { lat: 50.3755, lng: -4.1427 },
-  York: { lat: 53.9591, lng: -1.0815 },
-};
-
 function getCircleColor(layer: string, count: number, avgScore?: number): string {
   if (layer === 'score' && avgScore !== undefined) {
-    if (avgScore >= 80) return '#3fb950';
-    if (avgScore >= 60) return '#39d2c0';
-    if (avgScore >= 40) return '#d29922';
-    return '#f85149';
+    if (avgScore >= 80) return '#00d4aa';
+    if (avgScore >= 60) return '#00e5ff';
+    if (avgScore >= 40) return '#f5a623';
+    return '#ff4757';
   }
-  if (layer === 'b-rated') return '#f85149';
-  if (layer === 'new') return '#3fb950';
+  if (layer === 'b-rated') return '#ff4757';
+  if (layer === 'new') return '#00d4aa';
   // density
-  if (count > 200) return '#f778ba';
-  if (count > 50) return '#bc8cff';
-  if (count > 10) return '#1f6feb';
-  return '#58a6ff';
+  if (count > 200) return '#ff4757';
+  if (count > 50) return '#a78bfa';
+  if (count > 10) return '#f5a623';
+  return '#4a9eff';
 }
 
 function getRadius(count: number): number {
@@ -71,7 +42,6 @@ function getRadius(count: number): number {
   return 8;
 }
 
-// Sample data for visualization
 const sampleCityData: CityData[] = [
   { city: 'London', count: 12450, lat: 51.5074, lng: -0.1278, avgScore: 72 },
   { city: 'Manchester', count: 2180, lat: 53.4808, lng: -2.2426, avgScore: 68 },
@@ -103,8 +73,6 @@ export function UKMap({ layer, industry, rating }: UKMapProps) {
   const [cities, setCities] = useState<CityData[]>(sampleCityData);
 
   useEffect(() => {
-    // In production, fetch from API with filters
-    // api.get(`/api/v1/analytics/geographic?layer=${layer}&industry=${industry}&rating=${rating}`)
     setCities(sampleCityData);
   }, [layer, industry, rating]);
 
@@ -112,7 +80,7 @@ export function UKMap({ layer, industry, rating }: UKMapProps) {
     <MapContainer
       center={[54.5, -3.5]}
       zoom={6}
-      style={{ height: '100%', width: '100%', borderRadius: '0.5rem' }}
+      style={{ height: '100%', width: '100%', background: '#0a0a0a' }}
       scrollWheelZoom={true}
     >
       <TileLayer
@@ -125,18 +93,16 @@ export function UKMap({ layer, industry, rating }: UKMapProps) {
           center={[city.lat, city.lng]}
           radius={getRadius(city.count)}
           fillColor={getCircleColor(layer, city.count, city.avgScore)}
-          fillOpacity={0.6}
+          fillOpacity={0.5}
           color={getCircleColor(layer, city.count, city.avgScore)}
           weight={1}
-          opacity={0.8}
+          opacity={0.7}
         >
           <Popup>
-            <div className="text-sm">
-              <p className="font-bold text-gray-900">{city.city}</p>
-              <p className="text-gray-700">Sponsors: {city.count.toLocaleString()}</p>
-              {city.avgScore && (
-                <p className="text-gray-700">Avg Score: {city.avgScore}</p>
-              )}
+            <div style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: '#0a0a0a', lineHeight: 1.5 }}>
+              <p style={{ fontWeight: 700 }}>{city.city}</p>
+              <p>Sponsors: {city.count.toLocaleString()}</p>
+              {city.avgScore && <p>Avg Score: {city.avgScore}</p>}
             </div>
           </Popup>
         </CircleMarker>

@@ -17,7 +17,7 @@ from sqlalchemy.dialects.postgresql import ARRAY, JSONB, UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.database import Base
-from app.models.enums import ContractType, JobSource, Seniority
+from app.models.enums import ContractType, Seniority
 
 
 class JobDedupCluster(Base):
@@ -73,8 +73,8 @@ class Job(Base):
     salary_text_raw: Mapped[Optional[str]] = mapped_column(String(200))
 
     # Classification
-    contract_type: Mapped[Optional[ContractType]] = mapped_column(Enum(ContractType))
-    seniority: Mapped[Optional[Seniority]] = mapped_column(Enum(Seniority))
+    contract_type: Mapped[Optional[str]] = mapped_column(String(50))
+    seniority: Mapped[Optional[str]] = mapped_column(String(50))
 
     # Description
     description_full: Mapped[Optional[str]] = mapped_column(Text)

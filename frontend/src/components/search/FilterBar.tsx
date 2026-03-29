@@ -1,10 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, RotateCcw, Search, Save } from 'lucide-react';
-import { Input } from '@/components/ui/Input';
-import { Select } from '@/components/ui/Select';
-import { Button } from '@/components/ui/Button';
+import { RotateCcw, SlidersHorizontal } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import type { FilterOptions } from '@/types';
 
 export interface SearchFilters {
@@ -13,12 +10,8 @@ export interface SearchFilters {
   county: string;
   rating: string;
   route: string;
-  industry: string;
-  score_min: number;
-  score_max: number;
-  has_jobs: boolean;
+  sponsor_type: string;
   active_only: boolean;
-  on_shortage_list: boolean;
 }
 
 const defaultFilters: SearchFilters = {
@@ -27,12 +20,8 @@ const defaultFilters: SearchFilters = {
   county: '',
   rating: '',
   route: '',
-  industry: '',
-  score_min: 0,
-  score_max: 100,
-  has_jobs: false,
+  sponsor_type: '',
   active_only: true,
-  on_shortage_list: false,
 };
 
 interface FilterBarProps {
@@ -40,148 +29,135 @@ interface FilterBarProps {
   onFiltersChange: (filters: SearchFilters) => void;
   onSearch: () => void;
   filterOptions: FilterOptions | null;
+  activeCount?: number;
 }
 
-export function FilterBar({ filters, onFiltersChange, onSearch, filterOptions }: FilterBarProps) {
-  const [expanded, setExpanded] = useState(true);
+function TerminalSelect({
+  value,
+  onChange,
+  options,
+  placeholder,
+  active,
+}: {
+  value: string;
+  onChange: (val: string) => void;
+  options: Array<{ value: string; label: string }>;
+  placeholder: string;
+  active?: boolean;
+}) {
+  return (
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className={cn(
+        'h-7 border bg-s1 px-2 font-data text-[11px] text-text focus:border-amber focus:outline-none appearance-none cursor-pointer transition-colors',
+        active ? 'border-amber/60 text-amber' : 'border-border hover:border-amber/30'
+      )}
+      style={{ minWidth: '120px' }}
+    >
+      <option value="">{placeholder}</option>
+      {options.map((opt) => (
+        <option key={opt.value} value={opt.value}>
+          {opt.label}
+        </option>
+      ))}
+    </select>
+  );
+}
 
+function FilterChip({
+  label,
+  active,
+  onClick,
+}: {
+  label: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        'h-7 border px-2.5 font-data text-[10px] uppercase tracking-wider transition-colors',
+        active
+          ? 'border-amber/60 bg-amber/10 text-amber'
+          : 'border-border bg-s1 text-dim hover:border-amber/30 hover:text-text'
+      )}
+    >
+      {label}
+    </button>
+  );
+}
+
+export function FilterBar({ filters, onFiltersChange, onSearch, filterOptions, activeCount = 0 }: FilterBarProps) {
   const update = (partial: Partial<SearchFilters>) => {
     onFiltersChange({ ...filters, ...partial });
   };
 
   const reset = () => {
-    onFiltersChange(defaultFilters);
+    onFiltersChange({ ...defaultFilters, q: filters.q });
   };
 
   return (
-    <div className="rounded-lg border border-border bg-s1">
-      {/* Toggle header */}
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center justify-between px-4 py-3"
-      >
-        <span className="text-sm font-semibold text-text">Filters</span>
-        {expanded ? <ChevronUp size={16} className="text-dim" /> : <ChevronDown size={16} className="text-dim" />}
-      </button>
+    <div className="flex items-center gap-1.5 flex-wrap">
+      <div className="flex items-center gap-1.5 mr-1">
+        <SlidersHorizontal size={12} className="text-dim" />
+        <span className="font-data text-[10px] text-dim uppercase tracking-wider">Filters</span>
+        {activeCount > 0 && (
+          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-amber/20 font-data text-[9px] font-bold text-amber">
+            {activeCount}
+          </span>
+        )}
+      </div>
 
-      {expanded && (
-        <div className="border-t border-border px-4 py-3">
-          {/* Row 1: text + dropdowns */}
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-            <Input
-              label="Company Name"
-              placeholder="Search..."
-              value={filters.q}
-              onChange={(e) => update({ q: e.target.value })}
-            />
-            <Select
-              label="City"
-              placeholder="All Cities"
-              value={filters.city}
-              onChange={(e) => update({ city: e.target.value })}
-              options={(filterOptions?.cities || []).map((c) => ({ value: c, label: c }))}
-            />
-            <Select
-              label="County"
-              placeholder="All Counties"
-              value={filters.county}
-              onChange={(e) => update({ county: e.target.value })}
-              options={(filterOptions?.counties || []).map((c) => ({ value: c, label: c }))}
-            />
-            <Select
-              label="Rating"
-              placeholder="All Ratings"
-              value={filters.rating}
-              onChange={(e) => update({ rating: e.target.value })}
-              options={[
-                { value: 'A', label: 'A-Rated' },
-                { value: 'B', label: 'B-Rated' },
-              ]}
-            />
-            <Select
-              label="Route"
-              placeholder="All Routes"
-              value={filters.route}
-              onChange={(e) => update({ route: e.target.value })}
-              options={(filterOptions?.routes || []).map((r) => ({ value: r, label: r }))}
-            />
-            <Select
-              label="Industry"
-              placeholder="All Industries"
-              value={filters.industry}
-              onChange={(e) => update({ industry: e.target.value })}
-              options={(filterOptions?.industries || []).map((i) => ({ value: i, label: i }))}
-            />
-          </div>
+      <TerminalSelect
+        value={filters.city}
+        onChange={(val) => update({ city: val })}
+        options={(filterOptions?.cities || []).map((c) => ({ value: c, label: c }))}
+        placeholder="All Cities"
+        active={!!filters.city}
+      />
+      <TerminalSelect
+        value={filters.rating}
+        onChange={(val) => update({ rating: val })}
+        options={[
+          { value: 'A', label: 'A-Rated' },
+          { value: 'B', label: 'B-Rated' },
+        ]}
+        placeholder="All Ratings"
+        active={!!filters.rating}
+      />
+      <TerminalSelect
+        value={filters.sponsor_type}
+        onChange={(val) => update({ sponsor_type: val })}
+        options={(filterOptions?.sponsor_types || []).map((t) => ({ value: t, label: t }))}
+        placeholder="All Types"
+        active={!!filters.sponsor_type}
+      />
+      <TerminalSelect
+        value={filters.route}
+        onChange={(val) => update({ route: val })}
+        options={(filterOptions?.routes || []).map((r) => ({ value: r, label: r }))}
+        placeholder="All Routes"
+        active={!!filters.route}
+      />
 
-          {/* Row 2: score range + checkboxes */}
-          <div className="mt-3 flex flex-wrap items-end gap-4">
-            <div className="flex items-end gap-2">
-              <Input
-                label="Score Min"
-                type="number"
-                min={0}
-                max={100}
-                value={filters.score_min}
-                onChange={(e) => update({ score_min: Number(e.target.value) })}
-                className="w-20"
-              />
-              <span className="pb-2 text-dim">-</span>
-              <Input
-                label="Score Max"
-                type="number"
-                min={0}
-                max={100}
-                value={filters.score_max}
-                onChange={(e) => update({ score_max: Number(e.target.value) })}
-                className="w-20"
-              />
-            </div>
+      <div className="h-4 w-px bg-border mx-1" />
 
-            <label className="flex items-center gap-2 pb-2 text-sm text-dim">
-              <input
-                type="checkbox"
-                checked={filters.has_jobs}
-                onChange={(e) => update({ has_jobs: e.target.checked })}
-                className="rounded border-border bg-s2"
-              />
-              Has Jobs
-            </label>
-            <label className="flex items-center gap-2 pb-2 text-sm text-dim">
-              <input
-                type="checkbox"
-                checked={filters.active_only}
-                onChange={(e) => update({ active_only: e.target.checked })}
-                className="rounded border-border bg-s2"
-              />
-              Active Only
-            </label>
-            <label className="flex items-center gap-2 pb-2 text-sm text-dim">
-              <input
-                type="checkbox"
-                checked={filters.on_shortage_list}
-                onChange={(e) => update({ on_shortage_list: e.target.checked })}
-                className="rounded border-border bg-s2"
-              />
-              On Shortage List
-            </label>
+      <FilterChip
+        label="Active Only"
+        active={filters.active_only}
+        onClick={() => update({ active_only: !filters.active_only })}
+      />
 
-            <div className="ml-auto flex gap-2 pb-1">
-              <Button variant="ghost" size="sm" onClick={reset}>
-                <RotateCcw size={14} />
-                Reset
-              </Button>
-              <Button variant="ghost" size="sm">
-                <Save size={14} />
-                Save
-              </Button>
-              <Button variant="primary" size="sm" onClick={onSearch}>
-                <Search size={14} />
-                Search
-              </Button>
-            </div>
-          </div>
-        </div>
+      {activeCount > 0 && (
+        <button
+          onClick={reset}
+          className="flex h-7 items-center gap-1 border border-border bg-s1 px-2 font-data text-[10px] text-dim hover:border-red/50 hover:text-red transition-colors"
+        >
+          <RotateCcw size={10} />
+          CLEAR
+        </button>
       )}
     </div>
   );

@@ -1,56 +1,132 @@
 'use client';
 
-import { Card, CardHeader, CardTitle } from '@/components/ui/Card';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
+import { useEffect, useState } from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
+import { supabase } from '@/lib/supabase';
 
 interface SalaryTrendsProps {
   loading: boolean;
 }
 
-const sampleData = [
-  { sector: 'Technology', current: 62000, previous: 58000 },
-  { sector: 'Finance', current: 58000, previous: 55000 },
-  { sector: 'Healthcare', current: 45000, previous: 43000 },
-  { sector: 'Education', current: 38000, previous: 37000 },
-  { sector: 'Hospitality', current: 32000, previous: 30000 },
-  { sector: 'Construction', current: 42000, previous: 40000 },
-  { sector: 'Retail', current: 30000, previous: 29000 },
-  { sector: 'Manufacturing', current: 40000, previous: 38000 },
-];
+interface RatingData {
+  name: string;
+  value: number;
+  color: string;
+}
 
-export function SalaryTrends({ loading }: SalaryTrendsProps) {
-  if (loading) {
+export function SalaryTrends({ loading: parentLoading }: SalaryTrendsProps) {
+  const [data, setData] = useState<RatingData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({ avgScore: 0, highScore: 0, lowScore: 0 });
+
+  useEffect(() => {
+    async function fetch() {
+      // Get score distribution
+      const { data: scores } = await supabase
+        .from('sponsor_scores')
+        .select('overall_score')
+        .not('overall_score', 'is', null)
+        .limit(10000);
+
+      if (scores && scores.length > 0) {
+        const brackets = { 'Excellent (80-100)': 0, 'Good (60-79)': 0, 'Fair (40-59)': 0, 'Low (0-39)': 0 };
+        let total = 0, high = 0, low = 100;
+
+        scores.forEach((s) => {
+          const sc = s.overall_score as number;
+          total += sc;
+          if (sc > high) high = sc;
+          if (sc < low) low = sc;
+          if (sc >= 80) brackets['Excellent (80-100)']++;
+          else if (sc >= 60) brackets['Good (60-79)']++;
+          else if (sc >= 40) brackets['Fair (40-59)']++;
+          else brackets['Low (0-39)']++;
+        });
+
+        const colors = ['#00d4aa', '#f5a623', '#4a9eff', '#ff4757'];
+        setData(Object.entries(brackets).map(([name, value], i) => ({ name, value, color: colors[i] })));
+        setStats({ avgScore: Math.round(total / scores.length), highScore: high, lowScore: low });
+      }
+      setLoading(false);
+    }
+    fetch();
+  }, []);
+
+  if (loading || parentLoading) {
     return (
-      <Card>
-        <div className="h-80 animate-pulse rounded bg-s2" />
-      </Card>
+      <div className="border border-border bg-s1 p-4">
+        <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">SCORE DISTRIBUTION</h3>
+        <div className="h-64 animate-pulse bg-s2/30 rounded" />
+      </div>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <div className="border border-border bg-s1 p-4">
+        <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">SCORE DISTRIBUTION</h3>
+        <div className="flex h-64 items-center justify-center text-dim font-data text-xs">COMPUTING SCORES...</div>
+      </div>
     );
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Median Salary by Sector</CardTitle>
-        <div className="flex items-center gap-4 text-xs">
-          <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-full bg-accent" /> Current</span>
-          <span className="flex items-center gap-1"><span className="inline-block h-2 w-2 rounded-full bg-s4" /> Previous</span>
+    <div className="border border-border bg-s1 p-4">
+      <h3 className="mb-3 font-data text-[10px] font-bold uppercase tracking-widest text-amber">
+        SCORE DISTRIBUTION <span className="text-dim font-normal">{'// SPONSOR QUALITY BREAKDOWN'}</span>
+      </h3>
+      <div className="flex items-center gap-6">
+        <div className="h-52 w-52 shrink-0">
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                data={data}
+                cx="50%"
+                cy="50%"
+                innerRadius={45}
+                outerRadius={75}
+                paddingAngle={2}
+                dataKey="value"
+              >
+                {data.map((entry, i) => (
+                  <Cell key={i} fill={entry.color} stroke="#0a0a0a" strokeWidth={2} />
+                ))}
+              </Pie>
+              <Tooltip
+                contentStyle={{ backgroundColor: '#0a0a0a', border: '1px solid #f5a623', borderRadius: 0, fontFamily: 'JetBrains Mono', fontSize: 11, color: '#e0e0e0' }}
+                formatter={(value: number) => [value.toLocaleString(), 'Sponsors']}
+              />
+            </PieChart>
+          </ResponsiveContainer>
         </div>
-      </CardHeader>
-      <div className="h-80">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={sampleData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-            <XAxis dataKey="sector" tick={{ fontSize: 10, fill: '#8b949e' }} stroke="#30363d" angle={-20} textAnchor="end" height={60} />
-            <YAxis tick={{ fontSize: 11, fill: '#8b949e' }} stroke="#30363d" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
-            <Tooltip
-              contentStyle={{ backgroundColor: '#0d1117', border: '1px solid #30363d', borderRadius: 8, color: '#e6edf3' }}
-              formatter={(value: number) => [`£${value.toLocaleString()}`, '']}
-            />
-            <Bar dataKey="previous" fill="#30363d" radius={[2, 2, 0, 0]} name="Previous" />
-            <Bar dataKey="current" fill="#58a6ff" radius={[2, 2, 0, 0]} name="Current" />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="flex-1 space-y-3">
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-3">
+            <div className="text-center">
+              <div className="font-data text-2xl font-bold text-amber">{stats.avgScore}</div>
+              <div className="font-data text-[9px] text-dim uppercase">AVG SCORE</div>
+            </div>
+            <div className="text-center">
+              <div className="font-data text-2xl font-bold text-green">{stats.highScore}</div>
+              <div className="font-data text-[9px] text-dim uppercase">HIGHEST</div>
+            </div>
+            <div className="text-center">
+              <div className="font-data text-2xl font-bold text-red">{stats.lowScore}</div>
+              <div className="font-data text-[9px] text-dim uppercase">LOWEST</div>
+            </div>
+          </div>
+          {/* Legend */}
+          <div className="space-y-1.5">
+            {data.map((d) => (
+              <div key={d.name} className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full shrink-0" style={{ backgroundColor: d.color }} />
+                <span className="font-data text-[11px] text-text flex-1">{d.name}</span>
+                <span className="font-data text-[11px] text-amber font-bold">{d.value.toLocaleString()}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </Card>
+    </div>
   );
 }
