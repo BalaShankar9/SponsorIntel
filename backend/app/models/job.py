@@ -45,7 +45,7 @@ class Job(Base):
     )
 
     # Source
-    source: Mapped[JobSource] = mapped_column(Enum(JobSource), nullable=False, index=True)
+    source: Mapped[str] = mapped_column(String(50), nullable=False, index=True)
     source_job_id: Mapped[Optional[str]] = mapped_column(String(200))
 
     # Title
@@ -90,6 +90,9 @@ class Job(Base):
     skills_extracted: Mapped[Optional[list]] = mapped_column(ARRAY(String))
     experience_years_min: Mapped[Optional[int]] = mapped_column(Integer)
     experience_years_max: Mapped[Optional[int]] = mapped_column(Integer)
+
+    # Source URL
+    source_url: Mapped[Optional[str]] = mapped_column(String(2000))
 
     # Dates
     posted_date: Mapped[Optional[datetime]] = mapped_column(DateTime, index=True)
