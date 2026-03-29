@@ -479,7 +479,7 @@ async def get_sponsor_jobs(
             "salary_min": j.salary_min,
             "salary_max": j.salary_max,
             "salary_text": j.salary_text_raw,
-            "source": j.source.value,
+            "source": str(j.source),
             "sponsorship_likelihood": j.sponsorship_likelihood,
             "posted_date": j.posted_date.isoformat() if j.posted_date else None,
         }

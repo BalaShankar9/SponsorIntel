@@ -97,7 +97,7 @@ async def deduplicate_jobs(
                 cluster = JobDedupCluster(
                     id=uuid.uuid4(),
                     source_count=2,
-                    sources=[str(job.source.value), str(matched_job.source.value)],
+                    sources=[str(job.source), str(matched_job.source)],
                     first_seen_at=min(job.first_seen_at, matched_job.first_seen_at),
                 )
                 # Set canonical to the most complete job

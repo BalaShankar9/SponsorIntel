@@ -117,7 +117,7 @@ async def list_jobs(
             salary_min=j.salary_min,
             salary_max=j.salary_max,
             salary_text_raw=j.salary_text_raw,
-            source=j.source.value,
+            source=str(j.source),
             sponsorship_likelihood=j.sponsorship_likelihood,
             posted_date=j.posted_date,
             is_on_shortage_list=j.is_on_shortage_list or False,
@@ -177,7 +177,7 @@ async def job_stats(db: AsyncSession = Depends(get_db)):
             .group_by(Job.source)
         )
     ).all()
-    by_source = {str(row[0].value): row[1] for row in source_rows}
+    by_source = {str(row[0]): row[1] for row in source_rows}
 
     # By city
     city_rows = (
