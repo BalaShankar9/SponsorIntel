@@ -31,6 +31,7 @@ celery_app = Celery(
         "app.tasks.intel_tasks",
         "app.tasks.army_tasks",
         "app.tasks.data_tasks",
+        "app.tasks.sponsor_scanner",
     ],
 )
 

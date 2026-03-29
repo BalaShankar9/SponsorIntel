@@ -27,6 +27,20 @@ celery_app.conf.beat_schedule = {
         "task": "data.process_notifications",
         "schedule": crontab(minute="*/5"),  # Every 5 minutes
     },
+    # ===================================================================
+    # Sponsor Scanner — actively search for jobs from ALL sponsors
+    # Scans 50 sponsors per run, 6 times per day = 300 sponsors/day
+    # Full 140K cycle every ~467 days. Increase batch_size to accelerate.
+    # ===================================================================
+    "scan-sponsors-for-jobs": {
+        "task": "data.scan_sponsors_for_jobs",
+        "schedule": crontab(hour="*/4", minute="45"),  # Every 4 hours
+        "kwargs": {"batch_size": 50},
+    },
+    "quality-cleanup": {
+        "task": "data.quality_cleanup",
+        "schedule": crontab(hour="3", minute="0"),  # Daily at 3 AM
+    },
 
     # ===================================================================
     # Tier 1: Zero-auth free API scrapers (every 2 hours, staggered)
