@@ -112,6 +112,15 @@ const TOOLS: Tool[] = [
     tier: 'pro',
     route: '#',
   },
+  {
+    name: 'UK Life Guide',
+    slug: 'life-guide',
+    icon: '🇬🇧',
+    description: 'Complete survival guide — banking, housing, transport, NHS, insurance, groceries, part-time work, legal help, post offices. Everything an immigrant needs to know.',
+    status: 'live',
+    tier: 'free',
+    route: '/tools/life-guide',
+  },
 ];
 
 export default function RAWPage() {
