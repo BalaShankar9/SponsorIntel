@@ -21,6 +21,12 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   Bot,
+  Users,
+  Scale,
+  GraduationCap,
+  BarChart3,
+  BookOpen,
+  FlaskConical,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { supabase } from '@/lib/supabase';
@@ -116,8 +122,19 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       ],
     },
     {
+      title: 'ECOSYSTEM',
+      items: [
+        { href: '/consultancies', label: 'Consultancies', icon: <Users size={15} /> },
+        { href: '/solicitors', label: 'Solicitors', icon: <Scale size={15} /> },
+        { href: '/universities', label: 'Universities', icon: <GraduationCap size={15} /> },
+        { href: '/demographics', label: 'Demographics', icon: <BarChart3 size={15} /> },
+        { href: '/tools/life-guide', label: 'Life Guide', icon: <BookOpen size={15} /> },
+      ],
+    },
+    {
       title: 'SYSTEM',
       items: [
+        { href: '/raw', label: 'RAW Tools', icon: <FlaskConical size={15} /> },
         { href: '/admin', label: 'Engine', icon: <Settings size={15} />, shortcut: 'G E', badge: 'count', badgeValue: agentCount },
       ],
       adminOnly: true,
