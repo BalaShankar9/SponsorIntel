@@ -1,6 +1,12 @@
+![SponsorIntel — Make sponsor data easier to investigate.](.github/showcase/banner.svg)
+
+**[Project guide](docs/SHOWCASE.md)** · [Source](https://github.com/BalaShankar9/SponsorIntel) · [Issues](https://github.com/BalaShankar9/SponsorIntel/issues) · [Bala's work](https://github.com/BalaShankar9)
+
+> **Current stage:** Application code · source freshness validation pending. [See the evidence and next release checklist](docs/SHOWCASE.md).
+
 # SponsorIntel
 
-The Bloomberg Terminal of UK Sponsorship Intelligence. Monitor 140,000+ UK sponsor licence holders with comprehensive data from 30+ sources.
+A UK sponsor research platform combining organisation records, job information, search and background data collection. Coverage and freshness depend on the imported sources and deployment.
 
 ## Quick Start
 
@@ -68,7 +74,7 @@ make shell           # Open Python shell
 
 ### Features
 
-- 140K+ UK sponsor companies monitored
+- Sponsor company search over imported datasets
 - 17 website scrapers (pure scraping, no API keys)
 - 7-factor company scoring engine
 - Real-time change detection and alerts

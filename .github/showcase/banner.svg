@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="330" viewBox="0 0 1200 330" role="img" aria-labelledby="title desc">
+<title id="title">SponsorIntel</title><desc id="desc">Make sponsor data easier to investigate.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#101B2B"/><stop offset="1" stop-color="#080D16"/></linearGradient><pattern id="grid" width="38" height="38" patternUnits="userSpaceOnUse"><path d="M 38 0 L 0 0 0 38" fill="none" stroke="#273446" stroke-width="0.5"/></pattern></defs>
+<rect width="1200" height="330" rx="20" fill="url(#bg)"/><rect x="810" width="390" height="330" fill="url(#grid)"/>
+<path d="M880 225 L945 125 L1010 180 L1080 70 L1150 110" fill="none" stroke="#95B6FF" stroke-width="2" opacity="0.55"/>
+<circle cx="945" cy="125" r="6" fill="#95B6FF"/><circle cx="1080" cy="70" r="6" fill="#95B6FF"/>
+<rect x="48" y="44" width="32" height="4" rx="2" fill="#95B6FF"/>
+<text x="48" y="82" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" letter-spacing="3" fill="#95B6FF">SPONSOR INTELLIGENCE</text>
+<text x="45" y="161" font-family="Arial,Helvetica,sans-serif" font-size="54" font-weight="700" letter-spacing="-1.5" fill="#F3F6FC">SponsorIntel</text>
+<text x="48" y="205" font-family="Arial,Helvetica,sans-serif" font-size="23" fill="#B8C5D8">Make sponsor data easier to investigate.</text>
+<line x1="48" y1="254" x2="1152" y2="254" stroke="#293648"/>
+<text x="48" y="292" font-family="Arial,Helvetica,sans-serif" font-size="13" letter-spacing="2" fill="#A1B0C4">BALA SANKAR BOLLINENI</text>
+<text x="1152" y="292" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="13" fill="#95B6FF">CODE · CONTEXT · CRAFT</text></svg>
