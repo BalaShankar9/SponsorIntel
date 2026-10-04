@@ -35,7 +35,7 @@ Worker version: `47562aa9-5568-4c56-b8dd-5f41a9888655`. Application version: `2.
 | Domain delegation | Namecheap values saved, public NS responses show the assigned Cloudflare servers, Cloudflare reports active |
 | Domain HTTPS | Validated HTTPS 200 on both apex and www; HTTP redirects to HTTPS; TLS minimum 1.2 |
 | Scheduled refreshes | Register daily at 07:15 UTC; vacancies at 00:30/06:30/12:30/18:30 UTC; future production executions not yet witnessed |
-| GitHub-hosted checks | Earlier run could not start because GitHub reported an account billing lock; local checks passed |
+| GitHub-hosted checks | Release runs 37201702608 and 37201700416 could not start because GitHub reported an account billing lock; both have no executed steps. Local checks passed; GitGuardian passed on the release code commit |
 
 Tests found and corrected an advert-negation classification issue, signup recovery-code modal state loss, save conflicts and a mobile navigation label. The evidence review uses quoted deterministic matches; it does not convert role requirements into invented candidate experience or a visa eligibility score.
 
