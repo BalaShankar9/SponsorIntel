@@ -146,6 +146,7 @@ export function download(
   setTimeout(() => URL.revokeObjectURL(url), 3000);
 }
 function readLocal(key: string) {
+  if (typeof window === "undefined") return null;
   try {
     const v = JSON.parse(localStorage.getItem(key) || "null");
     return v?.data?.version === 2 ? v : null;

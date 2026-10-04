@@ -47,6 +47,8 @@ import "./styles.css";
 import { CareerProvider } from "./career-data";
 import { CareerWorkspace, CareerAccountLink } from "./career";
 import { ImmigrationUpdates } from "./updates";
+import { GuideLinks, ResourceArticle, AboutPage, articles } from "./resources";
+import { publicPages, updateMetadata } from "./seo";
 type Employer = {
   id: string;
   name: string;
@@ -108,6 +110,7 @@ async function api<T>(path: string): Promise<T> {
   return d;
 }
 function stored<T>(key: string, fallback: T): T {
+  if (typeof window === "undefined") return fallback;
   try {
     const x = JSON.parse(localStorage.getItem(key) || "null");
     if (x === null) return fallback;
@@ -206,45 +209,14 @@ function Monogram({
     </span>
   );
 }
-function App() {
+export function App({ initialPath }: { initialPath?: string } = {}) {
+  const initialSearch = typeof location === "undefined" ? "" : location.search;
   const [view, setView] = useState(
-    location.pathname.replace(/^\//, "") || "discover",
+    (
+      initialPath || (typeof location === "undefined" ? "/" : location.pathname)
+    ).replace(/^\//, "") || "discover",
   );
-  useEffect(() => {
-    const titles: Record<string, string> = {
-      discover: "Sponsor Intel — Your next chapter in the UK",
-      jobs: "UK vacancies · Sponsor Intel",
-      guides: "Your UK career guide · Sponsor Intel",
-      updates: "UK immigration updates, explained · Sponsor Intel",
-      applications: "Your applications · Sponsor Intel",
-      "career-profile": "Your CV profile · Sponsor Intel",
-      studio: "Application studio · Sponsor Intel",
-      account: "Your account · Sponsor Intel",
-      saved: "Saved employers · Sponsor Intel",
-      settings: "Preferences · Sponsor Intel",
-      "employer-notes": "Employer notes · Sponsor Intel",
-    };
-    document.title = titles[view] || "Page not found · Sponsor Intel";
-    const canonical =
-      "https://sponsorintel.london" + (view === "discover" ? "/" : "/" + view);
-    document
-      .querySelector('link[rel="canonical"]')
-      ?.setAttribute("href", canonical);
-    document
-      .querySelector('meta[property="og:url"]')
-      ?.setAttribute("content", canonical);
-    document
-      .querySelector('meta[property="og:title"]')
-      ?.setAttribute("content", document.title);
-    document
-      .querySelector('meta[name="robots"]')
-      ?.setAttribute(
-        "content",
-        ["discover", "jobs", "guides", "updates"].includes(view)
-          ? "index,follow"
-          : "noindex,nofollow",
-      );
-  }, [view]);
+  useEffect(() => updateMetadata(view), [view]);
   const [meta, setMeta] = useState<Meta | null>(null);
   const [featured, setFeatured] = useState<Employer[]>([]);
   const [cities, setCities] = useState<{ city: string; count: number }[]>([]);
@@ -268,21 +240,21 @@ function App() {
       checks: Array.isArray(p?.checks) ? p.checks : [],
     };
   });
-  const [q, setQ] = useState(
-    new URLSearchParams(location.search).get("q") || "",
-  );
+  const [q, setQ] = useState(new URLSearchParams(initialSearch).get("q") || "");
   const [city, setCity] = useState(
-    new URLSearchParams(location.search).get("city") || "",
+    new URLSearchParams(initialSearch).get("city") || "",
   );
   const [route, setRoute] = useState(
-    new URLSearchParams(location.search).get("route") || "",
+    new URLSearchParams(initialSearch).get("route") || "",
   );
   const [rating, setRating] = useState("");
   const [sort, setSort] = useState("az");
   const [page, setPage] = useState(1);
   const [searchKey, setSearchKey] = useState(0);
   const [explored, setExplored] = useState(
-    !!location.search && !new URLSearchParams(location.search).has("employer"),
+    ["q", "city", "route"].some((key) =>
+      new URLSearchParams(initialSearch).has(key),
+    ),
   );
   const [results, setResults] = useState<Employer[]>([]);
   const [total, setTotal] = useState(0);
@@ -363,7 +335,7 @@ function App() {
         setQ(p.get("q") || "");
         setCity(p.get("city") || "");
         setRoute(p.get("route") || "");
-        setExplored(!!location.search);
+        setExplored(["q", "city", "route"].some((key) => p.has(key)));
         setSearchKey((x) => x + 1);
       }
     };
@@ -814,7 +786,12 @@ function App() {
           <div className="breadcrumbs">
             Your workspace <ChevronRight size={13} />
             <strong>
-              {nav.find((n) => n.id === view)?.label || "Settings"}
+              {nav.find((n) => n.id === view)?.label ||
+                (view.startsWith("guides/")
+                  ? "Career guide"
+                  : view === "about"
+                    ? "About & sources"
+                    : "Settings")}
             </strong>
           </div>
           <div className="topbar-right">
@@ -882,11 +859,12 @@ function App() {
                   <h1>
                     {profile.name
                       ? `Your next chapter, ${profile.name}.`
-                      : "Your next chapter starts here."}
+                      : "Find your next UK sponsor."}
                   </h1>
                   <p>
-                    Find UK sponsors. Make a shortlist. Move forward with
-                    confidence.
+                    Search licensed employers, explore vacancies and keep your
+                    next steps together. Start with three employers you’d like
+                    to work for.
                   </p>
                 </div>
                 <span className="date-chip">
@@ -1588,6 +1566,10 @@ function App() {
             "account",
           ].includes(view) && <CareerWorkspace mode={view} go={go} />}
           {view === "updates" && <ImmigrationUpdates />}
+          {view === "about" && <AboutPage />}
+          {articles.some((a) => view === "guides/" + a.slug) && (
+            <ResourceArticle view={view} />
+          )}
           {view === "guides" && (
             <>
               <PageTitle
@@ -1595,6 +1577,7 @@ function App() {
                 title="Find your feet. Then your future."
                 description="A practical starting point for international students, graduates and people building their career in the UK."
               />
+              <GuideLinks />
               <section className="guide-intro">
                 <div>
                   <span className="tag green">YOUR STARTING POINT</span>
@@ -1754,23 +1737,23 @@ function App() {
             "career-profile",
             "account",
             "employer-notes",
-          ].includes(view) && (
-            <Empty
-              icon={Compass}
-              title="Let’s get you back on track."
-              description="That page isn’t part of this workspace."
-              action={() => go("discover")}
-              label="Back to discover"
-            />
-          )}
+          ].includes(view) &&
+            !publicPages[view] && (
+              <Empty
+                icon={Compass}
+                title="Let’s get you back on track."
+                description="That page isn’t part of this workspace."
+                action={() => go("discover")}
+                label="Back to discover"
+              />
+            )}
+          {view === "discover" && <GuideLinks />}
           <footer>
             <span>
               <Leaf size={14} /> A clearer path to your next chapter.
             </span>
             <div>
-              <button onClick={() => setModal("sources")}>
-                Data & sources
-              </button>
+              <a href="/about">About & sources</a>
               <button onClick={() => setModal("privacy")}>Privacy & use</button>
               <button onClick={() => setModal("feedback")}>
                 Leave feedback
@@ -2312,10 +2295,11 @@ function Empty({
     </section>
   );
 }
-createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <CareerProvider>
-      <App />
-    </CareerProvider>
-  </React.StrictMode>,
-);
+if (typeof document !== "undefined")
+  createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+      <CareerProvider>
+        <App />
+      </CareerProvider>
+    </React.StrictMode>,
+  );

@@ -151,7 +151,7 @@ export function CareerAccountLink({ go }: { go: Go }) {
 }
 export function CareerWorkspace({ mode, go }: { mode: string; go: Go }) {
   const c = useCareer();
-  if (!c.ready && mode !== "account")
+  if (!c.ready && !["account", "jobs"].includes(mode))
     return (
       <div className="career career-panel">
         <h2>Opening your workspace…</h2>
@@ -200,7 +200,9 @@ export function CareerWorkspace({ mode, go }: { mode: string; go: Go }) {
 
 function Vacancies({ go }: { go: Go }) {
   const c = useCareer();
-  const params = new URLSearchParams(location.search);
+  const params = new URLSearchParams(
+    typeof location === "undefined" ? "" : location.search,
+  );
   const [q, setQ] = useState(params.get("q") || ""),
     [city, setCity] = useState(params.get("location") || ""),
     [sponsorship, setSponsorship] = useState(params.get("sponsorship") || ""),
@@ -264,6 +266,7 @@ function Vacancies({ go }: { go: Go }) {
     }
   }
   function prepare(j: Job) {
+    if (!c.ready) return;
     const id = c.saveJob(j);
     if (id) {
       setDetail(null);
@@ -271,6 +274,7 @@ function Vacancies({ go }: { go: Go }) {
     }
   }
   function saveSearch() {
+    if (!c.ready) return;
     if (c.data.searches.length >= 10) {
       setMessage(
         "You have ten saved searches. Remove one in My applications to add another.",
@@ -389,7 +393,11 @@ function Vacancies({ go }: { go: Go }) {
         <button className="secondary-button" onClick={() => search()}>
           Apply filters
         </button>
-        <button className="text-button" onClick={saveSearch}>
+        <button
+          className="text-button"
+          onClick={saveSearch}
+          disabled={!c.ready}
+        >
           <Bookmark size={15} />
           Save search
         </button>
@@ -654,7 +662,11 @@ function Vacancies({ go }: { go: Go }) {
             </a>
           </div>
           <div className="career-actions">
-            <button className="primary-button" onClick={() => prepare(detail)}>
+            <button
+              className="primary-button"
+              onClick={() => prepare(detail)}
+              disabled={!c.ready}
+            >
               <Sparkles size={17} />
               Prepare application
             </button>
@@ -675,7 +687,11 @@ function Vacancies({ go }: { go: Go }) {
             <ArrowRight size={14} />
           </a>
           <div className="job-description">{detail.description}</div>
-          <button className="primary-button" onClick={() => prepare(detail)}>
+          <button
+            className="primary-button"
+            onClick={() => prepare(detail)}
+            disabled={!c.ready}
+          >
             Save role & prepare
             <ArrowRight size={16} />
           </button>

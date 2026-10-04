@@ -13,6 +13,7 @@ import { jobsAPI, refreshJobs } from "./jobs.js";
 import { immigrationAPI, refreshImmigration } from "./immigration.js";
 import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
 import { careerAPI } from "./career.js";
+import { pageResponse } from "./pages.js";
 const FEATURED = [
   "Google (UK) Limited",
   "Deloitte LLP",
@@ -391,7 +392,7 @@ export default {
       const url = new URL(request.url);
       let response = url.pathname.startsWith("/api/")
         ? await api(request, env)
-        : await env.ASSETS.fetch(request);
+        : await pageResponse(request, env);
       response = new Response(
         request.method === "HEAD" ? null : response.body,
         response,

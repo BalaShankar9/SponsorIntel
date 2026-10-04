@@ -95,7 +95,10 @@ const notices: Record<string, string> = {
 
 export function ImmigrationUpdates() {
   const [topic, setTopic] = useState(() => {
-    const fromURL = new URLSearchParams(location.search).get("topic");
+    if (typeof window === "undefined") return "all";
+    const fromURL = new URLSearchParams(
+      typeof location === "undefined" ? "" : location.search,
+    ).get("topic");
     if (fromURL && topics[fromURL]) return fromURL;
     try {
       const saved = localStorage.getItem("si.updates.topic");
