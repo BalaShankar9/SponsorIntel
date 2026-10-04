@@ -2,7 +2,7 @@
 
 **[Project guide](docs/SHOWCASE.md)** · [Source](https://github.com/BalaShankar9/SponsorIntel) · [Issues](https://github.com/BalaShankar9/SponsorIntel/issues) · [Bala's work](https://github.com/BalaShankar9)
 
-> **Current stage: Cloudflare open beta.** [Try Sponsor Intel](https://sponsorintel.balashankarbollineni4.workers.dev). The redesigned app lives in [`cloudflare/`](cloudflare/README.md). The intended domain, **sponsorintel.london**, is awaiting registrar and Cloudflare dashboard access. [Release evidence and migration status](docs/CLOUDFLARE_LAUNCH.md).
+> **Current stage: Sponsor Intel × Hire Stack 2.0 beta.** [Open Sponsor Intel](https://sponsorintel.london) · [Cloudflare fallback](https://sponsorintel.balashankarbollineni4.workers.dev). The integrated app lives in [`cloudflare/`](cloudflare/README.md). [Current release evidence](cloudflare/RELEASE-2.0.md).
 
 # SponsorIntel
 
@@ -12,10 +12,12 @@ A welcoming workspace for international students and people building a career in
 
 - Responsive React interface with employer search, city/route/rating filters and employer profiles.
 - 127,902 employer/location records from the 2 October 2026 register at initial release; live counts and dates appear in the app.
-- Shortlists, comparisons, application stages, notes, follow-up dates and JSON/CSV exports.
-- Device-local workspaces with backup import; no account or cross-device sync yet.
-- Current Work Hub and NHS job searches, official UK guidance, and private feedback.
-- Cloudflare Worker, static assets and D1 database with a scheduled register refresh.
+- UK vacancies from configured public employer boards, with source dates and exact sponsorship wording.
+- Hire Stack application workspace: master CV, evidence checks, editable CV and cover-letter drafts, interview preparation, stages and follow-up dates.
+- PDF/DOCX/TXT/JSON Resume import; Word/PDF/text/calendar exports and workspace backups.
+- Optional private accounts with cross-device career workspace sync and single-use recovery codes; guest mode remains available.
+- Official UK guidance and private feedback.
+- Cloudflare Worker, Workers AI, static assets and D1 with scheduled register and vacancy refreshes.
 
 See [`cloudflare/README.md`](cloudflare/README.md) for setup, maintenance and rollback. The older services below remain in the repository for reference and staged migration. Their accounts, alerts, billing, scrapers and scoring are **not** connected to the beta.
 

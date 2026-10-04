@@ -2,8 +2,15 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "sponsorintel",
   "main": "worker/index.js",
+  "workers_dev": true,
+  "routes": [
+    { "pattern": "sponsorintel.london", "custom_domain": true },
+    { "pattern": "www.sponsorintel.london", "custom_domain": true },
+  ],
   "account_id": "b7d80aea8a0938fe6d92342fa1ac7ea6",
   "compatibility_date": "2026-10-04",
+  "compatibility_flags": ["nodejs_compat"],
+  "ai": { "binding": "AI", "remote": true },
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
@@ -18,11 +25,16 @@
       "migrations_dir": "migrations",
     },
   ],
-  "triggers": { "crons": ["15 7 * * *"] },
+  "triggers": { "crons": ["15 7 * * *", "30 */6 * * *"] },
   "observability": {
     "enabled": true,
     "head_sampling_rate": 0.1,
     "traces": { "enabled": true, "head_sampling_rate": 0.01 },
   },
-  "vars": { "APP_VERSION": "1.0.0" },
+  "vars": {
+    "APP_VERSION": "2.0.0",
+    "APP_ORIGIN": "https://sponsorintel.london",
+    "AI_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",
+    "AI_DAILY_LIMIT": "40",
+  },
 }

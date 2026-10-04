@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /account
+Disallow: /career-profile
+Disallow: /studio
+Disallow: /applications
+Disallow: /employer-notes
+Disallow: /saved
+Disallow: /settings
+
+Sitemap: https://sponsorintel.london/sitemap.xml

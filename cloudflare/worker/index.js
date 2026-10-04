@@ -9,6 +9,9 @@ import {
   csvSource,
   querySpec,
 } from "./data.js";
+import { jobsAPI, refreshJobs } from "./jobs.js";
+import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
+import { careerAPI } from "./career.js";
 const FEATURED = [
   "Google (UK) Limited",
   "Deloitte LLP",
@@ -61,6 +64,28 @@ async function throttle(request, env) {
 async function api(request, env) {
   const url = new URL(request.url);
   const path = url.pathname;
+  if (path.startsWith("/api/auth/")) return authAPI(request, env);
+  if (path === "/api/recover" && request.method === "POST")
+    return recoverAccount(request, env);
+  if (path.startsWith("/api/career/")) return careerAPI(request, env);
+  if (
+    path.startsWith("/api/jobs") &&
+    (request.method === "GET" || request.method === "HEAD")
+  )
+    return jobsAPI(url, env);
+  if (path === "/api/admin/refresh-jobs" && request.method === "POST") {
+    const supplied =
+      request.headers.get("Authorization")?.replace(/^Bearer /, "") || "";
+    if (
+      !env.ADMIN_TOKEN ||
+      !(await crypto.subtle.timingSafeEqual(
+        new TextEncoder().encode(await digest(supplied)),
+        new TextEncoder().encode(await digest(env.ADMIN_TOKEN)),
+      ))
+    )
+      return reply({ error: "Not authorised" }, 401);
+    return reply({ sources: await refreshJobs(env) });
+  }
   if (path === "/api/feedback" && request.method === "POST") {
     if (request.headers.get("Origin") !== url.origin)
       return json({ error: "Please send feedback from Sponsor Intel." }, 403);
@@ -367,7 +392,13 @@ export default {
       console.error(
         JSON.stringify({
           event: "request_failed",
-          message: error instanceof Error ? error.message : "Unknown error",
+          message: /^\/api\/(auth|career|recover)(\/|$)/.test(
+            new URL(request.url).pathname,
+          )
+            ? "Private endpoint failed"
+            : error instanceof Error
+              ? error.message
+              : "Unknown error",
         }),
       );
       return json(
@@ -377,6 +408,14 @@ export default {
     }
   },
   async scheduled(event, env, ctx) {
+    if (event.cron === "30 */6 * * *") {
+      const result = await refreshJobs(env);
+      await env.DB.prepare("DELETE FROM ai_usage WHERE expires<?")
+        .bind(Date.now())
+        .run();
+      console.log(JSON.stringify({ event: "jobs_refresh", sources: result }));
+      return;
+    }
     try {
       const result = await refresh(env);
       console.log(JSON.stringify({ event: "register_refresh", ...result }));

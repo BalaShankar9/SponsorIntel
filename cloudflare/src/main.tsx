@@ -43,6 +43,8 @@ import {
   FileText,
 } from "lucide-react";
 import "./styles.css";
+import { CareerProvider } from "./career-data";
+import { CareerWorkspace, CareerAccountLink } from "./career";
 type Employer = {
   id: string;
   name: string;
@@ -206,6 +208,28 @@ function App() {
   const [view, setView] = useState(
     location.pathname.replace(/^\//, "") || "discover",
   );
+  useEffect(() => {
+    const titles: Record<string, string> = {
+      discover: "Sponsor Intel — Your next chapter in the UK",
+      jobs: "UK vacancies · Sponsor Intel",
+      guides: "Your UK career guide · Sponsor Intel",
+      applications: "Your applications · Sponsor Intel",
+      "career-profile": "Your CV profile · Sponsor Intel",
+      studio: "Application studio · Sponsor Intel",
+      account: "Your account · Sponsor Intel",
+      saved: "Saved employers · Sponsor Intel",
+      settings: "Preferences · Sponsor Intel",
+      "employer-notes": "Employer notes · Sponsor Intel",
+    };
+    document.title = titles[view] || "Page not found · Sponsor Intel";
+    const canonical = "https://sponsorintel.london" + (view === "discover" ? "/" : "/" + view);
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", canonical);
+    document.querySelector('meta[property="og:url"]')?.setAttribute("content", canonical);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", document.title);
+    document.querySelector('meta[name="robots"]')?.setAttribute(
+      "content", ["discover", "jobs", "guides"].includes(view) ? "index,follow" : "noindex,nofollow",
+    );
+  }, [view]);
   const [meta, setMeta] = useState<Meta | null>(null);
   const [featured, setFeatured] = useState<Employer[]>([]);
   const [cities, setCities] = useState<{ city: string; count: number }[]>([]);
@@ -351,10 +375,6 @@ function App() {
     setMenu(false);
     setModal(null);
     history.pushState({}, "", next === "discover" ? "/" : "/" + next);
-    document.title =
-      next === "discover"
-        ? "Sponsor Intel — Your next chapter in the UK"
-        : next[0].toUpperCase() + next.slice(1) + " · Sponsor Intel";
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function search(e?: React.FormEvent) {
@@ -692,10 +712,12 @@ function App() {
     );
   }
   const nav = [
+    { id: "jobs", label: "Find a role", icon: Search },
     { id: "discover", label: "Discover sponsors", icon: Compass },
     { id: "saved", label: "My shortlist", icon: Bookmark, badge: saved.length },
     { id: "applications", label: "My applications", icon: BriefcaseBusiness },
-    { id: "jobs", label: "Find a role", icon: Search },
+    { id: "studio", label: "Application studio", icon: Sparkles },
+    { id: "career-profile", label: "My CV & profile", icon: FileText },
     { id: "guides", label: "UK career guides", icon: BookOpen },
   ];
   const stale =
@@ -751,26 +773,7 @@ function App() {
             <Settings2 size={18} />
             Workspace settings
           </button>
-          <div className="local-badge">
-            <span className="avatar">
-              {profile.name ? (
-                profile.name[0].toUpperCase()
-              ) : (
-                <Leaf size={16} />
-              )}
-            </span>
-            <div>
-              <strong>{profile.name || "Your personal space"}</strong>
-              <small>Saved on this browser</small>
-            </div>
-            <button
-              className="icon-button"
-              onClick={() => setModal("profile")}
-              aria-label="Edit workspace profile"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
+          <CareerAccountLink go={go} />
         </div>
       </aside>
       {menu && (
@@ -805,7 +808,7 @@ function App() {
               onClick={() => setModal("sources")}
             >
               <ShieldCheck size={16} />
-              Built on official data
+              Sources & checks
             </button>
             <button
               className="profile-button"
@@ -839,6 +842,18 @@ function App() {
               <a href={SOURCE} {...external}>
                 Open source <ArrowUpRight size={14} />
               </a>
+            </div>
+          )}
+          {view === "discover" && (
+            <div className="career-launch">
+              <span>
+                <Sparkles size={18} />
+                <strong>Your next step is here.</strong> Explore real roles and
+                prepare with Hire Stack.
+              </span>
+              <button onClick={() => go("jobs")}>
+                Find my next role <ArrowRight size={16} />
+              </button>
             </div>
           )}
           {view === "discover" && (
@@ -1373,7 +1388,7 @@ function App() {
               )}
             </>
           )}
-          {view === "applications" && (
+          {view === "employer-notes" && (
             <>
               <PageTitle
                 eyebrow="SMALL STEPS. REAL PROGRESS."
@@ -1549,126 +1564,13 @@ function App() {
               </p>
             </>
           )}
-          {view === "jobs" && (
-            <>
-              <PageTitle
-                eyebrow="FROM EMPLOYER TO OPPORTUNITY"
-                title="Find a role that moves you forward."
-                description="Search current vacancies at their source, then check the employer against the sponsor register."
-              />
-              <section className="job-search-panel">
-                <div>
-                  <span className="tag green">
-                    <ExternalLink size={13} />
-                    LIVE AT THE SOURCE
-                  </span>
-                  <h2>What would you love to do?</h2>
-                  <p>
-                    Start with your role and city. The results open on the job
-                    board.
-                  </p>
-                </div>
-                <div className="job-fields">
-                  <label>
-                    Job title or keyword
-                    <input
-                      value={jobRole}
-                      onChange={(e) => setJobRole(e.target.value)}
-                      placeholder="e.g. data analyst, nurse, graduate"
-                      maxLength={100}
-                    />
-                  </label>
-                  <label>
-                    Location
-                    <input
-                      value={jobCity}
-                      onChange={(e) => setJobCity(e.target.value)}
-                      placeholder="e.g. London"
-                      maxLength={100}
-                    />
-                  </label>
-                </div>
-                <div className="job-source-grid">
-                  <a
-                    href={
-                      "https://www.jobs.service.gov.uk/jobs/search?keywords=" +
-                      encodeURIComponent(jobRole) +
-                      "&location=" +
-                      encodeURIComponent(jobCity)
-                    }
-                    {...external}
-                  >
-                    <span className="source-logo">
-                      GOV<span>.UK</span>
-                    </span>
-                    <h3>Work Hub · Find a job</h3>
-                    <p>
-                      Search the UK government’s job service across a wide range
-                      of roles.
-                    </p>
-                    <strong>
-                      Search vacancies <ArrowUpRight size={18} />
-                    </strong>
-                  </a>
-                  <a
-                    href={
-                      "https://www.jobs.nhs.uk/candidate/search/results?keyword=" +
-                      encodeURIComponent(jobRole) +
-                      "&location=" +
-                      encodeURIComponent(jobCity)
-                    }
-                    {...external}
-                  >
-                    <span className="source-logo nhs-logo">NHS</span>
-                    <h3>NHS Jobs</h3>
-                    <p>
-                      Explore clinical, administrative, technology and support
-                      opportunities.
-                    </p>
-                    <strong>
-                      Search NHS jobs <ArrowUpRight size={18} />
-                    </strong>
-                  </a>
-                </div>
-              </section>
-              <div className="two-column">
-                <section className="info-card">
-                  <ShieldCheck size={26} />
-                  <h3>Check the role, not just the employer.</h3>
-                  <p>
-                    A licence does not mean every vacancy offers sponsorship.
-                    Read the advert and ask the recruiter to confirm the
-                    position before you apply.
-                  </p>
-                  <button
-                    className="text-button"
-                    onClick={() => go("discover")}
-                  >
-                    Check an employer <ArrowRight size={16} />
-                  </button>
-                </section>
-                <section className="info-card peach">
-                  <FileText size={26} />
-                  <h3>Keep your next step in one place.</h3>
-                  <p>
-                    Found a promising role? Save the employer and add the job
-                    link to your application notes.
-                  </p>
-                  <button
-                    className="text-button"
-                    onClick={() => go("applications")}
-                  >
-                    Open my tracker <ArrowRight size={16} />
-                  </button>
-                </section>
-              </div>
-              <p className="fine-print">
-                These are external job searches. Sponsor Intel does not claim
-                that the results offer sponsorship and does not republish
-                unverified vacancies.
-              </p>
-            </>
-          )}
+          {[
+            "jobs",
+            "applications",
+            "studio",
+            "career-profile",
+            "account",
+          ].includes(view) && <CareerWorkspace mode={view} go={go} />}
           {view === "guides" && (
             <>
               <PageTitle
@@ -1830,6 +1732,10 @@ function App() {
             "jobs",
             "guides",
             "settings",
+            "studio",
+            "career-profile",
+            "account",
+            "employer-notes",
           ].includes(view) && (
             <Empty
               icon={Compass}
@@ -1857,7 +1763,7 @@ function App() {
         </main>
       </div>
       <nav className="mobile-tabs" aria-label="Quick navigation">
-        {nav.slice(0, 3).map((n) => (
+        {nav.slice(0, 4).map((n) => (
           <button
             key={n.id}
             onClick={() => go(n.id)}
@@ -1865,21 +1771,16 @@ function App() {
           >
             <n.icon size={20} />
             <span>
-              {n.id === "discover"
-                ? "Discover"
-                : n.id === "saved"
-                  ? "Saved"
-                  : "Applications"}
+              {n.id === "jobs"
+                ? "Roles"
+                : n.id === "discover"
+                  ? "Sponsors"
+                  : n.id === "saved"
+                    ? "Saved"
+                    : "Applications"}
             </span>
           </button>
         ))}
-        <button
-          className={view === "guides" ? "active" : ""}
-          onClick={() => go("guides")}
-        >
-          <BookOpen size={20} />
-          <span>Guides</span>
-        </button>
       </nav>
       <dialog
         ref={dialog}
@@ -2220,32 +2121,48 @@ function App() {
               <h2>Your space, respected.</h2>
               <h3>What stays on your device</h3>
               <p>
-                Your name, saved employers, application notes, stages and
-                follow-up dates stay in your browser’s local storage. We don’t
-                upload them or sync them to an account. Anyone with access to
-                the same browser profile may be able to see them.
+                Your original employer shortlist and guest career workspace stay
+                in this browser. Signing in syncs your career profile, documents
+                and applications to your private account on Cloudflare. Anyone
+                using the same browser profile may see guest data. Signing out
+                clears the signed-in career cache from this device.
               </p>
               <h3>What is sent to the service</h3>
               <p>
                 Search terms and filters are sent to our Cloudflare-hosted
                 service to return results. Feedback is stored privately for
-                review. Avoid personal or sensitive details in either.
-                Infrastructure may process connection and request information
-                for security and reliability.
+                review. Avoid personal or sensitive details in either. CV files
+                are read in your browser. Extracted text is saved with your
+                career workspace. When you agree and press Prepare, your CV and
+                job description are sent to Cloudflare AI. Review generated
+                content before using it. Infrastructure may process connection
+                and request information for security and reliability.
               </p>
               <h3>External services</h3>
               <p>
-                Fonts are delivered by Google Fonts. External career and
-                guidance links open sites with their own privacy policies. We do
-                not include advertising trackers or behavioural analytics.
+                Fonts are delivered by Google Fonts; exported PDFs use bundled
+                Noto Sans.{" "}
+                <a
+                  href="/open-source-notices.txt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Open-source notices
+                </a>
+                . External career and guidance links open sites with their own
+                privacy policies. We do not include advertising trackers or
+                behavioural analytics.
               </p>
               <h3>Control your information</h3>
               <p>
                 Remove employers from your shortlist, export your workspace, or
                 clear this site’s browser data to remove local information.
-                Clearing browser data cannot be undone without a backup. For
-                feedback removal, send a request quoting its reference using the
-                feedback form.
+                Career accounts use email and password, with a recovery code;
+                email verification and reset emails are not currently enabled.
+                Use Account & backup to export your career workspace, or delete
+                your account and cloud career data. Clearing browser data cannot
+                be undone without a backup. For feedback removal, send a request
+                quoting its reference using the feedback form.
               </p>
               <h3>Using Sponsor Intel</h3>
               <p>
@@ -2379,6 +2296,8 @@ function Empty({
 }
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <App />
+    <CareerProvider>
+      <App />
+    </CareerProvider>
   </React.StrictMode>,
 );

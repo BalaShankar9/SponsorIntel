@@ -1,5 +1,7 @@
 # Cloudflare beta release — 4 October 2026
 
+> Historical first-release record. The app now includes Hire Stack tools, accounts, vacancy feeds and the custom-domain migration. See the [2.0 release evidence](../cloudflare/RELEASE-2.0.md) for current status; the observations below describe the earlier beta.
+
 ## Outcome
 
 [Sponsor Intel beta](https://sponsorintel.balashankarbollineni4.workers.dev) is live on the owner's Cloudflare account. The interface was redesigned for international students and migrants researching UK careers: warm cream, forest green and lime, readable cards, mobile navigation and an employer-to-shortlist-to-application journey.
