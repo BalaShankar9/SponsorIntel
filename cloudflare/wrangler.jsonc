@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "sponsorintel",
+  "main": "worker/index.js",
+  "account_id": "b7d80aea8a0938fe6d92342fa1ac7ea6",
+  "compatibility_date": "2026-10-04",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"],
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "sponsorintel-db",
+      "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "triggers": { "crons": ["15 7 * * *"] },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1,
+    "traces": { "enabled": true, "head_sampling_rate": 0.01 },
+  },
+  "vars": { "APP_VERSION": "1.0.0" },
+}

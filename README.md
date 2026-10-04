@@ -2,13 +2,24 @@
 
 **[Project guide](docs/SHOWCASE.md)** · [Source](https://github.com/BalaShankar9/SponsorIntel) · [Issues](https://github.com/BalaShankar9/SponsorIntel/issues) · [Bala's work](https://github.com/BalaShankar9)
 
-> **Current stage:** Application code · source freshness validation pending. [See the evidence and next release checklist](docs/SHOWCASE.md).
+> **Current stage: Cloudflare open beta.** [Try Sponsor Intel](https://sponsorintel.balashankarbollineni4.workers.dev). The redesigned app lives in [`cloudflare/`](cloudflare/README.md). The intended domain, **sponsorintel.london**, is awaiting registrar and Cloudflare dashboard access. [Release evidence and migration status](docs/CLOUDFLARE_LAUNCH.md).
 
 # SponsorIntel
 
-A UK sponsor research platform combining organisation records, job information, search and background data collection. Coverage and freshness depend on the imported sources and deployment.
+A welcoming workspace for international students and people building a career in the UK: discover licensed employers, compare a shortlist, and track applications. The Cloudflare beta uses a dated official GOV.UK register and clearly separates a sponsor licence from an advertised job offering sponsorship.
 
-## Quick Start
+## Current Cloudflare app
+
+- Responsive React interface with employer search, city/route/rating filters and employer profiles.
+- 127,902 employer/location records from the 2 October 2026 register at initial release; live counts and dates appear in the app.
+- Shortlists, comparisons, application stages, notes, follow-up dates and JSON/CSV exports.
+- Device-local workspaces with backup import; no account or cross-device sync yet.
+- Current Work Hub and NHS job searches, official UK guidance, and private feedback.
+- Cloudflare Worker, static assets and D1 database with a scheduled register refresh.
+
+See [`cloudflare/README.md`](cloudflare/README.md) for setup, maintenance and rollback. The older services below remain in the repository for reference and staged migration. Their accounts, alerts, billing, scrapers and scoring are **not** connected to the beta.
+
+## Legacy application quick start
 
 ### Prerequisites
 - Docker & Docker Compose

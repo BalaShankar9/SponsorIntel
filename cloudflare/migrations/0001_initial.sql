@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS sponsors (id TEXT NOT NULL, snapshot TEXT NOT NULL, name TEXT NOT NULL, city TEXT NOT NULL, county TEXT NOT NULL, ratings TEXT NOT NULL, routes TEXT NOT NULL, skilled INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(snapshot,id));
+CREATE INDEX IF NOT EXISTS sponsors_city ON sponsors(snapshot,city COLLATE NOCASE);
+CREATE INDEX IF NOT EXISTS sponsors_name ON sponsors(snapshot,name COLLATE NOCASE);
+CREATE INDEX IF NOT EXISTS sponsors_skilled ON sponsors(snapshot,skilled);
+CREATE TABLE IF NOT EXISTS metadata (key TEXT PRIMARY KEY,value TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS feedback (id TEXT PRIMARY KEY,kind TEXT NOT NULL,message TEXT NOT NULL,created_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS rate_limits (key TEXT PRIMARY KEY,count INTEGER NOT NULL,expires INTEGER NOT NULL);

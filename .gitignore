@@ -56,3 +56,9 @@ Desktop.ini
 *.log
 celerybeat-schedule
 celerybeat-schedule.db
+
+# Cloudflare local data and secrets
+.wrangler/
+.dev.vars
+cloudflare/data/
+cloudflare/worker-configuration.d.ts
