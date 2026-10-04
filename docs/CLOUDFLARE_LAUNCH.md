@@ -36,6 +36,7 @@ Initial source: [GOV.UK sponsor register](https://www.gov.uk/government/publicat
 | Skilled Worker records | 122,495 |
 | Data/parser/security unit tests | 7 passed |
 | TypeScript and production build | Passed |
+| GitHub-hosted checks | Did not start: account locked due to a billing issue |
 | Public API/route acceptance checks | 19 passed |
 | Local feedback origin, storage and rate limit | Passed |
 | Full scheduled-import path in local Worker | 127,902 records, snapshot activated |
@@ -46,7 +47,7 @@ Initial source: [GOV.UK sponsor register](https://www.gov.uk/government/publicat
 | Future production scheduled refresh | Registered, first future run not yet observed |
 | Custom domain HTTPS | Pending dashboard/registrar access |
 
-The CI workflow validates the new Cloudflare package separately from the historical backend/frontend jobs. Legacy failures are not resolved or concealed by the beta checks. Check the pull request's actual workflow status before reporting remote CI as passed.
+The CI workflow validates the new Cloudflare package separately from the historical backend/frontend jobs. Legacy failures are not resolved or concealed by the beta checks. [Run 37190313241](https://github.com/BalaShankar9/SponsorIntel/actions/runs/37190313241) had no executed steps: GitHub reported that the account is locked due to a billing issue. Local and public deployment checks passed, but GitHub-hosted CI must be rerun after the owner resolves that account restriction.
 
 ## Launch completion and next work
 
