@@ -41,10 +41,12 @@ import {
   Sparkles,
   Target,
   FileText,
+  Radio,
 } from "lucide-react";
 import "./styles.css";
 import { CareerProvider } from "./career-data";
 import { CareerWorkspace, CareerAccountLink } from "./career";
+import { ImmigrationUpdates } from "./updates";
 type Employer = {
   id: string;
   name: string;
@@ -213,6 +215,7 @@ function App() {
       discover: "Sponsor Intel — Your next chapter in the UK",
       jobs: "UK vacancies · Sponsor Intel",
       guides: "Your UK career guide · Sponsor Intel",
+      updates: "UK immigration updates, explained · Sponsor Intel",
       applications: "Your applications · Sponsor Intel",
       "career-profile": "Your CV profile · Sponsor Intel",
       studio: "Application studio · Sponsor Intel",
@@ -222,13 +225,25 @@ function App() {
       "employer-notes": "Employer notes · Sponsor Intel",
     };
     document.title = titles[view] || "Page not found · Sponsor Intel";
-    const canonical = "https://sponsorintel.london" + (view === "discover" ? "/" : "/" + view);
-    document.querySelector('link[rel="canonical"]')?.setAttribute("href", canonical);
-    document.querySelector('meta[property="og:url"]')?.setAttribute("content", canonical);
-    document.querySelector('meta[property="og:title"]')?.setAttribute("content", document.title);
-    document.querySelector('meta[name="robots"]')?.setAttribute(
-      "content", ["discover", "jobs", "guides"].includes(view) ? "index,follow" : "noindex,nofollow",
-    );
+    const canonical =
+      "https://sponsorintel.london" + (view === "discover" ? "/" : "/" + view);
+    document
+      .querySelector('link[rel="canonical"]')
+      ?.setAttribute("href", canonical);
+    document
+      .querySelector('meta[property="og:url"]')
+      ?.setAttribute("content", canonical);
+    document
+      .querySelector('meta[property="og:title"]')
+      ?.setAttribute("content", document.title);
+    document
+      .querySelector('meta[name="robots"]')
+      ?.setAttribute(
+        "content",
+        ["discover", "jobs", "guides", "updates"].includes(view)
+          ? "index,follow"
+          : "noindex,nofollow",
+      );
   }, [view]);
   const [meta, setMeta] = useState<Meta | null>(null);
   const [featured, setFeatured] = useState<Employer[]>([]);
@@ -718,6 +733,7 @@ function App() {
     { id: "applications", label: "My applications", icon: BriefcaseBusiness },
     { id: "studio", label: "Application studio", icon: Sparkles },
     { id: "career-profile", label: "My CV & profile", icon: FileText },
+    { id: "updates", label: "Immigration updates", icon: Radio },
     { id: "guides", label: "UK career guides", icon: BookOpen },
   ];
   const stale =
@@ -1571,6 +1587,7 @@ function App() {
             "career-profile",
             "account",
           ].includes(view) && <CareerWorkspace mode={view} go={go} />}
+          {view === "updates" && <ImmigrationUpdates />}
           {view === "guides" && (
             <>
               <PageTitle
@@ -1731,6 +1748,7 @@ function App() {
             "applications",
             "jobs",
             "guides",
+            "updates",
             "settings",
             "studio",
             "career-profile",

@@ -53,6 +53,10 @@ export type Job = {
   first_seen: string;
   level: string;
   active?: number;
+  salary_excerpt?: string;
+  employment_type?: string;
+  workplace?: string;
+  source_updated_at?: string;
 };
 export type SavedSearch = {
   id: string;

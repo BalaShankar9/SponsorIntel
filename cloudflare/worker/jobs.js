@@ -37,6 +37,27 @@ export const BOARDS = [
     board: "stripe",
     careers: "https://stripe.com/jobs",
   },
+  {
+    id: "figma",
+    company: "Figma",
+    provider: "greenhouse",
+    board: "figma",
+    careers: "https://www.figma.com/careers/",
+  },
+  {
+    id: "octopus-energy",
+    company: "Octopus Energy",
+    provider: "lever",
+    board: "octoenergy",
+    careers: "https://octopus.energy/careers/",
+  },
+  {
+    id: "funding-circle",
+    company: "Funding Circle",
+    provider: "ashby",
+    board: "fundingcircle",
+    careers: "https://www.fundingcircle.com/uk/careers/",
+  },
 ];
 
 export function plainText(value) {
@@ -51,6 +72,25 @@ export function plainText(value) {
     .replace(/&amp;/gi, "&")
     .replace(/&quot;/gi, '"')
     .replace(/&#39;|&apos;/gi, "'")
+    .replace(
+      /&(lsquo|rsquo|ldquo|rdquo|ndash|mdash|bull|pound|euro|hellip);/gi,
+      (_, key) =>
+        ({
+          lsquo: "‘",
+          rsquo: "’",
+          ldquo: "“",
+          rdquo: "”",
+          ndash: "–",
+          mdash: "—",
+          bull: "•",
+          pound: "£",
+          euro: "€",
+          hellip: "…",
+        })[key.toLowerCase()],
+    )
+    .replace(/&#x([0-9a-f]+);/gi, (_, n) =>
+      parseInt(n, 16) < 0x110000 ? String.fromCodePoint(parseInt(n, 16)) : "",
+    )
     .replace(/&#(\d+);/g, (_, n) =>
       Number(n) < 0x110000 ? String.fromCodePoint(Number(n)) : "",
     )
@@ -119,9 +159,10 @@ export function sponsorshipEvidence(text) {
   return { status: "not_stated", quote: "" };
 }
 
-export function isUK(location) {
+export function isUK(location, country = "") {
+  if (country) return /^(GB|GBR|UK|United Kingdom)$/i.test(country.trim());
   if (
-    /united kingdom|\bUK\b|england|scotland|wales|northern ireland/i.test(
+    /united kingdom|\bUK\b|\(GB\)|england|scotland|wales|northern ireland/i.test(
       location,
     )
   )
@@ -138,55 +179,88 @@ export function isUK(location) {
 }
 
 export function careerLevel(title) {
-  if (/intern|graduate|junior|entry.level|apprentic/i.test(title))
+  if (
+    /\bintern(?:ship)?\b|\bgraduate\b|\bjunior\b|entry.level|early.career|apprentic|\btrainee\b/i.test(
+      title,
+    )
+  )
     return "early_career";
   if (/senior|staff|principal|director|head of|lead\b|manager/i.test(title))
     return "experienced";
   return "not_stated";
 }
 
-export async function fetchBoard(board) {
-  const url =
-    board.provider === "greenhouse"
-      ? `https://boards-api.greenhouse.io/v1/boards/${board.board}/jobs?content=true`
-      : board.provider === "lever"
-        ? `https://api.lever.co/v0/postings/${board.board}?mode=json`
-        : `https://api.ashbyhq.com/posting-api/job-board/${board.board}`;
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      "User-Agent": "SponsorIntel/2.0 (+https://sponsorintel.london)",
-    },
-    signal: AbortSignal.timeout(25000),
-    redirect: "manual",
-  });
-  if (!response.ok) throw new Error("Board unavailable: " + response.status);
-  const data = JSON.parse(await boundedText(response, 12_000_000));
-  const raw = board.provider === "lever" ? data : data.jobs;
+// Lever stores requirements and exclusions outside the introduction. Include
+// every published section before looking for sponsorship evidence.
+export function advertText(job, provider) {
+  const parts =
+    provider === "lever"
+      ? [
+          job.descriptionPlain || job.description,
+          ...(Array.isArray(job.lists) ? job.lists : []).map((x) =>
+            [x.text, x.content].filter(Boolean).join("\n"),
+          ),
+          job.additionalPlain || job.additional,
+        ]
+      : [job.content || job.descriptionPlain || job.descriptionHtml];
+  return parts.map(plainText).filter(Boolean).join("\n\n");
+}
+
+export function isTalentPool(title) {
+  return /talent (?:community|pool|network)|speculative|expression of interest|register (?:your )?interest|future opportunities|general application/i.test(
+    title,
+  );
+}
+
+export function salaryExcerpt(text) {
+  // A quote, not an estimated salary or a visa salary assessment.
+  return (
+    plainText(text)
+      .split(/\n|(?<=[.!?])\s+/)
+      .find(
+        (s) =>
+          /(?:£\s*\d[\d,.]*|\bGBP\s*\d[\d,.]*)/i.test(s) &&
+          /\b(?:salary|pay|compensation|annum|per (?:year|hour|month)|annual|base|OTE)\b/i.test(
+            s,
+          ),
+      )
+      ?.trim()
+      .slice(0, 400) || ""
+  );
+}
+
+export async function normaliseBoardJobs(raw, board) {
   if (!Array.isArray(raw) || raw.length > 5000)
     throw new Error("Invalid board response");
-  const result = [];
+  const result = [],
+    seen = new Set();
   for (const job of raw) {
     if (job.isListed === false) continue;
     const location =
       typeof job.location === "string"
         ? job.location
         : job.location?.name || job.categories?.location || "";
-    if (!isUK(location)) continue;
-    const description = plainText(
-      job.content ||
-        job.descriptionPlain ||
-        job.descriptionHtml ||
-        [job.descriptionPlain, ...(job.lists || []).map((x) => x.content)].join(
-          "\n",
-        ),
-    ).slice(0, 26000);
+    const country =
+      job.country || job.address?.postalAddress?.addressCountry || "";
+    if (!isUK(location, country)) continue;
+    const completeText = advertText(job, board.provider);
+    // Do not truncate away an eligibility exclusion and then label an advert.
+    if (completeText.length > 80000) continue;
+    const description = completeText;
     const apply_url = canonicalJobURL(
       job.absolute_url || job.hostedUrl || job.jobUrl || job.applyUrl,
     );
     const title = plainText(job.title || job.text).slice(0, 240);
-    if (!title || !description || !apply_url || (!job.id && !job.jobUrl))
+    if (
+      !title ||
+      !description ||
+      !apply_url ||
+      (!job.id && !job.jobUrl) ||
+      isTalentPool(title) ||
+      seen.has(apply_url)
+    )
       continue;
+    seen.add(apply_url);
     const evidence = sponsorshipEvidence(description);
     result.push({
       id: await idFor(board.id + ":" + (job.id || apply_url)),
@@ -204,9 +278,35 @@ export async function fetchBoard(board) {
       sponsorship: evidence.status,
       evidence: evidence.quote,
       level: careerLevel(title),
+      salary_excerpt: salaryExcerpt(description),
+      employment_type: plainText(
+        job.employmentType || job.categories?.commitment || "",
+      ).slice(0, 100),
+      workplace: plainText(job.workplaceType || "").slice(0, 60),
     });
   }
   return result;
+}
+
+export async function fetchBoard(board) {
+  const url =
+    board.provider === "greenhouse"
+      ? `https://boards-api.greenhouse.io/v1/boards/${board.board}/jobs?content=true`
+      : board.provider === "lever"
+        ? `https://api.lever.co/v0/postings/${board.board}?mode=json`
+        : `https://api.ashbyhq.com/posting-api/job-board/${board.board}`;
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      "User-Agent": "SponsorIntel/2.1 (+https://sponsorintel.london)",
+    },
+    signal: AbortSignal.timeout(25000),
+    redirect: "manual",
+  });
+  if (!response.ok) throw new Error("Board unavailable: " + response.status);
+  const data = JSON.parse(await boundedText(response, 12_000_000));
+  const raw = board.provider === "lever" ? data : data.jobs;
+  return normaliseBoardJobs(raw, board);
 }
 
 export async function refreshJobs(env) {
@@ -221,7 +321,7 @@ export async function refreshJobs(env) {
             .slice(i, i + 30)
             .map((j) =>
               env.DB.prepare(
-                `INSERT INTO jobs (id,board_id,company,title,location,description,apply_url,provider,source_updated_at,sponsorship,evidence,level,first_seen,last_seen,active) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,1) ON CONFLICT(id) DO UPDATE SET title=excluded.title,location=excluded.location,description=excluded.description,apply_url=excluded.apply_url,source_updated_at=excluded.source_updated_at,sponsorship=excluded.sponsorship,evidence=excluded.evidence,level=excluded.level,last_seen=excluded.last_seen,active=1`,
+                `INSERT INTO jobs (id,board_id,company,title,location,description,apply_url,provider,source_updated_at,sponsorship,evidence,level,first_seen,last_seen,salary_excerpt,employment_type,workplace,active) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1) ON CONFLICT(id) DO UPDATE SET title=excluded.title,location=excluded.location,description=excluded.description,apply_url=excluded.apply_url,source_updated_at=excluded.source_updated_at,sponsorship=excluded.sponsorship,evidence=excluded.evidence,level=excluded.level,last_seen=excluded.last_seen,salary_excerpt=excluded.salary_excerpt,employment_type=excluded.employment_type,workplace=excluded.workplace,active=1`,
               ).bind(
                 j.id,
                 j.board_id,
@@ -237,6 +337,9 @@ export async function refreshJobs(env) {
                 j.level,
                 now,
                 now,
+                j.salary_excerpt,
+                j.employment_type,
+                j.workplace,
               ),
             ),
         );
@@ -328,6 +431,7 @@ export async function jobsAPI(url, env) {
     values.push(p.get("sponsorship"));
   }
   if (p.get("level") === "early_career") where += " AND level='early_career'";
+  if (p.get("salary") === "listed") where += " AND salary_excerpt<>''";
   const page = Math.max(1, Math.min(500, parseInt(p.get("page") || "1") || 1));
   const count = await env.DB.prepare(
     "SELECT COUNT(*) total FROM jobs WHERE " + where,
@@ -335,7 +439,7 @@ export async function jobsAPI(url, env) {
     .bind(...values)
     .first();
   const items = await env.DB.prepare(
-    "SELECT id,company,title,location,apply_url,provider,sponsorship,evidence,level,first_seen,last_seen,source_updated_at FROM jobs WHERE " +
+    "SELECT id,company,title,location,apply_url,provider,sponsorship,evidence,level,first_seen,last_seen,source_updated_at,salary_excerpt,employment_type,workplace FROM jobs WHERE " +
       where +
       " ORDER BY first_seen DESC,title LIMIT 12 OFFSET ?",
   )

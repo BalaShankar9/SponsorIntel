@@ -1,12 +1,12 @@
 {
   "name": "sponsorintel-cloudflare",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5177",
     "build": "tsc -p tsconfig.json && vite build",
-    "preview": "wrangler dev --port 8788",
+    "preview": "wrangler dev --port 8788 --ip 127.0.0.1 --local-upstream 127.0.0.1:8788",
     "deploy": "npm run build && wrangler deploy",
     "check": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",

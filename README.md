@@ -2,7 +2,7 @@
 
 **[Project guide](docs/SHOWCASE.md)** · [Source](https://github.com/BalaShankar9/SponsorIntel) · [Issues](https://github.com/BalaShankar9/SponsorIntel/issues) · [Bala's work](https://github.com/BalaShankar9)
 
-> **Current stage: Sponsor Intel × Hire Stack 2.0 beta.** [Open Sponsor Intel](https://sponsorintel.london) · [Cloudflare fallback](https://sponsorintel.balashankarbollineni4.workers.dev). The integrated app lives in [`cloudflare/`](cloudflare/README.md). [Current release evidence](cloudflare/RELEASE-2.0.md).
+> **Current stage: Sponsor Intel × Hire Stack 2.1 beta.** [Open Sponsor Intel](https://sponsorintel.london) · [Immigration updates](https://sponsorintel.london/updates) · [Cloudflare fallback](https://sponsorintel.balashankarbollineni4.workers.dev). The integrated app lives in [`cloudflare/`](cloudflare/README.md). [Current release evidence](cloudflare/RELEASE-2.1.md) · [Build roadmap](docs/PRODUCT_ROADMAP.md).
 
 # SponsorIntel
 
@@ -16,7 +16,7 @@ A welcoming workspace for international students and people building a career in
 - Hire Stack application workspace: master CV, evidence checks, editable CV and cover-letter drafts, interview preparation, stages and follow-up dates.
 - PDF/DOCX/TXT/JSON Resume import; Word/PDF/text/calendar exports and workspace backups.
 - Optional private accounts with cross-device career workspace sync and single-use recovery codes; guest mode remains available.
-- Official UK guidance and private feedback.
+- Official immigration guidance checked every 15 minutes, source-version-pinned explanations, effective dates and a change history; private feedback.
 - Cloudflare Worker, Workers AI, static assets and D1 with scheduled register and vacancy refreshes.
 
 See [`cloudflare/README.md`](cloudflare/README.md) for setup, maintenance and rollback. The older services below remain in the repository for reference and staged migration. Their accounts, alerts, billing, scrapers and scoring are **not** connected to the beta.

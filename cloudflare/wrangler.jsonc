@@ -25,14 +25,14 @@
       "migrations_dir": "migrations",
     },
   ],
-  "triggers": { "crons": ["15 7 * * *", "30 */6 * * *"] },
+  "triggers": { "crons": ["15 7 * * *", "30 */6 * * *", "*/15 * * * *"] },
   "observability": {
     "enabled": true,
     "head_sampling_rate": 0.1,
     "traces": { "enabled": true, "head_sampling_rate": 0.01 },
   },
   "vars": {
-    "APP_VERSION": "2.0.0",
+    "APP_VERSION": "2.1.0",
     "APP_ORIGIN": "https://sponsorintel.london",
     "AI_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",
     "AI_DAILY_LIMIT": "40",

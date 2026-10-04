@@ -63,7 +63,7 @@ node scripts/smoke.mjs https://sponsorintel.balashankarbollineni4.workers.dev
 
 The `/jobs`, `/career-profile`, `/studio`, `/applications` and `/account` routes form a single Sponsor Intel × Hire Stack journey:
 
-- A focused collection of UK vacancies from public Greenhouse boards; the connector also supports explicitly configured Lever and Ashby boards.
+- A focused collection of UK vacancies from explicitly configured public Greenhouse, Lever and Ashby boards.
 - Role-specific applications, source quotes, saved searches, stages, private notes and seven-business-day follow-up suggestions.
 - Browser-local PDF/DOCX/TXT/JSON Resume extraction; master CV text, editable role-specific CVs, cover letters, evidence reviews and interview preparation.
 - Word, text-based PDF, plain-text and calendar exports; workspace JSON backup/merge.
@@ -84,6 +84,20 @@ Create an ignored `.dev.vars` with independently generated random values for `AU
 The jobs cron runs every six hours at minute 30 UTC. A server-only `ADMIN_TOKEN` also guards `POST /api/admin/refresh-jobs` for initial population and operator recovery. The token must never be put in a frontend file or public command transcript. Only configured public employer hosts are fetched; there is no arbitrary URL fetch endpoint. A failed board retains its previous successful data. Search excludes entries not seen for three days. An advert's presence is not a guarantee that applications remain open.
 
 Sponsorship labels are conservative text rules and always link back to the original advert. Negative immigration wording takes precedence; no licence-to-vacancy inference or eligibility claim is made. Review corrections against representative source text before updating the classifier.
+
+Release 2.1 reads Lever requirement lists and closing sections before classification, supports structured country data and `(GB)` locations, excludes recognisable talent-pool/speculative titles and duplicate canonical links, and fixes the `Internal Audit`/`intern` false match. Adverts over the size bound are skipped rather than partially classified. Pay excerpts are quotes, not estimated salaries or visa salary assessments. The initial expanded collection contains 359 roles from eight configured boards (seven with UK results); Figma, Octopus Energy and Funding Circle are new. This is not a whole-market job index. `/api/jobs?salary=listed` filters adverts with an extracted UK pay statement; the interface displays that evidence in the role detail.
+
+### Immigration updates (2.1)
+
+`/updates` explains selected Student, Graduate, Skilled Worker and Health & Care guidance and links recent Immigration Rules publications. `/api/updates` returns source health, source-reported edit/publication timestamps, explanations and a change log. The scheduled check is `*/15 * * * *`; the initial population/recovery endpoint is `POST /api/admin/refresh-updates`, protected by the same server-only admin token. Never put that token in a browser or committed script.
+
+The source list is explicit. The GOV.UK Content API returns entire multipart guides, so the importer selects the requested chapter. Rule collection bodies can be empty, so their linked publication list is tracked instead. At most the four most recently updated linked statements are watched; older records remain in history and are omitted from current source-health counts. Attachment URLs are retained as evidence, but attachment text is not parsed automatically.
+
+Five initial explanations are pinned to SHA-256 hashes of the official title, normalised chapter text and withdrawal state. Source changes, withdrawals, fetch errors or more than one hour without a successful check hide an explanation. To revise one, read the new official text and applicable implementation provisions, update the explanation and its hash together, then test and deploy. Do not blindly refresh hashes to make a stale explanation visible. Explanations are general information, not personalised immigration advice or a substitute for the full conditions.
+
+An initial import is a baseline, not breaking news. Only later text changes or newly tracked publications enter the change log. Detection time is distinct from GOV.UK's reported source date and from a confirmed effective date. Metadata alone is not trusted for change detection. Empty `withdrawn_notice` objects from GOV.UK mean the document is not withdrawn. A lease prevents overlapping runs; failed sources retain their last content, and the latest 20 snapshots per source are kept.
+
+`node scripts/quality-smoke.mjs <base-url>` verifies the new sources, freshness, pinned summaries, protected refresh endpoint, pay evidence, early-career labels, route headers and sitemap. It needs initial ingestion to have succeeded. `npm run preview` supplies an explicit local upstream so custom-domain routes do not rewrite development auth requests to an HTTP production origin. On a synced macOS folder, use a hydrated `.nosync` persistence location consistently for local D1 commands and preview if the default local SQLite files show I/O failures.
 
 AI defaults to eight preparations per account (or guest IP) per UTC day, twelve per IP and forty for the whole app. These are abuse/cost limits, not a guarantee of free model capacity. Cloudflare's account-wide quota also applies. If unavailable, existing drafts remain editable and exportable. No outside API key, paid provider subscription, email marketing or application automation is enabled.
 
@@ -109,7 +123,7 @@ Treat those messages as private. Do not commit feedback exports or put them in p
 
 On 4 October 2026, the existing Namecheap domain was moved to Cloudflare's Free zone plan. The prior Netlify DNS zone contained no records; its record list was saved privately before the change. No existing mail or verification records were removed. DNSSEC was already off, with no DS record. Namecheap now uses `ada.ns.cloudflare.com` and `matteo.ns.cloudflare.com`; Cloudflare reports the zone active.
 
-The apex and `www` names are native Worker custom domains declared in `wrangler.jsonc`. Always Use HTTPS is enabled and the minimum TLS version is 1.2. `sponsorintel.london` is the canonical origin and sitemap hostname; the workers.dev address remains available. Both domains passed HTTPS checks with certificate verification. Public-DNS-based acceptance and the remaining local resolver cache delay are recorded in `RELEASE-2.0.md`. Cloudflare manages the DNS records and certificate renewal; do not replace them with guessed A records. Domain registration remains at Namecheap.
+The apex and `www` names are native Worker custom domains declared in `wrangler.jsonc`. Always Use HTTPS is enabled and the minimum TLS version is 1.2. `sponsorintel.london` is the canonical origin and sitemap hostname; the workers.dev address remains available. Both domains passed HTTPS checks with certificate verification. The earlier local resolver cache delay cleared during 2.1 acceptance: ordinary system DNS, HTTPS, API tests and the browser all reached the branded domain. Cloudflare manages the DNS records and certificate renewal; do not replace them with guessed A records. Domain registration remains at Namecheap.
 
 ## Recovery and limitations
 
@@ -117,4 +131,4 @@ Use Wrangler's deployment history and rollback command to restore a previously v
 
 The beta does not yet migrate legacy accounts, send email alerts, verify email ownership, or offer paid plans. It does not claim complete UK vacancy coverage, legal eligibility or sponsorship likelihood. The old Python/PostgreSQL/Redis services are not deployed as part of this migration.
 
-Follow-up work includes witnessing scheduled production refreshes, expanded vacancy coverage and real visitor feedback. See `RELEASE-2.0.md` for deployment and acceptance evidence.
+See `RELEASE-2.1.md` for current deployment and acceptance evidence and `../docs/PRODUCT_ROADMAP.md` for the remaining work, quality gates and launch priorities. The earlier domain and career-workspace acceptance is retained in `RELEASE-2.0.md`.

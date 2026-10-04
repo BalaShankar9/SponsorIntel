@@ -10,6 +10,7 @@ import {
   querySpec,
 } from "./data.js";
 import { jobsAPI, refreshJobs } from "./jobs.js";
+import { immigrationAPI, refreshImmigration } from "./immigration.js";
 import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
 import { careerAPI } from "./career.js";
 const FEATURED = [
@@ -68,12 +69,17 @@ async function api(request, env) {
   if (path === "/api/recover" && request.method === "POST")
     return recoverAccount(request, env);
   if (path.startsWith("/api/career/")) return careerAPI(request, env);
+  if (path === "/api/updates" && ["GET", "HEAD"].includes(request.method))
+    return immigrationAPI(env);
   if (
     path.startsWith("/api/jobs") &&
     (request.method === "GET" || request.method === "HEAD")
   )
     return jobsAPI(url, env);
-  if (path === "/api/admin/refresh-jobs" && request.method === "POST") {
+  if (
+    ["/api/admin/refresh-jobs", "/api/admin/refresh-updates"].includes(path) &&
+    request.method === "POST"
+  ) {
     const supplied =
       request.headers.get("Authorization")?.replace(/^Bearer /, "") || "";
     if (
@@ -84,7 +90,11 @@ async function api(request, env) {
       ))
     )
       return reply({ error: "Not authorised" }, 401);
-    return reply({ sources: await refreshJobs(env) });
+    return reply(
+      path.endsWith("refresh-updates")
+        ? await refreshImmigration(env)
+        : { sources: await refreshJobs(env) },
+    );
   }
   if (path === "/api/feedback" && request.method === "POST") {
     if (request.headers.get("Origin") !== url.origin)
@@ -408,6 +418,15 @@ export default {
     }
   },
   async scheduled(event, env, ctx) {
+    if (event.cron === "*/15 * * * *") {
+      console.log(
+        JSON.stringify({
+          event: "immigration_refresh",
+          ...(await refreshImmigration(env)),
+        }),
+      );
+      return;
+    }
     if (event.cron === "30 */6 * * *") {
       const result = await refreshJobs(env);
       await env.DB.prepare("DELETE FROM ai_usage WHERE expires<?")

@@ -413,7 +413,7 @@ function Vacancies({ go }: { go: Go }) {
         <h2>
           {loading ? "Finding roles…" : `${result?.total || 0} matching roles`}
         </h2>
-        <span>Updated from employer boards</span>
+        <span>Newest added first · Employer boards</span>
       </div>
       {error && (
         <p className="career-error" role="alert">
@@ -447,6 +447,15 @@ function Vacancies({ go }: { go: Go }) {
                 <MapPin size={14} />
                 {j.location}
               </p>
+              <div className="job-quality-meta">
+                {j.salary_excerpt && <span>Pay mentioned in advert</span>}
+                {j.employment_type && (
+                  <span>
+                    {j.employment_type.replace(/([a-z])([A-Z])/g, "$1 $2")}
+                  </span>
+                )}
+                {j.workplace && <span>{j.workplace}</span>}
+              </div>
               <div>
                 <span className={"sponsorship-tag " + j.sponsorship}>
                   {sponsorLabels[j.sponsorship]}
@@ -459,7 +468,14 @@ function Vacancies({ go }: { go: Go }) {
                 )}
               </div>
               <footer>
-                <span>Checked {day(j.last_seen)}</span>
+                <span
+                  title={new Date(j.last_seen).toLocaleString("en-GB", {
+                    timeZone: "Europe/London",
+                    timeZoneName: "short",
+                  })}
+                >
+                  Checked {day(j.last_seen)}
+                </span>
                 <button onClick={() => void open(j)} disabled={busy === j.id}>
                   {busy === j.id ? (
                     <Loader2 className="spin" size={16} />
@@ -520,7 +536,9 @@ function Vacancies({ go }: { go: Go }) {
           We check these public employer boards every six hours. Jobs not seen
           successfully for three days are excluded from search. A successful
           feed check does not guarantee the employer is still accepting
-          applications.
+          applications. General talent-pool and speculative-interest listings
+          are excluded. Career-stage labels come from the title, not a
+          confirmation of your eligibility.
         </p>
         {result?.sources.map((s) => (
           <div key={s.id}>
@@ -530,7 +548,16 @@ function Vacancies({ go }: { go: Go }) {
             </a>
             <span>
               {s.error ? "Refresh delayed" : `${s.count} UK roles`} ·{" "}
-              {s.last_success ? day(s.last_success) : "Not yet checked"}
+              {s.last_success
+                ? new Date(s.last_success).toLocaleString("en-GB", {
+                    day: "numeric",
+                    month: "short",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    timeZone: "Europe/London",
+                    timeZoneName: "short",
+                  })
+                : "Not yet checked"}
             </span>
           </div>
         ))}
@@ -576,6 +603,55 @@ function Vacancies({ go }: { go: Go }) {
               Advert checked {day(detail.last_seen)} · Verify the current
               wording with the employer.
             </small>
+          </div>
+          <div className="job-quality-panel">
+            <h3>What the source tells us</h3>
+            {detail.salary_excerpt ? (
+              <>
+                <p>
+                  <strong>Pay wording from the advert</strong>
+                </p>
+                <blockquote>“{detail.salary_excerpt}”</blockquote>
+              </>
+            ) : (
+              <p>
+                A clear UK pay statement was not found in the text we checked.
+              </p>
+            )}
+            {(detail.employment_type || detail.workplace) && (
+              <p>
+                {[
+                  detail.employment_type?.replace(/([a-z])([A-Z])/g, "$1 $2"),
+                  detail.workplace,
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}
+              </p>
+            )}
+            <small>
+              Last seen on the employer’s board:{" "}
+              {new Date(detail.last_seen).toLocaleString("en-GB", {
+                timeZone: "Europe/London",
+                timeZoneName: "short",
+              })}
+              .
+            </small>
+            {detail.source_updated_at && (
+              <small>
+                Source date supplied by the employer:{" "}
+                {day(detail.source_updated_at)}. This may be a publication or
+                edit date.
+              </small>
+            )}
+            <p>
+              Advert wording is automatically extracted. Check the original
+              terms and ask the employer to confirm sponsorship for this
+              specific role.
+            </p>
+            <a href="/updates?topic=skilled-worker" className="text-button">
+              Understand the Skilled Worker job checks{" "}
+              <ArrowUpRight size={14} />
+            </a>
           </div>
           <div className="career-actions">
             <button className="primary-button" onClick={() => prepare(detail)}>
