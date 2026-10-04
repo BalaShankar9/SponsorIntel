@@ -70,3 +70,8 @@ Email preparation checked on 4 October: Cloudflare's sending-domain inventory do
 ## Release discipline
 
 Use the existing launch branch and draft PR. Before each production schema change, capture a D1 recovery bookmark; run appropriate local checks, deploy, verify the live user journey and record the Worker version. A green local test or configured schedule is not proof of a successful scheduled production run. Keep completed, configured and externally blocked work distinct.
+
+
+## Search and community launch — 2.2 progress
+
+Eight public pages now pre-render from the application components, including three practical guides and a data-methodology page. Canonical redirects, search/share metadata, a branded preview, generated sitemap, real 404s and private-page noindex are deployed. Search Console ownership is verified; see `cloudflare/RELEASE-2.2.md` for the observed sitemap and indexing status. The user chose a WhatsApp draft and posting guide, so no group messages were sent. `docs/GROWTH_PLAN.md` defines the pilot, Google measurement, useful content and next page-level improvements. This is a visibility foundation, not evidence of a ranking or traffic increase.

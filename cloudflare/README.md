@@ -132,3 +132,14 @@ Use Wrangler's deployment history and rollback command to restore a previously v
 The beta does not yet migrate legacy accounts, send email alerts, verify email ownership, or offer paid plans. It does not claim complete UK vacancy coverage, legal eligibility or sponsorship likelihood. The old Python/PostgreSQL/Redis services are not deployed as part of this migration.
 
 See `RELEASE-2.1.md` for current deployment and acceptance evidence and `../docs/PRODUCT_ROADMAP.md` for the remaining work, quality gates and launch priorities. The earlier domain and career-workspace acceptance is retained in `RELEASE-2.0.md`.
+
+
+## Public pages and search visibility (2.2)
+
+Run the full `npm run build`: Vite creates the fresh template, then `scripts/prerender.mjs` renders eight public pages using the actual React components. It also generates the sitemap, private shell and 404 page. The script deliberately refuses to reprocess an already-rendered template. Public routes and metadata share `shared/pages.json`; keep client navigation and page content consistent with it.
+
+The Worker serves these documents with explicit canonical redirects, real 404 status codes and noindex/private caching for workspace pages. Public feed content remains live in the browser and is not copied into the build. The workers.dev HTML is noindex; www redirects to sponsorintel.london. Preserve the Google site-verification tag in `index.html`. No JobPosting rich-result markup is included yet.
+
+After preview or deployment, run `node scripts/seo-smoke.mjs <base-url>` to check raw HTML, metadata, JSON-LD, sitemap, robots, private routes, unknown routes, the share image and HEAD responses. The 1200×630 share card source is in `design/share-card.html`, with the published JPEG under `public/`.
+
+See `RELEASE-2.2.md` for observed Google verification/crawl outcomes and `../docs/GROWTH_PLAN.md` for the community pilot and search priorities.
