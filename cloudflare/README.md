@@ -111,10 +111,12 @@ There is no email delivery integration in this release. Email is an unverified s
 
 Saved employers, notes, stages, dates and preferences stay in browser local storage. They do not sync between devices. Clearing site data removes them unless the visitor has a backup. Workspace JSON exports can be imported into another browser; existing entries are preserved by ID. CSV is available for the shortlist/tracker.
 
-Feedback is stored privately in D1 with an ID, kind, message and timestamp. The endpoint enforces the current origin, bounded input and five submissions per hourly IP-derived bucket. There is no public admin endpoint or email notification pipeline. Operators review feedback using authenticated D1 access, for example:
+Release 2.3 adds a fixed Feedback button on every page (above the mobile navigation), accessible category choices, contextual reporting from employer/job/immigration information, and a copyable confirmation reference. No account is required. `https://sponsorintel.london/?feedback=1` opens the form directly; `?feedback=bug` or `?feedback=data` selects a category. The form retains its message on a failed submission and has a 20-second request timeout.
+
+Feedback is stored privately in D1 with an ID, kind, message, timestamp, app version and optional context. Migration `0005_feedback_context.sql` adds the two fields without changing existing reports. Context is limited to known page paths and the selected public item; queries, fragments and unknown fields are discarded. Visitors can opt out of this context. No account details, CV, form contents, screenshots or raw IP are attached automatically. The endpoint enforces the current origin, bounded input and five submissions per hourly IP-derived bucket. There is no public admin endpoint or email notification pipeline. Operators review feedback using authenticated D1 access, for example:
 
 ```sh
-npx wrangler d1 execute sponsorintel-db --remote --command "SELECT id,kind,message,created_at FROM feedback ORDER BY created_at DESC LIMIT 30"
+npx wrangler d1 execute sponsorintel-db --remote --command "SELECT id,kind,message,context,app_version,created_at FROM feedback ORDER BY created_at DESC LIMIT 30"
 ```
 
 Treat those messages as private. Do not commit feedback exports or put them in public tickets without consent. The public privacy panel describes browser storage, feedback, infrastructure processing, external links and Google Fonts.
@@ -131,7 +133,7 @@ Use Wrangler's deployment history and rollback command to restore a previously v
 
 The beta does not yet migrate legacy accounts, send email alerts, verify email ownership, or offer paid plans. It does not claim complete UK vacancy coverage, legal eligibility or sponsorship likelihood. The old Python/PostgreSQL/Redis services are not deployed as part of this migration.
 
-See `RELEASE-2.1.md` for current deployment and acceptance evidence and `../docs/PRODUCT_ROADMAP.md` for the remaining work, quality gates and launch priorities. The earlier domain and career-workspace acceptance is retained in `RELEASE-2.0.md`.
+See `RELEASE-2.3.md` for current deployment and acceptance evidence and `../docs/PRODUCT_ROADMAP.md` for the remaining work, quality gates and launch priorities. The earlier domain and career-workspace acceptance is retained in `RELEASE-2.0.md`.
 
 
 ## Public pages and search visibility (2.2)

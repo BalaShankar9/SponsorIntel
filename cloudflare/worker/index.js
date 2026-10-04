@@ -14,6 +14,7 @@ import { immigrationAPI, refreshImmigration } from "./immigration.js";
 import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
 import { careerAPI } from "./career.js";
 import { pageResponse } from "./pages.js";
+import { feedbackAPI } from "./feedback.js";
 const FEATURED = [
   "Google (UK) Limited",
   "Deloitte LLP",
@@ -43,25 +44,6 @@ async function getMeta(env) {
     "SELECT value FROM metadata WHERE key='register'",
   ).first();
   return row ? JSON.parse(row.value) : null;
-}
-async function readBody(request, max = 5000) {
-  const text = await boundedText(new Response(request.body), max);
-  try {
-    return JSON.parse(text);
-  } catch {
-    throw new Error("Invalid JSON");
-  }
-}
-async function throttle(request, env) {
-  const ip = request.headers.get("CF-Connecting-IP") || "local";
-  const bucket = Math.floor(Date.now() / 3600000);
-  const hash = await idFor(ip + ":" + bucket);
-  const row = await env.DB.prepare(
-    "INSERT INTO rate_limits(key,count,expires) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1 RETURNING count",
-  )
-    .bind(hash, Date.now() + 7200000)
-    .first();
-  return row.count <= 5;
 }
 async function api(request, env) {
   const url = new URL(request.url);
@@ -97,46 +79,7 @@ async function api(request, env) {
         : { sources: await refreshJobs(env) },
     );
   }
-  if (path === "/api/feedback" && request.method === "POST") {
-    if (request.headers.get("Origin") !== url.origin)
-      return json({ error: "Please send feedback from Sponsor Intel." }, 403);
-    if (!request.headers.get("content-type")?.startsWith("application/json"))
-      return json({ error: "JSON required" }, 415);
-    let body;
-    try {
-      body = await readBody(request);
-    } catch {
-      return json(
-        { error: "Please keep feedback under 2,000 characters." },
-        400,
-      );
-    }
-    if (!body || typeof body !== "object" || Array.isArray(body))
-      return json({ error: "Invalid feedback" }, 400);
-    if (body.website) return json({ ok: true });
-    if (
-      !["feedback", "bug", "data"].includes(body.kind) ||
-      typeof body.message !== "string" ||
-      body.message.trim().length < 10 ||
-      body.message.length > 2000
-    )
-      return json(
-        { error: "Please write between 10 and 2,000 characters." },
-        400,
-      );
-    if (!(await throttle(request, env)))
-      return json(
-        { error: "Thanks for your feedback. Please try again in an hour." },
-        429,
-      );
-    const id = crypto.randomUUID();
-    await env.DB.prepare(
-      "INSERT INTO feedback(id,kind,message,created_at) VALUES(?,?,?,?)",
-    )
-      .bind(id, body.kind, body.message.trim(), new Date().toISOString())
-      .run();
-    return json({ ok: true, id }, 201);
-  }
+  if (path === "/api/feedback") return feedbackAPI(request, env);
   if (request.method !== "GET" && request.method !== "HEAD")
     return json({ error: "Method not allowed" }, 405, { Allow: "GET, HEAD" });
   const meta = await getMeta(env);

@@ -355,9 +355,9 @@ export function AboutPage() {
         </p>
         <h2>Corrections and support</h2>
         <p>
-          Use “Leave feedback” at the bottom of any page to report a broken
-          link, incorrect label or outdated explanation. Include the employer or
-          page name and what needs checking. Do not include passport details,
+          Use the visible “Feedback” button on any page to report a broken link,
+          incorrect label or outdated explanation. Include the employer or page
+          name and what needs checking. Do not include passport details,
           immigration documents or other sensitive personal information.
         </p>
         <p>

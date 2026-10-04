@@ -75,3 +75,8 @@ Use the existing launch branch and draft PR. Before each production schema chang
 ## Search and community launch — 2.2 progress
 
 Eight public pages now pre-render from the application components, including three practical guides and a data-methodology page. Canonical redirects, search/share metadata, a branded preview, generated sitemap, real 404s and private-page noindex are deployed. Search Console ownership is verified; see `cloudflare/RELEASE-2.2.md` for the observed sitemap and indexing status. The user chose a WhatsApp draft and posting guide, so no group messages were sent. `docs/GROWTH_PLAN.md` defines the pilot, Google measurement, useful content and next page-level improvements. This is a visibility foundation, not evidence of a ranking or traffic increase.
+
+
+## Feedback access — 2.3 progress
+
+The Feedback button is now visible across pages on desktop and mobile. Visitors can submit an idea, bug or information correction without an account, attach the relevant public job/employer/update, and keep a receipt reference. Safe optional page context improves diagnosis without collecting CVs or private workspace contents. Local persistence/security tests and a production delivery check passed. Reports remain in the private D1 store for authenticated operator review; email alerts, a customer-facing support inbox and automatic issue triage are not enabled. See `cloudflare/RELEASE-2.3.md`.

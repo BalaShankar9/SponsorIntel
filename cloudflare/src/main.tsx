@@ -49,6 +49,12 @@ import { CareerWorkspace, CareerAccountLink } from "./career";
 import { ImmigrationUpdates } from "./updates";
 import { GuideLinks, ResourceArticle, AboutPage, articles } from "./resources";
 import { publicPages, updateMetadata } from "./seo";
+import {
+  FeedbackForm,
+  type FeedbackKind,
+  type FeedbackItem,
+  type ReportFeedback,
+} from "./feedback";
 type Employer = {
   id: string;
   name: string;
@@ -277,10 +283,10 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
   const [detailError, setDetailError] = useState("");
   const [toast, setToast] = useState("");
   const [comparison, setComparison] = useState<string[]>([]);
-  const [feedbackKind, setFeedbackKind] = useState("feedback");
-  const [feedback, setFeedback] = useState("");
-  const [feedbackStatus, setFeedbackStatus] = useState("");
-  const [sending, setSending] = useState(false);
+  const [feedbackRequest, setFeedbackRequest] = useState<{
+    kind: FeedbackKind;
+    item?: FeedbackItem;
+  }>({ kind: "feedback" });
   const [jobRole, setJobRole] = useState("");
   const [jobCity, setJobCity] = useState("");
   const [trackerFilter, setTrackerFilter] = useState("All");
@@ -329,7 +335,15 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
       setView(location.pathname.replace(/^\//, "") || "discover");
       setMenu(false);
       const p = new URLSearchParams(location.search);
-      if (p.has("employer")) openId(p.get("employer")!, false);
+      if (p.has("feedback"))
+        openFeedback(
+          p.get("feedback") === "bug"
+            ? "bug"
+            : p.get("feedback") === "data"
+              ? "data"
+              : "feedback",
+        );
+      else if (p.has("employer")) openId(p.get("employer")!, false);
       else {
         setModal(null);
         setQ(p.get("q") || "");
@@ -341,7 +355,16 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     };
     window.addEventListener("popstate", onPop);
     const id = new URLSearchParams(location.search).get("employer");
-    if (id) openId(id, false);
+    const requested = new URLSearchParams(location.search).get("feedback");
+    if (requested !== null)
+      openFeedback(
+        requested === "bug"
+          ? "bug"
+          : requested === "data"
+            ? "data"
+            : "feedback",
+      );
+    else if (id) openId(id, false);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
   useEffect(() => {
@@ -352,8 +375,9 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
   function closeModal() {
     setModal(null);
     const u = new URL(location.href);
-    if (u.searchParams.has("employer")) {
+    if (u.searchParams.has("employer") || u.searchParams.has("feedback")) {
       u.searchParams.delete("employer");
+      u.searchParams.delete("feedback");
       history.replaceState({}, "", u.pathname + u.search);
     }
   }
@@ -624,33 +648,11 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     }
     if (importRef.current) importRef.current.value = "";
   }
-  async function submitFeedback(e: React.FormEvent) {
-    e.preventDefault();
-    setSending(true);
-    setFeedbackStatus("");
-    try {
-      const r = await fetch("/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          kind: feedbackKind,
-          message: feedback,
-          website: "",
-        }),
-      });
-      const d = await r.json();
-      if (!r.ok) throw Error(d.error);
-      setFeedback("");
-      setFeedbackStatus(
-        "Received. Thank you for helping shape Sponsor Intel. Reference " +
-          d.id.slice(0, 8),
-      );
-    } catch (e) {
-      setFeedbackStatus((e as Error).message);
-    } finally {
-      setSending(false);
-    }
-  }
+  const openFeedback: ReportFeedback = (kind = "feedback", item) => {
+    setMenu(false);
+    setFeedbackRequest({ kind, item });
+    setModal("feedback");
+  };
   function EmployerCard({ employer }: { employer: Employer }) {
     const isSaved = saved.some((x) => x.id === employer.id);
     const a = employer.ratings.every((x) =>
@@ -753,7 +755,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
           </button>
         </div>
         <div className="sidebar-bottom">
-          <button onClick={() => setModal("feedback")}>
+          <button onClick={() => openFeedback()}>
             <MessageSquare size={18} />
             Feedback & support
           </button>
@@ -822,6 +824,9 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
               <Info size={20} />
               <span>{error}</span>
               <button onClick={load}>Try again</button>
+              <button onClick={() => openFeedback("bug")}>
+                Report this problem
+              </button>
             </div>
           )}
           {stale && (
@@ -1564,8 +1569,10 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             "studio",
             "career-profile",
             "account",
-          ].includes(view) && <CareerWorkspace mode={view} go={go} />}
-          {view === "updates" && <ImmigrationUpdates />}
+          ].includes(view) && (
+            <CareerWorkspace mode={view} go={go} onReport={openFeedback} />
+          )}
+          {view === "updates" && <ImmigrationUpdates onReport={openFeedback} />}
           {view === "about" && <AboutPage />}
           {articles.some((a) => view === "guides/" + a.slug) && (
             <ResourceArticle view={view} />
@@ -1755,14 +1762,22 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             <div>
               <a href="/about">About & sources</a>
               <button onClick={() => setModal("privacy")}>Privacy & use</button>
-              <button onClick={() => setModal("feedback")}>
-                Leave feedback
-              </button>
+              <button onClick={() => openFeedback()}>Leave feedback</button>
               <span>© {new Date().getFullYear()} Sponsor Intel</span>
             </div>
           </footer>
         </main>
       </div>
+      <button
+        hidden={menu}
+        className={"feedback-launcher" + (toast ? " with-toast" : "")}
+        onClick={() => openFeedback()}
+        aria-label="Feedback: share an idea or report a bug"
+        aria-haspopup="dialog"
+      >
+        <MessageSquare size={18} />
+        <span>Feedback</span>
+      </button>
       <nav className="mobile-tabs" aria-label="Quick navigation">
         {nav.slice(0, 4).map((n) => (
           <button
@@ -1785,7 +1800,14 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
       </nav>
       <dialog
         ref={dialog}
-        className={"modal " + (modal === "employer" ? "employer-modal" : "")}
+        className={
+          "modal " +
+          (modal === "employer"
+            ? "employer-modal"
+            : modal === "feedback"
+              ? "feedback-dialog"
+              : "")
+        }
         onCancel={(e) => {
           e.preventDefault();
           closeModal();
@@ -1935,11 +1957,11 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                 <button
                   className="text-button"
                   onClick={() => {
-                    setFeedbackKind("data");
-                    setFeedback(
-                      "Employer: " + selected.name + "\nWhat needs checking: ",
-                    );
-                    setModal("feedback");
+                    openFeedback("data", {
+                      type: "employer",
+                      id: selected.id,
+                      label: selected.name.slice(0, 240),
+                    });
                   }}
                 >
                   Report a data issue <ArrowRight size={14} />
@@ -1952,53 +1974,12 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
               </div>
             ))}
           {modal === "feedback" && (
-            <>
-              <span className="modal-symbol">
-                <MessageSquare />
-              </span>
-              <p className="eyebrow">BETTER, TOGETHER</p>
-              <h2>Help shape Sponsor Intel.</h2>
-              <p>
-                Something confusing, a data issue, or an idea? We’re listening.
-              </p>
-              <form className="feedback-form" onSubmit={submitFeedback}>
-                <label>
-                  What would you like to share?
-                  <select
-                    value={feedbackKind}
-                    onChange={(e) => setFeedbackKind(e.target.value)}
-                  >
-                    <option value="feedback">Feedback or idea</option>
-                    <option value="bug">Something isn’t working</option>
-                    <option value="data">An employer data issue</option>
-                  </select>
-                </label>
-                <label>
-                  Your message
-                  <textarea
-                    value={feedback}
-                    onChange={(e) => setFeedback(e.target.value)}
-                    minLength={10}
-                    maxLength={2000}
-                    required
-                    placeholder="Tell us a little about it…"
-                    rows={5}
-                  />
-                </label>
-                <p className="fine-print">
-                  Feedback is stored privately for review. Don’t include
-                  passwords, passport details or other sensitive information.
-                  This form is not an immigration advice service.
-                </p>
-                <button className="primary-button" disabled={sending}>
-                  {sending ? "Sending…" : "Send feedback"}
-                  <ArrowRight size={17} />
-                </button>
-                <p role="status" className="form-status">
-                  {feedbackStatus}
-                </p>
-              </form>
-            </>
+            <FeedbackForm
+              initialKind={feedbackRequest.kind}
+              item={feedbackRequest.item}
+              page={view === "discover" ? "/" : "/" + view}
+              close={closeModal}
+            />
           )}
           {modal === "profile" && (
             <>
@@ -2163,7 +2144,10 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                 Use Account & backup to export your career workspace, or delete
                 your account and cloud career data. Clearing browser data cannot
                 be undone without a backup. For feedback removal, send a request
-                quoting its reference using the feedback form.
+                quoting its reference using the Feedback button. Feedback is
+                stored privately with its app version and, if you choose, the
+                page and public item you are reporting. We do not automatically
+                attach search terms, account details, CVs or documents.
               </p>
               <h3>Using Sponsor Intel</h3>
               <p>

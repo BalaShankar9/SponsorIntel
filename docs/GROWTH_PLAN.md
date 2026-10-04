@@ -16,7 +16,7 @@ The user chose a message and posting guide rather than automated sending. No Wha
 
 1. Start with two or three relevant communities where the owner participates and project recommendations are welcome: international students, graduates, local migrant communities or relevant professional groups. Write a personal introduction for that group. Avoid mass forwarding or repeatedly posting the same advert.
 2. Share one clear link and ask people to search their city and save three employers. Explain that the beta is free to explore and that a sponsor licence does not establish sponsorship for every vacancy. For groups mainly discussing rule changes, use the updates page and describe the selected official-source coverage accurately.
-3. Ask the first five to ten willing users what they tried, what confused them and whether they found a useful next step. Invite feedback through the site. Do not ask for passport details or immigration documents in a group.
+3. Ask the first five to ten willing users what they tried, what confused them and whether they found a useful next step. Invite feedback through the visible Feedback button or share https://sponsorintel.london/?feedback=1. Do not ask for passport details or immigration documents in a group.
 4. Reply to questions and publish a useful follow-up only when there is a real improvement, new guide or checked official change to share. Give readers a reason to return through fresh evidence and practical progress, without artificial urgency or repeated reminders.
 
 ## Next build priorities

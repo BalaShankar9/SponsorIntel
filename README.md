@@ -2,7 +2,7 @@
 
 **[Project guide](docs/SHOWCASE.md)** · [Source](https://github.com/BalaShankar9/SponsorIntel) · [Issues](https://github.com/BalaShankar9/SponsorIntel/issues) · [Bala's work](https://github.com/BalaShankar9)
 
-> **Current stage: Sponsor Intel × Hire Stack 2.2 beta.** [Open Sponsor Intel](https://sponsorintel.london) · [Immigration updates](https://sponsorintel.london/updates) · [Cloudflare fallback](https://sponsorintel.balashankarbollineni4.workers.dev). The integrated app lives in [`cloudflare/`](cloudflare/README.md). [Current release evidence](cloudflare/RELEASE-2.2.md) · [Build roadmap](docs/PRODUCT_ROADMAP.md) · [Community and search growth](docs/GROWTH_PLAN.md).
+> **Current stage: Sponsor Intel × Hire Stack 2.3 beta.** [Open Sponsor Intel](https://sponsorintel.london) · [Immigration updates](https://sponsorintel.london/updates) · [Cloudflare fallback](https://sponsorintel.balashankarbollineni4.workers.dev). The integrated app lives in [`cloudflare/`](cloudflare/README.md). [Current release evidence](cloudflare/RELEASE-2.3.md) · [Build roadmap](docs/PRODUCT_ROADMAP.md) · [Community and search growth](docs/GROWTH_PLAN.md).
 
 # SponsorIntel
 
@@ -17,6 +17,7 @@ A welcoming workspace for international students and people building a career in
 - PDF/DOCX/TXT/JSON Resume import; Word/PDF/text/calendar exports and workspace backups.
 - Optional private accounts with cross-device career workspace sync and single-use recovery codes; guest mode remains available.
 - Official immigration guidance checked every 15 minutes, source-version-pinned explanations, effective dates and a change history; private feedback.
+- Visible site-wide feedback, bug reports and contextual data corrections, with private delivery and confirmation references.
 - Eight readable public pages, practical sponsor-search guides, a share preview and canonical/sitemap controls.
 - Cloudflare Worker, Workers AI, static assets and D1 with scheduled register and vacancy refreshes.
 

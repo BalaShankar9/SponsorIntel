@@ -50,6 +50,7 @@ import {
   exportCalendar,
 } from "./documents";
 import "./career.css";
+import { type ReportFeedback } from "./feedback";
 import { buildEvidenceReview } from "../worker/career-evidence.js";
 const external = { target: "_blank", rel: "noopener noreferrer" };
 type Go = (view: string) => void;
@@ -149,7 +150,15 @@ export function CareerAccountLink({ go }: { go: Go }) {
     </button>
   );
 }
-export function CareerWorkspace({ mode, go }: { mode: string; go: Go }) {
+export function CareerWorkspace({
+  mode,
+  go,
+  onReport,
+}: {
+  mode: string;
+  go: Go;
+  onReport: ReportFeedback;
+}) {
   const c = useCareer();
   if (!c.ready && !["account", "jobs"].includes(mode))
     return (
@@ -184,7 +193,7 @@ export function CareerWorkspace({ mode, go }: { mode: string; go: Go }) {
         </div>
       )}
       {mode === "jobs" ? (
-        <Vacancies go={go} />
+        <Vacancies go={go} onReport={onReport} />
       ) : mode === "applications" ? (
         <Applications go={go} />
       ) : mode === "studio" ? (
@@ -198,7 +207,7 @@ export function CareerWorkspace({ mode, go }: { mode: string; go: Go }) {
   );
 }
 
-function Vacancies({ go }: { go: Go }) {
+function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
   const c = useCareer();
   const params = new URLSearchParams(
     typeof location === "undefined" ? "" : location.search,
@@ -686,6 +695,20 @@ function Vacancies({ go }: { go: Go }) {
             Search the sponsor register
             <ArrowRight size={14} />
           </a>
+          <button
+            className="report-information"
+            onClick={() => {
+              const item = {
+                type: "job" as const,
+                id: detail.id,
+                label: (detail.title + " · " + detail.company).slice(0, 240),
+              };
+              setDetail(null);
+              onReport("data", item);
+            }}
+          >
+            Report incorrect information about this job
+          </button>
           <div className="job-description">{detail.description}</div>
           <button
             className="primary-button"

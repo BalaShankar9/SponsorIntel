@@ -9,6 +9,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import "./updates.css";
+import { type ReportFeedback } from "./feedback";
 
 type Explanation = {
   title: string;
@@ -93,7 +94,7 @@ const notices: Record<string, string> = {
     "A plain-English explanation is being prepared. Read the official guidance for now.",
 };
 
-export function ImmigrationUpdates() {
+export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
   const [topic, setTopic] = useState(() => {
     if (typeof window === "undefined") return "all";
     const fromURL = new URLSearchParams(
@@ -327,6 +328,18 @@ export function ImmigrationUpdates() {
                           </>
                         )}
                       </small>
+                      <button
+                        className="report-information"
+                        onClick={() =>
+                          onReport("data", {
+                            type: "update",
+                            id: s.id,
+                            label: s.title.slice(0, 240),
+                          })
+                        }
+                      >
+                        Report incorrect information
+                      </button>
                     </footer>
                   </article>
                 ))}
@@ -416,7 +429,22 @@ export function ImmigrationUpdates() {
                       </h3>
                       {notices[s.status] && <p>{notices[s.status]}</p>}
                     </div>
-                    <small>Checked {time(s.last_success)}</small>
+                    <div>
+                      <small>Checked {time(s.last_success)}</small>
+                      <br />
+                      <button
+                        className="report-information"
+                        onClick={() =>
+                          onReport("data", {
+                            type: "update",
+                            id: s.id,
+                            label: s.title.slice(0, 240),
+                          })
+                        }
+                      >
+                        Report incorrect information
+                      </button>
+                    </div>
                   </article>
                 ))}
               </div>
