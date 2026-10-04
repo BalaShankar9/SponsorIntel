@@ -1,64 +1,7 @@
 import { boundedText, idFor } from "./data.js";
 
-// Explicit public employer boards. No arbitrary user-provided fetch destinations.
-export const BOARDS = [
-  {
-    id: "monzo",
-    company: "Monzo",
-    provider: "greenhouse",
-    board: "monzo",
-    careers: "https://monzo.com/careers/",
-  },
-  {
-    id: "cloudflare",
-    company: "Cloudflare",
-    provider: "greenhouse",
-    board: "cloudflare",
-    careers: "https://www.cloudflare.com/careers/jobs/",
-  },
-  {
-    id: "gocardless",
-    company: "GoCardless",
-    provider: "greenhouse",
-    board: "gocardless",
-    careers: "https://gocardless.com/about/careers/",
-  },
-  {
-    id: "deliveroo",
-    company: "Deliveroo",
-    provider: "greenhouse",
-    board: "deliveroo",
-    careers: "https://careers.deliveroo.co.uk/",
-  },
-  {
-    id: "stripe",
-    company: "Stripe",
-    provider: "greenhouse",
-    board: "stripe",
-    careers: "https://stripe.com/jobs",
-  },
-  {
-    id: "figma",
-    company: "Figma",
-    provider: "greenhouse",
-    board: "figma",
-    careers: "https://www.figma.com/careers/",
-  },
-  {
-    id: "octopus-energy",
-    company: "Octopus Energy",
-    provider: "lever",
-    board: "octoenergy",
-    careers: "https://octopus.energy/careers/",
-  },
-  {
-    id: "funding-circle",
-    company: "Funding Circle",
-    provider: "ashby",
-    board: "fundingcircle",
-    careers: "https://www.fundingcircle.com/uk/careers/",
-  },
-];
+import { BOARDS, SECTORS } from "./job-sources.js";
+export { BOARDS } from "./job-sources.js";
 
 export function plainText(value) {
   return String(value || "")
@@ -134,7 +77,7 @@ export function sponsorshipEvidence(text) {
       /sponsor/i.test(s),
   );
   const negative = relevant.find((s) =>
-    /(?:cannot|can't|unable to|do not|don't|does not|won't|will not|not able to|not in a position to).{0,30}(?:offer|provide|support|sponsor|consider|arrange)|no (?:visa|immigration|work permit) sponsorship|(?:visa|immigration|work permit) sponsorship.{0,25}(?:not available|unavailable|not provided|not offered)|without (?:requiring|needing) (?:visa )?sponsorship|(?:would|will|must|should|do|does) not (?:require|need) (?:visa |immigration |work permit )?sponsorship|(?:visa )?sponsorship (?:is )?not (?:possible|provided|supported)/i.test(
+    /(?:cannot|can't|unable to|do not|don't|does not|won't|will not|not able to|not in a position to).{0,30}(?:offer|provide|support|sponsor|consider|arrange)|no (?:visa|immigration|work permit) sponsorship|no relocation (?:support|assistance|benefits) and (?:visa|immigration) sponsorship|(?:visa|immigration|work permit) sponsorship.{0,25}(?:not available|unavailable|not provided|not offered)|without (?:requiring|needing) (?:visa )?sponsorship|(?:would|will|must|should|do|does) not (?:require|need) (?:visa |immigration |work permit )?sponsorship|(?:visa )?sponsorship (?:is )?not (?:possible|provided|supported)/i.test(
       s,
     ),
   );
@@ -142,14 +85,14 @@ export function sponsorshipEvidence(text) {
   const positive = relevant.find(
     (s) =>
       !s.endsWith("?") &&
-      /\bwe (?:can |will |may |do |are able to |are happy to )?(?:offer|provide|support) (?:\w+ ){0,3}(?:visa|immigration|work permit) sponsorship|\b(?:visa|immigration|work permit) sponsorship (?:is |will be |can be |may be )?(?:available|provided|offered|supported)\b|\bwe (?:can|will|may|are able to) sponsor (?:your |a |the )?(?:visa|work permit)/i.test(
+      /\bwe (?:can |will |may |do |are able to |are happy to )?(?:offer|provide|support) (?:\w+ ){0,3}(?:visa|immigration|work permit) sponsorship|\b(?:visa|immigration|work permit) sponsorship (?:is |will be |can be |may be )?(?:available|provided|offered|supported)\b|\bwe (?:can|will|may|are able to) sponsor (?:your |a |the )?(?:visa|work permit)|^[-• ]*relocation (?:support|assistance|benefits) and (?:visa|immigration) sponsorship\b/i.test(
         s,
       ),
   );
   if (positive)
     return {
       status:
-        /eligible|eligibility|depend|case.by.case|subject to|may |can |consider|certain|where|if /i.test(
+        /eligible|eligibility|depend|case.by.case|subject to|may |can |consider|certain|selected roles|some (?:roles|teams)|where|if /i.test(
           positive,
         )
           ? "conditional"
@@ -161,21 +104,63 @@ export function sponsorshipEvidence(text) {
 
 export function isUK(location, country = "") {
   if (country) return /^(GB|GBR|UK|United Kingdom)$/i.test(country.trim());
+  if (/united kingdom|\bUK\b|\(GB\)/i.test(location)) return true;
   if (
-    /united kingdom|\bUK\b|\(GB\)|england|scotland|wales|northern ireland/i.test(
-      location,
-    )
-  )
-    return true;
-  if (
-    /united states|\bUSA?\b|,?\s(?:MA|CA|CT|OH|TX)\b|canada|ontario/i.test(
+    /united states|\bUSA?\b|,?\s(?:MA|CA|CT|OH|TX)\b|canada|ontario|australia|new south wales|new zealand|new england/i.test(
       location,
     )
   )
     return false;
-  return /\b(london|manchester|cardiff|edinburgh|glasgow|birmingham|bristol|leeds|belfast|nottingham|sheffield|reading|brighton|oxford)\b/i.test(
+  if (/\b(?:england|scotland|wales)\b|northern ireland/i.test(location))
+    return true;
+  return /\b(london|manchester|cardiff|edinburgh|glasgow|birmingham|bristol|leeds|belfast|nottingham|sheffield|reading|brighton|oxford|warwick|derby|motherwell|newcastle upon tyne|cambridge|southampton|liverpool|leicester|coventry|swansea|aberdeen|dundee|wallingford)\b/i.test(
     location,
   );
+}
+
+export function ukLocations(job, provider) {
+  const primary =
+    typeof job.location === "string"
+      ? job.location
+      : job.location?.name || job.categories?.location || "";
+  const country =
+    job.country || job.address?.postalAddress?.addressCountry || "";
+  const locations = isUK(primary, country) ? [primary || "United Kingdom"] : [];
+  // Some Greenhouse posts share a multi-office department despite a specific
+  // overseas posting location. Only use offices to resolve an ambiguous label.
+  if (
+    provider === "greenhouse" &&
+    !locations.length &&
+    (!primary ||
+      /^(hybrid|remote|on[ -]?site|multiple locations|various locations|EMEA|Europe)$/i.test(
+        primary.trim(),
+      ))
+  ) {
+    for (const office of job.offices || []) {
+      const value = office.location || office.name || "";
+      if (isUK(value)) locations.push(value);
+    }
+  }
+  if (provider === "ashby") {
+    for (const secondary of job.secondaryLocations || []) {
+      if (
+        isUK(
+          secondary.location || "",
+          secondary.address?.addressCountry ||
+            secondary.address?.postalAddress?.addressCountry ||
+            "",
+        )
+      )
+        locations.push(secondary.location || "United Kingdom");
+    }
+  }
+  if (provider === "lever") {
+    for (const value of job.categories?.allLocations || []) {
+      // A structured primary country takes priority over an ambiguous city.
+      if (value !== primary && isUK(value)) locations.push(value);
+    }
+  }
+  return [...new Set(locations.map(plainText).filter(Boolean))].join(" · ");
 }
 
 export function careerLevel(title) {
@@ -201,13 +186,17 @@ export function advertText(job, provider) {
             [x.text, x.content].filter(Boolean).join("\n"),
           ),
           job.additionalPlain || job.additional,
+          job.salaryDescriptionPlain || job.salaryDescription,
         ]
-      : [job.content || job.descriptionPlain || job.descriptionHtml];
+      : [
+          job.content || job.descriptionPlain || job.descriptionHtml,
+          job.compensation?.scrapeableCompensationSalarySummary,
+        ];
   return parts.map(plainText).filter(Boolean).join("\n\n");
 }
 
 export function isTalentPool(title) {
-  return /talent (?:community|pool|network)|speculative|expression of interest|register (?:your )?interest|future opportunities|general application/i.test(
+  return /talent (?:community|pool|network)|speculative|expression of interest|register (?:your )?interest|future opportunities|general application|job template|^test (?:job|posting)$|^dummy (?:job|posting)$/i.test(
     title,
   );
 }
@@ -235,14 +224,20 @@ export async function normaliseBoardJobs(raw, board) {
   const result = [],
     seen = new Set();
   for (const job of raw) {
+    if (!job || typeof job !== "object")
+      throw new Error("Invalid vacancy record");
     if (job.isListed === false) continue;
-    const location =
-      typeof job.location === "string"
-        ? job.location
-        : job.location?.name || job.categories?.location || "";
-    const country =
-      job.country || job.address?.postalAddress?.addressCountry || "";
-    if (!isUK(location, country)) continue;
+    // Greenhouse explicitly identifies prospect posts with a null internal id.
+    if (board.provider === "greenhouse" && job.internal_job_id === null)
+      continue;
+    if (
+      job.application_deadline &&
+      Number.isFinite(Date.parse(job.application_deadline)) &&
+      Date.parse(job.application_deadline) <= Date.now()
+    )
+      continue;
+    const location = ukLocations(job, board.provider);
+    if (!location) continue;
     const completeText = advertText(job, board.provider);
     // Do not truncate away an eligibility exclusion and then label an advert.
     if (completeText.length > 80000) continue;
@@ -251,6 +246,9 @@ export async function normaliseBoardJobs(raw, board) {
       job.absolute_url || job.hostedUrl || job.jobUrl || job.applyUrl,
     );
     const title = plainText(job.title || job.text).slice(0, 240);
+    // Some adverts recruit in London for a role that requires moving abroad.
+    const relocation = title.match(/\brelocat(?:e|ing|ion) to ([^|()]+)/i)?.[1];
+    if (relocation && !isUK(relocation)) continue;
     if (
       !title ||
       !description ||
@@ -282,7 +280,14 @@ export async function normaliseBoardJobs(raw, board) {
       employment_type: plainText(
         job.employmentType || job.categories?.commitment || "",
       ).slice(0, 100),
-      workplace: plainText(job.workplaceType || "").slice(0, 60),
+      workplace: plainText(
+        job.workplaceType ||
+          (/^(hybrid|remote|on[ -]?site)$/i.test(job.location?.name || "")
+            ? job.location.name
+            : ""),
+      )
+        .replace(/^./, (s) => s.toUpperCase())
+        .slice(0, 60),
     });
   }
   return result;
@@ -294,11 +299,11 @@ export async function fetchBoard(board) {
       ? `https://boards-api.greenhouse.io/v1/boards/${board.board}/jobs?content=true`
       : board.provider === "lever"
         ? `https://api.lever.co/v0/postings/${board.board}?mode=json`
-        : `https://api.ashbyhq.com/posting-api/job-board/${board.board}`;
+        : `https://api.ashbyhq.com/posting-api/job-board/${board.board}?includeCompensation=true`;
   const response = await fetch(url, {
     headers: {
       Accept: "application/json",
-      "User-Agent": "SponsorIntel/2.1 (+https://sponsorintel.london)",
+      "User-Agent": "SponsorIntel/2.4 (+https://sponsorintel.london)",
     },
     signal: AbortSignal.timeout(25000),
     redirect: "manual",
@@ -306,77 +311,138 @@ export async function fetchBoard(board) {
   if (!response.ok) throw new Error("Board unavailable: " + response.status);
   const data = JSON.parse(await boundedText(response, 12_000_000));
   const raw = board.provider === "lever" ? data : data.jobs;
+  if (
+    board.provider === "greenhouse" &&
+    Number.isInteger(data.meta?.total) &&
+    data.meta.total !== raw?.length
+  )
+    throw new Error("Incomplete employer board response");
   return normaliseBoardJobs(raw, board);
 }
 
-export async function refreshJobs(env) {
+// Each bound JSON chunk stays comfortably below D1's 2 MB value limit.
+// One transaction publishes an entire board, including removals and freshness.
+export async function storeBoardJobs(DB, board, jobs, now) {
+  const fields = [
+    "id",
+    "board_id",
+    "company",
+    "title",
+    "location",
+    "description",
+    "apply_url",
+    "provider",
+    "source_updated_at",
+    "sponsorship",
+    "evidence",
+    "level",
+    "salary_excerpt",
+    "employment_type",
+    "workplace",
+  ];
+  const statements = [];
+  let chunk = [],
+    bytes = 2;
+  const addChunk = () => {
+    if (!chunk.length) return;
+    const extracted = fields
+      .map((f) => `json_extract(value, '$.${f}')`)
+      .join(",");
+    const updates = fields
+      .filter((f) => !["id", "board_id", "provider"].includes(f))
+      .map((f) => `${f}=excluded.${f}`)
+      .join(",");
+    statements.push(
+      DB.prepare(
+        `INSERT INTO jobs (${fields.join(",")},first_seen,last_seen,active)
+       SELECT ${extracted},?,?,1 FROM json_each(?) WHERE 1
+       ON CONFLICT(id) DO UPDATE SET ${updates},last_seen=excluded.last_seen,active=1`,
+      ).bind(now, now, "[" + chunk.join(",") + "]"),
+    );
+    chunk = [];
+    bytes = 2;
+  };
+  for (const job of jobs) {
+    const json = JSON.stringify(job),
+      size = new TextEncoder().encode(json).length + 1;
+    if (size > 900000) throw new Error("Vacancy exceeds storage limit");
+    if (bytes + size > 900000) addChunk();
+    chunk.push(json);
+    bytes += size;
+  }
+  addChunk();
+  statements.push(
+    DB.prepare(
+      "UPDATE jobs SET active=0 WHERE board_id=? AND id NOT IN (SELECT value FROM json_each(?))",
+    ).bind(board.id, JSON.stringify(jobs.map((job) => job.id))),
+    DB.prepare(
+      "INSERT INTO job_sources(id,company,careers_url,checked_at,last_success,count,error) VALUES(?,?,?,?,?,?,NULL) ON CONFLICT(id) DO UPDATE SET company=excluded.company,careers_url=excluded.careers_url,checked_at=excluded.checked_at,last_success=excluded.last_success,count=excluded.count,error=NULL",
+    ).bind(board.id, board.company, board.careers, now, now, jobs.length),
+  );
+  await DB.batch(statements);
+}
+
+export async function refreshJobs(
+  env,
+  { boards = BOARDS, readBoard = fetchBoard } = {},
+) {
+  const owner = crypto.randomUUID(),
+    leaseMs = 20 * 60 * 1000;
+  const lease = await env.DB.prepare(
+    "INSERT INTO feed_locks(name,owner,expires) VALUES('jobs',?,?) ON CONFLICT(name) DO UPDATE SET owner=excluded.owner,expires=excluded.expires WHERE feed_locks.expires<? RETURNING owner",
+  )
+    .bind(owner, Date.now() + leaseMs, Date.now())
+    .first();
+  if (lease?.owner !== owner)
+    return [{ skipped: true, reason: "Refresh already running" }];
   const summary = [];
-  for (const board of BOARDS) {
-    const now = new Date().toISOString();
-    try {
-      const jobs = await fetchBoard(board);
-      for (let i = 0; i < jobs.length; i += 30) {
-        await env.DB.batch(
-          jobs
-            .slice(i, i + 30)
-            .map((j) =>
-              env.DB.prepare(
-                `INSERT INTO jobs (id,board_id,company,title,location,description,apply_url,provider,source_updated_at,sponsorship,evidence,level,first_seen,last_seen,salary_excerpt,employment_type,workplace,active) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,1) ON CONFLICT(id) DO UPDATE SET title=excluded.title,location=excluded.location,description=excluded.description,apply_url=excluded.apply_url,source_updated_at=excluded.source_updated_at,sponsorship=excluded.sponsorship,evidence=excluded.evidence,level=excluded.level,last_seen=excluded.last_seen,salary_excerpt=excluded.salary_excerpt,employment_type=excluded.employment_type,workplace=excluded.workplace,active=1`,
-              ).bind(
-                j.id,
-                j.board_id,
-                j.company,
-                j.title,
-                j.location,
-                j.description,
-                j.apply_url,
-                j.provider,
-                j.source_updated_at,
-                j.sponsorship,
-                j.evidence,
-                j.level,
-                now,
-                now,
-                j.salary_excerpt,
-                j.employment_type,
-                j.workplace,
-              ),
-            ),
-        );
-      }
-      // Only a completely read and stored board may retire absent jobs.
-      await env.DB.batch([
-        env.DB.prepare(
-          "UPDATE jobs SET active=0 WHERE board_id=? AND last_seen<>?",
-        ).bind(board.id, now),
-        env.DB.prepare(
-          "INSERT INTO job_sources(id,company,careers_url,checked_at,last_success,count,error) VALUES(?,?,?,?,?,?,NULL) ON CONFLICT(id) DO UPDATE SET checked_at=excluded.checked_at,last_success=excluded.last_success,count=excluded.count,error=NULL",
-        ).bind(board.id, board.company, board.careers, now, now, jobs.length),
-      ]);
-      summary.push({ board: board.id, jobs: jobs.length });
-    } catch (error) {
-      console.error(
-        JSON.stringify({
-          event: "job_board_refresh_failed",
-          board: board.id,
-          message: error instanceof Error ? error.message : "Unknown failure",
-        }),
-      );
-      await env.DB.prepare(
-        "INSERT INTO job_sources(id,company,careers_url,checked_at,count,error) VALUES(?,?,?,?,0,?) ON CONFLICT(id) DO UPDATE SET checked_at=excluded.checked_at,error=excluded.error",
+  try {
+    for (const board of boards) {
+      const held = await env.DB.prepare(
+        "UPDATE feed_locks SET expires=? WHERE name='jobs' AND owner=? AND expires>? RETURNING owner",
       )
-        .bind(
-          board.id,
-          board.company,
-          board.careers,
-          now,
-          "Refresh unavailable. Last successful data retained.",
+        .bind(Date.now() + leaseMs, owner, Date.now())
+        .first();
+      if (held?.owner !== owner) throw new Error("Job refresh lease expired");
+      const now = new Date().toISOString();
+      try {
+        const jobs = await readBoard(board);
+        await storeBoardJobs(env.DB, board, jobs, now);
+        summary.push({ board: board.id, jobs: jobs.length });
+      } catch (error) {
+        console.error(
+          JSON.stringify({
+            event: "job_board_refresh_failed",
+            board: board.id,
+            message: error instanceof Error ? error.message : "Unknown failure",
+          }),
+        );
+        await env.DB.prepare(
+          "INSERT INTO job_sources(id,company,careers_url,checked_at,count,error) VALUES(?,?,?,?,0,?) ON CONFLICT(id) DO UPDATE SET checked_at=excluded.checked_at,error=excluded.error",
         )
-        .run();
-      summary.push({ board: board.id, error: true });
+          .bind(
+            board.id,
+            board.company,
+            board.careers,
+            now,
+            "Refresh unavailable. Last successful data retained.",
+          )
+          .run();
+        summary.push({ board: board.id, error: true });
+      }
     }
+  } finally {
+    await env.DB.prepare("DELETE FROM feed_locks WHERE name='jobs' AND owner=?")
+      .bind(owner)
+      .run();
   }
   return summary;
+}
+
+const boardById = new Map(BOARDS.map((board) => [board.id, board]));
+function withSector(job) {
+  const sector = boardById.get(job.board_id)?.sector || "";
+  return { ...job, sector, sector_label: SECTORS[sector] || "" };
 }
 
 export async function jobsAPI(url, env) {
@@ -391,9 +457,10 @@ export async function jobsAPI(url, env) {
     const item = await env.DB.prepare("SELECT * FROM jobs WHERE id=?")
       .bind(id)
       .first();
-    return Response.json(item || { error: "This vacancy was not found." }, {
-      status: item ? 200 : 404,
-    });
+    return Response.json(
+      item ? withSector(item) : { error: "This vacancy was not found." },
+      { status: item ? 200 : 404 },
+    );
   }
   if (url.pathname !== "/api/jobs")
     return Response.json({ error: "Not found" }, { status: 404 });
@@ -406,21 +473,14 @@ export async function jobsAPI(url, env) {
     .split(/\s+/)
     .filter(Boolean)
     .slice(0, 5)) {
+    // Literal substring matching avoids wildcard surprises and D1's LIKE limit.
     where +=
-      " AND (title LIKE ? ESCAPE '\\' OR company LIKE ? ESCAPE '\\' OR description LIKE ? ESCAPE '\\')";
-    const pattern = "%" + term.replace(/[\\%_]/g, "\\$&") + "%";
-    values.push(pattern, pattern, pattern);
+      " AND (instr(lower(title),lower(?))>0 OR instr(lower(company),lower(?))>0 OR instr(lower(description),lower(?))>0)";
+    values.push(term, term, term);
   }
   if (p.get("location")) {
-    where += " AND location LIKE ? ESCAPE '\\'";
-    values.push(
-      "%" +
-        p
-          .get("location")
-          .slice(0, 80)
-          .replace(/[\\%_]/g, "\\$&") +
-        "%",
-    );
+    where += " AND instr(lower(location),lower(?))>0";
+    values.push(p.get("location").trim().slice(0, 80));
   }
   if (
     ["offered", "conditional", "not_stated", "unavailable"].includes(
@@ -429,33 +489,51 @@ export async function jobsAPI(url, env) {
   ) {
     where += " AND sponsorship=?";
     values.push(p.get("sponsorship"));
+  } else if (p.get("sponsorship") === "mentioned") {
+    where += " AND sponsorship IN ('offered','conditional')";
   }
   if (p.get("level") === "early_career") where += " AND level='early_career'";
   if (p.get("salary") === "listed") where += " AND salary_excerpt<>''";
-  const page = Math.max(1, Math.min(500, parseInt(p.get("page") || "1") || 1));
+  const sector = p.get("sector");
+  if (Object.hasOwn(SECTORS, sector || "")) {
+    const ids = BOARDS.filter((b) => b.sector === sector).map((b) => b.id);
+    where += ` AND board_id IN (${ids.map(() => "?").join(",")})`;
+    values.push(...ids);
+  }
   const count = await env.DB.prepare(
     "SELECT COUNT(*) total FROM jobs WHERE " + where,
   )
     .bind(...values)
     .first();
+  const pages = Math.ceil(count.total / 12);
+  const page = Math.max(
+    1,
+    Math.min(pages || 1, parseInt(p.get("page") || "1") || 1),
+  );
   const items = await env.DB.prepare(
-    "SELECT id,company,title,location,apply_url,provider,sponsorship,evidence,level,first_seen,last_seen,source_updated_at,salary_excerpt,employment_type,workplace FROM jobs WHERE " +
+    "SELECT id,board_id,company,title,location,apply_url,provider,sponsorship,evidence,level,first_seen,last_seen,source_updated_at,salary_excerpt,employment_type,workplace FROM jobs WHERE " +
       where +
-      " ORDER BY first_seen DESC,title LIMIT 12 OFFSET ?",
+      " ORDER BY first_seen DESC,title,id LIMIT 12 OFFSET ?",
   )
     .bind(...values, (page - 1) * 12)
     .all();
-  const total = await env.DB.prepare(
-    "SELECT COUNT(*) total FROM jobs WHERE active=1 AND last_seen>=?",
+  const stats = await env.DB.prepare(
+    `SELECT COUNT(*) total, COUNT(DISTINCT board_id) employers,
+      COALESCE(SUM(level='early_career'),0) early_career,
+      COALESCE(SUM(sponsorship IN ('offered','conditional')),0) sponsorship,
+      COALESCE(SUM(salary_excerpt<>''),0) salary
+     FROM jobs WHERE active=1 AND last_seen>=?`,
   )
     .bind(values[0])
     .first();
   return Response.json({
-    items: items.results,
+    items: items.results.map(withSector),
     total: count.total,
-    catalog_total: total.total,
+    catalog_total: stats.total,
+    collections: stats,
+    sectors: SECTORS,
     page,
-    pages: Math.ceil(count.total / 12),
+    pages,
     sources: (
       await env.DB.prepare("SELECT * FROM job_sources ORDER BY company").all()
     ).results,

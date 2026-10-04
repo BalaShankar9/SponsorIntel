@@ -216,26 +216,68 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
     [city, setCity] = useState(params.get("location") || ""),
     [sponsorship, setSponsorship] = useState(params.get("sponsorship") || ""),
     [level, setLevel] = useState(params.get("level") || ""),
+    [salary, setSalary] = useState(params.get("salary") || ""),
+    [sector, setSector] = useState(params.get("sector") || ""),
     [page, setPage] = useState(1),
     [key, setKey] = useState(0);
+  const [applied, setApplied] = useState({
+    q,
+    location: city,
+    sponsorship,
+    level,
+    salary,
+    sector,
+  });
   const [result, setResult] = useState<{
       items: Job[];
       total: number;
       catalog_total: number;
       pages: number;
+      page: number;
       sources: any[];
+      collections: {
+        total: number;
+        employers: number;
+        early_career: number;
+        sponsorship: number;
+        salary: number;
+      };
+      sectors: Record<string, string>;
     } | null>(null),
     [loading, setLoading] = useState(true),
     [error, setError] = useState(""),
     [detail, setDetail] = useState<Job | null>(null),
     [busy, setBusy] = useState(""),
     [message, setMessage] = useState("");
+  function applyFilters(
+    next = { q, location: city, sponsorship, level, salary, sector },
+  ) {
+    setQ(next.q);
+    setCity(next.location);
+    setSponsorship(next.sponsorship);
+    setLevel(next.level);
+    setSalary(next.salary);
+    setSector(next.sector);
+    setPage(1);
+    setApplied(next);
+    const p = new URLSearchParams(
+      Object.entries(next).filter(([, value]) => value),
+    );
+    history.replaceState({}, "", "/jobs?" + p);
+  }
   function search(e?: React.FormEvent) {
     e?.preventDefault();
-    setPage(1);
-    setKey((k) => k + 1);
-    const p = new URLSearchParams({ q, location: city, sponsorship, level });
-    history.replaceState({}, "", "/jobs?" + p);
+    applyFilters();
+  }
+  function collection(kind: string) {
+    applyFilters({
+      q: "",
+      location: "",
+      sponsorship: kind === "sponsorship" ? "mentioned" : "",
+      level: kind === "early_career" ? "early_career" : "",
+      salary: kind === "salary" ? "listed" : "",
+      sector: "",
+    });
   }
   useEffect(() => {
     let alive = true;
@@ -244,15 +286,15 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
     request(
       "/api/jobs?" +
         new URLSearchParams({
-          q,
-          location: city,
-          sponsorship,
-          level,
+          ...applied,
           page: String(page),
         }),
     )
       .then((d) => {
-        if (alive) setResult(d);
+        if (alive) {
+          setResult(d);
+          if (d.page !== page) setPage(d.page);
+        }
       })
       .catch((e) => {
         if (alive) setError(e.message);
@@ -263,7 +305,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
     return () => {
       alive = false;
     };
-  }, [key, page]);
+  }, [key, page, applied]);
   async function open(j: Job) {
     setBusy(j.id);
     try {
@@ -293,10 +335,12 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
     if (
       c.data.searches.some(
         (s) =>
-          s.q === q &&
-          s.location === city &&
-          s.sponsorship === sponsorship &&
-          s.level === level,
+          s.q === applied.q &&
+          s.location === applied.location &&
+          s.sponsorship === applied.sponsorship &&
+          s.level === applied.level &&
+          (s.salary || "") === applied.salary &&
+          (s.sector || "") === applied.sector,
       )
     ) {
       setMessage("This search is already saved.");
@@ -308,10 +352,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
         ...d.searches,
         {
           id: crypto.randomUUID(),
-          q,
-          location: city,
-          sponsorship,
-          level,
+          ...applied,
           createdAt: stamp(),
         },
       ],
@@ -348,9 +389,80 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
           <BriefcaseBusiness size={30} />
           <strong>{result?.catalog_total?.toLocaleString() || "—"}</strong>
           <span>UK roles in this collection</span>
-          <small>A focused collection, growing with you.</small>
+          <small>
+            {result?.collections?.employers || "—"} employers with UK vacancies
+            · Checked every six hours
+          </small>
         </div>
       </div>
+      <section
+        className="opportunity-collections"
+        aria-label="Explore opportunity collections"
+      >
+        {[
+          {
+            id: "all",
+            title: "All opportunities",
+            note: "Explore the full collection",
+            count: result?.catalog_total,
+            icon: BriefcaseBusiness,
+          },
+          {
+            id: "sponsorship",
+            title: "Sponsorship mentioned",
+            note: "Stated or conditional in the advert",
+            count: result?.collections?.sponsorship,
+            icon: ShieldCheck,
+          },
+          {
+            id: "early_career",
+            title: "Your first career step",
+            note: "Graduate, junior & internship titles",
+            count: result?.collections?.early_career,
+            icon: GraduationCap,
+          },
+          {
+            id: "salary",
+            title: "Pay in the advert",
+            note: "Read the employer’s GBP pay wording",
+            count: result?.collections?.salary,
+            icon: Search,
+          },
+        ].map(({ id, title, note, count, icon: Icon }) => {
+          const active =
+            !applied.q &&
+            !applied.location &&
+            !applied.sector &&
+            (id === "all"
+              ? !applied.sponsorship && !applied.level && !applied.salary
+              : id === "sponsorship"
+                ? applied.sponsorship === "mentioned" &&
+                  !applied.level &&
+                  !applied.salary
+                : id === "early_career"
+                  ? applied.level === "early_career" &&
+                    !applied.sponsorship &&
+                    !applied.salary
+                  : applied.salary === "listed" &&
+                    !applied.sponsorship &&
+                    !applied.level);
+          return (
+            <button
+              key={id}
+              className={"opportunity-collection" + (active ? " selected" : "")}
+              aria-pressed={active}
+              onClick={() => collection(id)}
+            >
+              <span className="collection-top">
+                <Icon size={21} />
+                <strong>{count?.toLocaleString() ?? "—"}</strong>
+              </span>
+              <span className="collection-title">{title}</span>
+              <small>{note}</small>
+            </button>
+          );
+        })}
+      </section>
       <form className="job-search-form" onSubmit={search}>
         <label>
           <Search size={18} />
@@ -385,6 +497,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
             onChange={(e) => setSponsorship(e.target.value)}
           >
             <option value="">All adverts</option>
+            <option value="mentioned">Stated or conditional</option>
             {Object.entries(sponsorLabels).map(([v, l]) => (
               <option value={v} key={v}>
                 {l}
@@ -399,6 +512,24 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
             <option value="early_career">Graduate, junior & internships</option>
           </select>
         </label>
+        <label>
+          Employer sector
+          <select value={sector} onChange={(e) => setSector(e.target.value)}>
+            <option value="">All employer sectors</option>
+            {Object.entries(result?.sectors || {}).map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Advertised pay
+          <select value={salary} onChange={(e) => setSalary(e.target.value)}>
+            <option value="">All adverts</option>
+            <option value="listed">GBP pay mentioned</option>
+          </select>
+        </label>
         <button className="secondary-button" onClick={() => search()}>
           Apply filters
         </button>
@@ -411,6 +542,14 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
           Save search
         </button>
       </div>
+      {Object.values(applied).some(Boolean) && (
+        <button
+          className="text-button clear-job-filters"
+          onClick={() => collection("all")}
+        >
+          <X size={15} /> Clear all filters
+        </button>
+      )}
       {message && (
         <p className="career-notice" role="status">
           {message}
@@ -423,12 +562,18 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
             A sponsor licence and a sponsored vacancy are different.
           </strong>{" "}
           Labels below describe the advert’s wording. “Not stated” means the
-          employer has not confirmed it in the text we checked.
+          employer has not confirmed it in the text we checked. Early-career
+          titles do not confirm student-visa eligibility. Employer sectors
+          describe the company’s industry.
         </p>
       </div>
       <div className="section-header">
         <h2>
-          {loading ? "Finding roles…" : `${result?.total || 0} matching roles`}
+          {loading
+            ? "Finding roles…"
+            : error
+              ? "Roles could not be loaded"
+              : `${result?.total || 0} matching roles`}
         </h2>
         <span>Newest added first · Employer boards</span>
       </div>
@@ -444,7 +589,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
             <div className="job-skeleton" key={i} />
           ))}
         </div>
-      ) : result?.items.length ? (
+      ) : !error && result?.items.length ? (
         <div className="vacancy-grid">
           {result.items.map((j) => (
             <article className="vacancy-card" key={j.id}>
@@ -465,6 +610,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
                 {j.location}
               </p>
               <div className="job-quality-meta">
+                {j.sector_label && <span>{j.sector_label}</span>}
                 {j.salary_excerpt && <span>Pay mentioned in advert</span>}
                 {j.employment_type && (
                   <span>
@@ -513,18 +659,11 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
             title="No roles match these filters yet."
             text="Try a broader title or location. This collection covers selected employers and does not represent the whole UK market."
             label="Clear filters"
-            action={() => {
-              setQ("");
-              setCity("");
-              setSponsorship("");
-              setLevel("");
-              setPage(1);
-              setKey((k) => k + 1);
-            }}
+            action={() => collection("all")}
           />
         )
       )}
-      {result && result.pages > 1 && (
+      {!loading && !error && result && result.pages > 1 && (
         <div className="career-pagination">
           <button
             className="secondary-button"
@@ -852,11 +991,24 @@ function Applications({ go }: { go: Go }) {
                     location: s.location,
                     sponsorship: s.sponsorship,
                     level: s.level,
+                    salary: s.salary || "",
+                    sector: s.sector || "",
                   })
                 }
               >
                 <Search size={15} />
-                {[s.q || "All roles", s.location].filter(Boolean).join(" · ")}
+                {[
+                  s.q || "All roles",
+                  s.location,
+                  s.sponsorship === "mentioned"
+                    ? "Sponsorship mentioned"
+                    : sponsorLabels[s.sponsorship],
+                  s.level === "early_career" ? "Early career" : "",
+                  s.salary ? "GBP pay" : "",
+                  s.sector,
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}
                 <ArrowUpRight size={15} />
               </a>
               <button
@@ -1699,9 +1851,8 @@ function Account({ go }: { go: Go }) {
       if (file.size > 650000)
         throw Error("Choose a backup smaller than 650 KB.");
       const input = JSON.parse(await file.text());
-      const { validateWorkspace } = await import(
-        "../worker/career-validation.js"
-      );
+      const { validateWorkspace } =
+        await import("../worker/career-validation.js");
       const data = validateWorkspace(input) as CareerData;
       c.setData((d) => mergeData(d, data));
       setMessage("Backup merged. Existing applications were kept.");

@@ -1,0 +1,405 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { DatabaseSync } from "node:sqlite";
+import { readFileSync } from "node:fs";
+import {
+  BOARDS,
+  normaliseBoardJobs,
+  ukLocations,
+  storeBoardJobs,
+  refreshJobs,
+  jobsAPI,
+  fetchBoard,
+  sponsorshipEvidence,
+} from "../worker/jobs.js";
+import { validateWorkspace } from "../worker/career-validation.js";
+
+function database() {
+  const sql = new DatabaseSync(":memory:");
+  for (const name of ["0002_career.sql", "0004_quality_updates.sql"])
+    sql.exec(
+      readFileSync(new URL("../migrations/" + name, import.meta.url), "utf8"),
+    );
+  const DB = {
+    prepare(query) {
+      let args = [];
+      return {
+        bind(...values) {
+          args = values;
+          return this;
+        },
+        async first() {
+          return sql.prepare(query).get(...args) || null;
+        },
+        async all() {
+          return { results: sql.prepare(query).all(...args) };
+        },
+        async run() {
+          sql.prepare(query).run(...args);
+          return { success: true };
+        },
+      };
+    },
+    async batch(statements) {
+      sql.exec("BEGIN");
+      try {
+        const results = [];
+        for (const statement of statements) results.push(await statement.run());
+        sql.exec("COMMIT");
+        return results;
+      } catch (error) {
+        sql.exec("ROLLBACK");
+        throw error;
+      }
+    },
+  };
+  return { sql, DB };
+}
+const board = BOARDS.find((b) => b.id === "zopa");
+const rawJob = (id = "one", more = {}) => ({
+  id,
+  text: "Graduate Analyst",
+  categories: { location: "London", commitment: "Full-time" },
+  country: "GB",
+  hostedUrl: `https://jobs.lever.co/zopa/${id}`,
+  descriptionPlain:
+    "The annual salary is £35,000. We offer visa sponsorship for this role.",
+  ...more,
+});
+
+test("UK offices recover hybrid jobs without turning a US-only role into a UK role", async () => {
+  const gh = {
+    id: 1,
+    internal_job_id: 22,
+    title: "Engineer",
+    location: { name: "Hybrid" },
+    content: "A real role.",
+    absolute_url: "https://job-boards.greenhouse.io/example/jobs/1",
+    offices: [{ name: "London, United Kingdom" }],
+  };
+  const jobs = await normaliseBoardJobs([gh], {
+    id: "example",
+    company: "Example",
+    provider: "greenhouse",
+  });
+  assert.equal(jobs.length, 1);
+  assert.equal(jobs[0].location, "London, United Kingdom");
+  assert.equal(jobs[0].workplace, "Hybrid");
+  assert.equal(
+    ukLocations(
+      { ...gh, offices: [{ name: "Austin, TX, United States" }] },
+      "greenhouse",
+    ),
+    "",
+  );
+  assert.equal(
+    ukLocations(
+      {
+        ...gh,
+        location: { name: "Sydney, Australia" },
+        offices: [{ location: "Sydney, New South Wales, Australia" }],
+      },
+      "greenhouse",
+    ),
+    "",
+  );
+  assert.equal(
+    ukLocations(
+      {
+        ...gh,
+        location: { name: "Riga, Latvia" },
+        offices: [{ name: "London" }, { name: "Riga" }],
+      },
+      "greenhouse",
+    ),
+    "",
+  );
+  assert.equal(
+    ukLocations(
+      {
+        location: "London",
+        address: { postalAddress: { addressCountry: "CA" } },
+      },
+      "ashby",
+    ),
+    "",
+  );
+  assert.equal(
+    ukLocations(
+      {
+        location: "Toronto",
+        address: { postalAddress: { addressCountry: "CA" } },
+        secondaryLocations: [
+          { location: "Cardiff", address: { addressCountry: "GB" } },
+        ],
+      },
+      "ashby",
+    ),
+    "Cardiff",
+  );
+  assert.equal(
+    ukLocations(
+      {
+        country: "US",
+        categories: {
+          location: "Boston",
+          allLocations: ["Boston", "London, UK"],
+        },
+      },
+      "lever",
+    ),
+    "London, UK",
+  );
+});
+
+test("prospect posts, explicit past deadlines and templates are excluded while test engineers remain", async () => {
+  const gh = {
+    id: 1,
+    internal_job_id: 2,
+    title: "Test Engineer",
+    location: { name: "London" },
+    content: "A real role.",
+    absolute_url: "https://job-boards.greenhouse.io/example/jobs/1",
+  };
+  const result = await normaliseBoardJobs(
+    [
+      gh,
+      { ...gh, id: 2, internal_job_id: null },
+      { ...gh, id: 3, title: "Job Template" },
+      { ...gh, id: 4, application_deadline: "2020-01-01T00:00:00Z" },
+    ],
+    { id: "example", company: "Example", provider: "greenhouse" },
+  );
+  assert.equal(result.length, 1);
+  assert.equal(result[0].title, "Test Engineer");
+  await assert.rejects(normaliseBoardJobs([null], board), /Invalid vacancy/);
+});
+
+test("advert benefits are evidence but negation and questions never become positive sponsorship", () => {
+  assert.equal(
+    sponsorshipEvidence(
+      "- Relocation support and visa sponsorship, handled properly",
+    ).status,
+    "offered",
+  );
+  assert.equal(
+    sponsorshipEvidence(
+      "We cannot provide relocation support and visa sponsorship.",
+    ).status,
+    "unavailable",
+  );
+  assert.equal(
+    sponsorshipEvidence("Relocation support and visa sponsorship?").status,
+    "not_stated",
+  );
+  assert.equal(
+    sponsorshipEvidence("No relocation support and visa sponsorship.").status,
+    "unavailable",
+  );
+  assert.equal(
+    sponsorshipEvidence(
+      "Visa sponsorship is available for selected roles, please see our FAQ page for details",
+    ).status,
+    "conditional",
+  );
+});
+
+test("Lever salary sections are included and foreign currency is not mislabelled as GBP pay", async () => {
+  const [j] = await normaliseBoardJobs(
+    [
+      rawJob("pay", {
+        descriptionPlain: "A real role.",
+        salaryDescriptionPlain:
+          "The annual salary is £38,000. We cannot provide visa sponsorship.",
+      }),
+    ],
+    board,
+  );
+  assert.match(j.salary_excerpt, /38,000/);
+  assert.equal(j.sponsorship, "unavailable");
+  const [usd] = await normaliseBoardJobs(
+    [rawJob("usd", { descriptionPlain: "The annual salary is $38,000." })],
+    board,
+  );
+  assert.equal(usd.salary_excerpt, "");
+});
+
+test("atomic board updates preserve first-seen, retire missing jobs even in the same millisecond, and roll back failed writes", async () => {
+  const { sql, DB } = database();
+  try {
+    const old = "2026-01-01T00:00:00.000Z",
+      now = new Date().toISOString();
+    const jobs = await normaliseBoardJobs(
+      [rawJob("one"), rawJob("two")],
+      board,
+    );
+    await storeBoardJobs(DB, board, jobs, old);
+    await storeBoardJobs(DB, board, [jobs[0]], now);
+    assert.equal(
+      sql.prepare("SELECT first_seen FROM jobs WHERE id=?").get(jobs[0].id)
+        .first_seen,
+      old,
+    );
+    assert.equal(
+      sql.prepare("SELECT active FROM jobs WHERE id=?").get(jobs[1].id).active,
+      0,
+    );
+    sql.exec(
+      "CREATE TRIGGER fail_source BEFORE UPDATE ON job_sources BEGIN SELECT RAISE(FAIL,'simulated storage failure'); END;",
+    );
+    await assert.rejects(
+      storeBoardJobs(DB, board, [{ ...jobs[0], title: "Changed" }], now),
+      /simulated/,
+    );
+    assert.equal(
+      sql.prepare("SELECT title FROM jobs WHERE id=?").get(jobs[0].id).title,
+      "Graduate Analyst",
+    );
+    sql.exec("DROP TRIGGER fail_source");
+    await storeBoardJobs(DB, board, [], now);
+    assert.equal(
+      sql.prepare("SELECT count(*) n FROM jobs WHERE active=1").get().n,
+      0,
+    );
+    assert.equal(sql.prepare("SELECT count FROM job_sources").get().count, 0);
+  } finally {
+    sql.close();
+  }
+});
+
+test("refresh lock prevents overlapping writers and failed feeds retain last successful rows", async () => {
+  const { sql, DB } = database();
+  try {
+    const jobs = await normaliseBoardJobs([rawJob()], board);
+    await storeBoardJobs(DB, board, jobs, "2026-01-01T00:00:00.000Z");
+    sql
+      .prepare("INSERT INTO feed_locks VALUES('jobs','other',?)")
+      .run(Date.now() + 100000);
+    let calls = 0;
+    const held = await refreshJobs(
+      { DB },
+      {
+        boards: [board],
+        readBoard: async () => {
+          calls++;
+          return jobs;
+        },
+      },
+    );
+    assert.equal(calls, 0);
+    assert.equal(held[0].skipped, true);
+    sql.exec("DELETE FROM feed_locks");
+    const failed = await refreshJobs(
+      { DB },
+      {
+        boards: [board],
+        readBoard: async () => {
+          throw Error("upstream failed");
+        },
+      },
+    );
+    assert.equal(failed[0].error, true);
+    assert.equal(sql.prepare("SELECT active FROM jobs").get().active, 1);
+    assert.equal(
+      sql.prepare("SELECT last_success FROM job_sources").get().last_success,
+      "2026-01-01T00:00:00.000Z",
+    );
+    assert.equal(sql.prepare("SELECT count(*) n FROM feed_locks").get().n, 0);
+    await refreshJobs({ DB }, { boards: [board], readBoard: async () => jobs });
+    assert.equal(
+      sql.prepare("SELECT error FROM job_sources").get().error,
+      null,
+    );
+  } finally {
+    sql.close();
+  }
+});
+
+test("incomplete employer responses fail instead of retiring unseen jobs", async (t) => {
+  t.mock.method(globalThis, "fetch", async () =>
+    Response.json({ jobs: [], meta: { total: 5 } }),
+  );
+  await assert.rejects(
+    fetchBoard(BOARDS.find((b) => b.provider === "greenhouse")),
+    /Incomplete/,
+  );
+});
+
+test("opportunity counts, combined filters, literal searches and pagination use only current active jobs", async () => {
+  const { sql, DB } = database();
+  try {
+    const jobs = await normaliseBoardJobs(
+      [
+        rawJob("a"),
+        rawJob("b", {
+          text: "Senior Engineer",
+          descriptionPlain: "A real role without any sponsorship wording.",
+        }),
+        rawJob("c", {
+          text: "Junior Analyst",
+          descriptionPlain: "We cannot provide visa sponsorship.",
+        }),
+      ],
+      board,
+    );
+    await storeBoardJobs(DB, board, jobs, new Date().toISOString());
+    const api = async (q = "") =>
+      (
+        await jobsAPI(new URL("https://sponsorintel.london/api/jobs" + q), {
+          DB,
+        })
+      ).json();
+    const all = await api();
+    assert.deepEqual(all.collections, {
+      total: 3,
+      employers: 1,
+      early_career: 2,
+      sponsorship: 1,
+      salary: 1,
+    });
+    const filtered = await api(
+      "?sponsorship=mentioned&level=early_career&salary=listed&sector=finance&page=99",
+    );
+    assert.equal(filtered.total, 1);
+    assert.equal(filtered.page, 1);
+    assert.equal(filtered.items[0].sector_label, "Finance & fintech");
+    assert.equal((await api("?sector=healthcare")).total, 0);
+    assert.equal((await api("?q=%25")).total, 0);
+    assert.equal(
+      (await api("?q=" + encodeURIComponent("a".repeat(150)))).total,
+      0,
+    );
+    sql
+      .prepare("UPDATE jobs SET last_seen=? WHERE id=?")
+      .run("2020-01-01T00:00:00.000Z", jobs[0].id);
+    const stale = await api();
+    assert.equal(stale.total, 2);
+    assert.equal(stale.collections.sponsorship, 0);
+  } finally {
+    sql.close();
+  }
+});
+
+test("saved searches keep sector and pay filters and older backups remain valid", () => {
+  const data = validateWorkspace({
+    version: 2,
+    applications: [],
+    searches: [
+      { id: "old", q: "Engineer" },
+      { id: "new", salary: "listed", sector: "engineering" },
+    ],
+  });
+  assert.equal(data.searches[0].salary, "");
+  assert.equal(data.searches[1].salary, "listed");
+  assert.equal(data.searches[1].sector, "engineering");
+});
+
+test('UK recruitment locations do not disguise a required overseas relocation', async () => {
+  const jobs = await normaliseBoardJobs([
+    rawJob('overseas', { text: 'C++ Developer - Relocate to Chicago' }),
+    rawJob('uk', { text: 'Engineer - Relocate to London' }),
+    rawJob('ordinary', { text: 'Relocation Support Adviser' }),
+  ], board);
+  assert.equal(jobs.length, 2);
+  assert.ok(jobs.every(j => !j.title.includes('Chicago')));
+});

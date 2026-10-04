@@ -57,6 +57,8 @@ export type Job = {
   employment_type?: string;
   workplace?: string;
   source_updated_at?: string;
+  sector?: string;
+  sector_label?: string;
 };
 export type SavedSearch = {
   id: string;
@@ -64,6 +66,8 @@ export type SavedSearch = {
   location: string;
   sponsorship: string;
   level: string;
+  salary?: string;
+  sector?: string;
   createdAt: string;
 };
 export type CareerData = {
@@ -422,7 +426,7 @@ export function useCareer() {
 // Adapted from HireStack's cadence engine. The user chooses whether to follow up.
 export function followupDate(start = new Date(), days = 7) {
   const d = new Date(start);
-  for (let n = 0; n < days; ) {
+  for (let n = 0; n < days;) {
     d.setUTCDate(d.getUTCDate() + 1);
     if (d.getUTCDay() !== 0 && d.getUTCDay() !== 6) n++;
   }

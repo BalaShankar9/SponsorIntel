@@ -82,6 +82,8 @@ export function validateWorkspace(input) {
       location: text(s.location, 80),
       sponsorship: text(s.sponsorship, 30),
       level: text(s.level, 30),
+      salary: text(s.salary, 30),
+      sector: text(s.sector, 30),
       createdAt: text(s.createdAt, 40),
     }));
   return { version: 2, profile, applications, searches };

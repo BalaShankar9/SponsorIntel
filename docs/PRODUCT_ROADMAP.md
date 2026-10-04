@@ -11,7 +11,7 @@ The product promise: help international students and migrants find credible UK o
 - Integrated Hire Stack application workspace: private accounts, CV import, document preparation, interview preparation, application tracking and export.
 - Explicit-consent writing assistance, data ownership controls and recovery codes.
 
-## Current release: 2.1, job quality and immigration clarity
+## Job quality and immigration clarity — 2.1
 
 - Read complete provider descriptions, including Lever requirement lists and final exclusions.
 - Filter speculative talent pools, duplicate links and locations outside the UK; retain unknown sponsorship as unknown.
@@ -24,10 +24,10 @@ The product promise: help international students and migrants find credible UK o
 
 ## Next: widen coverage and measure trust
 
-1. Add verified sources in healthcare, universities, hospitality, engineering, public services and graduate schemes. Target 25 useful employers first, then 50; add a source only after its official ownership and access terms are checked. NHS Jobs and Work Hub remain direct discovery links until a permitted integration is verified.
+1. Add verified sources in healthcare, universities, hospitality, engineering, public services and graduate schemes. The first 26 boards are live in 2.4; target 50 next, prioritising explicit early-career sponsorship; add a source only after its official ownership and access terms are checked. NHS Jobs and Work Hub remain direct discovery links until a permitted integration is verified.
 2. Build an explicit employer-name alias review queue for sponsor-register matching. Separate register status from a vacancy’s sponsorship wording and the applicant’s eligibility.
 3. Add source-provided closing dates and occupation data where available. Never infer an expiry date or occupation code from a title alone.
-4. Add a report-this-advert flow tied to a job ID, evidence and source snapshot. Prioritise scams, wrong sponsorship wording, closed adverts and incorrect locations.
+4. The contextual report-this-advert flow is live in 2.3. Add operator triage with the relevant source snapshot; prioritise scams, wrong sponsorship wording, closed adverts and incorrect locations.
 5. Audit at least 50 varied adverts before making accuracy claims. Review every positive sponsorship label in that sample and record precision by source; any false positive blocks a stronger “verified sponsorship” claim.
 6. Record successful/failed runs and freshness over time, with owner diagnostics for stale sources. Last-success timestamps alone are not an uptime history.
 
@@ -80,3 +80,12 @@ Eight public pages now pre-render from the application components, including thr
 ## Feedback access — 2.3 progress
 
 The Feedback button is now visible across pages on desktop and mobile. Visitors can submit an idea, bug or information correction without an account, attach the relevant public job/employer/update, and keep a receipt reference. Safe optional page context improves diagnosis without collecting CVs or private workspace contents. Local persistence/security tests and a production delivery check passed. Reports remain in the private D1 store for authenticated operator review; email alerts, a customer-facing support inbox and automatic issue triage are not enabled. See `cloudflare/RELEASE-2.3.md`.
+
+
+## Opportunity data and presentation — 2.4 progress
+
+The current release expands public employer collection from eight to 26 boards across seven employer sectors. The checked catalogue contains 765 UK vacancies, 48 early-career titles, 51 adverts with stated or conditional sponsorship wording, and 67 with GBP pay evidence. These are point-in-time counts, not promises of eligibility, availability or coverage. Only two early-career results also have positive or conditional sponsorship wording, so graduate opportunities remain the most important coverage gap.
+
+Visitors can open one-click collections, combine sector/pay/role/location/visa-wording filters, save the full search and use the existing Hire Stack preparation flow. Source handling now resolves ambiguous hybrid-office locations, respects structured secondary locations, rejects explicitly overseas postings and relocation titles, checks structured deadlines, and excludes prospect/template posts. A refresh lease and atomic board transactions preserve the last complete data on failure. No paid feed or new API credential was required. See `cloudflare/JOB-SOURCES.md` and `cloudflare/RELEASE-2.4.md`.
+
+Next source priorities: broader graduate schemes with explicit sponsorship, NHS/clinical opportunities through permitted feeds, university research roles, hospitality and regional employers. Current healthcare coverage consists of selected life-science services, not the NHS market. A 50-advert independent accuracy audit, source-run history, reviewed sponsor-name aliases and source-provided closing dates remain outstanding. Do not present the larger catalogue as independently verified sponsorship.

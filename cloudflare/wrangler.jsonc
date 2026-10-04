@@ -33,7 +33,7 @@
     "traces": { "enabled": true, "head_sampling_rate": 0.01 },
   },
   "vars": {
-    "APP_VERSION": "2.3.0",
+    "APP_VERSION": "2.4.0",
     "APP_ORIGIN": "https://sponsorintel.london",
     "AI_MODEL": "@cf/qwen/qwen3-30b-a3b-fp8",
     "AI_DAILY_LIMIT": "40",
