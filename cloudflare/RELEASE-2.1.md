@@ -25,8 +25,11 @@ Released 4 October 2026 on https://sponsorintel.london. Updates: https://sponsor
 | Branded-domain account regression | 19 passed; account isolation, save conflicts, recovery, origin enforcement and consent rechecked; fictional accounts removed |
 | Browser acceptance | sponsorintel.london loaded over normal HTTPS; topic filtering and Graduate effective-date text verified; 390px and 1366px widths had no horizontal overflow; desktop used two card columns |
 | Deployment | Migration 0004 applied; new Worker and all three schedules deployed |
+| Automatic immigration refresh | Observed the 13:45 UTC cycle; completed at 13:46:05 UTC, all ten sources unchanged, zero exceptions, outcome `ok` |
 
-Scheduled-execution evidence and the final PR check status are recorded below after observation. Configuration alone is not execution evidence.
+The release code is commit `e1be37e00c94aa2f2543497297f821468b619240`. GitGuardian passed. GitHub Actions runs [37206329821](https://github.com/BalaShankar9/SponsorIntel/actions/runs/37206329821) and [37206327342](https://github.com/BalaShankar9/SponsorIntel/actions/runs/37206327342) both executed zero steps; their annotations explicitly report an account billing lock. This is separate from the passing local and live checks.
+
+A filtered production log stream recorded an actual `*/15 * * * *` scheduled event for the deployed Worker: invocation at 13:45:45 UTC, completion at 13:46:05 UTC, 20,436 ms wall time, 34 ms CPU, outcome `ok`, no exceptions. Every source returned `unchanged`. A subsequent public API read confirmed advanced last-success times, all five explanations still available and zero spurious change-log events. No operator refresh was invoked after the initial 13:31 population. This witnesses one automatic immigration cycle, not a long-term uptime record or execution of every other schedule.
 
 ## Recovery
 
