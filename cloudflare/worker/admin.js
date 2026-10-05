@@ -1,6 +1,7 @@
 import { sessionFor, reply, bodyJSON, sameOrigin, limit } from "./auth.js";
 import { BOARDS, SECTORS } from "./job-sources.js";
 import { fetchBoard } from "./jobs.js";
+import { refreshStudents } from "./study.js";
 export async function ownerFor(request, env) {
   const session = await sessionFor(request, env);
   if (!session?.user) return null;
@@ -77,6 +78,13 @@ export async function adminAPI(request, env) {
     path = url.pathname;
   if (path === "/api/admin/session" && request.method === "GET")
     return reply({ owner: true });
+  if (path === "/api/admin/refresh-students" && request.method === "POST") {
+    if (!sameOrigin(request))
+      return reply({ error: "Use the owner dashboard." }, 403);
+    if (!(await limit(env, "owner-students:" + owner.user.id, 3)))
+      return reply({ error: "Please try later." }, 429);
+    return reply(await refreshStudents(env));
+  }
   if (request.method === "GET" && path === "/api/admin/dashboard") {
     const days = [7, 30, 90].includes(Number(url.searchParams.get("days")))
       ? Number(url.searchParams.get("days"))
@@ -109,7 +117,7 @@ export async function adminAPI(request, env) {
         "SELECT id,title,url,checked_at,last_success,error,withdrawn FROM immigration_sources ORDER BY title",
       ),
       env.DB.prepare(
-        "SELECT key,value FROM metadata WHERE key IN ('register','adviser_dataset')",
+        "SELECT key,value FROM metadata WHERE key IN ('register','adviser_dataset','students')",
       ),
       env.DB.prepare(
         "SELECT id,kind,message,created_at,context,app_version FROM feedback ORDER BY created_at DESC LIMIT 50",

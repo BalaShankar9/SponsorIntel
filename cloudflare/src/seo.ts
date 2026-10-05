@@ -3,7 +3,7 @@ import type { Job } from "./career-data";
 import { jobMetadata, jobStructuredData } from "../shared/job-detail.js";
 export const publicPages: Record<
   string,
-  { path: string; title: string; description: string }
+  { path: string; title: string; description: string; reviewed?: string }
 > = pages;
 export const ORIGIN = "https://sponsorintel.london";
 const privateTitles: Record<string, string> = {
@@ -13,6 +13,7 @@ const privateTitles: Record<string, string> = {
   account: "Your account",
   signin: "Sign in",
   signup: "Create your account",
+  "reset-password": "Reset your password",
   admin: "Owner dashboard",
   saved: "Saved employers",
   settings: "Preferences",
@@ -48,6 +49,17 @@ export function structuredData(view: string) {
     description: page.description,
     isPartOf: { "@id": website["@id"] },
     inLanguage: "en-GB",
+    ...(page.reviewed ? { dateModified: page.reviewed } : {}),
+    publisher: { "@id": ORIGIN + "/#organisation" },
+  };
+  const organisation = {
+    "@type": "Organization",
+    "@id": ORIGIN + "/#organisation",
+    name: "Sponsor Intel",
+    url: ORIGIN + "/",
+    logo: ORIGIN + "/favicon.svg",
+    description:
+      "UK sponsor employer discovery, application preparation and source-linked immigration information.",
   };
   const crumbs = [
     {
@@ -64,6 +76,13 @@ export function structuredData(view: string) {
       name: "Career guides",
       item: ORIGIN + "/guides",
     });
+  if (view.startsWith("routes/") || view.startsWith("study/"))
+    crumbs.push({
+      "@type": "ListItem",
+      position: 2,
+      name: view.startsWith("routes/") ? "UK visa routes" : "Study in the UK",
+      item: ORIGIN + "/" + view.split("/")[0],
+    });
   if (view !== "discover")
     crumbs.push({
       "@type": "ListItem",
@@ -75,6 +94,7 @@ export function structuredData(view: string) {
     "@context": "https://schema.org",
     "@graph": [
       website,
+      organisation,
       webPage,
       ...(crumbs.length > 1
         ? [{ "@type": "BreadcrumbList", itemListElement: crumbs }]

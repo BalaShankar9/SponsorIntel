@@ -68,6 +68,7 @@ assert.doesNotMatch(sitemap, /account|saved|applications|utm_/);
 checks++;
 for (const path of [
   "/account",
+  "/reset-password",
   "/signin",
   "/signup",
   "/admin",

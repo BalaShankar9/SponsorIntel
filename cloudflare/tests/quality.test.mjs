@@ -282,11 +282,7 @@ test("refresh persists an honest baseline, records real changes once, and retain
         ],
       };
     } else
-      item.details.parts = [
-        "overview",
-        "your-job",
-        "when-you-can-be-paid-less",
-      ].map((slug) => ({
+      item.details.parts = [...new Set(WATCHED_SOURCES.map(s=>s.part).filter(Boolean))].map((slug) => ({
         slug,
         title: slug,
         body:
@@ -305,7 +301,7 @@ test("refresh persists an honest baseline, records real changes once, and retain
           "SELECT count(*) n FROM immigration_versions WHERE kind='baseline'",
         )
         .get().n,
-      7,
+      WATCHED_SOURCES.length + 1,
     );
     assert.equal(
       (await (await immigrationAPI({ DB })).json()).events.length,
@@ -314,7 +310,7 @@ test("refresh persists an honest baseline, records real changes once, and retain
     await refreshImmigration({ DB });
     assert.equal(
       sql.prepare("SELECT count(*) n FROM immigration_versions").get().n,
-      7,
+      WATCHED_SOURCES.length + 1,
     );
     changed = true;
     await refreshImmigration({ DB });

@@ -7,6 +7,7 @@ const privatePaths = new Set([
   "/account",
   "/signin",
   "/signup",
+  "/reset-password",
   "/admin",
   "/career-profile",
   "/studio",
@@ -46,7 +47,19 @@ export async function sitemapResponse(env, now = Date.now()) {
   return new Response(
     '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
       paths
-        .map((path) => "<url><loc>" + JOB_ORIGIN + path + "</loc></url>")
+        .map((path) => {
+          const reviewed = Object.values(pages).find(
+            (p) => p.path === path,
+          )?.reviewed;
+          return (
+            "<url><loc>" +
+            JOB_ORIGIN +
+            path +
+            "</loc>" +
+            (reviewed ? "<lastmod>" + reviewed + "</lastmod>" : "") +
+            "</url>"
+          );
+        })
         .join("") +
       "</urlset>",
     {
@@ -152,5 +165,7 @@ export async function pageResponse(request, env) {
     url.hostname.endsWith(".workers.dev")
   )
     response.headers.set("X-Robots-Tag", "noindex, follow");
+  if (url.pathname === "/reset-password")
+    response.headers.set("Referrer-Policy", "no-referrer");
   return response;
 }

@@ -3,6 +3,19 @@ import { boundedText } from "./data.js";
 import { plainText } from "./jobs.js";
 import { isWithdrawn } from "./immigration-content.js";
 const TOPICS = [
+  [
+    /\bself.?sponsor|sponsor licen[cs]e|own (?:a |my )?business\b/i,
+    ["/uk-visa-sponsorship-employers", "/skilled-worker-visa"],
+  ],
+  [/\binnovator|founder|entrepreneur\b/i, ["/innovator-founder-visa"]],
+  [
+    /\byoung professionals|india.*ballot\b/i,
+    ["/india-young-professionals-scheme-visa"],
+  ],
+  [/\bhigh potential|\bhpi\b/i, ["/high-potential-individual-visa"]],
+  [/\bglobal talent\b/i, ["/global-talent"]],
+  [/\bexpansion worker\b/i, ["/uk-expansion-worker-visa"]],
+  [/\bscale.?up\b/i, ["/scale-up-worker-visa"]],
   [/\bgraduate\b/i, ["/graduate-visa"]],
   [/\bstudent|studying|term.?time|20 hours\b/i, ["/student-visa"]],
   [

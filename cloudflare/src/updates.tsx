@@ -56,7 +56,9 @@ const topics: Record<string, string> = {
   graduate: "Graduate",
   "skilled-worker": "Skilled Worker",
   "health-care": "Health & care",
-  general: "Immigration Rules",
+  business: "Business",
+  "other-routes": "Other routes",
+  general: "Rules & costs",
 };
 const external = { target: "_blank", rel: "noopener noreferrer" };
 function time(value: string) {

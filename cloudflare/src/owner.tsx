@@ -95,7 +95,7 @@ export function AccountActions({ go }: { go: Go }) {
 }
 export function PageTracking({ view }: { view: string }) {
   useEffect(() => {
-    if (view === "admin") return;
+    if (view === "admin" || view === "reset-password") return;
     void fetch("/api/metrics", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -151,6 +151,22 @@ export function OwnerDashboard({ go }: { go: Go }) {
     try {
       const result = await api("/api/admin/boards", body);
       setMessage(result.message);
+      await load();
+    } catch (e) {
+      setMessage((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function refreshStudents() {
+    setBusy(true);
+    setMessage("");
+    try {
+      const result = await api("/api/admin/refresh-students", {});
+      setMessage(
+        result.error ||
+          `Student register refreshed: ${number(result.total)} provider records.`,
+      );
       await load();
     } catch (e) {
       setMessage((e as Error).message);
@@ -400,6 +416,35 @@ export function OwnerDashboard({ go }: { go: Go }) {
                 {data.metadata.register?.refresh_error ||
                   "Last check succeeded"}
               </span>
+            </div>
+            <div className="source-status">
+              <strong>
+                Student sponsor register ·{" "}
+                {number(data.metadata.students?.total)} records
+              </strong>
+              <span>
+                Last success: {date(data.metadata.students?.last_success)}
+              </span>
+              <span
+                className={
+                  data.metadata.students?.refresh_error ||
+                  !data.metadata.students?.snapshot
+                    ? "status-bad"
+                    : "status-good"
+                }
+              >
+                {data.metadata.students?.refresh_error ||
+                  (data.metadata.students?.snapshot
+                    ? `Source ${data.metadata.students.source_date}`
+                    : "Awaiting first import")}
+              </span>
+              <button
+                className="secondary-button"
+                disabled={busy}
+                onClick={() => void refreshStudents()}
+              >
+                Check student register
+              </button>
             </div>
             <div className="table-scroll">
               <table>

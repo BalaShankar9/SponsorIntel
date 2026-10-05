@@ -37,6 +37,9 @@ export type CareerApplication = {
   coverLetter: string;
   interview: string;
   analysis: string;
+  companyResearch: string;
+  portfolio: string;
+  learningPlan: string;
   preparedAt: string;
 };
 export type Job = {
@@ -179,7 +182,7 @@ export function mergeData(base: CareerData, incoming: CareerData): CareerData {
 type CareerContextValue = {
   data: CareerData;
   setData: React.Dispatch<React.SetStateAction<CareerData>>;
-  user: { id: string; name: string; email: string } | null;
+  user: { id: string; name: string; email: string; emailVerified?: boolean } | null;
   status: string;
   error: string;
   setError: (s: string) => void;
@@ -381,6 +384,9 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
       coverLetter: "",
       analysis: "",
       interview: "",
+      companyResearch: "",
+      portfolio: "",
+      learningPlan: "",
       preparedAt: "",
     };
     latest.current = {

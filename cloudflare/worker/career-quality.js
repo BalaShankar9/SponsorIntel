@@ -91,6 +91,7 @@ export function draftWarnings(text = "", cv = "", kind = "cv") {
 // Keep the source warning so candidates know a real date is still needed.
 export function cleanDraft(text = "") {
   return text
+    .replace(/^\s*Dates? not supplied\.?\s*$/gim, "")
     .replace(
       /\[(?:month\s*year|start\s*date|end\s*date)\]\s*[–—-]\s*(?=Present\b)/gi,
       "",
@@ -101,4 +102,15 @@ export function cleanDraft(text = "") {
     )
     .replace(/[ \t]+$/gm, "")
     .trim();
+}
+
+// Contact details are user-supplied fields; do not rely on a model to retain them.
+export function preserveCVContacts(text, profile) {
+  const contacts = [profile.name, profile.email, profile.phone]
+    .filter((v) => typeof v === "string" && v.trim())
+    .map((v) => v.replace(/[\r\n]+/g, " ").trim());
+  const missing = contacts.filter(
+    (v) => !text.toLocaleLowerCase().includes(v.toLocaleLowerCase()),
+  );
+  return (missing.length ? missing.join("\n") + "\n\n" : "") + text;
 }

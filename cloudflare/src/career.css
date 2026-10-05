@@ -1389,3 +1389,5 @@
 .password-settings form {
   margin-top: 18px;
 }
+
+.account-email-help{margin:24px 0;padding:22px 0;border-top:1px solid #dce1d5;border-bottom:1px solid #dce1d5}.account-email-help h3{font-size:18px;margin:0 0 12px}.account-email-help .career-actions{flex-wrap:wrap;margin-top:14px}

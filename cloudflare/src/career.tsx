@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { JobDetail } from "./job-detail";
+import { AccountEmailHelp } from "./account-email";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -791,6 +792,9 @@ function Applications({ go }: { go: Go }) {
           coverLetter: "",
           interview: "",
           analysis: "",
+          companyResearch: "",
+          portfolio: "",
+          learningPlan: "",
           preparedAt: "",
         }));
       c.setData((d) =>
@@ -1263,7 +1267,14 @@ function Studio({ go }: { go: Go }) {
     c.data.applications.find((x) => x.id === c.selected) ||
     c.data.applications[0];
   const [tab, setTab] = useState<
-      "analysis" | "cv" | "coverLetter" | "interview" | "followup"
+      | "analysis"
+      | "cv"
+      | "coverLetter"
+      | "interview"
+      | "followup"
+      | "companyResearch"
+      | "portfolio"
+      | "learningPlan"
     >("analysis"),
     [busy, setBusy] = useState(""),
     [consent, setConsent] = useState(false),
@@ -1273,6 +1284,9 @@ function Studio({ go }: { go: Go }) {
     { id: "cv", label: "Tailored CV" },
     { id: "coverLetter", label: "Cover letter" },
     { id: "interview", label: "Interview prep" },
+    { id: "companyResearch", label: "Company brief" },
+    { id: "portfolio", label: "Portfolio plan" },
+    { id: "learningPlan", label: "Learning plan" },
     { id: "followup", label: "Follow-up" },
   ] as const;
   if (!a)
@@ -1296,7 +1310,7 @@ function Studio({ go }: { go: Go }) {
       </>
     );
   const value =
-    tab === "followup" ? followupDraft(a, c.data.profile.name) : a[tab];
+    tab === "followup" ? followupDraft(a, c.data.profile.name) : a[tab] || "";
   async function generate() {
     if (!a || tab === "followup") return;
     if (tab === "analysis") {
@@ -1320,6 +1334,7 @@ function Studio({ go }: { go: Go }) {
         profile: c.data.profile,
         application: {
           id: a.id,
+          jobId: a.jobId,
           title: a.title,
           company: a.company,
           description: a.description,
@@ -1334,9 +1349,13 @@ function Studio({ go }: { go: Go }) {
         preparedAt: r.generatedAt,
       });
       setMessage(
-        (r.evidenceReviewed
-          ? "Draft ready after an AI evidence review. Check every fact before using it."
-          : "Draft ready. Check every fact and edit it before using it.") +
+        (kind === "companyResearch"
+          ? (r.text.startsWith("COMPANY BRIEF — EMPLOYER ADVERT EVIDENCE")
+            ? "Brief prepared from the monitored employer advert. Open its sources and verify the details."
+            : "Research checklist ready. We could not match this role to a current monitored advert; no company facts were invented.")
+          : r.evidenceReviewed
+            ? "Draft ready after an AI evidence review. Check every fact before using it."
+            : "Draft ready. Check every fact and edit it before using it.") +
           (r.warnings?.length ? " " + r.warnings.join(" ") : ""),
       );
     } catch (e) {
@@ -1364,7 +1383,8 @@ function Studio({ go }: { go: Go }) {
     }
   }
   const enough =
-    c.data.profile.cv.trim().length >= 100 && a.description.trim().length >= 80;
+    (tab === "companyResearch" || c.data.profile.cv.trim().length >= 100) &&
+    a.description.trim().length >= 80;
   return (
     <>
       <Title
@@ -1528,7 +1548,9 @@ function Studio({ go }: { go: Go }) {
                 <button
                   className="primary-button"
                   disabled={
-                    !!busy || !enough || (tab !== "analysis" && !consent)
+                    !!busy ||
+                    !enough ||
+                    (!["analysis", "companyResearch"].includes(tab) && !consent)
                   }
                   onClick={() => void generate()}
                 >
@@ -1547,29 +1569,45 @@ function Studio({ go }: { go: Go }) {
                 </button>
               )}
             </div>
-            {tab !== "followup" && tab !== "analysis" && (
-              <>
-                <p className="fine-print">
-                  {!enough
-                    ? "Add your master CV and a full job description first."
-                    : "AI helps with wording and preparation. Check accuracy, dates and claims before applying. CVs and letters receive a second AI evidence review. Built with Llama."}
-                </p>
-                <label className="ai-consent">
-                  <input
-                    type="checkbox"
-                    checked={consent}
-                    onChange={(e) => setConsent(e.target.checked)}
-                  />
-                  I agree to send my CV and this job description to Cloudflare
-                  AI to prepare this draft.
-                </label>
-              </>
-            )}
+            {tab !== "followup" &&
+              tab !== "analysis" &&
+              tab !== "companyResearch" && (
+                <>
+                  <p className="fine-print">
+                    {!enough
+                      ? "Add your master CV and a full job description first."
+                      : "AI helps with wording and preparation. Check accuracy, dates and claims before applying. CVs and letters receive a second AI evidence review. Built with Llama."}
+                  </p>
+                  <label className="ai-consent">
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(e) => setConsent(e.target.checked)}
+                    />
+                    I agree to send my CV and this job description to Cloudflare
+                    AI to prepare this draft.
+                  </label>
+                </>
+              )}
             {tab === "analysis" && (
               <p className="fine-print">
                 This check compares your CV and advert in your browser. It
                 quotes shared skill terms and highlights conditions to review.
                 No AI score or eligibility decision.
+              </p>
+            )}
+            {tab === "companyResearch" && (
+              <p className="fine-print">
+                Uses the current monitored advert when it matches this
+                application. This is a source-linked employer brief, not
+                independent market or financial research. No CV is sent to AI.
+              </p>
+            )}
+            {["portfolio", "learningPlan"].includes(tab) && (
+              <p className="fine-print">
+                A preparation plan, not proof that you have completed the work.
+                Proposed tasks must stay labelled as suggestions until you do
+                them.
               </p>
             )}
             {tab === "followup" && (
@@ -1594,9 +1632,9 @@ function Studio({ go }: { go: Go }) {
               maxLength={
                 tab === "coverLetter"
                   ? 20000
-                  : tab === "interview"
+                  : ["interview", "portfolio", "learningPlan"].includes(tab)
                     ? 24000
-                    : tab === "analysis"
+                    : ["analysis", "companyResearch"].includes(tab)
                       ? 20000
                       : 40000
               }
@@ -1702,7 +1740,15 @@ function Account({
     [code, setCode] = useState(""),
     [recovery, setRecovery] = useState(""),
     [busy, setBusy] = useState(false),
-    [message, setMessage] = useState(""),
+    [message, setMessage] = useState(() => {
+      if (typeof location === "undefined") return "";
+      const params = new URLSearchParams(location.search);
+      if (params.has("error"))
+        return "This email link could not be verified. Request a fresh verification link below.";
+      return params.has("email-link")
+        ? "Email link processed. Sign in to continue to your account."
+        : "";
+    }),
     [deleteModal, setDeleteModal] = useState(false);
   const upload = useRef<HTMLInputElement>(null);
   async function submit(e: React.FormEvent) {
@@ -1717,12 +1763,26 @@ function Account({
         setPassword("");
         setCode("");
       } else {
-        await request(
+        const result = await request(
           "/api/auth/" +
             (mode === "signup" ? "sign-up/email" : "sign-in/email"),
           "POST",
-          { email, password, ...(mode === "signup" ? { name } : {}) },
+          {
+            email,
+            password,
+            ...(mode === "signup"
+              ? { name, callbackURL: "/signin?email-link=1" }
+              : {}),
+          },
         );
+        if (mode === "signup" && !result.token) {
+          setPassword("");
+          setMode("signin");
+          setMessage(
+            "Check your inbox to verify your email, then sign in. Your browser workspace is still here.",
+          );
+          return;
+        }
         await c.reload();
         setPassword("");
         if (mode === "signup") {
@@ -1794,6 +1854,11 @@ function Account({
               <Cloud size={30} />
               <h2>Your account</h2>
               <p>{c.user.email}</p>
+              <AccountEmailHelp
+                signedIn
+                email={c.user.email}
+                verified={c.user.emailVerified}
+              />
               <p>{c.status}</p>
               <div className="career-actions">
                 <button
@@ -1951,11 +2016,12 @@ function Account({
                       : "Reset password"}
                 </button>
                 <p className="fine-print">
-                  Account recovery uses a saved recovery code. Email
-                  verification and password-reset emails are not enabled yet.
-                  Your email is a sign-in identifier, not a verified identity.
+                  Verify your email before signing in. Account emails come from
+                  accounts@sponsorintel.london. You can also recover an account
+                  using a saved recovery code.
                 </p>
               </form>
+              <AccountEmailHelp key={email} email={email} />
             </>
           )}
         </section>

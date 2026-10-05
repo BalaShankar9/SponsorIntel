@@ -1,47 +1,75 @@
-# Sponsor Intel: community launch and search growth
+# Sponsor Intel search growth and brand plan
 
-Prepared 4 October 2026. The purpose is to attract people who can use the product, help them take a useful first step and learn which information they need next. A ranking position is an outcome to measure, not a promise.
+Updated 5 October 2026 for Bala Bollineni. Build a trusted UK work, study and immigration planning service around reliable evidence and useful applications. Search leadership is a long-term outcome to earn and measure; no supplier can guarantee first place for every sponsorship or immigration query.
 
-## First release: delivered in 2.2
+## Brand recommendation
 
-- Eight public pages deliver readable HTML from the actual React components before JavaScript runs. Unique titles, descriptions, canonical URLs, social previews and WebSite/WebPage/Breadcrumb metadata share one route definition. Live employer, vacancy and immigration data still loads from current APIs, rather than being frozen into the build.
-- Three linked practical guides explain checking a sponsor, interpreting an advert and building a shortlist. An About & sources page explains scope, freshness, extraction limits and how to report a correction. No invented professional credentials or outcomes.
-- The sitemap includes only the eight public canonical pages. Missing routes return HTTP 404; personal workspace pages carry server-level noindex and private/no-store caching. Search filters and campaign links retain a clean canonical. The www host redirects to the primary address, while the legacy workers.dev site remains available with noindex on its pages.
-- A small, branded 1200×630 sharing image gives community links a clear preview. The homepage invites people to research three employers. Campaign parameters no longer accidentally trigger a filtered-results state.
-- Google Search Console ownership for the HTTPS primary address has been verified using the owner's signed-in Google account. The homepage indexing request was accepted into Google's crawl queue. Google's live sitemap fetch succeeded, but the sitemap report still showed a fetch warning after one resubmission; successful processing and actual indexing remain unconfirmed. See the release evidence for the observed result.
+Choose a distinctive new master brand before investing heavily in promotion. Keep sponsorintel.london operating while the replacement is checked and prepared. The existing [SponsorIntel UK](https://sponsorintel.uk/) uses the same name for a UK sponsor directory and says that it does not list jobs. Our judgement is that overlapping names and audiences create avoidable confusion. This is not evidence of copying, priority of use or a trade mark infringement.
 
-## Community launch: a small, useful first audience
+Use a memorable name that can cover jobs, applications, study and visa information, with a descriptive line such as “UK work, study and immigration planning”. Avoid a name that implies government approval, a law firm, guaranteed sponsorship or nationwide cheapest prices. A general web search is not legal clearance: RouteBloom was rejected because a live product already uses it. Wayverno and Bridgeaya remain brainstorming candidates only; no trade mark, domain or social availability is established, and neither is approved for use.
 
-The user chose a message and posting guide rather than automated sending. No WhatsApp messages have been sent by this task.
+Before choosing, check exact and similar names in the [UK IPO register](https://www.gov.uk/search-for-trademark), Companies House, domain registrations and the relevant social platforms. Obtain professional clearance for the intended services where needed, then agree the name and purchase budget with Bala. Register the chosen domains and handles in the owner's accounts. Do not buy a domain on an assumption that its availability establishes legal rights.
 
-1. Start with two or three relevant communities where the owner participates and project recommendations are welcome: international students, graduates, local migrant communities or relevant professional groups. Write a personal introduction for that group. Avoid mass forwarding or repeatedly posting the same advert.
-2. Share one clear link and ask people to search their city and save three employers. Explain that the beta is free to explore and that a sponsor licence does not establish sponsorship for every vacancy. For groups mainly discussing rule changes, use the updates page and describe the selected official-source coverage accurately.
-3. Ask the first five to ten willing users what they tried, what confused them and whether they found a useful next step. Invite feedback through the visible Feedback button or share https://sponsorintel.london/?feedback=1. Do not ask for passport details or immigration documents in a group.
-4. Reply to questions and publish a useful follow-up only when there is a real improvement, new guide or checked official change to share. Give readers a reason to return through fresh evidence and practical progress, without artificial urgency or repeated reminders.
+Prepare every existing URL's equivalent on the new domain, test permanent redirects, change canonical links and structured publisher identity together, verify the new Search Console property and submit its sitemap. Keep the old domain and redirects for at least one year, preferably longer. Preserve account access, transactional email authentication, inbound links and community materials. Google's [site migration guidance](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes) explains the process; ranking fluctuations remain possible.
 
-## Next build priorities
+## Search strategy
 
-| Priority | Work | Evidence needed before calling it complete |
+Concentrate on the problems this product can solve well. The initial audience is international graduates and job seekers in the UK, plus people in India comparing legitimate UK work and study options. Compete first for specific, useful questions and opportunities before broad terms such as “immigration”.
+
+| Search need | Useful destination | Distinct value to develop |
 | --- | --- | --- |
-| 1 | Resolve any Search Console crawl issues, then inspect the homepage and key guides | Successful Google live fetch and sitemap processing; distinguish accepted indexing requests from actual indexing |
-| 2 | Improve the first search-to-shortlist journey from pilot feedback | Users complete city search, open the evidence, save an employer and find their next action without help |
-| 3 | Add useful employer and vacancy detail URLs | Stable identity, original source links, current evidence, expiry handling and meaningful content; no bulk thin pages |
-| 4 | Consider Google JobPosting markup for individual, eligible live job pages | All required fields, genuine single-vacancy content, correct apply route and removal/expiry behaviour; never attach it to a results page or invent sponsorship/salary details |
-| 5 | Expand guide topics around real questions | Clear audience, independently checked official sources, named product publisher, preparation date, review trigger and useful next action |
-| 6 | Earn relevant references | Helpful resources that university societies, career services and community organisers choose to link to; owner-approved outreach, no purchased link packages |
-| 7 | Measure repeat usefulness | A defined, privacy-conscious measurement plan for searches, saves, applications and returns; do not infer visitor or conversion counts from a successful deployment |
+| Find current UK jobs with sponsorship wording | Jobs and individual vacancy pages | Dated employer evidence, explicit exclusions, expiry checks and a relevant next action |
+| Check whether an employer is licensed | Sponsor search and checking guide | Legal-name matching, original register and a clear distinction between a licence and a job offer |
+| Understand business or self-sponsorship | Business route guide | Genuine-business requirements, separated costs and warnings about sold jobs or certificates |
+| Compare UK study options | Student directory and cost planner | Official licence records, course-year fee sources, total cost and separate financial evidence |
+| Plan from India | India-to-UK guide | Purpose-based route comparison, official conditions and practical evidence checklist |
+| Understand an immigration change | Updates and source-linked guidance | What changed, who may be affected, confirmed dates and explanation review status |
+| Find a trustworthy adviser | Adviser directory | Regulator identity, dated status and licensed review evidence kept separate |
+
+The release adds seven public pages, bringing the total to 17, with readable initial HTML, unique metadata, canonical links and breadcrumbs. Genuine review dates enter the sitemap; account and recovery pages remain excluded. Live job URLs enter the sitemap only while their records are fresh. Do not create hundreds of near-identical city, occupation or college pages, change dates without a review, buy backlinks or invent aggregate ratings. Google's [people-first guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content) supports original usefulness and transparent expertise.
+
+Search Console was inspected on 5 October: zero recorded web-search clicks and indexing data still processing. The updated sitemap submission was accepted and its row showed Success; the last processed crawl still showed eight discovered pages. The new `/routes` URL was not indexed. Its separate indexing request returned Google's temporary submission error. This is the measured starting point, not proof that the new release is indexed. The live sitemap contained 754 fresh jobs and 17 public pages during acceptance. Field Core Web Vitals are not available yet; the PageSpeed API returned a quota error. No performance score is claimed.
+
+## A product that becomes harder to reproduce
+
+Public sponsor registers and generic AI prompts are widely available. A competitor can reproduce those features. Build an advantage through sustained evidence collection, relationships and useful outcomes.
+
+| Investment | Why it compounds | Proof to collect |
+| --- | --- | --- |
+| Employer confirmations and entity matching | Direct, dated confirmations reduce uncertainty that a copied CSV cannot resolve | Exact legal entity, role, source, confirmation date, expiry and reviewer |
+| Vacancy and policy history | Historical changes help identify reliable sources and correct mistakes | Immutable source versions, detected changes and correction history |
+| Reviewed application evidence | Better factual editing makes the saved workspace useful over time | Diverse benchmark results, unsupported-claim rate and candidate corrections |
+| Student cost data with provenance | Rechecking fees, intakes and total duration takes ongoing work | Course, campus, year, international fee basis, source date and change record |
+| Community and adviser relationships | Trusted referrals and useful feedback are relationships, not copied screens | Voluntary pilot feedback, legitimate referrals and transparent partnerships |
+| Outcome learning with consent | Aggregated, permissioned outcomes can improve guidance | Clear definitions, appropriate consent, no reuse of private CVs without permission |
+
+Protect the original brand and material appropriately. [UK intellectual-property guidance](https://www.gov.uk/intellectual-property-an-overview/protect-your-intellectual-property) distinguishes the available protections. Keep secrets and internal operations private, use least-privilege access and preserve dependency licences. Existing open-source licences cannot simply be withdrawn from copies already distributed. Do not obstruct legitimate search crawling in an attempt to stop copying. No technology makes a public product impossible to replicate.
+
+## Execution over the next ninety days
+
+These are proposed operating targets, not current achievements or scheduled automations.
+
+| Period | Priority | Release gate |
+| --- | --- | --- |
+| First two weeks | Ship source-backed route and study tools, email verification/recovery, application extensions and search fixes | Real-inbox delivery, complete account recovery, source dates, mobile journeys and production acceptance recorded |
+| First month | Review 50 diverse live adverts and 20 varied CV/advert pairs; correct parser and generation errors; clear the new brand | Published internal sample methodology, severity of every error, corrected failures and no invented critical claims in the release sample |
+| First month | Add graduate, healthcare, hospitality and non-technical sources through the owner queue | Employer-owned or expressly permitted feeds, reviewed entity match, retirement checks and truthful sponsorship labels |
+| Days 30 to 60 | Obtain regulator data access and a permitted ratings arrangement; broaden verified course costs | Provider contract/key, correct entity matching, attribution, stale-data handling and no unsourced star ratings |
+| Days 30 to 60 | Pilot with ten willing users and seek appropriate university/community references | At least eight can find evidence and save a useful next step without help; report failures as well as successes |
+| Days 60 to 90 | Release reviewed alerts, useful course comparisons and translations only where demand warrants them | Explicit subscriptions, unsubscribe and delivery controls; qualified review of legal meaning and changed sources |
+
+Transactional account email is separate from newsletters. Do not reuse a signup address for a marketing digest without the necessary permission and controls. Do not message universities, groups, advisers or employers until Bala authorises that outreach.
+
+## Data and access still required
+
+The Student register contains 946 provider records in the 5 October snapshot, including institutions with separate routes or statuses. The fee collection starts with eight records from four universities; it does not cover all colleges, all courses, available places or the UK's cheapest study options. Add fee data by course and academic year, prefer institutional feeds or explicit permission, and record tuition basis, total duration, campus, deposits, refund rules and confirmed scholarships separately.
+
+The [SRA data-sharing service](https://sra-prod-apim.developer.azure-api.net/) requires registration and a subscription key. No key has been obtained. Its coverage is England and Wales; Scotland and Northern Ireland still need their own regulator sources. Public regulator lookup links remain available in the product.
+
+Customer star ratings need a permitted provider integration and exact firm matching. Trustpilot's [September 2026 brand rules](https://uk.corporate.trustpilot.com/legal/for-businesses/legal-brand-guidelines/sept-2026) require an agreement for third-party use. No ratings feed or permission is connected. Do not scrape or invent ratings to fill the space. Once access exists, show the provider, review count, checked time, external link and required attribution; never present a licence level as customer satisfaction or a guarantee of competence.
 
 ## Measurement and review
 
-Use Search Console for Google impressions, clicks, click-through rate, queries, pages and indexing problems. Establish a baseline after it has processed enough data. Review which queries already produce impressions and improve the most relevant page before creating many new pages. Measure branded and non-branded discovery separately. No initial ranking or traffic claim is supported yet.
+Check Search Console weekly for indexed canonical pages, non-branded impressions, clicks, relevant queries and crawl errors. Compare equivalent time periods after sufficient data accumulates. A sitemap submission is not indexing, and indexing is not ranking. Improve pages that already attract relevant impressions before expanding coverage.
 
-Search Console does not count WhatsApp visitors or product actions. Campaign parameters alone do not create analytics. Start with a small user feedback log; add suitable aggregate measurement before reporting community conversion rates. Keep CV text, personal immigration details and application content out of analytics events.
-
-For each future release, check raw HTTP HTML as well as the rendered mobile interface, canonical URLs, structured data, sitemap membership, robots behaviour, public links and real 404s. Preserve the Google verification tag. Readability and source accuracy take priority over keyword repetition.
-
-## Reference standards
-
-- [Google JavaScript SEO](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics): readable initial content, consistent canonical signals and real links/status codes.
-- [Google SEO starter guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide): useful content, descriptive organisation and realistic expectations.
-- [Google sitemap troubleshooting](https://support.google.com/webmasters/answer/7451001): submission, successful fetching and indexing are different states.
-- [Cloudflare asset routing](https://developers.cloudflare.com/workers/static-assets/routing/worker-script/): explicit Worker-first routing for canonicalisation and private/unknown-page handling.
+Use the owner dashboard's aggregate page views, completed signup/sign-in events and successful preparation requests. These counts are not unique visitors, interviews or employment outcomes. Define consent-aware save, application and return measures before reporting conversion rates. Keep CV text, questions, account identifiers, query strings and personal immigration details out of analytics. Publish a monthly factual quality review with stale-source rates, corrections, generation failures and verified user feedback.

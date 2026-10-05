@@ -19,6 +19,7 @@ import { adminAPI } from "./admin.js";
 import { advisersAPI, checkAdviserDataset } from "./advisers.js";
 import { chatAPI } from "./chat.js";
 import { analyticsAPI, recordMetric, responseMetric } from "./analytics.js";
+import { studyAPI, refreshStudents } from "./study.js";
 const FEATURED = [
   "Google (UK) Limited",
   "Deloitte LLP",
@@ -85,6 +86,11 @@ async function api(request, env) {
     );
   }
   if (path === "/api/feedback") return feedbackAPI(request, env);
+  if (
+    path === "/api/study/sponsors" &&
+    ["GET", "HEAD"].includes(request.method)
+  )
+    return studyAPI(url, env);
   if (path === "/api/advisers" && ["GET", "HEAD"].includes(request.method))
     return advisersAPI(url, env);
   if (path === "/api/chat") return chatAPI(request, env);
@@ -350,7 +356,15 @@ export default {
         request.method === "HEAD" ? null : response.body,
         response,
       );
-      for (const [k, v] of Object.entries(security)) response.headers.set(k, v);
+      for (const [k, v] of Object.entries(security))
+        response.headers.set(
+          k,
+          k === "Referrer-Policy" &&
+            (url.pathname === "/reset-password" ||
+              url.pathname.startsWith("/api/auth/"))
+            ? "no-referrer"
+            : v,
+        );
       const metric = responseMetric(
         url.pathname,
         request.method,
@@ -409,6 +423,7 @@ export default {
       return;
     }
     await checkAdviserDataset(env);
+    await refreshStudents(env);
     try {
       const result = await refresh(env);
       console.log(JSON.stringify({ event: "register_refresh", ...result }));

@@ -1,0 +1,23 @@
+{
+  "reviewed": "2026-10-05",
+  "sources": {
+    "student-money": "b23a066c18052daea737a40dc36b1df355a4b632f4682f1e747a347be2bb0412",
+    "founder": "34b27109c731f426a83deadce557aa9d013c7a5a54c78955d81dea574b4c5a0b",
+    "founder-eligibility": "b3bdb6ef97507a635a2d8d657bbc15ed11540c42c495be57007ff60d4fbbf799",
+    "sponsor-fees": "e0e34577f63127a2b5a53b4c686e8bfa9d567b468de2680868ddca41ead3bf1e",
+    "sponsor-certificate": "0cd7a27f652c753094f009b9c98f09cdca424a24b6507191b1ff0e6b9534795d",
+    "sponsor-skills-charge": "2f07b204d074f92064a86226450d80dda1f52bb5767d8ccbda5447e4dc3d9df0",
+    "india-young-professionals": "3a981e53dba48ed0e52b637e4a5434d6644d655777cbce9e9515eddd6324ddcb",
+    "hpi": "ad763ca011123beca389d3d653c5348f42f6d493bfb2a8c0a37620f8d28959bf",
+    "global-talent": "7357e415c6753d902dc5ee183497c3a849da79c29612884eb23f3f6af6e5b2de",
+    "expansion": "9465b609f7acec966400122c37c0ccaab2444b3d481d53872b6ca7fd51774392",
+    "scale-up": "57f8c782b150bed51dc3d3cc0716179bc3646f82dffacb517fe32e4f0cd2dde4",
+    "family": "ee7dc58b671cb911cbe6577e7b29afc9649e624e2a9e94faf894acb486b928e1",
+    "ihs": "6f3fa6778d227e72e3f1f8f15db6405a509b24f42158d68b0d47b5016bc54101",
+    "graduate": "42ecc16a9cc35461326f0b11e64abb356321800384f7a14c470e7c63ddf896a6",
+    "student": "d597add4320be4eebd482a9ab216c699c60f065fd10edf0ca50642d8e39e5307",
+    "skilled-job": "c302b17ae57be36db212254dddb703820bb941962734d5a722472b80ba4cf725",
+    "student-course": "d612cc6888880d505eec16ec8f2a19dc740dbb73787ffb48d875e6992a6fb8ea",
+    "healthcare-job": "ac9b2e5d63dbea7f0c979c9dc9dd4ca09defa0d21f18830706d11ce239dbc123"
+  }
+}

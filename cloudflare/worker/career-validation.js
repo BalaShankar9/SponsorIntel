@@ -71,6 +71,9 @@ export function validateWorkspace(input) {
       coverLetter: text(a.coverLetter, 20000),
       interview: text(a.interview, 24000),
       analysis: text(a.analysis, 20000),
+      companyResearch: text(a.companyResearch, 20000),
+      portfolio: text(a.portfolio, 24000),
+      learningPlan: text(a.learningPlan, 24000),
       preparedAt: text(a.preparedAt, 40),
     };
   });

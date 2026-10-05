@@ -4,13 +4,19 @@ Owner: Codex implementation lead, with Bala as product owner. Updated 5 October 
 
 The product promise: help international students and migrants find credible UK opportunities, understand the evidence, and prepare good applications. Judge success by useful applications and interviews, not scrolling time or raw job counts.
 
-## Current release: owner operations and evidence-led preparation — 2.6
+## Current release — 2.7
+
+The live release adds verified account email and expiring password recovery, seven route and study pages, the official student sponsor directory, selected fee comparisons, source monitoring and HireStack company briefs, portfolio plans and learning plans. The full production account recovery flow passed, but Gmail placed verification and reset messages in Spam despite passing SPF, DKIM and DMARC. Inbox delivery remains an operational gap. Acceptance and production status are recorded in `cloudflare/RELEASE-2.7.md`.
+
+The growth and brand plan is maintained in `docs/GROWTH_PLAN.md`. The recommendation is a distinctive new name after clearance, while keeping sponsorintel.london live. Fuller solicitor data requires SRA access and separate coverage for other UK regulators; customer star ratings require a licensed source. Course prices remain selected examples. A six-scenario Cloudflare AI benchmark supplements the prior authorised real-CV test; broader independent review remains necessary.
+
+## Owner operations and evidence-led preparation — 2.6
 
 Visible sign-in/sign-up, an ID-protected owner dashboard, anonymous aggregate usage, private feedback triage, reviewed employer-feed intake and 30-day source-run history are live. The adviser page has 2,274 dated official IAA records plus solicitor/regulator finders; customer ratings remain unconnected pending licensed data. The immigration assistant retrieves official guidance on demand with supporting passages and honest source limitations.
 
 An authorised real-CV test exposed omissions and invented details. Contact extraction, date/planned-work warnings, prompts, model choice, a separate factual-editing pass and PDF/Word layout were improved. AI review can still miss inferences: a multi-CV benchmark and human review remain required. Core HireStack preparation is integrated; company research, portfolio and learning-plan agents are not fully ported. See `cloudflare/RELEASE-2.6.md` for scope and acceptance evidence.
 
-Immediate order: (1) verify email/recovery delivery; (2) audit 50 adverts and 20 varied CV/JD pairs; (3) expand permitted sector sources through the owner review queue; (4) connect licensed ratings and fuller regulator data; (5) add reviewed alerts and translations. Do not grow promotion faster than measured source and document quality.
+Remaining quality order after 2.7: (1) monitor transactional delivery and bounce handling; (2) complete the larger audit of 50 adverts and 20 varied CV/JD pairs; (3) expand permitted sector sources through the owner review queue; (4) connect licensed ratings and fuller regulator data; (5) add reviewed alerts and translations. Do not grow promotion faster than measured source and document quality.
 
 ## Foundation already delivered: 2.0
 
@@ -73,7 +79,7 @@ Acceptance: two accounts cannot access one another’s work; retries cannot over
 
 Use the existing Cloudflare application and the integrated Hire Stack workspace. Avoid a second overlapping account system. GOV.UK Content API and the public Greenhouse, Lever and Ashby job interfaces are the initial sources; they do not require user-supplied keys for these reads. Check provider conditions and limits before expanding use. Optional Companies House or licensed job integrations require this product’s own credentials and explicit cost checks. Never use somebody else’s API key found online.
 
-Email preparation checked on 4 October: Cloudflare's sending-domain inventory does not yet include sponsorintel.london, and this Worker has no send binding. Cloudflare's [current email documentation](https://developers.cloudflare.com/email-service/) supports transactional verification/recovery through a Worker binding. Its [pricing](https://developers.cloudflare.com/email-service/platform/pricing/) includes 3,000 messages per account per month on Workers Paid, with usage above that billed separately; this is a shared account allowance, not a dedicated free Sponsor Intel allocation. The next implementation should onboard a dedicated sending subdomain, verify its DNS, add bounded sends and single-use expiring tokens, test with a local capture transport, and complete an authorised real-inbox delivery test before enabling it for visitors. Use a suitable consent-based delivery service for any newsletter or marketing digest; do not assume the transactional service permits bulk campaigns.
+Account email was enabled on 5 October through Cloudflare Email Service for sponsorintel.london. A delivery test reached the owner's Gmail inbox. The 2.7 build adds the Worker binding, per-address/IP/global limits, email verification, expiring single-use reset tokens and tests of expiry, reuse, session revocation and origin checks. See the release record for the production account-flow result. Newsletters and feedback alerts remain separate future features with their own permission, delivery and unsubscribe requirements.
 
 ## Release discipline
 

@@ -50,6 +50,8 @@ import { ImmigrationUpdates } from "./updates";
 import { AccountActions, OwnerDashboard, PageTracking } from "./owner";
 import { AdviserDirectory } from "./advisers";
 import { ImmigrationAssistant } from "./ask";
+import { PathwayPage } from "./pathways";
+import { PasswordReset } from "./account-email";
 import { GuideLinks, ResourceArticle, AboutPage, articles } from "./resources";
 import { publicPages, updateMetadata } from "./seo";
 import {
@@ -226,7 +228,13 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     ).replace(/^\//, "") || "discover",
   );
   const isJobDetail = /^jobs\/[a-f0-9]{24}$/.test(view);
-  const activeView = isJobDetail ? "jobs" : view;
+  const activeView = isJobDetail
+    ? "jobs"
+    : view.startsWith("routes/")
+      ? "routes"
+      : view.startsWith("study/")
+        ? "study"
+        : view;
   useEffect(() => {
     if (!isJobDetail) updateMetadata(view);
   }, [view, isJobDetail]);
@@ -715,6 +723,8 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     { id: "studio", label: "Application studio", icon: Sparkles },
     { id: "career-profile", label: "My CV & profile", icon: FileText },
     { id: "updates", label: "Immigration updates", icon: Radio },
+    { id: "routes", label: "Explore visa routes", icon: Compass },
+    { id: "study", label: "Study in the UK", icon: GraduationCap },
     { id: "guides", label: "UK career guides", icon: BookOpen },
     { id: "advisers", label: "Find immigration advice", icon: Scale },
     { id: "ask", label: "Ask immigration questions", icon: MessageSquare },
@@ -800,12 +810,18 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             <strong>
               {(isJobDetail
                 ? "Opportunity details"
-                : nav.find((n) => n.id === view)?.label) ||
+                : nav.find((n) => n.id === view)?.label ||
+                  publicPages[view]?.title.split(" | ")[0]) ||
                 (view.startsWith("guides/")
                   ? "Career guide"
                   : view === "about"
                     ? "About & sources"
-                    : ["signin", "signup", "account"].includes(view)
+                    : [
+                          "signin",
+                          "signup",
+                          "account",
+                          "reset-password",
+                        ].includes(view)
                       ? "Your account"
                       : view === "admin"
                         ? "Owner dashboard"
@@ -1596,6 +1612,16 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
           {view === "about" && <AboutPage />}
           {view === "advisers" && <AdviserDirectory />}
           {view === "ask" && <ImmigrationAssistant />}
+          {view === "reset-password" && <PasswordReset />}
+          {[
+            "routes",
+            "routes/business-self-sponsorship",
+            "routes/india-to-uk",
+            "study",
+            "study/uk-costs",
+            "immigration-sources",
+            "editorial-policy",
+          ].includes(view) && <PathwayPage view={view} />}
           {view === "admin" && <OwnerDashboard go={go} />}
           {articles.some((a) => view === "guides/" + a.slug) && (
             <ResourceArticle view={view} />
@@ -1768,6 +1794,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             "account",
             "signin",
             "signup",
+            "reset-password",
             "employer-notes",
             "admin",
           ].includes(view) &&
@@ -1788,6 +1815,8 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             </span>
             <div>
               <a href="/about">About & sources</a>
+              <a href="/editorial-policy">Editorial standards</a>
+              <a href="/immigration-sources">Trusted channels</a>
               <button onClick={() => setModal("privacy")}>Privacy & use</button>
               <button onClick={() => openFeedback()}>Leave feedback</button>
               <span>© {new Date().getFullYear()} Sponsor Intel</span>
@@ -2171,8 +2200,11 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
               <p>
                 Remove employers from your shortlist, export your workspace, or
                 clear this site’s browser data to remove local information.
-                Career accounts use email and password, with a recovery code;
-                email verification and reset emails are not currently enabled.
+                Career accounts use email and password. Verification and password-reset
+                emails are sent through Cloudflare from accounts@sponsorintel.london.
+                Verification links expire after one hour; reset links after 30 minutes.
+                Saved recovery codes remain available. Account emails do not subscribe
+                you to marketing.
                 Use Account & backup to export your career workspace, or delete
                 your account and cloud career data. Clearing browser data cannot
                 be undone without a backup. For feedback removal, send a request

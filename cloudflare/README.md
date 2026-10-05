@@ -123,7 +123,7 @@ AI defaults to eight preparations per account (or guest IP) per UTC day, twelve 
 
 Deploy a unique `AUTH_SECRET` and a separate random `ADMIN_TOKEN` as Worker secrets before exposing account routes. Migrations 0002 and 0003 add isolated job and account tables without changing sponsor snapshots. D1 Time Travel and deployment history provide operator recovery. Never restore an old user database without considering newer account deletions. Cloud workspaces use the authenticated user ID on the server, never a client-supplied ID.
 
-There is no email delivery integration in this release. Email is an unverified sign-in identifier; users save a one-use recovery code during signup and can rotate it after a fresh login. Do not enable organisations, invites, employer access, email-based recovery or identity claims until verified email ownership is in place. Legacy Hire Stack accounts are not silently migrated. Account cookies are isolated by hostname; changing from the workers.dev address to the branded domain requires signing in again, but D1 account data remains shared. Guest data stays in the original hostname's browser storage: export a backup there and import it on the new domain.
+Account email is now delivered by the Cloudflare EMAIL binding from accounts@sponsorintel.london. Signup requires email verification before sign-in. Verification links expire in one hour, password resets in 30 minutes and reset use revokes existing sessions. Existing unverified users can request verification; existing sessions remain usable. A verified email proves control of an inbox, not personal or immigration identity. Recovery codes can be generated after a fresh sign-in. Requests are bounded per address, IP and app. These transactional messages do not enable a newsletter. Legacy Hire Stack accounts are not silently migrated. Account cookies are isolated by hostname; changing from the workers.dev address to the branded domain requires signing in again, but D1 account data remains shared. Guest data stays in the original hostname's browser storage: export a backup there and import it on the new domain.
 
 ## Employer shortlist and feedback
 
@@ -149,14 +149,14 @@ The apex and `www` names are native Worker custom domains declared in `wrangler.
 
 Use Wrangler's deployment history and rollback command to restore a previously verified Worker version. A code rollback does not undo a database update. Sponsor data uses versioned snapshots; inspect the current metadata and retained snapshot counts before changing the active metadata. Retain/restore a D1 backup for schema or data recovery. Guest career work and older employer shortlists are browser data and cannot be reconstructed from D1. Signed-in career workspaces are stored in D1 and included in database recovery; users can export their own backup.
 
-The beta does not yet migrate legacy accounts, send email alerts, verify email ownership, or offer paid plans. It does not claim complete UK vacancy coverage, legal eligibility or sponsorship likelihood. The old Python/PostgreSQL/Redis services are not deployed as part of this migration.
+The beta does not yet migrate legacy accounts, send subscription alerts or offer paid plans. It does not claim complete UK vacancy coverage, legal eligibility or sponsorship likelihood. The old Python/PostgreSQL/Redis services are not deployed as part of this migration.
 
-See `RELEASE-2.6.md` for current deployment and acceptance evidence and `../docs/PRODUCT_ROADMAP.md` for the remaining work, quality gates and launch priorities. The earlier domain and career-workspace acceptance is retained in `RELEASE-2.0.md`.
+See `RELEASE-2.7.md` for current deployment and acceptance evidence and `../docs/PRODUCT_ROADMAP.md` for the remaining work, quality gates and launch priorities. The earlier domain and career-workspace acceptance is retained in `RELEASE-2.0.md`.
 
 
 ## Public pages and search visibility (2.2)
 
-Run the full `npm run build`: Vite creates the fresh template, then `scripts/prerender.mjs` renders ten public pages using the actual React components. It also generates the sitemap, private shell and 404 page. The script deliberately refuses to reprocess an already-rendered template. Public routes and metadata share `shared/pages.json`; keep client navigation and page content consistent with it.
+Run the full `npm run build`: Vite creates the fresh template, then `scripts/prerender.mjs` renders 17 public pages using the actual React components in release 2.7. It also generates the sitemap, private shell and 404 page. The script deliberately refuses to reprocess an already-rendered template. Public routes and metadata share `shared/pages.json`; keep client navigation and page content consistent with it.
 
 The Worker serves these documents with explicit canonical redirects, real 404 status codes and noindex/private caching for workspace pages. Public feed content remains live in the browser and is not copied into the build. The workers.dev HTML is noindex; www redirects to sponsorintel.london. Preserve the Google site-verification tag in `index.html`. No JobPosting rich-result markup is included yet.
 
@@ -166,6 +166,19 @@ See `RELEASE-2.2.md` for observed Google verification/crawl outcomes and `../doc
 
 ## Owner access, advice directory and assistant (2.6)
 
-Apply migration 0006 before deploying 2.6. For initial owner provisioning, run `node scripts/provision-owner.mjs OWNER_EMAIL ABSOLUTE_PRIVATE_DIRECTORY` from this folder, with a private directory outside Git. It creates a new account, binds the owner role to its returned ID, verifies access and saves credentials privately. It aborts on an existing email; never promote an unverified existing email automatically. Owner credentials, recovery codes, CVs and SQL provisioning files must stay outside this repository.
+Apply migration 0006 before deploying 2.6. The initial 2.6 owner was provisioned before email verification was enabled. The legacy `scripts/provision-owner.mjs` bootstrap is not suitable for creating a second owner under 2.7: first create and verify the account, then explicitly bind the reviewed immutable user ID through an authenticated operator change. Never promote an account solely by email. Owner credentials, recovery codes, CVs and SQL provisioning files must stay outside this repository.
 
 `/admin` contains aggregate analytics, account activity, private feedback, source freshness and reviewed employer intake. An approved source joins the next scheduled refresh; pausing removes its jobs. `/advisers` exposes a dated IAA snapshot and external regulator/review links, without manufactured ratings. `/ask` uses live GOV.UK retrieval and bounded Cloudflare inference; it does not store conversation text or provide personal visa decisions. CV/cover preparation uses a separate AI factual-editing pass and still requires human checking. Details and limitations are in `RELEASE-2.6.md`.
+
+
+## Routes study and account email in 2.7
+
+Apply migration 0007 before deploying. The student register is checked daily; the owner can trigger a check from the dashboard. Imports validate the official publication, allowed CSV host, schema, source date and size before switching an atomic snapshot pointer. Failed imports retain the last successful snapshot and its successful check time. No student or course personal data is imported.
+
+Seven new public pages cover visa routes, business sponsorship, India-to-UK planning, student providers, selected course costs, trusted information channels and editorial standards. Fee examples are a small dated collection, not a cheapest-provider ranking. Eighteen source hashes pin the current guidance; 20 fixed GOV.UK pages plus four recent Rules publications are monitored. Source checks are not a legal review.
+
+Application Studio adds a current-advert company brief, portfolio preparation plan and two-week learning plan. These are bounded extensions inspired by HireStack, not a wholesale migration of all its agents or a published portfolio builder. Company briefs do not send a CV to AI and do not claim independent company research. Suggested work is not completed experience. See `RELEASE-2.7.md` and `../docs/GROWTH_PLAN.md` for acceptance evidence and remaining source-access dependencies.
+
+The production verification and reset workflow was exercised with actual delivered messages. SPF, DKIM and DMARC passed, but Gmail placed the account messages in Spam. Treat inbox placement and bounce monitoring as unfinished before a large signup campaign. The owner's email is verified; no owner password change was performed. The fictional acceptance account was removed after verification.
+
+Run `node scripts/application-benchmark.mjs BASE_URL OUTPUT_JSON --consent` only when an operator intends to use Cloudflare AI. It uses fictional scenarios; optional BENCHMARK_IDS selects individual cases. The script records outputs for manual factual review and is not part of automatic CI or an ATS scoring system.
