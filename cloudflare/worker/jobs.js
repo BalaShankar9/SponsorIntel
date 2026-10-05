@@ -445,6 +445,17 @@ function withSector(job) {
   return { ...job, sector, sector_label: SECTORS[sector] || "" };
 }
 
+export async function getJobDetail(id, env) {
+  if (!/^[a-f0-9]{24}$/.test(id)) return null;
+  const item = await env.DB.prepare("SELECT * FROM jobs WHERE id=?")
+    .bind(id).first();
+  if (!item) return null;
+  const source = await env.DB.prepare(
+    "SELECT careers_url,checked_at,last_success,error FROM job_sources WHERE id=?",
+  ).bind(item.board_id).first();
+  return { ...withSector(item), source: source || null };
+}
+
 export async function jobsAPI(url, env) {
   if (url.pathname === "/api/jobs/sources")
     return Response.json({
@@ -454,12 +465,10 @@ export async function jobsAPI(url, env) {
     });
   const id = url.pathname.match(/^\/api\/jobs\/([a-f0-9]{24})$/)?.[1];
   if (id) {
-    const item = await env.DB.prepare("SELECT * FROM jobs WHERE id=?")
-      .bind(id)
-      .first();
+    const item = await getJobDetail(id, env);
     return Response.json(
-      item ? withSector(item) : { error: "This vacancy was not found." },
-      { status: item ? 200 : 404 },
+      item || { error: "This vacancy was not found." },
+      { status: item ? 200 : 404, headers: { "Cache-Control": "no-store" } },
     );
   }
   if (url.pathname !== "/api/jobs")

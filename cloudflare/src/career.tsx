@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { JobDetail } from "./job-detail";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -160,7 +161,8 @@ export function CareerWorkspace({
   onReport: ReportFeedback;
 }) {
   const c = useCareer();
-  if (!c.ready && !["account", "jobs"].includes(mode))
+  const roleId = mode.match(/^jobs\/([a-f0-9]{24})$/)?.[1];
+  if (!c.ready && !["account", "jobs"].includes(mode) && !roleId)
     return (
       <div className="career career-panel">
         <h2>Opening your workspace…</h2>
@@ -192,8 +194,10 @@ export function CareerWorkspace({
           </button>
         </div>
       )}
-      {mode === "jobs" ? (
-        <Vacancies go={go} onReport={onReport} />
+      {roleId ? (
+        <JobDetail key={roleId} id={roleId} go={go} onReport={onReport} />
+      ) : mode === "jobs" ? (
+        <Vacancies go={go} />
       ) : mode === "applications" ? (
         <Applications go={go} />
       ) : mode === "studio" ? (
@@ -207,7 +211,7 @@ export function CareerWorkspace({
   );
 }
 
-function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
+function Vacancies({ go }: { go: Go }) {
   const c = useCareer();
   const params = new URLSearchParams(
     typeof location === "undefined" ? "" : location.search,
@@ -218,7 +222,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
     [level, setLevel] = useState(params.get("level") || ""),
     [salary, setSalary] = useState(params.get("salary") || ""),
     [sector, setSector] = useState(params.get("sector") || ""),
-    [page, setPage] = useState(1),
+    [page, setPage] = useState(Math.max(1, parseInt(params.get("page") || "1") || 1)),
     [key, setKey] = useState(0);
   const [applied, setApplied] = useState({
     q,
@@ -246,8 +250,6 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
     } | null>(null),
     [loading, setLoading] = useState(true),
     [error, setError] = useState(""),
-    [detail, setDetail] = useState<Job | null>(null),
-    [busy, setBusy] = useState(""),
     [message, setMessage] = useState("");
   function applyFilters(
     next = { q, location: city, sponsorship, level, salary, sector },
@@ -268,6 +270,12 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
   function search(e?: React.FormEvent) {
     e?.preventDefault();
     applyFilters();
+  }
+  function changePage(next: number) {
+    setPage(next);
+    const p = new URLSearchParams(Object.entries(applied).filter(([, value]) => value));
+    if (next > 1) p.set("page", String(next));
+    history.replaceState({}, "", "/jobs" + (p.size ? "?" + p : ""));
   }
   function collection(kind: string) {
     applyFilters({
@@ -293,7 +301,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
       .then((d) => {
         if (alive) {
           setResult(d);
-          if (d.page !== page) setPage(d.page);
+          if (d.page !== page) changePage(d.page);
         }
       })
       .catch((e) => {
@@ -306,24 +314,6 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
       alive = false;
     };
   }, [key, page, applied]);
-  async function open(j: Job) {
-    setBusy(j.id);
-    try {
-      setDetail(await request("/api/jobs/" + j.id));
-    } catch (e) {
-      setError((e as Error).message);
-    } finally {
-      setBusy("");
-    }
-  }
-  function prepare(j: Job) {
-    if (!c.ready) return;
-    const id = c.saveJob(j);
-    if (id) {
-      setDetail(null);
-      go("studio");
-    }
-  }
   function saveSearch() {
     if (!c.ready) return;
     if (c.data.searches.length >= 10) {
@@ -602,9 +592,9 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
                   <CheckCircle2 size={18} aria-label="Saved to applications" />
                 )}
               </div>
-              <button className="vacancy-title" onClick={() => void open(j)}>
+              <a className="vacancy-title" href={"/jobs/" + j.id}>
                 {j.title}
-              </button>
+              </a>
               <p className="location">
                 <MapPin size={14} />
                 {j.location}
@@ -639,16 +629,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
                 >
                   Checked {day(j.last_seen)}
                 </span>
-                <button onClick={() => void open(j)} disabled={busy === j.id}>
-                  {busy === j.id ? (
-                    <Loader2 className="spin" size={16} />
-                  ) : (
-                    <>
-                      View role
-                      <ArrowUpRight size={17} />
-                    </>
-                  )}
-                </button>
+                <a href={"/jobs/" + j.id}>View role <ArrowUpRight size={17} /></a>
               </footer>
             </article>
           ))}
@@ -668,7 +649,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
           <button
             className="secondary-button"
             disabled={page === 1}
-            onClick={() => setPage((p) => p - 1)}
+            onClick={() => changePage(page - 1)}
           >
             <ChevronLeft size={16} />
             Previous
@@ -679,7 +660,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
           <button
             className="secondary-button"
             disabled={page >= result.pages}
-            onClick={() => setPage((p) => p + 1)}
+            onClick={() => changePage(page + 1)}
           >
             Next
             <ChevronRight size={16} />
@@ -733,132 +714,7 @@ function Vacancies({ go, onReport }: { go: Go; onReport: ReportFeedback }) {
           <Plus size={14} />
         </button>
       </div>
-      {detail && (
-        <Modal title={detail.title} close={() => setDetail(null)}>
-          <p className="job-detail-company">
-            {detail.company} · {detail.location}
-          </p>
-          {(!detail.active ||
-            Date.now() - Date.parse(detail.last_seen) > 3 * 86400000) && (
-            <p className="career-notice">
-              This advert is no longer in the current collection. Check the
-              employer’s site before preparing an application.
-            </p>
-          )}
-          <div className={"evidence-box " + detail.sponsorship}>
-            <strong>{sponsorLabels[detail.sponsorship]}</strong>
-            {detail.evidence ? (
-              <blockquote>“{detail.evidence}”</blockquote>
-            ) : (
-              <p>
-                No clear sponsorship commitment was found in this advert. Ask
-                the employer before relying on it.
-              </p>
-            )}
-            <small>
-              Advert checked {day(detail.last_seen)} · Verify the current
-              wording with the employer.
-            </small>
-          </div>
-          <div className="job-quality-panel">
-            <h3>What the source tells us</h3>
-            {detail.salary_excerpt ? (
-              <>
-                <p>
-                  <strong>Pay wording from the advert</strong>
-                </p>
-                <blockquote>“{detail.salary_excerpt}”</blockquote>
-              </>
-            ) : (
-              <p>
-                A clear UK pay statement was not found in the text we checked.
-              </p>
-            )}
-            {(detail.employment_type || detail.workplace) && (
-              <p>
-                {[
-                  detail.employment_type?.replace(/([a-z])([A-Z])/g, "$1 $2"),
-                  detail.workplace,
-                ]
-                  .filter(Boolean)
-                  .join(" · ")}
-              </p>
-            )}
-            <small>
-              Last seen on the employer’s board:{" "}
-              {new Date(detail.last_seen).toLocaleString("en-GB", {
-                timeZone: "Europe/London",
-                timeZoneName: "short",
-              })}
-              .
-            </small>
-            {detail.source_updated_at && (
-              <small>
-                Source date supplied by the employer:{" "}
-                {day(detail.source_updated_at)}. This may be a publication or
-                edit date.
-              </small>
-            )}
-            <p>
-              Advert wording is automatically extracted. Check the original
-              terms and ask the employer to confirm sponsorship for this
-              specific role.
-            </p>
-            <a href="/updates?topic=skilled-worker" className="text-button">
-              Understand the Skilled Worker job checks{" "}
-              <ArrowUpRight size={14} />
-            </a>
-          </div>
-          <div className="career-actions">
-            <button
-              className="primary-button"
-              onClick={() => prepare(detail)}
-              disabled={!c.ready}
-            >
-              <Sparkles size={17} />
-              Prepare application
-            </button>
-            <a
-              className="secondary-button"
-              href={detail.apply_url}
-              {...external}
-            >
-              Employer advert
-              <ArrowUpRight size={17} />
-            </a>
-          </div>
-          <a
-            className="text-button"
-            href={"/?q=" + encodeURIComponent(detail.company)}
-          >
-            Search the sponsor register
-            <ArrowRight size={14} />
-          </a>
-          <button
-            className="report-information"
-            onClick={() => {
-              const item = {
-                type: "job" as const,
-                id: detail.id,
-                label: (detail.title + " · " + detail.company).slice(0, 240),
-              };
-              setDetail(null);
-              onReport("data", item);
-            }}
-          >
-            Report incorrect information about this job
-          </button>
-          <div className="job-description">{detail.description}</div>
-          <button
-            className="primary-button"
-            onClick={() => prepare(detail)}
-            disabled={!c.ready}
-          >
-            Save role & prepare
-            <ArrowRight size={16} />
-          </button>
-        </Modal>
-      )}
+
     </>
   );
 }

@@ -1,4 +1,6 @@
 import pages from "../shared/pages.json";
+import type { Job } from "./career-data";
+import { jobMetadata, jobStructuredData } from "../shared/job-detail.js";
 export const publicPages: Record<
   string,
   { path: string; title: string; description: string }
@@ -79,6 +81,22 @@ export function structuredData(view: string) {
 }
 export function updateMetadata(view: string) {
   const page = pageMeta(view);
+  applyMetadata(page, structuredData(view), !!publicPages[view]);
+}
+export function updateJobMetadata(job: Job | null, id: string, missing = false) {
+  const page = job ? jobMetadata(job) : {
+    path: "/jobs/" + id,
+    title: (missing ? "Opportunity not found" : "Opportunity details") + " | Sponsor Intel",
+    description: "Read the employer's advert, sponsorship wording and source checks on Sponsor Intel.",
+    indexable: false,
+  };
+  applyMetadata(page, job ? jobStructuredData(job) : null, page.indexable);
+}
+function applyMetadata(
+  page: { title: string; path: string; description: string },
+  structured: object | null,
+  indexable: boolean,
+) {
   document.title = page.title;
   document
     .querySelector('link[rel="canonical"]')
@@ -92,12 +110,12 @@ export function updateMetadata(view: string) {
     ['meta[name="twitter:description"]', page.description],
     [
       'meta[name="robots"]',
-      publicPages[view]
+      indexable && !location.hostname.endsWith(".workers.dev")
         ? "index,follow,max-image-preview:large"
         : "noindex,follow",
     ],
   ])
     document.querySelector(selector)?.setAttribute("content", content);
   const schema = document.getElementById("structured-data");
-  if (schema) schema.textContent = JSON.stringify(structuredData(view));
+  if (schema) schema.textContent = JSON.stringify(structured);
 }

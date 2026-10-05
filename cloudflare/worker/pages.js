@@ -1,4 +1,7 @@
 import pages from "../shared/pages.json" with { type: "json" };
+import { getJobDetail } from "./jobs.js";
+import { JOB_FRESHNESS_MS, JOB_ORIGIN, jobPath } from "../shared/job-detail.js";
+const roleID = (path) => path.match(/^\/jobs\/([a-f0-9]{24})$/)?.[1];
 const publicPaths = new Set(Object.values(pages).map((p) => p.path));
 const privatePaths = new Set([
   "/account",
@@ -9,7 +12,22 @@ const privatePaths = new Set([
   "/settings",
   "/employer-notes",
 ]);
-const known = (p) => publicPaths.has(p) || privatePaths.has(p);
+const known = (p) => publicPaths.has(p) || privatePaths.has(p) || !!roleID(p);
+const unavailable = () => new Response(
+  '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Temporarily unavailable | Sponsor Intel</title><main><h1>We couldn’t check this opportunity.</h1><p>Please try again shortly.</p><a href="/jobs">Explore opportunities</a></main></html>',
+  { status: 503, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "X-Robots-Tag": "noindex", "Retry-After": "60" } },
+);
+
+export async function sitemapResponse(env, now = Date.now()) {
+  const { results } = await env.DB.prepare(
+    `SELECT id FROM jobs WHERE active=1 AND last_seen>? AND last_seen<=? ORDER BY id LIMIT ${50000 - publicPaths.size}`,
+  ).bind(new Date(now - JOB_FRESHNESS_MS).toISOString(), new Date(now + 300000).toISOString()).all();
+  const paths = [...publicPaths, ...results.map((job) => jobPath(job.id)).filter(Boolean)];
+  return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
+    paths.map((path) => '<url><loc>' + JOB_ORIGIN + path + '</loc></url>').join("") + '</urlset>', {
+    headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "no-store" },
+  });
+}
 export function canonicalPath(path) {
   const clean = path.replace(/\/index\.html$/, "/").replace(/\/+$/, "") || "/";
   if (clean === "/discover") return "/";
@@ -37,12 +55,30 @@ export async function pageResponse(request, env) {
   }
   let assetPath;
   let status = 200;
-  if (publicPaths.has(url.pathname))
+  if (url.pathname === "/sitemap.xml") {
+    try { return await sitemapResponse(env); }
+    catch { return unavailable(); }
+  }
+  const id = roleID(url.pathname);
+  if (id) {
+    try {
+      const job = await getJobDetail(id, env);
+      if (job) {
+        const { renderJobPage } = await import("./job-pages.tsx");
+        return await renderJobPage(request, env.ASSETS, job);
+      }
+    } catch (error) {
+      console.error(JSON.stringify({ event: "job_page_unavailable", message: error instanceof Error ? error.message : "Unknown failure" }));
+      return unavailable();
+    }
+    assetPath = "/404.html";
+    status = 404;
+  } else if (publicPaths.has(url.pathname))
     assetPath =
       url.pathname === "/" ? "/index.html" : url.pathname + "/index.html";
   else if (privatePaths.has(url.pathname)) assetPath = "/app.html";
   else if (
-    /^\/(assets\/|fonts\/|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|sitemap\.xml$|open-source-notices\.txt$)/.test(
+    /^\/(assets\/|fonts\/|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|open-source-notices\.txt$)/.test(
       url.pathname,
     )
   ) {

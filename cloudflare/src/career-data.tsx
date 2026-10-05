@@ -59,6 +59,7 @@ export type Job = {
   source_updated_at?: string;
   sector?: string;
   sector_label?: string;
+  source?: { careers_url: string; checked_at: string; last_success: string; error: string | null } | null;
 };
 export type SavedSearch = {
   id: string;

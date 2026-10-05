@@ -173,6 +173,9 @@ test("five-report limit prevents extra writes without retaining raw IPs", async 
   }
 });
 test("context opt-out, unknown paths and unrecognised fields remain private", async () => {
+  assert.deepEqual(feedbackContext({page: "/jobs/1234567890abcdef12345678?private=value#notes"}),
+    {page: "/jobs/1234567890abcdef12345678"});
+  assert.deepEqual(feedbackContext({page: "/jobs/private-email@example.test"}), {});
   assert.deepEqual(feedbackContext(null), {});
   assert.deepEqual(
     feedbackContext({

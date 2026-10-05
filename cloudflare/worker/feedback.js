@@ -26,7 +26,7 @@ export function feedbackContext(value) {
   // Drop queries and fragments, then accept only known, non-personal route names.
   const page =
     typeof value.page === "string" ? value.page.split(/[?#]/)[0] : "";
-  if (allowedPages.has(page)) result.page = page;
+  if (allowedPages.has(page) || /^\/jobs\/[a-f0-9]{24}$/.test(page)) result.page = page;
   const item = value.item;
   if (
     item &&

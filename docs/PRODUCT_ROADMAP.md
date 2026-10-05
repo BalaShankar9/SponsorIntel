@@ -1,6 +1,6 @@
 # Sponsor Intel: build and launch roadmap
 
-Owner: Codex implementation lead, with Bala as product owner. Updated 4 October 2026.
+Owner: Codex implementation lead, with Bala as product owner. Updated 5 October 2026.
 
 The product promise: help international students and migrants find credible UK opportunities, understand the evidence, and prepare good applications. Judge success by useful applications and interviews, not scrolling time or raw job counts.
 
@@ -89,3 +89,9 @@ The current release expands public employer collection from eight to 26 boards a
 Visitors can open one-click collections, combine sector/pay/role/location/visa-wording filters, save the full search and use the existing Hire Stack preparation flow. Source handling now resolves ambiguous hybrid-office locations, respects structured secondary locations, rejects explicitly overseas postings and relocation titles, checks structured deadlines, and excludes prospect/template posts. A refresh lease and atomic board transactions preserve the last complete data on failure. No paid feed or new API credential was required. See `cloudflare/JOB-SOURCES.md` and `cloudflare/RELEASE-2.4.md`.
 
 Next source priorities: broader graduate schemes with explicit sponsorship, NHS/clinical opportunities through permitted feeds, university research roles, hospitality and regional employers. Current healthcare coverage consists of selected life-science services, not the NHS market. A 50-advert independent accuracy audit, source-run history, reviewed sponsor-name aliases and source-provided closing dates remain outstanding. Do not present the larger catalogue as independently verified sponsorship.
+
+## Shareable roles and source checks — 2.5 progress
+
+Individual opportunity pages now bring together the advert, exact sponsorship/pay wording, source dates, employer links, contextual reports and the existing Hire Stack save/preparation flow. Readable initial HTML and a current-role sitemap make these useful public pages available to search engines and link previews. Missing, removed and stale roles have distinct states; removed/stale entries leave the sitemap and cannot start preparation. A fresh source read before saving prevents a role removed while the page was open from being treated as current. Existing private notes/documents are preserved.
+
+The immediate next priorities remain coverage and measured accuracy: review 50 varied adverts, then expand graduate schemes and underrepresented sectors with permitted official sources. Immigration work should next add the reviewed source-change queue and effective-date evidence described above. Do not advertise guaranteed sponsorship, comprehensive coverage, instant news, email alerts or a search ranking improvement. See `cloudflare/RELEASE-2.5.md` for deployment and acceptance evidence.

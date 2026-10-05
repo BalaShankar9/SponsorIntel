@@ -222,7 +222,9 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
       initialPath || (typeof location === "undefined" ? "/" : location.pathname)
     ).replace(/^\//, "") || "discover",
   );
-  useEffect(() => updateMetadata(view), [view]);
+  const isJobDetail = /^jobs\/[a-f0-9]{24}$/.test(view);
+  const activeView = isJobDetail ? "jobs" : view;
+  useEffect(() => { if (!isJobDetail) updateMetadata(view); }, [view, isJobDetail]);
   const [meta, setMeta] = useState<Meta | null>(null);
   const [featured, setFeatured] = useState<Employer[]>([]);
   const [cities, setCities] = useState<{ city: string; count: number }[]>([]);
@@ -727,8 +729,8 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             <a
               key={n.id}
               href={n.id === "discover" ? "/" : "/" + n.id}
-              className={view === n.id ? "active" : ""}
-              aria-current={view === n.id ? "page" : undefined}
+              className={activeView === n.id ? "active" : ""}
+              aria-current={activeView === n.id ? "page" : undefined}
               onClick={(e) => {
                 e.preventDefault();
                 go(n.id);
@@ -788,7 +790,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
           <div className="breadcrumbs">
             Your workspace <ChevronRight size={13} />
             <strong>
-              {nav.find((n) => n.id === view)?.label ||
+              {(isJobDetail ? "Opportunity details" : nav.find((n) => n.id === view)?.label) ||
                 (view.startsWith("guides/")
                   ? "Career guide"
                   : view === "about"
@@ -1563,13 +1565,13 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
               </p>
             </>
           )}
-          {[
+          {(isJobDetail || [
             "jobs",
             "applications",
             "studio",
             "career-profile",
             "account",
-          ].includes(view) && (
+          ].includes(view)) && (
             <CareerWorkspace mode={view} go={go} onReport={openFeedback} />
           )}
           {view === "updates" && <ImmigrationUpdates onReport={openFeedback} />}
@@ -1745,7 +1747,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             "account",
             "employer-notes",
           ].includes(view) &&
-            !publicPages[view] && (
+            !publicPages[view] && !isJobDetail && (
               <Empty
                 icon={Compass}
                 title="Let’s get you back on track."
@@ -1783,7 +1785,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
           <button
             key={n.id}
             onClick={() => go(n.id)}
-            className={view === n.id ? "active" : ""}
+            className={activeView === n.id ? "active" : ""}
           >
             <n.icon size={20} />
             <span>

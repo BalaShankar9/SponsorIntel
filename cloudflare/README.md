@@ -97,6 +97,14 @@ UK office data resolves ambiguous Greenhouse location labels such as â€œHybridâ€
 
 A renewable ownership lease prevents overlapping refreshes. Each employer update, removal set and successful-check timestamp is committed in one D1 transaction using bounded JSON chunks. Failures retain that employer's previous complete snapshot. The existing `feed_locks` table is reused; this release needs no schema migration. `npm test` covers location errors, conditional wording, failed-write rollback, overlap protection, freshness, filters and saved-search compatibility. `node scripts/opportunities-smoke.mjs <base-url>` checks the published opportunity API without creating user data.
 
+### Shareable opportunity pages (2.5)
+
+Each vacancy opens at `/jobs/<id>` with its own readable initial HTML, canonical URL, title, description and sharing metadata. The page shows the employer's advert text, extracted sponsorship/pay evidence, source dates, original application link and a contextual correction button. Visitors can copy its public link, save it or open it in Hire Stack. Saving/preparing rechecks the current public record, updates source evidence and preserves private notes and documents. Search filters and pagination survive opening a role and using the browser's Back button.
+
+Missing records return HTTP 404. Records absent from the latest successful employer refresh return HTTP 410, carry `noindex`, and pause preparation. Records not successfully seen within three days remain readable with a warning and `noindex`; source failures never turn into false 404s. The dynamic sitemap contains the eight public pages and current role URLs, excluding private workspace paths, filters, removed/stale roles and implausible future observations. It currently supports one sitemap up to 50,000 total URLs; split into indexed sitemaps before approaching this limit.
+
+Role pages use WebPage and BreadcrumbList structured data. They deliberately omit JobPosting markup because the current sources do not consistently provide the original posting date and all required fields. This improves readable and shareable pages; it does not establish Google indexing, a Google Jobs listing or a ranking gain. No data schema, paid source or account permission change was needed. Run `node scripts/job-pages-smoke.mjs <base-url>` for the public role-page acceptance checks.
+
 ### Immigration updates (2.1)
 
 `/updates` explains selected Student, Graduate, Skilled Worker and Health & Care guidance and links recent Immigration Rules publications. `/api/updates` returns source health, source-reported edit/publication timestamps, explanations and a change log. The scheduled check is `*/15 * * * *`; the initial population/recovery endpoint is `POST /api/admin/refresh-updates`, protected by the same server-only admin token. Never put that token in a browser or committed script.
