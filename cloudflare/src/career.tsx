@@ -53,6 +53,7 @@ import {
 import "./career.css";
 import { type ReportFeedback } from "./feedback";
 import { buildEvidenceReview } from "../worker/career-evidence.js";
+import { draftWarnings, sourceWarnings } from "../worker/career-quality.js";
 const external = { target: "_blank", rel: "noopener noreferrer" };
 type Go = (view: string) => void;
 
@@ -162,7 +163,11 @@ export function CareerWorkspace({
 }) {
   const c = useCareer();
   const roleId = mode.match(/^jobs\/([a-f0-9]{24})$/)?.[1];
-  if (!c.ready && !["account", "jobs"].includes(mode) && !roleId)
+  if (
+    !c.ready &&
+    !["account", "signin", "signup", "jobs"].includes(mode) &&
+    !roleId
+  )
     return (
       <div className="career career-panel">
         <h2>Opening your workspace…</h2>
@@ -205,7 +210,11 @@ export function CareerWorkspace({
       ) : mode === "career-profile" ? (
         <Profile go={go} />
       ) : (
-        <Account go={go} />
+        <Account
+          key={mode}
+          go={go}
+          initialMode={mode === "signin" ? "signin" : "signup"}
+        />
       )}
     </div>
   );
@@ -222,7 +231,9 @@ function Vacancies({ go }: { go: Go }) {
     [level, setLevel] = useState(params.get("level") || ""),
     [salary, setSalary] = useState(params.get("salary") || ""),
     [sector, setSector] = useState(params.get("sector") || ""),
-    [page, setPage] = useState(Math.max(1, parseInt(params.get("page") || "1") || 1)),
+    [page, setPage] = useState(
+      Math.max(1, parseInt(params.get("page") || "1") || 1),
+    ),
     [key, setKey] = useState(0);
   const [applied, setApplied] = useState({
     q,
@@ -273,7 +284,9 @@ function Vacancies({ go }: { go: Go }) {
   }
   function changePage(next: number) {
     setPage(next);
-    const p = new URLSearchParams(Object.entries(applied).filter(([, value]) => value));
+    const p = new URLSearchParams(
+      Object.entries(applied).filter(([, value]) => value),
+    );
     if (next > 1) p.set("page", String(next));
     history.replaceState({}, "", "/jobs" + (p.size ? "?" + p : ""));
   }
@@ -629,7 +642,9 @@ function Vacancies({ go }: { go: Go }) {
                 >
                   Checked {day(j.last_seen)}
                 </span>
-                <a href={"/jobs/" + j.id}>View role <ArrowUpRight size={17} /></a>
+                <a href={"/jobs/" + j.id}>
+                  View role <ArrowUpRight size={17} />
+                </a>
               </footer>
             </article>
           ))}
@@ -714,7 +729,6 @@ function Vacancies({ go }: { go: Go }) {
           <Plus size={14} />
         </button>
       </div>
-
     </>
   );
 }
@@ -1113,6 +1127,11 @@ function Profile({ go }: { go: Go }) {
         title="A profile that sounds like you."
         description="Keep a master CV here. Every application starts from your real experience, with you in control of the final words."
       />
+      {sourceWarnings(p.cv).map((warning: string) => (
+        <p className="career-notice" key={warning}>
+          {warning}
+        </p>
+      ))}
       <div className="career-profile-layout">
         <section className="career-panel">
           <div className="panel-heading">
@@ -1314,7 +1333,12 @@ function Studio({ go }: { go: Go }) {
         [kind]: r.text,
         preparedAt: r.generatedAt,
       });
-      setMessage("Draft ready. Check every fact and edit it before using it.");
+      setMessage(
+        (r.evidenceReviewed
+          ? "Draft ready after an AI evidence review. Check every fact before using it."
+          : "Draft ready. Check every fact and edit it before using it.") +
+          (r.warnings?.length ? " " + r.warnings.join(" ") : ""),
+      );
     } catch (e) {
       setMessage((e as Error).message);
     } finally {
@@ -1375,6 +1399,11 @@ function Studio({ go }: { go: Go }) {
           ))}
         </select>
       </div>
+      {draftWarnings(value, c.data.profile.cv, tab).map((warning: string) => (
+        <p className="career-notice" key={warning}>
+          {warning}
+        </p>
+      ))}
       <div className="studio-layout">
         <aside className="studio-sidebar">
           <section className="career-panel">
@@ -1523,7 +1552,7 @@ function Studio({ go }: { go: Go }) {
                 <p className="fine-print">
                   {!enough
                     ? "Add your master CV and a full job description first."
-                    : "AI helps with wording and preparation. Check accuracy, dates and claims before applying."}
+                    : "AI helps with wording and preparation. Check accuracy, dates and claims before applying. CVs and letters receive a second AI evidence review. Built with Llama."}
                 </p>
                 <label className="ai-consent">
                   <input
@@ -1572,6 +1601,7 @@ function Studio({ go }: { go: Go }) {
                       : 40000
               }
               onChange={(e) => {
+                setMessage("");
                 if (tab !== "followup")
                   c.updateApplication(a.id, { [tab]: e.target.value });
               }}
@@ -1655,9 +1685,17 @@ function Studio({ go }: { go: Go }) {
   );
 }
 
-function Account({ go }: { go: Go }) {
+function Account({
+  go,
+  initialMode = "signup",
+}: {
+  go: Go;
+  initialMode?: "signin" | "signup";
+}) {
   const c = useCareer();
-  const [mode, setMode] = useState<"signin" | "signup" | "recover">("signup"),
+  const [mode, setMode] = useState<"signin" | "signup" | "recover">(
+      initialMode,
+    ),
     [name, setName] = useState(""),
     [email, setEmail] = useState(""),
     [password, setPassword] = useState(""),
@@ -1707,8 +1745,9 @@ function Account({ go }: { go: Go }) {
       if (file.size > 650000)
         throw Error("Choose a backup smaller than 650 KB.");
       const input = JSON.parse(await file.text());
-      const { validateWorkspace } =
-        await import("../worker/career-validation.js");
+      const { validateWorkspace } = await import(
+        "../worker/career-validation.js"
+      );
       const data = validateWorkspace(input) as CareerData;
       c.setData((d) => mergeData(d, data));
       setMessage("Backup merged. Existing applications were kept.");
@@ -1820,6 +1859,7 @@ function Account({ go }: { go: Go }) {
                 Creating a new code replaces the old one. For your security,
                 sign in again first if your session is older than ten minutes.
               </p>
+              <ChangePassword />
               <button
                 className="text-button danger-text"
                 onClick={() => setDeleteModal(true)}
@@ -2046,5 +2086,67 @@ function Account({ go }: { go: Go }) {
         </Modal>
       )}
     </>
+  );
+}
+
+function ChangePassword() {
+  const [current, setCurrent] = useState(""),
+    [next, setNext] = useState(""),
+    [busy, setBusy] = useState(false),
+    [message, setMessage] = useState("");
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setMessage("");
+    try {
+      await request("/api/auth/change-password", "POST", {
+        currentPassword: current,
+        newPassword: next,
+        revokeOtherSessions: true,
+      });
+      setCurrent("");
+      setNext("");
+      setMessage(
+        "Password changed. Other signed-in sessions have been revoked.",
+      );
+    } catch (e) {
+      setMessage((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  }
+  return (
+    <details className="password-settings">
+      <summary>Change my password</summary>
+      <form className="career-form" onSubmit={(e) => void submit(e)}>
+        <label>
+          Current password
+          <input
+            type="password"
+            autoComplete="current-password"
+            required
+            value={current}
+            onChange={(e) => setCurrent(e.target.value)}
+          />
+        </label>
+        <label>
+          New password
+          <input
+            type="password"
+            autoComplete="new-password"
+            minLength={12}
+            maxLength={128}
+            required
+            value={next}
+            onChange={(e) => setNext(e.target.value)}
+          />
+          <small>At least 12 characters. Use a unique password.</small>
+        </label>
+        <button className="secondary-button" disabled={busy}>
+          Update password
+        </button>
+      </form>
+      {message && <p role="status">{message}</p>}
+    </details>
   );
 }

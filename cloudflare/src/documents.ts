@@ -1,3 +1,4 @@
+import { contactFromText } from "../worker/career-quality.js";
 import {
   download,
   type CareerProfile,
@@ -114,7 +115,7 @@ export async function importCV(
     throw Error(
       "There is not enough selectable text in this file. Paste your CV text below instead.",
     );
-  return { text: text.trim().slice(0, 30000) };
+  return { text: text.trim().slice(0, 30000), profile: contactFromText(text) };
 }
 export function exportJSONResume(p: CareerProfile) {
   download(
@@ -155,19 +156,39 @@ export async function exportDocument(
 ) {
   const filename =
     name.replace(/[^a-zA-Z0-9 -]/g, "").slice(0, 70) || "application";
+  const lines = text.replace(/\r\n/g, "\n").split("\n");
+  const heading = (line: string) =>
+    line.trim().length > 2 &&
+    line.trim().length < 65 &&
+    /^[A-Z][A-Z &—–\-:0-9]+$/.test(line.trim());
   if (type === "docx") {
     const { Document, Packer, Paragraph, TextRun } = await import("docx");
     const doc = new Document({
       sections: [
         {
-          properties: {},
-          children: text.split("\n").map(
-            (line) =>
+          properties: {
+            page: {
+              size: { width: 11906, height: 16838 },
+              margin: { top: 1020, bottom: 1020, left: 1020, right: 1020 },
+            },
+          },
+          children: lines.map(
+            (line, index) =>
               new Paragraph({
                 children: [
-                  new TextRun({ text: line, size: 22, font: "Calibri" }),
+                  new TextRun({
+                    text: line,
+                    size: index === 0 && heading(line) ? 28 : 21,
+                    bold: heading(line),
+                    font: "Calibri",
+                  }),
                 ],
-                spacing: { after: 100 },
+                keepNext: heading(line),
+                keepLines: true,
+                spacing: {
+                  after: line.trim() ? 55 : 25,
+                  line: line.trim() ? 255 : 110,
+                },
               }),
           ),
         },
@@ -198,21 +219,48 @@ export async function exportDocument(
         "This PDF font does not cover every character in your draft. Choose Word or plain text to keep your name and wording intact.",
       );
     }
-    doc.setFontSize(11);
-    let y = 20;
-    for (const line of text
-      .replace(/[“”]/g, '"')
-      .replace(/[‘’]/g, "'")
-      .replace(/[–—]/g, "-")
-      .split("\n"))
-      for (const wrapped of doc.splitTextToSize(line || " ", 170)) {
-        if (y > 277) {
-          doc.addPage();
-          y = 20;
-        }
-        doc.text(wrapped, 20, y);
-        y += 5.5;
+    // Measure complete paragraphs before drawing so a short experience bullet
+    // or a section heading never gets stranded across a page boundary.
+    const margin = 18,
+      bottom = 279,
+      lineHeight = 4.8,
+      blockGap = 3;
+    const blocks = text.split(/\n\s*\n/).filter((block) => block.trim());
+    let y = margin,
+      firstLine = true;
+    for (const block of blocks) {
+      const rows: { text: string; size: number; height: number }[] = [];
+      for (const raw of block.split("\n")) {
+        const line = raw.trimEnd().replace(/[“”]/g, '"').replace(/[‘’]/g, "'");
+        const size =
+          firstLine && heading(line) ? 14 : heading(line) ? 11 : 10.5;
+        firstLine = false;
+        doc.setFontSize(size);
+        for (const wrapped of doc.splitTextToSize(line || " ", 174))
+          rows.push({
+            text: wrapped,
+            size,
+            height: size === 14 ? 6.5 : lineHeight,
+          });
       }
+      const height =
+        rows.reduce((sum, row) => sum + row.height, 0) +
+        (rows.length === 1 && heading(rows[0].text) ? lineHeight * 2 : 0);
+      if (y > margin && height < bottom - margin && y + height > bottom) {
+        doc.addPage();
+        y = margin;
+      }
+      for (const row of rows) {
+        if (y + row.height > bottom) {
+          doc.addPage();
+          y = margin;
+        }
+        doc.setFontSize(row.size);
+        doc.text(row.text, margin, y);
+        y += row.height;
+      }
+      y += blockGap;
+    }
     doc.save(filename + ".pdf");
   }
 }

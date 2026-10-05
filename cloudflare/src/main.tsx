@@ -47,6 +47,9 @@ import "./styles.css";
 import { CareerProvider } from "./career-data";
 import { CareerWorkspace, CareerAccountLink } from "./career";
 import { ImmigrationUpdates } from "./updates";
+import { AccountActions, OwnerDashboard, PageTracking } from "./owner";
+import { AdviserDirectory } from "./advisers";
+import { ImmigrationAssistant } from "./ask";
 import { GuideLinks, ResourceArticle, AboutPage, articles } from "./resources";
 import { publicPages, updateMetadata } from "./seo";
 import {
@@ -224,7 +227,9 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
   );
   const isJobDetail = /^jobs\/[a-f0-9]{24}$/.test(view);
   const activeView = isJobDetail ? "jobs" : view;
-  useEffect(() => { if (!isJobDetail) updateMetadata(view); }, [view, isJobDetail]);
+  useEffect(() => {
+    if (!isJobDetail) updateMetadata(view);
+  }, [view, isJobDetail]);
   const [meta, setMeta] = useState<Meta | null>(null);
   const [featured, setFeatured] = useState<Employer[]>([]);
   const [cities, setCities] = useState<{ city: string; count: number }[]>([]);
@@ -711,6 +716,8 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     { id: "career-profile", label: "My CV & profile", icon: FileText },
     { id: "updates", label: "Immigration updates", icon: Radio },
     { id: "guides", label: "UK career guides", icon: BookOpen },
+    { id: "advisers", label: "Find immigration advice", icon: Scale },
+    { id: "ask", label: "Ask immigration questions", icon: MessageSquare },
   ];
   const stale =
     meta &&
@@ -718,6 +725,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
       meta.refresh_error);
   return (
     <>
+      <PageTracking view={view} />
       <a className="skip-link" href="#main">
         Skip to content
       </a>
@@ -790,15 +798,22 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
           <div className="breadcrumbs">
             Your workspace <ChevronRight size={13} />
             <strong>
-              {(isJobDetail ? "Opportunity details" : nav.find((n) => n.id === view)?.label) ||
+              {(isJobDetail
+                ? "Opportunity details"
+                : nav.find((n) => n.id === view)?.label) ||
                 (view.startsWith("guides/")
                   ? "Career guide"
                   : view === "about"
                     ? "About & sources"
-                    : "Settings")}
+                    : ["signin", "signup", "account"].includes(view)
+                      ? "Your account"
+                      : view === "admin"
+                        ? "Owner dashboard"
+                        : "Settings")}
             </strong>
           </div>
           <div className="topbar-right">
+            <AccountActions go={go} />
             <span className="beta-label">OPEN BETA · FREE TO EXPLORE</span>
             <button
               className="topbar-guide"
@@ -1565,17 +1580,23 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
               </p>
             </>
           )}
-          {(isJobDetail || [
-            "jobs",
-            "applications",
-            "studio",
-            "career-profile",
-            "account",
-          ].includes(view)) && (
+          {(isJobDetail ||
+            [
+              "jobs",
+              "applications",
+              "studio",
+              "career-profile",
+              "account",
+              "signin",
+              "signup",
+            ].includes(view)) && (
             <CareerWorkspace mode={view} go={go} onReport={openFeedback} />
           )}
           {view === "updates" && <ImmigrationUpdates onReport={openFeedback} />}
           {view === "about" && <AboutPage />}
+          {view === "advisers" && <AdviserDirectory />}
+          {view === "ask" && <ImmigrationAssistant />}
+          {view === "admin" && <OwnerDashboard go={go} />}
           {articles.some((a) => view === "guides/" + a.slug) && (
             <ResourceArticle view={view} />
           )}
@@ -1745,9 +1766,13 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             "studio",
             "career-profile",
             "account",
+            "signin",
+            "signup",
             "employer-notes",
+            "admin",
           ].includes(view) &&
-            !publicPages[view] && !isJobDetail && (
+            !publicPages[view] &&
+            !isJobDetail && (
               <Empty
                 icon={Compass}
                 title="Let’s get you back on track."
@@ -2134,8 +2159,13 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                   Open-source notices
                 </a>
                 . External career and guidance links open sites with their own
-                privacy policies. We do not include advertising trackers or
-                behavioural analytics.
+                privacy policies. We count page opens and successful feature
+                actions in anonymous daily totals. We do not use advertising
+                trackers, analytics cookies, visitor IDs or fingerprinting.
+                Search terms, CV text and chat questions are not included in
+                these totals. The private owner dashboard shows account details
+                and source health, but does not expose your CV or application
+                documents. Aggregate counts are kept for 90 days.
               </p>
               <h3>Control your information</h3>
               <p>

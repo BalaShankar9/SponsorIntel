@@ -15,6 +15,10 @@ import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
 import { careerAPI } from "./career.js";
 import { pageResponse } from "./pages.js";
 import { feedbackAPI } from "./feedback.js";
+import { adminAPI } from "./admin.js";
+import { advisersAPI, checkAdviserDataset } from "./advisers.js";
+import { chatAPI } from "./chat.js";
+import { analyticsAPI, recordMetric, responseMetric } from "./analytics.js";
 const FEATURED = [
   "Google (UK) Limited",
   "Deloitte LLP",
@@ -48,6 +52,7 @@ async function getMeta(env) {
 async function api(request, env) {
   const url = new URL(request.url);
   const path = url.pathname;
+
   if (path.startsWith("/api/auth/")) return authAPI(request, env);
   if (path === "/api/recover" && request.method === "POST")
     return recoverAccount(request, env);
@@ -80,6 +85,11 @@ async function api(request, env) {
     );
   }
   if (path === "/api/feedback") return feedbackAPI(request, env);
+  if (path === "/api/advisers" && ["GET", "HEAD"].includes(request.method))
+    return advisersAPI(url, env);
+  if (path === "/api/chat") return chatAPI(request, env);
+  if (path === "/api/metrics") return analyticsAPI(request, env);
+  if (path.startsWith("/api/admin/")) return adminAPI(request, env);
   if (request.method !== "GET" && request.method !== "HEAD")
     return json({ error: "Method not allowed" }, 405, { Allow: "GET, HEAD" });
   const meta = await getMeta(env);
@@ -341,12 +351,23 @@ export default {
         response,
       );
       for (const [k, v] of Object.entries(security)) response.headers.set(k, v);
+      const metric = responseMetric(
+        url.pathname,
+        request.method,
+        response.status,
+      );
+      if (metric)
+        ctx.waitUntil(
+          recordMetric(env, metric).catch(() =>
+            console.error("Aggregate metric unavailable"),
+          ),
+        );
       return response;
     } catch (error) {
       console.error(
         JSON.stringify({
           event: "request_failed",
-          message: /^\/api\/(auth|career|recover)(\/|$)/.test(
+          message: /^\/api\/(auth|career|recover|admin|chat)(\/|$)/.test(
             new URL(request.url).pathname,
           )
             ? "Private endpoint failed"
@@ -376,9 +397,18 @@ export default {
       await env.DB.prepare("DELETE FROM ai_usage WHERE expires<?")
         .bind(Date.now())
         .run();
+      await env.DB.batch([
+        env.DB.prepare("DELETE FROM analytics_daily WHERE day<?").bind(
+          new Date(Date.now() - 90 * 86400000).toISOString().slice(0, 10),
+        ),
+        env.DB.prepare("DELETE FROM source_runs WHERE checked_at<?").bind(
+          new Date(Date.now() - 30 * 86400000).toISOString(),
+        ),
+      ]);
       console.log(JSON.stringify({ event: "jobs_refresh", sources: result }));
       return;
     }
+    await checkAdviserDataset(env);
     try {
       const result = await refresh(env);
       console.log(JSON.stringify({ event: "register_refresh", ...result }));

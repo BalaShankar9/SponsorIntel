@@ -4,6 +4,14 @@ Owner: Codex implementation lead, with Bala as product owner. Updated 5 October 
 
 The product promise: help international students and migrants find credible UK opportunities, understand the evidence, and prepare good applications. Judge success by useful applications and interviews, not scrolling time or raw job counts.
 
+## Current release: owner operations and evidence-led preparation — 2.6
+
+Visible sign-in/sign-up, an ID-protected owner dashboard, anonymous aggregate usage, private feedback triage, reviewed employer-feed intake and 30-day source-run history are live. The adviser page has 2,274 dated official IAA records plus solicitor/regulator finders; customer ratings remain unconnected pending licensed data. The immigration assistant retrieves official guidance on demand with supporting passages and honest source limitations.
+
+An authorised real-CV test exposed omissions and invented details. Contact extraction, date/planned-work warnings, prompts, model choice, a separate factual-editing pass and PDF/Word layout were improved. AI review can still miss inferences: a multi-CV benchmark and human review remain required. Core HireStack preparation is integrated; company research, portfolio and learning-plan agents are not fully ported. See `cloudflare/RELEASE-2.6.md` for scope and acceptance evidence.
+
+Immediate order: (1) verify email/recovery delivery; (2) audit 50 adverts and 20 varied CV/JD pairs; (3) expand permitted sector sources through the owner review queue; (4) connect licensed ratings and fuller regulator data; (5) add reviewed alerts and translations. Do not grow promotion faster than measured source and document quality.
+
 ## Foundation already delivered: 2.0
 
 - Cloudflare Worker, D1, managed HTTPS and sponsorintel.london.

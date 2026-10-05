@@ -1,3 +1,4 @@
+import { sourceWarnings } from "./career-quality.js";
 // Evidence checks are deterministic. Shared terms are not eligibility or hiring scores.
 const TERMS = [
   "Python",
@@ -63,11 +64,11 @@ export function buildEvidenceReview(profile, application) {
   const conditions = lines(advert)
     .filter(
       (s) =>
-        /\b(?:must|required|essential|graduat|degree|right to work|sponsorship|available|availability|years of|experience in)\b/i.test(
+        /\b(?:must|required|essential|degree|right to work|sponsorship|availability|years of|experience in|you have|you can|you.ve|you will|you.ll|we.re looking|screening for)\b/i.test(
           s,
-        ) || /graduat|\b20\d{2}\b/.test(s),
+        ) || /graduat/i.test(s),
     )
-    .slice(0, 10);
+    .slice(0, 14);
   const years = [...new Set(cv.match(/\b(?:19|20)\d{2}\b/g) || [])].sort();
   return [
     "EVIDENCE THAT FITS — SHARED TERMS",
@@ -80,6 +81,9 @@ export function buildEvidenceReview(profile, application) {
           )
           .join("\n\n")
       : "No shared terms were found in the skills we check. Review the CV and advert together; this does not mean you are unsuitable.",
+    "SOURCE CV CHECKS",
+    sourceWarnings(cv).join("\n") ||
+      "No common date placeholders were found. You still need to check the source facts.",
     "GAPS TO CHECK",
     missing.length
       ? "The advert mentions these terms, but your CV does not: " +

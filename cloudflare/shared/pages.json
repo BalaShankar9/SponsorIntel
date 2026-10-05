@@ -38,5 +38,15 @@
     "path": "/about",
     "title": "About Our Data & Sources | Sponsor Intel",
     "description": "How Sponsor Intel collects sponsor records, checks vacancies and explains immigration updates. Understand our sources, freshness checks and limitations."
+  },
+  "advisers": {
+    "path": "/advisers",
+    "title": "Find Immigration Advisers & Solicitors | Sponsor Intel",
+    "description": "Search a dated official IAA organisation directory, check current registrations and find solicitor regulators. Compare carefully with clear sources and review links."
+  },
+  "ask": {
+    "path": "/ask",
+    "title": "Ask UK Immigration Questions with Official Sources | Sponsor Intel",
+    "description": "Understand UK immigration guidance in plain English with GOV.UK sources fetched when you ask. General information, source quotations and clear check times."
   }
 }

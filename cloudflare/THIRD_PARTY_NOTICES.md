@@ -11,6 +11,7 @@ Sponsor Intel adapts the URL normalisation, business-day follow-up timing, follo
 - `backend/app/services/followup_drafter.py`
 - `ai_engine/chains/gap_analyzer.py`
 - `ai_engine/chains/interview_simulator.py`
+- `ai_engine/chains/document_generator.py` (source-grounded tailored CV instructions)
 
 The adaptations are in `worker/jobs.js`, `worker/career.js`, `worker/career-evidence.js` and `src/career-data.tsx`. They use the new Cloudflare workspace; no old credentials, accounts, CVs, databases or service dependencies are copied.
 
@@ -53,3 +54,11 @@ JSON Resume is used as an interchange format, not copied implementation code: ht
 ## Data is separate from software licensing
 
 The GOV.UK worker sponsor register remains the source of licence records. Vacancy data comes from explicitly configured public employer boards, links to the original employer advert and retains its check date. An open-source connector licence does not grant ownership of vacancy text or override provider terms. No unlicensed job-board scraping, employer logos or third-party personal profiles are bundled.
+
+## Immigration Advice Authority directory
+
+`worker/advisers-data.json` contains public sector information licensed under the Open Government Licence v3.0: https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/ . Source: Immigration Advice Authority, https://www.gov.uk/government/publications/register-of-currently-registered-immigration-advice-organisations . Snapshot 9 July 2026, published 25 September 2026. 2,274 non-empty unique organisation records; registration levels are not customer ratings. The source spreadsheet SHA-256 is recorded in the dataset. No licensed review-provider scores are copied.
+
+## Cloudflare-hosted model attribution
+
+CV and cover-letter evidence review: Built with Llama. Llama 3.3 is licensed under the Llama 3.3 Community License, Copyright © Meta Platforms, Inc. All Rights Reserved. Hosted inference is provided by Cloudflare; model weights are not redistributed in this repository. [Model documentation](https://developers.cloudflare.com/workers-ai/models/llama-3.3-70b-instruct-fp8-fast/) · [Llama 3.3 licence](https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/LICENSE).

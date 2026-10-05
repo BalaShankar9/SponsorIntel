@@ -1374,3 +1374,18 @@
     transition: none;
   }
 }
+
+.password-settings {
+  border-top: 1px solid #e2e7db;
+  border-bottom: 1px solid #e2e7db;
+  margin: 20px 0;
+  padding: 16px 0;
+}
+.password-settings summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+}
+.password-settings form {
+  margin-top: 18px;
+}

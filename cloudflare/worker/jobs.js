@@ -384,7 +384,7 @@ export async function storeBoardJobs(DB, board, jobs, now) {
 
 export async function refreshJobs(
   env,
-  { boards = BOARDS, readBoard = fetchBoard } = {},
+  { boards, readBoard = fetchBoard } = {},
 ) {
   const owner = crypto.randomUUID(),
     leaseMs = 20 * 60 * 1000;
@@ -397,6 +397,19 @@ export async function refreshJobs(
     return [{ skipped: true, reason: "Refresh already running" }];
   const summary = [];
   try {
+    if (!boards) {
+      await env.DB.prepare(
+        "UPDATE jobs SET active=0 WHERE board_id IN (SELECT id FROM employer_boards b WHERE state<>'approved' OR NOT EXISTS(SELECT 1 FROM sponsors s WHERE s.id=b.sponsor_id AND s.skilled=1 AND s.snapshot=json_extract((SELECT value FROM metadata WHERE key='register'),'$.snapshot')))",
+      ).run();
+      boards = [
+        ...BOARDS,
+        ...(
+          await env.DB.prepare(
+            "SELECT b.* FROM employer_boards b WHERE state='approved' AND EXISTS(SELECT 1 FROM sponsors s WHERE s.id=b.sponsor_id AND s.skilled=1 AND s.snapshot=json_extract((SELECT value FROM metadata WHERE key='register'),'$.snapshot')) ORDER BY b.id LIMIT 20",
+          ).all()
+        ).results,
+      ];
+    }
     for (const board of boards) {
       const held = await env.DB.prepare(
         "UPDATE feed_locks SET expires=? WHERE name='jobs' AND owner=? AND expires>? RETURNING owner",
@@ -408,6 +421,11 @@ export async function refreshJobs(
       try {
         const jobs = await readBoard(board);
         await storeBoardJobs(env.DB, board, jobs, now);
+        await env.DB.prepare(
+          "INSERT INTO source_runs(source_id,checked_at,success,count) VALUES(?,?,1,?)",
+        )
+          .bind(board.id, now, jobs.length)
+          .run();
         summary.push({ board: board.id, jobs: jobs.length });
       } catch (error) {
         console.error(
@@ -429,6 +447,11 @@ export async function refreshJobs(
           )
           .run();
         summary.push({ board: board.id, error: true });
+        await env.DB.prepare(
+          "INSERT INTO source_runs(source_id,checked_at,success,count) VALUES(?,?,0,0)",
+        )
+          .bind(board.id, now)
+          .run();
       }
     }
   } finally {
@@ -440,20 +463,33 @@ export async function refreshJobs(
 }
 
 const boardById = new Map(BOARDS.map((board) => [board.id, board]));
-function withSector(job) {
-  const sector = boardById.get(job.board_id)?.sector || "";
+function withSector(job, extra = []) {
+  const sector =
+    boardById.get(job.board_id)?.sector ||
+    extra.find((b) => b.id === job.board_id)?.sector ||
+    "";
   return { ...job, sector, sector_label: SECTORS[sector] || "" };
 }
 
 export async function getJobDetail(id, env) {
   if (!/^[a-f0-9]{24}$/.test(id)) return null;
   const item = await env.DB.prepare("SELECT * FROM jobs WHERE id=?")
-    .bind(id).first();
+    .bind(id)
+    .first();
   if (!item) return null;
   const source = await env.DB.prepare(
     "SELECT careers_url,checked_at,last_success,error FROM job_sources WHERE id=?",
-  ).bind(item.board_id).first();
-  return { ...withSector(item), source: source || null };
+  )
+    .bind(item.board_id)
+    .first();
+  const extra = boardById.has(item.board_id)
+    ? []
+    : (
+        await env.DB.prepare("SELECT id,sector FROM employer_boards WHERE id=?")
+          .bind(item.board_id)
+          .all()
+      ).results;
+  return { ...withSector(item, extra), source: source || null };
 }
 
 export async function jobsAPI(url, env) {
@@ -466,14 +502,19 @@ export async function jobsAPI(url, env) {
   const id = url.pathname.match(/^\/api\/jobs\/([a-f0-9]{24})$/)?.[1];
   if (id) {
     const item = await getJobDetail(id, env);
-    return Response.json(
-      item || { error: "This vacancy was not found." },
-      { status: item ? 200 : 404, headers: { "Cache-Control": "no-store" } },
-    );
+    return Response.json(item || { error: "This vacancy was not found." }, {
+      status: item ? 200 : 404,
+      headers: { "Cache-Control": "no-store" },
+    });
   }
   if (url.pathname !== "/api/jobs")
     return Response.json({ error: "Not found" }, { status: 404 });
   const p = url.searchParams;
+  const extraBoards = (
+    await env.DB.prepare(
+      "SELECT id,sector FROM employer_boards WHERE state='approved'",
+    ).all()
+  ).results;
   const values = [new Date(Date.now() - 3 * 86400000).toISOString()];
   let where = "active=1 AND last_seen>=?";
   for (const term of (p.get("q") || "")
@@ -505,7 +546,9 @@ export async function jobsAPI(url, env) {
   if (p.get("salary") === "listed") where += " AND salary_excerpt<>''";
   const sector = p.get("sector");
   if (Object.hasOwn(SECTORS, sector || "")) {
-    const ids = BOARDS.filter((b) => b.sector === sector).map((b) => b.id);
+    const ids = [...BOARDS, ...extraBoards]
+      .filter((b) => b.sector === sector)
+      .map((b) => b.id);
     where += ` AND board_id IN (${ids.map(() => "?").join(",")})`;
     values.push(...ids);
   }
@@ -536,7 +579,7 @@ export async function jobsAPI(url, env) {
     .bind(values[0])
     .first();
   return Response.json({
-    items: items.results.map(withSector),
+    items: items.results.map((job) => withSector(job, extraBoards)),
     total: count.total,
     catalog_total: stats.total,
     collections: stats,

@@ -131,7 +131,7 @@ Saved employers, notes, stages, dates and preferences stay in browser local stor
 
 Release 2.3 adds a fixed Feedback button on every page (above the mobile navigation), accessible category choices, contextual reporting from employer/job/immigration information, and a copyable confirmation reference. No account is required. `https://sponsorintel.london/?feedback=1` opens the form directly; `?feedback=bug` or `?feedback=data` selects a category. The form retains its message on a failed submission and has a 20-second request timeout.
 
-Feedback is stored privately in D1 with an ID, kind, message, timestamp, app version and optional context. Migration `0005_feedback_context.sql` adds the two fields without changing existing reports. Context is limited to known page paths and the selected public item; queries, fragments and unknown fields are discarded. Visitors can opt out of this context. No account details, CV, form contents, screenshots or raw IP are attached automatically. The endpoint enforces the current origin, bounded input and five submissions per hourly IP-derived bucket. There is no public admin endpoint or email notification pipeline. Operators review feedback using authenticated D1 access, for example:
+Feedback is stored privately in D1 with an ID, kind, message, timestamp, app version and optional context. Migration `0005_feedback_context.sql` adds the two fields without changing existing reports. Context is limited to known page paths and the selected public item; queries, fragments and unknown fields are discarded. Visitors can opt out of this context. No account details, CV, form contents, screenshots or raw IP are attached automatically. The endpoint enforces the current origin, bounded input and five submissions per hourly IP-derived bucket. The owner dashboard now shows the latest 50 reports at `/admin`; anonymous access is denied. There is still no email notification pipeline. Operators can also review feedback using authenticated D1 access, for example:
 
 ```sh
 npx wrangler d1 execute sponsorintel-db --remote --command "SELECT id,kind,message,context,app_version,created_at FROM feedback ORDER BY created_at DESC LIMIT 30"
@@ -151,15 +151,21 @@ Use Wrangler's deployment history and rollback command to restore a previously v
 
 The beta does not yet migrate legacy accounts, send email alerts, verify email ownership, or offer paid plans. It does not claim complete UK vacancy coverage, legal eligibility or sponsorship likelihood. The old Python/PostgreSQL/Redis services are not deployed as part of this migration.
 
-See `RELEASE-2.3.md` for current deployment and acceptance evidence and `../docs/PRODUCT_ROADMAP.md` for the remaining work, quality gates and launch priorities. The earlier domain and career-workspace acceptance is retained in `RELEASE-2.0.md`.
+See `RELEASE-2.6.md` for current deployment and acceptance evidence and `../docs/PRODUCT_ROADMAP.md` for the remaining work, quality gates and launch priorities. The earlier domain and career-workspace acceptance is retained in `RELEASE-2.0.md`.
 
 
 ## Public pages and search visibility (2.2)
 
-Run the full `npm run build`: Vite creates the fresh template, then `scripts/prerender.mjs` renders eight public pages using the actual React components. It also generates the sitemap, private shell and 404 page. The script deliberately refuses to reprocess an already-rendered template. Public routes and metadata share `shared/pages.json`; keep client navigation and page content consistent with it.
+Run the full `npm run build`: Vite creates the fresh template, then `scripts/prerender.mjs` renders ten public pages using the actual React components. It also generates the sitemap, private shell and 404 page. The script deliberately refuses to reprocess an already-rendered template. Public routes and metadata share `shared/pages.json`; keep client navigation and page content consistent with it.
 
 The Worker serves these documents with explicit canonical redirects, real 404 status codes and noindex/private caching for workspace pages. Public feed content remains live in the browser and is not copied into the build. The workers.dev HTML is noindex; www redirects to sponsorintel.london. Preserve the Google site-verification tag in `index.html`. No JobPosting rich-result markup is included yet.
 
 After preview or deployment, run `node scripts/seo-smoke.mjs <base-url>` to check raw HTML, metadata, JSON-LD, sitemap, robots, private routes, unknown routes, the share image and HEAD responses. The 1200×630 share card source is in `design/share-card.html`, with the published JPEG under `public/`.
 
 See `RELEASE-2.2.md` for observed Google verification/crawl outcomes and `../docs/GROWTH_PLAN.md` for the community pilot and search priorities.
+
+## Owner access, advice directory and assistant (2.6)
+
+Apply migration 0006 before deploying 2.6. For initial owner provisioning, run `node scripts/provision-owner.mjs OWNER_EMAIL ABSOLUTE_PRIVATE_DIRECTORY` from this folder, with a private directory outside Git. It creates a new account, binds the owner role to its returned ID, verifies access and saves credentials privately. It aborts on an existing email; never promote an unverified existing email automatically. Owner credentials, recovery codes, CVs and SQL provisioning files must stay outside this repository.
+
+`/admin` contains aggregate analytics, account activity, private feedback, source freshness and reviewed employer intake. An approved source joins the next scheduled refresh; pausing removes its jobs. `/advisers` exposes a dated IAA snapshot and external regulator/review links, without manufactured ratings. `/ask` uses live GOV.UK retrieval and bounded Cloudflare inference; it does not store conversation text or provide personal visa decisions. CV/cover preparation uses a separate AI factual-editing pass and still requires human checking. Details and limitations are in `RELEASE-2.6.md`.

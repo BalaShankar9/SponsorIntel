@@ -1,3 +1,4 @@
+import pages from "../shared/pages.json" with { type: "json" };
 import assert from "node:assert/strict";
 const base = (process.argv[2] || "http://127.0.0.1:8788").replace(/\/$/, "");
 const headers = { "User-Agent": "SponsorIntel-role-page-check" };
@@ -19,15 +20,31 @@ const data = JSON.parse(html.match(/id="job-data">([^<]*)<\/script>/)[1]);
 assert.equal(data.id, item.id);
 assert.equal(data.description, detail.description);
 assert.equal(response.headers.get("cache-control"), "no-store");
-const schema = JSON.parse(html.match(/id="structured-data">([^<]*)<\/script>/)[1]);
-assert.ok(schema["@graph"].some((n) => n["@type"] === "WebPage" && n.url === "https://sponsorintel.london" + path));
+const schema = JSON.parse(
+  html.match(/id="structured-data">([^<]*)<\/script>/)[1],
+);
+assert.ok(
+  schema["@graph"].some(
+    (n) =>
+      n["@type"] === "WebPage" &&
+      n.url === "https://sponsorintel.london" + path,
+  ),
+);
 assert.ok(!schema["@graph"].some((n) => n["@type"] === "JobPosting"));
-assert.match(html, /name="robots"\s+content="index,follow,max-image-preview:large"/);
-console.log("PASS role initial HTML, public source context, bootstrap and metadata");
+assert.match(
+  html,
+  /name="robots"\s+content="index,follow,max-image-preview:large"/,
+);
+console.log(
+  "PASS role initial HTML, public source context, bootstrap and metadata",
+);
 const head = await fetch(base + path, { method: "HEAD", headers });
 assert.equal(head.status, 200);
 assert.equal(await head.text(), "");
-const redirect = await fetch(base + path + "/?utm_source=qa", { redirect: "manual", headers });
+const redirect = await fetch(base + path + "/?utm_source=qa", {
+  redirect: "manual",
+  headers,
+});
 assert.equal(redirect.status, 301);
 assert.equal(redirect.headers.get("location"), base + path + "?utm_source=qa");
 const missing = await get("/jobs/" + "0".repeat(24));
@@ -36,5 +53,10 @@ assert.match(missing.headers.get("x-robots-tag"), /noindex/);
 console.log("PASS HEAD, canonical redirect and real missing-role 404");
 const sitemap = await (await get("/sitemap.xml")).text();
 assert.ok(sitemap.includes("https://sponsorintel.london" + path));
-assert.equal([...sitemap.matchAll(/<loc>/g)].length, catalog.catalog_total + 8);
-console.log(`PASS current sitemap (${catalog.catalog_total} roles + 8 public pages)`);
+assert.equal(
+  [...sitemap.matchAll(/<loc>/g)].length,
+  catalog.catalog_total + Object.keys(pages).length,
+);
+console.log(
+  `PASS current sitemap (${catalog.catalog_total} roles + ${Object.keys(pages).length} public pages)`,
+);

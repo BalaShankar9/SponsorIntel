@@ -16,7 +16,13 @@ import { validateWorkspace } from "../worker/career-validation.js";
 
 function database() {
   const sql = new DatabaseSync(":memory:");
-  for (const name of ["0002_career.sql", "0004_quality_updates.sql"])
+  for (const name of [
+    "0001_initial.sql",
+    "0002_career.sql",
+    "0003_auth.sql",
+    "0004_quality_updates.sql",
+    "0006_owner_analytics.sql",
+  ])
     sql.exec(
       readFileSync(new URL("../migrations/" + name, import.meta.url), "utf8"),
     );
@@ -394,12 +400,15 @@ test("saved searches keep sector and pay filters and older backups remain valid"
   assert.equal(data.searches[1].sector, "engineering");
 });
 
-test('UK recruitment locations do not disguise a required overseas relocation', async () => {
-  const jobs = await normaliseBoardJobs([
-    rawJob('overseas', { text: 'C++ Developer - Relocate to Chicago' }),
-    rawJob('uk', { text: 'Engineer - Relocate to London' }),
-    rawJob('ordinary', { text: 'Relocation Support Adviser' }),
-  ], board);
+test("UK recruitment locations do not disguise a required overseas relocation", async () => {
+  const jobs = await normaliseBoardJobs(
+    [
+      rawJob("overseas", { text: "C++ Developer - Relocate to Chicago" }),
+      rawJob("uk", { text: "Engineer - Relocate to London" }),
+      rawJob("ordinary", { text: "Relocation Support Adviser" }),
+    ],
+    board,
+  );
   assert.equal(jobs.length, 2);
-  assert.ok(jobs.every(j => !j.title.includes('Chicago')));
+  assert.ok(jobs.every((j) => !j.title.includes("Chicago")));
 });

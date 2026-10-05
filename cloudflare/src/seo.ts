@@ -11,6 +11,9 @@ const privateTitles: Record<string, string> = {
   "career-profile": "Your CV profile",
   studio: "Application studio",
   account: "Your account",
+  signin: "Sign in",
+  signup: "Create your account",
+  admin: "Owner dashboard",
   saved: "Saved employers",
   settings: "Preferences",
   "employer-notes": "Employer notes",
@@ -83,13 +86,22 @@ export function updateMetadata(view: string) {
   const page = pageMeta(view);
   applyMetadata(page, structuredData(view), !!publicPages[view]);
 }
-export function updateJobMetadata(job: Job | null, id: string, missing = false) {
-  const page = job ? jobMetadata(job) : {
-    path: "/jobs/" + id,
-    title: (missing ? "Opportunity not found" : "Opportunity details") + " | Sponsor Intel",
-    description: "Read the employer's advert, sponsorship wording and source checks on Sponsor Intel.",
-    indexable: false,
-  };
+export function updateJobMetadata(
+  job: Job | null,
+  id: string,
+  missing = false,
+) {
+  const page = job
+    ? jobMetadata(job)
+    : {
+        path: "/jobs/" + id,
+        title:
+          (missing ? "Opportunity not found" : "Opportunity details") +
+          " | Sponsor Intel",
+        description:
+          "Read the employer's advert, sponsorship wording and source checks on Sponsor Intel.",
+        indexable: false,
+      };
   applyMetadata(page, job ? jobStructuredData(job) : null, page.indexable);
 }
 function applyMetadata(

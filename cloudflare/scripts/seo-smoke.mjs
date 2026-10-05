@@ -49,12 +49,17 @@ for (const [view, page] of Object.entries(pages)) {
   checks++;
 }
 const sitemap = await (await fetch(base + "/sitemap.xml")).text();
-const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+const sitemapLocations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+  (m) => m[1],
+);
 assert.ok(sitemapLocations.length >= Object.keys(pages).length);
 assert.equal(new Set(sitemapLocations).size, sitemapLocations.length);
 for (const url of sitemapLocations) {
   const path = new URL(url).pathname;
-  assert.ok(Object.values(pages).some((p) => p.path === path) || /^\/jobs\/[a-f0-9]{24}$/.test(path));
+  assert.ok(
+    Object.values(pages).some((p) => p.path === path) ||
+      /^\/jobs\/[a-f0-9]{24}$/.test(path),
+  );
   assert.equal(url, canonical + path);
 }
 for (const p of Object.values(pages))
@@ -63,6 +68,9 @@ assert.doesNotMatch(sitemap, /account|saved|applications|utm_/);
 checks++;
 for (const path of [
   "/account",
+  "/signin",
+  "/signup",
+  "/admin",
   "/career-profile",
   "/studio",
   "/applications",
