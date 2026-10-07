@@ -62,5 +62,22 @@
       "draft": false,
       "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7294726&openWithPostUuid=8669160755592973829"
     }
+  ],
+  "native_linkedin_posts": [
+    {
+      "company_id": "146710167",
+      "public_account": "https://www.linkedin.com/company/sponsorintellondon/",
+      "scheduled_for": "2026-10-09T10:00:00+01:00",
+      "timezone": "Europe/London",
+      "timezone_label_observed": "British Summer Time",
+      "status": "scheduled_not_published",
+      "text": "846 roles. Three very different sponsorship signals.\n\nOur 7 October snapshot of 30 selected UK employer boards found:\n• 16 adverts with wording that states sponsorship is offered.\n• 34 with conditional sponsorship wording.\n• 705 without a clear sponsorship commitment.\nAnother 91 explicitly said sponsorship was unavailable.\n\nThese are automated readings of adverts, not confirmed sponsorship offers or a picture of the whole UK job market. Always read the employer’s current advert and check anything unclear with them.\n\nThe report shows the date, contributing boards and limitations, so you can judge the evidence yourself.\n\nRead the snapshot: https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=linkedin&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot\n\n#UKJobs #VisaSponsorship #InternationalStudents",
+      "confirmation": "Post scheduled.",
+      "readback": "Sponsor Intel’s scheduled posts: Posting Fri, Oct 9 at 10:00 AM",
+      "scheduled_items_observed": 1,
+      "admin_url": "https://www.linkedin.com/company/146710167/admin/page-posts/published/",
+      "external_post_url": null,
+      "screenshot": "outputs/sponsor-intel-social-kit/linkedin-scheduled-report.png"
+    }
   ]
 }

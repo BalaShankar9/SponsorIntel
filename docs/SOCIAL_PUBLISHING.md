@@ -7,7 +7,7 @@ Updated 7 October 2026. Owner authorised routine company posts and personal Link
 | Channel | Public account | Publisher connection |
 | --- | --- | --- |
 | Facebook | https://www.facebook.com/profile.php?id=61595389821505 | Metricool brand 7294726, Page 1319703417896763, Europe/London; verified through UI and connector |
-| LinkedIn company | https://www.linkedin.com/company/sponsorintellondon/ | Native publishing verified; Metricool displays a paid-plan gate |
+| LinkedIn company | https://www.linkedin.com/company/sponsorintellondon/ | Native publishing verified; evidence report scheduled for 9 October at 10:00 BST; Metricool displays a paid-plan gate |
 | Personal LinkedIn | https://www.linkedin.com/in/bala-sankar-bollineni-b246bb189/ | Native introduction published; no Metricool connection |
 | Instagram company | Not yet created | A personal Instagram was mistakenly connected, then disconnected with a success receipt. Do not publish company posts to any personal Instagram account. |
 
@@ -29,12 +29,14 @@ The evidence report, advert guide and Application Studio were checked in the liv
 
 The Europe/London calendar cards and connector both show 10:00. Reopening the post editor displays 11:00; re-saving 10:00 changes the numeric post ID but leaves the read-back time at 10:00, with the same UUID. This unresolved editor-display discrepancy is recorded so a later agent does not repeatedly shift posts. Use the current IDs above and verify actual publication at the due time. No duplicate post was created.
 
+The company LinkedIn evidence report is separately queued in LinkedIn's native scheduler for **9 October 2026 at 10:00 BST**. The native time selector explicitly displayed British Summer Time, the action returned “Post scheduled”, and Sponsor Intel's scheduled-posts dialog showed exactly one item with the expected date and report text. It uses the first Facebook post's dated snapshot text with `utm_source=linkedin`. No Metricool subscription or LinkedIn connection was added. The native admin page is https://www.linkedin.com/company/146710167/admin/page-posts/published/; open its scheduled-posts dialog to reconcile before creating any more report posts. Screenshot: `outputs/sponsor-intel-social-kit/linkedin-scheduled-report.png` in the parent task folder. No public post URL or delivery receipt exists yet. Do not publish the matching Cloudflare outbox draft again while this item is queued.
+
 ## Daily operation
 
 The existing Sponsor Intel daily improvement heartbeat remains at 10:00 local time. Its prompt now checks exact destination identity, existing schedules, source quality, duplication and delivery receipts. It can schedule at most one new Facebook post per run within the weekly limit, through the authenticated Metricool connector. It must not reconnect the removed personal Instagram. New social destinations require verified account ownership and authorised access.
 
 Metricool holds the queued posts and performs publication. The Codex heartbeat that replenishes and reviews that queue depends on the desktop scheduler and connector access. It is not a direct Cloudflare-to-Metricool API integration. Metricool's official API guide says direct API access needs Advanced or Custom; no such plan has been purchased: https://help.metricool.com/basic-guide-for-api-integration-r97af.
 
-After a due time, check the provider's published-post status or analytics and retain the external post ID/URL. An empty scheduled list is not a delivery receipt. For an uncertain result, investigate before retrying. Failed posts should create an actionable report, not duplicate retries. Keep notifications quiet unless there is a meaningful completion, failure, result or owner decision.
+After a due time, check the provider's published-post status or analytics and retain the external post ID/URL. For the native LinkedIn item, inspect the company Page's published posts and verify matching text, destination and date. An empty scheduled list is not a delivery receipt. For an uncertain result, investigate before retrying. Failed posts should create an actionable report, not duplicate retries. Keep notifications quiet unless there is a meaningful completion, failure, result or owner decision.
 
 Measure actual delivered posts, attributable visits and useful product actions separately. Do not call a scheduled post reach, impressions users, or a Page connection successful distribution. The Cloudflare social outbox still holds LinkedIn report drafts; do not mark them delivered because Facebook launch content was scheduled.
