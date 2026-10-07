@@ -70,12 +70,12 @@ export function toRecord(cells) {
   if (!name || !rating || !route) throw new Error("Incomplete register row");
   return { name, city, county, rating, route };
 }
-export async function boundedText(response, max) {
+export async function boundedText(response, max, encoding = "utf-8") {
   if (!response.ok) throw new Error("Source unavailable");
   const reader = response.body.getReader();
   let n = 0,
     result = "";
-  const decoder = new TextDecoder();
+  const decoder = new TextDecoder(encoding);
   try {
     while (true) {
       const x = await reader.read();

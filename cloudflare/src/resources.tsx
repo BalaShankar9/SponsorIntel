@@ -323,7 +323,9 @@ export function AboutPage() {
         <h2>Vacancy evidence</h2>
         <p>
           We read selected employer job boards through Greenhouse, Lever and
-          Ashby interfaces. This is a focused collection, not the whole UK job
+          Ashby interfaces, plus official university vacancy feeds. University
+          feeds cover selected campuses and recent listings; they may omit older
+          open roles, attachments or further eligibility details. This is a focused collection, not the whole UK job
           market. We check the boards every six hours; listings not seen
           successfully for more than three days are excluded from search. A
           failed refresh does not prove a role has closed.

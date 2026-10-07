@@ -706,7 +706,9 @@ function Vacancies({ go }: { go: Go }) {
           feed check does not guarantee the employer is still accepting
           applications. General talent-pool and speculative-interest listings
           are excluded. Career-stage labels come from the title, not a
-          confirmation of your eligibility.
+          confirmation of your eligibility. University feeds contain selected
+          recent campus vacancies; a role leaving a feed does not prove it has
+          closed. Past closing dates are excluded at each successful refresh.
         </p>
         {result?.sources.map((s) => (
           <div key={s.id}>
@@ -738,6 +740,14 @@ function Vacancies({ go }: { go: Go }) {
         </a>
         <a href="https://www.jobs.nhs.uk/candidate/search" {...external}>
           NHS Jobs
+          <ArrowUpRight size={14} />
+        </a>
+        <a href="https://ennismore.com/careers/" {...external}>
+          Hospitality at Ennismore
+          <ArrowUpRight size={14} />
+        </a>
+        <a href="https://bakerhicks.com/en/careers/early-careers" {...external}>
+          Graduate schemes at BakerHicks
           <ArrowUpRight size={14} />
         </a>
         <button onClick={() => go("applications")}>

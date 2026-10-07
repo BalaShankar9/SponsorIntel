@@ -1,6 +1,7 @@
 import { boundedText, idFor } from "./data.js";
+import { XMLParser, XMLValidator } from "fast-xml-parser";
 
-import { BOARDS, SECTORS } from "./job-sources.js";
+import { BOARDS, SECTORS, UNIVERSITY_FEEDS } from "./job-sources.js";
 import { employerLicences } from "./employer-licences.js";
 export { BOARDS } from "./job-sources.js";
 
@@ -294,17 +295,69 @@ export async function normaliseBoardJobs(raw, board) {
   return result;
 }
 
+export function parseUniversityFeed(xml, boardId, now = Date.now()) {
+  const feed = UNIVERSITY_FEEDS[boardId];
+  if (!feed || /<!DOCTYPE|<!ENTITY/i.test(xml) || XMLValidator.validate(xml) !== true)
+    throw new Error("Invalid university feed");
+  const channel = new XMLParser({ parseTagValue: false, maxNestedTags: 20,
+    processEntities: false, isArray: (_name, path) => path === "rss.channel.item",
+  }).parse(xml)?.rss?.channel;
+  if (!channel || channel.title !== feed.title || (channel.item && !Array.isArray(channel.item)))
+    throw new Error("Unexpected university feed identity");
+  const items = channel.item || [];
+  if (items.length > 200) throw new Error("University feed exceeds review limit");
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/London",
+    year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(now));
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const seen = new Set(), jobs = [];
+  for (const item of items) {
+    if (![item.title, item.link, item.description, item.pubDate].every((s) => typeof s === "string" && s.trim()))
+      throw new Error("Incomplete university vacancy");
+    const link = new URL(plainText(item.link));
+    const ref = link.searchParams.get("ref");
+    if (link.origin !== feed.origin || link.pathname.toLowerCase() !== feed.path.toLowerCase() ||
+        link.username || link.password || !/^[a-z0-9-]{1,50}$/i.test(ref || "") || seen.has(ref))
+      throw new Error("Unexpected university vacancy link");
+    seen.add(ref);
+    const description = plainText(item.description);
+    const closing = description.match(/Closing Date:\s*(\d{1,2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (20\d{2})\b/);
+    if (!closing) throw new Error("University vacancy has no recognised closing date");
+    const ymd = `${closing[3]}-${String(months.indexOf(closing[2]) + 1).padStart(2, "0")}-${closing[1].padStart(2, "0")}`;
+    const date = new Date(ymd + "T00:00:00Z");
+    if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== ymd)
+      throw new Error("Invalid university closing date");
+    // Date-only deadlines remain available through their stated day in UK time.
+    if (ymd < today) continue;
+    const published = Date.parse(item.pubDate);
+    if (!Number.isFinite(published) || published > now + 300000)
+      throw new Error("Invalid university publication date");
+    const canonical = new URL(feed.path, feed.origin);
+    canonical.searchParams.set("ref", ref);
+    jobs.push({ id: ref, title: item.title, location: feed.location, country: "GB",
+      content: description, absolute_url: canonical.href, publishedAt: new Date(published).toISOString() });
+  }
+  return jobs;
+}
+
 export async function fetchBoard(board) {
+  if (board.provider === "university-rss") {
+    const feed = UNIVERSITY_FEEDS[board.id];
+    if (!feed) throw new Error("Unreviewed university feed");
+    const response = await fetch(feed.url, { headers: { Accept: "application/rss+xml, text/xml", "User-Agent": "SponsorIntel/2.9 (+https://sponsorintel.london)" },
+      signal: AbortSignal.timeout(25000), redirect: "manual" });
+    const xml = await boundedText(response, 2_000_000, feed.encoding);
+    return normaliseBoardJobs(parseUniversityFeed(xml, board.id), board);
+  }
   const url =
     board.provider === "greenhouse"
       ? `https://boards-api.greenhouse.io/v1/boards/${board.board}/jobs?content=true`
       : board.provider === "lever"
-        ? `https://api.lever.co/v0/postings/${board.board}?mode=json`
+        ? `https://${board.region === "eu" ? "api.eu.lever.co" : "api.lever.co"}/v0/postings/${board.board}?mode=json`
         : `https://api.ashbyhq.com/posting-api/job-board/${board.board}?includeCompensation=true`;
   const response = await fetch(url, {
     headers: {
       Accept: "application/json",
-      "User-Agent": "SponsorIntel/2.4 (+https://sponsorintel.london)",
+      "User-Agent": "SponsorIntel/2.9 (+https://sponsorintel.london)",
     },
     signal: AbortSignal.timeout(25000),
     redirect: "manual",

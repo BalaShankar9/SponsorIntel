@@ -4,7 +4,13 @@ Owner: Codex implementation lead, with Bala as product owner. Updated 7 October 
 
 The product promise: help international students and migrants find credible UK opportunities, understand the evidence, and prepare good applications. Judge success by useful applications and interviews, not scrolling time or raw job counts.
 
-## Current release — 2.8
+## Current release — 2.9
+
+Four additional feeds cover Numan, Eucalyptus, University of Bath and University of Greater Manchester's Bolton campus. There are now 30 configured sources and 21 reviewed legal-entity links. All 20 previously unlinked boards were reviewed: 12 gained evidence-backed links, while eight remain unverified; Eucalyptus also needs an identity review. Selected university RSS feeds enforce campus identity, UK closing dates and bounded safe XML reads. They are partial vacancy collections, so a missing feed item does not prove closure. See `cloudflare/RELEASE-2.9.md` for live counts and `cloudflare/JOB-SOURCES.md` for evidence and access decisions.
+
+Hospitality discovery now links to Ennismore and graduate discovery to BakerHicks. Neither adds a second copied feed. NHS external-board integration guidance is identified but its feed/access requirements still need implementation review. Soho House reuse needs permission, Quell had no open feed roles, and Lindus access was unavailable. No permission request, commercial agreement or paid source was initiated.
+
+## Licence-linked opportunities — 2.8
 
 Jobs now have a separate Licensed employers collection and filter, backed by reviewed exact register IDs. Six initial company links cover Monzo, GoCardless, Funding Circle, Zopa, Graphcore and Allica Bank; approved owner-intake boards also participate. Role pages show the legal name, dated source and company/group limitation. All advert sponsorship labels remain independent. Stale/failed register checks and withdrawn records remove licence links, while unmatched employers remain unknown. See `cloudflare/RELEASE-2.8.md` for live counts and acceptance.
 
@@ -44,9 +50,9 @@ Remaining quality order after 2.7: (1) monitor transactional delivery and bounce
 
 ## Next: widen coverage and measure trust
 
-1. Add verified sources in healthcare, universities, hospitality, engineering, public services and graduate schemes. The first 26 boards are live in 2.4; target 50 next, prioritising explicit early-career sponsorship; add a source only after its official ownership and access terms are checked. NHS Jobs and Work Hub remain direct discovery links until a permitted integration is verified.
-2. Extend the reviewed employer-to-register links introduced in 2.8. Six built-in boards are linked, alongside the existing approved owner-intake workflow. Review the remaining boards against exact legal entities and current register IDs; do not auto-approve fuzzy name matches. Separate register status from a vacancy’s sponsorship wording and the applicant’s eligibility.
-3. Add source-provided closing dates and occupation data where available. Never infer an expiry date or occupation code from a title alone.
+1. Add verified sources in healthcare, universities, hospitality, engineering, public services and graduate schemes. Thirty boards are configured in 2.9; target 50 next, prioritising explicit early-career sponsorship; add a source only after its official ownership and access terms are checked. NHS Jobs and Work Hub remain direct discovery links until a permitted integration is verified.
+2. Extend the reviewed employer-to-register links introduced in 2.8. Twenty-one built-in boards are linked, alongside the existing approved owner-intake workflow. Resolve the eight remaining original boards and Eucalyptus against exact legal entities and current register IDs; do not auto-approve fuzzy name matches. Separate register status from a vacancy’s sponsorship wording and the applicant’s eligibility.
+3. University RSS closing dates now filter expired roles at each successful refresh. Extend source-provided closing dates and occupation data to other feeds where available. Never infer an expiry date or occupation code from a title alone.
 4. The contextual report-this-advert flow is live in 2.3. Add operator triage with the relevant source snapshot; prioritise scams, wrong sponsorship wording, closed adverts and incorrect locations.
 5. Audit at least 50 varied adverts before making accuracy claims. Review every positive sponsorship label in that sample and record precision by source; any false positive blocks a stronger “verified sponsorship” claim.
 6. Record successful/failed runs and freshness over time, with owner diagnostics for stale sources. Last-success timestamps alone are not an uptime history.

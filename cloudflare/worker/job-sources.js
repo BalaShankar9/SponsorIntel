@@ -219,4 +219,37 @@ export const BOARDS = [
     sector: "finance",
     careers: "https://job-boards.greenhouse.io/mavensecuritiesholdingltd",
   },
+  {
+    id: "numan", company: "Numan", provider: "lever", region: "eu",
+    board: "numan", sector: "healthcare", careers: "https://careers.numan.com/",
+  },
+  {
+    id: "eucalyptus", company: "Eucalyptus", provider: "greenhouse",
+    board: "eucalyptus", sector: "healthcare", careers: "https://www.eucalyptus.health/careers",
+  },
+  {
+    id: "university-bath", company: "University of Bath", provider: "university-rss",
+    sector: "education", careers: "https://www.bath.ac.uk/jobs/",
+  },
+  {
+    id: "university-greater-manchester", company: "University of Greater Manchester", provider: "university-rss",
+    sector: "education", careers: "https://jobs.greatermanchester.ac.uk/",
+  },
 ];
+
+// Explicit campus feeds only: a UK university can also advertise overseas roles.
+// These URLs cannot be supplied by an intake form or a feed item.
+export const UNIVERSITY_FEEDS = {
+  "university-bath": {
+    url: "https://www.bath.ac.uk/jobs/rss/rss.aspx?cat=418&type=9",
+    location: "Bath, United Kingdom", origin: "https://www.bath.ac.uk",
+    path: "/jobs/rss/click.aspx", title: "Jobs at Bath | Bath",
+    encoding: "windows-1252", // Feed declares ISO-8859-1.
+  },
+  "university-greater-manchester": {
+    url: "https://jobs.greatermanchester.ac.uk/RSS/rss.aspx?cat=927&type=9",
+    location: "Bolton, United Kingdom", origin: "https://jobs.greatermanchester.ac.uk",
+    path: "/RSS/click.aspx", title: "Jobs at University of Greater Manchester | Bolton Campus (inc. Queens and Greater Manchester Business School)",
+    encoding: "utf-8",
+  },
+};

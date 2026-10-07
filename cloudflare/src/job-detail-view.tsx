@@ -105,7 +105,8 @@ export function JobDetailView({
             <p>{jobTimestamp(job.last_seen)}</p>
             {job.source_updated_at && <><h3>Date supplied by the source</h3><p>{jobTimestamp(job.source_updated_at)}</p><p className="role-caption">This may be a publication or edit date.</p></>}
             <h3>Source</h3>
-            <p>{job.provider === "greenhouse" ? "Greenhouse" : job.provider === "lever" ? "Lever" : job.provider === "ashby" ? "Ashby" : "Employer"} public job board</p>
+            <p>{job.provider === "university-rss" ? "Official university vacancy feed" : `${job.provider === "greenhouse" ? "Greenhouse" : job.provider === "lever" ? "Lever" : job.provider === "ashby" ? "Ashby" : "Employer"} public job board`}</p>
+            {job.provider === "university-rss" && <p className="role-caption">A selection of recent campus vacancies, not every university role. Feed text may omit attachments or further eligibility details; check the full advert.</p>}
             {job.source?.careers_url && <a className="text-button" href={job.source.careers_url} {...external}>Employer careers page <ArrowUpRight size={14} /></a>}
           </section>
           <section className="role-panel role-checklist">

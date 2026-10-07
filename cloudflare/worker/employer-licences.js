@@ -8,6 +8,21 @@ export const REVIEWED_EMPLOYER_LINKS = [
   { id: "zopa", sponsor_id: "8032bd0aad08e26ea0b49eaf", evidence_url: "https://www.zopa.com/contact", reviewed_at: "2026-10-06" },
   { id: "graphcore", sponsor_id: "f2ff8516c38862d935974912", evidence_url: "https://www.graphcore.ai/hubfs/assets/pdf/Click%20wrap%20license%20agreement.pdf", reviewed_at: "2026-10-06" },
   { id: "allica-bank", sponsor_id: "c35e7085232c95e3d50e2d99", evidence_url: "https://www.allica.bank/careers", reviewed_at: "2026-10-06" },
+  {"id": "cloudflare", "sponsor_id": "f836d0c9dd3bae29019003a4", "evidence_url": "https://www.cloudflare.com/gdpr/subprocessors/cloudflare-services/", "reviewed_at": "2026-10-07"},
+  {"id": "deliveroo", "sponsor_id": "ef82b77104d718b9c266786a", "evidence_url": "https://deliveroo.co.uk/legal/", "reviewed_at": "2026-10-07"},
+  {"id": "stripe", "sponsor_id": "a4c1ffd864c2e3e38a892774", "evidence_url": "https://stripe.com/gb/legal/spukl", "reviewed_at": "2026-10-07"},
+  {"id": "figma", "sponsor_id": "dc5e5b0f2185b97f8f8e48c6", "evidence_url": "https://www.figma.com/uk-tax-strategy/", "reviewed_at": "2026-10-07"},
+  {"id": "octopus-energy", "sponsor_id": "1b963b6bb4838b96938a96f4", "evidence_url": "https://octopus.energy/quote/terms-and-conditions/", "reviewed_at": "2026-10-07"},
+  {"id": "zeeco", "sponsor_id": "d4272f5f1029b6c7acec8818", "evidence_url": "https://www.zeeco.com/privacy-policy", "reviewed_at": "2026-10-07"},
+  {"id": "invinity", "sponsor_id": "89325f0cfb4d4758510a45aa", "evidence_url": "https://invinity.com/wp-content/uploads/2024/10/2022.05.12-Invinity-Energy-UK-Ltd-Terms-and-Conditions-for-the-Supply-of-Goods-FINAL-1.pdf", "reviewed_at": "2026-10-07"},
+  {"id": "axon", "sponsor_id": "9df83e5777ab2d551ba89677", "evidence_url": "https://axon-com.com/legal-and-privacy/", "reviewed_at": "2026-10-07"},
+  {"id": "bakerhicks", "sponsor_id": "15f4e702e4bf277db585f025", "evidence_url": "https://bakerhicks.com/en/privacy", "reviewed_at": "2026-10-07"},
+  {"id": "hr-wallingford", "sponsor_id": "2b50a3b31eb0a6cb8348780d", "evidence_url": "https://www.hrwallingford.com/sites/default/files/2024-10/bc048_sustainability-report-2024-r02-00_0.pdf", "reviewed_at": "2026-10-07"},
+  {"id": "multiverse", "sponsor_id": "a59d4845eaf070b6d5b23bf1", "evidence_url": "https://community.multiverse.io/privacy_policy", "reviewed_at": "2026-10-07"},
+  {"id": "maven", "sponsor_id": "17b565a57b9527eeb262e8cb", "evidence_url": "https://downloads.modern-slavery-statement-registry.service.gov.uk/pdf-published/Z4ESldnl/2023/2023%20-%20Slavery%20and%20Human%20Trafficking%20Statement.pdf", "reviewed_at": "2026-10-07"},
+  {"id": "numan", "sponsor_id": "251f88c057cdf37907a9c838", "evidence_url": "https://www.numan.com/legal/terms-and-conditions", "reviewed_at": "2026-10-07"},
+  {"id": "university-bath", "sponsor_id": "172ea1ba3df39d083228ae40", "evidence_url": "https://www.bath.ac.uk/jobs/rss/", "reviewed_at": "2026-10-07"},
+  {"id": "university-greater-manchester", "sponsor_id": "f30b3f2408fe12130a3c4b24", "evidence_url": "https://greatermanchester.ac.uk/assets/Uploads/Instrument-of-Government.pdf", "reviewed_at": "2026-10-07"},
 ];
 
 const DAY = 86400000;
