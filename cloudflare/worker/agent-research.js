@@ -211,14 +211,16 @@ export async function reviewResearch(env, runId, revision = false) {
 }
 
 export async function finishResearch(env, runId) {
-  const row = await env.DB.prepare('SELECT kind,context,report FROM agent_investigations WHERE id=?').bind(runId).first();
+  const row = await env.DB.prepare('SELECT kind,context,report,state FROM agent_investigations WHERE id=?').bind(runId).first();
+  if (!row || row.state !== 'running') throw Error('Research is no longer active.');
   const context = JSON.parse(row.context), result = JSON.parse(row.report);
   const report = { ...result, evidence:context.evidence.map(({ description,...e }) => e),
     decisions:context.decisions, limitations:context.limitations || [], remembered_observations:context.memory.length,
     human_review_required:true, publication:'none',
     ...(row.kind === 'evaluation' ? { evaluation:scoreEvaluation(result.report) } : {}) };
-  await env.DB.prepare("UPDATE agent_investigations SET state='review',report=?,finished_at=? WHERE id=?")
-    .bind(JSON.stringify(report),iso(),runId).run();
+  const saved=await env.DB.prepare("UPDATE agent_investigations SET state='review',report=?,finished_at=? WHERE id=? AND state='running' RETURNING id")
+    .bind(JSON.stringify(report),iso(),runId).first();
+  if (!saved) throw Error('Research changed before completion.');
   return { state:'review' };
 }
 

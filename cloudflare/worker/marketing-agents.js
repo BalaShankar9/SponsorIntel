@@ -166,6 +166,7 @@ export async function critiqueMarketing(env,id,plan,copy,revision=false,caller,n
 }
 export async function storeMarketingDraft(env,id,plan,copy,revision=false,now=Date.now()){
  const run=await runRow(env,id),context=JSON.parse(run.context),source=context.candidates.find(s=>s.id===plan.source_id);
+ if(run.state!=='running')throw Error('Editorial run is no longer active.');
  if(!await enabled(env))throw Error('Marketing agents paused.');
  validateCopy(copy,source);
  const campaign=campaignById(source.campaign);if(!campaign)throw Error('Approved campaign mapping missing.');

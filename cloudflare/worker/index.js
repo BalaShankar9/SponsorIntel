@@ -404,7 +404,7 @@ export default {
   },
   async scheduled(event, env, ctx) {
     if (event.cron === '45 * * * *') {
-      console.log(JSON.stringify({event:'business_operations',...(await dispatchBusiness(env,event.scheduledTime))}));
+      console.log(JSON.stringify({event:'business_operations',...(await dispatchBusiness(env,event.scheduledTime,'scheduled'))}));
       return;
     }
     if (event.cron === "*/15 * * * *") {

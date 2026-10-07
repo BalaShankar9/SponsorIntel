@@ -1,6 +1,6 @@
 # Sponsor Intel operating system
 
-Updated 7 October 2026. Owner: Bala Bollineni. Primary site: https://sponsorintel.london. The owner requested autonomous operation across the website, publishing, security, SEO, growth and social media, and confirmed both company pages and personal LinkedIn as intended audiences. This grants implementation and routine business-content authority; it does not supply social credentials, a spending ceiling, contractual authority or a regulated adviser.
+Updated 8 October 2026. Owner: Bala Bollineni. Primary site: https://sponsorintel.london. The owner requested autonomous operation across the website, publishing, security, SEO, growth and social media, and confirmed both company pages and personal LinkedIn as intended audiences. This grants implementation and routine business-content authority; it does not supply social credentials, a spending ceiling, contractual authority or a regulated adviser.
 
 ## Operating model
 
@@ -12,6 +12,7 @@ The cloud handles repeatable production work. A daily Codex follow-up handles bo
 | Immigration monitoring | Cloudflare, every 15 minutes | Read selected official sources, version genuine changes, invalidate stale explanations | No autonomous personal legal decisions; source coverage is selected, not exhaustive |
 | Sponsor and study registers | Cloudflare, daily | Recheck official records and retain last good data | Failure and actual observation dates stay visible |
 | Site operations | BusinessWorkflow, hourly at :45 UTC | Five fixed HEAD checks, inspect source freshness, maintain incident queue | Availability and selected headers are not a penetration test; a monitor inside the same provider cannot independently detect a complete provider outage |
+| Agent supervision | BusinessWorkflow, hourly | Inspect unfinished research/editorial runs older than one hour; close their application records only when Cloudflare confirms a terminal state | Retains evidence, reservations and owner decisions. Unknown, still-running or paused platform instances are retained and flagged. No paid call is retried; see RELEASE-2.16.md |
 | Housekeeping | BusinessWorkflow, hourly | Hide roles last observed more than 72 hours ago, supersede expired social drafts, retain 90 days of terminal business-run receipts | Retain job records, feedback, accounts, CVs and workspaces. Feed success can restore an active vacancy |
 | Research | BusinessWorkflow dispatches once per UTC day | A private live-advert investigation, or the synthetic evaluation each Monday | Uses existing four-start / 32-call daily and eight-call per-investigation caps; a failure counts. No premium API is connected. No legal or public label changes |
 | Editorial | BusinessWorkflow, first eligible run then at most weekly | Compile and publish the dated selected-catalogue report, its source table, schema, sitemap entry and RSS | Reviewed template and reconciled counts; healthy routes and fresh contributing boards; no model-written legal article or fabricated author |
@@ -19,6 +20,8 @@ The cloud handles repeatable production work. A daily Codex follow-up handles bo
 | Social distribution | Marketing desk plus Metricool Facebook connection and native LinkedIn scheduler; cloud delivery bridge pending | Prepare versioned report briefs hourly, retain editorial decisions and dated delivery observations; the daily Codex routine can maintain a bounded Facebook queue | Three Facebook posts scheduled for 8, 10 and 12 October; one native LinkedIn report for 9 October, all at 10:00 BST. Delivery is pending. Instagram is created with logo; professional setup and publishing connection remain incomplete. See SOCIAL_PUBLISHING.md |
 | Engineering and growth | Codex heartbeat, daily at 10:00 local time | Inspect evidence, perform highest-impact bounded improvement, test, commit/push and deploy reversible changes | Local scheduler/access required. It is distinct from cloud execution. No merge, purchase, raised budget, contract acceptance or customer-data deletion |
 | Premium and sales | Product work queue | Develop and validate a premium proposition and funnel | Pricing, payments, CRM, lawful marketing subscriptions and revenue analytics are not implemented |
+
+Release 2.16 records whether each new business run came from the cloud schedule or the owner. Historical origins remain unknown. Replaying the same hour does not relabel it, so an owner acceptance test cannot masquerade as a scheduled run. The supervisor keeps durable per-queue receipts and promotes uncertain outcomes into the business issue queue.
 
 The hourly workflow uses a stable hour identifier, a single-active-run database constraint, durable steps, stored snapshots and atomic publication receipts. Confirmed terminal workflows can release a stale active run; an unknown platform response never starts a second copy. A retry of a paid model call cannot silently bypass its existing reservation. Research dispatch is reserved once per UTC day, including failures or a consumed allowance.
 
@@ -82,6 +85,10 @@ GitHub push succeeded on 7 October, including release 2.12 and social release 2.
 
 Use `/admin` and inspect the Business operations desk, source queue and research lab before intervening. D1 business runs store the source snapshot and result; Workflow platform completion alone does not prove a successful application result. Never reset a quota or alter evidence to force a green status.
 
+Release 2.16 reconciles unfinished research/editorial application records older than one hour only after the workflow binding reports `complete`, `errored` or `terminated`. It preserves model-call reservations, evidence, draft versions and existing owner decisions. An unfinished current agent-authored proposal is held; reviewed or owner-revised drafts are preserved. Missing, unknown, paused, waiting or still-running platform outcomes never authorize another run. Inspect the named workflow for those findings; do not retry an uncertain paid call. The supervisor is independent of model-written instructions and uses no model or social API calls.
+
 Before schema changes obtain a D1 recovery bookmark. Prefer code rollback, preserving additive tables and later user activity. Do not restore the whole database over newer user data to undo a code defect. All release versions and live acceptance receipts belong in `cloudflare/RELEASE-*.md` and `cloudflare/tests/evidence/`.
 
 The daily follow-up is the active Codex heartbeat `sponsor-intel-daily-improvement`. Its existence confirms scheduling configuration only; inspect actual execution before claiming it ran. Keep notifications for material completions, new actionable failures or a decision needed, and avoid repeating unchanged access blockers.
+
+The acceptance sequence for the full autonomy objective is tracked in `AUTONOMY_ACCEPTANCE.md`. A deployed component is not proof of an unattended end-to-end business outcome.

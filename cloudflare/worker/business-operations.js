@@ -2,13 +2,15 @@ import { bodyJSON, limit, reply, sameOrigin } from './auth.js';
 import { JOB_FRESHNESS_MS, JOB_ORIGIN } from '../shared/job-detail.js';
 import { startInvestigation } from './agent-research.js';
 import { publishInsight } from './insights.js';
+import { supervisionFindings } from './agent-supervision.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 export const businessRunId = (time) => 'business-' + Math.floor(time / 3600000);
 export const controls = (env) => env.DB.prepare('SELECT * FROM business_controls WHERE singleton=1').first();
 const terminal = new Set(['complete', 'completed', 'errored', 'terminated']);
 
-export async function dispatchBusiness(env, time = Date.now()) {
+export async function dispatchBusiness(env, time = Date.now(), trigger = 'owner') {
+  if (!['owner','scheduled'].includes(trigger)) throw Error('Unknown business dispatcher.');
   if (!(await controls(env))?.enabled) return { state: 'paused' };
   const id = businessRunId(time);
   const prior = await env.DB.prepare('SELECT id,state FROM business_runs WHERE id=?').bind(id).first();
@@ -28,7 +30,7 @@ export async function dispatchBusiness(env, time = Date.now()) {
     } else return { id: active.id, state: 'running' };
   }
   try {
-    await env.DB.prepare("INSERT INTO business_runs(id,state,created_at) VALUES(?,'queued',?)").bind(id, iso(time)).run();
+    await env.DB.prepare("INSERT INTO business_runs(id,state,created_at,trigger_kind) VALUES(?,'queued',?,?)").bind(id, iso(time),trigger).run();
   } catch {
     const winner = await env.DB.prepare("SELECT id,state FROM business_runs WHERE id=? OR state IN ('queued','running') LIMIT 1").bind(id).first();
     if (winner) return winner;
@@ -98,14 +100,14 @@ export function businessFindings(snapshot, now = Date.now()) {
   add('premium-validation','business','normal','Validate a premium offer with users','Payments, paid subscriptions and revenue measurement are not implemented.','Prioritise trustworthy job alerts, saved research and stronger application review. Validate willingness to pay before setting a price or opening checkout.');
   const totals = snapshot.metrics.reduce((a,x)=>(a[x.event]=(a[x.event]||0)+x.count,a),{});
   if (!(totals.application_generated>0)) add('activation','growth','normal','Improve the first useful application journey','No successful application generation was recorded in the available completed days of this 14-day window.','Verify the job-to-studio-to-export journey; improve the step where users get stuck. Event counts are not unique people.');
-  return issues;
+  return [...issues,...supervisionFindings(snapshot.supervision)];
 }
 
-export async function captureBusiness(env, id) {
+export async function captureBusiness(env, id, supervision=null) {
   const run = await env.DB.prepare('SELECT snapshot FROM business_runs WHERE id=?').bind(id).first();
   if (!run) throw Error('Missing business run.');
   if (run.snapshot) return JSON.parse(run.snapshot);
-  const snapshot = await collectBusinessSnapshot(env);
+  const snapshot = {...await collectBusinessSnapshot(env),supervision};
   await env.DB.prepare("UPDATE business_runs SET state='running',snapshot=? WHERE id=? AND state IN ('queued','running')").bind(JSON.stringify(snapshot),id).run();
   return snapshot;
 }
