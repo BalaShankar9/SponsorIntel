@@ -1,4 +1,5 @@
 import pages from "../shared/pages.json";
+import socialLinks from "../shared/social-links.json";
 import type { Job } from "./career-data";
 import { jobMetadata, jobStructuredData } from "../shared/job-detail.js";
 export const publicPages: Record<
@@ -58,6 +59,7 @@ export function structuredData(view: string) {
     name: "Sponsor Intel",
     url: ORIGIN + "/",
     logo: ORIGIN + "/favicon.svg",
+    sameAs: socialLinks.map(({ url }) => url),
     description:
       "UK sponsor employer discovery, application preparation and source-linked immigration information.",
   };

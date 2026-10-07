@@ -54,6 +54,7 @@ import { PathwayPage } from "./pathways";
 import { PasswordReset } from "./account-email";
 import { GuideLinks, ResourceArticle, AboutPage, articles } from "./resources";
 import { publicPages, updateMetadata } from "./seo";
+import socialLinks from "../shared/social-links.json";
 import {
   FeedbackForm,
   type FeedbackKind,
@@ -1821,6 +1822,12 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
               <a href="/immigration-sources">Trusted channels</a>
               <button onClick={() => setModal("privacy")}>Privacy & use</button>
               <button onClick={() => openFeedback()}>Leave feedback</button>
+              {socialLinks.map(({ name, url }) => (
+                <a key={name} href={url} target="_blank" rel="noopener noreferrer"
+                  aria-label={`Sponsor Intel on ${name} (opens in a new tab)`}>
+                  {name}
+                </a>
+              ))}
               <span>© {new Date().getFullYear()} Sponsor Intel</span>
             </div>
           </footer>
