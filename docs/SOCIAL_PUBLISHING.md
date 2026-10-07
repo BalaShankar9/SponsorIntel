@@ -44,3 +44,12 @@ After a due time, check the provider's published-post status or analytics and re
 Measure actual delivered posts, attributable visits and useful product actions separately. Do not call a scheduled post reach, impressions users, or a Page connection successful distribution. The Cloudflare social outbox still holds LinkedIn report drafts; do not mark them delivered because Facebook launch content was scheduled.
 
 Release 2.13 measures recognised launch-campaign page opens and successful feature responses. The mapping is the finite list in `cloudflare/shared/campaigns.js`; new campaign combinations need a reviewed mapping before they can appear in reports. Do not silently shorten or change existing UTM labels. The first three `fb-evidence` page opens on 7 October were operator verification visits. Exclude that known baseline from audience-growth claims. Counts are not unique visitors, verified conversions or causal evidence; attribution may be lost across page reloads and ends after 30 minutes in the current document. Provider reach and delivery remain separate checks.
+
+
+## Marketing desk (2.14)
+
+Use the Marketing desk in `/admin` before creating more posts. The four recorded launch schedules are imported as historical schedule observations, with exact copy, sources, destination and external references. The three Facebook records were read back as PENDING again during 2.14 validation; LinkedIn retains the earlier native UI observation from 7 October. None of these four is marked published.
+
+A report draft for personal LinkedIn is held pending independent editorial review, overlap checks and a recognised campaign mapping. Repeating Prepare & reconcile creates no duplicate company draft and preserves the hold. New report drafts are prepared by the hourly cloud workflow. Matching legacy outbox drafts are hidden from the old copy interface, while their source records remain retained.
+
+The desk records observations and decisions; it does not operate Metricool or LinkedIn. Review and scheduling are tied to the exact content version. A revised draft loses its review. Receipt changes require a current revision, exact destination/provider and evidence notes; publication also requires a live post URL. Inspect the actual account and content before recording it. An uncertain or missing result must not cause a fresh schedule. Current provider posting limits still apply; the ledger does not replace the external publisher's quota checks.

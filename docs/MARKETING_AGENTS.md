@@ -11,6 +11,8 @@ Verified 7 October 2026. This is the next implementation plan, not a claim that 
 - Metricool is connected to Facebook only. LinkedIn has a native scheduled company report. Instagram `sponsorintellondon` is created with its logo saved, but its editor errors and professional mode/publisher access are not verified.
 - Release 2.13 now records anonymous campaign page/action totals for the seven approved launch links. Raw query strings and personal identifiers are excluded. The live owner dashboard and database were verified, including three known operator page-open checks on 7 October. These are not organic visits or unique visitors; response totals cannot establish individual conversions or causality. See `cloudflare/RELEASE-2.13.md`.
 
+- Release 2.14 adds the private Marketing desk: immutable content versions, decisions, exact destinations and dated schedule/delivery observations. Four launch schedules are reconciled without fabricated reviews. An additional personal report is held for duplicate and campaign-link review. Report briefs are prepared by the hourly business workflow; this is a reviewed-template handoff, not an autonomous planner or writer.
+
 ## Roles to build
 
 | Role | Decision | Required output |
@@ -33,10 +35,20 @@ Keep the existing launch queue at 10:00 UK time. It is a starting hypothesis, no
 ## Implementation order and acceptance
 
 1. **Completed in 2.13:** privacy-preserving campaign counts using fixed allowed campaign identifiers, with browser/server/live-database verification and an owner dashboard. Do not store arbitrary query strings, private data or cross-site fingerprints. Preserve the known 7 October operator baseline when interpreting results; aggregate action counts do not establish individual conversion paths.
-2. Store versioned briefs and proposed/held/reviewed/scheduled/published/failed decisions with sources, timestamps, review outcome, exact account and provider receipt. Reconcile existing native schedules so outbox drafts cannot duplicate them.
+2. **Completed in 2.14:** versioned briefs and proposed/held/reviewed/scheduled/published/failed/uncertain/cancelled decisions, source observations, timestamps, account allowlist and receipt history. Imported schedules retain their original observation date and do not imply independent review or delivery. The same report and destination cannot become a second brief; matching legacy drafts are suppressed. Decision requests are replay-safe and concurrent edits cannot both win. See `cloudflare/RELEASE-2.14.md`.
 3. Add bounded planner/writer/reviewer stages using approved public evidence. Rejected or exhausted-budget work remains held. Test stale adverts, unsupported sponsorship claims, malicious source text, wrong accounts, repeated schedules and uncertain delivery.
 4. Finish the dedicated Instagram professional profile and obtain owner-authorized publisher access. Complete supported channel adapters; a direct Cloudflare publisher is still pending. Do not purchase a plan or bypass a provider gate.
 5. Observe one complete scheduled cycle with a traceable brief, independent review, approved content, provider delivery and post-delivery check before calling that path automated. Retain visible pause controls and recovery evidence.
 6. Use actual results to revise editorial guidelines and bounded experiments with an audit trail. No self-changing permissions, spending limits, paid campaigns or uncontrolled production-code changes.
 
 Immigration content must remain official-source reporting. Personal legal interpretation and unsupported rule-change summaries are held for qualified review. Routine verified company posts remain within existing owner authorization; unsolicited private outreach and paid promotion are excluded.
+
+## Ledger contract and remaining integration
+
+The owner-only `/api/admin/marketing` API exposes current briefs with bounded event and receipt history. `/sync` imports the fixed historical launch records and prepares fresh report drafts; `/create` stores a sourced proposal; `/decide` appends a version-specific decision. The UI can hold or review drafts and record an observed delivery outcome. Revision through the internal/API contract preserves prior copy and revokes approval; a writer interface and model-driven writer are not implemented yet.
+
+The authenticated owner identity is assigned server-side. A request cannot impersonate another reviewer, and an author cannot approve their own version. This records reviewer attestations; it does not independently verify claim truth or make a model critic available. Sources currently accept clean first-party and GOV.UK links only. Employer-advert promotion still needs a separately designed evidence adapter and freshness checks.
+
+Scheduling records require a current review, unexpired evidence, the exact allowed account/provider and a provider reference. Published records require a matching-network post URL and an observation note. External account ownership and the content at a supplied URL still need checking at the provider; a saved manual observation is not an API-verified receipt. This API never sends, retries or cancels a social post. Uncertain delivery blocks another schedule; record confirmed failure/cancellation only after inspecting the provider. Imported native LinkedIn references are explicitly observation references, not invented platform IDs.
+
+Reconcile before scheduling, and do not use the generic personal `evidence-report` campaign link until its measurement mapping is reviewed. The current personal report is held for this and possible overlap. Preserve the three operator campaign page opens recorded on 7 October. The next implementation is a bounded planner and writer plus independent claim review feeding these versions, followed by publisher adapters and verified delivery. No provider permissions, model budgets or spending limits were expanded by 2.14.

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "fb-evidence",
+    "title": "Evidence snapshot",
+    "topic_key": "report-launch",
+    "report": true,
+    "destination": "facebook-company",
+    "purpose": "Help readers evaluate public sponsorship evidence and prepare truthful applications.",
+    "text": "846 roles. Three very different sponsorship signals.\n\nOur 7 October snapshot of 30 selected UK employer boards found:\n• 16 adverts with wording that states sponsorship is offered.\n• 34 with conditional sponsorship wording.\n• 705 without a clear sponsorship commitment.\nAnother 91 explicitly said sponsorship was unavailable.\n\nThese are automated readings of adverts, not confirmed sponsorship offers or a picture of the whole UK job market. Always read the employer’s current advert and check anything unclear with them.\n\nThe report shows the date, contributing boards and limitations, so you can judge the evidence yourself.\n\nRead the snapshot: https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot\n\n#UKJobs #VisaSponsorship #InternationalStudents",
+    "sources": [
+      {
+        "title": "Evidence snapshot",
+        "url": "https://sponsorintel.london/insights/uk-sponsorship-jobs-report",
+        "observed_on": "2026-10-07",
+        "excerpt": "Launch source checks recorded in SOCIAL_PUBLISHING.md; historical observation, not a fresh independent review."
+      }
+    ],
+    "external_id": "-9208903732162113867",
+    "scheduled_at": "2026-10-08T10:00:00+01:00",
+    "expires_at": "2026-10-14T00:00:00.000Z",
+    "evidence": "Metricool schedule 390622747; UUID -9208903732162113867; PENDING. Read back on 7 October. Calendar and connector show 10:00 UK time; editor discrepancy remains recorded."
+  },
+  {
+    "id": "fb-adverts",
+    "title": "Reading sponsorship wording",
+    "topic_key": "guide-advert-wording",
+    "report": false,
+    "destination": "facebook-company",
+    "purpose": "Help readers evaluate public sponsorship evidence and prepare truthful applications.",
+    "text": "“Sponsorship not stated” is a question to investigate.\n\nIt does not tell you that the employer will sponsor this vacancy. It also does not, by itself, mean sponsorship has been refused.\n\nBefore tailoring your application:\n1. Open the employer’s current advert.\n2. Read the exact sponsorship wording, including any conditions.\n3. Check the employer’s identity against the sponsor register.\n4. If the answer is unclear, ask about the exact role and reference number.\n\nA useful question: “Does this vacancy support Skilled Worker sponsorship, and are there any restrictions applicants should know before applying?”\n\nOur guide explains the four labels: Offered, Conditional, Not stated and Unavailable. The labels are automated research aids, so check the original source.\n\nhttps://sponsorintel.london/guides/sponsorship-in-job-adverts?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=advert_wording\n\n#UKJobSearch #InternationalStudents #VisaSponsorship",
+    "sources": [
+      {
+        "title": "Reading sponsorship wording",
+        "url": "https://sponsorintel.london/guides/sponsorship-in-job-adverts",
+        "observed_on": "2026-10-07",
+        "excerpt": "Launch source checks recorded in SOCIAL_PUBLISHING.md; historical observation, not a fresh independent review."
+      }
+    ],
+    "external_id": "3760308173592281444",
+    "scheduled_at": "2026-10-10T10:00:00+01:00",
+    "expires_at": "2026-10-14T00:00:00.000Z",
+    "evidence": "Metricool schedule 390623458; UUID 3760308173592281444; PENDING. Read back on 7 October. Calendar and connector show 10:00 UK time; editor discrepancy remains recorded."
+  },
+  {
+    "id": "fb-applications",
+    "title": "Reviewing an AI-assisted application",
+    "topic_key": "guide-application-review",
+    "report": false,
+    "destination": "facebook-company",
+    "purpose": "Help readers evaluate public sponsorship evidence and prepare truthful applications.",
+    "text": "Before you send an AI-assisted application, do these three checks.\n\n1. Evidence: can you point to a real example behind every skill or achievement?\n2. Accuracy: are the dates, qualifications and job titles yours, with no guessed details?\n3. Relevance: does the application answer this employer’s requirements?\n\nA polished sentence is only useful if you can stand behind it in an interview.\n\nSponsor Intel’s Application Studio brings your selected role, CV evidence and editable application drafts into one workspace. Use it to prepare a focused application, review it yourself, then submit through the employer’s own website.\n\nTry one role: https://sponsorintel.london/studio?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=application_review\n\nIf something is confusing, use Feedback & support in the app. Your experience helps us decide what to improve next.\n\n#JobApplications #InternationalStudents #UKJobs",
+    "sources": [
+      {
+        "title": "Reviewing an AI-assisted application",
+        "url": "https://sponsorintel.london/studio",
+        "observed_on": "2026-10-07",
+        "excerpt": "Launch source checks recorded in SOCIAL_PUBLISHING.md; historical observation, not a fresh independent review."
+      }
+    ],
+    "external_id": "8669160755592973829",
+    "scheduled_at": "2026-10-12T10:00:00+01:00",
+    "expires_at": "2026-10-14T00:00:00.000Z",
+    "evidence": "Metricool schedule 390624032; UUID 8669160755592973829; PENDING. Read back on 7 October. Calendar and connector show 10:00 UK time; editor discrepancy remains recorded."
+  },
+  {
+    "id": "li-evidence",
+    "title": "Evidence snapshot",
+    "topic_key": "report-launch",
+    "report": true,
+    "destination": "linkedin-company",
+    "purpose": "Help readers inspect the dated report and its sponsorship-evidence limitations.",
+    "text": "846 roles. Three very different sponsorship signals.\n\nOur 7 October snapshot of 30 selected UK employer boards found:\n• 16 adverts with wording that states sponsorship is offered.\n• 34 with conditional sponsorship wording.\n• 705 without a clear sponsorship commitment.\nAnother 91 explicitly said sponsorship was unavailable.\n\nThese are automated readings of adverts, not confirmed sponsorship offers or a picture of the whole UK job market. Always read the employer’s current advert and check anything unclear with them.\n\nThe report shows the date, contributing boards and limitations, so you can judge the evidence yourself.\n\nRead the snapshot: https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=linkedin&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot\n\n#UKJobs #VisaSponsorship #InternationalStudents",
+    "sources": [
+      {
+        "title": "Evidence report",
+        "url": "https://sponsorintel.london/insights/uk-sponsorship-jobs-report",
+        "observed_on": "2026-10-07",
+        "excerpt": "Launch snapshot observed on 7 October. Source checks recorded in SOCIAL_PUBLISHING.md."
+      }
+    ],
+    "external_id": "native-company-146710167-20261009-evidence",
+    "scheduled_at": "2026-10-09T10:00:00+01:00",
+    "expires_at": "2026-10-14T00:00:00.000Z",
+    "evidence": "Native queue observation reference, not a provider post ID. LinkedIn confirmed Post scheduled and exactly one matching company item for 9 October 10:00 BST. Delivery not observed."
+  }
+]

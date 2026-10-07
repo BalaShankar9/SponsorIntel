@@ -15,6 +15,7 @@ import { BusinessOperations } from './business-operations';
 import "./platform.css";
 import { trackPage } from './metrics';
 import { CampaignAnalytics } from './campaign-analytics';
+import {MarketingDesk} from './marketing-desk';
 type Go = (view: string) => void;
 async function api(path: string, body?: unknown) {
   const r = await fetch(
@@ -246,6 +247,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
       {data && (
         <>
           <BusinessOperations />
+          <MarketingDesk />
           <AgentOperations />
           <CampaignAnalytics data={data.campaigns} />
           <p className="fine-print">

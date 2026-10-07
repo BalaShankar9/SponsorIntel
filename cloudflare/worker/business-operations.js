@@ -168,7 +168,7 @@ export async function businessSnapshot(env) {
   const results=await env.DB.batch([
     env.DB.prepare('SELECT * FROM business_runs ORDER BY created_at DESC LIMIT 12'),
     env.DB.prepare("SELECT * FROM business_issues WHERE state='open' ORDER BY CASE severity WHEN 'critical' THEN 0 WHEN 'high' THEN 1 ELSE 2 END,first_seen LIMIT 80"),
-    env.DB.prepare("SELECT id,audience,text,state,created_at,expires_at,destination,receipt FROM social_outbox WHERE state<>'superseded' ORDER BY created_at DESC LIMIT 10"),
+    env.DB.prepare("SELECT id,audience,text,state,created_at,expires_at,destination,receipt FROM social_outbox o WHERE state<>'superseded' AND NOT EXISTS(SELECT 1 FROM marketing_briefs m WHERE m.topic_key='report:'||o.publication_id AND m.destination='linkedin-'||CASE o.audience WHEN 'personal' THEN 'personal' ELSE 'company' END) ORDER BY created_at DESC LIMIT 10"),
     env.DB.prepare('SELECT slug,title,published_at,updated_at,state FROM insight_publications'),
     env.DB.prepare('SELECT * FROM business_daily ORDER BY day DESC LIMIT 7'),
   ]);

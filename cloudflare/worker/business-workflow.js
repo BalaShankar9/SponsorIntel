@@ -1,5 +1,6 @@
 import { WorkflowEntrypoint } from 'cloudflare:workers';
 import { controls,captureBusiness,recordBusinessFindings,housekeeping,publishInsight,scheduleBusinessResearch,finishBusiness } from './business-operations.js';
+import {syncMarketing} from './marketing.js';
 
 export class BusinessWorkflow extends WorkflowEntrypoint {
   async run(event,step) {
@@ -14,8 +15,9 @@ export class BusinessWorkflow extends WorkflowEntrypoint {
       const health=await step.do('update-issues',()=>recordBusinessFindings(this.env,id,snapshot));
       const cleanup=await step.do('retire-stale-records',()=>housekeeping(this.env,id));
       const publication=await step.do('publish-evidence-report',()=>publishInsight(this.env,id,snapshot));
+      const marketing=await step.do('reconcile-marketing-records',async()=> (await controls(this.env))?.enabled ? syncMarketing(this.env) : {state:'paused'});
       const research=await step.do('dispatch-daily-research',{retries:{limit:0,delay:'1 second'},timeout:'1 minute'},()=>scheduleBusinessResearch(this.env));
-      return await step.do('record-completion',()=>finishBusiness(this.env,id,{health,cleanup,publication,research}));
+      return await step.do('record-completion',()=>finishBusiness(this.env,id,{health,cleanup,publication,marketing,research}));
     } catch {
       return await step.do('record-failure',()=>finishBusiness(this.env,id,{error:'Operations stopped. Inspect the workflow and latest successful step before recovering.'}));
     }
