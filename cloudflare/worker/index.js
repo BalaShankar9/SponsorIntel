@@ -23,7 +23,7 @@ import { feedbackAPI } from "./feedback.js";
 import { adminAPI } from "./admin.js";
 import { advisersAPI, checkAdviserDataset } from "./advisers.js";
 import { chatAPI } from "./chat.js";
-import { analyticsAPI, recordMetric, responseMetric } from "./analytics.js";
+import { analyticsAPI, recordResponseMetrics, responseMetric } from "./analytics.js";
 import { studyAPI, refreshStudents } from "./study.js";
 const FEATURED = [
   "Google (UK) Limited",
@@ -377,7 +377,7 @@ export default {
       );
       if (metric)
         ctx.waitUntil(
-          recordMetric(env, metric).catch(() =>
+          recordResponseMetrics(env, request, response.status).catch(() =>
             console.error("Aggregate metric unavailable"),
           ),
         );

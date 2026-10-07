@@ -480,6 +480,16 @@
   color: #fff;
 }
 
+.campaign-panel { min-width: 0; }
+.campaign-table { overflow-x: auto; margin: 20px 0; border: 1px solid #dbe2d3; border-radius: 12px; }
+.campaign-table table { width: 100%; min-width: 650px; border-collapse: collapse; font-size: 13px; }
+.campaign-table th, .campaign-table td { padding: 14px 16px; border-bottom: 1px solid #e4e9df; text-align: right; }
+.campaign-table th:first-child { text-align: left; }
+.campaign-table thead { background: #edf3e8; color: #264735; }
+.campaign-table tbody th { font-weight: 500; }
+.campaign-table tr:last-child th, .campaign-table tr:last-child td { border-bottom: 0; }
+.campaign-empty { background: #f2f5ed; border-radius: 10px; padding: 14px 16px; }
+
 .sponsor-picker {
   display: grid;
   gap: 7px;

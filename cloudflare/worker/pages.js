@@ -134,7 +134,7 @@ export async function pageResponse(request, env) {
       url.pathname === "/" ? "/index.html" : url.pathname + "/index.html";
   else if (privatePaths.has(url.pathname)) assetPath = "/app.html";
   else if (
-    /^\/(assets\/|fonts\/|insights-tracking\.js$|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|open-source-notices\.txt$)/.test(
+    /^\/(assets\/|fonts\/|campaigns\.js$|insights-tracking\.js$|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|open-source-notices\.txt$)/.test(
       url.pathname,
     )
   ) {

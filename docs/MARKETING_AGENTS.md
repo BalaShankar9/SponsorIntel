@@ -9,7 +9,7 @@ Verified 7 October 2026. This is the next implementation plan, not a claim that 
 - BusinessWorkflow can publish the reviewed, dated catalogue report at most weekly after freshness and reconciliation checks and prepare social outbox drafts.
 - The daily Codex routine can maintain a bounded Facebook queue. Initial Facebook and native LinkedIn posts were selected and scheduled interactively; independent marketing execution and acquisition gains are not yet demonstrated.
 - Metricool is connected to Facebook only. LinkedIn has a native scheduled company report. Instagram `sponsorintellondon` is created with its logo saved, but its editor errors and professional mode/publisher access are not verified.
-- Current website analytics aggregate page and selected successful action events. `metricRoute` removes query strings and the endpoint records route only. Existing social UTM tags do not establish post-to-signup attribution. Do not report campaign conversions from them.
+- Release 2.13 now records anonymous campaign page/action totals for the seven approved launch links. Raw query strings and personal identifiers are excluded. The live owner dashboard and database were verified, including three known operator page-open checks on 7 October. These are not organic visits or unique visitors; response totals cannot establish individual conversions or causality. See `cloudflare/RELEASE-2.13.md`.
 
 ## Roles to build
 
@@ -32,7 +32,7 @@ Keep the existing launch queue at 10:00 UK time. It is a starting hypothesis, no
 
 ## Implementation order and acceptance
 
-1. Implement privacy-preserving campaign counts using fixed allowed campaign/channel/content identifiers. Do not store arbitrary query strings, private data or cross-site fingerprints. Verify collection before showing campaign results; aggregate action counts alone cannot establish individual conversion paths.
+1. **Completed in 2.13:** privacy-preserving campaign counts using fixed allowed campaign identifiers, with browser/server/live-database verification and an owner dashboard. Do not store arbitrary query strings, private data or cross-site fingerprints. Preserve the known 7 October operator baseline when interpreting results; aggregate action counts do not establish individual conversion paths.
 2. Store versioned briefs and proposed/held/reviewed/scheduled/published/failed decisions with sources, timestamps, review outcome, exact account and provider receipt. Reconcile existing native schedules so outbox drafts cannot duplicate them.
 3. Add bounded planner/writer/reviewer stages using approved public evidence. Rejected or exhausted-budget work remains held. Test stale adverts, unsupported sponsorship claims, malicious source text, wrong accounts, repeated schedules and uncertain delivery.
 4. Finish the dedicated Instagram professional profile and obtain owner-authorized publisher access. Complete supported channel adapters; a direct Cloudflare publisher is still pending. Do not purchase a plan or bypass a provider gate.

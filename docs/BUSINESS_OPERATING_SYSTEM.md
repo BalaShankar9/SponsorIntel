@@ -60,7 +60,7 @@ Once connected: inventory only the relevant brands/accounts; match them with the
 
 ## Daily improvement priorities
 
-Marketing follow-up: read MARKETING_AGENTS.md for the current capability audit and staged build. The immediate measurement gap is campaign attribution; UTM-tagged links alone do not create campaign analytics. Separate automatic website ingestion from the not-yet-built job-promotion and marketing decision workflow.
+Marketing follow-up: read MARKETING_AGENTS.md for the current capability audit and staged build. Release 2.13 now records anonymous activity for recognised campaign links in the owner dashboard. Its three 7 October verification page opens are operator activity, not organic acquisition. Next build persistent briefs, content versions, independent review and idempotent delivery receipts; do not infer marketing autonomy from these counters. Separate automatic website ingestion from the not-yet-built job-promotion and marketing decision workflow.
 
 1. Reliability: fix real incidents, verify scheduled execution, resolve held feeds, and make external uptime alerting independent of the worker. No email/SMS incident channel is connected yet; dashboard findings and the Codex follow-up are the current escalation surfaces.
 2. Quality: complete the 50-advert review and 20 CV/advert benchmark, expand current source coverage through approved employer feeds, and strengthen the research critic to review every narrative claim. The right-to-work-only summary failure from 2.11 remains an explicit regression to close.

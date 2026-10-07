@@ -4,6 +4,7 @@ import { fetchBoard } from "./jobs.js";
 import { refreshStudents } from "./study.js";
 import { agentOperationsAPI } from "./agent-api.js";
 import { businessAPI } from './business-operations.js';
+import { campaignSummary } from './analytics.js';
 export async function ownerFor(request, env) {
   const session = await sessionFor(request, env);
   if (!session?.user) return null;
@@ -150,6 +151,7 @@ export async function adminAPI(request, env) {
         items: rows[4],
       },
       metrics: rows[2],
+      campaigns: campaignSummary(rows[2]),
       tracking_started: rows[3][0]?.started || null,
       job_sources: rows[5],
       immigration_sources: rows[6],

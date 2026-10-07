@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { campaignHeaders } from './metrics';
 import {
   ArrowUpRight,
   Send,
@@ -45,7 +46,7 @@ export function ImmigrationAssistant() {
     try {
       const r = await fetch("/api/chat", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...campaignHeaders() },
         body: JSON.stringify({
           question,
           history: turns.slice(-2).map((t) => t.question),

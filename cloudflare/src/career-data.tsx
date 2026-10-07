@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { campaignHeaders } from './metrics';
 
 export type CareerProfile = {
   name: string;
@@ -132,7 +133,7 @@ export async function request<T = any>(
 ): Promise<T> {
   const r = await fetch(url, {
     method,
-    headers: body ? { "Content-Type": "application/json" } : undefined,
+    headers: body ? { "Content-Type": "application/json", ...campaignHeaders() } : undefined,
     body: body ? JSON.stringify(body) : undefined,
   });
   const d = await r.json();

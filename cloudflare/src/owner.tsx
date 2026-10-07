@@ -13,6 +13,8 @@ import { useCareer } from "./career-data";
 import { AgentOperations } from './agent-operations';
 import { BusinessOperations } from './business-operations';
 import "./platform.css";
+import { trackPage } from './metrics';
+import { CampaignAnalytics } from './campaign-analytics';
 type Go = (view: string) => void;
 async function api(path: string, body?: unknown) {
   const r = await fetch(
@@ -97,13 +99,7 @@ export function AccountActions({ go }: { go: Go }) {
 }
 export function PageTracking({ view }: { view: string }) {
   useEffect(() => {
-    if (view === "admin" || view === "reset-password") return;
-    void fetch("/api/metrics", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ page: view === "discover" ? "/" : "/" + view }),
-      keepalive: true,
-    }).catch(() => {});
+    trackPage(view === 'discover' ? '/' : '/' + view);
   }, [view]);
   return null;
 }
@@ -251,6 +247,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
         <>
           <BusinessOperations />
           <AgentOperations />
+          <CampaignAnalytics data={data.campaigns} />
           <p className="fine-print">
             Checked {date(data.measured_at)} · Daily totals use UTC; timestamps
             use your local time. Earliest retained page activity:{" "}

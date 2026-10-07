@@ -2200,7 +2200,11 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                 privacy policies. We count page opens and successful feature
                 actions in anonymous daily totals. We do not use advertising
                 trackers, analytics cookies, visitor IDs or fingerprinting.
-                Search terms, CV text and chat questions are not included in
+                Recognised labels on our social links also let us count page opens
+                and successful actions by campaign. Only a fixed public campaign
+                label is counted; it is held in page memory for up to 30 minutes
+                and may continue through links from our reports. No individual
+                browsing journey is stored. Search terms, CV text and chat questions are not included in
                 these totals. The private owner dashboard shows account details
                 and source health, but does not expose your CV or application
                 documents. Aggregate counts are kept for 90 days.

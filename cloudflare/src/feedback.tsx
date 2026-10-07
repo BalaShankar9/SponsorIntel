@@ -8,6 +8,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import "./feedback.css";
+import { campaignHeaders } from './metrics';
 
 export type FeedbackKind = "feedback" | "bug" | "data";
 export type FeedbackItem = {
@@ -78,7 +79,7 @@ export function FeedbackForm({
     try {
       const response = await fetch("/api/feedback", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...campaignHeaders() },
         body: JSON.stringify({
           kind,
           message,

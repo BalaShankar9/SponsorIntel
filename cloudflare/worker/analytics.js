@@ -1,5 +1,7 @@
 import pages from "../shared/pages.json" with { type: "json" };
 import { bodyJSON, limit, reply, sameOrigin } from "./auth.js";
+import { campaignById, campaigns } from '../shared/campaigns.js';
+const campaignEvents = new Set(['page_view', 'account_created', 'sign_in', 'application_generated', 'guidance_answer', 'feedback_sent']);
 const routes = new Set([
   ...Object.values(pages).map((p) => p.path),
   "/signin",
@@ -26,6 +28,27 @@ export async function recordMetric(env, event, dimension = "") {
   )
     .bind(new Date().toISOString().slice(0, 10), event, dimension)
     .run();
+}
+export async function recordCampaignMetric(env, event, id) {
+  if (!campaignEvents.has(event) || !campaignById(id)) return;
+  await recordMetric(env, 'campaign_' + event, id);
+}
+export async function recordResponseMetrics(env, request, status) {
+  const event = responseMetric(new URL(request.url).pathname, request.method, status);
+  if (!event) return;
+  await recordMetric(env, event);
+  if (sameOrigin(request)) await recordCampaignMetric(env, event, request.headers.get('X-SI-Campaign'));
+}
+export function campaignSummary(metrics) {
+  const valid = metrics.filter(m => campaignById(m.dimension) &&
+    m.event.startsWith('campaign_') && campaignEvents.has(m.event.slice(9)));
+  return {
+    first_recorded: valid.map(m => m.day).sort()[0] || null,
+    items: campaigns.map(c => ({id:c.id, label:c.label, source:c.source,
+      ...Object.fromEntries([...campaignEvents].map(event => [event, valid
+        .filter(m => m.dimension === c.id && m.event === 'campaign_' + event)
+        .reduce((n, m) => n + m.count, 0)]))})),
+  };
 }
 export function responseMetric(path, method, status) {
   if (method !== "POST" || status < 200 || status >= 300) return null;
@@ -60,5 +83,6 @@ export async function analyticsAPI(request, env) {
   )
     return reply({ error: "Event limit reached" }, 429);
   await recordMetric(env, "page_view", route);
+  await recordCampaignMetric(env, 'page_view', body?.campaign);
   return reply({ ok: true });
 }

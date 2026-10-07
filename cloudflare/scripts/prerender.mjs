@@ -1,5 +1,5 @@
 import { createServer } from "vite";
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, copyFile } from "node:fs/promises";
 import pages from "../shared/pages.json" with { type: "json" };
 // Render the same React components delivered to people, without browser state,
 // cookies, an account, or copied live feed data. Feeds load from their fresh APIs.
@@ -16,6 +16,7 @@ const escape = (s) =>
       ],
   );
 try {
+  await copyFile('shared/campaigns.js', 'dist/campaigns.js');
   const { render, pageMeta, structuredData } = await vite.ssrLoadModule(
     "/src/entry-server.tsx",
   );
