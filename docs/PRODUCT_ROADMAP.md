@@ -16,6 +16,10 @@ Jobs now have a separate Licensed employers collection and filter, backed by rev
 
 LinkedIn is not connected as a job feed: its Job Posting API publishes jobs to LinkedIn, and account sign-in does not grant bulk retrieval or republication rights. Expand permitted official employer feeds, review the remaining company links, and consider external feeds only under appropriate access terms. The evidence and expansion path are recorded in `cloudflare/JOB-SOURCES.md`.
 
+## LinkedIn and agent operations — researched 7 October 2026
+
+`docs/LINKEDIN_AND_AGENT_OPERATIONS.md` selects a small Techmap LinkedIn-origin pilot for evaluation, compares Fantastic.jobs, and defines eight Cloudflare operating roles with review and spending boundaries. The old 181-agent Python design is separate from the deployed service. A disconnected Techmap adapter, private budget schema and seven offline tests are prepared under `cloudflare/integrations/techmap`; no subscription, key, new schedule or public LinkedIn feed is active. Provider terms, authenticated UK sample quality, owner-only staging controls and publication review remain activation dependencies.
+
 ## Accounts and route planning — 2.7
 
 The live release adds verified account email and expiring password recovery, seven route and study pages, the official student sponsor directory, selected fee comparisons, source monitoring and HireStack company briefs, portfolio plans and learning plans. The full production account recovery flow passed, but Gmail placed verification and reset messages in Spam despite passing SPF, DKIM and DMARC. Inbox delivery remains an operational gap. Acceptance and production status are recorded in `cloudflare/RELEASE-2.7.md`.
