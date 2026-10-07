@@ -397,6 +397,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     }
   }
   function go(next: string) {
+    if (next === 'insights') { location.assign('/insights'); return; }
     setView(next);
     setMenu(false);
     setModal(null);
@@ -726,6 +727,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     { id: "routes", label: "Explore visa routes", icon: Compass },
     { id: "study", label: "Study in the UK", icon: GraduationCap },
     { id: "guides", label: "UK career guides", icon: BookOpen },
+    { id: "insights", label: "Insights & reports", icon: FileText },
     { id: "advisers", label: "Find immigration advice", icon: Scale },
     { id: "ask", label: "Ask immigration questions", icon: MessageSquare },
   ];

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useCareer } from "./career-data";
 import { AgentOperations } from './agent-operations';
+import { BusinessOperations } from './business-operations';
 import "./platform.css";
 type Go = (view: string) => void;
 async function api(path: string, body?: unknown) {
@@ -248,6 +249,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
       {busy && !data && <p role="status">Loading your dashboard…</p>}
       {data && (
         <>
+          <BusinessOperations />
           <AgentOperations />
           <p className="fine-print">
             Checked {date(data.measured_at)} · Daily totals use UTC; timestamps

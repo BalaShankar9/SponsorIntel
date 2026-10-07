@@ -1,6 +1,7 @@
 import pages from "../shared/pages.json" with { type: "json" };
 import { getJobDetail } from "./jobs.js";
 import { JOB_FRESHNESS_MS, JOB_ORIGIN, jobPath } from "../shared/job-detail.js";
+import { insightsResponse, INSIGHT_SLUG } from './insights.js';
 const roleID = (path) => path.match(/^\/jobs\/([a-f0-9]{24})$/)?.[1];
 const publicPaths = new Set(Object.values(pages).map((p) => p.path));
 const privatePaths = new Set([
@@ -16,7 +17,8 @@ const privatePaths = new Set([
   "/settings",
   "/employer-notes",
 ]);
-const known = (p) => publicPaths.has(p) || privatePaths.has(p) || !!roleID(p);
+const insightPaths = new Set(['/insights','/insights/'+INSIGHT_SLUG,'/insights/feed.xml']);
+const known = (p) => publicPaths.has(p) || privatePaths.has(p) || !!roleID(p) || insightPaths.has(p);
 const unavailable = () =>
   new Response(
     '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Temporarily unavailable | Sponsor Intel</title><main><h1>We couldn’t check this opportunity.</h1><p>Please try again shortly.</p><a href="/jobs">Explore opportunities</a></main></html>',
@@ -42,13 +44,16 @@ export async function sitemapResponse(env, now = Date.now()) {
     .all();
   const paths = [
     ...publicPaths,
+    '/insights',
     ...results.map((job) => jobPath(job.id)).filter(Boolean),
   ];
+  const report = await env.DB.prepare("SELECT slug,updated_at FROM insight_publications WHERE state='published' AND slug=?").bind(INSIGHT_SLUG).first();
+  if (report) paths.push('/insights/'+report.slug);
   return new Response(
     '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
       paths
         .map((path) => {
-          const reviewed = Object.values(pages).find(
+          const reviewed = (path==='/insights/'+report?.slug ? report.updated_at : null) || Object.values(pages).find(
             (p) => p.path === path,
           )?.reviewed;
           return (
@@ -97,6 +102,7 @@ export async function pageResponse(request, env) {
   }
   let assetPath;
   let status = 200;
+  if (insightPaths.has(url.pathname)) return insightsResponse(request,env);
   if (url.pathname === "/sitemap.xml") {
     try {
       return await sitemapResponse(env);
@@ -128,7 +134,7 @@ export async function pageResponse(request, env) {
       url.pathname === "/" ? "/index.html" : url.pathname + "/index.html";
   else if (privatePaths.has(url.pathname)) assetPath = "/app.html";
   else if (
-    /^\/(assets\/|fonts\/|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|open-source-notices\.txt$)/.test(
+    /^\/(assets\/|fonts\/|insights-tracking\.js$|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|open-source-notices\.txt$)/.test(
       url.pathname,
     )
   ) {

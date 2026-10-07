@@ -13,6 +13,8 @@ import { jobsAPI } from "./jobs.js";
 import { dispatchSources } from "./agent-operations.js";
 export { SourceWorkflow } from "./source-workflow.js";
 export { ResearchWorkflow } from './research-workflow.js';
+export { BusinessWorkflow } from './business-workflow.js';
+import { dispatchBusiness } from './business-operations.js';
 import { immigrationAPI, refreshImmigration } from "./immigration.js";
 import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
 import { careerAPI } from "./career.js";
@@ -400,6 +402,10 @@ export default {
     }
   },
   async scheduled(event, env, ctx) {
+    if (event.cron === '45 * * * *') {
+      console.log(JSON.stringify({event:'business_operations',...(await dispatchBusiness(env,event.scheduledTime))}));
+      return;
+    }
     if (event.cron === "*/15 * * * *") {
       console.log(
         JSON.stringify({

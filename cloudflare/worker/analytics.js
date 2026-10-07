@@ -11,6 +11,8 @@ const routes = new Set([
   "/saved",
   "/settings",
   "/employer-notes",
+  '/insights',
+  '/insights/uk-sponsorship-jobs-report',
 ]);
 export function metricRoute(path) {
   if (typeof path !== "string") return null;

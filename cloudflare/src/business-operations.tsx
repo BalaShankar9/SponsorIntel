@@ -1,0 +1,42 @@
+import React,{useEffect,useState} from 'react';
+import {Activity,ArrowUpRight,Pause,Play,RefreshCw,ShieldCheck} from 'lucide-react';
+import './business-operations.css';
+type Settings={enabled:number;publishing:number;research:number};
+type Run={id:string;state:string;created_at:string;finished_at:string|null;snapshot:any;result:any};
+type Issue={id:string;category:string;severity:string;title:string;detail:string;next_action:string};
+type Draft={id:string;audience:string;text:string;state:string;expires_at:string};
+type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];publications:{slug:string;title:string;state:string;updated_at:string}[]};
+const stamp=(x:string)=>new Date(x).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
+async function api(path='',body?:unknown){const r=await fetch('/api/admin/business'+path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});const v=await r.json();if(!r.ok)throw Error(v.error||'Operations could not load.');return v;}
+export function BusinessOperations(){
+  const[data,setData]=useState<Data|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState('');
+  async function load(){try{setData(await api());setError('');}catch(e){setError((e as Error).message);}}
+  useEffect(()=>{void load();const timer=setInterval(()=>{if(!document.hidden)void load();},20000);return()=>clearInterval(timer);},[]);
+  async function act(path:string,body:unknown){setBusy(true);setMessage('');try{const r=await api(path,body);setMessage(path==='/run'?`Operations run: ${r.state}. Receipts will appear below.`:'Saved. The next eligible step will use this setting.');await load();}catch(e){setError((e as Error).message);}finally{setBusy(false);}}
+  const run=data?.runs[0];
+  const active=data?.settings.enabled===1;
+  const metrics=run?.snapshot?.metrics||[];
+  const totals:Record<string,number>={};for(const m of metrics)totals[m.event]=(totals[m.event]||0)+m.count;
+  return <section className="business-ops" aria-labelledby="business-heading">
+    <header className="business-head"><div><p className="business-eyebrow">Your operating desk</p><h2 id="business-heading">Business operations</h2><p>Scheduled work, evidence and the next decisions. Running on Cloudflare.</p></div><div className="business-actions"><button onClick={()=>void load()} disabled={busy} aria-label="Refresh business operations"><RefreshCw size={16}/></button><button onClick={()=>void act('/run',{})} disabled={busy||!active}><Play size={15}/> Run checks</button></div></header>
+    {error&&<p className="career-error" role="alert">{error}</p>}{message&&<p role="status">{message}</p>}
+    {!data?<p>Loading the operating desk…</p>:<>
+      <div className={'business-banner '+(!active||data.heartbeat==='overdue'?'attention':'')}><Activity size={20}/><div><strong>{!active?'Business operations paused':data.heartbeat==='overdue'?'The hourly check is overdue':data.heartbeat==='not_started'?'Ready for the first run':`Latest run: ${data.heartbeat}`}</strong><p>{run?`Started ${stamp(run.created_at)}${run.finished_at?' · Finished '+stamp(run.finished_at):''}`:'No completed run is recorded yet.'}</p></div><button disabled={busy} onClick={()=>void act('/settings',{setting:'enabled',value:!active})}>{active?<Pause size={15}/>:<Play size={15}/>} {active?'Pause operations':'Resume operations'}</button></div>
+      <p className="business-fine">{data.schedule} This switch controls the business workflow. Existing job and immigration refresh schedules remain separate.</p>
+      <div className="business-grid">
+        {[['Site & security checks','Hourly','Five public route and browser-header checks, including anonymous owner-access rejection. Full security audits and dependency fixes need engineering work.'],['Data housekeeping','Hourly','Retire roles last observed over 72 hours ago. Retain customer workspaces, feedback and job records.'],['Editorial reports','Weekly','Publish a dated evidence report only after source and count checks pass. Legal interpretation stays out of automatic publication.'],['Research agents','Daily','One bounded investigation daily; the fixed evaluation on Mondays. Outputs stay private for review.']].map(([name,frequency,detail])=><article key={name}><span>{frequency}</span><h3>{name}</h3><p>{detail}</p></article>)}
+      </div>
+      <div className="business-controls">{(['publishing','research'] as const).map(setting=><label key={setting}><input type="checkbox" checked={!!data.settings[setting]} disabled={busy} onChange={e=>void act('/settings',{setting,value:e.target.checked})}/>{setting==='publishing'?'Automatic evidence reports':'Scheduled research'}</label>)}</div>
+      {run?.result&&<p className="business-receipt"><ShieldCheck size={16}/> Last receipt: {run.result.cleanup?.stale_roles??0} stale roles retired · Publication: {run.result.publication?.state||'not reached'} · Research: {run.result.research?.state||'not reached'}{run.result.publication?.reason?' · '+run.result.publication.reason:''}{run.result.error?' · '+run.result.error:''}</p>}
+      <div className="business-section-heading"><h3>What needs attention</h3><span>{data.issues.length} open items</span></div>
+      <div className="business-issues">{data.issues.length?data.issues.map(x=><details key={x.id}><summary><span className={'business-priority '+x.severity}>{x.severity}</span>{x.title}<small>{x.category}</small></summary><p>{x.detail}</p><p><strong>Next action:</strong> {x.next_action}</p></details>):<p className="business-fine">No open findings have been recorded. This is not proof that every business or security requirement has been met.</p>}</div>
+      <div className="business-section-heading"><h3>Growth baseline</h3><span>Completed UTC days · up to 14 days</span></div>
+      <div className="business-metrics">{[['page_view','Page views'],['account_created','Signups'],['application_generated','Applications prepared'],['guidance_answer','Guidance answers']].map(([key,label])=><div key={key}><strong>{(totals[key]||0).toLocaleString('en-GB')}</strong><span>{label}</span></div>)}</div><p className="business-fine">Aggregated recorded events, not unique visitors, customers or outcomes. Search rankings, social reach and revenue are not connected. Tracking began {run?.snapshot?.tracking_started||'before a retained baseline was available'}.</p>
+      <div className="business-section-heading"><h3>Published insights</h3><a href="/insights" target="_blank" rel="noreferrer">Open the publication <ArrowUpRight size={15}/></a></div>
+      {data.publications.length?data.publications.map(p=><div className="business-publication" key={p.slug}><div><strong>{p.title}</strong><p>{p.state} · Updated {stamp(p.updated_at)}</p></div>{p.state==='published'&&<button disabled={busy} onClick={()=>void act('/withdraw',{slug:p.slug})}>Withdraw & pause publishing</button>}</div>):<p className="business-fine">The first report appears after its evidence checks pass.</p>}
+      <div className="business-section-heading"><h3>Social publishing desk</h3><span>Account connection needed</span></div><p className="business-fine">Company and personal LinkedIn drafts are prepared separately. They have not been sent. Connect the exact accounts through Metricool or an approved API; a prepared post is not a publishing connection. Time-sensitive drafts expire after seven days.</p>
+      {data.outbox.map(p=><details className="business-draft" key={p.id}><summary>{p.audience==='personal'?'Personal LinkedIn':'Sponsor Intel company pages'} · {p.state.replaceAll('_',' ')}</summary><p className="business-post">{p.text}</p><p className="business-fine">Expires {stamp(p.expires_at)}</p><button onClick={()=>void navigator.clipboard.writeText(p.text).then(()=>setMessage('Draft copied. It has not been posted.')).catch(()=>setError('Copy was unavailable. Select the draft text instead.'))}>Copy draft</button></details>)}
+      <details className="business-history"><summary>Recent execution history</summary>{data.runs.map(r=><p key={r.id}><strong>{r.state}</strong> · {stamp(r.created_at)} · {r.id}</p>)}</details>
+    </>}
+  </section>;
+}

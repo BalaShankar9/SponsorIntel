@@ -4,7 +4,13 @@ Owner: Codex implementation lead, with Bala as product owner. Updated 7 October 
 
 The product promise: help international students and migrants find credible UK opportunities, understand the evidence, and prepare good applications. Judge success by useful applications and interviews, not scrolling time or raw job counts.
 
-## Current release — 2.11 research agents
+## Current release — 2.12 scheduled business operations
+
+The cloud operating desk now runs hourly site/source checks, maintains an incident queue, retires stale roles, dispatches bounded research daily and compiles a source-backed report at most weekly. Its first live acceptance run completed on 7 October at 16:50 UTC and published a report covering 846 roles across 30 selected boards. Five health checks passed. The consumed daily research allowance was held rather than reset. Separate company and personal LinkedIn drafts were prepared but not sent. All 133 local tests passed. The hourly schedule is configured; its first cron-triggered run has not yet been observed.
+
+A daily Codex improvement heartbeat is configured for 10:00 local time, separate from cloud execution and dependent on local scheduler/access. Social connections, Search Console metrics, independent uptime notifications and a validated premium/payment offer remain open. See `docs/BUSINESS_OPERATING_SYSTEM.md`, `cloudflare/RELEASE-2.12.md` and its live evidence record for scopes, budgets, recovery, security findings and remaining work.
+
+## Research foundation — 2.11 research agents
 
 The owner Research Lab adds model-selected investigation tools, fresh employer evidence, a different-model critic, one revision cycle, typed observations with content-version and expiry checks, and a real-model synthetic evaluation mode. Premium model adapters are prepared but disconnected. The current Cloudflare models and private research scope are explicit in the dashboard. This does not establish frontier capability or representative advert accuracy. See `docs/ADVANCED_AGENT_SYSTEM.md` for the model shortlist, acceptance gates, controlled improvement cycle and specialist build sequence.
 
