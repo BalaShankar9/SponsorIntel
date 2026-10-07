@@ -232,6 +232,7 @@ function Vacancies({ go }: { go: Go }) {
     [level, setLevel] = useState(params.get("level") || ""),
     [salary, setSalary] = useState(params.get("salary") || ""),
     [sector, setSector] = useState(params.get("sector") || ""),
+    [licence, setLicence] = useState(params.get("licence") === "matched" ? "matched" : ""),
     [page, setPage] = useState(
       Math.max(1, parseInt(params.get("page") || "1") || 1),
     ),
@@ -243,6 +244,7 @@ function Vacancies({ go }: { go: Go }) {
     level,
     salary,
     sector,
+    licence,
   });
   const [result, setResult] = useState<{
       items: Job[];
@@ -256,15 +258,17 @@ function Vacancies({ go }: { go: Go }) {
         employers: number;
         early_career: number;
         sponsorship: number;
+        licensed: number;
         salary: number;
       };
       sectors: Record<string, string>;
+      licence_register: { available: boolean; source_date: string | null; checked_at: string | null };
     } | null>(null),
     [loading, setLoading] = useState(true),
     [error, setError] = useState(""),
     [message, setMessage] = useState("");
   function applyFilters(
-    next = { q, location: city, sponsorship, level, salary, sector },
+    next = { q, location: city, sponsorship, level, salary, sector, licence },
   ) {
     setQ(next.q);
     setCity(next.location);
@@ -272,6 +276,7 @@ function Vacancies({ go }: { go: Go }) {
     setLevel(next.level);
     setSalary(next.salary);
     setSector(next.sector);
+    setLicence(next.licence);
     setPage(1);
     setApplied(next);
     const p = new URLSearchParams(
@@ -299,6 +304,7 @@ function Vacancies({ go }: { go: Go }) {
       level: kind === "early_career" ? "early_career" : "",
       salary: kind === "salary" ? "listed" : "",
       sector: "",
+      licence: kind === "licensed" ? "matched" : "",
     });
   }
   useEffect(() => {
@@ -344,7 +350,8 @@ function Vacancies({ go }: { go: Go }) {
           s.sponsorship === applied.sponsorship &&
           s.level === applied.level &&
           (s.salary || "") === applied.salary &&
-          (s.sector || "") === applied.sector,
+          (s.sector || "") === applied.sector &&
+          (s.licence || "") === applied.licence,
       )
     ) {
       setMessage("This search is already saved.");
@@ -426,30 +433,17 @@ function Vacancies({ go }: { go: Go }) {
             icon: GraduationCap,
           },
           {
-            id: "salary",
-            title: "Pay in the advert",
-            note: "Read the employer’s GBP pay wording",
-            count: result?.collections?.salary,
-            icon: Search,
+            id: "licensed",
+            title: "Licensed employers",
+            note: "Companies linked to sponsor records",
+            count: result?.collections?.licensed,
+            icon: ShieldCheck,
           },
         ].map(({ id, title, note, count, icon: Icon }) => {
-          const active =
-            !applied.q &&
-            !applied.location &&
-            !applied.sector &&
-            (id === "all"
-              ? !applied.sponsorship && !applied.level && !applied.salary
-              : id === "sponsorship"
-                ? applied.sponsorship === "mentioned" &&
-                  !applied.level &&
-                  !applied.salary
-                : id === "early_career"
-                  ? applied.level === "early_career" &&
-                    !applied.sponsorship &&
-                    !applied.salary
-                  : applied.salary === "listed" &&
-                    !applied.sponsorship &&
-                    !applied.level);
+          const active = !applied.q && !applied.location && !applied.sector && !applied.salary &&
+            applied.sponsorship === (id === "sponsorship" ? "mentioned" : "") &&
+            applied.level === (id === "early_career" ? "early_career" : "") &&
+            applied.licence === (id === "licensed" ? "matched" : "");
           return (
             <button
               key={id}
@@ -494,6 +488,13 @@ function Vacancies({ go }: { go: Go }) {
         </button>
       </form>
       <div className="job-filter-row">
+        <label>
+          Employer licence
+          <select value={licence} onChange={(e) => setLicence(e.target.value)}>
+            <option value="">All employers</option>
+            <option value="matched">Linked to a Skilled Worker licence</option>
+          </select>
+        </label>
         <label>
           Sponsorship
           <select
@@ -569,8 +570,17 @@ function Vacancies({ go }: { go: Go }) {
           employer has not confirmed it in the text we checked. Early-career
           titles do not confirm student-visa eligibility. Employer sectors
           describe the company’s industry.
+          {" "}“Employer licence linked” means we reviewed a connection to a
+          company on the worker register. A group’s licence may belong to a
+          different legal entity from the one hiring for a specific role.
         </p>
       </div>
+      {result?.licence_register?.available === false && (
+        <p className="career-notice" role="status">
+          Employer licence checks need a fresh register update. Licence links
+          are temporarily hidden; this does not mean these employers are unlicensed.
+        </p>
+      )}
       <div className="section-header">
         <h2>
           {loading
@@ -614,6 +624,11 @@ function Vacancies({ go }: { go: Go }) {
                 {j.location}
               </p>
               <div className="job-quality-meta">
+                {j.employer_licence && (
+                  <span className="employer-licence-tag" title={`${j.employer_licence.name} · Register ${j.employer_licence.source_date}`}>
+                    <ShieldCheck size={14} /> Employer licence linked
+                  </span>
+                )}
                 {j.sector_label && <span>{j.sector_label}</span>}
                 {j.salary_excerpt && <span>Pay mentioned in advert</span>}
                 {j.employment_type && (
@@ -867,6 +882,7 @@ function Applications({ go }: { go: Go }) {
                     level: s.level,
                     salary: s.salary || "",
                     sector: s.sector || "",
+                    licence: s.licence || "",
                   })
                 }
               >
@@ -880,6 +896,7 @@ function Applications({ go }: { go: Go }) {
                   s.level === "early_career" ? "Early career" : "",
                   s.salary ? "GBP pay" : "",
                   s.sector,
+                  s.licence === "matched" ? "Licensed employers" : "",
                 ]
                   .filter(Boolean)
                   .join(" · ")}

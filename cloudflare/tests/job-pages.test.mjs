@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
 import { readFileSync } from "node:fs";
 import { createServer } from "vite";
-import { jobAvailability, jobMetadata, jobPath, JOB_FRESHNESS_MS } from "../shared/job-detail.js";
+import { jobAvailability, jobMetadata, jobPath, jobTimestamp, JOB_FRESHNESS_MS } from "../shared/job-detail.js";
 import { getJobDetail, jobsAPI } from "../worker/jobs.js";
 import { canonicalPath, pageResponse, sitemapResponse } from "../worker/pages.js";
 
@@ -18,7 +18,7 @@ function job(patch = {}) {
 }
 function fixture(rows) {
   const sql = new DatabaseSync(":memory:");
-  for (const name of ["0002_career.sql", "0004_quality_updates.sql"])
+  for (const name of ["0001_initial.sql", "0002_career.sql", "0004_quality_updates.sql"])
     sql.exec(readFileSync(new URL("../migrations/" + name, import.meta.url), "utf8"));
   for (const row of rows) {
     const keys = Object.keys(row);
@@ -35,6 +35,8 @@ function fixture(rows) {
 }
 
 test("freshness fails closed for removed, old, corrupt and future observations", () => {
+  assert.equal(jobTimestamp("2026-10-05"), "5 Oct 2026");
+  assert.match(jobTimestamp("2026-10-05T12:00:00Z"), /13:00 BST/);
   assert.equal(jobAvailability(job(), now), "current");
   assert.equal(jobAvailability(job({ active: 0 }), now), "removed");
   assert.equal(jobAvailability(job({ last_seen: new Date(now - JOB_FRESHNESS_MS).toISOString() }), now), "stale");
@@ -121,6 +123,16 @@ test("server-rendered role pages have readable evidence, safe metadata and corre
   assert.ok(!schema["@graph"].some((x) => x["@type"] === "JobPosting"));
   assert.match(html, /name="robots"\s+content="index,follow,max-image-preview:large"/);
   assert.equal(r.headers.get("cache-control"), "no-store");
+  assert.match(html, /may still be licensed/);
+  const linked = await renderJobPage(request, assets, { ...current, employer_licence: {
+    id: "a".repeat(24), name: "LOCAL QA Legal <Company>", city: "London", routes: ["Skilled Worker"], ratings: ["Worker (A rating)"],
+    source_date: "2026-10-05", checked_at: "2026-10-06T08:00:00Z", reviewed_at: "2026-10-06", evidence_url: "https://example.com/legal",
+  } });
+  const linkedHTML = await linked.text();
+  assert.match(linkedHTML, /LOCAL QA Legal &lt;Company&gt;/);
+  assert.match(linkedHTML, /Ask which legal entity would employ and sponsor you/);
+  assert.match(linkedHTML, /Employer identity source/);
+  assert.match(linkedHTML, /Sponsorship may be available/);
   const closed = await renderJobPage(request, assets, { ...current, active: 0 });
   assert.equal(closed.status, 410);
   assert.match(closed.headers.get("x-robots-tag"), /noindex/);

@@ -1,6 +1,7 @@
 import { boundedText, idFor } from "./data.js";
 
 import { BOARDS, SECTORS } from "./job-sources.js";
+import { employerLicences } from "./employer-licences.js";
 export { BOARDS } from "./job-sources.js";
 
 export function plainText(value) {
@@ -485,11 +486,13 @@ export async function getJobDetail(id, env) {
   const extra = boardById.has(item.board_id)
     ? []
     : (
-        await env.DB.prepare("SELECT id,sector FROM employer_boards WHERE id=?")
+        await env.DB.prepare("SELECT id,sector,sponsor_id,reviewed_at,state FROM employer_boards WHERE id=?")
           .bind(item.board_id)
           .all()
       ).results;
-  return { ...withSector(item, extra), source: source || null };
+  const licences = await employerLicences(env.DB, extra);
+  return { ...withSector(item, extra), source: source || null,
+    employer_licence: licences.matches.get(item.board_id) || null };
 }
 
 export async function jobsAPI(url, env) {
@@ -498,7 +501,7 @@ export async function jobsAPI(url, env) {
       sources: (
         await env.DB.prepare("SELECT * FROM job_sources ORDER BY company").all()
       ).results,
-    });
+    }, { headers: { "Cache-Control": "no-store" } });
   const id = url.pathname.match(/^\/api\/jobs\/([a-f0-9]{24})$/)?.[1];
   if (id) {
     const item = await getJobDetail(id, env);
@@ -512,9 +515,11 @@ export async function jobsAPI(url, env) {
   const p = url.searchParams;
   const extraBoards = (
     await env.DB.prepare(
-      "SELECT id,sector FROM employer_boards WHERE state='approved'",
+      "SELECT id,sector,sponsor_id,reviewed_at,state FROM employer_boards WHERE state='approved'",
     ).all()
   ).results;
+  const licences = await employerLicences(env.DB, extraBoards);
+  const licensedBoards = JSON.stringify([...licences.matches.keys()]);
   const values = [new Date(Date.now() - 3 * 86400000).toISOString()];
   let where = "active=1 AND last_seen>=?";
   for (const term of (p.get("q") || "")
@@ -544,6 +549,10 @@ export async function jobsAPI(url, env) {
   }
   if (p.get("level") === "early_career") where += " AND level='early_career'";
   if (p.get("salary") === "listed") where += " AND salary_excerpt<>''";
+  if (p.get("licence") === "matched") {
+    where += " AND board_id IN (SELECT value FROM json_each(?))";
+    values.push(licensedBoards);
+  }
   const sector = p.get("sector");
   if (Object.hasOwn(SECTORS, sector || "")) {
     const ids = [...BOARDS, ...extraBoards]
@@ -573,21 +582,24 @@ export async function jobsAPI(url, env) {
     `SELECT COUNT(*) total, COUNT(DISTINCT board_id) employers,
       COALESCE(SUM(level='early_career'),0) early_career,
       COALESCE(SUM(sponsorship IN ('offered','conditional')),0) sponsorship,
+      COALESCE(SUM(board_id IN (SELECT value FROM json_each(?))),0) licensed,
       COALESCE(SUM(salary_excerpt<>''),0) salary
      FROM jobs WHERE active=1 AND last_seen>=?`,
   )
-    .bind(values[0])
+    .bind(licensedBoards, values[0])
     .first();
   return Response.json({
-    items: items.results.map((job) => withSector(job, extraBoards)),
+    items: items.results.map((job) => ({ ...withSector(job, extraBoards),
+      employer_licence: licences.matches.get(job.board_id) || null })),
     total: count.total,
     catalog_total: stats.total,
     collections: stats,
+    licence_register: licences.register,
     sectors: SECTORS,
     page,
     pages,
     sources: (
       await env.DB.prepare("SELECT * FROM job_sources ORDER BY company").all()
     ).results,
-  });
+  }, { headers: { "Cache-Control": "no-store" } });
 }

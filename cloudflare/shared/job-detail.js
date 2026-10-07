@@ -56,6 +56,8 @@ export function jobStructuredData(job, now = Date.now()) {
 
 export function jobTimestamp(value) {
   const date = new Date(value);
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value) && Number.isFinite(date.getTime()))
+    return date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
   return Number.isFinite(date.getTime()) ? date.toLocaleString("en-GB", {
     day: "numeric", month: "short", year: "numeric", hour: "2-digit",
     minute: "2-digit", timeZone: "Europe/London", timeZoneName: "short",

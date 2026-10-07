@@ -2,6 +2,8 @@
 
 Primary address: https://sponsorintel.london
 
+Release 2.8 adds a [Licensed employers collection](https://sponsorintel.london/jobs?licence=matched), independent advert sponsorship labels and dated legal-entity evidence. See `RELEASE-2.8.md` for acceptance, `JOB-SOURCES.md` for the reviewed company links and LinkedIn access limits. LinkedIn is not a connected vacancy feed. Run `node scripts/licence-smoke.mjs <base-url>` for read-only acceptance against a populated environment.
+
 Cloudflare fallback: https://sponsorintel.balashankarbollineni4.workers.dev
 
 The application combines a React/TypeScript interface, a Cloudflare Worker API, static assets and D1. The legacy Next.js/Python services elsewhere in this repository are independent and are not required to run this beta.

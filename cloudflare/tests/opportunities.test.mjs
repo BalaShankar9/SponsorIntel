@@ -11,7 +11,9 @@ import {
   jobsAPI,
   fetchBoard,
   sponsorshipEvidence,
+  getJobDetail,
 } from "../worker/jobs.js";
+import { employerLicences, REVIEWED_EMPLOYER_LINKS } from "../worker/employer-licences.js";
 import { validateWorkspace } from "../worker/career-validation.js";
 
 function database() {
@@ -356,11 +358,13 @@ test("opportunity counts, combined filters, literal searches and pagination use 
         })
       ).json();
     const all = await api();
+    assert.equal((await jobsAPI(new URL("https://sponsorintel.london/api/jobs"), { DB })).headers.get("cache-control"), "no-store");
     assert.deepEqual(all.collections, {
       total: 3,
       employers: 1,
       early_career: 2,
       sponsorship: 1,
+      licensed: 0,
       salary: 1,
     });
     const filtered = await api(
@@ -386,18 +390,106 @@ test("opportunity counts, combined filters, literal searches and pagination use 
   }
 });
 
-test("saved searches keep sector and pay filters and older backups remain valid", () => {
+test("saved searches keep licence, sector and pay filters and older backups remain valid", () => {
   const data = validateWorkspace({
     version: 2,
     applications: [],
     searches: [
       { id: "old", q: "Engineer" },
-      { id: "new", salary: "listed", sector: "engineering" },
+      { id: "new", salary: "listed", sector: "engineering", licence: "matched" },
+      { id: "invalid", licence: "guaranteed" },
     ],
   });
   assert.equal(data.searches[0].salary, "");
   assert.equal(data.searches[1].salary, "listed");
   assert.equal(data.searches[1].sector, "engineering");
+  assert.equal(data.searches[0].licence, "");
+  assert.equal(data.searches[1].licence, "matched");
+  assert.equal(data.searches[2].licence, "");
+});
+
+function seedLicence(sql, sponsorID, now, patch = {}) {
+  const meta = { snapshot: "current", source_date: new Date(now).toISOString().slice(0, 10), checked_at: new Date(now).toISOString(), ...patch };
+  sql.prepare("INSERT OR REPLACE INTO metadata VALUES('register',?)").run(JSON.stringify(meta));
+  sql.prepare("INSERT OR REPLACE INTO sponsors VALUES(?,?,?,?,?,?,?,?)").run(sponsorID, "current", "LOCAL QA Legal Company", "London", "", '["Worker (A rating)"]', '["Skilled Worker"]', 1);
+  return meta;
+}
+
+test("licensed-company search includes unknown and negative adverts without upgrading sponsorship, and never guesses a company match", async () => {
+  const { sql, DB } = database();
+  try {
+    const jobs = await normaliseBoardJobs([
+      rawJob("offered"),
+      rawJob("unknown", { descriptionPlain: "A real role with no sponsorship statement." }),
+      rawJob("negative", { descriptionPlain: "We cannot offer visa sponsorship." }),
+    ], board);
+    await storeBoardJobs(DB, board, jobs, new Date().toISOString());
+    const unreviewed = { ...board, id: "unreviewed", company: "LOCAL QA Legal Company" };
+    await storeBoardJobs(DB, unreviewed, await normaliseBoardJobs([rawJob("lookalike")], unreviewed), new Date().toISOString());
+    const sponsorID = REVIEWED_EMPLOYER_LINKS.find((b) => b.id === board.id).sponsor_id;
+    seedLicence(sql, sponsorID, Date.now());
+    const api = async (query = "") => (await jobsAPI(new URL("https://sponsorintel.london/api/jobs" + query), { DB })).json();
+    const all = await api();
+    assert.equal(all.total, 4);
+    assert.equal(all.collections.licensed, 3);
+    const licensed = await api("?licence=matched");
+    assert.equal(licensed.total, 3);
+    assert.deepEqual(new Set(licensed.items.map((j) => j.sponsorship)), new Set(["offered", "unavailable", "not_stated"]));
+    assert.ok(licensed.items.every((j) => j.employer_licence.id === sponsorID));
+    assert.equal((await api("?licence=matched&sponsorship=mentioned")).total, 1);
+    assert.equal((await api("?licence=matched&sponsorship=unavailable")).total, 1);
+    assert.equal((await api("?licence=matched&sector=healthcare")).total, 0);
+    const detail = await getJobDetail(jobs[0].id, { DB });
+    assert.deepEqual(detail.employer_licence, licensed.items.find((j) => j.id === detail.id).employer_licence);
+    // Publishing a new snapshot immediately removes links to a withdrawn record.
+    sql.prepare("UPDATE metadata SET value=json_set(value,'$.snapshot','next') WHERE key='register'").run();
+    assert.equal((await api("?licence=matched")).total, 0);
+    assert.equal((await api()).total, 4);
+    assert.equal((await getJobDetail(jobs[0].id, { DB })).employer_licence, null);
+  } finally { sql.close(); }
+});
+
+test("licence links fail closed on stale, future, failed or malformed register checks and non-Skilled-Worker entries", async () => {
+  const { sql, DB } = database(), now = Date.parse("2026-10-06T12:00:00Z");
+  const sponsorID = REVIEWED_EMPLOYER_LINKS[0].sponsor_id;
+  try {
+    seedLicence(sql, sponsorID, now);
+    assert.equal((await employerLicences(DB, [], now)).matches.size, 1);
+    for (const patch of [
+      { checked_at: new Date(now - 2 * 86400000).toISOString() },
+      { checked_at: new Date(now + 300001).toISOString() },
+      { checked_at: "invalid" },
+      { source_date: "2026-09-29" },
+      { source_date: "2026-10-07" },
+      { refresh_error: "Refresh failed" },
+    ]) {
+      seedLicence(sql, sponsorID, now, patch);
+      const value = await employerLicences(DB, [], now);
+      assert.equal(value.matches.size, 0, JSON.stringify(patch));
+      assert.equal(value.register.available, false);
+    }
+    sql.prepare("UPDATE metadata SET value='broken' WHERE key='register'").run();
+    assert.equal((await employerLicences(DB, [], now)).matches.size, 0);
+    seedLicence(sql, sponsorID, now);
+    sql.prepare("UPDATE sponsors SET skilled=0").run();
+    assert.equal((await employerLicences(DB, [], now)).matches.size, 0);
+    sql.prepare("UPDATE sponsors SET skilled=1,routes='[\"Creative Worker\"]'").run();
+    assert.equal((await employerLicences(DB, [], now)).matches.size, 0);
+  } finally { sql.close(); }
+});
+
+test("owner-reviewed boards gain a licence link only after approval with a dated review and current record", async () => {
+  const { sql, DB } = database(), now = Date.parse("2026-10-06T12:00:00Z");
+  const approved = { id: "reviewed-lever-example", sponsor_id: "a".repeat(24), reviewed_at: new Date(now).toISOString(), state: "approved", evidence: "PRIVATE QA review notes" };
+  try {
+    seedLicence(sql, approved.sponsor_id, now);
+    const linked = (await employerLicences(DB, [approved], now)).matches.get(approved.id);
+    assert.ok(linked);
+    assert.equal(linked.evidence_url, null);
+    assert.ok(!JSON.stringify(linked).includes("PRIVATE QA"));
+    for (const patch of [{ state: "pending" }, { state: "paused" }, { reviewed_at: null }, { sponsor_id: "b".repeat(24) }])
+      assert.equal((await employerLicences(DB, [{ ...approved, ...patch }], now)).matches.size, 0);
+  } finally { sql.close(); }
 });
 
 test("UK recruitment locations do not disguise a required overseas relocation", async () => {

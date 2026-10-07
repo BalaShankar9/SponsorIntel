@@ -62,6 +62,10 @@ export type Job = {
   source_updated_at?: string;
   sector?: string;
   sector_label?: string;
+  employer_licence?: {
+    id: string; name: string; city: string; routes: string[]; ratings: string[];
+    source_date: string; checked_at: string; evidence_url: string | null; reviewed_at: string;
+  } | null;
   source?: { careers_url: string; checked_at: string; last_success: string; error: string | null } | null;
 };
 export type SavedSearch = {
@@ -72,6 +76,7 @@ export type SavedSearch = {
   level: string;
   salary?: string;
   sector?: string;
+  licence?: string;
   createdAt: string;
 };
 export type CareerData = {

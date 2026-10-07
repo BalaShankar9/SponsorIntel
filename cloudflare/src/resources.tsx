@@ -335,6 +335,23 @@ export function AboutPage() {
           vacancy offers sponsorship. The employer’s current listing remains the
           place to confirm details and apply.
         </p>
+        <p>
+          The “Licensed employers” filter uses reviewed links between job-board
+          brands or groups and exact records on the Skilled Worker register.
+          The role page names the linked company and shows the source date.
+          A group’s licence does not establish which entity will hire you.
+          We hide links after a failed register refresh, after two days without
+          a successful check, if the source is seven days old, or if the record
+          is absent from the active snapshot. Unmatched employers are unknown,
+          not necessarily unlicensed.
+        </p>
+        <p>
+          LinkedIn is not connected as a vacancy feed. Its Job Posting API is
+          for publishing employer jobs to LinkedIn, not downloading its whole
+          job market. Connecting a LinkedIn account would not grant those
+          data rights. We use employer sources and will add other feeds only
+          when their access and reuse terms support the service.
+        </p>
         <h2>Immigration updates</h2>
         <p>
           We check selected GOV.UK guidance and recent rule publications every

@@ -61,6 +61,23 @@ export function JobDetailView({
             </p>
             <a href={job.apply_url} {...external} className="text-button">Read the original wording <ArrowUpRight size={14} /></a>
           </section>
+          <section className="role-panel role-licence" aria-labelledby="role-licence-heading">
+            <p className="role-section-label"><ShieldCheck size={17} /> EMPLOYER REGISTER CHECK</p>
+            <h2 id="role-licence-heading">Is there a sponsor licence linked to this employer?</h2>
+            {job.employer_licence ? <>
+              <p><strong>{job.employer_licence.name}</strong>{job.employer_licence.city && ` · ${job.employer_licence.city}`} is listed for the Skilled Worker route in the register dated {jobTimestamp(job.employer_licence.source_date)}.</p>
+              <p className="role-caption">We reviewed a link between this employer’s brand or group and that register entry. Ask which legal entity would employ and sponsor you. This does not change the advert’s sponsorship wording above or confirm eligibility for this role.</p>
+              <p className="role-caption">Register last checked {jobTimestamp(job.employer_licence.checked_at)}. Employer link reviewed {jobTimestamp(job.employer_licence.reviewed_at)}.</p>
+              <div className="role-licence-links">
+                <a className="text-button" href={`/?q=${encodeURIComponent(job.employer_licence.name)}`}>View sponsor record <ArrowUpRight size={14} /></a>
+                <a className="text-button" href="https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers" {...external}>Official register <ArrowUpRight size={14} /></a>
+                {job.employer_licence.evidence_url && <a className="text-button" href={job.employer_licence.evidence_url} {...external}>Employer identity source <ArrowUpRight size={14} /></a>}
+              </div>
+            </> : <>
+              <p>We do not currently have a verified licence link for this employer. It may still be licensed; this is not a finding that it cannot sponsor.</p>
+              <a className="text-button" href={`/?q=${encodeURIComponent(job.company)}`}>Check the sponsor directory <ArrowUpRight size={14} /></a>
+            </>}
+          </section>
           <section className="role-panel role-description" aria-labelledby="role-description-heading">
             <p className="role-section-label"><FileText size={17} /> FROM THE EMPLOYER</p>
             <h2 id="role-description-heading">The role, in their words</h2>

@@ -211,6 +211,17 @@
   gap: 12px;
   margin-top: 22px;
 }
+.employer-licence-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #24583d;
+}
+.role-licence-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
 .opportunity-collection {
   display: flex;
   flex-direction: column;

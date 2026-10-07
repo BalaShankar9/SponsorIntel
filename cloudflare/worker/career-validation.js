@@ -87,6 +87,7 @@ export function validateWorkspace(input) {
       level: text(s.level, 30),
       salary: text(s.salary, 30),
       sector: text(s.sector, 30),
+      licence: s.licence === "matched" ? "matched" : "",
       createdAt: text(s.createdAt, 40),
     }));
   return { version: 2, profile, applications, searches };
