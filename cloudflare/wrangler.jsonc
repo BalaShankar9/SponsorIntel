@@ -31,7 +31,8 @@
   "workflows": [
     { "name": "sponsorintel-sources", "binding": "SOURCE_WORKFLOW", "class_name": "SourceWorkflow" },
     { "name": "sponsorintel-research", "binding": "RESEARCH_WORKFLOW", "class_name": "ResearchWorkflow" },
-    { "name": "sponsorintel-business", "binding": "BUSINESS_WORKFLOW", "class_name": "BusinessWorkflow" }
+    { "name": "sponsorintel-business", "binding": "BUSINESS_WORKFLOW", "class_name": "BusinessWorkflow" },
+    { "name": "sponsorintel-marketing", "binding": "MARKETING_WORKFLOW", "class_name": "MarketingWorkflow" }
   ],
   "observability": {
     "enabled": true,
@@ -39,7 +40,7 @@
     "traces": { "enabled": true, "head_sampling_rate": 0.01 },
   },
   "vars": {
-    "APP_VERSION": "2.14.0",
+    "APP_VERSION": "2.15.0",
     "APP_ORIGIN": "https://sponsorintel.london",
     "AI_MODEL": "@cf/zai-org/glm-4.7-flash",
     "AI_DAILY_LIMIT": "40",

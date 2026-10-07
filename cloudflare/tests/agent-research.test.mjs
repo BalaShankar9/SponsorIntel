@@ -167,7 +167,7 @@ test('provider responses reject truncation and keys never become model input',as
 });
 test('prepared OpenAI adapter disables storage and keeps credentials out of the prompt',async t=>{
  t.mock.method(globalThis,'fetch',async(url,options)=>{
-  assert.equal(url,'https://api.openai.com/v1/responses');assert.equal(options.redirect,'error');
+  assert.equal(url,'https://api.openai.com/v1/responses');assert.equal(options.redirect,'manual');
   const body=JSON.parse(options.body);assert.equal(body.store,false);assert.equal(body.reasoning.effort,'high');assert.equal(body.model,'gpt-6-astra');
   assert.ok(!options.body.includes('test-key'));assert.equal(options.headers.Authorization,'Bearer test-key');
   return Response.json({status:'completed',output:[{type:'reasoning',content:[]},{type:'message',content:[{type:'output_text',text:'{"answer":1}'}]}],usage:{input_tokens:10,output_tokens:5}});
@@ -180,4 +180,10 @@ test('prepared Anthropic adapter ignores private thinking blocks and rejects non
   return Response.json({content:[{type:'thinking',thinking:'private'},{type:'text',text:'{"answer":2}'}],stop_reason:'end_turn'});
  });
  const r=await callResearchModel({ANTHROPIC_API_KEY:'test-key'},{provider:'anthropic',model:'claude-fable-5-1'},'Return JSON',{});assert.deepEqual(r.value,{answer:2});assert.ok(!JSON.stringify(r).includes('private'));
+});
+test('prepared external model adapters reject redirects without sending credentials onward',async t=>{
+ let requests=0;
+ t.mock.method(globalThis,'fetch',async(_url,options)=>{requests++;assert.equal(options.redirect,'manual');return new Response('',{status:302,headers:{location:'https://different.example'}});});
+ for(const provider of ['openai','anthropic'])await assert.rejects(callResearchModel({OPENAI_API_KEY:'test-key',ANTHROPIC_API_KEY:'test-key'},{provider,model:'test-model'},'Return JSON',{}),/unavailable/);
+ assert.equal(requests,2);
 });

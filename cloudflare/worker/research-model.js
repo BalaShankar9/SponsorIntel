@@ -52,7 +52,7 @@ export async function callResearchModel(env, config, system, input) {
     usage = r.usage; finish = r.choices?.[0]?.finish_reason;
   } else if (config.provider === 'openai' && env.OPENAI_API_KEY) {
     const r = await boundedJSON(await fetch('https://api.openai.com/v1/responses', {
-      method: 'POST', redirect: 'error', signal: AbortSignal.timeout(100000),
+      method: 'POST', redirect: 'manual', signal: AbortSignal.timeout(100000),
       headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + env.OPENAI_API_KEY },
       body: JSON.stringify({ model: config.model, instructions: system,
         input: content, reasoning: { effort: 'high' }, max_output_tokens: 6000,
@@ -63,7 +63,7 @@ export async function callResearchModel(env, config, system, input) {
       .filter(x => x.type === 'output_text').map(x => x.text).join(''); usage = r.usage;
   } else if (config.provider === 'anthropic' && env.ANTHROPIC_API_KEY) {
     const r = await boundedJSON(await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST', redirect: 'error', signal: AbortSignal.timeout(100000),
+      method: 'POST', redirect: 'manual', signal: AbortSignal.timeout(100000),
       headers: { 'Content-Type': 'application/json', 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
       body: JSON.stringify({ model: config.model, system, messages: [{ role: 'user', content }],
         max_tokens: 6000, thinking: { type: 'adaptive' }, output_config: { effort: 'high' } }),

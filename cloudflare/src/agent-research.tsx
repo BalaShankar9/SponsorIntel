@@ -47,7 +47,7 @@ export function AgentResearch() {
         <button className="secondary-button" disabled={busy||active||!data.enabled||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'evaluation'})}><FlaskConical size={17}/>Run capability test</button>
         <button className="secondary-button" disabled={busy} onClick={()=>void load()}>Refresh research</button>
       </div>
-      <p className="fine-print">{data.budget.runs}/{data.budget.run_limit} investigations · {data.budget.calls}/{data.budget.call_limit} model calls today (UTC). Only public adverts and operational data are used. No CVs or account details.</p>
+      <p className="fine-print">{data.budget.runs}/{data.budget.run_limit} shared research and marketing attempts · {data.budget.calls}/{data.budget.call_limit} reserved model calls today (UTC). Only public adverts, guides and operational data are used. No CVs or account details.</p>
       {!premium&&<p className="fine-print">Frontier model connections are prepared but not enabled. These models have not yet passed a representative real-advert benchmark.</p>}
       {data.runs.length>0&&<label className="research-history">Investigation history<select value={run?.id||''} onChange={e=>setSelected(e.target.value)}>{data.runs.map(r=><option key={r.id} value={r.id}>{new Date(r.created_at).toLocaleString('en-GB')} · {r.kind} · {r.state}</option>)}</select></label>}
       {run&&<article className="research-result"><div className="agent-heading"><h3>{run.kind==='evaluation'?'Capability test':'Job quality investigation'}</h3><span className="agent-pill">{label(run.state)} · {run.calls} model calls</span></div>

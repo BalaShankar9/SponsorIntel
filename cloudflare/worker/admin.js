@@ -6,6 +6,7 @@ import { agentOperationsAPI } from "./agent-api.js";
 import { businessAPI } from './business-operations.js';
 import { campaignSummary } from './analytics.js';
 import { marketingAPI } from './marketing.js';
+import {marketingAgentsAPI} from './marketing-agents.js';
 export async function ownerFor(request, env) {
   const session = await sessionFor(request, env);
   if (!session?.user) return null;
@@ -82,6 +83,8 @@ export async function adminAPI(request, env) {
     path = url.pathname;
   if (path === '/api/admin/business' || path.startsWith('/api/admin/business/'))
     return businessAPI(request, env, owner);
+  if (path === '/api/admin/marketing/agents' || path.startsWith('/api/admin/marketing/agents/'))
+    return marketingAgentsAPI(request, env, owner);
   if (path === '/api/admin/marketing' || path.startsWith('/api/admin/marketing/'))
     return marketingAPI(request, env, owner);
   if (path === '/api/admin/agents' || path.startsWith('/api/admin/agents/'))

@@ -1,0 +1,30 @@
+# Sponsor Intel 2.15 — bounded editorial agents
+
+7 October 2026. The Marketing desk now has a planner, writer and different-model reviewer implemented in a durable Cloudflare workflow. The hourly business workflow dispatches at most one editorial attempt per UTC day. This release is a guide-copy pilot, not a claim of end-to-end autonomous social publishing or validated model quality.
+
+## Behaviour
+
+Three fixed guide topics supply live, exact quotations. The source reader rejects redirects, errors, changed approved facts and oversized pages; hashes the complete article; and passes only curated facts to the models. Every generated paragraph must cite an exact source quotation. A different model critiques every paragraph and overall usefulness. One revision and one further critique are allowed. Failed, uncertain or incomplete model results stop without an automatic paid retry. Source changes, stale evidence, pauses, owner edits and incomplete reviews hold the draft. Both copy versions and the structured reasoning/evidence remain private in the ledger.
+
+The planner ranks eligible topics or selects no post. It checks duplicate topics and the recorded Facebook queue, including a three-post rolling weekly ceiling and unresolved deliveries. Proposed 10:00 Europe/London slots account for daylight saving and evidence expiry. They are suggestions, never provider receipts. The first three operator campaign opens from 7 October remain disclosed; aggregate event counts cannot establish people, conversions or causal performance. A fixed `fb-shortlist` campaign joins the seven existing launch mappings.
+
+The owner can inspect stages, pause/resume or start today's one check. Marketing shares the unchanged four-run/32-call daily research allowance and uses at most five calls. A daily attempt consumes its reservation even if no post is needed; failed calls count. Dispatch requires five-call headroom, but concurrent research can consume that remaining headroom and safely stop a later marketing stage. No credentials, private CVs, personal profiles, arbitrary tools, new providers or spending increases are involved.
+
+## Verification and actual outcome
+
+- **171 tests passed.** New cases cover daily and concurrent reservations, shared limits, unknown dispatch, exact quotes, malicious source text, incomplete critique, one bounded revision, source changes, owner overrides, pause, wrong-origin/anonymous access and no-post decisions. Full model output tests use synthetic fixtures and are not an accuracy benchmark.
+- Production typecheck/build, 17-page prerender, generated Worker types and final Wrangler dry-run passed. All migrations applied to isolated local D1. Local Workerd ran the actual workflow against all three live guide topics and a synthetic uncertain queue item; it completed with `no_post`, zero model steps and zero AI calls.
+- Runtime acceptance caught that Workerd rejects `redirect: error`. The guide reader now uses `manual` and rejects non-200 responses without following redirects. The two unconnected premium-model adapters had the same compatibility issue and were corrected; a regression checks both decline redirects. They remain unconnected and were not called live.
+- Live anonymous editorial API returned 403. The owner triggered today's check and received a persisted allowance hold, with zero new model calls. Pause and resume saved successfully, ending enabled; remote D1 still showed four shared attempts and 13 calls. Marketing run `marketing-2026-10-07` is held with zero calls. No budget was reset.
+- The deployed BusinessWorkflow acceptance run `business-497614` completed at `2026-10-07T22:05:21.207Z`. It reused the same held editorial run, prepared zero new briefs and sent zero external posts. No stale roles were retired; the weekly report was not due. This owner-triggered test is not evidence of a later cron or desktop heartbeat run.
+- Four launch schedules and one held personal report remain intact. All four receipts are scheduled, none published. No external queue was modified. Desktop and 390px mobile views were checked with no horizontal overflow; pause/resume was restored. Proof is in the parent task's `outputs/marketing-agents-live.png` and `outputs/marketing-agents-mobile.png`.
+
+Detailed non-personal receipts: `tests/evidence/marketing-agents-2026-10-07.json`.
+
+## Remaining acceptance and recovery
+
+The first real planner/writer/reviewer draft remains unverified because today's shared allowance was exhausted before this release. The next eligible daily check after the UTC reset may still choose no post until queue space exists and due deliveries are reconciled. Validate a real output before expanding the source policy or claiming editorial accuracy. Job promotion, legal-change interpretation, artwork, automatic provider reconciliation/delivery, Instagram access and performance learning remain separate work. An unresolved workflow outcome retains its reservation and requires operational status reconciliation; no retry or quota reset is a recovery mechanism.
+
+Worker `aeed4d3c-83bc-4438-9f8d-50d80b67d3e0` is live at https://sponsorintel.london. Previous code version: `1bc441fd-a33b-4de1-88be-57bd99b28cfe`. Additive migration `0012_marketing_agents.sql` applied remotely after obtaining recovery bookmark `0000025d-00000034-000050fd-f5f8dc1e165152e867bc53c2d18f5aa5`. No restore was performed. Prefer code rollback or pausing editorial agents while preserving new records; do not restore the full database over later user activity. Check active workflow status before rollback. Keep the new workflow binding/class available until any active run is safely terminal; rolling back code alone does not revert D1 or workflow state.
+
+Implementation references: [durable workflow rules](https://developers.cloudflare.com/workflows/build/rules-of-workflows/) and [Workers AI JSON mode](https://developers.cloudflare.com/workers-ai/features/json-mode/). The source policy, role coverage and next acceptance gates are in `docs/MARKETING_AGENTS.md`.

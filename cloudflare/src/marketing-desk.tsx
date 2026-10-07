@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import {RefreshCw,ArrowUpRight,FileCheck2} from 'lucide-react';
 import './marketing-desk.css';
+import {MarketingAgents} from './marketing-agents';
 type Source={title:string;url:string;excerpt:string;checked_at?:string;observed_on?:string};
 type Receipt={version:number;provider:string;external_id:string;state:string;scheduled_at:string|null;post_url:string|null;observed_at:string;evidence:string};
 type Brief={id:string;title:string;destination:string;state:string;version:number;revision:number;purpose:string;text:string;sources:Source[];expires_at:string;writer:string;attention:string|null;events:{revision:number;version:number;kind:string;actor:string;detail:string;created_at:string}[];receipts:Receipt[]};
@@ -48,7 +49,8 @@ export function MarketingDesk(){
  async function sync(){setBusy(true);try{const r=await api('/sync',{});setMessage(`${r.prepared} new brief${r.prepared===1?'':'s'} prepared. Existing schedules reconciled from recorded evidence. No posts sent.`);await load();}catch(e){setError((e as Error).message);}finally{setBusy(false);}}
  return <section className="business-ops marketing-desk" aria-labelledby="marketing-heading">
   <header className="business-head"><div><p className="business-eyebrow">From idea to delivery</p><h2 id="marketing-heading">Marketing desk</h2><p>Content, sources, review decisions and delivery evidence in one place.</p></div><div className="business-actions"><button aria-label="Refresh marketing desk" onClick={()=>void load()}><RefreshCw size={16}/></button><button disabled={busy} onClick={()=>void sync()}>Prepare & reconcile</button></div></header>
-  <p className="marketing-boundary">This desk keeps the record. Facebook uses Metricool and LinkedIn uses its native scheduler. Planning and writing agents, automatic delivery checks and Instagram publishing are still being built.</p>
+  <p className="marketing-boundary">Editorial agents prepare sourced drafts and record independent model reviews here. Facebook uses Metricool and LinkedIn uses its native scheduler. Automatic delivery checks and Instagram publishing remain unfinished.</p>
+  <MarketingAgents/>
   {error&&<p className="career-error" role="alert">{error}</p>}{message&&<p role="status">{message}</p>}
   {!data?<p>Loading marketing records…</p>:<>
    <div className="business-metrics marketing-metrics">{[['proposed','Needs review'],['scheduled','Scheduled'],['published','Published'],['attention','Needs attention']].map(([key,label])=><div key={key}><strong>{data.items.filter(b=>key==='attention'?b.attention||['held','failed','uncertain'].includes(b.state):b.state===key).length}</strong><span>{label}</span></div>)}</div>
