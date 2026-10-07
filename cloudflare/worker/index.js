@@ -12,6 +12,7 @@ import {
 import { jobsAPI } from "./jobs.js";
 import { dispatchSources } from "./agent-operations.js";
 export { SourceWorkflow } from "./source-workflow.js";
+export { ResearchWorkflow } from './research-workflow.js';
 import { immigrationAPI, refreshImmigration } from "./immigration.js";
 import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
 import { careerAPI } from "./career.js";
@@ -424,6 +425,9 @@ export default {
         env.DB.prepare("DELETE FROM agent_reviews WHERE state<>'open' AND resolved_at<?").bind(new Date(Date.now()-90*86400000).toISOString()),
         env.DB.prepare("DELETE FROM agent_briefs WHERE created_at<?").bind(new Date(Date.now()-30*86400000).toISOString()),
         env.DB.prepare("DELETE FROM agent_daily_budget WHERE day<?").bind(new Date(Date.now()-30*86400000).toISOString().slice(0,10)),
+        env.DB.prepare("DELETE FROM agent_investigations WHERE state IN ('review','failed') AND created_at<?").bind(new Date(Date.now()-30*86400000).toISOString()),
+        env.DB.prepare("DELETE FROM agent_research_memory WHERE expires_at<?").bind(new Date().toISOString()),
+        env.DB.prepare("DELETE FROM agent_research_budget WHERE day<?").bind(new Date(Date.now()-30*86400000).toISOString().slice(0,10)),
       ]);
       console.log(JSON.stringify({ event: "jobs_refresh", sources: result }));
       return;

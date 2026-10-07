@@ -4,11 +4,15 @@ Owner: Codex implementation lead, with Bala as product owner. Updated 7 October 
 
 The product promise: help international students and migrants find credible UK opportunities, understand the evidence, and prepare good applications. Judge success by useful applications and interviews, not scrolling time or raw job counts.
 
-## Current release — 2.10 agent operations
+## Current release — 2.11 research agents
+
+The owner Research Lab adds model-selected investigation tools, fresh employer evidence, a different-model critic, one revision cycle, typed observations with content-version and expiry checks, and a real-model synthetic evaluation mode. Premium model adapters are prepared but disconnected. The current Cloudflare models and private research scope are explicit in the dashboard. This does not establish frontier capability or representative advert accuracy. See `docs/ADVANCED_AGENT_SYSTEM.md` for the model shortlist, acceptance gates, controlled improvement cycle and specialist build sequence.
+
+## Source foundation — 2.10 agent operations
 
 The first source operating layer is live: Cloudflare Workflows, persistent task receipts, exact replay protection, request/attempt limits, source cooldowns, suspicious-batch holds, owner pause/resume/recovery controls and an AI coordinator that only prioritises recorded findings. All 30 sources completed the initial production run, publishing 845 UK roles in 30 requests. All 99 local tests pass; the live owner dashboard, anonymous-access denial, AI brief and 390px layout were verified. See `cloudflare/RELEASE-2.10.md` and `docs/LINKEDIN_AND_AGENT_OPERATIONS.md`.
 
-The source schedule remains every six hours. The initial acceptance run was manual; a configured schedule is not evidence of a completed scheduled run. Further agents require their own evaluation and review boundaries. LinkedIn access, the 50-advert audit, 20 CV/advert benchmark, long-running reliability observation and GitHub CI billing remain open.
+The source schedule remains every six hours. After the initial manual acceptance, the 7 October 12:30 UTC scheduled run completed all 30 sources; longer reliability observation remains open. Further agents require their own evaluation and review boundaries. LinkedIn access, the 50-advert audit, 20 CV/advert benchmark and GitHub CI billing remain open.
 
 ## Broader sources and employer evidence — 2.9
 

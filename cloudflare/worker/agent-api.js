@@ -7,12 +7,15 @@ import {
   completeRun,
 } from "./agent-operations.js";
 import { generateOperationsBrief } from "./agent-brief.js";
+import { startInvestigation,researchSnapshot,approveObservation } from './agent-research.js';
 
 // Called only after adminAPI has verified the immutable owner user ID.
 export async function agentOperationsAPI(request, env, owner) {
   const path = new URL(request.url).pathname;
   if (request.method === "GET" && path === "/api/admin/agents")
     return reply(await operationsSnapshot(env));
+  if (request.method === 'GET' && path === '/api/admin/agents/research')
+    return reply(await researchSnapshot(env));
   if (
     request.method !== "POST" ||
     ![
@@ -21,6 +24,10 @@ export async function agentOperationsAPI(request, env, owner) {
       "/api/admin/agents/brief",
       "/api/admin/agents/reconcile",
       "/api/admin/agents/recover",
+      '/api/admin/agents/research/start',
+      '/api/admin/agents/research/remember',
+      '/api/admin/agents/research/reconcile',
+      '/api/admin/agents/research/recover',
     ].includes(path)
   )
     return reply({ error: "Not found" }, 404);
@@ -44,6 +51,41 @@ export async function agentOperationsAPI(request, env, owner) {
     return reply({ error: "Invalid request." }, 400);
   }
   try {
+    if (path.endsWith('/research/recover')) {
+      if (typeof body.run_id !== 'string' || !/^research-[a-f0-9-]{36}$/.test(body.run_id)) throw Error('Choose an investigation.');
+      const run = await env.DB.prepare('SELECT state,created_at,calls FROM agent_investigations WHERE id=?').bind(body.run_id).first();
+      if (!run || run.state!=='failed' || run.calls>6 || Date.now()-Date.parse(run.created_at)>3600000) throw Error('Recovery needs a failed run under one hour old with at least two model calls remaining.');
+      const instance = await env.RESEARCH_WORKFLOW.get(body.run_id);
+      const status = await instance.status();
+      if (!['complete','errored','terminated'].includes(status.status)) throw Error('Execution has not ended yet. Check its status first.');
+      await env.DB.batch([
+        env.DB.prepare("UPDATE agent_investigations SET state='running',finished_at=NULL,error=NULL WHERE id=? AND state='failed'").bind(body.run_id),
+        env.DB.prepare('INSERT INTO admin_audit(actor,action,target,created_at) VALUES(?,?,?,?)').bind(owner.user.id,'research_recovery_requested',body.run_id,new Date().toISOString()),
+      ]);
+      try { await instance.restart(); }
+      catch { return reply({message:'Recovery outcome is uncertain. Check execution status; do not start another run.'},202); }
+      return reply({message:'Recovery requested for the same investigation. Evidence and original spending reservations are preserved.'},202);
+    }
+    if (path.endsWith('/research/start')) {
+      const result = await startInvestigation(env,owner.user.id,body.kind);
+      return reply({ ...result,message:result.message || (result.reused ? 'An investigation is already running.' : 'Investigation queued. You can leave this page; progress is saved.') },202);
+    }
+    if (path.endsWith('/research/remember')) {
+      if (body.confirmed !== true || typeof body.run_id !== 'string' || typeof body.job_id !== 'string') throw Error('Review the source evidence before remembering the observation.');
+      await approveObservation(env,body.run_id,body.job_id,owner.user.id);
+      return reply({ message:'Observation remembered for seven days, only while the advert remains unchanged. Public labels were not edited.' });
+    }
+    if (path.endsWith('/research/reconcile')) {
+      if (typeof body.run_id !== 'string' || !/^research-[a-f0-9-]{36}$/.test(body.run_id)) throw Error('Choose an investigation.');
+      const run = await env.DB.prepare('SELECT state,created_at FROM agent_investigations WHERE id=?').bind(body.run_id).first();
+      if (!run || !['queued','running'].includes(run.state)) throw Error('Investigation is already finished.');
+      const instance = await env.RESEARCH_WORKFLOW.get(body.run_id);
+      const status = await instance.status();
+      if (['complete','errored','terminated'].includes(status.status)) {
+        await env.DB.prepare("UPDATE agent_investigations SET state='failed',finished_at=?,error='Execution ended without a complete report. Model reservations remain counted.' WHERE id=? AND state IN ('queued','running')").bind(new Date().toISOString(),body.run_id).run();
+      }
+      return reply({ message:'Research execution status: '+status.status });
+    }
     if (path.endsWith("/run")) {
       if (body.source_id != null && typeof body.source_id !== "string")
         throw Error("Choose an approved source.");

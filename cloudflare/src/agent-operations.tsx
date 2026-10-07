@@ -8,6 +8,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import "./agent-operations.css";
+import { AgentResearch } from './agent-research';
 
 type Finding = {
   id: string;
@@ -179,6 +180,7 @@ export function AgentOperations() {
       {!data && !error && <p role="status">Loading operational records…</p>}
       {data && (
         <>
+          <AgentResearch />
           <div className="agent-actions">
             <button
               className="primary-button"
