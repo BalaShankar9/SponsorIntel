@@ -9,7 +9,9 @@ import {
   csvSource,
   querySpec,
 } from "./data.js";
-import { jobsAPI, refreshJobs } from "./jobs.js";
+import { jobsAPI } from "./jobs.js";
+import { dispatchSources } from "./agent-operations.js";
+export { SourceWorkflow } from "./source-workflow.js";
 import { immigrationAPI, refreshImmigration } from "./immigration.js";
 import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
 import { careerAPI } from "./career.js";
@@ -82,7 +84,7 @@ async function api(request, env) {
     return reply(
       path.endsWith("refresh-updates")
         ? await refreshImmigration(env)
-        : { sources: await refreshJobs(env) },
+        : await dispatchSources(env, { id: 'operator-' + crypto.randomUUID(), trigger: 'operator' }),
     );
   }
   if (path === "/api/feedback") return feedbackAPI(request, env);
@@ -407,7 +409,7 @@ export default {
       return;
     }
     if (event.cron === "30 */6 * * *") {
-      const result = await refreshJobs(env);
+      const result = await dispatchSources(env, { id: 'scheduled-' + event.scheduledTime, trigger: 'scheduled' });
       await env.DB.prepare("DELETE FROM ai_usage WHERE expires<?")
         .bind(Date.now())
         .run();
@@ -418,6 +420,10 @@ export default {
         env.DB.prepare("DELETE FROM source_runs WHERE checked_at<?").bind(
           new Date(Date.now() - 30 * 86400000).toISOString(),
         ),
+        env.DB.prepare("DELETE FROM agent_runs WHERE state IN ('completed','attention','failed','dispatch_failed') AND created_at<?").bind(new Date(Date.now()-30*86400000).toISOString()),
+        env.DB.prepare("DELETE FROM agent_reviews WHERE state<>'open' AND resolved_at<?").bind(new Date(Date.now()-90*86400000).toISOString()),
+        env.DB.prepare("DELETE FROM agent_briefs WHERE created_at<?").bind(new Date(Date.now()-30*86400000).toISOString()),
+        env.DB.prepare("DELETE FROM agent_daily_budget WHERE day<?").bind(new Date(Date.now()-30*86400000).toISOString().slice(0,10)),
       ]);
       console.log(JSON.stringify({ event: "jobs_refresh", sources: result }));
       return;

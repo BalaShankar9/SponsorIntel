@@ -2,6 +2,7 @@ import { sessionFor, reply, bodyJSON, sameOrigin, limit } from "./auth.js";
 import { BOARDS, SECTORS } from "./job-sources.js";
 import { fetchBoard } from "./jobs.js";
 import { refreshStudents } from "./study.js";
+import { agentOperationsAPI } from "./agent-api.js";
 export async function ownerFor(request, env) {
   const session = await sessionFor(request, env);
   if (!session?.user) return null;
@@ -76,6 +77,8 @@ export async function adminAPI(request, env) {
   if (!owner) return reply({ error: "The owner account is required." }, 403);
   const url = new URL(request.url),
     path = url.pathname;
+  if (path === '/api/admin/agents' || path.startsWith('/api/admin/agents/'))
+    return agentOperationsAPI(request, env, owner);
   if (path === "/api/admin/session" && request.method === "GET")
     return reply({ owner: true });
   if (path === "/api/admin/refresh-students" && request.method === "POST") {

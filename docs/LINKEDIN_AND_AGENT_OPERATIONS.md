@@ -2,6 +2,18 @@
 
 Decision brief and implementation plan. Reviewed 7 October 2026.
 
+## Implementation update — 2.10
+
+The first operational layer is now deployed. Cloudflare Workflows runs the approved-source collection, advert-evidence checks, freshness/duplicate checks and publication receipts. The private owner dashboard shows actual task states, limits, quality holds, source pauses and recovery controls. An on-request Cloudflare AI coordinator ranks existing findings; it cannot create facts or execute recommendations. The first production run completed all 30 sources with 30 requests and 845 UK roles. One live coordinator brief passed output validation. These are point-in-time acceptance results, not measured market coverage or sponsorship accuracy.
+
+There are 99 passing local tests. Interrupted local execution was explicitly restarted; 29 completed publications were reused without new source fetches, while the failed source remained within its three-attempt limit. The six-hour production schedule is configured; the initial acceptance run was owner-triggered. See `cloudflare/RELEASE-2.10.md` for deployment, limits, recovery and outstanding verification.
+
+The LinkedIn pilot remains disconnected pending provider access and terms. Source scouting, reviewed immigration editing, broader application evaluation, growth and support agents still need implementation/evaluation as described below. The Agents SDK is not required for the bounded source workflow and has not been installed. The AI coordinator is a bounded prioritisation component, not the full autonomous eight-role team.
+
+### Standard for each future agent
+
+Give every role a defined input contract, allowed tools, evidence format, persistent task state, request/model budget, timeout, review boundary and owner-visible result. Its evaluation must cover realistic errors, missing evidence, hostile instructions in source material, repeats, interruptions and loss of access. Verify outputs against original sources and record disagreements; model confidence is not an accuracy score. Keep a change/version history and a tested recovery path. Expand authority only after measured performance supports the change. "World-class" remains an ambition to prove through these results, not a current quality certification.
+
 ## Recommendation
 
 Pilot a provider that supplies LinkedIn-origin job records, while continuing to collect employer originals through the existing approved feeds. Start with a small, private quality sample and then publish only records whose use and quality have been checked. Build eight operational roles around the current Cloudflare service, using ordinary code for repeatable checks and AI for bounded research or drafting.

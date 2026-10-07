@@ -376,7 +376,7 @@ export async function fetchBoard(board) {
 
 // Each bound JSON chunk stays comfortably below D1's 2 MB value limit.
 // One transaction publishes an entire board, including removals and freshness.
-export async function storeBoardJobs(DB, board, jobs, now) {
+export async function storeBoardJobs(DB, board, jobs, now, receipts = [], guard = null) {
   const fields = [
     "id",
     "board_id",
@@ -394,7 +394,7 @@ export async function storeBoardJobs(DB, board, jobs, now) {
     "employment_type",
     "workplace",
   ];
-  const statements = [];
+  const statements = guard ? [guard] : [];
   let chunk = [],
     bytes = 2;
   const addChunk = () => {
@@ -433,7 +433,7 @@ export async function storeBoardJobs(DB, board, jobs, now) {
       "INSERT INTO job_sources(id,company,careers_url,checked_at,last_success,count,error) VALUES(?,?,?,?,?,?,NULL) ON CONFLICT(id) DO UPDATE SET company=excluded.company,careers_url=excluded.careers_url,checked_at=excluded.checked_at,last_success=excluded.last_success,count=excluded.count,error=NULL",
     ).bind(board.id, board.company, board.careers, now, now, jobs.length),
   );
-  await DB.batch(statements);
+  await DB.batch([...statements, ...receipts]);
 }
 
 export async function refreshJobs(

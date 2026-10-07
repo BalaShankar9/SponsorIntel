@@ -4,7 +4,13 @@ Owner: Codex implementation lead, with Bala as product owner. Updated 7 October 
 
 The product promise: help international students and migrants find credible UK opportunities, understand the evidence, and prepare good applications. Judge success by useful applications and interviews, not scrolling time or raw job counts.
 
-## Current release — 2.9
+## Current release — 2.10 agent operations
+
+The first source operating layer is live: Cloudflare Workflows, persistent task receipts, exact replay protection, request/attempt limits, source cooldowns, suspicious-batch holds, owner pause/resume/recovery controls and an AI coordinator that only prioritises recorded findings. All 30 sources completed the initial production run, publishing 845 UK roles in 30 requests. All 99 local tests pass; the live owner dashboard, anonymous-access denial, AI brief and 390px layout were verified. See `cloudflare/RELEASE-2.10.md` and `docs/LINKEDIN_AND_AGENT_OPERATIONS.md`.
+
+The source schedule remains every six hours. The initial acceptance run was manual; a configured schedule is not evidence of a completed scheduled run. Further agents require their own evaluation and review boundaries. LinkedIn access, the 50-advert audit, 20 CV/advert benchmark, long-running reliability observation and GitHub CI billing remain open.
+
+## Broader sources and employer evidence — 2.9
 
 Four additional feeds cover Numan, Eucalyptus, University of Bath and University of Greater Manchester's Bolton campus. There are now 30 configured sources and 21 reviewed legal-entity links. All 20 previously unlinked boards were reviewed: 12 gained evidence-backed links, while eight remain unverified; Eucalyptus also needs an identity review. Selected university RSS feeds enforce campus identity, UK closing dates and bounded safe XML reads. They are partial vacancy collections, so a missing feed item does not prove closure. See `cloudflare/RELEASE-2.9.md` for live counts and `cloudflare/JOB-SOURCES.md` for evidence and access decisions.
 

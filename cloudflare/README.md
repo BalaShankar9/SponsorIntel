@@ -2,6 +2,8 @@
 
 Primary address: https://sponsorintel.london
 
+Release 2.10 adds the private **Admin → Agent operations** panel and the `sponsorintel-sources` Cloudflare Workflow. Apply migration 0008 before deploying. The six-hour job cron and authenticated operator refresh now dispatch durable work; `POST /api/admin/refresh-jobs` acknowledges `{id,state,reused}` rather than returning a finished source list. Inspect owner run history for completion. The panel also provides source pause/resume, bounded recovery and on-request AI priorities. See `RELEASE-2.10.md` for acceptance, safeguards and limits. LinkedIn remains disconnected.
+
 Release 2.9 expands to 30 configured feeds with Numan, Eucalyptus and two reviewed UK university campus feeds, plus 21 reviewed employer-to-register links. University deadlines, campus identity, source failures and EU Lever coverage have regression tests. See `RELEASE-2.9.md` for production acceptance and `JOB-SOURCES.md` for unresolved identities and source-access limits.
 
 Release 2.8 adds a [Licensed employers collection](https://sponsorintel.london/jobs?licence=matched), independent advert sponsorship labels and dated legal-entity evidence. See `RELEASE-2.8.md` for acceptance, `JOB-SOURCES.md` for the reviewed company links and LinkedIn access limits. LinkedIn is not a connected vacancy feed. Run `node scripts/licence-smoke.mjs <base-url>` for read-only acceptance against a populated environment.

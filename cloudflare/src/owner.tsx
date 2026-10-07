@@ -10,6 +10,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { useCareer } from "./career-data";
+import { AgentOperations } from './agent-operations';
 import "./platform.css";
 type Go = (view: string) => void;
 async function api(path: string, body?: unknown) {
@@ -247,6 +248,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
       {busy && !data && <p role="status">Loading your dashboard…</p>}
       {data && (
         <>
+          <AgentOperations />
           <p className="fine-print">
             Checked {date(data.measured_at)} · Daily totals use UTC; timestamps
             use your local time. Earliest retained page activity:{" "}
@@ -339,8 +341,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
                 </p>
               </div>
               <p className="fine-print">
-                Session activity is updated at most once a day. Accounts are not
-                email-verified yet. Generations count successful responses; they
+                Session activity is updated at most once a day. Generations count successful responses; they
                 do not measure application quality or job outcomes.
               </p>
             </section>
@@ -368,7 +369,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
                       <td>{u.name}</td>
                       <td>
                         {u.email}
-                        <small>Unverified account email</small>
+                        <small>{u.emailVerified ? 'Verified email' : 'Email awaiting verification'}</small>
                       </td>
                       <td>{date(u.createdAt)}</td>
                       <td>{date(u.last_session)}</td>
