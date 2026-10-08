@@ -96,12 +96,17 @@ export function sponsorshipEvidence(text) {
     ),
   );
   if (negative) return { status: "unavailable", quote: negative.slice(0, 500) };
+  // An employer can explicitly commit to arranging sponsorship (Wintermute's
+  // advert does). Require a direct employer statement, rather than a request
+  // to ask about sponsorship or an account of what another party might do.
+  const arrangesSponsorship = (s) =>
+    /^[-• ]*we (?:will|can|may|are able to) arrange (?:a |your |the )?(?:UK )?visa sponsorship\b/i.test(s);
   const positive = relevant.find(
     (s) =>
       !s.endsWith("?") &&
-      /\bwe (?:can |will |may |do |are able to |are happy to )?(?:offer|provide|support) (?:\w+ ){0,3}(?:visa|immigration|work permit) sponsorship|\b(?:visa|immigration|work permit) sponsorship (?:is |will be |can be |may be )?(?:available|provided|offered|supported)\b|\bwe (?:can|will|may|are able to) sponsor (?:your |a |the )?(?:visa|work permit)|^[-• ]*relocation (?:support|assistance|benefits) and (?:visa|immigration) sponsorship\b/i.test(
+      (arrangesSponsorship(s) || /\bwe (?:can |will |may |do |are able to |are happy to )?(?:offer|provide|support) (?:\w+ ){0,3}(?:visa|immigration|work permit) sponsorship|\b(?:visa|immigration|work permit) sponsorship (?:is |will be |can be |may be )?(?:available|provided|offered|supported)\b|\bwe (?:can|will|may|are able to) sponsor (?:your |a |the )?(?:visa|work permit)|^[-• ]*relocation (?:support|assistance|benefits) and (?:visa|immigration) sponsorship\b/i.test(
         s,
-      ),
+      )),
   );
   if (positive)
     return {
