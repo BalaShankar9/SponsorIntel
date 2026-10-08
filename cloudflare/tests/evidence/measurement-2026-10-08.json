@@ -1,0 +1,108 @@
+{
+  "checked_at": "2026-10-08T12:03:36.964148+00:00",
+  "release": "2.37.0",
+  "worker_version": "a2bdc8af-91d9-40dd-9aa7-fc8e5e04816e",
+  "migration": "0024_public_measurement.sql",
+  "measurement": {
+    "version": 2,
+    "enabled_at": "2026-10-08T11:57:33.807Z"
+  },
+  "tests": {
+    "passed": 380,
+    "runtime": "Actual Worker fetch/auth/D1 in isolated local Workerd with fictional accounts; no AI, email or external requests.",
+    "checks": [
+      "owner first sign-in excluded before cookie",
+      "authenticated owner page and preparation excluded",
+      "member signup and page counted",
+      "analysis separated from CV/cover letter",
+      "failed generation not counted",
+      "campaign writes atomic",
+      "clarify and insufficient separated from answered",
+      "auth parse bounded; no CV or question content read by metrics",
+      "legacy and partial days excluded from business and marketing inputs"
+    ]
+  },
+  "live_checks": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "body": {
+        "ok": true,
+        "version": "2.37.0",
+        "register": {
+          "date": "2026-10-07",
+          "count": 127949,
+          "checked_at": "2026-10-08T07:15:42.693Z"
+        }
+      }
+    },
+    {
+      "path": "/api/admin/session",
+      "status": 403,
+      "body": {
+        "error": "The owner account is required."
+      }
+    },
+    {
+      "path": "/api/metrics",
+      "status": 405,
+      "body": {
+        "error": "Method not allowed"
+      }
+    },
+    {
+      "path": "/api/metrics",
+      "declared_qa": true,
+      "status": 200,
+      "body": {
+        "ok": true
+      }
+    }
+  ],
+  "live_after_declared_qa_and_owner_visit": {
+    "public_counts": [],
+    "legacy_totals_unchanged": true
+  },
+  "old_mixed_totals": [
+    {
+      "baseline": "legacy",
+      "event": "account_created",
+      "count": 5
+    },
+    {
+      "baseline": "legacy",
+      "event": "application_generated",
+      "count": 9
+    },
+    {
+      "baseline": "legacy",
+      "event": "campaign_page_view",
+      "count": 7
+    },
+    {
+      "baseline": "legacy",
+      "event": "guidance_answer",
+      "count": 1
+    },
+    {
+      "baseline": "legacy",
+      "event": "page_view",
+      "count": 246
+    },
+    {
+      "baseline": "legacy",
+      "event": "sign_in",
+      "count": 4
+    }
+  ],
+  "new_complete_day_policy": {
+    "first_full_day": "2026-10-09",
+    "first_completed_day_available_after": "2026-10-10T00:00:00Z"
+  },
+  "limits": [
+    "Signed-out operators, bots and repeat visits can remain.",
+    "Counts do not establish unique users, downloads, submissions, legal correctness, growth or revenue.",
+    "Next genuine business snapshot at 12:45 UTC and next eligible marketing context remain unobserved.",
+    "No production AI call, Google retry, email test or social send used."
+  ]
+}

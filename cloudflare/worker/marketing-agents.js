@@ -4,6 +4,7 @@ import {plainText} from './jobs.js';
 import {callResearchModel} from './research-model.js';
 import {createBrief,decideBrief} from './marketing.js';
 import {campaignById} from '../shared/campaigns.js';
+import {publicMeasurement} from './analytics.js';
 import {publishedGuideFetcher} from './guide-evidence.js';
 import {captureWelcomeReview,prepareWelcomeReview,currentWelcomeTarget,validateExistingReview,existingAccepted,recheckWelcomeReview,EXISTING_REVIEW_PROMPT} from './marketing-existing.js';
 
@@ -128,8 +129,9 @@ export async function captureMarketingContext(env,id,fetcher=publishedGuideFetch
  const slot=editorialSlot(queue,now,Math.min(...sources.map(s=>Date.parse(s.expires_at)),now+7*DAY));
  let existing_review=null,existing_review_unavailable=null;
  try{existing_review=await captureWelcomeReview(env,slot,fetcher,now);}catch{existing_review_unavailable='The welcome source or registered artwork could not be verified. No welcome review was started.';}
- const metrics=(await env.DB.prepare("SELECT event,dimension,SUM(count) count FROM analytics_daily WHERE day>=? AND day<? AND event IN ('campaign_page_view','campaign_account_created','campaign_application_generated') GROUP BY event,dimension LIMIT 40").bind(iso(now-7*DAY).slice(0,10),iso(now).slice(0,10)).all()).results.filter(r=>campaignById(r.dimension));
- const context={observed_at:iso(now),sources,candidates,unavailable,slot,existing_review,existing_review_unavailable,queue:queue.map(({text,...q})=>({...q,text:text.slice(0,400)})),metrics,measurement_limit:'Counts are not unique people or causal evidence. The first three fb-evidence page opens on 7 October were operator checks. External social reach is not connected.'};
+ const measurement=await publicMeasurement(env,now,7);
+ const metrics=(await env.DB.prepare("SELECT event,dimension,SUM(count) count FROM analytics_public_daily WHERE day>=? AND day<? AND event IN ('campaign_page_view','campaign_account_created','campaign_document_prepared') GROUP BY event,dimension LIMIT 40").bind(measurement.from,measurement.to).all()).results.filter(r=>campaignById(r.dimension));
+ const context={observed_at:iso(now),sources,candidates,unavailable,slot,existing_review,existing_review_unavailable,queue:queue.map(({text,...q})=>({...q,text:text.slice(0,400)})),metrics,measurement,measurement_limit:measurement.limitation+' Only complete UTC days after the new collection boundary are included. Earlier mixed counts are excluded. Empty data is not proof of a failed campaign. External social reach is not connected.'};
  await env.DB.prepare("UPDATE marketing_agent_runs SET state='running',context=?,brief_id=? WHERE id=? AND state='queued'").bind(JSON.stringify(context),existing_review?.id||null,id).run();
  return context;
 }

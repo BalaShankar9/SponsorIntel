@@ -29,7 +29,7 @@ import { feedbackAPI } from "./feedback.js";
 import { adminAPI } from "./admin.js";
 import { advisersAPI, checkAdviserDataset } from "./advisers.js";
 import { chatAPI } from "./chat.js";
-import { analyticsAPI, recordResponseMetrics, responseMetric } from "./analytics.js";
+import { analyticsAPI, recordResponseMetrics, responseMetric, PREPARATION_HEADER, GUIDANCE_HEADER } from "./analytics.js";
 import { studyAPI, refreshStudents } from "./study.js";
 const FEATURED = [
   "Google (UK) Limited",
@@ -381,13 +381,17 @@ export default {
         url.pathname,
         request.method,
         response.status,
+        response.headers.get(PREPARATION_HEADER),
+        response.headers.get(GUIDANCE_HEADER),
       );
       if (metric)
         ctx.waitUntil(
-          recordResponseMetrics(env, request, response.status).catch(() =>
+          recordResponseMetrics(env, request, response).catch(() =>
             console.error("Aggregate metric unavailable"),
           ),
         );
+      response.headers.delete(PREPARATION_HEADER);
+      response.headers.delete(GUIDANCE_HEADER);
       return response;
     } catch (error) {
       console.error(
@@ -429,6 +433,9 @@ export default {
         .run();
       await env.DB.batch([
         env.DB.prepare("DELETE FROM analytics_daily WHERE day<?").bind(
+          new Date(Date.now() - 90 * 86400000).toISOString().slice(0, 10),
+        ),
+        env.DB.prepare("DELETE FROM analytics_public_daily WHERE day<?").bind(
           new Date(Date.now() - 90 * 86400000).toISOString().slice(0, 10),
         ),
         env.DB.prepare("DELETE FROM source_runs WHERE checked_at<?").bind(

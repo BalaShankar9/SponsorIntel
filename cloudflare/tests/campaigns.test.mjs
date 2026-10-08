@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {database} from './research-db.mjs';
 import {campaigns,campaignById,campaignFromSearch,campaignLink,createCampaignContext} from '../shared/campaigns.js';
-import {analyticsAPI,recordResponseMetrics,campaignSummary} from '../worker/analytics.js';
+import {analyticsAPI,recordResponseMetrics,campaignSummary,preparationReply} from '../worker/analytics.js';
 import {pageResponse} from '../worker/pages.js';
 import {adminAPI} from '../worker/admin.js';
 const origin='https://sponsorintel.london';
@@ -34,7 +34,7 @@ test('campaign page events keep general totals separate and never persist raw pr
   let response=await analyticsAPI(request('/api/metrics',{page:'/jobs?q=PRIVATE_CV',campaign:'fb-evidence',email:'private@example.com'}),env);
   assert.equal(response.status,200);
   response=await analyticsAPI(request('/api/metrics',{page:'/jobs',campaign:'private@example.com'}),env);assert.equal(response.status,200);
-  const rows=env.sql.prepare('SELECT * FROM analytics_daily').all();
+  const rows=env.sql.prepare('SELECT * FROM analytics_public_daily').all();
   assert.equal(rows.find(r=>r.event==='page_view').count,2);
   assert.equal(rows.find(r=>r.event==='campaign_page_view').count,1);
   assert.doesNotMatch(JSON.stringify(rows),/PRIVATE_CV|private@example/);
@@ -46,21 +46,21 @@ test('private routes, cross-origin writes and oversized events cannot create cam
   assert.equal((await analyticsAPI(request('/api/metrics',{page:'/admin',campaign:'fb-evidence'}),env)).status,400);
   assert.equal((await analyticsAPI(request('/api/metrics',{page:'/jobs',campaign:'fb-evidence'},{Origin:'https://other.example'}),env)).status,403);
   assert.equal((await analyticsAPI(request('/api/metrics',{page:'/jobs',campaign:'x'.repeat(1000)}),env)).status,400);
-  assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM analytics_daily').get().n,0);
+  assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM analytics_public_daily').get().n,0);
 });
 test('only successful known server actions receive campaign attribution, never client-declared conversions',async t=>{
   const env=database(t),req=request('/api/career/generate',{cv:'PRIVATE_CV'},{'X-SI-Campaign':'fb-applications'});
-  await recordResponseMetrics(env,req,503);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM analytics_daily').get().n,0);
-  await recordResponseMetrics(env,req,200);
-  await recordResponseMetrics(env,request('/api/admin/boards',{}, {'X-SI-Campaign':'fb-applications'}),200);
+  await recordResponseMetrics(env,req,new Response(null,{status:503}));assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM analytics_public_daily').get().n,0);
+  await recordResponseMetrics(env,req,preparationReply({kind:'cv',text:'PRIVATE_CV'}));
+  await recordResponseMetrics(env,request('/api/admin/boards',{}, {'X-SI-Campaign':'fb-applications'}),new Response(null,{status:200}));
   await analyticsAPI(request('/api/metrics',{page:'/jobs',campaign:'fb-applications',event:'account_created'}),env);
-  const rows=env.sql.prepare('SELECT * FROM analytics_daily').all();
-  assert.equal(rows.find(r=>r.event==='application_generated').count,1);
-  assert.equal(rows.find(r=>r.event==='campaign_application_generated').count,1);
+  const rows=env.sql.prepare('SELECT * FROM analytics_public_daily').all();
+  assert.equal(rows.find(r=>r.event==='document_prepared').count,1);
+  assert.equal(rows.find(r=>r.event==='campaign_document_prepared').count,1);
   assert.equal(rows.find(r=>r.event==='campaign_account_created'),undefined);
   assert.doesNotMatch(JSON.stringify(rows),/PRIVATE_CV/);
-  await recordResponseMetrics(env,request('/api/chat',{}, {Origin:'https://other.example','X-SI-Campaign':'fb-applications'}),200);
-  assert.equal(env.sql.prepare("SELECT COUNT(*) n FROM analytics_daily WHERE event='campaign_guidance_answer'").get().n,0);
+  await recordResponseMetrics(env,request('/api/chat',{}, {Origin:'https://other.example','X-SI-Campaign':'fb-applications'}),new Response(null,{status:200}));
+  assert.equal(env.sql.prepare("SELECT COUNT(*) n FROM analytics_public_daily WHERE event='campaign_guidance_answer'").get().n,0);
 });
 test('campaign summary has an honest empty state and filters unknown historical dimensions',()=>{
   assert.equal(campaignSummary([]).first_recorded,null);

@@ -6,6 +6,8 @@ Updated 8 October 2026. Owner: Bala Bollineni. Primary site: https://sponsorinte
 
 The cloud handles repeatable production work. A daily Codex follow-up handles bounded engineering, research and growth improvements. The owner dashboard distinguishes observed receipts from configured schedules and blocked connections. This is an initial operating layer, not proof of an independently profitable, fully autonomous company.
 
+Release 2.37 gives growth work a separate aggregate baseline that excludes authenticated owners and declared QA. Older mixed counts remain historical; CV/cover-letter responses, preparation exercises and guidance response types are separate. Agents use complete UTC days after the 8 October partial starting day, so the first full day becomes available on 10 October UTC. No complete-day evidence is available at deployment. Signed-out operators and bots may remain, and no customer conversion or revenue is established. See `GROWTH_PLAN.md` and `cloudflare/RELEASE-2.37.md`; inspect the next original scheduled business and marketing receipts before calling this path unattended.
+
 | Responsibility | Runtime and cadence | What can happen automatically | Boundary / evidence |
 | --- | --- | --- | --- |
 | Employer source operations | Cloudflare SourceWorkflow, every 6 hours | Fetch approved feeds, validate and publish valid batches, hold anomalies, retry within budgets | Existing source controls and exact employer-identity evidence remain authoritative |

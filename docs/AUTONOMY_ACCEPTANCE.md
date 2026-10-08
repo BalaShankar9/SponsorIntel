@@ -2,7 +2,13 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.36 grouped campus sourcing
+## Latest: 2.37 usage measurement
+
+The new owner-filtered aggregate baseline is live from 11:57:33.807 UTC on 8 October. Authenticated owner visits and fresh sign-ins, plus declared QA requests, are excluded; older mixed totals are retained separately. CV/cover-letter results are distinct from preparation exercises, and sourced guidance replies from clarification/insufficient evidence. No private content or identity is stored in analytics. Signed-out operators, repeats and bots can remain, and counts do not prove downloads, submissions, accuracy, customers or revenue.
+
+All 380 tests, build and Worker dry-run pass. The actual Worker/auth/D1 path was tested with fictional accounts in isolated Workerd and no external calls. The live owner browser and an explicitly declared QA request added no public counts; old totals were unchanged. Business and new marketing inputs require complete UTC days after the boundary. The first full day is 9 October, available only after 00:00 UTC on 10 October. The next genuine 12:45 business run and next eligible marketing context remain acceptance gates. No AI calls, Google retry, test email or social send were forced. See `cloudflare/RELEASE-2.37.md` and `GROWTH_PLAN.md`.
+
+## 2.36 grouped campus sourcing
 
 Cardiff Metropolitan University's two explicitly reviewed UK campus feeds now publish atomically as one employer. One real owner-triggered cloud run completed at 11:27:21 UTC on 8 October: 15 feed entries, one staff/student-only exclusion, 14 published roles and two request reservations. All 14 public records match the reviewed text, source dates, closing dates and links. The collection contains 899 roles across 33 employers; 50 have offered/conditional sponsorship wording. None of the Cardiff adverts explicitly offers sponsorship. Their exact current Skilled Worker register link remains separate from vacancy and applicant eligibility.
 

@@ -28,6 +28,7 @@ function database() {
   return {
     sql,
     DB: {
+      async batch(statements) { return Promise.all(statements.map(s => s.run())); },
       prepare(query) {
         let args = [];
         return {
@@ -69,14 +70,14 @@ test("analytics drop queries, private identifiers and unknown routes; counts per
   assert.equal(metricRoute("/unknown/private-person"), null);
   assert.equal(metricRoute("/admin"), null);
   assert.equal(responseMetric("/api/chat", "POST", 503), null);
-  assert.equal(responseMetric("/api/chat", "POST", 200), "guidance_answer");
+  assert.equal(responseMetric("/api/chat", "POST", 200, null, 'answered'), "guidance_answer");
   const r = await analyticsAPI(
     req("/api/metrics", { page: "/jobs?q=private name" }),
     env,
   );
   assert.equal(r.status, 200);
   await recordMetric(env, "page_view", "/jobs");
-  const row = env.sql.prepare("SELECT * FROM analytics_daily").get();
+  const row = env.sql.prepare("SELECT * FROM analytics_public_daily").get();
   assert.equal(row.count, 2);
   assert.equal(row.dimension, "/jobs");
   assert.equal(JSON.stringify(row).includes("private"), false);

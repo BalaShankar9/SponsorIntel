@@ -19,6 +19,7 @@ import {
 import { reviewDraft } from "./career-review.js";
 import { validateWorkspace } from "./career-validation.js";
 import { companyBrief } from "./company-brief.js";
+import { preparationReply } from './analytics.js';
 import { configureSearchMonitor, searchInbox, markSearchMatchesRead } from './search-notifications.js';
 export { validateWorkspace } from "./career-validation.js";
 
@@ -137,7 +138,7 @@ export async function careerAPI(request, env) {
         400,
       );
     if (body.kind === "analysis")
-      return reply({
+      return preparationReply({
         text: buildEvidenceReview(workspace.profile, workspace.applications[0]),
         kind: "analysis",
         generatedAt: new Date().toISOString(),
@@ -153,7 +154,7 @@ export async function careerAPI(request, env) {
         ))
       )
         return reply({ error: "Please try again later." }, 429);
-      return reply({
+      return preparationReply({
         text: await companyBrief(workspace.applications[0], env),
         kind: body.kind,
         generatedAt: new Date().toISOString(),
@@ -207,7 +208,7 @@ export async function careerAPI(request, env) {
         value =
           "LEARNING PLAN — SUGGESTED PRACTICE ONLY\nThis plan does not replace required qualifications, professional registration or supervised training. Use fictional examples for practice. Confirm official entry requirements before pursuing a regulated role.\n\n" +
           value;
-      return reply({
+      return preparationReply({
         evidenceReviewed: ["cv", "coverLetter"].includes(body.kind),
         text: value,
         warnings: draftWarnings(value, workspace.profile.cv, body.kind),

@@ -56,7 +56,7 @@ test('housekeeping retires only stale records, preserves customer data and does 
 test('snapshot is aggregate-only, excludes current partial day and checks initial jobs content among five fixed requests',async t=>{
  const env=database(t);addJob(env,'a');
  env.sql.prepare('INSERT INTO career_workspaces(user_id,data,updated_at) VALUES(?,?,?)').run('secret-id','PRIVATE CV',stamp);
- env.sql.prepare('INSERT INTO analytics_daily VALUES(?,?,?,?)').run(stamp.slice(0,10),'page_view','/jobs',5);
+ env.sql.prepare('INSERT INTO analytics_public_daily VALUES(?,?,?,?)').run(stamp.slice(0,10),'page_view','/jobs',5);
  const calls=[];const s=await collectBusinessSnapshot(env,async(url,opts)=>{calls.push({url,opts});return new Response(null,{status:url.endsWith('/session')?403:200,headers:{'x-content-type-options':'nosniff','content-security-policy':"frame-ancestors 'none'"}});},now);
  assert.equal(s.jobs.total,1);assert.equal(s.metrics.length,0);assert.equal(calls.length,5);assert.ok(calls.every(x=>x.url.startsWith('https://sponsorintel.london/')&&x.opts.method===(x.url.endsWith('/jobs')?'GET':'HEAD')&&x.opts.redirect==='manual'&&x.opts.signal));
  assert.equal(s.checks.find(x=>x.path==='/jobs').content.ok,false);

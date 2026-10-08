@@ -1,5 +1,6 @@
 import { currentJobs } from './current-jobs.js';
 import { bodyJSON, limit, reply, sameOrigin } from './auth.js';
+import { publicMeasurement } from './analytics.js';
 import { JOB_FRESHNESS_MS, JOB_ORIGIN } from '../shared/job-detail.js';
 import { startInvestigation } from './agent-research.js';
 import { referenceProgress } from './research-reference.js';
@@ -65,6 +66,7 @@ export async function dispatchBusiness(env, time = Date.now(), trigger = 'owner'
 
 export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.now()) {
   const current = currentJobs(now), perSource = currentJobs(now, "j");
+  const measurement = await publicMeasurement(env, now);
   const rows = await env.DB.batch([
     env.DB.prepare(`SELECT COUNT(*) total,COUNT(DISTINCT board_id) employers,
       COALESCE(SUM(sponsorship='offered'),0) offered,COALESCE(SUM(sponsorship='conditional'),0) conditional,
@@ -76,10 +78,10 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
       FROM job_sources s LEFT JOIN agent_source_controls c ON c.source_id=s.id ORDER BY s.company LIMIT 60`).bind(...perSource.values),
     env.DB.prepare('SELECT id,title,kind,content_hash,content,checked_at,last_success,error,withdrawn FROM immigration_sources ORDER BY id LIMIT 100'),
     env.DB.prepare("SELECT value FROM metadata WHERE key='register'"),
-    env.DB.prepare('SELECT day,event,SUM(count) count FROM analytics_daily WHERE day>=? AND day<? GROUP BY day,event ORDER BY day,event').bind(iso(now-14*86400000).slice(0,10),iso(now).slice(0,10)),
+    env.DB.prepare('SELECT day,event,SUM(count) count FROM analytics_public_daily WHERE day>=? AND day<? GROUP BY day,event ORDER BY day,event').bind(measurement.from, measurement.to),
     env.DB.prepare("SELECT COUNT(*) total FROM agent_reviews WHERE state='open'"),
     supportSummaryStatement(env.DB,now),
-    env.DB.prepare('SELECT MIN(day) started FROM analytics_daily'),
+    env.DB.prepare('SELECT MIN(day) started FROM analytics_public_daily'),
   ]);
   const checks = [];
   // Fixed first-party targets only: no URLs from models, adverts or feedback.
@@ -97,7 +99,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
   const reference=await referenceProgress(env);
   return { measured_at:iso(now), jobs:rows[0].results[0], sources:rows[1].results,
     immigration:rows[2].results.map(({content,...source})=>({...source,explanation_status:summaryState({...source,content},EXPLAINERS[source.id],now).status})), register:register ? JSON.parse(register.value) : null,
-    metrics:rows[4].results, held_batches:rows[5].results[0].total,
+    metrics:rows[4].results, measurement, held_batches:rows[5].results[0].total,
     feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}), application_evaluation:await applicationEvaluationHealth(env),
     search_notifications:await searchNotificationHealth(env),email_delivery:await emailDeliveryHealth(env,now),social_delivery:await socialDeliveryHealth(env,now),
     reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
@@ -135,7 +137,8 @@ export function businessFindings(snapshot, now = Date.now()) {
   add('social-publisher-bridge','distribution','normal','Complete the cloud publishing connection','Provider scheduling and delivery reconciliation use the connected Codex routine and native social schedulers. This cloud workflow does not directly send or verify social posts.','Preserve existing queues and exact-account receipts. A supported cloud publishing adapter is still required; do not infer a connection from a recorded schedule or purchase a plan without approval.');
   add('premium-validation','business','normal','Validate a premium offer with users','Payments, paid subscriptions and revenue measurement are not implemented.','Prioritise trustworthy job alerts, saved research and stronger application review. Validate willingness to pay before setting a price or opening checkout.');
   const totals = snapshot.metrics.reduce((a,x)=>(a[x.event]=(a[x.event]||0)+x.count,a),{});
-  if (!(totals.application_generated>0)) add('activation','growth','normal','Improve the first useful application journey','No successful application generation was recorded in the available completed days of this 14-day window.','Verify the job-to-studio-to-export journey; improve the step where users get stuck. Event counts are not unique people.');
+  if (!snapshot.measurement?.completed_days) add('growth-baseline','growth','normal','Wait for a complete day of the new baseline','There is no complete UTC day of the owner-filtered baseline yet. Older mixed counts cannot establish customer growth.','Preserve the dated measurement boundary. Check collection and real user feedback before drawing conclusions from zeros.');
+  else if (!(totals.document_prepared>0)) add('activation','growth','normal','Improve the first useful application journey',`No CV or cover-letter response was recorded in ${snapshot.measurement.completed_days} completed UTC days of the owner-filtered baseline.`,'Verify the job-to-studio-to-export journey and use willing users’ feedback to find friction. These events do not establish saved files, submitted applications or outcomes.');
   return [...issues,...supervisionFindings(snapshot.supervision)];
 }
 

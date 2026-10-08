@@ -1,3 +1,4 @@
+import { guidanceReply } from './analytics.js';
 import { bodyJSON, reply, sameOrigin, limit } from "./auth.js";
 import { boundedText } from "./data.js";
 import { plainText } from "./jobs.js";
@@ -339,7 +340,7 @@ export async function chatAPI(request, env) {
       result.response ?? result.choices?.[0]?.message?.content,
       retrieved.sources,
     );
-    return reply({
+    return guidanceReply({
       ...answer,
       sources: retrieved.sources.map(({ text, ...s }) => s),
       checked_at: new Date().toISOString(),

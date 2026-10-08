@@ -182,20 +182,22 @@ export function OwnerDashboard({ go }: { go: Go }) {
           <AgentOperations />
           <CampaignAnalytics data={data.campaigns} />
           <p className="fine-print">
-            Checked {date(data.measured_at)} · Daily totals use UTC; timestamps
-            use your local time. Earliest retained page activity:{" "}
+            Checked {date(data.measured_at)} · New measurement baseline enabled {date(data.measurement?.enabled_at)}.
+            Signed-in owners and declared test requests are excluded. Earlier dates have no comparable data; today is partial.
+            Daily totals use UTC; timestamps use your local time. Earliest retained eligible activity:{" "}
             {data.tracking_started || "none yet"} (90-day retention).
           </p>
+          <details className="career-panel"><summary>Earlier mixed activity — historical only</summary><p>These older totals for the selected period include owner testing. They have been preserved separately and are excluded from new growth decisions. They cannot be retroactively separated into customers and operators.</p><p>{data.legacy_metrics?.filter((m:any)=>!m.event.startsWith('campaign_')).map((m:any)=>`${m.event.replaceAll('_',' ')}: ${number(m.count)}`).join(' · ') || 'No earlier activity retained in this period.'}</p></details>
           <div className="platform-stats">
             {[
-              [Users, "Registered accounts", data.users.total],
+              [Users, "Non-owner accounts", data.users.members],
               [Activity, "Page views", sum("page_view")],
               [
                 BriefcaseBusiness,
-                "Application generations",
-                sum("application_generated"),
+                "CVs & cover letters prepared",
+                sum("document_prepared"),
               ],
-              [MessageSquare, "Guidance replies", sum("guidance_answer")],
+              [MessageSquare, "Sourced guidance replies", sum("guidance_answer")],
             ].map(([Icon, label, value]: any) => (
               <article key={label}>
                 <Icon size={20} />
@@ -208,9 +210,9 @@ export function OwnerDashboard({ go }: { go: Go }) {
             <section className="career-panel">
               <h2>Page activity</h2>
               <p className="fine-print">
-                Anonymous page-open events, including repeat visits and possible
-                bots. No visitor IDs, cookies, search terms or CV content. This
-                is not a unique-visitor count.
+                Aggregated page opens, including repeat visits, signed-out operators and possible bots.
+                No visitor IDs, analytics cookies, search terms or CV content are stored.
+                Prepared documents count successful responses, not saved files, submitted applications or outcomes.
               </p>
               <div
                 className="usage-bars"
@@ -218,7 +220,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
                 aria-label={`${sum("page_view")} page views in ${days} days`}
               >
                 {daily.map((d) => (
-                  <div key={d.day} title={`${d.day}: ${d.count}`}>
+                  <div key={d.day} title={data.measurement?.enabled_at && d.day < data.measurement.enabled_at.slice(0,10) ? `${d.day}: before the new baseline` : `${d.day}: ${d.count}${d.day===data.measurement?.enabled_at?.slice(0,10)?" (partial starting day)":""}`}>
                     <i
                       style={{
                         height: `${Math.max(2, (d.count / peak) * 100)}%`,
@@ -248,16 +250,24 @@ export function OwnerDashboard({ go }: { go: Go }) {
               <h2>Your community</h2>
               <div className="metric-list">
                 <p>
-                  <span>New accounts in period</span>
+                  <span>New non-owner accounts in period</span>
                   <strong>{data.users.new_users}</strong>
                 </p>
                 <p>
-                  <span>Accounts with a current session used in period</span>
+                  <span>Non-owner accounts with a current session used in period</span>
                   <strong>{data.users.active_sessions}</strong>
                 </p>
                 <p>
                   <span>Successful sign-ins</span>
                   <strong>{sum("sign_in")}</strong>
+                </p>
+                <p>
+                  <span>Evidence reviews, research & preparation plans</span>
+                  <strong>{sum("preparation_completed")}</strong>
+                </p>
+                <p>
+                  <span>Guidance clarifications or insufficient evidence</span>
+                  <strong>{sum("guidance_followup")}</strong>
                 </p>
                 <p>
                   <span>Feedback submissions</span>

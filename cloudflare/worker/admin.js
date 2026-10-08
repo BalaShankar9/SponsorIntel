@@ -5,7 +5,7 @@ import { fetchBoard } from "./jobs.js";
 import { refreshStudents } from "./study.js";
 import { agentOperationsAPI } from "./agent-api.js";
 import { businessAPI } from './business-operations.js';
-import { campaignSummary } from './analytics.js';
+import { campaignSummary, publicMeasurement } from './analytics.js';
 import { marketingAPI } from './marketing.js';
 import {marketingAgentsAPI} from './marketing-agents.js';
 import {searchAPI} from './search-console.js';
@@ -125,15 +125,15 @@ export async function adminAPI(request, env) {
     );
     const results = await env.DB.batch([
       env.DB.prepare(
-        "SELECT COUNT(*) total,COALESCE(SUM(createdAt>=?),0) new_users FROM user",
+        "SELECT COUNT(*) total,COALESCE(SUM(createdAt>=? AND id NOT IN (SELECT user_id FROM admin_members)),0) new_users,COALESCE(SUM(id NOT IN (SELECT user_id FROM admin_members)),0) members FROM user",
       ).bind(Date.parse(start)),
       env.DB.prepare(
-        "SELECT COUNT(DISTINCT userId) count FROM session WHERE expiresAt>? AND max(createdAt,updatedAt)>=?",
+        "SELECT COUNT(DISTINCT userId) count FROM session WHERE expiresAt>? AND max(createdAt,updatedAt)>=? AND userId NOT IN (SELECT user_id FROM admin_members)",
       ).bind(Date.now(), Date.parse(start)),
       env.DB.prepare(
-        "SELECT day,event,dimension,count FROM analytics_daily WHERE day>=? ORDER BY day",
+        "SELECT day,event,dimension,count FROM analytics_public_daily WHERE day>=? ORDER BY day",
       ).bind(start),
-      env.DB.prepare("SELECT MIN(day) started FROM analytics_daily"),
+      env.DB.prepare("SELECT MIN(day) started FROM analytics_public_daily"),
       env.DB.prepare(
         "SELECT u.id,u.name,u.email,u.emailVerified,u.createdAt,(SELECT MAX(max(s.createdAt,s.updatedAt)) FROM session s WHERE s.userId=u.id) last_session,w.updated_at workspace_updated FROM user u LEFT JOIN career_workspaces w ON w.user_id=u.id ORDER BY u.createdAt DESC LIMIT 25 OFFSET ?",
       ).bind((userPage - 1) * 25),
@@ -155,6 +155,7 @@ export async function adminAPI(request, env) {
       env.DB.prepare(
         `SELECT COUNT(*) total,COALESCE(SUM(sponsorship IN ('offered','conditional')),0) sponsorship FROM jobs WHERE ${current.sql}`,
       ).bind(...current.values),
+      env.DB.prepare('SELECT event,SUM(count) count FROM analytics_daily WHERE day>=? GROUP BY event ORDER BY event').bind(start),
     ]);
     const rows = results.map((r) => r.results || []);
     return reply({
@@ -168,6 +169,8 @@ export async function adminAPI(request, env) {
         items: rows[4],
       },
       metrics: rows[2],
+      measurement: await publicMeasurement(env),
+      legacy_metrics: rows[11],
       campaigns: campaignSummary(rows[2]),
       tracking_started: rows[3][0]?.started || null,
       job_sources: rows[5],
