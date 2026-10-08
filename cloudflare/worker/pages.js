@@ -104,6 +104,15 @@ export async function pageResponse(request, env) {
   let assetPath;
   let status = 200;
   if (insightPaths.has(url.pathname)) return insightsResponse(request,env);
+  if (url.pathname === '/jobs') {
+    try {
+      const {renderJobSearchPage} = await import('./job-search-pages.tsx');
+      return await renderJobSearchPage(request,env);
+    } catch {
+      console.error(JSON.stringify({event:'job_search_page_unavailable'}));
+      return unavailable();
+    }
+  }
   if (url.pathname === '/updates') {
     const {renderImmigrationPage,immigrationUnavailable} = await import('./immigration-pages.tsx');
     try { return await renderImmigrationPage(request,env); }

@@ -12,7 +12,7 @@ const safeURL=(value)=>{try {const u=new URL(value);return u.protocol==='https:'
 export function publicationGate(snapshot,now=Date.now()) {
   const age=now-Date.parse(snapshot.measured_at);
   if (!Number.isFinite(age)||age< -300000||age>1800000) return 'Evidence snapshot is not current.';
-  if (snapshot.checks.length!==5 || snapshot.checks.some(x=>!x.ok||!x.security)) return 'Site health checks must pass before publishing.';
+  if (snapshot.checks.length!==5 || snapshot.checks.some(x=>!x.ok||!x.security||x.content?.ok===false)) return 'Site health checks must pass before publishing.';
   const jobs=snapshot.jobs;
   if (['total','employers','offered','conditional','unavailable','not_stated','early_career','salary'].some(k=>!Number.isSafeInteger(jobs[k])||jobs[k]<0||jobs[k]>jobs.total) || jobs.total<10) return 'Insufficient or invalid job counts.';
   if (jobs.offered+jobs.conditional+jobs.unavailable+jobs.not_stated!==jobs.total) return 'Sponsorship categories do not reconcile.';

@@ -2,6 +2,7 @@ import pages from "../shared/pages.json";
 import socialLinks from "../shared/social-links.json";
 import type { Job } from "./career-data";
 import { jobMetadata, jobStructuredData } from "../shared/job-detail.js";
+import { jobSearchPath, readJobSearch } from "../shared/job-search.js";
 export const publicPages: Record<
   string,
   { path: string; title: string; description: string; reviewed?: string }
@@ -105,8 +106,26 @@ export function structuredData(view: string) {
   };
 }
 export function updateMetadata(view: string) {
+  if (view === "jobs") {
+    const filters = readJobSearch(location.search);
+    return updateJobsMetadata(filters, filters.page);
+  }
   const page = pageMeta(view);
   applyMetadata(page, structuredData(view), !!publicPages[view]);
+}
+export function jobsPageMetadata(filters: Record<string, string | number>, page: number) {
+  const base = pageMeta("jobs");
+  return { ...base, path: jobSearchPath(filters, page),
+    title: page > 1 ? base.title.replace(" | Sponsor Intel", ` — Page ${page} | Sponsor Intel`) : base.title,
+    indexable: !["q", "location", "sponsorship", "level", "salary", "sector", "licence"].some(key => !!filters[key]) };
+}
+export function jobsPageSchema(filters: Record<string, string | number>, page: number) {
+  const meta = jobsPageMetadata(filters, page);
+  return { "@context": "https://schema.org", "@type": "CollectionPage", "@id": ORIGIN + meta.path + "#page", url: ORIGIN + meta.path, name: meta.title, description: meta.description, inLanguage: "en-GB" };
+}
+export function updateJobsMetadata(filters: Record<string, string | number>, page: number) {
+  const meta = jobsPageMetadata(filters, page);
+  applyMetadata(meta, jobsPageSchema(filters, page), meta.indexable);
 }
 export function updateJobMetadata(
   job: Job | null,

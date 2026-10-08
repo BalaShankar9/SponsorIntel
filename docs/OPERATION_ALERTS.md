@@ -24,6 +24,8 @@ To stop mail, disable the owner checkbox; pausing business operations stops auto
 
 ## Provider lifecycle monitoring — 2.30
 
+Observed on 8 October: genuine scheduled business run `business-497624` retained incoming/dead-letter backlog metrics at 08:45:45.112 UTC and completed at 08:45:51.261. Both were zero. This verifies unattended queue-health collection; zero genuine provider events means live Message-ID correlation and lifecycle processing remain unproven. The earlier test's Spam placement is unchanged, and no repeat test was sent.
+
 A dedicated Cloudflare Queues subscription receives the six documented lifecycle events for the exact `sponsorintel.london` sending domain. The consumer pins the account, zone, subscription, sender, event schema and event time range; it has no public ingestion endpoint. Only authenticated Cloudflare queue delivery can reach it. Cloudflare account principals with queue-write access remain part of the trusted control boundary.
 
 The application retains event ID, normalised provider message ID, a recipient-address hash, fixed event/bounce categories and timestamps. It discards subjects, SMTP responses, bodies, verification/reset links and plain recipient addresses from these records. Hashes are still sensitive metadata, not anonymous data. Access remains private to owner operations. Receipts are matched by both exact message identity and recipient; an unknown send outcome cannot be released by an unmatched event or by another message to the same recipient. Provider Message-ID correlation still needs a genuine production event before it is accepted as working with the service.

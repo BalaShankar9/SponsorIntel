@@ -7,6 +7,7 @@ import { currentJobs } from "./current-jobs.js";
 import { jobFilter } from "./job-filters.js";
 import { parseJobDeadline, universityClosingDate } from "./job-deadlines.js";
 import { payEvidence } from "../shared/pay-evidence.js";
+import { JOB_FRESHNESS_MS } from "../shared/job-detail.js";
 export { BOARDS } from "./job-sources.js";
 
 export function plainText(value) {
@@ -580,7 +581,7 @@ export async function jobsAPI(url, env, now = Date.now()) {
       "SELECT id,sector,sponsor_id,reviewed_at,state FROM employer_boards WHERE state='approved'",
     ).all()
   ).results;
-  const licences = await employerLicences(env.DB, extraBoards);
+  const licences = await employerLicences(env.DB, extraBoards, now);
   const licensedBoards = JSON.stringify([...licences.matches.keys()]);
   const current = currentJobs(now);
   const {sql: where, values} = jobFilter(p, extraBoards, licences.matches.keys(), now);
@@ -606,13 +607,18 @@ export async function jobsAPI(url, env, now = Date.now()) {
       COALESCE(SUM(level='early_career'),0) early_career,
       COALESCE(SUM(sponsorship IN ('offered','conditional')),0) sponsorship,
       COALESCE(SUM(board_id IN (SELECT value FROM json_each(?))),0) licensed,
-      COALESCE(SUM(salary_excerpt<>''),0) salary, MIN(closes_at) next_deadline
+      COALESCE(SUM(salary_excerpt<>''),0) salary, MIN(closes_at) next_deadline, MIN(last_seen) oldest_seen
      FROM jobs WHERE ${current.sql}`,
   )
     .bind(licensedBoards, ...current.values)
     .first();
-  const { next_deadline, ...collections } = stats;
+  const { next_deadline, oldest_seen, ...collections } = stats;
+  const boundaries = [now + 5 * 60000, Date.parse(next_deadline), Date.parse(oldest_seen) + JOB_FRESHNESS_MS];
+  if (licences.register.available) boundaries.push(Date.parse(licences.register.checked_at) + 2 * 86400000, Date.parse(licences.register.source_date) + 7 * 86400000);
+  const validUntil = Math.min(...boundaries.filter(Number.isFinite));
   return Response.json({
+    generated_at: new Date(now).toISOString(),
+    valid_until: new Date(validUntil).toISOString(),
     items: items.results.map((job) => ({ ...withSector(job, extraBoards),
       employer_licence: licences.matches.get(job.board_id) || null })),
     total: count.total,

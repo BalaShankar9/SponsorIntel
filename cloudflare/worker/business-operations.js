@@ -12,6 +12,7 @@ import {summaryState} from './immigration-content.js';
 import {EXPLAINERS} from './immigration-explainers.js';
 import {searchNotificationHealth} from './search-notifications.js';
 import {emailDeliveryHealth,emailDeliveryFindings} from './email-events.js';
+import {jobSearchPageHealth} from './job-search-health.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -83,10 +84,12 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
   // Fixed first-party targets only: no URLs from models, adverts or feedback.
   for (const [path, expected] of [['/api/health',200],['/jobs',200],['/insights',200],['/sitemap.xml',200],['/api/admin/session',403]]) {
     try {
-      const r = await fetcher(JOB_ORIGIN+path, { method:'HEAD', redirect:'manual', signal:AbortSignal.timeout(12000), headers:{'User-Agent':'SponsorIntel-Operations/1.0'} });
-      checks.push({ path, status:r.status, ok:r.status===expected,
-        security:r.headers.get('x-content-type-options')==='nosniff' && /frame-ancestors 'none'/.test(r.headers.get('content-security-policy')||'') });
-      if (r.body) await r.body.cancel();
+      const r = await fetcher(JOB_ORIGIN+path, { method:path==='/jobs'?'GET':'HEAD', redirect:'manual', signal:AbortSignal.timeout(12000), headers:{'User-Agent':'SponsorIntel-Operations/1.0'} });
+      const check = { path, status:r.status, ok:r.status===expected,
+        security:r.headers.get('x-content-type-options')==='nosniff' && /frame-ancestors 'none'/.test(r.headers.get('content-security-policy')||'') };
+      if (path==='/jobs' && r.status===200) check.content=await jobSearchPageHealth(r,Date.now());
+      else if (r.body) await r.body.cancel();
+      checks.push(check);
     } catch { checks.push({ path, status:null, ok:false, security:false }); }
   }
   const register = rows[3].results[0];
@@ -110,6 +113,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   for (const c of snapshot.checks) {
     if (!c.ok) add('http:'+c.path,'health','critical','Investigate a failing site check',c.path+' returned '+(c.status ?? 'no response')+'.','Check the live route, recent release and error logs; verify a repair before closing.');
     if (!c.security) add('headers:'+c.path,'security','high','Restore expected browser protections',c.path+' did not return both checked protection headers.','Check deployment responses and restore the content policy and content-type protection. This is not a full security audit.');
+    if (c.content?.ok===false) add('jobs-search-content','quality','high','Restore current job results in the page','The jobs page responded, but its initial content or navigation failed the public-page check.','Inspect the jobs page without scripts, its current snapshot and role links. Verify a repair before closing this finding.');
   }
   if (!currentTimestamp(snapshot.register?.checked_at, now, 36*3600000))
     add('register-freshness','quality','high','Restore sponsor register refresh','The register timestamp is missing, invalid, in the future or older than 36 hours.','Inspect the official register refresh. Keep licence evidence separate from advert wording.');

@@ -2,6 +2,12 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
+## Latest: 2.32 search access and scheduled queue health
+
+Current vacancies, native search/filter forms and ordinary pagination links now appear in initial HTML. Server/browser availability rules and short-lived snapshot expiry agree; database failures return 503 instead of stale or misleading empty results. The hourly monitor now checks initial job content as well as HTTP/header health and holds report publication on a content regression. All 345 tests and production HTML/API parity checks pass; real 390px browser width was verified. First scheduled execution of the new content check remains due; Google indexing/ranking improvement is not established. See `cloudflare/RELEASE-2.32.md`.
+
+Genuine run `business-497624` completed at 08:45:51.261 UTC with the new email queue-health fields and both backlogs zero, closing 2.30's first scheduled-collection gate. There are still zero real lifecycle events, and the earlier one test reached Spam. Message correlation, reliable Inbox placement and genuine incident/recovery remain open. No additional email, model call, Google retry or social schedule was sent to force acceptance.
+
 ## Current delivery order
 
 | Priority | Capability | Acceptance required before claiming it works unattended |
