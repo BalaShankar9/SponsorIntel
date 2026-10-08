@@ -7,6 +7,7 @@ import { businessAPI } from './business-operations.js';
 import { campaignSummary } from './analytics.js';
 import { marketingAPI } from './marketing.js';
 import {marketingAgentsAPI} from './marketing-agents.js';
+import {searchAPI} from './search-console.js';
 export async function ownerFor(request, env) {
   const session = await sessionFor(request, env);
   if (!session?.user) return null;
@@ -81,6 +82,8 @@ export async function adminAPI(request, env) {
   if (!owner) return reply({ error: "The owner account is required." }, 403);
   const url = new URL(request.url),
     path = url.pathname;
+  if (path === '/api/admin/search' || path.startsWith('/api/admin/search/'))
+    return searchAPI(request, env, owner);
   if (path === '/api/admin/business' || path.startsWith('/api/admin/business/'))
     return businessAPI(request, env, owner);
   if (path === '/api/admin/marketing/agents' || path.startsWith('/api/admin/marketing/agents/'))

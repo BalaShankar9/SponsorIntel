@@ -12,7 +12,7 @@ Updated 8 October 2026. The owner's objective is end-to-end autonomous operation
 | 4 | Social delivery and correction | Verify the next due post at the exact company destination, record provider identity and live URL, reconcile uncertain delivery before another send; then implement a credentialed supported cloud adapter |
 | 5 | Opportunity sourcing and promotion | Refresh approved employer sources, verify employer identity and advert-level sponsorship evidence, recheck closures; promotion uses only current evidence and never implies a licence guarantees an offer |
 | 6 | Product and support quality | Complete 20 CV/advert evaluation cases and the real user journey; triage feedback, reproduce bugs and verify fixes without exposing private CVs or customer messages |
-| 7 | Search and growth decisions | Connect read-only Search Console; establish useful-application and search baselines; run one recorded experiment at a time and retain small-sample/attribution limitations |
+| 7 | Search and growth decisions | 2.18 implements the bounded daily reader and private search desk; authorize its dedicated Restricted Google identity, verify genuine scheduled reads, establish useful-application/search baselines, then run one recorded experiment at a time with attribution limits |
 | 8 | Security and external alerting | Independent uptime observation, actionable alerts, dependency remediation, access/backup/restore checks; HEAD checks do not constitute a security audit |
 | 9 | Premium business | Validate an offer with willing users, define pricing/support/refund terms and approvals, then build payments and verify successful and failed financial events |
 

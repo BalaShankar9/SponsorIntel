@@ -12,6 +12,7 @@ import {
 import { useCareer } from "./career-data";
 import { AgentOperations } from './agent-operations';
 import { BusinessOperations } from './business-operations';
+import { SearchPerformance } from './search-performance';
 import "./platform.css";
 import { trackPage } from './metrics';
 import { CampaignAnalytics } from './campaign-analytics';
@@ -247,6 +248,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
       {data && (
         <>
           <BusinessOperations />
+          <SearchPerformance />
           <MarketingDesk />
           <AgentOperations />
           <CampaignAnalytics data={data.campaigns} />

@@ -3,6 +3,7 @@ import { JOB_FRESHNESS_MS, JOB_ORIGIN } from '../shared/job-detail.js';
 import { startInvestigation } from './agent-research.js';
 import { publishInsight } from './insights.js';
 import { supervisionFindings } from './agent-supervision.js';
+import {searchSnapshot,searchFindings} from './search-console.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -83,7 +84,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
   return { measured_at:iso(now), jobs:rows[0].results[0], sources:rows[1].results,
     immigration:rows[2].results, register:register ? JSON.parse(register.value) : null,
     metrics:rows[4].results, held_batches:rows[5].results[0].total,
-    feedback_count:rows[6].results[0].total, tracking_started:rows[7].results[0].started, checks };
+    feedback_count:rows[6].results[0].total, tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}) };
 }
 
 export function businessFindings(snapshot, now = Date.now()) {
@@ -101,7 +102,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   if (delayed.length || !snapshot.immigration.length) add('immigration-freshness','quality','high','Check immigration source monitoring',snapshot.immigration.length ? delayed.length+' selected sources have failed, are overdue, or have missing, invalid or future check timestamps.' : 'No immigration source checks are available.','Inspect official-source refresh errors; do not publish new legal interpretations while source checks are missing.');
   if (snapshot.held_batches) add('held-batches','quality','high','Review held source batches',snapshot.held_batches+' source review records remain open.','Inspect the existing evidence queue before releasing held data.');
   if (snapshot.feedback_count) add('feedback','product','normal','Review recent user feedback',snapshot.feedback_count+' feedback submissions were received in the last seven days.','Read the owner feedback queue, reproduce bugs and fix the highest impact issue. Do not expose messages in public reports.');
-  add('search-console','growth','normal','Connect search performance to the growth review','Search Console metrics are not connected to this cloud workflow.','Verify the property and connect read-only query, click and indexing reports. No ranking improvement is measured yet.');
+  issues.push(...searchFindings(snapshot.search));
   add('social-connection','distribution','normal','Connect company and personal social destinations','Social posts are prepared; no publishing account is connected to this workflow.','Connect Metricool or an approved publishing API and verify the exact company and personal accounts before scheduling posts.');
   add('premium-validation','business','normal','Validate a premium offer with users','Payments, paid subscriptions and revenue measurement are not implemented.','Prioritise trustworthy job alerts, saved research and stronger application review. Validate willingness to pay before setting a price or opening checkout.');
   const totals = snapshot.metrics.reduce((a,x)=>(a[x.event]=(a[x.event]||0)+x.count,a),{});
@@ -185,7 +186,7 @@ export async function businessSnapshot(env) {
     heartbeat:!latest?'not_started':Date.now()-Date.parse(latest.created_at)>2*3600000?'overdue':latest.state,
     runs:results[0].results.map(x=>({...x,snapshot:x.snapshot?JSON.parse(x.snapshot):null,result:x.result?JSON.parse(x.result):null})),
     issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,
-    connections:{social:false,search_console:false,payments:false},
+    connections:{social:false,search_console:(await searchSnapshot(env,Date.now(),{compact:true})).connected,payments:false},
     limits:{hourly_runs:1,external_health_requests:5,research_runs_daily:1,publication_interval_days:7,customer_data_access:false}};
 }
 

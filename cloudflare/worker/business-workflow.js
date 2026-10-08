@@ -3,6 +3,7 @@ import { controls,captureBusiness,recordBusinessFindings,housekeeping,publishIns
 import {syncMarketing} from './marketing.js';
 import {dispatchMarketingAgents} from './marketing-agents.js';
 import {superviseAgents} from './agent-supervision.js';
+import {syncSearchConsole} from './search-console.js';
 
 export class BusinessWorkflow extends WorkflowEntrypoint {
   async run(event,step) {
@@ -14,6 +15,7 @@ export class BusinessWorkflow extends WorkflowEntrypoint {
         return {state:'paused'};
       });
       const supervision=await step.do('supervise-interrupted-agents',{retries:{limit:1,delay:'10 seconds'},timeout:'1 minute'},()=>superviseAgents(this.env,id));
+      const search=await step.do('read-daily-google-search',{retries:{limit:0,delay:'1 second'},timeout:'3 minutes'},()=>syncSearchConsole(this.env));
       const snapshot=await step.do('check-site-and-sources',{retries:{limit:1,delay:'30 seconds'},timeout:'2 minutes'},()=>captureBusiness(this.env,id,supervision));
       const health=await step.do('update-issues',()=>recordBusinessFindings(this.env,id,snapshot));
       const cleanup=await step.do('retire-stale-records',()=>housekeeping(this.env,id));
@@ -21,7 +23,7 @@ export class BusinessWorkflow extends WorkflowEntrypoint {
       const marketing=await step.do('reconcile-marketing-records',async()=> (await controls(this.env))?.enabled ? syncMarketing(this.env) : {state:'paused'});
       const editorial=await step.do('dispatch-daily-marketing-agents',()=>dispatchMarketingAgents(this.env));
       const research=await step.do('dispatch-daily-research',{retries:{limit:0,delay:'1 second'},timeout:'1 minute'},()=>scheduleBusinessResearch(this.env));
-      return await step.do('record-completion',()=>finishBusiness(this.env,id,{health,supervision,cleanup,publication,marketing,editorial,research}));
+      return await step.do('record-completion',()=>finishBusiness(this.env,id,{health,supervision,search,cleanup,publication,marketing,editorial,research}));
     } catch {
       return await step.do('record-failure',()=>finishBusiness(this.env,id,{error:'Operations stopped. Inspect the workflow and latest successful step before recovering.'}));
     }
