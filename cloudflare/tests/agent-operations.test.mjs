@@ -553,3 +553,13 @@ test("owner recovery is age-gated and cannot reset source request budgets", asyn
   assert.equal(restarts, 1);
   assert.equal(query(env, "SELECT requests FROM agent_runs").requests, 149);
 });
+
+
+test('university exclusion decisions are committed with publication and reused on replay',async t=>{
+ const env=database(t),b=BOARDS.find(x=>x.id==='university-nottingham');
+ await dispatchSources(env,{id:'campus-review',sourceId:b.id});await initialiseRun(env,'campus-review');
+ const jobs=await normaliseBoardJobs([{id:'PUBLIC',title:'Research Administrator',location:'Nottingham, United Kingdom',country:'GB',content:'A public university role. Internal candidates may request a secondment.',absolute_url:'https://jobs.nottingham.ac.uk/rss/click.aspx?ref=PUBLIC'}],b);
+ jobs.feed_review={policy:'university-campus-v2',received:3,accepted:1,excluded:[{ref:'STAFF',reason:'internal_only'},{ref:'OLD',reason:'closing_date_passed'}]};let calls=0;const readBoard=async()=>{calls++;return jobs;};
+ await executeSourceTask(env,'campus-review',b.id,{readBoard});await executeSourceTask(env,'campus-review',b.id,{readBoard});
+ const evidence=JSON.parse(env.sql.prepare("SELECT evidence FROM agent_tasks WHERE run_id='campus-review'").get().evidence);assert.deepEqual(evidence.feed_review,jobs.feed_review);assert.equal(calls,1);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM jobs').get().n,1);
+});

@@ -235,11 +235,32 @@ export const BOARDS = [
     id: "university-greater-manchester", company: "University of Greater Manchester", provider: "university-rss",
     sector: "education", careers: "https://jobs.greatermanchester.ac.uk/",
   },
+  {
+    id: "university-southampton", company: "University of Southampton", provider: "university-rss",
+    sector: "education", careers: "https://jobs.soton.ac.uk/",
+  },
+  {
+    id: "university-nottingham", company: "University of Nottingham", provider: "university-rss",
+    sector: "education", careers: "https://jobs.nottingham.ac.uk/",
+  },
 ];
 
 // Explicit campus feeds only: a UK university can also advertise overseas roles.
 // These URLs cannot be supplied by an intake form or a feed item.
 export const UNIVERSITY_FEEDS = {
+  "university-southampton": {
+    url: "https://jobs.soton.ac.uk/RSS/rss.aspx?cat=282&type=9",
+    location: "Highfield Campus, Southampton, United Kingdom", origin: "https://jobs.soton.ac.uk",
+    path: "/rss/click.aspx", title: "Recruitment at the University of Southampton | Highfield Campus",
+    encoding: "utf-8",
+  },
+  "university-nottingham": {
+    url: "https://jobs.nottingham.ac.uk/RSS/rss.aspx?cat=220&type=9",
+    location: "University Park, Nottingham, United Kingdom", origin: "https://jobs.nottingham.ac.uk",
+    path: "/rss/click.aspx", title: "Jobs at the University of Nottingham | University Park",
+    encoding: "utf-8", // Live bytes are UTF-8 despite the legacy ISO-8859-1 declaration.
+    holdMarkers: ["#INT", "#LI-DNI"], // Unexplained distribution markers stay out pending review.
+  },
   "university-bath": {
     url: "https://www.bath.ac.uk/jobs/rss/rss.aspx?cat=418&type=9",
     location: "Bath, United Kingdom", origin: "https://www.bath.ac.uk",

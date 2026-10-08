@@ -451,7 +451,7 @@ test("licensed-company search includes unknown and negative adverts without upgr
 
 test("licence links fail closed on stale, future, failed or malformed register checks and non-Skilled-Worker entries", async () => {
   const { sql, DB } = database(), now = Date.parse("2026-10-06T12:00:00Z");
-  const sponsorID = REVIEWED_EMPLOYER_LINKS[0].sponsor_id;
+  const sponsorID = REVIEWED_EMPLOYER_LINKS.find(b=>b.id==="monzo").sponsor_id;
   try {
     seedLicence(sql, sponsorID, now);
     assert.equal((await employerLicences(DB, [], now)).matches.size, 1);

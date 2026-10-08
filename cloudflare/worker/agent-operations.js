@@ -356,6 +356,7 @@ export async function executeSourceTask(
       licence_is_not_vacancy_sponsorship: true,
       duplicate_ids: 0,
       duplicate_links: 0,
+      ...(board.provider === "university-rss" && jobs.feed_review ? {feed_review:jobs.feed_review} : {}),
     };
     // Publication and receipt are one transaction: replay cannot repeat a committed publication.
     await storeBoardJobs(

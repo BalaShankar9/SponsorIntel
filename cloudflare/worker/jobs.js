@@ -284,7 +284,21 @@ export async function normaliseBoardJobs(raw, board) {
   return result;
 }
 
-export function parseUniversityFeed(xml, boardId, now = Date.now()) {
+export function universityRestriction(title, description, feed = {}) {
+  const text = plainText(description), heading = plainText(title);
+  // Only explicit restrictions: ordinary references to internal colleagues,
+  // secondment options or welcoming internal/external applicants are not exclusions.
+  if (/\binternal(?:[ -](?:candidates|applicants))?[ -]only\b/i.test(heading) ||
+      /\b(?:this (?:post|role|vacancy|position|opportunity)|applications?) (?:is |are |will be )?(?:restricted|limited) to (?:current|existing|internal) (?:members of staff|staff|employees|applicants|candidates)\b/i.test(text) ||
+      /\b(?:open|available) (?:only|exclusively) to (?:current|existing|internal) (?:members of staff|staff|employees|applicants|candidates)\b/i.test(text) ||
+      /\b(?:open|available) to internal (?:applicants|candidates) only\b/i.test(text))
+    return "internal_only";
+  if ((feed.holdMarkers || []).some(marker => text.split(/\s+/).includes(marker)))
+    return "unreviewed_distribution_marker";
+  return null;
+}
+
+export function universityFeedSnapshot(xml, boardId, now = Date.now()) {
   const feed = UNIVERSITY_FEEDS[boardId];
   if (!feed || /<!DOCTYPE|<!ENTITY/i.test(xml) || XMLValidator.validate(xml) !== true)
     throw new Error("Invalid university feed");
@@ -298,7 +312,7 @@ export function parseUniversityFeed(xml, boardId, now = Date.now()) {
   const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/London",
     year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(now));
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const seen = new Set(), jobs = [];
+  const seen = new Set(), jobs = [], excluded = [];
   for (const item of items) {
     if (![item.title, item.link, item.description, item.pubDate].every((s) => typeof s === "string" && s.trim()))
       throw new Error("Incomplete university vacancy");
@@ -316,7 +330,9 @@ export function parseUniversityFeed(xml, boardId, now = Date.now()) {
     if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== ymd)
       throw new Error("Invalid university closing date");
     // Date-only deadlines remain available through their stated day in UK time.
-    if (ymd < today) continue;
+    if (ymd < today) { excluded.push({ref,reason:"closing_date_passed",closing_date:ymd}); continue; }
+    const restriction = universityRestriction(item.title, description, feed);
+    if (restriction) { excluded.push({ref,reason:restriction}); continue; }
     const published = Date.parse(item.pubDate);
     if (!Number.isFinite(published) || published > now + 300000)
       throw new Error("Invalid university publication date");
@@ -325,7 +341,11 @@ export function parseUniversityFeed(xml, boardId, now = Date.now()) {
     jobs.push({ id: ref, title: item.title, location: feed.location, country: "GB",
       content: description, absolute_url: canonical.href, publishedAt: new Date(published).toISOString() });
   }
-  return jobs;
+  return {jobs,review:{policy:"university-campus-v2",url:feed.url,channel:feed.title,received:items.length,accepted:jobs.length,excluded}};
+}
+
+export function parseUniversityFeed(xml, boardId, now = Date.now()) {
+  return universityFeedSnapshot(xml,boardId,now).jobs;
 }
 
 export async function fetchBoard(board) {
@@ -335,7 +355,12 @@ export async function fetchBoard(board) {
     const response = await fetch(feed.url, { headers: { Accept: "application/rss+xml, text/xml", "User-Agent": "SponsorIntel/2.9 (+https://sponsorintel.london)" },
       signal: AbortSignal.timeout(25000), redirect: "manual" });
     const xml = await boundedText(response, 2_000_000, feed.encoding);
-    return normaliseBoardJobs(parseUniversityFeed(xml, board.id), board);
+    const snapshot = universityFeedSnapshot(xml, board.id);
+    const jobs = await normaliseBoardJobs(snapshot.jobs, board);
+    // Private, bounded source decisions travel inside the same workflow step.
+    // JSON array publication never exposes this metadata as a public vacancy.
+    jobs.feed_review = {...snapshot.review, normalised:jobs.length};
+    return jobs;
   }
   const url =
     board.provider === "greenhouse"

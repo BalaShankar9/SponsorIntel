@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { parseUniversityFeed, normaliseBoardJobs, fetchBoard, BOARDS } from '../worker/jobs.js';
+import { parseUniversityFeed, universityFeedSnapshot, universityRestriction, normaliseBoardJobs, fetchBoard, BOARDS } from '../worker/jobs.js';
 import { UNIVERSITY_FEEDS } from '../worker/job-sources.js';
 
 const id = 'university-bath', board = BOARDS.find(b => b.id === id);
@@ -85,4 +85,31 @@ test('RSS fetching uses only the configured campus URL, preserves source encodin
   globalThis.fetch=async()=>new Response('unavailable',{status:503});
   await assert.rejects(fetchBoard(board),/unavailable/);
   await assert.rejects(fetchBoard({...board,id:'attacker',url:'https://attacker.example'}),/Unreviewed/);
+});
+
+
+test('explicit staff-only vacancies are excluded without confusing secondment or external applicants',()=>{
+ for(const [title,text] of [['Administrator (Internal Only)','A role.'],['Administrator','This role is restricted to current employees.'],['Administrator','This vacancy is open only to existing staff.'],['Administrator','The role is open to internal candidates only.']])assert.equal(universityRestriction(title,text),'internal_only');
+ for(const [title,text] of [['Internal Auditor','Work with internal colleagues.'],['Administrator','Requests for secondment from internal candidates may be considered.'],['Administrator','This role is open to internal candidates and external applicants.'],['Administrator','This role is not restricted to current staff.']])assert.equal(universityRestriction(title,text),null);
+ assert.equal(universityRestriction('Researcher','#INT',UNIVERSITY_FEEDS['university-nottingham']),'unreviewed_distribution_marker');
+ assert.equal(universityRestriction('Researcher','#INT',UNIVERSITY_FEEDS[id]),null);
+});
+
+test('campus parsing retains separate exclusion reasons and never changes exclusions into sponsorship claims',()=>{
+ const nid='university-nottingham',nf=UNIVERSITY_FEEDS[nid];
+ const nitem=o=>item({...o,link:nf.origin+nf.path+'?ref='+o.ref});
+ const xml=feed(nitem({ref:'OPEN',text:'Internal candidates may request a secondment.'})+nitem({ref:'STAFF',title:'Administrator (Internal Only)'})+nitem({ref:'OLD',close:'01 Oct 2026'})+nitem({ref:'MARKER',text:'Research role. #LI-DNI'}),nf.title);
+ const snapshot=universityFeedSnapshot(xml,nid,now);assert.equal(snapshot.jobs.length,1);assert.equal(snapshot.review.received,4);assert.equal(snapshot.review.accepted,1);assert.deepEqual(snapshot.review.excluded.map(x=>x.reason),['internal_only','closing_date_passed','unreviewed_distribution_marker']);assert.equal(snapshot.jobs[0].location,'University Park, Nottingham, United Kingdom');
+ for(const title of ['Jobs at the University of Nottingham','Jobs at the University of Nottingham | Ningbo'])assert.throws(()=>universityFeedSnapshot(xml.replace(nf.title,title),nid,now),/identity/);
+ const sf=UNIVERSITY_FEEDS['university-southampton'];assert.throws(()=>parseUniversityFeed(feed(item(),sf.title),'university-southampton',now),/link/);
+});
+
+test('new campus fetches keep source bytes, stable links and private exclusion receipts',async t=>{
+ const realFetch=globalThis.fetch;t.after(()=>globalThis.fetch=realFetch);
+ for(const name of ['nottingham','southampton']){
+  const bid='university-'+name,f=UNIVERSITY_FEEDS[bid],b=BOARDS.find(x=>x.id===bid);
+  const xml=feed(item({ref:'NEW',close:'20 Oct 2099',text:'A café role – with original source details.',link:f.origin+f.path+'?ref=NEW'}),f.title).replace('<?xml version="1.0"?>','<?xml version="1.0" encoding="ISO-8859-1"?>');
+  globalThis.fetch=async(url,options)=>{assert.equal(url,f.url);assert.equal(options.redirect,'manual');return new Response(new TextEncoder().encode(xml));};
+  const jobs=await fetchBoard(b);assert.equal(jobs.length,1);assert.match(jobs[0].description,/café role –/);assert.equal(jobs[0].sponsorship,'not_stated');assert.equal(jobs.feed_review.received,1);assert.equal(jobs.feed_review.excluded.length,0);assert.doesNotMatch(JSON.stringify(jobs),/feed_review/);
+ }
 });
