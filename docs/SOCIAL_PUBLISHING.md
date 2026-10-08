@@ -1,6 +1,6 @@
 # Sponsor Intel social publishing
 
-Updated 7 October 2026. Owner authorised routine company posts and personal LinkedIn introductions. No advertising spend or subscription purchase is approved.
+Updated 8 October 2026. Owner authorised routine company posts and personal LinkedIn introductions. No advertising spend or subscription purchase is approved.
 
 ## Verified destinations
 
@@ -9,9 +9,13 @@ Updated 7 October 2026. Owner authorised routine company posts and personal Link
 | Facebook | https://www.facebook.com/profile.php?id=61595389821505 | Metricool brand 7294726, Page 1319703417896763, Europe/London; verified through UI and connector |
 | LinkedIn company | https://www.linkedin.com/company/sponsorintellondon/ | Native publishing verified; evidence report scheduled for 9 October at 10:00 BST; Metricool displays a paid-plan gate |
 | Personal LinkedIn | https://www.linkedin.com/in/bala-sankar-bollineni-b246bb189/ | Native introduction published; no Metricool connection |
-| Instagram company | https://www.instagram.com/sponsorintellondon/ | Owner-created account and saved logo verified. Professional mode and publisher connection are not verified; Metricool still lists Facebook only. |
+| Instagram company | https://www.instagram.com/sponsorintellondon/ | Business profile and direct Instagram connection to Metricool brand 7294726 verified through UI and connector on 8 October; username `sponsorintellondon`, Europe/London. Publishing permission granted; first delivery unverified. |
 
-The owner completed Instagram registration on 7 October. The signed-in profile displays Sponsor Intel with exact username `sponsorintellondon`, owner editing controls and zero posts. The existing logo was uploaded and visually verified. Edit Profile returned “Something went wrong” after reload and also via Settings and privacy; bio, website and professional business mode remain incomplete. Next complete these once the editor works, link only the Sponsor Intel Facebook Page where required, then inspect and confirm new publisher access. The previously mistaken personal Instagram connection remains removed. Do not convert or rename a personal account. Proof: `outputs/sponsor-intel-social-kit/instagram-profile-created.png` in the parent task folder. No Instagram post was sent and no automated Instagram publisher is claimed.
+The owner completed Instagram registration on 7 October. On 8 October the editor worked: the existing logo was retained, a public bio was saved and the account was converted to Business, with the visible category “Business and economy website”. Public contact details were skipped. Saved bio: “UK jobs & clear sponsorship evidence. / Application tools and sourced immigration updates. / Free to explore: sponsorintel.london” (slashes denote line breaks). Instagram web explicitly requires its mobile app to edit website links, so a clickable website field remains incomplete; the plain address is present in the bio.
+
+The owner explicitly approved Metricool access to this company profile/media, publishing and insights, with message and comment access off. The permission screen was checked before Allow. Metricool then displayed “Ready! You have connected your Instagram account”; after a reload it retained the exact professional account, and the connector returned `networksData.instagramData = sponsorintellondon`. This uses direct Instagram login and basic metrics. The optional Facebook-link flow was declined, and no inbox or comment permission was added. Do not widen permissions to remove a provider warning, reconnect `hellracer473`, or convert a personal profile. Proof in the parent task folder: `outputs/sponsorintel-instagram-permissions.png`, `outputs/sponsorintel-instagram-business.png`, `outputs/sponsorintel-instagram-connected.png`. The credential-free receipt is `instagram-connection-2026-10-08.json` beside this document.
+
+No Instagram post was scheduled or sent during connection setup. The Cloudflare Marketing desk destination/receipt adapter and campaign mapping still need Instagram support before its first managed launch post. Prepare an image-backed welcome using the inspected social kit, review its exact copy and media, reconcile the real provider queue, and retain the schedule and eventual live post URL separately. A basic analytics read for 8 October returned followers/posts/views/reach as zero without a provider error. This verifies read access; the newly connected, zero-post account does not yet provide meaningful performance evidence or a completeness guarantee. Connection success alone does not prove publishing delivery. Keep the existing posting allowance; do not silently multiply it for a new channel.
 
 ## Initial launch sequence
 
