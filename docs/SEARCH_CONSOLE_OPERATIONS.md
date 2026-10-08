@@ -5,7 +5,7 @@ Release 2.18 adds a private, read-only Google Search Console reader to the hourl
 ## Exact connection
 
 - Property: `https://sponsorintel.london/` (URL-prefix property observed in the owner's Google account).
-- Proposed isolated Google Cloud project: Sponsor Intel Search, ID `sponsorintel-search` (prepared, not created; global ID availability unverified).
+- Isolated Google Cloud project created by the owner and verified on 8 October: Sponsor Intel Search, ID `sponsorintel-search`, number `454294655999`. No billing account added. The service-account form is prepared; the separate persistent-access confirmation remains pending.
 - Proposed dedicated service account: `sponsorintel-search-reader`. Give it no Google Cloud project role and no impersonation/delegation authority.
 - Enable only the Search Console API needed here. Do not link billing or enable other products as part of this setup.
 - Add the service-account email as a **Restricted** user of this single Search Console property.

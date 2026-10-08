@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowLeft, ArrowUpRight, MapPin, ShieldCheck, Clock3, FileText } from "lucide-react";
 import type { Job } from "./career-data";
 import { jobAvailability, jobLabels, jobTimestamp } from "../shared/job-detail.js";
+import { payEvidence } from "../shared/pay-evidence.js";
 
 const external = { target: "_blank", rel: "noopener noreferrer" };
 export function JobDetailView({
@@ -10,6 +11,7 @@ export function JobDetailView({
   job: Job; actions?: React.ReactNode; report?: React.ReactNode; now?: number;
 }) {
   const availability = jobAvailability(job, now);
+  const pay = payEvidence(job.description);
   return (
     <article className="role-page">
       <a className="role-back" href="/jobs"><ArrowLeft size={16} /> All opportunities</a>
@@ -100,7 +102,14 @@ export function JobDetailView({
           <section className="role-panel role-facts">
             <h2>The details we can show</h2>
             <h3>Pay in the advert</h3>
-            {job.salary_excerpt ? <blockquote>“{job.salary_excerpt}”</blockquote> : <p>A clear UK pay statement was not found in the text we checked. Confirm pay with the employer.</p>}
+            {pay.quotes.length ? <>
+              {pay.multiple && <p className="role-caption"><strong>Several pay statements appear in this advert.</strong> They may describe different terms or disagree. Confirm which applies to this role.</p>}
+              {pay.quotes.map((quote, index) => <blockquote key={index}>“{quote}”</blockquote>)}
+              {pay.variablePay && <p className="role-caption">OTE means on-target earnings and can include commission. It is not a guaranteed base salary.</p>}
+              {pay.proRata && <p className="role-caption">Pro rata means pay is adjusted for the working time or contract period. Confirm the amount you would actually receive.</p>}
+              {pay.shortened && <p className="role-caption">These excerpts are shortened. Read the full advert for all pay terms.</p>}
+              <p className="role-caption">Quoted from the advert; amounts have not been reconciled or assessed against visa salary requirements.</p>
+            </> : <p>A clear UK pay statement was not found in the text we checked. Confirm pay with the employer.</p>}
             <h3>Seen on the employer’s board</h3>
             <p>{jobTimestamp(job.last_seen)}</p>
             {job.source_updated_at && <><h3>Date supplied by the source</h3><p>{jobTimestamp(job.source_updated_at)}</p><p className="role-caption">This may be a publication or edit date.</p></>}

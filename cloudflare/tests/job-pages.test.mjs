@@ -144,4 +144,15 @@ test("server-rendered role pages have readable evidence, safe metadata and corre
   const fallback = await renderJobPage(new Request("https://example.workers.dev/jobs/" + id), assets, current);
   assert.match(fallback.headers.get("x-robots-tag"), /noindex/);
   assert.equal((await renderJobPage(request, { fetch: async () => new Response("missing", { status: 404 }) }, current)).status, 503);
+  const payPage = await renderJobPage(request, assets, { ...current, salary_excerpt: "Obsolete single quote",
+    description: "£85,000 - £110,000 base salary per year\n£78,000 - £110,000 base salary per year\n£67,000 Total OTE (base salary + commission)\n£42,500 pro rata <img src=x onerror=alert(1)>" });
+  const payHTML = await payPage.text();
+  const facts = payHTML.match(/<section class="role-panel role-facts">([\s\S]*?)<\/section>/)[1];
+  assert.match(facts, /Several pay statements/);
+  assert.match(facts, /£85,000 - £110,000/);
+  assert.match(facts, /£78,000 - £110,000/);
+  assert.match(facts, /not a guaranteed base salary/);
+  assert.match(facts, /adjusted for the working time/);
+  assert.doesNotMatch(facts, /Obsolete single quote|<img src=x/);
+  assert.match(facts, /&lt;img src=x/);
 });

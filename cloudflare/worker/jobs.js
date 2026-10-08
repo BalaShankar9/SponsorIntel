@@ -3,6 +3,7 @@ import { XMLParser, XMLValidator } from "fast-xml-parser";
 
 import { BOARDS, SECTORS, UNIVERSITY_FEEDS } from "./job-sources.js";
 import { employerLicences } from "./employer-licences.js";
+import { payEvidence } from "../shared/pay-evidence.js";
 export { BOARDS } from "./job-sources.js";
 
 export function plainText(value) {
@@ -204,20 +205,8 @@ export function isTalentPool(title) {
 }
 
 export function salaryExcerpt(text) {
-  // A quote, not an estimated salary or a visa salary assessment.
-  return (
-    plainText(text)
-      .split(/\n|(?<=[.!?])\s+/)
-      .find(
-        (s) =>
-          /(?:£\s*\d[\d,.]*|\bGBP\s*\d[\d,.]*)/i.test(s) &&
-          /\b(?:salary|pay|compensation|annum|per (?:year|hour|month)|annual|base|OTE)\b/i.test(
-            s,
-          ),
-      )
-      ?.trim()
-      .slice(0, 400) || ""
-  );
+  // Backward-compatible list marker. The detail page reads every pay statement.
+  return (payEvidence(plainText(text)).quotes[0] || "").slice(0, 400);
 }
 
 export async function normaliseBoardJobs(raw, board) {
