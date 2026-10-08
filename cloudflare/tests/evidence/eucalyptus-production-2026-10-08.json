@@ -1,0 +1,70 @@
+{
+  "checked_at": "2026-10-08T06:42:31.395Z",
+  "version": "2.28.1",
+  "worker_version": "7bbdc1c9-5a15-4de7-99d9-2ccb214a1417",
+  "jobs_verified": 32,
+  "unchanged_before_after_sample": {
+    "count": 12,
+    "compared": [
+      "identity",
+      "title",
+      "sponsorship",
+      "evidence",
+      "first_seen",
+      "last_seen",
+      "description_hash"
+    ]
+  },
+  "sponsorship_all": "not_stated",
+  "licence_match": {
+    "id": "d6a811754495f7de7da70032",
+    "name": "Fill Function UK Ltd",
+    "city": "London",
+    "routes": [
+      "Skilled Worker"
+    ],
+    "ratings": [
+      "Worker (A rating)"
+    ],
+    "source_date": "2026-10-06",
+    "checked_at": "2026-10-07T07:15:14.478Z",
+    "evidence_url": "https://www.eucalyptus.health/privacy-policy",
+    "reviewed_at": "2026-10-08"
+  },
+  "job_ids": [
+    "be2af277aac715a5729bcab3",
+    "d12b9781d4309ce64676fdc9",
+    "53ce1bd7874c39909b24a943",
+    "2b7b10aa85fab87d24b12976",
+    "abd9dc06a2b6722a08213cd1",
+    "66f6b1568c939808a8cede77",
+    "bd3776ac3fd4ef16f06a18c9",
+    "460bcb123a3b546c6ed30b95",
+    "b49fc7f63b51d8c068b8fb9b",
+    "5c4d314299550a195d5c594b",
+    "8c3ec37b161bc36704d93237",
+    "7eda770dd820ffac18b97efa",
+    "87ab8fe499701a8633012495",
+    "79a7e0416f90023e9016b5d2",
+    "229068ecf669437cb060a261",
+    "5c5b6fa90981f577ac14cb21",
+    "726d8e8c2497c3941e20cbd7",
+    "8ae5f10746698a4d8a3564ad",
+    "024ac38fe9b635d1e1be2b47",
+    "a8247491dea0918d1dab6f2d",
+    "7d5d370fb267da266aa2eb04",
+    "95d90994fea8fbd2ceaebfdb",
+    "c8b98385deba110001aa5bbc",
+    "1a1025803033c52454fe25c4",
+    "2f22756637405c284ce4b4e5",
+    "4a1c2971065d190f96f1c2ef",
+    "0730b4689234ad7dc4af5815",
+    "2b61ce66ef58f57bbd1d743d",
+    "625cecb55dbdff4d5ba153bf",
+    "834093dbc1f2100b5a2c93da",
+    "8e5bf7a296eec55b008e12fa",
+    "1ce1fe280b48b789a97eb927"
+  ],
+  "initial_html_displays_evidence_and_entity_caveat": true,
+  "sample_url": "https://sponsorintel.london/jobs/be2af277aac715a5729bcab3"
+}

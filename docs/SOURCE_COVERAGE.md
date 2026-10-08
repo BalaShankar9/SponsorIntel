@@ -25,6 +25,14 @@ These deterministic rules are narrow and can miss new wording. They are not a cl
 
 ## Further coverage
 
+### Eucalyptus identity review, 8 October
+
+The [employer's own privacy notice](https://www.eucalyptus.health/privacy-policy), Annex B / United Kingdom, names **Fill Function UK Limited** for employer, consumer-services and service-provider contracts. The current imported official register (source date 6 October, checked 7 October) contains **Fill Function UK Ltd**, London, Skilled Worker, record `d6a811754495f7de7da70032`. The reviewed company link uses this evidence and the register's normal freshness checks. No link is inferred from Eucalyptus Holdco Limited or the Coventry Juniper Tech Limited name matches.
+
+This is a company/brand connection, not proof of the employing entity or sponsorship for every vacancy. The 32 current Eucalyptus adverts observed after the 06:30 run still contain no explicit sponsorship offer; their wording classifications and source timestamps are unchanged. Each applicant must confirm the employing/sponsoring entity with the employer.
+
+### Next coverage reviews
+
 - Review other explicitly UK campuses rather than treating one campus as a whole university. Count unique institutions separately from feed count.
 - The [NHSBSA integration page](https://www.nhsbsa.nhs.uk/about-nhs-jobs/nhs-jobs-integration-and-benefits) documents a self-serve XML/RSS feed and external job-board integrations. On 8 October, the [published NHS Jobs terms](https://www.jobs.nhs.uk/candidate/acceptable-use) were checked: commercial use requires prior written agreement, and the stated default extraction permission is personal/non-commercial. The employer self-serve guidance does not establish Sponsor Intel's redistribution rights. Obtain written agreement for the external job-board integration, including retention, attribution, closure handling and costs, before activation. `NHS_JOBS_ACCESS_REQUEST.md` contains an unsent request. No NHS account, authenticated feed request, subscription or outreach was created.
 - Leeds' current site was inspected but an enabled public campus feed was not established in this review. It remains unconfigured.
