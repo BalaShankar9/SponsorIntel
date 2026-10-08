@@ -8,6 +8,8 @@ import {applicationEvaluationHealth} from './application-evaluation.js';
 import { publishInsight } from './insights.js';
 import { supervisionFindings } from './agent-supervision.js';
 import {searchSnapshot,searchFindings} from './search-console.js';
+import {summaryState} from './immigration-content.js';
+import {EXPLAINERS} from './immigration-explainers.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -68,7 +70,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     env.DB.prepare(`SELECT s.id,s.company,s.careers_url,s.last_success,s.error,
       COALESCE(c.paused,0) paused,(SELECT COUNT(*) FROM jobs j WHERE j.board_id=s.id AND ${perSource.sql}) roles
       FROM job_sources s LEFT JOIN agent_source_controls c ON c.source_id=s.id ORDER BY s.company LIMIT 60`).bind(...perSource.values),
-    env.DB.prepare('SELECT id,title,checked_at,last_success,error,withdrawn FROM immigration_sources ORDER BY id LIMIT 100'),
+    env.DB.prepare('SELECT id,title,kind,content_hash,content,checked_at,last_success,error,withdrawn FROM immigration_sources ORDER BY id LIMIT 100'),
     env.DB.prepare("SELECT value FROM metadata WHERE key='register'"),
     env.DB.prepare('SELECT day,event,SUM(count) count FROM analytics_daily WHERE day>=? AND day<? GROUP BY day,event ORDER BY day,event').bind(iso(now-14*86400000).slice(0,10),iso(now).slice(0,10)),
     env.DB.prepare("SELECT COUNT(*) total FROM agent_reviews WHERE state='open'"),
@@ -88,7 +90,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
   const register = rows[3].results[0];
   const reference=await referenceProgress(env);
   return { measured_at:iso(now), jobs:rows[0].results[0], sources:rows[1].results,
-    immigration:rows[2].results, register:register ? JSON.parse(register.value) : null,
+    immigration:rows[2].results.map(({content,...source})=>({...source,explanation_status:summaryState({...source,content},EXPLAINERS[source.id],now).status})), register:register ? JSON.parse(register.value) : null,
     metrics:rows[4].results, held_batches:rows[5].results[0].total,
     feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}), application_evaluation:await applicationEvaluationHealth(env),
     reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
@@ -108,6 +110,9 @@ export function businessFindings(snapshot, now = Date.now()) {
     add('source:'+source.id,'quality','high','Check '+source.company+' feed','The source has an error, an invalid or future timestamp, or has not succeeded in 24 hours.','Inspect its original feed and the source operations queue. Do not refresh timestamps without fetching evidence.');
   const delayed = snapshot.immigration.filter(x=>x.error || !currentTimestamp(x.last_success, now, 3600000));
   if (delayed.length || !snapshot.immigration.length) add('immigration-freshness','quality','high','Check immigration source monitoring',snapshot.immigration.length ? delayed.length+' selected sources have failed, are overdue, or have missing, invalid or future check timestamps.' : 'No immigration source checks are available.','Inspect official-source refresh errors; do not publish new legal interpretations while source checks are missing.');
+  const needsExplanationReview=snapshot.immigration.filter(s=>s.kind==='guidance'&&['source_changed','evidence_unavailable','withdrawn'].includes(s.explanation_status));
+  const missingExplanations=snapshot.immigration.filter(s=>s.kind==='guidance'&&s.explanation_status==='awaiting_summary');
+  if(needsExplanationReview.length||missingExplanations.length)add('immigration-explanations','quality',needsExplanationReview.length?'high':'normal','Review immigration explanations',`${needsExplanationReview.length} explanations need source/evidence review; ${missingExplanations.length} monitored guides have no explanation. Affected sources: ${[...needsExplanationReview,...missingExplanations].map(s=>s.id).join(', ')}.`,'Open Immigration updates and compare the complete current GOV.UK text with the retained version. Review every point and quotation before a release. Do not simply replace a source hash, infer a legal effective date, or treat monitoring as legal review.');
   if (snapshot.held_batches) add('held-batches','quality','high','Review held source batches',snapshot.held_batches+' source review records remain open.','Inspect the existing evidence queue before releasing held data.');
   if(snapshot.reference?.state==='needs_attention')add('reference-evaluation-held','quality','high','Resolve the real-advert test hold','A failed, incomplete or mixed-version reference attempt needs attention.','Inspect its retained report and workflow outcome. Do not remove the attempt or reset its model-call reservations to retry.');
   if(snapshot.reference?.dangerous_false_positives||snapshot.reference?.unsupported_refusals)add('reference-label-errors','quality','high','Review unsupported reference interpretations',`${snapshot.reference.dangerous_false_positives} unsupported positives and ${snapshot.reference.unsupported_refusals} unsupported refusals were found against provisional archived-advert expectations.`,'Review original wording and disputed expectations with an independent reviewer. Public labels were not changed; do not promote model authority from this test.');

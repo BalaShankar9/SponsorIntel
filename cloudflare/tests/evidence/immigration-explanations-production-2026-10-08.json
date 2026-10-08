@@ -1,0 +1,69 @@
+{
+  "release": "2.26.0",
+  "checked_at": "2026-10-08T05:32:25.705446+00:00",
+  "worker_version": "023b0e28-630b-4827-9723-bee94c67aa60",
+  "previous_worker_version": "c646d909-a5ed-4079-a5e3-29dcec8fd261",
+  "health": {
+    "ok": true,
+    "version": "2.26.0",
+    "register": {
+      "date": "2026-10-06",
+      "count": 127934,
+      "checked_at": "2026-10-07T07:15:14.478Z"
+    }
+  },
+  "guidance_sources": 19,
+  "current_explanations": 19,
+  "points_with_official_quotes": 53,
+  "latest_source_check": "2026-10-08T05:30:38.006Z",
+  "checked_sources": 24,
+  "reviewed_wording_changes": [
+    {
+      "id": "9a4b2111-cc81-4da6-b615-7c814616bf67",
+      "source_id": "student",
+      "detected_at": "2026-10-07T23:15:36.442Z",
+      "source_updated_at": "2024-10-31T17:00:02+00:00",
+      "comparison_prepared_at": "2026-10-08"
+    },
+    {
+      "id": "9bb6349b-e7a9-442f-93aa-11749e46ce0d",
+      "source_id": "student-course",
+      "detected_at": "2026-10-07T23:15:34.932Z",
+      "source_updated_at": "2024-10-31T17:00:02+00:00",
+      "comparison_prepared_at": "2026-10-08"
+    }
+  ],
+  "historical_event_ids_and_timestamps_unchanged": true,
+  "full_source_bodies_in_api": false,
+  "ai_budget": {
+    "day": "2026-10-08",
+    "runs": 4,
+    "calls": 6
+  },
+  "latest_scheduled_business": {
+    "id": "business-497620",
+    "state": "completed",
+    "created_at": "2026-10-08T04:45:34.000Z",
+    "finished_at": "2026-10-08T04:45:39.472Z",
+    "trigger_kind": "scheduled"
+  },
+  "instagram_brief": {
+    "id": "a19f14be-af7f-45d2-9382-2026162075f3",
+    "state": "proposed",
+    "version": 1,
+    "revision": 1
+  },
+  "new_production_model_calls": 0,
+  "new_provider_schedules": 0,
+  "new_outbound_messages": 0,
+  "browser": {
+    "guidance_coverage_visible": true,
+    "student_cards": 3,
+    "reviewed_change_notes": 2,
+    "expanded_source_evidence_verified": true,
+    "unexpected_alerts": 0,
+    "screenshot": "sponsorintel-immigration-evidence-live.png"
+  },
+  "routine": "Existing daily heartbeat updated with explanation-review checks; no duplicate schedule.",
+  "limits": "New hourly explanation-finding execution not yet observed. Literal provenance is not independent legal review. Other pending platform, model-quality and business-outcome gates remain."
+}

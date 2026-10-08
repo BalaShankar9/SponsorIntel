@@ -152,9 +152,10 @@ test("explanations fail closed on changed, stale, failed and withdrawn sources",
     source = {
       kind: "guidance",
       content_hash: "old",
+      content: "The current official guide gives the conditions in full.",
       last_success: new Date(now).toISOString(),
     },
-    summary = { content_hash: "old", title: "Explanation" };
+    summary = { content_hash: "old", title: "Explanation",points:["Read the current official guide and its full conditions."],evidence:[["The current official guide gives the conditions in full."]] };
   assert.equal(summaryState(source, summary, now).summary, summary);
   assert.equal(
     summaryState({ ...source, content_hash: "new" }, summary, now).status,
@@ -165,6 +166,7 @@ test("explanations fail closed on changed, stale, failed and withdrawn sources",
     { last_success: new Date(now - 3600001).toISOString() },
     { withdrawn: 1 },
     { last_success: "invalid" },
+    { last_success: new Date(now + 300001).toISOString() },
   ])
     assert.equal(
       summaryState({ ...source, ...changed }, summary, now).summary,

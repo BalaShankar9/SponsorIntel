@@ -17,6 +17,7 @@ type Explanation = {
   status: string;
   effective_date: string | null;
   points: string[];
+  evidence?: string[][];
   action: string;
   caveat: string;
   prepared_at: string;
@@ -43,6 +44,7 @@ type Update = {
   detected_at: string;
   source_updated_at: string;
   kind: string;
+  review?: {text: string; evidence: string[]; prepared_at: string} | null;
 };
 type Feed = {
   sources: Source[];
@@ -93,7 +95,9 @@ const notices: Record<string, string> = {
   unavailable:
     "This source has not been checked successfully yet. Read the official page directly.",
   awaiting_summary:
-    "A plain-English explanation is being prepared. Read the official guidance for now.",
+    "This guide does not yet have a checked plain-English explanation. Read the official guidance for now.",
+  evidence_unavailable:
+    "The explanation’s supporting wording could not be verified. It is hidden while the evidence is reviewed; read GOV.UK for the current guidance.",
 };
 
 export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
@@ -198,6 +202,7 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
             We check selected GOV.UK guidance and rule publications every 15
             minutes. Updates appear after the official source changes.
           </p>
+          {feed && !error && <p className="updates-coverage">{sources.filter(s=>s.kind==='guidance'&&s.status==='explained').length} of {sources.filter(s=>s.kind==='guidance').length} monitored guides have a current plain-English explanation.</p>}
         </div>
         <div className="updates-health">
           <span>
@@ -308,6 +313,11 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
                           <p>{s.summary.action}</p>
                         </div>
                         <p className="explanation-caveat">{s.summary.caveat}</p>
+                        {s.summary.evidence && <details className="explanation-evidence">
+                          <summary>Read the official wording behind these points</summary>
+                          <p>Selected GOV.UK excerpts, checked against this guide. Read the full source for all conditions.</p>
+                          {s.summary.evidence.map((quotes,i)=><div key={i}><strong>Point {i+1}</strong>{quotes.map((quote,j)=><blockquote key={j}>{quote}</blockquote>)}</div>)}
+                        </details>}
                       </>
                     ) : (
                       <p className="explanation-caveat">
@@ -380,6 +390,16 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
                         ? "The source changed after our previous check. Read the official wording; this may be a policy change or an editorial update."
                         : "Read the publication and its implementation section. Different provisions may take effect on different dates."}
                     </p>
+                    {e.review && !error && <div className="change-review">
+                      <strong>Checked summary of the wording</strong>
+                      <p>{e.review.text}</p>
+                      <p>These are observed changes to the page wording. They do not establish a legal effective date or confirm your eligibility.</p>
+                      <details className="explanation-evidence">
+                        <summary>See the added official wording</summary>
+                        {e.review.evidence.map((quote,i)=><blockquote key={i}>{quote}</blockquote>)}
+                        <p>Comparison prepared {date(e.review.prepared_at)}. Read the full GOV.UK guide before acting.</p>
+                      </details>
+                    </div>}
                   </div>
                 </article>
               ))

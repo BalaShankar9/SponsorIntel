@@ -402,6 +402,14 @@
   line-height: 1.7;
   display: block;
 }
+.updates-banner .updates-coverage { font-size: 12px; margin-top: 9px; }
+.explanation-evidence { margin: 16px 0; border-top: 1px solid var(--border, #dce4da); padding-top: 12px; font-size: 12px; }
+.explanation-evidence summary { cursor: pointer; font-weight: 650; line-height: 1.6; }
+.explanation-evidence > p { font-size: 12px; line-height: 1.6; }
+.explanation-evidence blockquote { margin: 8px 0 16px; border-left: 3px solid #b9cdb1; padding: 8px 12px; background: #f4f7f0; color: #44503d; line-height: 1.75; overflow-wrap: anywhere; }
+.change-review { background: #f0f3e5; border: 1px solid #dce4da; border-radius: 12px; padding: 16px 18px; margin-top: 12px; }
+.change-review > strong { font-size: 12px; }
+.update-event > div { min-width: 0; }
 @media (max-width: 780px) {
   .updates-banner {
     flex-wrap: wrap;

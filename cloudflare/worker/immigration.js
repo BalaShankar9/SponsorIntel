@@ -5,8 +5,10 @@ import {
   contentHash,
   summaryState,
   versionKind,
+  reviewedChangeNote,
 } from "./immigration-content.js";
 import { EXPLAINERS } from "./immigration-explainers.js";
+import CHANGE_NOTES from './immigration-change-notes.json' with {type:'json'};
 
 async function readOfficial(source) {
   // Sources are fixed here or discovered from the allowlisted GOV.UK collection.
@@ -166,7 +168,7 @@ export async function immigrationAPI(env) {
   );
   const rows = (
     await env.DB.prepare(
-      "SELECT id,topic,title,url,kind,content_hash,source_updated_at,checked_at,last_success,error,withdrawn FROM immigration_sources ORDER BY CASE kind WHEN 'guidance' THEN 0 WHEN 'publication' THEN 1 ELSE 2 END,source_updated_at DESC",
+      "SELECT id,topic,title,url,kind,content_hash,content,source_updated_at,checked_at,last_success,error,withdrawn FROM immigration_sources ORDER BY CASE kind WHEN 'guidance' THEN 0 WHEN 'publication' THEN 1 ELSE 2 END,source_updated_at DESC",
     ).all()
   ).results;
   const sources = rows
@@ -174,16 +176,23 @@ export async function immigrationAPI(env) {
       (row) =>
         row.kind !== "publication" || watchedPublicationURLs.has(row.url),
     )
-    .map((row) => ({
+    .map(({ content, ...row }) => ({
       ...row,
-      ...summaryState(row, EXPLAINERS[row.id]),
+      ...summaryState({ ...row, content }, EXPLAINERS[row.id]),
     }));
   const events = (
     await env.DB.prepare(
-      `SELECT v.id,v.source_id,s.topic,s.title,s.url,v.detected_at,v.source_updated_at,v.kind
-    FROM immigration_versions v JOIN immigration_sources s ON s.id=v.source_id WHERE v.kind<>'baseline' ORDER BY v.detected_at DESC LIMIT 40`,
+      `SELECT v.id,v.source_id,s.topic,s.title,s.url,v.detected_at,v.source_updated_at,v.kind,v.content_hash,
+      (SELECT p.content_hash FROM immigration_versions p WHERE p.source_id=v.source_id
+       AND (p.detected_at<v.detected_at OR (p.detected_at=v.detected_at AND p.rowid<v.rowid))
+       ORDER BY p.detected_at DESC,p.rowid DESC LIMIT 1) AS previous_hash
+    FROM immigration_versions v JOIN immigration_sources s ON s.id=v.source_id WHERE v.kind<>'baseline' ORDER BY v.detected_at DESC,v.rowid DESC LIMIT 40`,
     ).all()
-  ).results;
+  ).results.map(({content_hash,previous_hash,...event}) => {
+    const row = rows.find(s=>s.id===event.source_id);
+    return {...event,review:reviewedChangeNote({...event,content_hash,previous_hash},
+      {...row,status:sources.find(s=>s.id===event.source_id)?.status},CHANGE_NOTES[event.source_id])};
+  });
   return Response.json(
     {
       sources,

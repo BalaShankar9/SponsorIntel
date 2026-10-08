@@ -26,7 +26,7 @@ These deterministic rules are narrow and can miss new wording. They are not a cl
 ## Further coverage
 
 - Review other explicitly UK campuses rather than treating one campus as a whole university. Count unique institutions separately from feed count.
-- The [NHSBSA integration page](https://www.nhsbsa.nhs.uk/about-nhs-jobs/nhs-jobs-integration-and-benefits) documents a self-serve XML/RSS feed and external job-board integrations. Its employer-focused guidance is not proof that Sponsor Intel has a blanket redistribution licence. Confirm the applicable outbound-use conditions and employer scope before connecting a feed. No NHS account, authenticated API request or subscription was created, and no outreach was sent.
+- The [NHSBSA integration page](https://www.nhsbsa.nhs.uk/about-nhs-jobs/nhs-jobs-integration-and-benefits) documents a self-serve XML/RSS feed and external job-board integrations. On 8 October, the [published NHS Jobs terms](https://www.jobs.nhs.uk/candidate/acceptable-use) were checked: commercial use requires prior written agreement, and the stated default extraction permission is personal/non-commercial. The employer self-serve guidance does not establish Sponsor Intel's redistribution rights. Obtain written agreement for the external job-board integration, including retention, attribution, closure handling and costs, before activation. `NHS_JOBS_ACCESS_REQUEST.md` contains an unsent request. No NHS account, authenticated feed request, subscription or outreach was created.
 - Leeds' current site was inspected but an enabled public campus feed was not established in this review. It remains unconfigured.
 - The LinkedIn-origin supplier pilot retains its separate terms, access and UK-sample gates in LINKEDIN_AND_AGENT_OPERATIONS.md.
 

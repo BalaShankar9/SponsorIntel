@@ -238,12 +238,24 @@ export async function contentHash(content) {
   ).join("");
 }
 
+export function explanationEvidenceValid(source, summary) {
+  if (typeof source.content !== 'string' || !source.content.trim() ||
+      !Array.isArray(summary.points) || !summary.points.length || summary.points.length > 6 ||
+      !Array.isArray(summary.evidence) || summary.evidence.length !== summary.points.length) return false;
+  const normalise = value => value.replace(/\s+/g, ' ').trim();
+  const content = normalise(source.content);
+  return summary.points.every((point, index) => typeof point === 'string' && point.trim().length >= 20 && point.length <= 700 &&
+    Array.isArray(summary.evidence[index]) && summary.evidence[index].length >= 1 && summary.evidence[index].length <= 4 &&
+    summary.evidence[index].every(quote => typeof quote === 'string' && quote.trim().length >= 10 && quote.length <= 2000 && content.includes(normalise(quote))));
+}
+
 export function summaryState(source, summary, now = Date.now()) {
   if (source.withdrawn) return { status: "withdrawn", summary: null };
   if (!source.last_success) return { status: "unavailable", summary: null };
   if (
     source.error ||
     now - Date.parse(source.last_success) > 60 * 60 * 1000 ||
+    Date.parse(source.last_success) > now + 5 * 60 * 1000 ||
     !Number.isFinite(Date.parse(source.last_success))
   )
     return { status: "delayed", summary: null };
@@ -257,10 +269,25 @@ export function summaryState(source, summary, now = Date.now()) {
     };
   if (summary.content_hash !== source.content_hash)
     return { status: "source_changed", summary: null };
+  if (!explanationEvidenceValid(source, summary))
+    return { status: "evidence_unavailable", summary: null };
   return { status: "explained", summary };
 }
 
 export function versionKind(previous, contentHash, newPublication = false) {
   if (!previous?.content_hash) return newPublication ? "published" : "baseline";
   return previous.content_hash === contentHash ? null : "changed";
+}
+
+// A reviewed wording comparison belongs to this exact retained transition.
+// A matching current guide alone does not establish what changed or when law applies.
+export function reviewedChangeNote(event, source, note) {
+  if (!note || event.kind !== 'changed' || source?.status !== 'explained' ||
+      !/^[a-f0-9]{64}$/.test(note.from_hash || '') || !/^[a-f0-9]{64}$/.test(note.to_hash || '') ||
+      note.from_hash === note.to_hash || event.previous_hash !== note.from_hash ||
+      event.content_hash !== note.to_hash || source.content_hash !== note.to_hash ||
+      typeof note.text !== 'string' || note.text.length < 30 || note.text.length > 800 ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(note.prepared_at || '') ||
+      !explanationEvidenceValid(source, {points:[note.text],evidence:[note.evidence]})) return null;
+  return {text:note.text,evidence:note.evidence,prepared_at:note.prepared_at};
 }
