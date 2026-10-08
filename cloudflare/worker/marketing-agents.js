@@ -4,6 +4,7 @@ import {plainText} from './jobs.js';
 import {callResearchModel} from './research-model.js';
 import {createBrief,decideBrief} from './marketing.js';
 import {campaignById} from '../shared/campaigns.js';
+import {publishedGuideFetcher} from './guide-evidence.js';
 
 export const MARKETING_POLICY='sourced-guides-v1';
 const iso=(now=Date.now())=>new Date(now).toISOString();
@@ -115,9 +116,9 @@ export function editorialSlot(receipts,now,expires){
  return null;
 }
 async function editorialQueue(env){
- return (await env.DB.prepare("SELECT b.id,b.topic_key,b.state,b.updated_at,v.text,(SELECT scheduled_at FROM marketing_receipts WHERE brief_id=b.id AND scheduled_at IS NOT NULL ORDER BY rowid DESC LIMIT 1) scheduled_at,(SELECT observed_at FROM marketing_receipts WHERE brief_id=b.id ORDER BY rowid DESC LIMIT 1) observed_at FROM marketing_briefs b JOIN marketing_versions v ON v.brief_id=b.id AND v.version=b.version WHERE b.destination='facebook-company' ORDER BY b.updated_at DESC LIMIT 100").all()).results;
+ return (await env.DB.prepare("SELECT b.id,b.topic_key,b.state,b.updated_at,v.text,(SELECT scheduled_at FROM marketing_receipts WHERE brief_id=b.id AND scheduled_at IS NOT NULL ORDER BY rowid DESC LIMIT 1) scheduled_at,(SELECT observed_at FROM marketing_receipts WHERE brief_id=b.id ORDER BY rowid DESC LIMIT 1) observed_at FROM marketing_briefs b JOIN marketing_versions v ON v.brief_id=b.id AND v.version=b.version WHERE b.destination IN ('facebook-company','instagram-company') ORDER BY b.updated_at DESC LIMIT 100").all()).results;
 }
-export async function captureMarketingContext(env,id,fetcher=fetch,now=Date.now()){
+export async function captureMarketingContext(env,id,fetcher=publishedGuideFetcher(env),now=Date.now()){
  const row=await runRow(env,id);if(row.context)return JSON.parse(row.context);
  if(!await enabled(env))throw Error('Marketing agents paused.');
  const queue=await editorialQueue(env),sources=[],unavailable=[];
@@ -179,7 +180,7 @@ export async function storeMarketingDraft(env,id,plan,copy,revision=false,now=Da
  }
  await decideBrief(env,{id:run.brief_id,revision:1,kind:'revise',content,note:'One bounded revision after independent paragraph review.',request_key:id+':revision'},actor,now);return run.brief_id;
 }
-export async function concludeMarketing(env,id,plan,copy,review,fetcher=fetch,now=Date.now()){
+export async function concludeMarketing(env,id,plan,copy,review,fetcher=publishedGuideFetcher(env),now=Date.now()){
  const run=await runRow(env,id);if(!['running','queued'].includes(run.state))return {state:run.state};
  const context=JSON.parse(run.context),source=context.candidates.find(s=>s.id===plan.source_id);
  const saved=await env.DB.prepare('SELECT e.kind,e.detail,e.id,b.last_event FROM marketing_events e JOIN marketing_briefs b ON b.id=e.brief_id WHERE e.request_key=?').bind(id+':final').first();

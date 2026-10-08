@@ -1,10 +1,12 @@
 import pages from "../shared/pages.json" with { type: "json" };
+import marketingMedia from "../shared/marketing-media.json" with { type: "json" };
 import { getJobDetail } from "./jobs.js";
 import { currentJobs } from "./current-jobs.js";
 import { JOB_ORIGIN, jobPath } from "../shared/job-detail.js";
 import { insightsResponse, INSIGHT_SLUG } from './insights.js';
 const roleID = (path) => path.match(/^\/jobs\/([a-f0-9]{24})$/)?.[1];
 const publicPaths = new Set(Object.values(pages).map((p) => p.path));
+const marketingAssetPaths = new Set(marketingMedia.map(m=>new URL(m.url).pathname));
 const privatePaths = new Set([
   "/account",
   "/signin",
@@ -133,7 +135,7 @@ export async function pageResponse(request, env) {
       url.pathname === "/" ? "/index.html" : url.pathname + "/index.html";
   else if (privatePaths.has(url.pathname)) assetPath = "/app.html";
   else if (
-    /^\/(assets\/|fonts\/|campaigns\.js$|insights-tracking\.js$|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|open-source-notices\.txt$)/.test(
+    marketingAssetPaths.has(url.pathname) || /^\/(assets\/|fonts\/|campaigns\.js$|insights-tracking\.js$|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|open-source-notices\.txt$)/.test(
       url.pathname,
     )
   ) {

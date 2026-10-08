@@ -3,6 +3,7 @@ export const campaigns = Object.freeze([
   ['fb-welcome', 'facebook', 'social_launch', 'company_welcome', 'Facebook · Welcome'],
   ['li-welcome', 'linkedin', 'social_launch', 'company_welcome', 'LinkedIn · Welcome'],
   ['li-founder', 'linkedin', 'social_launch', 'founder_intro', 'LinkedIn · Founder introduction'],
+  ['ig-welcome', 'instagram', 'social_launch', 'company_welcome', 'Instagram · Welcome'],
   ['fb-evidence', 'facebook', 'launch_week', 'evidence_snapshot', 'Facebook · Evidence report'],
   ['li-evidence', 'linkedin', 'launch_week', 'evidence_snapshot', 'LinkedIn · Evidence report'],
   ['fb-adverts', 'facebook', 'launch_week', 'advert_wording', 'Facebook · Reading adverts'],
