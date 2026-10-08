@@ -20,6 +20,7 @@ export {ApplicationEvaluationWorkflow} from './application-evaluation-workflow.j
 import { dispatchBusiness } from './business-operations.js';
 import { scanSearchNotifications } from './search-notifications.js';
 import { scanOperationAlerts } from './operation-alerts.js';
+import {consumeEmailEvents} from './email-events.js';
 import { immigrationAPI, refreshImmigration } from "./immigration.js";
 import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
 import { careerAPI } from "./career.js";
@@ -356,6 +357,7 @@ const security = {
     "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; object-src 'none'",
 };
 export default {
+  async queue(batch,env){await consumeEmailEvents(batch,env);},
   async fetch(request, env, ctx) {
     try {
       const url = new URL(request.url);

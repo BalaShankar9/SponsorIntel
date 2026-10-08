@@ -35,18 +35,28 @@
     { "name": "sponsorintel-marketing", "binding": "MARKETING_WORKFLOW", "class_name": "MarketingWorkflow" },
     { "name": "sponsorintel-application-evaluation", "binding": "APPLICATION_EVAL_WORKFLOW", "class_name": "ApplicationEvaluationWorkflow" }
   ],
+  "queues": {
+    "producers": [
+      {"binding":"EMAIL_EVENT_QUEUE","queue":"sponsorintel-email-events"},
+      {"binding":"EMAIL_EVENT_DLQ","queue":"sponsorintel-email-events-dlq"}
+    ],
+    "consumers": [
+      {"queue":"sponsorintel-email-events","max_batch_size":10,"max_batch_timeout":5,"max_retries":3,"retry_delay":60,"max_concurrency":1,"dead_letter_queue":"sponsorintel-email-events-dlq"}
+    ]
+  },
   "observability": {
     "enabled": true,
     "head_sampling_rate": 0.1,
     "traces": { "enabled": true, "head_sampling_rate": 0.01 },
   },
   "vars": {
-    "APP_VERSION": "2.29.0",
+    "APP_VERSION": "2.30.0",
     "APP_ORIGIN": "https://sponsorintel.london",
     "AI_MODEL": "@cf/zai-org/glm-4.7-flash",
     "AI_DAILY_LIMIT": "40",
     "AI_REVIEW_MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
     "CHAT_MODEL": "@cf/zai-org/glm-4.7-flash",
     "EMAIL_VERIFICATION_ENABLED": "true",
+    "EMAIL_EVENT_SUBSCRIPTION": "a103140735cf4e85be5a3896276a00c0",
   },
 }

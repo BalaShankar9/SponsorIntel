@@ -1,3 +1,4 @@
+import {alertEmailBlock,emailRecipientKey,emailReceiptStatuses,emailDeliveryHealth,retainEmailEvents} from './email-events.js';
 import {bodyJSON,limit,reply,sameOrigin} from './auth.js';
 const iso=(n=Date.now())=>new Date(n).toISOString(),DAY=86400000;
 const error=(message,status=409)=>Object.assign(Error(message),{status});
@@ -52,6 +53,8 @@ export async function operationAlertSnapshot(env,now=Date.now()){
 
 async function deliver(env,settings,snapshot,kind,now){
  if(!mailAvailable(env))return {state:'unavailable'};
+ if(await alertEmailBlock(env,settings.destination,now))return {state:'blocked'};
+ const recipientKey=await emailRecipientKey(settings.destination);
  const id=crypto.randomUUID(),stamp=iso(now),day=stamp.slice(0,10);
  // A durable reservation precedes the side effect. Lost responses never auto-retry.
  let reserved;
@@ -61,17 +64,18 @@ async function deliver(env,settings,snapshot,kind,now){
   WHERE s.user_id=? AND s.enabled=1 AND s.revision=? AND u.emailVerified=1 AND u.email=s.destination
    AND s.last_fingerprint IS ? AND s.last_alert_at IS ?
    AND (?='test' OR (SELECT enabled FROM business_controls WHERE singleton=1)=1)
+   AND NOT EXISTS(SELECT 1 FROM email_alert_blocks WHERE recipient_key=? AND (expires_at IS NULL OR expires_at>?))
    AND NOT EXISTS(SELECT 1 FROM operation_alert_deliveries WHERE user_id=s.user_id AND state IN ('reserved','uncertain'))
    AND (SELECT COUNT(*) FROM operation_alert_deliveries WHERE user_id=s.user_id AND substr(created_at,1,10)=?)<4
    AND (SELECT COUNT(*) FROM operation_alert_deliveries WHERE substr(created_at,1,10)=?)<20
    AND (?<>'test' OR NOT EXISTS(SELECT 1 FROM operation_alert_deliveries WHERE user_id=s.user_id AND kind='test' AND substr(created_at,1,10)=?))
-  RETURNING id`).bind(id,kind,snapshot.fingerprint,snapshot.run_id,snapshot.critical,snapshot.high,stamp,settings.user_id,settings.revision,settings.last_fingerprint,settings.last_alert_at,kind,day,day,kind,day).first();}
+  RETURNING id`).bind(id,kind,snapshot.fingerprint,snapshot.run_id,snapshot.critical,snapshot.high,stamp,settings.user_id,settings.revision,settings.last_fingerprint,settings.last_alert_at,kind,recipientKey,stamp,day,day,kind,day).first();}
  catch(e){if(/UNIQUE constraint failed/i.test(String(e)))return {state:'held'};throw e;}
  if(!reserved)return {state:'held'};
  const still=await env.DB.prepare(`SELECT s.enabled FROM operation_alert_settings s JOIN user u ON u.id=s.user_id JOIN admin_members a ON a.user_id=s.user_id
   WHERE s.user_id=? AND s.revision=? AND s.enabled=1 AND u.emailVerified=1 AND u.email=s.destination
   AND (?='test' OR (SELECT enabled FROM business_controls WHERE singleton=1)=1)`).bind(settings.user_id,settings.revision,kind).first();
- if(!still){await env.DB.prepare("UPDATE operation_alert_deliveries SET state='cancelled',finished_at=? WHERE id=? AND state='reserved'").bind(iso(),id).run();return {state:'cancelled',id};}
+ if(!still||await alertEmailBlock(env,settings.destination,now)){await env.DB.prepare("UPDATE operation_alert_deliveries SET state='cancelled',finished_at=? WHERE id=? AND state='reserved'").bind(iso(),id).run();return {state:'cancelled',id};}
  let timer;
  try{
   const receipt=await Promise.race([
@@ -91,6 +95,7 @@ async function deliver(env,settings,snapshot,kind,now){
 }
 
 export async function scanOperationAlerts(env,now=Date.now()){
+ await retainEmailEvents(env,now);
  if(!(await env.DB.prepare('SELECT enabled FROM business_controls WHERE singleton=1').first())?.enabled)return {state:'paused'};
  const owners=(await env.DB.prepare('SELECT * FROM operation_alert_settings WHERE enabled=1 ORDER BY user_id LIMIT 5').all()).results;
  const snapshot=owners.length?await operationAlertSnapshot(env,now):null;
@@ -101,7 +106,7 @@ export async function scanOperationAlerts(env,now=Date.now()){
   if(snapshot.fingerprint===settings.last_fingerprint&&(!count||now-Date.parse(settings.last_alert_at)<DAY))continue;
   results.push(await deliver(env,settings,snapshot,count?'incident':'recovery',now));
  }
- const result={checked_at:iso(now),owners:owners.length,attempted:results.filter(r=>r.id).length,accepted:results.filter(r=>r.state==='accepted').length,held:results.filter(r=>['held','uncertain','unavailable'].includes(r.state)).length};
+ const result={checked_at:iso(now),owners:owners.length,attempted:results.filter(r=>r.id).length,accepted:results.filter(r=>r.state==='accepted').length,held:results.filter(r=>['held','uncertain','unavailable','blocked'].includes(r.state)).length};
  await env.DB.prepare("INSERT INTO metadata(key,value) VALUES('operation_alerts',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value").bind(JSON.stringify(result)).run();
  await env.DB.prepare("DELETE FROM operation_alert_deliveries WHERE state IN ('accepted','confirmed','cancelled') AND created_at<?").bind(iso(now-90*DAY)).run();
  return result;
@@ -109,10 +114,10 @@ export async function scanOperationAlerts(env,now=Date.now()){
 
 export async function operationAlertsStatus(env,userId){
  const user=await verifiedOwner(env,userId),settings=await env.DB.prepare('SELECT * FROM operation_alert_settings WHERE user_id=?').bind(userId).first();
- const deliveries=(await env.DB.prepare('SELECT id,kind,state,critical_count,high_count,source_run,created_at,finished_at,message_id,received_at FROM operation_alert_deliveries WHERE user_id=? ORDER BY created_at DESC LIMIT 12').bind(userId).all()).results;
+ const deliveries=(await env.DB.prepare('SELECT id,destination,kind,state,critical_count,high_count,source_run,created_at,finished_at,message_id,received_at FROM operation_alert_deliveries WHERE user_id=? ORDER BY created_at DESC LIMIT 12').bind(userId).all()).results;
  const pending=await env.DB.prepare("SELECT id FROM operation_alert_deliveries WHERE user_id=? AND state IN ('reserved','uncertain') LIMIT 1").bind(userId).first();
  const receipt=await env.DB.prepare("SELECT value FROM metadata WHERE key='operation_alerts'").first();
- return {enabled:!!settings?.enabled,revision:settings?.revision??null,destination:user?.email??null,verified:!!user,available:mailAvailable(env),address_changed:!!settings&&settings.destination!==user?.email,pending:pending?.id??null,deliveries,last_scan:receipt?JSON.parse(receipt.value):null};
+ return {enabled:!!settings?.enabled,revision:settings?.revision??null,destination:user?.email??null,verified:!!user,available:mailAvailable(env),address_changed:!!settings&&settings.destination!==user?.email,pending:pending?.id??null,block:user?await alertEmailBlock(env,user.email):null,email_health:await emailDeliveryHealth(env),deliveries:await emailReceiptStatuses(env,deliveries),last_scan:receipt?JSON.parse(receipt.value):null};
 }
 
 export async function operationAlertsAPI(request,env,owner){
