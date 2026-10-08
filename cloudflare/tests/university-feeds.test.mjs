@@ -10,13 +10,15 @@ const feed = (items, title=UNIVERSITY_FEEDS[id].title) => `<?xml version="1.0"?>
 
 test('university feeds preserve pay, negative sponsorship wording and a source publication date', async () => {
   const raw = parseUniversityFeed(feed(item()),id,now);
-  const jobs = await normaliseBoardJobs(raw,board);
+  const jobs = await normaliseBoardJobs(raw,board,now);
   assert.equal(jobs.length,1);
   assert.equal(jobs[0].location,'Bath, United Kingdom');
   assert.equal(jobs[0].salary_excerpt,'Salary: £31,000 per annum');
   assert.equal(jobs[0].sponsorship,'unavailable');
   assert.equal(jobs[0].source_updated_at,'2026-10-05T00:00:00.000Z');
   assert.equal(jobs[0].level,'early_career');
+  assert.equal(jobs[0].application_deadline,'2026-10-20');
+  assert.equal(jobs[0].closes_at,'2026-10-20T23:00:00.000Z');
   assert.equal(jobs[0].apply_url,'https://www.bath.ac.uk/jobs/rss/click.aspx?ref=TEST-1');
 });
 

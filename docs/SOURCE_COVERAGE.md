@@ -21,7 +21,7 @@ University RSS entries with explicit internal-only titles or restricted-applicat
 
 A bounded private receipt records every excluded reference and reason alongside the atomic publication. The owner can inspect Source screening in the latest source run. Exclusion receipts contain reference IDs/reasons, not candidate data. Malformed channels, unsafe links, missing closing dates and excessive batch sizes still fail the source read and preserve the last successful snapshot.
 
-These deterministic rules are narrow and can miss new wording. They are not a claim of universal external-applicant eligibility. Closing dates are currently applied on ingestion, so an advert may remain visible between its deadline and the next successful feed refresh. Persisting explicit deadlines and enforcing them on every public read is the next freshness improvement. Do not silently backdate or manufacture a new successful observation.
+These deterministic rules are narrow and can miss new wording. They are not a claim of universal external-applicant eligibility. Release 2.23 persists verified source deadlines and excludes passed roles at read time, even between successful feed refreshes. Date-only deadlines use the end of the UK calendar day and explicitly disclose that the exact time was not supplied. Expired links retain a reference page with noindex and paused preparation. Unknown deadlines remain unknown. The guarded backfill covered 75 stored university adverts without changing observation timestamps. Do not silently backdate or manufacture a new successful observation.
 
 ## Further coverage
 

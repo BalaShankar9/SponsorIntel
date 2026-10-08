@@ -1,6 +1,7 @@
 import pages from "../shared/pages.json" with { type: "json" };
 import { getJobDetail } from "./jobs.js";
-import { JOB_FRESHNESS_MS, JOB_ORIGIN, jobPath } from "../shared/job-detail.js";
+import { currentJobs } from "./current-jobs.js";
+import { JOB_ORIGIN, jobPath } from "../shared/job-detail.js";
 import { insightsResponse, INSIGHT_SLUG } from './insights.js';
 const roleID = (path) => path.match(/^\/jobs\/([a-f0-9]{24})$/)?.[1];
 const publicPaths = new Set(Object.values(pages).map((p) => p.path));
@@ -34,13 +35,11 @@ const unavailable = () =>
   );
 
 export async function sitemapResponse(env, now = Date.now()) {
+  const current = currentJobs(now);
   const { results } = await env.DB.prepare(
-    `SELECT id FROM jobs WHERE active=1 AND last_seen>? AND last_seen<=? ORDER BY id LIMIT ${50000 - publicPaths.size}`,
+    `SELECT id FROM jobs WHERE ${current.sql} ORDER BY id LIMIT ${50000 - publicPaths.size}`,
   )
-    .bind(
-      new Date(now - JOB_FRESHNESS_MS).toISOString(),
-      new Date(now + 300000).toISOString(),
-    )
+    .bind(...current.values)
     .all();
   const paths = [
     ...publicPaths,

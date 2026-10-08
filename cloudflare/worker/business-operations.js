@@ -1,3 +1,4 @@
+import { currentJobs } from './current-jobs.js';
 import { bodyJSON, limit, reply, sameOrigin } from './auth.js';
 import { JOB_FRESHNESS_MS, JOB_ORIGIN } from '../shared/job-detail.js';
 import { startInvestigation } from './agent-research.js';
@@ -57,15 +58,16 @@ export async function dispatchBusiness(env, time = Date.now(), trigger = 'owner'
 }
 
 export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.now()) {
+  const current = currentJobs(now), perSource = currentJobs(now, "j");
   const rows = await env.DB.batch([
     env.DB.prepare(`SELECT COUNT(*) total,COUNT(DISTINCT board_id) employers,
       COALESCE(SUM(sponsorship='offered'),0) offered,COALESCE(SUM(sponsorship='conditional'),0) conditional,
       COALESCE(SUM(sponsorship='unavailable'),0) unavailable,COALESCE(SUM(sponsorship='not_stated'),0) not_stated,
       COALESCE(SUM(level='early_career'),0) early_career,COALESCE(SUM(salary_excerpt<>''),0) salary
-      FROM jobs WHERE active=1 AND last_seen>? AND last_seen<=?`).bind(iso(now-JOB_FRESHNESS_MS), iso(now+300000)),
+      FROM jobs WHERE ${current.sql}`).bind(...current.values),
     env.DB.prepare(`SELECT s.id,s.company,s.careers_url,s.last_success,s.error,
-      COALESCE(c.paused,0) paused,(SELECT COUNT(*) FROM jobs j WHERE j.board_id=s.id AND j.active=1 AND j.last_seen>? AND j.last_seen<=?) roles
-      FROM job_sources s LEFT JOIN agent_source_controls c ON c.source_id=s.id ORDER BY s.company LIMIT 60`).bind(iso(now-JOB_FRESHNESS_MS),iso(now+300000)),
+      COALESCE(c.paused,0) paused,(SELECT COUNT(*) FROM jobs j WHERE j.board_id=s.id AND ${perSource.sql}) roles
+      FROM job_sources s LEFT JOIN agent_source_controls c ON c.source_id=s.id ORDER BY s.company LIMIT 60`).bind(...perSource.values),
     env.DB.prepare('SELECT id,title,checked_at,last_success,error,withdrawn FROM immigration_sources ORDER BY id LIMIT 100'),
     env.DB.prepare("SELECT value FROM metadata WHERE key='register'"),
     env.DB.prepare('SELECT day,event,SUM(count) count FROM analytics_daily WHERE day>=? AND day<? GROUP BY day,event ORDER BY day,event').bind(iso(now-14*86400000).slice(0,10),iso(now).slice(0,10)),

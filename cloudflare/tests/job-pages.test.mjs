@@ -18,7 +18,7 @@ function job(patch = {}) {
 }
 function fixture(rows) {
   const sql = new DatabaseSync(":memory:");
-  for (const name of ["0001_initial.sql", "0002_career.sql", "0004_quality_updates.sql", "0010_business_operations.sql"])
+  for (const name of ["0001_initial.sql", "0002_career.sql", "0004_quality_updates.sql", "0010_business_operations.sql", "0019_job_deadlines.sql"])
     sql.exec(readFileSync(new URL("../migrations/" + name, import.meta.url), "utf8"));
   for (const row of rows) {
     const keys = Object.keys(row);
@@ -141,6 +141,16 @@ test("server-rendered role pages have readable evidence, safe metadata and corre
   assert.equal(stale.status, 200);
   assert.match(stale.headers.get("x-robots-tag"), /noindex/);
   assert.match(await stale.text(), /This information needs a fresh check/);
+  const expired = await renderJobPage(request, assets, { ...current,
+    application_deadline: '2020-10-08', closes_at: '2020-10-08T23:00:00.000Z' });
+  assert.equal(expired.status, 200);
+  assert.match(expired.headers.get('x-robots-tag'), /noindex/);
+  const expiredHTML = await expired.text();
+  assert.match(expiredHTML, /The advertised deadline has passed/);
+  assert.match(expiredHTML, /Preparation is paused/);
+  assert.match(expiredHTML, /8 Oct 2020/);
+  assert.match(expiredHTML, /date but no time/);
+  assert.doesNotMatch(expiredHTML, /Make a thoughtful application|Enable JavaScript to save it/);
   const fallback = await renderJobPage(new Request("https://example.workers.dev/jobs/" + id), assets, current);
   assert.match(fallback.headers.get("x-robots-tag"), /noindex/);
   assert.equal((await renderJobPage(request, { fetch: async () => new Response("missing", { status: 404 }) }, current)).status, 503);

@@ -1,5 +1,5 @@
 import { getJobDetail } from "./jobs.js";
-import { JOB_FRESHNESS_MS } from "../shared/job-detail.js";
+import { jobAvailability } from "../shared/job-detail.js";
 export async function companyBrief(application, env, now = Date.now()) {
   const id = application.jobId;
   const job = /^[a-f0-9]{24}$/.test(id || "")
@@ -8,9 +8,7 @@ export async function companyBrief(application, env, now = Date.now()) {
   const current =
     job &&
     job.company.toLowerCase() === application.company.toLowerCase() &&
-    job.active !== 0 &&
-    Date.parse(job.last_seen) <= now + 300000 &&
-    now - Date.parse(job.last_seen) <= JOB_FRESHNESS_MS;
+    jobAvailability(job, now) === "current";
   if (!current)
     return `COMPANY RESEARCH — EVIDENCE NEEDED\n\nWe could not match this application to a current monitored advert for ${application.company}. No external company facts have been generated.\n\nRESEARCH CHECKLIST\n- Start at the employer's own website and confirm its legal name.\n- Re-open the vacancy and confirm that it is still accepting applications.\n- Record dated evidence about its product, customers, team and working arrangements.\n- Confirm sponsorship for this role directly with the employer.\n- Use Companies House for legal registration, not as a guarantee of hiring or financial health.\n\nQuestions: What would success look like in the first three months? Who would I work with? What is the hiring process? Is visa sponsorship available for my circumstances?`;
   const sentences = job.description

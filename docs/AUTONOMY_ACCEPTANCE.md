@@ -62,3 +62,10 @@ Local Workerd/D1 completed the real workflow with a synthetic model adapter: two
 ## 2.22 source coverage and restriction review
 
 Two explicit UK campus feeds add Southampton Highfield and Nottingham University Park to the configured collection. The source review accepts 41 of 62 observed entries: 21 are excluded for past closing dates, explicit internal-only titles or an unreviewed distribution marker. All 41 lack explicit visa-sponsorship offers; exact university licence matches remain separate. Source receipts retain exclusions and the owner can inspect them. See SOURCE_COVERAGE.md. Broader university/NHS/LinkedIn coverage, independent label accuracy and enforcing a known deadline between refreshes remain open.
+
+
+## 2.23 deadline enforcement
+
+Source closing dates now survive ingestion and are enforced whenever the current collection is read. Expired roles leave search/counts, sitemap, current business snapshots and live research selection without requiring a feed refresh. Detail links retain evidence with a deadline-passed notice/noindex, paused save/preparation and explicit unknown-time language for date-only deadlines. Source extensions can restore current status; personal workspaces and historical report/reference evidence stay intact.
+
+271 tests and isolated local Workerd/D1/browser acceptance pass, including an actual countdown with no refresh or observation changes. Production migration/readback covered 75 stored university adverts (72 active, three historical) with unchanged first/last observation timestamps. The public collection remains 887 roles/32 sources, and all 12 opportunity checks pass. Scheduled business run business-497619 completed during initial deployment. AI usage remains four starts/six calls on 8 October. The next genuine campus-source run, actual Google metrics and real application-evaluation models remain separate acceptance requirements. See cloudflare/RELEASE-2.23.md and its runtime/production evidence.

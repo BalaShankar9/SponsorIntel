@@ -22,7 +22,9 @@ export async function renderJobPage(request: Request, assets: { fetch: typeof fe
   const robots = indexable ? "index,follow,max-image-preview:large" : "noindex,follow";
   let html = await boundedText(asset, 2_000_000);
   html = html.replace(/<noscript>[\s\S]*?<\/noscript>/,
-    '<noscript><p class="seo-noscript">You can read this opportunity and open the employer’s advert here. Enable JavaScript to save it or prepare an application.</p></noscript>');
+    '<noscript><p class="seo-noscript">' + (meta.indexable
+      ? 'You can read this opportunity and open the employer’s advert here. Enable JavaScript to save it or prepare an application.'
+      : 'This advert is retained for reference. Check the employer’s website or explore current opportunities.') + '</p></noscript>');
   html = html.replace(/<title>[^<]*<\/title>/, () => "<title>" + escapeHTML(meta.title) + "</title>");
   for (const [name, content] of Object.entries({
     description: meta.description, robots, "og:title": meta.title,

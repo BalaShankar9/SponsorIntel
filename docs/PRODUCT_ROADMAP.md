@@ -3,7 +3,7 @@
 
 ## Current checkpoint — 8 October 2026
 
-Release 2.22 expands to 32 configured sources and 887 observed current roles, adding two explicitly UK university-campus feeds. Forty-one new roles passed the source screen; none states visa sponsorship. Source exclusions and licence context are retained separately. Genuine scheduled business/source runs have now been observed; the new campus acceptance runs were owner-triggered. Search Console setup and the private 20-case application lab are deployed, but successful Google reporting and real application-model comparisons remain unverified. Use AUTONOMY_ACCEPTANCE.md and SOURCE_COVERAGE.md for current acceptance; older release checkpoints below are historical.
+Release 2.23 enforces known source deadlines on current search/counts, sitemap, employer briefs, business snapshots and live research selection between feed refreshes. Seventy-five stored university adverts gained verified deadlines without changing observation timestamps; expired links retain a reference page, noindex and paused preparation. The collection remains 32 sources and 887 observed current roles. The two newest campus feeds added 41 roles without explicit sponsorship offers; licence context stays separate. Genuine scheduled business/source runs have been observed, but scheduled execution of the two new campuses, successful Google reporting and real application-model comparisons remain unverified. Use AUTONOMY_ACCEPTANCE.md and SOURCE_COVERAGE.md for current acceptance; older release checkpoints below are historical.
 
 Owner: Codex implementation lead, with Bala as product owner. Updated 7 October 2026.
 

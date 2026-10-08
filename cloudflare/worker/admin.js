@@ -1,3 +1,4 @@
+import { currentJobs } from "./current-jobs.js";
 import { sessionFor, reply, bodyJSON, sameOrigin, limit } from "./auth.js";
 import { BOARDS, SECTORS } from "./job-sources.js";
 import { fetchBoard } from "./jobs.js";
@@ -108,6 +109,7 @@ export async function adminAPI(request, env) {
     return reply(await refreshStudents(env));
   }
   if (request.method === "GET" && path === "/api/admin/dashboard") {
+    const current = currentJobs();
     const days = [7, 30, 90].includes(Number(url.searchParams.get("days")))
       ? Number(url.searchParams.get("days"))
       : 30;
@@ -148,8 +150,8 @@ export async function adminAPI(request, env) {
         "SELECT source_id,checked_at,success,count FROM source_runs ORDER BY checked_at DESC LIMIT 60",
       ),
       env.DB.prepare(
-        "SELECT COUNT(*) total,COALESCE(SUM(sponsorship IN ('offered','conditional')),0) sponsorship FROM jobs WHERE active=1 AND last_seen>=?",
-      ).bind(new Date(Date.now() - 3 * 86400000).toISOString()),
+        `SELECT COUNT(*) total,COALESCE(SUM(sponsorship IN ('offered','conditional')),0) sponsorship FROM jobs WHERE ${current.sql}`,
+      ).bind(...current.values),
     ]);
     const rows = results.map((r) => r.results || []);
     return reply({

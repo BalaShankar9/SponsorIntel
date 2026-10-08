@@ -3,6 +3,8 @@ import { XMLParser, XMLValidator } from "fast-xml-parser";
 
 import { BOARDS, SECTORS, UNIVERSITY_FEEDS } from "./job-sources.js";
 import { employerLicences } from "./employer-licences.js";
+import { currentJobs } from "./current-jobs.js";
+import { parseJobDeadline, universityClosingDate } from "./job-deadlines.js";
 import { payEvidence } from "../shared/pay-evidence.js";
 export { BOARDS } from "./job-sources.js";
 
@@ -209,7 +211,7 @@ export function salaryExcerpt(text) {
   return (payEvidence(plainText(text)).quotes[0] || "").slice(0, 400);
 }
 
-export async function normaliseBoardJobs(raw, board) {
+export async function normaliseBoardJobs(raw, board, now = Date.now()) {
   if (!Array.isArray(raw) || raw.length > 5000)
     throw new Error("Invalid board response");
   const result = [],
@@ -221,12 +223,8 @@ export async function normaliseBoardJobs(raw, board) {
     // Greenhouse explicitly identifies prospect posts with a null internal id.
     if (board.provider === "greenhouse" && job.internal_job_id === null)
       continue;
-    if (
-      job.application_deadline &&
-      Number.isFinite(Date.parse(job.application_deadline)) &&
-      Date.parse(job.application_deadline) <= Date.now()
-    )
-      continue;
+    const deadline = parseJobDeadline(job.application_deadline);
+    if (deadline.closes_at && Date.parse(deadline.closes_at) <= now) continue;
     const location = ukLocations(job, board.provider);
     if (!location) continue;
     const completeText = advertText(job, board.provider);
@@ -260,6 +258,7 @@ export async function normaliseBoardJobs(raw, board) {
       description,
       apply_url,
       provider: board.provider,
+      ...deadline,
       source_updated_at: String(job.updated_at || job.publishedAt || "").slice(
         0,
         40,
@@ -309,9 +308,6 @@ export function universityFeedSnapshot(xml, boardId, now = Date.now()) {
     throw new Error("Unexpected university feed identity");
   const items = channel.item || [];
   if (items.length > 200) throw new Error("University feed exceeds review limit");
-  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/London",
-    year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(now));
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const seen = new Set(), jobs = [], excluded = [];
   for (const item of items) {
     if (![item.title, item.link, item.description, item.pubDate].every((s) => typeof s === "string" && s.trim()))
@@ -323,14 +319,10 @@ export function universityFeedSnapshot(xml, boardId, now = Date.now()) {
       throw new Error("Unexpected university vacancy link");
     seen.add(ref);
     const description = plainText(item.description);
-    const closing = description.match(/Closing Date:\s*(\d{1,2}) (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) (20\d{2})\b/);
-    if (!closing) throw new Error("University vacancy has no recognised closing date");
-    const ymd = `${closing[3]}-${String(months.indexOf(closing[2]) + 1).padStart(2, "0")}-${closing[1].padStart(2, "0")}`;
-    const date = new Date(ymd + "T00:00:00Z");
-    if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== ymd)
-      throw new Error("Invalid university closing date");
-    // Date-only deadlines remain available through their stated day in UK time.
-    if (ymd < today) { excluded.push({ref,reason:"closing_date_passed",closing_date:ymd}); continue; }
+    const deadline = universityClosingDate(description);
+    if (Date.parse(deadline.closes_at) <= now) {
+      excluded.push({ref,reason:"closing_date_passed",closing_date:deadline.application_deadline}); continue;
+    }
     const restriction = universityRestriction(item.title, description, feed);
     if (restriction) { excluded.push({ref,reason:restriction}); continue; }
     const published = Date.parse(item.pubDate);
@@ -339,7 +331,7 @@ export function universityFeedSnapshot(xml, boardId, now = Date.now()) {
     const canonical = new URL(feed.path, feed.origin);
     canonical.searchParams.set("ref", ref);
     jobs.push({ id: ref, title: item.title, location: feed.location, country: "GB",
-      content: description, absolute_url: canonical.href, publishedAt: new Date(published).toISOString() });
+      content: description, application_deadline: deadline.application_deadline, absolute_url: canonical.href, publishedAt: new Date(published).toISOString() });
   }
   return {jobs,review:{policy:"university-campus-v2",url:feed.url,channel:feed.title,received:items.length,accepted:jobs.length,excluded}};
 }
@@ -401,6 +393,8 @@ export async function storeBoardJobs(DB, board, jobs, now, receipts = [], guard 
     "apply_url",
     "provider",
     "source_updated_at",
+    "application_deadline",
+    "closes_at",
     "sponsorship",
     "evidence",
     "level",
@@ -562,7 +556,7 @@ export async function getJobDetail(id, env) {
     employer_licence: licences.matches.get(item.board_id) || null };
 }
 
-export async function jobsAPI(url, env) {
+export async function jobsAPI(url, env, now = Date.now()) {
   if (url.pathname === "/api/jobs/sources")
     return Response.json({
       sources: (
@@ -587,8 +581,9 @@ export async function jobsAPI(url, env) {
   ).results;
   const licences = await employerLicences(env.DB, extraBoards);
   const licensedBoards = JSON.stringify([...licences.matches.keys()]);
-  const values = [new Date(Date.now() - 3 * 86400000).toISOString()];
-  let where = "active=1 AND last_seen>=?";
+  const current = currentJobs(now);
+  const values = [...current.values];
+  let where = current.sql;
   for (const term of (p.get("q") || "")
     .trim()
     .slice(0, 150)
@@ -639,7 +634,7 @@ export async function jobsAPI(url, env) {
     Math.min(pages || 1, parseInt(p.get("page") || "1") || 1),
   );
   const items = await env.DB.prepare(
-    "SELECT id,board_id,company,title,location,apply_url,provider,sponsorship,evidence,level,first_seen,last_seen,source_updated_at,salary_excerpt,employment_type,workplace FROM jobs WHERE " +
+    "SELECT id,board_id,company,title,location,apply_url,provider,sponsorship,evidence,level,first_seen,last_seen,source_updated_at,application_deadline,closes_at,salary_excerpt,employment_type,workplace FROM jobs WHERE " +
       where +
       " ORDER BY first_seen DESC,title,id LIMIT 12 OFFSET ?",
   )
@@ -650,17 +645,19 @@ export async function jobsAPI(url, env) {
       COALESCE(SUM(level='early_career'),0) early_career,
       COALESCE(SUM(sponsorship IN ('offered','conditional')),0) sponsorship,
       COALESCE(SUM(board_id IN (SELECT value FROM json_each(?))),0) licensed,
-      COALESCE(SUM(salary_excerpt<>''),0) salary
-     FROM jobs WHERE active=1 AND last_seen>=?`,
+      COALESCE(SUM(salary_excerpt<>''),0) salary, MIN(closes_at) next_deadline
+     FROM jobs WHERE ${current.sql}`,
   )
-    .bind(licensedBoards, values[0])
+    .bind(licensedBoards, ...current.values)
     .first();
+  const { next_deadline, ...collections } = stats;
   return Response.json({
     items: items.results.map((job) => ({ ...withSector(job, extraBoards),
       employer_licence: licences.matches.get(job.board_id) || null })),
     total: count.total,
     catalog_total: stats.total,
-    collections: stats,
+    collections,
+    next_deadline,
     licence_register: licences.register,
     sectors: SECTORS,
     page,

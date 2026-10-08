@@ -1,3 +1,4 @@
+import { currentJobs } from './current-jobs.js';
 import { approvedSources } from './agent-operations.js';
 import { fetchBoard } from './jobs.js';
 import { researchModels, callResearchModel } from './research-model.js';
@@ -130,7 +131,8 @@ export async function executeResearchTool(env, runId, turn, decision, fetcher = 
   if (row.state !== 'running' || Date.now()-Date.parse(row.created_at)>3600000) throw Error('Research session expired.');
   validateDecision(decision, context);
   if (decision.tool === 'list_jobs') {
-    const jobs = await env.DB.prepare('SELECT id,board_id,company,title,sponsorship,evidence FROM jobs WHERE board_id=? AND active=1 ORDER BY CASE sponsorship WHEN \'offered\' THEN 0 WHEN \'conditional\' THEN 1 ELSE 2 END,id LIMIT 18').bind(decision.id).all();
+    const current = currentJobs();
+    const jobs = await env.DB.prepare(`SELECT id,board_id,company,title,sponsorship,evidence FROM jobs WHERE board_id=? AND ${current.sql} ORDER BY CASE sponsorship WHEN 'offered' THEN 0 WHEN 'conditional' THEN 1 ELSE 2 END,id LIMIT 18`).bind(decision.id,...current.values).all();
     context.candidates.push(...jobs.results); context.listed.push(decision.id);
   } else if (decision.tool === 'inspect_job') {
     const candidate = context.candidates.find(x => x.id === decision.id);

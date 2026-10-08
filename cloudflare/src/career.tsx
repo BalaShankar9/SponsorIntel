@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { JobDetail } from "./job-detail";
+import { jobTimestamp } from "../shared/job-detail.js";
 import { AccountEmailHelp } from "./account-email";
 import {
   ArrowRight,
@@ -250,6 +251,7 @@ function Vacancies({ go }: { go: Go }) {
       items: Job[];
       total: number;
       catalog_total: number;
+      next_deadline: string | null;
       pages: number;
       page: number;
       sources: any[];
@@ -334,6 +336,20 @@ function Vacancies({ go }: { go: Go }) {
       alive = false;
     };
   }, [key, page, applied]);
+  // An open results tab also rechecks deadlines. Clear the old collection
+  // before refreshing so a failed request cannot leave expired roles on show.
+  useEffect(() => {
+    const refresh = () => { if (!document.hidden) { setResult(null); setKey(v => v + 1); } };
+    const interval = window.setInterval(refresh, 5 * 60000);
+    document.addEventListener('visibilitychange', refresh);
+    return () => { clearInterval(interval); document.removeEventListener('visibilitychange', refresh); };
+  }, []);
+  useEffect(() => {
+    const deadline = Date.parse(result?.next_deadline || '');
+    if (!Number.isFinite(deadline)) return;
+    const timer = window.setTimeout(() => { setResult(null); setKey(v => v + 1); }, Math.min(2147483647, Math.max(1, deadline - Date.now() + 20)));
+    return () => clearTimeout(timer);
+  }, [result]);
   function saveSearch() {
     if (!c.ready) return;
     if (c.data.searches.length >= 10) {
@@ -637,6 +653,7 @@ function Vacancies({ go }: { go: Go }) {
                   </span>
                 )}
                 {j.workplace && <span>{j.workplace}</span>}
+                {j.application_deadline && <span><CalendarDays size={14} /> Closing date: {jobTimestamp(j.application_deadline)}</span>}
               </div>
               <div>
                 <span className={"sponsorship-tag " + j.sponsorship}>

@@ -3,7 +3,7 @@ import { Bookmark, Check, Copy, Loader2, Sparkles } from "lucide-react";
 import { useCareer, request, type Job } from "./career-data";
 import type { ReportFeedback } from "./feedback";
 import { JobDetailView } from "./job-detail-view";
-import { jobAvailability, JOB_ORIGIN, jobPath } from "../shared/job-detail.js";
+import { jobAvailability, JOB_FRESHNESS_MS, JOB_ORIGIN, jobPath } from "../shared/job-detail.js";
 import { updateJobMetadata } from "./seo";
 import "./job-detail.css";
 
@@ -22,6 +22,7 @@ export function JobDetail({
   const [job, setJob] = useState<Job | null>(() => initialJob(id));
   const [error, setError] = useState(""), [missing, setMissing] = useState(false);
   const [retry, setRetry] = useState(0), [busy, setBusy] = useState(false);
+  const [now, setNow] = useState(Date.now);
   const [message, setMessage] = useState(""), [showLink, setShowLink] = useState(false);
   const shareURL = JOB_ORIGIN + jobPath(id);
   useEffect(() => {
@@ -40,10 +41,17 @@ export function JobDetail({
       .catch((e) => { if (!controller.signal.aborted) setError(e.message); });
     return () => controller.abort();
   }, [id, retry]);
-  useEffect(() => updateJobMetadata(job, id, missing), [job, id, missing]);
+  useEffect(() => updateJobMetadata(job, id, missing), [job, id, missing, now]);
+  useEffect(() => {
+    if (!job) return;
+    const next = Math.min(...[Date.parse(job.closes_at || ''), Date.parse(job.last_seen) + JOB_FRESHNESS_MS].filter(x => x > now));
+    if (!Number.isFinite(next)) return;
+    const timer = window.setTimeout(() => setNow(Date.now()), Math.min(2147483647, Math.max(1, next - Date.now() + 1)));
+    return () => clearTimeout(timer);
+  }, [job, now]);
   // Recheck while a tab is left open, including after returning to it.
   useEffect(() => {
-    const refresh = () => { if (!document.hidden) setRetry((v) => v + 1); };
+    const refresh = () => { if (!document.hidden) { setNow(Date.now()); setRetry((v) => v + 1); } };
     const timer = window.setInterval(refresh, 5 * 60000);
     document.addEventListener("visibilitychange", refresh);
     return () => { clearInterval(timer); document.removeEventListener("visibilitychange", refresh); };
@@ -94,7 +102,7 @@ export function JobDetail({
   const saved = c.data.applications.some((a) => a.jobId === id);
   return <>
     {error && <p className="career-error" role="alert">{error}<button onClick={() => setRetry((v) => v + 1)}>Try again</button></p>}
-    <JobDetailView job={job} actions={<>
+    <JobDetailView job={job} now={Date.now()} actions={<>
       <button className="primary-button" disabled={!current || !c.ready || busy} onClick={() => void save(true)}>
         {busy ? <Loader2 className="spin" size={17} /> : <Sparkles size={17} />} Prepare application
       </button>

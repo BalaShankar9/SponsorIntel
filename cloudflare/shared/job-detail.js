@@ -14,6 +14,11 @@ export function jobPath(id) {
 // Presence in a recently read board is evidence of a listing, not a promise
 // that the employer will accept an application or sponsor the applicant.
 export function jobAvailability(job, now = Date.now()) {
+  if (job.closes_at != null) {
+    const deadline = Date.parse(job.closes_at);
+    if (!Number.isFinite(deadline) || new Date(deadline).toISOString() !== job.closes_at) return "stale";
+    if (deadline <= now) return "expired";
+  }
   if (job.active !== 1) return "removed";
   const seen = Date.parse(job.last_seen);
   if (!Number.isFinite(seen) || seen > now + 300000 || now - seen >= JOB_FRESHNESS_MS)

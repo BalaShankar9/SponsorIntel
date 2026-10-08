@@ -33,8 +33,10 @@ export function JobDetailView({
       {availability !== "current" && (
         <div className="role-availability" role="status">
           <Clock3 size={21} />
-          <div><strong>{availability === "removed" ? "No longer in our current collection" : "This information needs a fresh check"}</strong>
-            <p>{availability === "removed"
+          <div><strong>{availability === "expired" ? "The advertised deadline has passed" : availability === "removed" ? "No longer in our current collection" : "This information needs a fresh check"}</strong>
+            <p>{availability === "expired"
+              ? "The closing date supplied by the employer has passed. We have removed this role from current opportunities."
+              : availability === "removed"
               ? "This advert was absent from the last successful employer-board refresh. It may have closed or moved."
               : "We have not seen this advert successfully within the last three days. Its availability is uncertain."} Check the employer’s website and explore current opportunities.</p>
           </div>
@@ -101,6 +103,11 @@ export function JobDetailView({
           </section>
           <section className="role-panel role-facts">
             <h2>The details we can show</h2>
+            <h3>Advertised closing date</h3>
+            <p>{job.application_deadline ? jobTimestamp(job.application_deadline) : "No verified deadline supplied"}</p>
+            <p className="role-caption">{job.application_deadline && /^\d{4}-\d{2}-\d{2}$/.test(job.application_deadline)
+              ? "The source gives a date but no time. We hide this listing after that UK calendar day. Confirm the exact cutoff with the employer; it may close earlier."
+              : "Check the employer’s advert before applying; dates may change and recruitment may close early."}</p>
             <h3>Pay in the advert</h3>
             {pay.quotes.length ? <>
               {pay.multiple && <p className="role-caption"><strong>Several pay statements appear in this advert.</strong> They may describe different terms or disagree. Confirm which applies to this role.</p>}
