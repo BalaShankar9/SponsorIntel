@@ -8,8 +8,8 @@ import { callResearchModel,parseModelJSON } from '../worker/research-model.js';
 import { agentOperationsAPI } from '../worker/agent-api.js';
 import { adminAPI } from '../worker/admin.js';
 const board=BOARDS[0];
-const goodReport=(e=evaluationEvidence())=>({ summary:'Evidence checked; conclusions apply only to these adverts.',assessments:e.map(x=>({job_id:x.id,verdict:RESEARCH_CASES.find(c=>c[0]===x.id)?.[2]||'offered',quote:x.description,reason:'The supplied wording supports this classification.'})),next_checks:[] });
-const goodReview=r=>({checks:r.assessments.map(a=>({job_id:a.job_id,supported:true,reason:'The quoted evidence supports the assessment.'}))});
+const goodReport=(e=evaluationEvidence())=>({ summary_claims:[{claim_id:'s1',text:'These findings are limited to the inspected evidence.',citations:[{job_id:e[0].id,quote:e[0].description}]}],assessments:e.map(x=>({job_id:x.id,verdict:RESEARCH_CASES.find(c=>c[0]===x.id)?.[2]||'offered',quote:x.description,reason:'The supplied wording supports this classification.'})),next_checks:[] });
+const goodReview=r=>({summary_checks:r.summary_claims.map(c=>({claim_id:c.claim_id,supported:true,reason:'The summary is limited to cited evidence.'})),next_check_checks:r.next_checks.map((_,index)=>({index,supported:true,reason:'This is a neutral follow-up question.'})),checks:r.assessments.map(a=>({job_id:a.job_id,supported:true,reason:'The quoted evidence supports the assessment.'}))});
 async function setup(t,kind='evaluation') {
  const env=database(t);env.RESEARCH_WORKFLOW={async create(){},async get(){return{async status(){return{status:'running'};}};}};
  env.AI_MODEL='investigator';env.AI_REVIEW_MODEL='reviewer';
@@ -49,9 +49,9 @@ test('a known invalid tool choice receives bounded feedback; repaired decisions 
  assert.equal((await executeResearchTool(env,id,2,repaired)).done,true);assert.equal(calls,2);
 });
 test('scoring detects unsupported positive claims and missing answers independently of reviewer',()=>{
- const r=goodReport();assert.equal(scoreEvaluation(r).correct,12);
+ const r=goodReport();assert.equal(scoreEvaluation(r).correct,20);
  r.assessments.find(x=>x.job_id==='negative-overrides').verdict='offered';r.assessments.pop();
- const score=scoreEvaluation(r);assert.equal(score.correct,10);assert.equal(score.dangerous_false_positives,1);assert.equal(score.cases.at(-1).actual,'missing');
+ const score=scoreEvaluation(r);assert.equal(score.correct,18);assert.equal(score.dangerous_false_positives,1);assert.equal(score.cases.at(-1).actual,'missing');
 });
 test('research uses fresh approved feed evidence; tool replay does not fetch twice',async t=>{
  const {env,id,jobs}=await realSetup(t);
@@ -120,7 +120,7 @@ test('independent critique triggers revision and final report retains the disagr
  await analyseResearch(env,id,true);assert.equal((await reviewResearch(env,id,true)).revise,false);await finishResearch(env,id);
  const row=env.sql.prepare('SELECT state,report FROM agent_investigations').get(),saved=JSON.parse(row.report);
  assert.equal(row.state,'review');assert.equal(saved.publication,'none');assert.equal(saved.previous_review.checks[0].supported,false);
- assert.equal(saved.evaluation.correct,12);assert.equal(saved.evidence[0].description,undefined);
+ assert.equal(saved.evaluation.correct,20);assert.equal(saved.evidence[0].description,undefined);
  await assert.rejects(approveObservation(env,id,'explicit-offer','owner'));
 });
 test('same model cannot masquerade as independent review',async t=>{

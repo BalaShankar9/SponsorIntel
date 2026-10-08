@@ -1,5 +1,5 @@
 import { WorkflowEntrypoint } from 'cloudflare:workers';
-import { researchContext,chooseResearchTool,executeResearchTool,analyseResearch,reviewResearch,finishResearch,stopWithEvidence } from './agent-research.js';
+import { researchContext,chooseResearchTool,executeResearchTool,analyseResearch,reviewResearch,finishResearch,stopWithEvidence,prepareCriticChallenge } from './agent-research.js';
 
 // Dynamic decisions are checkpointed. Model calls have durable reservations and are
 // never blindly retried after an uncertain outcome. Public jobs are read-only here.
@@ -10,9 +10,14 @@ export class ResearchWorkflow extends WorkflowEntrypoint {
     try {
       const mode = await step.do('initialise', async () => {
         await researchContext(this.env,id);
-        const run = await this.env.DB.prepare('SELECT kind FROM agent_investigations WHERE id=?').bind(id).first();
-        return { evaluation:run.kind === 'evaluation' };
+        const run = await this.env.DB.prepare('SELECT kind,evaluation_suite FROM agent_investigations WHERE id=?').bind(id).first();
+        return { evaluation:run.kind === 'evaluation',critic:run.kind==='evaluation'&&run.evaluation_suite==='critic' };
       });
+      if(mode.critic){
+        await step.do('prepare-critic-challenge',()=>prepareCriticChallenge(this.env,id));
+        await step.do('critique',options,()=>reviewResearch(this.env,id));
+        return await step.do('finish',()=>finishResearch(this.env,id));
+      }
       let repaired = false;
       if (!mode.evaluation) for (let turn=0; turn<3; turn++) {
         try {
@@ -40,7 +45,7 @@ export class ResearchWorkflow extends WorkflowEntrypoint {
         await step.do('revise',options,() => analyseResearch(this.env,id,true));
         await step.do('critique-revision',options,() => reviewResearch(this.env,id,true));
       }
-      return step.do('finish',() => finishResearch(this.env,id));
+      return await step.do('finish',() => finishResearch(this.env,id));
     } catch {
       return step.do('record-failure', async () => {
         await this.env.DB.prepare("UPDATE agent_investigations SET state='failed',finished_at=?,error='Research did not produce a fully validated report. Inspect the step records; no public content changed.' WHERE id=? AND state IN ('queued','running')")

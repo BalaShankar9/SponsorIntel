@@ -7,7 +7,7 @@ import {
   completeRun,
 } from "./agent-operations.js";
 import { generateOperationsBrief } from "./agent-brief.js";
-import { startInvestigation,researchSnapshot,approveObservation } from './agent-research.js';
+import { startInvestigation,researchSnapshot,approveObservation,RESEARCH_POLICY } from './agent-research.js';
 
 // Called only after adminAPI has verified the immutable owner user ID.
 export async function agentOperationsAPI(request, env, owner) {
@@ -53,8 +53,9 @@ export async function agentOperationsAPI(request, env, owner) {
   try {
     if (path.endsWith('/research/recover')) {
       if (typeof body.run_id !== 'string' || !/^research-[a-f0-9-]{36}$/.test(body.run_id)) throw Error('Choose an investigation.');
-      const run = await env.DB.prepare('SELECT state,created_at,calls FROM agent_investigations WHERE id=?').bind(body.run_id).first();
+      const run = await env.DB.prepare('SELECT state,created_at,calls,policy FROM agent_investigations WHERE id=?').bind(body.run_id).first();
       if (!run || run.state!=='failed' || run.calls>6 || Date.now()-Date.parse(run.created_at)>3600000) throw Error('Recovery needs a failed run under one hour old with at least two model calls remaining.');
+      if(run.policy!==RESEARCH_POLICY)throw Error('This investigation uses an older policy. Start a fresh investigation within the existing allowance.');
       const instance = await env.RESEARCH_WORKFLOW.get(body.run_id);
       const status = await instance.status();
       if (!['complete','errored','terminated'].includes(status.status)) throw Error('Execution has not ended yet. Check its status first.');
@@ -67,7 +68,7 @@ export async function agentOperationsAPI(request, env, owner) {
       return reply({message:'Recovery requested for the same investigation. Evidence and original spending reservations are preserved.'},202);
     }
     if (path.endsWith('/research/start')) {
-      const result = await startInvestigation(env,owner.user.id,body.kind);
+      const result = await startInvestigation(env,owner.user.id,body.kind,body.evaluation_suite);
       return reply({ ...result,message:result.message || (result.reused ? 'An investigation is already running.' : 'Investigation queued. You can leave this page; progress is saved.') },202);
     }
     if (path.endsWith('/research/remember')) {
