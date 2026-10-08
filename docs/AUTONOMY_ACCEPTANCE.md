@@ -2,6 +2,15 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
+## Latest: 2.51 school identity and genuine discovery invocation
+
+Release 2.50 connected individually reviewed Teaching Vacancies schools to the existing atomic source workflow, with exact school identifiers, separate trust/licence review and 24-request reservations. Release 2.51 now prevents multiple adverts or a renamed school with the same official identifier from consuming additional new-school leads. Pending/approved/paused source configurations are preserved. Different schools sharing a name remain distinct. All 498 tests, build/budget checks and deployment dry run pass; no new schema migration is needed beyond the verified 33-migration schema.
+
+The genuine scheduled `business-497636` run completed at 20:46:40.594 UTC on 8 October; independent Cloudflare execution ended successfully at 20:46:40.793 UTC. Its first education discovery invocation held at the existing five-lead daily allowance with zero requests and zero new candidates. That closes the first scheduled invocation gate. Automatic new-school retention and subsequent reviewed publication remain unproven until their actual outcomes occur.
+
+The read-only King's Lynn Academy review established the school-to-trust identity, matched the current Skilled Worker register and inspected the original application route. It also found a material deadline discrepancy on the Drama role (DfE 21 October versus employer portal 16 October). The school remains unconfigured; do not admit it before reconciliation or a separately reviewed per-advert exclusion. The English route reaches screening questions; no answers, credentials or CV were submitted. See [school review](KINGS_LYNN_SOURCE_REVIEW.md), [education sourcing](EDUCATION_DISCOVERY.md) and the retained scheduled receipt. Public totals remain 926 / 35 / 55; no extra source refresh, production AI/Google retry, email or social post was forced.
+
+
 ## Latest: 2.48 source failure records and confirmed 55-claim monitoring
 
 Release 2.48 is deployed as Worker `5ca33c35-76fc-4394-b980-1192f6f809bf`, with 467 local tests passing. New paged-source failures retain safe stage/status/reference diagnostics through recovery; raw provider content is excluded. The live owner panel separates the real older unclassified failure from the completed 51/249 private collection. Other unclassified adapters and legacy records do not acquire an invented cause. A future genuine classified-failure receipt remains an open observation gate; no production incident was manufactured.

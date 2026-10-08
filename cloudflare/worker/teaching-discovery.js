@@ -38,7 +38,7 @@ export function parseTeachingSearch(html){
  });
  return {candidates:candidates.slice(0,20),next};
 }
-export function parseTeachingAdvert(html,candidate,now=Date.now()){
+export function parseTeachingCandidate(html,candidate,now=Date.now()){
  const url=teachingJobURL(candidate.url);if(!url)fail('advert_identity_changed');
  const doc=parseDocument(html),sections=find(doc,n=>n.attribs?.id==='job-details'),heads=find(doc,n=>n.name==='h1');
  if(sections.length!==1||heads.length!==1)fail('advert_layout_changed');
@@ -48,6 +48,8 @@ export function parseTeachingAdvert(html,candidate,now=Date.now()){
  if(postings.length!==1)fail('advert_metadata_changed');
  const j=postings[0],title=bound(j.title,180),employer=bound(j.hiringOrganization?.name,160),address=j.jobLocation?.address;
  if(!title||!employer||norm(text(heads[0]))!==title||norm(candidate.title)!==title||teachingJobURL(j.url)!==url||address?.addressCountry!=='GB')fail('advert_identity_changed');
+ const urn=j.hiringOrganization?.identifier;
+ if(typeof urn!=='string'||!/^\d{6}$/.test(urn))fail('advert_school_identity_unknown');
  const closes=Date.parse(j.validThrough),posted=j.datePosted;
  if(typeof j.validThrough!=='string'||!/T\d\d:\d\d:\d\d(?:\.\d{1,3})?(?:Z|[+-]\d\d:\d\d)$/.test(j.validThrough)||!Number.isFinite(closes)||closes<=now)fail('advert_closed_or_deadline_unknown');
  if(typeof posted!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(posted)||!Number.isFinite(Date.parse(posted))||new Date(posted).toISOString().slice(0,10)!==posted||posted>new Date(now).toISOString().slice(0,10))fail('advert_posting_date_unknown');
@@ -56,10 +58,14 @@ export function parseTeachingAdvert(html,candidate,now=Date.now()){
  if(sponsorshipEvidence(body).status==='unavailable')fail('contradictory_sponsorship_wording');
  const location=[address.addressLocality,address.addressRegion,address.postalCode].filter(v=>typeof v==='string'&&v.trim()).map(norm).join(', ');
  if(!location||location.length>160)fail('advert_identity_changed');
- return {title,employer,location,observed_at:new Date(now).toISOString(),posted_at:null,
+ const content={title,employer,location,observed_at:new Date(now).toISOString(),posted_at:null,
   posted_evidence:`Teaching Vacancies datePosted: ${posted}. Publication time is not supplied.`,
   deadline:new Date(closes).toISOString(),deadline_evidence:`Teaching Vacancies validThrough: ${j.validThrough}`,
   original_url:url,identity_url:'',identity_note:'The hiring organisation is named on the Teaching Vacancies advert. Its legal employer, external application destination and sponsor-register identity have not been reviewed.',
   quote:TEACHING_QUOTE,state:'pending',reason:'Automatically found in the Department for Education Teaching Vacancies sponsorship search. The individual advert names this employer and states that Skilled Worker visas can be sponsored. Review the full original application route, employer identity and any role-specific restrictions before publication.',
   follow_up_at:new Date(Math.min(now+3*86400000,closes)).toISOString(),job_id:null,duplicate_of:null,method:'automated_source'};
+ return {content,school:{urn,name:employer}};
+}
+export function parseTeachingAdvert(html,candidate,now=Date.now()){
+ return parseTeachingCandidate(html,candidate,now).content;
 }

@@ -5,7 +5,7 @@ export function search(candidates=[candidate(1),candidate(2)],next=false){
  return `<form><div id="search-results"><div><form><select><option>Newest job</option></select></form></div><div class="search-results">${candidates.map(c=>`<div class="search-results__item"><a class="govuk-link view-vacancy-link" href="${c.url}">${c.title}</a><dl>${row(TEACHING_QUOTE)}</dl></div>`).join('')}</div></div></form>${next?`<a class="govuk-pagination__link" href="${teachingSearchURL(2).replaceAll('&','&amp;')}">Next page</a>`:''}`;
 }
 export function advert(c=candidate(1),now=Date.now(),patch={},quote=TEACHING_QUOTE,body='A fictional teaching role. No real applicant data.'){
- const data={'@type':'JobPosting',title:c.title,url:c.url,datePosted:new Date(now).toISOString().slice(0,10),validThrough:new Date(now+5*86400000).toISOString().replace('.000Z','Z'),hiringOrganization:{name:'Fictional school '+c.url.split('-').at(-1)},jobLocation:{address:{addressCountry:'GB',addressLocality:'Cardiff',addressRegion:'Wales',postalCode:'CF10 1AA'}},...patch};
+ const data={'@type':'JobPosting',title:c.title,url:c.url,datePosted:new Date(now).toISOString().slice(0,10),validThrough:new Date(now+5*86400000).toISOString().replace('.000Z','Z'),hiringOrganization:{name:'Fictional school '+c.url.split('-').at(-1),identifier:String(123450+Number(c.url.split('-').at(-1)))},jobLocation:{address:{addressCountry:'GB',addressLocality:'Cardiff',addressRegion:'Wales',postalCode:'CF10 1AA'}},...patch};
  return `<h1>${data.title}</h1><section id="job-details"><dl>${row(quote)}</dl><p>${body}</p></section><script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 export function provider(now=Date.now(),{first=[candidate(1),candidate(2)],second=[],pages={},mutate}={}){

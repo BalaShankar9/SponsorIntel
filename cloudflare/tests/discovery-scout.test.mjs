@@ -66,3 +66,30 @@ test('owner API cannot impersonate automated attribution, and can pause discover
  assert.equal((await businessAPI(post('/api/admin/business/settings',{setting:'discovery',value:false},'https://foreign.example'),env,owner)).status,403);
  assert.equal((await businessAPI(post('/api/admin/business/settings',{setting:'discovery',value:false}),env,owner)).status,200);assert.equal((await discoveryScoutHealth(env,now)).enabled,false);
 });
+
+test('different adverts from one official school retain one lead and one immutable initial revision',async t=>{
+ const env=setup(t),one=candidate(1),two=candidate(2),school={name:'Shared fictional school',identifier:'123456'};
+ const p=provider(now,{pages:{[one.url]:advert(one,now,{hiringOrganization:school}),[two.url]:advert(two,now,{hiringOrganization:school})}});
+ const r=await scoutTeachingVacancies(env,'fictional-business',p.fetch,()=>now);assert.equal(r.retained,1);assert.equal(r.inspected,2);assert.equal(p.calls.length,3);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM discovery_revisions').get().n,1);
+ const items=(await discoveryScoutHealth(env,now)).items;assert.equal(items.find(x=>x.source_url===two.url).reason,'school_already_retained');assert.equal(items[0].evidence.school_urn,'123456');assert.equal(new Set(items.map(i=>i.lead_id)).size,1);
+});
+test('a new URL or renamed school with the same URN does not create a second next-day lead',async t=>{
+ const env=setup(t),one=candidate(1),two=candidate(2),school={name:'Fictional original school',identifier:'123456'};
+ await scoutTeachingVacancies(env,'fictional-business',provider(now,{first:[one],pages:{[one.url]:advert(one,now,{hiringOrganization:school})}}).fetch,()=>now);
+ const later=now+86400000;env.sql.exec("UPDATE business_runs SET state='completed'");env.sql.prepare("INSERT INTO business_runs(id,state,created_at) VALUES('fictional-next','running',?)").run(at(later));
+ const p=provider(later,{first:[two],pages:{[two.url]:advert(two,later,{hiringOrganization:{...school,name:'Fictional renamed school'}})}}),r=await scoutTeachingVacancies(env,'fictional-next',p.fetch,()=>later);
+ assert.equal(r.retained,0);assert.equal(r.reason,'no_new_schools_in_checked_adverts');assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM discovery_leads').get().n,1);assert.equal((await discoveryScoutHealth(env,later)).items[0].reason,'school_already_retained');
+});
+test('configured schools preserve pending, approved and paused decisions; missing identifiers are rejected',async t=>{
+ for(const state of ['pending','approved','paused']){const env=setup(t),c=candidate(1),urn='123451';env.sql.prepare("INSERT INTO employer_boards(id,company,provider,board,careers,sector,sponsor_id,evidence,state,created_at) VALUES('known','Fictional school','teaching-vacancies',?,'https://example.com/','education','s','Prior review',?,?)").run(urn+'--fictional-school',state,at(now));
+ const p=provider(now,{first:[c]}),r=await scoutTeachingVacancies(env,'fictional-business',p.fetch,()=>now);assert.equal(r.retained,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM discovery_leads').get().n,0);assert.equal((await discoveryScoutHealth(env,now)).items[0].reason,'school_already_configured');assert.equal(env.sql.prepare('SELECT state FROM employer_boards').get().state,state);}
+ const c=candidate(1);for(const identifier of [undefined,null,123456,'12345','1234567','<script>'])assert.throws(()=>parseTeachingAdvert(advert(c,now,{hiringOrganization:{name:'Fictional school',identifier}}),c,now),{reason:'advert_school_identity_unknown'});
+});
+test('identical school names with different official identifiers remain separate candidates',async t=>{
+ const env=setup(t),one=candidate(1),two=candidate(2),p=provider(now,{pages:{[one.url]:advert(one,now,{hiringOrganization:{name:'Fictional common name',identifier:'123456'}}),[two.url]:advert(two,now,{hiringOrganization:{name:'Fictional common name',identifier:'654321'}})}});
+ assert.equal((await scoutTeachingVacancies(env,'fictional-business',p.fetch,()=>now)).retained,2);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM discovery_leads').get().n,2);
+});
+test('a school configured after inspection but before the atomic insert cannot create a new discovery lead',async t=>{
+ const env=setup(t),c=candidate(1),batch=env.DB.batch;let injected=false;env.DB.batch=async statements=>{if(!injected&&env.sql.prepare("SELECT COUNT(*) n FROM discovery_scout_items WHERE state='checking'").get().n){injected=true;env.sql.prepare("INSERT INTO employer_boards(id,company,provider,board,careers,sector,sponsor_id,evidence,state,created_at) VALUES('known','Fictional school','teaching-vacancies','123451--fictional','https://example.com/','education','s','Prior review','paused',?)").run(at(now));}return batch(statements);};
+ const r=await scoutTeachingVacancies(env,'fictional-business',provider(now,{first:[c]}).fetch,()=>now);assert.equal(r.retained,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM discovery_revisions').get().n,0);assert.equal((await discoveryScoutHealth(env,now)).items[0].reason,'school_already_configured');
+});

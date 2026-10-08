@@ -1,15 +1,21 @@
 import {digest} from './auth.js';
 import {validateDiscovery} from './discovery.js';
-import {parseTeachingSearch,parseTeachingAdvert,teachingSearchURL,TEACHING_TERMS,TEACHING_ATTRIBUTION} from './teaching-discovery.js';
+import {parseTeachingSearch,parseTeachingCandidate,teachingSearchURL,TEACHING_TERMS,TEACHING_ATTRIBUTION} from './teaching-discovery.js';
 
 const iso=t=>new Date(t).toISOString();
 const controlsSQL='(SELECT enabled=1 AND discovery=1 FROM business_controls WHERE singleton=1)';
 const dailyCountSQL="(SELECT COUNT(*) FROM discovery_leads WHERE substr(recorded_at,1,10)=?)";
-const reasons=new Set(['search_layout_changed','advert_layout_changed','advert_metadata_changed','advert_identity_changed','sponsorship_not_confirmed','advert_closed_or_deadline_unknown','advert_posting_date_unknown','contradictory_sponsorship_wording','controls_or_day_changed','request_unavailable','unexpected_response','response_too_large']);
+const reasons=new Set(['search_layout_changed','advert_layout_changed','advert_metadata_changed','advert_identity_changed','advert_school_identity_unknown','sponsorship_not_confirmed','advert_closed_or_deadline_unknown','advert_posting_date_unknown','contradictory_sponsorship_wording','controls_or_day_changed','request_unavailable','unexpected_response','response_too_large']);
 const safeReason=e=>reasons.has(e?.reason)?e.reason:'request_unavailable';
 const stop=reason=>{throw Object.assign(Error(reason),{reason});};
 const enabled=async env=>!!(await env.DB.prepare('SELECT enabled=1 AND discovery=1 active FROM business_controls WHERE singleton=1').first())?.active;
 const runRow=(env,day)=>env.DB.prepare('SELECT * FROM discovery_scout_runs WHERE day=?').bind(day).first();
+async function knownSchool(env,urn){
+ const source=await env.DB.prepare("SELECT id FROM employer_boards WHERE provider='teaching-vacancies' AND substr(board,1,8)=? LIMIT 1").bind(urn+'--').first();
+ if(source)return {reason:'school_already_configured',source_id:source.id,lead_id:null};
+ const prior=await env.DB.prepare("SELECT lead_id FROM discovery_scout_items WHERE state='retained' AND json_extract(evidence,'$.school_urn')=? ORDER BY day,source_url LIMIT 1").bind(urn).first();
+ return prior?{reason:'school_already_retained',lead_id:prior.lead_id}:null;
+}
 
 async function readHTML(response){
  if(response.status!==200||!/^text\/html(?:;|$)/i.test(response.headers.get('Content-Type')||'')||!response.body){await response.body?.cancel();stop('unexpected_response');}
@@ -27,7 +33,9 @@ async function retain(env,run,url,content,evidence,now){
   env.DB.prepare(`INSERT INTO discovery_leads(id,source_key,source_url,source_kind,recorded_at)
    SELECT ?,?,?,'teaching_vacancy',? WHERE ${controlsSQL}=1 AND ${dailyCountSQL}<5
    AND EXISTS(SELECT 1 FROM discovery_scout_runs WHERE day=? AND claim=? AND state='running' AND retained<capacity)
-   AND NOT EXISTS(SELECT 1 FROM discovery_leads WHERE source_key=?) RETURNING id`).bind(id,key,url,at,run.day,run.day,run.claim,key),
+   AND NOT EXISTS(SELECT 1 FROM employer_boards WHERE provider='teaching-vacancies' AND substr(board,1,8)=?)
+   AND NOT EXISTS(SELECT 1 FROM discovery_scout_items WHERE state='retained' AND json_extract(evidence,'$.school_urn')=?)
+   AND NOT EXISTS(SELECT 1 FROM discovery_leads WHERE source_key=?) RETURNING id`).bind(id,key,url,at,run.day,run.day,run.claim,evidence.school_urn+'--',evidence.school_urn,key),
   env.DB.prepare(`INSERT INTO discovery_revisions(id,lead_id,revision,content,actor,recorded_at,request_key,request_hash)
    SELECT ?,id,1,?,?,?,?,? FROM discovery_leads WHERE id=?`).bind(revision,JSON.stringify(content),actor,at,request,await digest(JSON.stringify({url,content,evidence})),id),
   env.DB.prepare("UPDATE discovery_scout_items SET state='retained',reason='original_advert_observed',lead_id=?,evidence=?,observed_at=? WHERE day=? AND source_url=? AND EXISTS(SELECT 1 FROM discovery_revisions WHERE id=?)").bind(id,proof,at,run.day,url,revision),
@@ -89,15 +97,17 @@ export async function scoutTeachingVacancies(env,runId,fetcher=fetch,clock=Date.
     env.DB.prepare("INSERT INTO discovery_scout_items(day,source_url,state,reason,observed_at) VALUES(?,?,'checking','awaiting_original_advert',?)").bind(day,candidate.url,iso(clock())),
     env.DB.prepare('UPDATE discovery_scout_runs SET inspected=inspected+1 WHERE day=? AND claim=?').bind(day,claim),
    ]);
-   let html,content;
-   try{html=await request(candidate.url);content=parseTeachingAdvert(html,candidate,clock());}
+   let html,content,school;
+   try{html=await request(candidate.url);({content,school}=parseTeachingCandidate(html,candidate,clock()));}
    catch(error){
     const reason=safeReason(error),held=['request_unavailable','unexpected_response','response_too_large','controls_or_day_changed'].includes(reason);
     await env.DB.prepare('UPDATE discovery_scout_items SET state=?,reason=? WHERE day=? AND source_url=?').bind(held?'held':'rejected',reason,day,candidate.url).run();
     if(held)return done('held',reason);continue;
    }
    if(!await permitted())stop('controls_or_day_changed');
-   const evidence={source:'Department for Education Teaching Vacancies',source_url:candidate.url,observed_at:content.observed_at,body_sha256:await digest(html),title:content.title,employer:content.employer,sponsorship_quote:content.quote,deadline:content.deadline,posted_evidence:content.posted_evidence,terms:TEACHING_TERMS,attribution:TEACHING_ATTRIBUTION};
+   const evidence={source:'Department for Education Teaching Vacancies',source_url:candidate.url,school_urn:school.urn,observed_at:content.observed_at,body_sha256:await digest(html),title:content.title,employer:content.employer,sponsorship_quote:content.quote,deadline:content.deadline,posted_evidence:content.posted_evidence,terms:TEACHING_TERMS,attribution:TEACHING_ATTRIBUTION};
+   const known=await knownSchool(env,school.urn);
+   if(known){await env.DB.prepare("UPDATE discovery_scout_items SET state='duplicate',reason=?,lead_id=?,evidence=? WHERE day=? AND source_url=?").bind(known.reason,known.lead_id,JSON.stringify({...evidence,known_source_id:known.source_id||null}),day,candidate.url).run();continue;}
    let saved;
    try{saved=await retain(env,run,candidate.url,content,evidence,clock());}
    catch(error){
@@ -107,11 +117,12 @@ export async function scoutTeachingVacancies(env,runId,fetcher=fetch,clock=Date.
     if(item?.state!=='retained')throw error;saved=true;
    }
    if(!saved){
-    const duplicate=await env.DB.prepare('SELECT id FROM discovery_leads WHERE source_key=?').bind(await digest(candidate.url)).first();
-    await env.DB.prepare('UPDATE discovery_scout_items SET state=?,reason=?,evidence=? WHERE day=? AND source_url=?').bind(duplicate?'duplicate':'held',duplicate?'already_retained':'daily_allowance_or_control_changed',JSON.stringify(evidence),day,candidate.url).run();
+    const duplicate=await env.DB.prepare('SELECT id FROM discovery_leads WHERE source_key=?').bind(await digest(candidate.url)).first(),known=await knownSchool(env,school.urn);
+    await env.DB.prepare('UPDATE discovery_scout_items SET state=?,reason=?,lead_id=?,evidence=? WHERE day=? AND source_url=?').bind(duplicate||known?'duplicate':'held',duplicate?'already_retained':known?.reason||'daily_allowance_or_control_changed',duplicate?.id||known?.lead_id||null,JSON.stringify({...evidence,known_source_id:known?.source_id||null}),day,candidate.url).run();
    }
   }
-  return done('completed',candidates.length?'bounded_search_finished':'no_new_candidates_in_checked_pages');
+  const final=await runRow(env,day);
+  return done('completed',final.retained?'bounded_search_finished':candidates.length?'no_new_schools_in_checked_adverts':'no_new_candidates_in_checked_pages');
  }catch(error){return done('held',safeReason(error));}
 }
 
