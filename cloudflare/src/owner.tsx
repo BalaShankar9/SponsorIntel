@@ -14,7 +14,6 @@ import { AgentOperations } from './agent-operations';
 import { BusinessOperations } from './business-operations';
 import { SearchPerformance } from './search-performance';
 import "./platform.css";
-import { trackPage } from './metrics';
 import { CampaignAnalytics } from './campaign-analytics';
 import {MarketingDesk} from './marketing-desk';
 import {SupportDesk} from './support-desk';
@@ -34,78 +33,6 @@ async function api(path: string, body?: unknown) {
   const data = await r.json();
   if (!r.ok) throw Error(data.error || "Please try again.");
   return data;
-}
-export function AccountActions({ go }: { go: Go }) {
-  const { user, ready } = useCareer();
-  const [owner, setOwner] = useState(false);
-  useEffect(() => {
-    setOwner(false);
-    if (!user) return;
-    let active = true;
-    api("/api/admin/session")
-      .then(() => {
-        if (active) setOwner(true);
-      })
-      .catch(() => {});
-    return () => {
-      active = false;
-    };
-  }, [user?.id]);
-  return (
-    <div className="account-actions">
-      {owner && (
-        <a
-          href="/admin"
-          onClick={(e) => {
-            e.preventDefault();
-            go("admin");
-          }}
-          className="owner-link"
-        >
-          <ShieldCheck size={15} /> Admin
-        </a>
-      )}
-      {user ? (
-        <a
-          href="/account"
-          onClick={(e) => {
-            e.preventDefault();
-            go("account");
-          }}
-        >
-          {user.name.split(" ")[0] || "My account"}
-        </a>
-      ) : (
-        <>
-          <a
-            href="/signin"
-            onClick={(e) => {
-              e.preventDefault();
-              go("signin");
-            }}
-          >
-            Sign in
-          </a>
-          <a
-            className="account-signup"
-            href="/signup"
-            onClick={(e) => {
-              e.preventDefault();
-              go("signup");
-            }}
-          >
-            Sign up <ArrowRight size={13} />
-          </a>
-        </>
-      )}
-    </div>
-  );
-}
-export function PageTracking({ view }: { view: string }) {
-  useEffect(() => {
-    trackPage(view === 'discover' ? '/' : '/' + view);
-  }, [view]);
-  return null;
 }
 const date = (value: string | number | null) =>
   value

@@ -124,4 +124,10 @@ All 336 tests, build and Worker dry-run pass. Local Workerd/D1/Queues verifies a
 
 No genuine provider lifecycle event has arrived yet. Exact native Message-ID correlation, real delivery/failure handling, future hourly queue-health findings and sustained service operation remain unverified. Inbox placement is still unresolved after the earlier test reached Spam. No AI quota was reset, model call made, Google retry forced or extra real test email sent. See `cloudflare/RELEASE-2.30.md` and `OPERATION_ALERTS.md`.
 
+## 2.31 public browser loading
+
+Owner management code and styles load only when the admin route opens. The initial public JavaScript is 403,092 bytes versus 501,398 previously (19.6% less), with a build gate for total eager dependencies and all 17 public prerenders. All 336 tests and the build pass. Local blocked-download recovery, live owner navigation and return to the 885-role jobs collection pass. Anonymous admin access remains denied. One uncached browser sample confirms fewer transferred bytes; no field Core Web Vitals or ranking gain is inferred. The mobile viewport override did not apply, so this release makes no new mobile acceptance claim.
+
+The genuine 08:00:40.084 UTC quarter-hour alert scan checked one owner without sending mail. Email lifecycle and next-hour snapshot gates remain open; no quota reset, production AI call, extra email or Google retry was used. See `cloudflare/RELEASE-2.31.md` and `cloudflare/tests/evidence/browser-loading-2026-10-08.json`.
+
 The genuine daily register refresh observed the 7 October official source at 07:15:42.693 UTC on 8 October and completed import at 07:17:22.124 with 127,949 employer records. Business run `business-497623` completed its real scheduled 07:45 run at 07:45:49.326 UTC, before the new queue-monitoring deployment. That receipt does not establish the new hourly queue-health path. Shared usage remains four starts/six calls.

@@ -48,7 +48,8 @@ import { CareerProvider } from "./career-data";
 import { CareerWorkspace, CareerAccountLink } from "./career";
 import { ImmigrationUpdates } from "./updates";
 import "./updates.css";
-import { AccountActions, OwnerDashboard, PageTracking } from "./owner";
+import { AccountActions, PageTracking } from "./account-navigation";
+import { OwnerPage } from "./owner-page";
 import { AdviserDirectory } from "./advisers";
 import { ImmigrationAssistant } from "./ask";
 import { PathwayPage } from "./pathways";
@@ -1626,7 +1627,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             "immigration-sources",
             "editorial-policy",
           ].includes(view) && <PathwayPage view={view} />}
-          {view === "admin" && <OwnerDashboard go={go} />}
+          {view === "admin" && <OwnerPage go={go} />}
           {articles.some((a) => view === "guides/" + a.slug) && (
             <ResourceArticle view={view} />
           )}
