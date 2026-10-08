@@ -2,7 +2,13 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.34 document preparation and unattended monitoring
+## Latest: isolated cloud recovery exercise
+
+On 8 October, an actual Cloudflare Time Travel restore and its returned undo point were exercised in a temporary unbound database with fictional data and all 105 production schema objects. Fifteen result sets matched each target state; foreign-key/integrity checks passed. The exercise demonstrated that old checkpoints also revive deleted users and lose newer budget/publication evidence. Undo restored the later deletion and receipts. The temporary database was removed and its absence verified. Production was read only, its current bookmark is available, and its schema matches all 23 migration files.
+
+A read-only recovery-status script is now included in the existing daily Codex routine, with its schedule and limits preserved. Its future unattended execution remains unobserved. No Worker release or production restore was made. Full customer-data recovery, the account retention window and an independent deletion-aware journal/backup remain open. See `RECOVERY_RUNBOOK.md` and `cloudflare/tests/evidence/recovery-drill-2026-10-08.json`.
+
+## 2.34 document preparation and unattended monitoring
 
 Application Studio now exposes persistent named Word, PDF and plain-text download links, announces preparation/errors, and invalidates old files after edits or document changes. The real generators pass paragraph/Unicode/page-boundary checks; two-page fictional Word and PDF renderings were visually reviewed. Phone-width controls and live preparation of an unchanged existing owner draft pass. All 355 tests pass. Browser download observation still times out, so actual file-save receipt remains unverified; preparation, file fidelity and save delivery are distinct. See `cloudflare/RELEASE-2.34.md`.
 

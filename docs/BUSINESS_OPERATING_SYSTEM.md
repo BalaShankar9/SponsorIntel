@@ -87,6 +87,8 @@ GitHub push succeeded on 7 October, including release 2.12 and social release 2.
 
 ## Operational recovery
 
+Use [RECOVERY_RUNBOOK.md](RECOVERY_RUNBOOK.md) for the read-only daily recovery check and the verified isolated cloud restore/undo exercise. A current bookmark and a passing isolated exercise do not authorize automatic production restore; later deletions, credentials, budgets and external delivery receipts need separate reconciliation.
+
 Use `/admin` and inspect the Business operations desk, source queue and research lab before intervening. D1 business runs store the source snapshot and result; Workflow platform completion alone does not prove a successful application result. Never reset a quota or alter evidence to force a green status.
 
 Release 2.16 reconciles unfinished research/editorial application records older than one hour only after the workflow binding reports `complete`, `errored` or `terminated`. It preserves model-call reservations, evidence, draft versions and existing owner decisions. An unfinished current agent-authored proposal is held; reviewed or owner-revised drafts are preserved. Missing, unknown, paused, waiting or still-running platform outcomes never authorize another run. Inspect the named workflow for those findings; do not retry an uncertain paid call. The supervisor is independent of model-written instructions and uses no model or social API calls.

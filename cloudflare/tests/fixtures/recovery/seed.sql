@@ -1,0 +1,14 @@
+INSERT INTO metadata(key,value) VALUES('recovery_drill','{"marker":"fictional-only-20261008","phase":"before"}');
+UPDATE business_controls SET enabled=0,publishing=0,research=0;
+UPDATE marketing_agent_controls SET enabled=0;
+INSERT INTO user(id,name,email,emailVerified,createdAt,updatedAt) VALUES('drill-keep','Fictional retained user','drill-keep@example.test',0,1791453600000,1791453600000),('drill-delete','Fictional deleted user','drill-delete@example.test',0,1791453600000,1791453600000);
+INSERT INTO account(id,accountId,providerId,userId,createdAt,updatedAt) VALUES('account-keep','drill-keep','credential','drill-keep',1791453600000,1791453600000),('account-delete','drill-delete','credential','drill-delete',1791453600000,1791453600000);
+INSERT INTO session(id,expiresAt,token,createdAt,updatedAt,userId) VALUES('session-keep',1791457200000,'fictional-session-keep',1791453600000,1791453600000,'drill-keep'),('session-delete',1791457200000,'fictional-session-delete',1791453600000,1791453600000,'drill-delete');
+INSERT INTO career_workspaces(user_id,data,revision,updated_at) VALUES('drill-keep','{"profile":{"name":"Fictional retained user","cv":"Before-checkpoint fictional CV"},"applications":[],"searches":[]}',1,'2026-10-08T10:00:00.000Z'),('drill-delete','{"profile":{"name":"Fictional deleted user","cv":"Fictional data deleted after checkpoint"},"applications":[],"searches":[{"id":"fictional-search","q":"analyst"}]}',1,'2026-10-08T10:00:00.000Z');
+INSERT INTO recovery_codes VALUES('drill-delete','fictional-not-a-secret','2026-10-08T10:00:00.000Z');
+INSERT INTO search_monitors(id,user_id,search_id,filters,started_at) VALUES('fictional-monitor','drill-delete','fictional-search','{"q":"analyst","location":"","sponsorship":"","level":"","salary":"","sector":"","licence":""}','2026-10-08T10:00:00.000Z');
+INSERT INTO agent_research_budget(day,runs,calls) VALUES('2026-10-08',1,2);
+INSERT INTO marketing_briefs VALUES('fictional-brief','fictional-recovery','facebook-company','Fictional recovery exercise','scheduled',1,1,'fictional-schedule','2026-10-08T10:00:00.000Z','2026-10-08T10:00:00.000Z');
+INSERT INTO marketing_versions VALUES('fictional-brief',1,'Fictional database recovery test; nothing is published.','This record is a fictional recovery fixture.','[]','2026-10-09T10:00:00.000Z','fictional-writer','2026-10-08T10:00:00.000Z');
+INSERT INTO marketing_events VALUES('fictional-schedule','fictional-brief',1,1,'scheduled','fictional-operator','No provider call occurred.','2026-10-08T10:00:00.000Z','fictional-key-1','fictional-hash-1');
+INSERT INTO marketing_receipts VALUES('fictional-schedule','fictional-brief',1,'facebook-company','fictional-provider','fictional-provider-job','scheduled','2026-10-08T10:05:00.000Z',NULL,'2026-10-08T10:00:00.000Z','Fictional receipt for isolated restore exercise only.');
