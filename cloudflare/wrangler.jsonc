@@ -41,7 +41,7 @@
     "traces": { "enabled": true, "head_sampling_rate": 0.01 },
   },
   "vars": {
-    "APP_VERSION": "2.27.0",
+    "APP_VERSION": "2.28.0",
     "APP_ORIGIN": "https://sponsorintel.london",
     "AI_MODEL": "@cf/zai-org/glm-4.7-flash",
     "AI_DAILY_LIMIT": "40",

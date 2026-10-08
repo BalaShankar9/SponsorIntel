@@ -2218,7 +2218,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                 emails are sent through Cloudflare from accounts@sponsorintel.london.
                 Verification links expire after one hour; reset links after 30 minutes.
                 Saved recovery codes remain available. Account emails do not subscribe
-                you to marketing.
+                you to marketing. If you choose to follow a saved search, we check for newly added matches in the background and keep recent matches for 14 days. These appear privately in My applications; no alert emails are sent. Stopping a search, changing its filters, removing it or deleting your account removes that search’s match history.
                 Use Account & backup to export your career workspace, or delete
                 your account and cloud career data. Clearing browser data cannot
                 be undone without a backup. For feedback removal, send a request

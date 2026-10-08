@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { JobDetail } from "./job-detail";
 import { jobTimestamp } from "../shared/job-detail.js";
 import { AccountEmailHelp } from "./account-email";
+import { SavedSearches } from "./search-notifications";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -385,7 +386,7 @@ function Vacancies({ go }: { go: Go }) {
       ],
     }));
     setMessage(
-      "Search saved. Revisit it from My applications for fresh results.",
+      "Search saved. Open My applications to follow new matches.",
     );
   }
   return (
@@ -890,61 +891,7 @@ function Applications({ go }: { go: Go }) {
           </div>
         ))}
       </div>
-      {c.data.searches.length > 0 && (
-        <section className="saved-searches">
-          <h2>Your saved searches</h2>
-          <p>
-            Open a search for the latest results. These are in-app shortcuts; no
-            emails are sent.
-          </p>
-          {c.data.searches.map((s) => (
-            <div key={s.id}>
-              <a
-                href={
-                  "/jobs?" +
-                  new URLSearchParams({
-                    q: s.q,
-                    location: s.location,
-                    sponsorship: s.sponsorship,
-                    level: s.level,
-                    salary: s.salary || "",
-                    sector: s.sector || "",
-                    licence: s.licence || "",
-                  })
-                }
-              >
-                <Search size={15} />
-                {[
-                  s.q || "All roles",
-                  s.location,
-                  s.sponsorship === "mentioned"
-                    ? "Sponsorship mentioned"
-                    : sponsorLabels[s.sponsorship],
-                  s.level === "early_career" ? "Early career" : "",
-                  s.salary ? "GBP pay" : "",
-                  s.sector,
-                  s.licence === "matched" ? "Licensed employers" : "",
-                ]
-                  .filter(Boolean)
-                  .join(" · ")}
-                <ArrowUpRight size={15} />
-              </a>
-              <button
-                className="icon-button"
-                aria-label="Remove saved search"
-                onClick={() =>
-                  c.setData((d) => ({
-                    ...d,
-                    searches: d.searches.filter((x) => x.id !== s.id),
-                  }))
-                }
-              >
-                <X size={15} />
-              </button>
-            </div>
-          ))}
-        </section>
-      )}
+      <SavedSearches />
       <div className="career-tabs" role="group" aria-label="Application stage">
         {["All", ...stages].map((s) => (
           <button
@@ -2074,7 +2021,7 @@ function Account({
           <h2>Your data belongs to you.</h2>
           <p>
             Your master CV, applications and saved searches can be downloaded at
-            any time.
+            any time. Followed-search settings and recent matches have a separate download in My applications; importing a backup does not enable following.
           </p>
           <div className="backup-options">
             <button

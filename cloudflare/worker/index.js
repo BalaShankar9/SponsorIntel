@@ -18,6 +18,7 @@ export { BusinessWorkflow } from './business-workflow.js';
 export { MarketingWorkflow } from './marketing-workflow.js';
 export {ApplicationEvaluationWorkflow} from './application-evaluation-workflow.js';
 import { dispatchBusiness } from './business-operations.js';
+import { scanSearchNotifications } from './search-notifications.js';
 import { immigrationAPI, refreshImmigration } from "./immigration.js";
 import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";
 import { careerAPI } from "./career.js";
@@ -410,12 +411,12 @@ export default {
       return;
     }
     if (event.cron === "*/15 * * * *") {
-      console.log(
-        JSON.stringify({
-          event: "immigration_refresh",
-          ...(await refreshImmigration(env)),
-        }),
-      );
+      const results=await Promise.allSettled([refreshImmigration(env),scanSearchNotifications(env)]);
+      for (const [i,result] of results.entries()) console.log(JSON.stringify({
+        event:i===0?'immigration_refresh':'search_notifications',
+        ...(result.status==='fulfilled'?result.value:{state:'failed'})
+      }));
+      if (results.some(r=>r.status==='rejected')) throw Error('A scheduled refresh failed.');
       return;
     }
     if (event.cron === "30 */6 * * *") {

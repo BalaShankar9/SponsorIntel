@@ -4,6 +4,7 @@ import { XMLParser, XMLValidator } from "fast-xml-parser";
 import { BOARDS, SECTORS, UNIVERSITY_FEEDS } from "./job-sources.js";
 import { employerLicences } from "./employer-licences.js";
 import { currentJobs } from "./current-jobs.js";
+import { jobFilter } from "./job-filters.js";
 import { parseJobDeadline, universityClosingDate } from "./job-deadlines.js";
 import { payEvidence } from "../shared/pay-evidence.js";
 export { BOARDS } from "./job-sources.js";
@@ -582,47 +583,7 @@ export async function jobsAPI(url, env, now = Date.now()) {
   const licences = await employerLicences(env.DB, extraBoards);
   const licensedBoards = JSON.stringify([...licences.matches.keys()]);
   const current = currentJobs(now);
-  const values = [...current.values];
-  let where = current.sql;
-  for (const term of (p.get("q") || "")
-    .trim()
-    .slice(0, 150)
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 5)) {
-    // Literal substring matching avoids wildcard surprises and D1's LIKE limit.
-    where +=
-      " AND (instr(lower(title),lower(?))>0 OR instr(lower(company),lower(?))>0 OR instr(lower(description),lower(?))>0)";
-    values.push(term, term, term);
-  }
-  if (p.get("location")) {
-    where += " AND instr(lower(location),lower(?))>0";
-    values.push(p.get("location").trim().slice(0, 80));
-  }
-  if (
-    ["offered", "conditional", "not_stated", "unavailable"].includes(
-      p.get("sponsorship"),
-    )
-  ) {
-    where += " AND sponsorship=?";
-    values.push(p.get("sponsorship"));
-  } else if (p.get("sponsorship") === "mentioned") {
-    where += " AND sponsorship IN ('offered','conditional')";
-  }
-  if (p.get("level") === "early_career") where += " AND level='early_career'";
-  if (p.get("salary") === "listed") where += " AND salary_excerpt<>''";
-  if (p.get("licence") === "matched") {
-    where += " AND board_id IN (SELECT value FROM json_each(?))";
-    values.push(licensedBoards);
-  }
-  const sector = p.get("sector");
-  if (Object.hasOwn(SECTORS, sector || "")) {
-    const ids = [...BOARDS, ...extraBoards]
-      .filter((b) => b.sector === sector)
-      .map((b) => b.id);
-    where += ` AND board_id IN (${ids.map(() => "?").join(",")})`;
-    values.push(...ids);
-  }
+  const {sql: where, values} = jobFilter(p, extraBoards, licences.matches.keys(), now);
   const count = await env.DB.prepare(
     "SELECT COUNT(*) total FROM jobs WHERE " + where,
   )

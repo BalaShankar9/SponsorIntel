@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-08T06:10:51.522Z",
+  "environment": "isolated local Workerd/D1; fictional accounts and jobs only",
+  "checks": [
+    "Real email/password session with fictional verified local accounts",
+    "Anonymous GET 401 and foreign-Origin PUT 403",
+    "Same handler as production quarter-hour schedule completed locally",
+    "Old and expired jobs excluded; two new matches surfaced",
+    "Account B cannot read or acknowledge Account A matches",
+    "Private response is no-store"
+  ],
+  "release": "2.28.0",
+  "browser": {
+    "sign_in": "passed with fictional local account",
+    "read_control": "2 unseen matches became seen; jobs remained visible",
+    "mobile_width": 390,
+    "document_width": 390,
+    "final_bundle_reloaded": true,
+    "export": "Button exercised; browser download wait timed out. Internal downloads inspection was blocked by browser URL policy. File delivery is unverified."
+  },
+  "tests": 311,
+  "production_models_called": 0
+}

@@ -10,6 +10,7 @@ import { supervisionFindings } from './agent-supervision.js';
 import {searchSnapshot,searchFindings} from './search-console.js';
 import {summaryState} from './immigration-content.js';
 import {EXPLAINERS} from './immigration-explainers.js';
+import {searchNotificationHealth} from './search-notifications.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -93,6 +94,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     immigration:rows[2].results.map(({content,...source})=>({...source,explanation_status:summaryState({...source,content},EXPLAINERS[source.id],now).status})), register:register ? JSON.parse(register.value) : null,
     metrics:rows[4].results, held_batches:rows[5].results[0].total,
     feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}), application_evaluation:await applicationEvaluationHealth(env),
+    search_notifications:await searchNotificationHealth(env),
     reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
       dangerous_false_positives:reference.dangerous_false_positives,unsupported_refusals:reference.unsupported_refusals,disputed_items:reference.disputed_items} };
 }
@@ -100,6 +102,9 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
 export function businessFindings(snapshot, now = Date.now()) {
   const issues = [];
   const add = (id,category,severity,title,detail,next_action) => issues.push({id,category,severity,title,detail,next_action});
+  const notifications=snapshot.search_notifications;
+  if (notifications?.followed && (notifications.awaiting_first_check || notifications.last_run?.failed || !currentTimestamp(notifications.oldest_check,now,3600000)))
+    add('search-notifications','product','normal','Check saved-search matching','Some followed searches are waiting for a check, have failed, or have not been checked within an hour.','Inspect the scheduled matching receipt and queue capacity. Do not reset subscribers or mark unseen matches as read.');
   for (const c of snapshot.checks) {
     if (!c.ok) add('http:'+c.path,'health','critical','Investigate a failing site check',c.path+' returned '+(c.status ?? 'no response')+'.','Check the live route, recent release and error logs; verify a repair before closing.');
     if (!c.security) add('headers:'+c.path,'security','high','Restore expected browser protections',c.path+' did not return both checked protection headers.','Check deployment responses and restore the content policy and content-type protection. This is not a full security audit.');
