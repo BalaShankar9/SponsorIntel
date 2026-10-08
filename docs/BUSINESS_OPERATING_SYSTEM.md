@@ -92,3 +92,7 @@ Before schema changes obtain a D1 recovery bookmark. Prefer code rollback, prese
 The daily follow-up is the active Codex heartbeat `sponsor-intel-daily-improvement`. Its existence confirms scheduling configuration only; inspect actual execution before claiming it ran. Keep notifications for material completions, new actionable failures or a decision needed, and avoid repeating unchanged access blockers.
 
 The acceptance sequence for the full autonomy objective is tracked in `AUTONOMY_ACCEPTANCE.md`. A deployed component is not proof of an unattended end-to-end business outcome.
+
+### Scheduled acceptance observed on 8 October
+
+Business run `business-497616` recorded its genuine scheduled origin and completed at 00:45:40 UTC. Supervision found both agent types idle; no recovery action or high-priority health issue was needed. The following editorial run `marketing-2026-10-08` correctly chose no post because the launch queue had no eligible slot. It made zero model calls; the retained attempt reservation brought the shared daily count to 4/4 (6/32 calls), so research held. This is normal unattended execution proof, not production-incident recovery proof, useful generated copy or delivered social content. See the 2.17.1 release and advert audit receipt.

@@ -68,6 +68,33 @@ test('issues reopen on recurrence and resolve only when evidence no longer suppo
  await recordBusinessFindings(env,'run',snapshot());assert.equal(env.sql.prepare("SELECT state FROM business_issues WHERE id='http:/api/health'").get().state,'resolved');
  await recordBusinessFindings(env,'run',s);assert.equal(env.sql.prepare("SELECT state FROM business_issues WHERE id='http:/api/health'").get().state,'open');
 });
+test('invalid and future evidence timestamps cannot hide failed freshness checks',()=>{
+ const targets=[
+  {id:'register-freshness',age:36*3600000,set:(s,v)=>s.register.checked_at=v},
+  {id:'source:test',age:24*3600000,set:(s,v)=>s.sources[0].last_success=v},
+  {id:'immigration-freshness',age:3600000,set:(s,v)=>s.immigration[0].last_success=v},
+ ];
+ for(const target of targets){
+  for(const value of [null,'','invalid timestamp',new Date(now+300001).toISOString(),new Date(now-target.age-1).toISOString()]){
+   const s=snapshot();target.set(s,value);
+   assert.ok(businessFindings(s,now).some(x=>x.id===target.id&&x.severity==='high'),target.id+': '+value);
+  }
+  for(const value of [stamp,new Date(now+300000).toISOString(),new Date(now-target.age).toISOString()]){
+   const s=snapshot();target.set(s,value);
+   assert.ok(!businessFindings(s,now).some(x=>x.id===target.id),target.id+': valid boundary');
+  }
+ }
+ const empty=snapshot();empty.immigration=[];
+ assert.match(businessFindings(empty,now).find(x=>x.id==='immigration-freshness').detail,/No immigration source checks/);
+});
+test('bad timestamps open and resolve a real monitoring issue without changing evidence',async t=>{
+ const env=database(t),s=snapshot();s.immigration[0].last_success='invalid timestamp';
+ await recordBusinessFindings(env,'run',s);
+ assert.equal(env.sql.prepare("SELECT state FROM business_issues WHERE id='immigration-freshness'").get().state,'open');
+ assert.equal(s.immigration[0].last_success,'invalid timestamp');
+ await recordBusinessFindings(env,'run',snapshot());
+ assert.equal(env.sql.prepare("SELECT state FROM business_issues WHERE id='immigration-freshness'").get().state,'resolved');
+});
 test('daily research respects the existing allowance and never re-dispatches on workflow replay',async t=>{
  const env=database(t);let calls=0;env.RESEARCH_WORKFLOW={create:async()=>{calls++;}};env.AI_MODEL='one';env.AI_REVIEW_MODEL='two';
  const r=await scheduleBusinessResearch(env,now);assert.equal(r.state,'started');await scheduleBusinessResearch(env,now);assert.equal(calls,1);

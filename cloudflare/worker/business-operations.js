@@ -5,6 +5,12 @@ import { publishInsight } from './insights.js';
 import { supervisionFindings } from './agent-supervision.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
+// Invalid dates produce NaN, which does not satisfy an overdue comparison.
+// Allow only a small clock skew; future timestamps must not look healthy forever.
+const currentTimestamp = (value, now, maxAge) => {
+  const time = typeof value === 'string' && value.trim() ? Date.parse(value) : NaN;
+  return Number.isFinite(time) && time <= now + 300000 && now - time <= maxAge;
+};
 export const businessRunId = (time) => 'business-' + Math.floor(time / 3600000);
 export const controls = (env) => env.DB.prepare('SELECT * FROM business_controls WHERE singleton=1').first();
 const terminal = new Set(['complete', 'completed', 'errored', 'terminated']);
@@ -87,12 +93,12 @@ export function businessFindings(snapshot, now = Date.now()) {
     if (!c.ok) add('http:'+c.path,'health','critical','Investigate a failing site check',c.path+' returned '+(c.status ?? 'no response')+'.','Check the live route, recent release and error logs; verify a repair before closing.');
     if (!c.security) add('headers:'+c.path,'security','high','Restore expected browser protections',c.path+' did not return both checked protection headers.','Check deployment responses and restore the content policy and content-type protection. This is not a full security audit.');
   }
-  if (!snapshot.register?.checked_at || !Number.isFinite(Date.parse(snapshot.register.checked_at)) || now-Date.parse(snapshot.register.checked_at)>36*3600000)
-    add('register-freshness','quality','high','Restore sponsor register refresh','The register check is missing or older than 36 hours.','Inspect the official register refresh. Keep licence evidence separate from advert wording.');
-  for (const source of snapshot.sources.filter(x=>!x.paused)) if (source.error || !source.last_success || !Number.isFinite(Date.parse(source.last_success)) || now-Date.parse(source.last_success)>24*3600000)
-    add('source:'+source.id,'quality','high','Check '+source.company+' feed','The source has an error or has not succeeded in 24 hours.','Inspect its original feed and the source operations queue. Do not refresh timestamps without fetching evidence.');
-  const delayed = snapshot.immigration.filter(x=>x.error || !x.last_success || now-Date.parse(x.last_success)>3600000);
-  if (delayed.length || !snapshot.immigration.length) add('immigration-freshness','quality','high','Check immigration source monitoring',delayed.length+' selected sources are delayed or failed.','Inspect official-source refresh errors; do not publish new legal interpretations while source checks are missing.');
+  if (!currentTimestamp(snapshot.register?.checked_at, now, 36*3600000))
+    add('register-freshness','quality','high','Restore sponsor register refresh','The register timestamp is missing, invalid, in the future or older than 36 hours.','Inspect the official register refresh. Keep licence evidence separate from advert wording.');
+  for (const source of snapshot.sources.filter(x=>!x.paused)) if (source.error || !currentTimestamp(source.last_success, now, 24*3600000))
+    add('source:'+source.id,'quality','high','Check '+source.company+' feed','The source has an error, an invalid or future timestamp, or has not succeeded in 24 hours.','Inspect its original feed and the source operations queue. Do not refresh timestamps without fetching evidence.');
+  const delayed = snapshot.immigration.filter(x=>x.error || !currentTimestamp(x.last_success, now, 3600000));
+  if (delayed.length || !snapshot.immigration.length) add('immigration-freshness','quality','high','Check immigration source monitoring',snapshot.immigration.length ? delayed.length+' selected sources have failed, are overdue, or have missing, invalid or future check timestamps.' : 'No immigration source checks are available.','Inspect official-source refresh errors; do not publish new legal interpretations while source checks are missing.');
   if (snapshot.held_batches) add('held-batches','quality','high','Review held source batches',snapshot.held_batches+' source review records remain open.','Inspect the existing evidence queue before releasing held data.');
   if (snapshot.feedback_count) add('feedback','product','normal','Review recent user feedback',snapshot.feedback_count+' feedback submissions were received in the last seven days.','Read the owner feedback queue, reproduce bugs and fix the highest impact issue. Do not expose messages in public reports.');
   add('search-console','growth','normal','Connect search performance to the growth review','Search Console metrics are not connected to this cloud workflow.','Verify the property and connect read-only query, click and indexing reports. No ranking improvement is measured yet.');

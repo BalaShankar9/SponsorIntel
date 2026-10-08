@@ -1,0 +1,258 @@
+{
+  "version": "2.17.1",
+  "audit_at": "2026-10-08T00:40:20.653490+00:00",
+  "source_runs": [
+    {
+      "id": "scheduled-1791419434000",
+      "state": "completed",
+      "trigger_kind": "scheduled",
+      "created_at": "2026-10-08T00:30:34.979Z",
+      "finished_at": "2026-10-08T00:31:07.639Z",
+      "summary": "{\"published\":30}"
+    },
+    {
+      "id": "scheduled-1791397813000",
+      "state": "completed",
+      "trigger_kind": "scheduled",
+      "created_at": "2026-10-07T18:30:23.454Z",
+      "finished_at": "2026-10-07T18:32:16.440Z",
+      "summary": "{\"published\":30}"
+    }
+  ],
+  "profile": {
+    "sample_size": 50,
+    "sources": 18,
+    "unique_ids": 50,
+    "unique_urls": 50,
+    "required_missing": 0,
+    "original_hash_match": 50,
+    "refreshed_found": 50,
+    "refreshed_active": 50,
+    "refreshed_same_body": 50,
+    "all_connected_feeds": 30,
+    "feeds_without_error": 30,
+    "oldest_observation": "2026-10-08T00:30:38.047Z",
+    "newest_observation": "2026-10-08T00:31:04.774Z",
+    "optional_source_updated_missing": 1,
+    "description_characters": 306724,
+    "full_description_reviews": 12,
+    "unreviewed": 38,
+    "human_adjudicated": 0,
+    "taxonomy_ambiguous": 1,
+    "provisional_mismatches": 0
+  },
+  "limitations": [
+    "Stratified and source-balanced sample, not a random estimate of catalogue accuracy.",
+    "Only 12 full descriptions reviewed; other 38 checked structurally and for freshness only.",
+    "AI-assisted provisional annotations, not independent human gold labels.",
+    "Bare can sponsor is ambiguous between the two positive labels; do not count it as an exact-label success.",
+    "Feed observation does not establish application-page availability or individual visa eligibility.",
+    "No Cloudflare model evaluation was run on this real sample."
+  ],
+  "live_semantic_model_evaluation": "not run on this real-advert set",
+  "report_verification": {
+    "validation": "passed",
+    "package": "passed",
+    "verification": "structural_only"
+  },
+  "checks": {
+    "tests": 203,
+    "build": "passed, 17 prerendered public pages",
+    "worker_packaging": "passed"
+  },
+  "deployment": {
+    "version": "2.17.1",
+    "worker_version_id": "b8ed9300-f7c6-4263-82a4-8dd13458e2ef",
+    "live_checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "health": {
+          "ok": true,
+          "version": "2.17.1",
+          "register": {
+            "date": "2026-10-06",
+            "count": 127934,
+            "checked_at": "2026-10-07T07:15:14.478Z"
+          }
+        },
+        "nosniff": "nosniff",
+        "has_csp": true
+      },
+      {
+        "path": "/jobs",
+        "status": 200,
+        "health": null,
+        "nosniff": "nosniff",
+        "has_csp": true
+      },
+      {
+        "path": "/updates",
+        "status": 200,
+        "health": null,
+        "nosniff": "nosniff",
+        "has_csp": true
+      },
+      {
+        "path": "/api/admin/business",
+        "status": 403,
+        "health": null,
+        "nosniff": "nosniff",
+        "has_csp": true
+      },
+      {
+        "path": "/api/admin/research",
+        "status": 403,
+        "health": null,
+        "nosniff": "nosniff",
+        "has_csp": true
+      }
+    ]
+  },
+  "scheduled_supervision": {
+    "id": "business-497616",
+    "state": "completed",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-08T00:45:34.000Z",
+    "finished_at": "2026-10-08T00:45:40.310Z",
+    "result": {
+      "health": {
+        "findings": 3,
+        "high": 0
+      },
+      "supervision": {
+        "checked_at": "2026-10-08T00:45:37.705Z",
+        "checks": [
+          {
+            "kind": "research",
+            "action": "idle"
+          },
+          {
+            "kind": "marketing",
+            "action": "idle"
+          }
+        ],
+        "reconciled": 0,
+        "needs_attention": 0,
+        "model_calls": 0,
+        "external_posts": 0
+      },
+      "cleanup": {
+        "state": "completed",
+        "stale_roles": 0,
+        "policy": "Hide records last observed over 72 hours ago; retain the records, feedback and customer workspaces."
+      },
+      "publication": {
+        "state": "not_due",
+        "next_due": "2026-10-14T16:50:43.330Z"
+      },
+      "marketing": {
+        "prepared": 0,
+        "external_posts_sent": 0
+      },
+      "editorial": {
+        "id": "marketing-2026-10-08",
+        "state": "queued"
+      },
+      "research": {
+        "state": "held"
+      }
+    }
+  },
+  "business_steps": [
+    {
+      "run_id": "business-497616",
+      "name": "agent-supervision",
+      "result": {
+        "checked_at": "2026-10-08T00:45:37.705Z",
+        "checks": [
+          {
+            "kind": "research",
+            "action": "idle"
+          },
+          {
+            "kind": "marketing",
+            "action": "idle"
+          }
+        ],
+        "reconciled": 0,
+        "needs_attention": 0,
+        "model_calls": 0,
+        "external_posts": 0
+      },
+      "created_at": "2026-10-08T00:45:37.705Z"
+    },
+    {
+      "run_id": "business-497616",
+      "name": "housekeeping",
+      "result": {
+        "state": "completed",
+        "stale_roles": 0,
+        "policy": "Hide records last observed over 72 hours ago; retain the records, feedback and customer workspaces."
+      },
+      "created_at": "2026-10-08T00:45:38.651Z"
+    },
+    {
+      "run_id": "business-497616",
+      "name": "supervise:marketing",
+      "result": {
+        "kind": "marketing",
+        "action": "idle"
+      },
+      "created_at": "2026-10-08T00:45:37.705Z"
+    },
+    {
+      "run_id": "business-497616",
+      "name": "supervise:research",
+      "result": {
+        "kind": "research",
+        "action": "idle"
+      },
+      "created_at": "2026-10-08T00:45:37.705Z"
+    }
+  ],
+  "scheduled_editorial": {
+    "id": "marketing-2026-10-08",
+    "state": "no_post",
+    "created_at": "2026-10-08T00:45:39.223Z",
+    "finished_at": "2026-10-08T00:45:42.676Z",
+    "result": {
+      "decision": "no_post",
+      "source_id": "",
+      "reason": "No eligible slot: the queue is full, expired or needs delivery reconciliation.",
+      "ranked": [],
+      "timing_reason": "Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first."
+    },
+    "calls": 0,
+    "brief_id": null
+  },
+  "daily_ai_budget_after_scheduled_cycle": {
+    "day": "2026-10-08",
+    "runs": 4,
+    "calls": 6
+  },
+  "platform_receipts": {
+    "business": {
+      "id": "business-497616",
+      "versionId": "e798c69b-bafc-4e58-8114-10cea5471f93",
+      "queued": "2026-10-08T00:45:35.582Z",
+      "start": "2026-10-08T00:45:37.436Z",
+      "end": "2026-10-08T00:45:40.362Z",
+      "success": true,
+      "error": null,
+      "status": "complete",
+      "step_count": 10
+    },
+    "marketing": {
+      "id": "marketing-2026-10-08",
+      "versionId": "1e503638-bb36-4cef-ad66-e8b7b3710335",
+      "queued": "2026-10-08T00:45:40.074Z",
+      "start": "2026-10-08T00:45:42.031Z",
+      "end": "2026-10-08T00:45:42.722Z",
+      "success": true,
+      "error": null,
+      "status": "complete",
+      "step_count": 3
+    }
+  }
+}
