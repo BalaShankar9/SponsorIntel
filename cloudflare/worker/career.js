@@ -58,6 +58,25 @@ export function generationPrompt(kind, profile, application) {
   };
 }
 
+export async function writeCareerDraft(env, kind, profile, application) {
+  const prompt = generationPrompt(kind, profile, application);
+  const result = await env.AI.run(env.AI_MODEL, {
+    messages: [
+      { role: "system", content: prompt.system },
+      { role: "user", content: prompt.user },
+    ],
+    max_tokens: 2700,
+    temperature: 0.15,
+    chat_template_kwargs: { enable_thinking: false },
+  });
+  const output = typeof result.response === "string"
+    ? result.response : result.choices?.[0]?.message?.content;
+  const value = cleanDraft(String(output || "").replace(/<think>[\s\S]*?<\/think>/g, ""));
+  if (result.choices?.[0]?.finish_reason === "length" || value.length < 80 || value.length > 40000 || /<think>/.test(value))
+    throw new Error("Incomplete output");
+  return value;
+}
+
 export async function careerAPI(request, env) {
   const url = new URL(request.url);
   if (!["GET", "POST", "PUT", "DELETE"].includes(request.method))
@@ -172,29 +191,7 @@ export async function careerAPI(request, env) {
         429,
       );
     try {
-      const result = await env.AI.run(env.AI_MODEL, {
-        messages: [
-          { role: "system", content: prompt.system },
-          { role: "user", content: prompt.user },
-        ],
-        max_tokens: 2700,
-        temperature: 0.15,
-        chat_template_kwargs: { enable_thinking: false },
-      });
-      const output =
-        typeof result.response === "string"
-          ? result.response
-          : result.choices?.[0]?.message?.content;
-      let value = cleanDraft(
-        String(output || "").replace(/<think>[\s\S]*?<\/think>/g, ""),
-      );
-      if (
-        result.choices?.[0]?.finish_reason === "length" ||
-        value.length < 80 ||
-        value.length > 40000 ||
-        /<think>/.test(value)
-      )
-        throw new Error("Incomplete output");
+      let value = await writeCareerDraft(env,body.kind,workspace.profile,workspace.applications[0]);
       if (["cv", "coverLetter"].includes(body.kind))
         value = await reviewDraft(
           env,

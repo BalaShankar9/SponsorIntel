@@ -4,6 +4,7 @@ import {syncMarketing} from './marketing.js';
 import {dispatchMarketingAgents} from './marketing-agents.js';
 import {superviseAgents} from './agent-supervision.js';
 import {syncSearchConsole} from './search-console.js';
+import {dispatchApplicationEvaluation} from './application-evaluation.js';
 
 export class BusinessWorkflow extends WorkflowEntrypoint {
   async run(event,step) {
@@ -23,7 +24,8 @@ export class BusinessWorkflow extends WorkflowEntrypoint {
       const marketing=await step.do('reconcile-marketing-records',async()=> (await controls(this.env))?.enabled ? syncMarketing(this.env) : {state:'paused'});
       const editorial=await step.do('dispatch-daily-marketing-agents',()=>dispatchMarketingAgents(this.env));
       const research=await step.do('dispatch-daily-research',{retries:{limit:0,delay:'1 second'},timeout:'1 minute'},()=>scheduleBusinessResearch(this.env));
-      return await step.do('record-completion',()=>finishBusiness(this.env,id,{health,supervision,search,cleanup,publication,marketing,editorial,research}));
+      const applications=await step.do('dispatch-application-evaluation',{retries:{limit:0,delay:'1 second'},timeout:'1 minute'},()=>dispatchApplicationEvaluation(this.env));
+      return await step.do('record-completion',()=>finishBusiness(this.env,id,{health,supervision,search,cleanup,publication,marketing,editorial,research,applications}));
     } catch {
       return await step.do('record-failure',()=>finishBusiness(this.env,id,{error:'Operations stopped. Inspect the workflow and latest successful step before recovering.'}));
     }

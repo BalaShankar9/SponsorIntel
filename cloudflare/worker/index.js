@@ -16,6 +16,7 @@ export { SourceWorkflow } from "./source-workflow.js";
 export { ResearchWorkflow } from './research-workflow.js';
 export { BusinessWorkflow } from './business-workflow.js';
 export { MarketingWorkflow } from './marketing-workflow.js';
+export {ApplicationEvaluationWorkflow} from './application-evaluation-workflow.js';
 import { dispatchBusiness } from './business-operations.js';
 import { immigrationAPI, refreshImmigration } from "./immigration.js";
 import { authAPI, recoverAccount, digest, reply, sameOrigin } from "./auth.js";

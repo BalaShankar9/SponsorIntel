@@ -40,7 +40,7 @@ export async function startInvestigation(env, actor, kind = 'research', evaluati
     env.DB.prepare("INSERT INTO agent_investigations(id,kind,state,actor,created_at,policy,models,evaluation_suite,reference_batch) SELECT ?,?,'queued',?,?,?,?,?,? WHERE (SELECT runs FROM agent_research_budget WHERE day=?)<4 RETURNING id").bind(id,kind,actor,iso(),RESEARCH_POLICY,JSON.stringify(researchModels(env)),evaluationSuite,referenceId,day),
     env.DB.prepare('UPDATE agent_research_budget SET runs=runs+1 WHERE day=? AND EXISTS(SELECT 1 FROM agent_investigations WHERE id=?)').bind(day,id),
   ]);
-  if (!batch[0].results?.length) throw Error('Four daily shared research and marketing attempts have been used. Try tomorrow.');
+  if (!batch[0].results?.length) throw Error('Four daily shared agent attempts have been used. Try tomorrow.');
   try { await env.RESEARCH_WORKFLOW.create({ id, params: { runId: id } }); }
   catch {
     // An uncertain create is never replaced with another paid run.

@@ -18,6 +18,7 @@ import { trackPage } from './metrics';
 import { CampaignAnalytics } from './campaign-analytics';
 import {MarketingDesk} from './marketing-desk';
 import {SupportDesk} from './support-desk';
+import {ApplicationEvaluation} from './application-evaluation';
 type Go = (view: string) => void;
 async function api(path: string, body?: unknown) {
   const r = await fetch(
@@ -650,6 +651,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
               wording on each advert.
             </p>
           </section>
+          <ApplicationEvaluation />
           <SupportDesk />
         </>
       )}

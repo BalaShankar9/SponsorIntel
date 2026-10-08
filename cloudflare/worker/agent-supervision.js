@@ -4,10 +4,12 @@ const HOUR=3600000,iso=n=>new Date(n).toISOString();
 const ENDED=new Set(['complete','errored','terminated']);
 const KNOWN=new Set([...ENDED,'queued','running','paused','waiting','waitingForPause','unknown']);
 const AREAS=[{kind:'research',table:'agent_investigations',binding:'RESEARCH_WORKFLOW'},
- {kind:'marketing',table:'marketing_agent_runs',binding:'MARKETING_WORKFLOW'}];
+ {kind:'marketing',table:'marketing_agent_runs',binding:'MARKETING_WORKFLOW'},
+ {kind:'applications',table:'application_eval_runs',binding:'APPLICATION_EVAL_WORKFLOW'}];
 async function enabled(env,kind){
  const business=await env.DB.prepare('SELECT enabled FROM business_controls WHERE singleton=1').first();
  if(!business?.enabled)return false;
+ if(kind==='applications')return !!(await env.DB.prepare('SELECT enabled FROM application_eval_controls WHERE singleton=1').first())?.enabled;
  return kind!=='marketing'||!!(await env.DB.prepare('SELECT enabled FROM marketing_agent_controls WHERE singleton=1').first())?.enabled;
 }
 async function platformStatus(binding,id){
@@ -44,9 +46,10 @@ async function reconcileEnded(env,businessId,area,run,status,now){
  }
  const result={kind:area.kind,run_id:run.id,action:'reconciled',platform_status:status,draft,
   reason:'Confirmed stopped workflow; closed its unfinished application record. Existing evidence, call reservations and owner decisions are retained. No paid call was repeated.'};
- const gate=area.kind==='marketing'?" AND (SELECT enabled FROM marketing_agent_controls WHERE singleton=1)=1":'';
+ const gate=area.kind==='marketing'?" AND (SELECT enabled FROM marketing_agent_controls WHERE singleton=1)=1":area.kind==='applications'?" AND (SELECT enabled FROM application_eval_controls WHERE singleton=1)=1":'';
  const update=area.kind==='research'
   ?env.DB.prepare("UPDATE agent_investigations SET state='failed',finished_at=?,error=? WHERE id=? AND state IN ('queued','running') AND (SELECT enabled FROM business_controls WHERE singleton=1)=1").bind(iso(now),result.reason,run.id)
+  :area.kind==='applications'?env.DB.prepare("UPDATE application_eval_runs SET state='failed',finished_at=?,error=? WHERE id=? AND state IN ('queued','running') AND (SELECT enabled FROM business_controls WHERE singleton=1)=1"+gate).bind(iso(now),result.reason,run.id)
   :env.DB.prepare("UPDATE marketing_agent_runs SET state='held',finished_at=?,result=? WHERE id=? AND state IN ('queued','running') AND (SELECT enabled FROM business_controls WHERE singleton=1)=1"+gate).bind(iso(now),JSON.stringify({reason:result.reason,recovery:result,publication:'none',brief_id:current.brief_id}),run.id);
  // Closing the application record and retaining its recovery receipt are atomic.
  await env.DB.batch([update,env.DB.prepare('INSERT INTO business_steps(run_id,name,result,created_at) SELECT ?,?,?,? WHERE changes()=1 ON CONFLICT DO NOTHING').bind(businessId,name,JSON.stringify(result),iso(now))]);

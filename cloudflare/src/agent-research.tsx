@@ -52,7 +52,7 @@ export function AgentResearch() {
         <button className="secondary-button" disabled={busy||active||!data.enabled||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'evaluation',evaluation_suite:'critic'})}>Test reviewer</button>
         <button className="secondary-button" disabled={busy} onClick={()=>void load()}>Refresh research</button>
       </div>
-      <p className="fine-print">{data.budget.runs}/{data.budget.run_limit} shared research and marketing attempts · {data.budget.calls}/{data.budget.call_limit} reserved model calls today (UTC). Only public adverts, guides and operational data are used. No CVs or account details.</p>
+      <p className="fine-print">{data.budget.runs}/{data.budget.run_limit} shared agent attempts · {data.budget.calls}/{data.budget.call_limit} reserved model calls today (UTC). Only public data and fictional evaluation records are used. No customer CVs or account details.</p>
       {!premium&&<p className="fine-print">Frontier model connections are prepared but not enabled. These models have not yet passed a representative real-advert benchmark.</p>}
       {data.reference&&<section className="agent-panel" aria-label="Real advert evaluation">
         <div className="agent-heading"><h3>Testing against real adverts</h3><span className="agent-pill">{data.reference.state==='ready'&&data.budget.runs>=data.budget.run_limit?'Waiting for the next daily allowance':label(data.reference.state)}</span></div>

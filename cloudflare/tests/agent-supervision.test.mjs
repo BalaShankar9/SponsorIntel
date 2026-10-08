@@ -19,9 +19,9 @@ function status(env,kind,value){let calls=0;env[kind==='research'?'RESEARCH_WORK
 const version=()=>({purpose:'A synthetic sourced guide for recovery testing.',text:'This synthetic guide draft is private and should remain private.',sources:[{title:'Source',url:'https://sponsorintel.london/guides/build-a-shortlist',excerpt:'Public guide quotation for a synthetic recovery test.',checked_at:iso(now-hour)}],expires_at:iso(now+hour)});
 async function draft(env,id){const b=await createBrief(env,{...version(),topic_key:'supervision-test',title:'Recovery test',destination:'facebook-company'},'marketing-writer:writer',now);env.sql.prepare('UPDATE marketing_agent_runs SET brief_id=? WHERE id=?').run(b.id,id);return b.id;}
 
-test('idle supervision records both queues without model calls and replays its receipt',async t=>{
+test('idle supervision records all three queues without model calls and replays its receipt',async t=>{
  const env=envFor(t),a=await superviseAgents(env,'business-qa',now),b=await superviseAgents(env,'business-qa',now);
- assert.deepEqual(a.checks.map(x=>x.action),['idle','idle']);assert.equal(b.replayed,true);assert.equal(a.model_calls,0);assert.equal(a.external_posts,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM business_steps').get().n,3);
+ assert.deepEqual(a.checks.map(x=>x.action),['idle','idle','idle']);assert.equal(b.replayed,true);assert.equal(a.model_calls,0);assert.equal(a.external_posts,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM business_steps').get().n,4);
 });
 test('confirmed stopped research is closed with an atomic receipt while evidence and budgets remain intact',async t=>{
  for(const outcome of ['complete','errored','terminated']){
