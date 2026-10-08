@@ -136,3 +136,10 @@ test('owner-only APIs deny anonymous access, cross-origin mutations and unknown 
  assert.equal((await businessAPI(make('https://sponsorintel.london',{setting:'enabled',value:false}),env,owner)).status,200);
  assert.equal((await businessSnapshot(env)).settings.enabled,0);
 });
+
+test('recent initial collection is normal progress, but never opens publication or hides a failed or stalled source',()=>{
+ const s=snapshot();s.sources[0].last_success=null;s.sources[0].collection={state:'collecting',ready:40,total:249,checked_at:stamp,started_at:stamp};
+ assert.ok(businessFindings(s,now).some(x=>x.id==='collecting:test'&&x.severity==='normal'));
+ assert.ok(!businessFindings(s,now).some(x=>x.id==='source:test'));assert.ok(publicationGate(s,now));
+ for(const mutate of [x=>x.error='failed',x=>x.collection.checked_at=new Date(now-9*3600000).toISOString(),x=>x.collection.started_at=new Date(now+600000).toISOString(),x=>x.collection.ready=0]){const copy=structuredClone(s);mutate(copy.sources[0]);assert.ok(businessFindings(copy,now).some(x=>x.id==='source:test'&&x.severity==='high'));}
+});

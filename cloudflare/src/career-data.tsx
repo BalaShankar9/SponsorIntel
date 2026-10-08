@@ -61,6 +61,7 @@ export type Job = {
   employment_type?: string;
   workplace?: string;
   source_updated_at?: string;
+  description_checked_at?: string | null;
   source_first_published_at?: string | null;
   application_deadline?: string | null;
   closes_at?: string | null;

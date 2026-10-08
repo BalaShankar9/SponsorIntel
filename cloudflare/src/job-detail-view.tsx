@@ -121,10 +121,11 @@ export function JobDetailView({
             </> : <p>A clear UK pay statement was not found in the text we checked. Confirm pay with the employer.</p>}
             <h3>Seen on the employer’s board</h3>
             <p>{jobTimestamp(job.last_seen)}</p>
+            {job.provider === 'smartrecruiters' && job.description_checked_at && <><h3>Advert text retrieved</h3><p>{jobTimestamp(job.description_checked_at)}</p><p className="role-caption">We recheck the employer’s vacancy list at each successful refresh. Unchanged advert versions may use text retrieved within the past seven days. Re-read the original advert before applying.</p></>}
             {published && <><h3>Originally published by the employer</h3><p><time dateTime={published}>{jobTimestamp(published)}</time></p><p className="role-caption">The original publication date supplied by Greenhouse. A later edit or refresh does not make this a new vacancy.</p></>}
             {job.source_updated_at && <><h3>{job.provider === 'greenhouse' ? 'Last edited by the source' : 'Date supplied by the source'}</h3><p>{jobTimestamp(job.source_updated_at)}</p><p className="role-caption">{job.provider === 'greenhouse' ? 'An edit date does not establish when the vacancy first opened.' : 'This may be a publication or edit date.'}</p></>}
             <h3>Source</h3>
-            <p>{job.provider === "university-rss" ? "Official university vacancy feed" : `${job.provider === "greenhouse" ? "Greenhouse" : job.provider === "lever" ? "Lever" : job.provider === "ashby" ? "Ashby" : "Employer"} public job board`}</p>
+            <p>{job.provider === "university-rss" ? "Official university vacancy feed" : `${job.provider === "greenhouse" ? "Greenhouse" : job.provider === "lever" ? "Lever" : job.provider === "ashby" ? "Ashby" : job.provider === "smartrecruiters" ? "SmartRecruiters" : "Employer"} public job board`}</p>
             {job.provider === "university-rss" && <p className="role-caption">A selection of recent campus vacancies, not every university role. Feed text may omit attachments or further eligibility details; check the full advert.</p>}
             {job.source?.careers_url && <a className="text-button" href={job.source.careers_url} {...external}>Employer careers page <ArrowUpRight size={14} /></a>}
           </section>

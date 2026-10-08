@@ -1,5 +1,6 @@
 // The model can prioritise server-generated findings. It cannot invent tasks,
 // change permissions, browse arbitrary URLs or execute the recommended action.
+import {initialCollectionIsProgressing} from './source-progress.js';
 export function operationFindings(snapshot, now = Date.now()) {
   const findings = [];
   if (!snapshot.register.available)
@@ -23,6 +24,12 @@ export function operationFindings(snapshot, now = Date.now()) {
     });
   for (const source of snapshot.sources) {
     if (source.paused) continue;
+    if (initialCollectionIsProgressing(source,now)) {
+      findings.push({id:'collecting:'+source.id,priority:'normal',source_id:source.id,title:'Complete the employer collection',
+        fact:source.company+': '+source.collection.ready+' of '+source.collection.total+' descriptions gathered; no partial batch is published.',
+        action:'Allow the next scheduled source pass to continue. Investigate if progress stalls; preserve request limits and original source evidence.'});
+      continue;
+    }
     if (
       source.error ||
       !source.last_success ||

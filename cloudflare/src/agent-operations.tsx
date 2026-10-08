@@ -34,6 +34,7 @@ type Source = {
   paused: boolean;
   cooldown_until: number;
   licence_linked: boolean;
+  collection?: {total:number;ready:number;fetched:number;state:string;checked_at:string} | null;
 };
 type Snapshot = {
   measured_at: string;
@@ -46,7 +47,7 @@ type Snapshot = {
     attempts: number;
     count: number;
     error_code: string | null;
-    evidence?: {feed_review?: {received:number;accepted:number;normalised?:number;excluded:{ref:string;reason:string;closing_date?:string}[]}} | null;
+    evidence?: {collection?:{total:number;ready:number;fetched:number;state:string;requests:number};feed_review?: {received:number;accepted:number;normalised?:number;excluded:{ref:string;reason:string;closing_date?:string}[]}} | null;
   }[];
   sources: Source[];
   reviews: {
@@ -383,9 +384,10 @@ export function AgentOperations() {
                                 (t.state === "published" ? "good" : "")
                               }
                             >
-                              {label(t.state)}
+                              {t.error_code === 'details_pending' ? 'Gathering descriptions' : label(t.state)}
                             </span>
-                            {t.error_code && (
+                            {t.evidence?.collection && <small>{t.evidence.collection.ready} of {t.evidence.collection.total} descriptions ready · {t.evidence.collection.fetched} checked this pass. {t.error_code === 'details_pending' ? 'Continues on the next scheduled refresh; nothing partially published.' : 'Complete catalogue checked before publication.'}</small>}
+                            {t.error_code && t.error_code !== 'details_pending' && (
                               <small>{label(t.error_code)}</small>
                             )}
                           </td>
@@ -470,6 +472,7 @@ export function AgentOperations() {
                   <a href={s.careers} target="_blank" rel="noreferrer">
                     {s.company}
                   </a>
+                  {s.collection?.state==='collecting'&&<small>Gathering descriptions: {s.collection.ready} / {s.collection.total}. Next scheduled pass continues the collection.</small>}
                   <small>
                     {s.paused
                       ? "Paused"

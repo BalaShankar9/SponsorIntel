@@ -26,6 +26,7 @@ function database() {
     "0006_owner_analytics.sql",
     "0019_job_deadlines.sql",
     "0028_job_publication_date.sql",
+    "0031_paged_sources.sql",
   ])
     sql.exec(
       readFileSync(new URL("../migrations/" + name, import.meta.url), "utf8"),

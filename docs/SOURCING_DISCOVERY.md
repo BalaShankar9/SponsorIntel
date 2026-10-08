@@ -2,6 +2,14 @@
 
 Observed 8 October 2026, 15:13–15:18 UTC. The owner specifically asked why the sponsorship count remains 50 and requested both LinkedIn job listings and ordinary recruiting posts in the discovery work.
 
+## Latest: 2.47.1 paged employer collection and a genuine scheduled increase
+
+Production is Worker `f6193a11-3be4-4870-8e60-195bfbe6d00c`, with 461 local tests passing. The new fixed PortmanDentex source is gathering complete public advert descriptions in bounded, paced passes. An initial live section-layout failure was corrected and regression-tested; the failed receipts and consumed reservations remain. A reviewed owner recovery pass completed at 18:36:51.709 UTC with 51/249 descriptions ready, 40 newly checked and zero public jobs. Its next natural continuation is 00:30 UTC on 9 October. Complete public publication and unattended successful continuation remain unverified; do not force extra passes or claim 249 sponsorship jobs.
+
+The genuine 18:30 UTC run `scheduled-1791484247000` completed execution at 18:33:14.595 UTC, independently confirmed by Cloudflare. Its application receipt is attention: 35 existing sources published, while PortmanDentex correctly skipped under its then-active cooldown. Sequence's four and Wintermute's sixteen roles have now each passed their first scheduled refresh. Public totals are **926 jobs, 35 employers and 55 sponsorship-mentioned adverts (21 offered, 34 conditional)**, with 873 licence-linked roles. The new Callosum London Applied AI advert was discovered automatically and its explicit sponsorship sentence was checked on the employer original in the browser. Its legal/register licence link remains unconfirmed. This closes those specific source-refresh gates, not autonomous new-employer discovery or independent quality acceptance.
+
+The dashboard visibly distinguishes private collection progress from publication. Hourly business findings treat recent initial progress as normal work, while errors and stalled or prolonged collection still require attention. LinkedIn listings and ordinary recruiting posts remain reviewed leads; automatic LinkedIn ingestion is disconnected. See [source review](PORTMANDENTEX_SOURCE_REVIEW.md), `cloudflare/RELEASE-2.47.md` and its source evidence receipt.
+
 ## Initial audit at 15:13–15:18 UTC
 
 The public API reports 904 current vacancies from 33 employers; all approved sources refreshed successfully on 8 October. 851 roles have a reviewed employer licence link, a separate fact from vacancy-level sponsorship. There are 16 offered-wording and 34 conditional-wording roles, totaling 50. The distribution is Monzo 31, Callosum 10, Seamflow 5, Maven 2, Sampura 1 and Nottingham 1. This concentration shows limited source diversity, not broad UK-market coverage.

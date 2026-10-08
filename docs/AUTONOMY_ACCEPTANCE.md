@@ -2,7 +2,15 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.46 care-source quality review
+## Latest: 2.47.1 paged employer collection and a genuine scheduled increase
+
+Production is Worker `f6193a11-3be4-4870-8e60-195bfbe6d00c`, with 461 local tests passing. The new fixed PortmanDentex source is gathering complete public advert descriptions in bounded, paced passes. An initial live section-layout failure was corrected and regression-tested; the failed receipts and consumed reservations remain. A reviewed owner recovery pass completed at 18:36:51.709 UTC with 51/249 descriptions ready, 40 newly checked and zero public jobs. Its next natural continuation is 00:30 UTC on 9 October. Complete public publication and unattended successful continuation remain unverified; do not force extra passes or claim 249 sponsorship jobs.
+
+The genuine 18:30 UTC run `scheduled-1791484247000` completed execution at 18:33:14.595 UTC, independently confirmed by Cloudflare. Its application receipt is attention: 35 existing sources published, while PortmanDentex correctly skipped under its then-active cooldown. Sequence's four and Wintermute's sixteen roles have now each passed their first scheduled refresh. Public totals are **926 jobs, 35 employers and 55 sponsorship-mentioned adverts (21 offered, 34 conditional)**, with 873 licence-linked roles. The new Callosum London Applied AI advert was discovered automatically and its explicit sponsorship sentence was checked on the employer original in the browser. Its legal/register licence link remains unconfirmed. This closes those specific source-refresh gates, not autonomous new-employer discovery or independent quality acceptance.
+
+The dashboard visibly distinguishes private collection progress from publication. Hourly business findings treat recent initial progress as normal work, while errors and stalled or prolonged collection still require attention. LinkedIn listings and ordinary recruiting posts remain reviewed leads; automatic LinkedIn ingestion is disconnected. See [source review](PORTMANDENTEX_SOURCE_REVIEW.md), `cloudflare/RELEASE-2.47.md` and its source evidence receipt.
+
+## 2.46 care-source quality review
 
 Release 2.46 recognizes four direct employer refusals discovered in a 488-posting Priory feed. They omit the word visa; qualification funding and application questions remain separate. All 924 existing active labels/excerpts are unchanged. The Bristol nursing advert was checked in the browser and rejected as a sponsorship lead in the private queue. Priory is not activated or republished: reuse/linking clearance, adapter validation, UK locations and vacancy employing entities remain open. All 445 tests, build/prerenders/budgets and dry-run pass; production is Worker `19b5c628-5713-47f2-b6f1-b9e028a2111f`. This quality correction does not claim independent accuracy or automated new-employer discovery. See `cloudflare/RELEASE-2.46.md` and `docs/CARE_SOURCE_REVIEW.md`.
 

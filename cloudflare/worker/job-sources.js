@@ -1,4 +1,5 @@
 // Reviewed public employer boards. Requests never use user-supplied destinations.
+import {SMARTRECRUITERS_REQUEST_COST} from './smartrecruiters.js';
 // Sectors describe the employer, not the occupation or visa eligibility.
 export const SECTORS = {
   technology: "Technology",
@@ -247,6 +248,8 @@ export const BOARDS = [
     id: "university-cardiff-met", company: "Cardiff Metropolitan University", provider: "university-rss",
     sector: "education", careers: "https://jobs.cardiffmet.ac.uk/",
   },
+  {id:'portmandentex',company:'PortmanDentex',provider:'smartrecruiters',board:'PortmanDentex',
+    careers:'https://www.portmandentex.com/careers/vacancies',sector:'healthcare'},
 ];
 
 // Explicit campus feeds only: a UK university can also advertise overseas roles.
@@ -307,5 +310,6 @@ export function universityFeedIds(boardId) {
 }
 
 export function sourceRequestCost(board) {
+  if (board.provider === 'smartrecruiters') return SMARTRECRUITERS_REQUEST_COST;
   return board.provider === "university-rss" ? universityFeedIds(board.id).length : 1;
 }

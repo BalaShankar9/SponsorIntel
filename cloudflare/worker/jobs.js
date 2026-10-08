@@ -9,6 +9,7 @@ import { parseJobDeadline, universityClosingDate } from "./job-deadlines.js";
 import { payEvidence } from "../shared/pay-evidence.js";
 import { JOB_FRESHNESS_MS } from "../shared/job-detail.js";
 import { advertHTMLText, advertPlainText } from './advert-text.js';
+import {collectSmartRecruiters} from './smartrecruiters.js';
 export { BOARDS } from "./job-sources.js";
 
 export function plainText(value) {
@@ -289,6 +290,7 @@ export async function normaliseBoardJobs(raw, board, now = Date.now()) {
       apply_url,
       provider: board.provider,
       source_first_published_at,
+      description_checked_at: board.provider === 'smartrecruiters' ? job.description_checked_at : new Date(now).toISOString(),
       ...deadline,
       source_updated_at: String(job.updated_at || job.publishedAt || "").slice(
         0,
@@ -405,7 +407,14 @@ export function combineUniversitySnapshots(board, snapshots) {
   }};
 }
 
-export async function fetchBoard(board) {
+export async function fetchBoard(board, context = {}) {
+  if (board.provider === 'smartrecruiters') {
+    const collected = await collectSmartRecruiters(board, context);
+    if (collected.pending) return collected;
+    const jobs = await normaliseBoardJobs(collected.raw, board, context.now ?? Date.now());
+    jobs.collection = collected.progress;
+    return jobs;
+  }
   if (board.provider === "university-rss") {
     const snapshots = [];
     const now = Date.now();
@@ -463,6 +472,7 @@ export async function storeBoardJobs(DB, board, jobs, now, receipts = [], guard 
     "provider",
     "source_updated_at",
     "source_first_published_at",
+    "description_checked_at",
     "application_deadline",
     "closes_at",
     "sponsorship",

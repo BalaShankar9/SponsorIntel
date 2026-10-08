@@ -270,7 +270,7 @@ export async function executeSourceTask(
       .run();
     let jobs;
     try {
-      jobs = await readBoard(board);
+      jobs = await readBoard(board, {DB, leaseOwner, now});
     } catch {
       const attempts = task.attempts + 1;
       await DB.batch([
@@ -299,6 +299,15 @@ export async function executeSourceTask(
         throw new SourceRetry("Source fetch failed; bounded retry pending.");
       }
       return finishTask(DB, runId, sourceId, "failed", "fetch_failed", now);
+    }
+    if (board.provider === 'smartrecruiters' && jobs?.pending === true) {
+      const held=await DB.prepare("SELECT owner FROM feed_locks WHERE name='jobs' AND owner=? AND expires>?").bind(leaseOwner,Date.now()+1000).first();
+      if(!held)throw new SourceBusy('Source lease expired before progress receipt.');
+      await DB.batch([
+        DB.prepare("UPDATE job_sources SET checked_at=?,error=NULL WHERE id=? AND EXISTS(SELECT 1 FROM feed_locks WHERE name='jobs' AND owner=? AND expires>?)").bind(iso(now),sourceId,leaseOwner,Date.now()+1000),
+        DB.prepare("UPDATE agent_source_controls SET failures=0,cooldown_until=0 WHERE source_id=? AND EXISTS(SELECT 1 FROM feed_locks WHERE name='jobs' AND owner=? AND expires>?)").bind(sourceId,leaseOwner,Date.now()+1000),
+      ]);
+      return finishTask(DB, runId, sourceId, 'skipped', 'details_pending', now, {collection:jobs.progress});
     }
     const previous = await DB.prepare(
       "SELECT count FROM job_sources WHERE id=?",
@@ -357,6 +366,7 @@ export async function executeSourceTask(
       licence_is_not_vacancy_sponsorship: true,
       duplicate_ids: 0,
       duplicate_links: 0,
+      ...(jobs.collection ? {collection:jobs.collection} : {}),
       ...(board.provider === "university-rss" && jobs.feed_review ? {feed_review:jobs.feed_review} : {}),
     };
     // Publication and receipt are one transaction: replay cannot repeat a committed publication.
@@ -419,6 +429,8 @@ export async function completeRun(DB, runId) {
       .all()
   ).results;
   const counts = Object.fromEntries(rows.map((r) => [r.state, r.count]));
+  const staged = (await DB.prepare("SELECT COUNT(*) n FROM agent_tasks WHERE run_id=? AND state='skipped' AND error_code='details_pending'").bind(runId).first())?.n || 0;
+  if (staged) { counts.collecting = staged; counts.skipped -= staged; }
   const unfinished = (counts.queued || 0) + (counts.running || 0);
   const state = unfinished
     ? "failed"
@@ -508,8 +520,9 @@ export async function operationsSnapshot(env) {
     DB.prepare(
       "SELECT id,created_at,model,output FROM agent_briefs ORDER BY created_at DESC LIMIT 1",
     ),
+    DB.prepare('SELECT * FROM source_collection_progress'),
   ]);
-  const [runs, tasks, controls, reviews, budget, health, briefs] = results.map(
+  const [runs, tasks, controls, reviews, budget, health, briefs, progress] = results.map(
     (r) => r.results || [],
   );
   const licences = await employerLicences(
@@ -533,6 +546,7 @@ export async function operationsSnapshot(env) {
       company: b.company,
       careers: b.careers,
       ...health.find((h) => h.id === b.id),
+      collection: progress.find(p=>p.source_id===b.id) || null,
       paused: !!controls.find((c) => c.source_id === b.id)?.paused,
       cooldown_until:
         controls.find((c) => c.source_id === b.id)?.cooldown_until || 0,

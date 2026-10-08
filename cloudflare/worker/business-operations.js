@@ -1,3 +1,4 @@
+import {initialCollectionIsProgressing} from './source-progress.js';
 import { currentJobs } from './current-jobs.js';
 import { bodyJSON, limit, reply, sameOrigin } from './auth.js';
 import { publicMeasurement } from './analytics.js';
@@ -78,8 +79,9 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
       COALESCE(SUM(level='early_career'),0) early_career,COALESCE(SUM(salary_excerpt<>''),0) salary
       FROM jobs WHERE ${current.sql}`).bind(...current.values),
     env.DB.prepare(`SELECT s.id,s.company,s.careers_url,s.last_success,s.error,
+      CASE WHEN p.source_id IS NOT NULL THEN json_object('state',p.state,'ready',p.ready,'total',p.total,'checked_at',p.checked_at,'started_at',p.started_at) END collection_json,
       COALESCE(c.paused,0) paused,(SELECT COUNT(*) FROM jobs j WHERE j.board_id=s.id AND ${perSource.sql}) roles
-      FROM job_sources s LEFT JOIN agent_source_controls c ON c.source_id=s.id ORDER BY s.company LIMIT 60`).bind(...perSource.values),
+      FROM job_sources s LEFT JOIN agent_source_controls c ON c.source_id=s.id LEFT JOIN source_collection_progress p ON p.source_id=s.id ORDER BY s.company LIMIT 60`).bind(...perSource.values),
     env.DB.prepare('SELECT id,title,kind,content_hash,content,checked_at,last_success,error,withdrawn FROM immigration_sources ORDER BY id LIMIT 100'),
     env.DB.prepare("SELECT value FROM metadata WHERE key='register'"),
     env.DB.prepare('SELECT day,event,SUM(count) count FROM analytics_public_daily WHERE day>=? AND day<? GROUP BY day,event ORDER BY day,event').bind(measurement.from, measurement.to),
@@ -101,7 +103,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
   }
   const register = rows[3].results[0];
   const reference=await referenceProgress(env);
-  return { measured_at:iso(now), jobs:rows[0].results[0], sources:rows[1].results,
+  return { measured_at:iso(now), jobs:rows[0].results[0], sources:rows[1].results.map(({collection_json,...source})=>({...source,collection:collection_json?JSON.parse(collection_json):null})),
     immigration:rows[2].results.map(({content,...source})=>({...source,explanation_status:summaryState({...source,content},EXPLAINERS[source.id],now).status})), register:register ? JSON.parse(register.value) : null,
     metrics:rows[4].results, measurement, held_batches:rows[5].results[0].total,
     feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}), application_evaluation:await applicationEvaluationHealth(env),
@@ -130,7 +132,9 @@ export function businessFindings(snapshot, now = Date.now()) {
   }
   if (!currentTimestamp(snapshot.register?.checked_at, now, 36*3600000))
     add('register-freshness','quality','high','Restore sponsor register refresh','The register timestamp is missing, invalid, in the future or older than 36 hours.','Inspect the official register refresh. Keep licence evidence separate from advert wording.');
-  for (const source of snapshot.sources.filter(x=>!x.paused)) if (source.error || !currentTimestamp(source.last_success, now, 24*3600000))
+  for (const source of snapshot.sources.filter(x=>!x.paused)) if (initialCollectionIsProgressing(source,now))
+    add('collecting:'+source.id,'quality','normal','Complete '+source.company+' collection',source.collection.ready+' of '+source.collection.total+' descriptions gathered privately; no partial catalogue is published.','Allow the next scheduled pass to continue. Investigate stalled progress without bypassing request limits.');
+  else if (source.error || !currentTimestamp(source.last_success, now, 24*3600000))
     add('source:'+source.id,'quality','high','Check '+source.company+' feed','The source has an error, an invalid or future timestamp, or has not succeeded in 24 hours.','Inspect its original feed and the source operations queue. Do not refresh timestamps without fetching evidence.');
   const delayed = snapshot.immigration.filter(x=>x.error || !currentTimestamp(x.last_success, now, 3600000));
   if (delayed.length || !snapshot.immigration.length) add('immigration-freshness','quality','high','Check immigration source monitoring',snapshot.immigration.length ? delayed.length+' selected sources have failed, are overdue, or have missing, invalid or future check timestamps.' : 'No immigration source checks are available.','Inspect official-source refresh errors; do not publish new legal interpretations while source checks are missing.');

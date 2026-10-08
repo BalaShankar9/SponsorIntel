@@ -2,6 +2,7 @@
 // IDs are exact name + location records in the official worker register.
 // Never infer a link from similar names, keywords or an advert offering sponsorship.
 export const REVIEWED_EMPLOYER_LINKS = [
+  {id:'portmandentex',sponsor_id:'e9beba5d4cd6f744164738b6',evidence_url:'https://www.portmandentex.com/careers',reviewed_at:'2026-10-08'},
   {id:"university-cardiff-met",sponsor_id:"0303f81c635c02e7229152c2",evidence_url:"https://jobs.cardiffmet.ac.uk/RSS/",reviewed_at:"2026-10-08"},
   {id:"eucalyptus",sponsor_id:"d6a811754495f7de7da70032",evidence_url:"https://www.eucalyptus.health/privacy-policy",reviewed_at:"2026-10-08"},
   {id:"university-southampton",sponsor_id:"2a75ac7e351da13cba8ddb10",evidence_url:"https://jobs.soton.ac.uk/RSS/",reviewed_at:"2026-10-08"},
