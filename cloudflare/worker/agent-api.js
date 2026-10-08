@@ -68,7 +68,7 @@ export async function agentOperationsAPI(request, env, owner) {
       return reply({message:'Recovery requested for the same investigation. Evidence and original spending reservations are preserved.'},202);
     }
     if (path.endsWith('/research/start')) {
-      const result = await startInvestigation(env,owner.user.id,body.kind,body.evaluation_suite);
+      const result = await startInvestigation(env,owner.user.id,body.kind,body.evaluation_suite,body.reference_batch??null);
       return reply({ ...result,message:result.message || (result.reused ? 'An investigation is already running.' : 'Investigation queued. You can leave this page; progress is saved.') },202);
     }
     if (path.endsWith('/research/remember')) {

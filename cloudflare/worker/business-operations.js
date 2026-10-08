@@ -1,6 +1,7 @@
 import { bodyJSON, limit, reply, sameOrigin } from './auth.js';
 import { JOB_FRESHNESS_MS, JOB_ORIGIN } from '../shared/job-detail.js';
 import { startInvestigation } from './agent-research.js';
+import { referenceProgress } from './research-reference.js';
 import { publishInsight } from './insights.js';
 import { supervisionFindings } from './agent-supervision.js';
 import {searchSnapshot,searchFindings} from './search-console.js';
@@ -81,10 +82,13 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     } catch { checks.push({ path, status:null, ok:false, security:false }); }
   }
   const register = rows[3].results[0];
+  const reference=await referenceProgress(env);
   return { measured_at:iso(now), jobs:rows[0].results[0], sources:rows[1].results,
     immigration:rows[2].results, register:register ? JSON.parse(register.value) : null,
     metrics:rows[4].results, held_batches:rows[5].results[0].total,
-    feedback_count:rows[6].results[0].total, tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}) };
+    feedback_count:rows[6].results[0].total, tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}),
+    reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
+      dangerous_false_positives:reference.dangerous_false_positives,unsupported_refusals:reference.unsupported_refusals,disputed_items:reference.disputed_items} };
 }
 
 export function businessFindings(snapshot, now = Date.now()) {
@@ -101,6 +105,8 @@ export function businessFindings(snapshot, now = Date.now()) {
   const delayed = snapshot.immigration.filter(x=>x.error || !currentTimestamp(x.last_success, now, 3600000));
   if (delayed.length || !snapshot.immigration.length) add('immigration-freshness','quality','high','Check immigration source monitoring',snapshot.immigration.length ? delayed.length+' selected sources have failed, are overdue, or have missing, invalid or future check timestamps.' : 'No immigration source checks are available.','Inspect official-source refresh errors; do not publish new legal interpretations while source checks are missing.');
   if (snapshot.held_batches) add('held-batches','quality','high','Review held source batches',snapshot.held_batches+' source review records remain open.','Inspect the existing evidence queue before releasing held data.');
+  if(snapshot.reference?.state==='needs_attention')add('reference-evaluation-held','quality','high','Resolve the real-advert test hold','A failed, incomplete or mixed-version reference attempt needs attention.','Inspect its retained report and workflow outcome. Do not remove the attempt or reset its model-call reservations to retry.');
+  if(snapshot.reference?.dangerous_false_positives||snapshot.reference?.unsupported_refusals)add('reference-label-errors','quality','high','Review unsupported reference interpretations',`${snapshot.reference.dangerous_false_positives} unsupported positives and ${snapshot.reference.unsupported_refusals} unsupported refusals were found against provisional archived-advert expectations.`,'Review original wording and disputed expectations with an independent reviewer. Public labels were not changed; do not promote model authority from this test.');
   if (snapshot.feedback_count) add('feedback','product','normal','Review recent user feedback',snapshot.feedback_count+' feedback submissions were received in the last seven days.','Read the owner feedback queue, reproduce bugs and fix the highest impact issue. Do not expose messages in public reports.');
   issues.push(...searchFindings(snapshot.search));
   add('social-connection','distribution','normal','Connect company and personal social destinations','Social posts are prepared; no publishing account is connected to this workflow.','Connect Metricool or an approved publishing API and verify the exact company and personal accounts before scheduling posts.');
@@ -157,9 +163,13 @@ export async function scheduleBusinessResearch(env, now=Date.now()) {
   const reserved=await env.DB.prepare("INSERT INTO business_daily(day,research_state) VALUES(?,'reserved') ON CONFLICT DO NOTHING RETURNING day").bind(day).first();
   if (!reserved) return await env.DB.prepare('SELECT research_state state,research_id,detail FROM business_daily WHERE day=?').bind(day).first();
   try {
-    // Monday's run measures the fixed benchmark; other days inspect live data.
-    const result=await startInvestigation(env,'scheduled-business',new Date(now).getUTCDay()===1?'evaluation':'research');
-    await env.DB.prepare("UPDATE business_daily SET research_state='started',research_id=?,detail=? WHERE day=?").bind(result.id, 'Private research only; no automatic legal or advert-label changes.',day).run();
+    const reference=await referenceProgress(env);
+    if(reference.state==='needs_attention')throw Error('Resolve the retained reference attempt before continuing.');
+    // The fixed reference set replaces, rather than adds to, the existing daily
+    // investigation. Completed batches cannot reserve a new attempt.
+    const fixed=!!reference.next_batch;
+    const result=await startInvestigation(env,'scheduled-business',fixed||new Date(now).getUTCDay()===1?'evaluation':'research','end_to_end',fixed?'next':null);
+    await env.DB.prepare("UPDATE business_daily SET research_state='started',research_id=?,detail=? WHERE day=?").bind(result.id, fixed?'Private archived-advert evaluation; provisional reference labels, no public changes.':'Private research only; no automatic legal or advert-label changes.',day).run();
     return {state:'started',id:result.id};
   } catch {
     await env.DB.prepare("UPDATE business_daily SET research_state='held',detail=? WHERE day=?").bind('Research was held by its availability or budget controls. No automatic retry today.',day).run();

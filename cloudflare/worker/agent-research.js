@@ -2,8 +2,9 @@ import { approvedSources } from './agent-operations.js';
 import { fetchBoard } from './jobs.js';
 import { researchModels, callResearchModel } from './research-model.js';
 import { evaluationEvidence, scoreEvaluation,criticChallenge,scoreCriticEvaluation } from './research-evals.js';
+import {referenceBatch,referenceEvidence,referenceProgress,scoreReferenceEvaluation} from './research-reference.js';
 
-import {RESEARCH_POLICY,DATA_RULE,ANALYST_PROMPT,REVIEW_PROMPT,fields,textValue,validateReport,validateReview,reviewOutcome,resolveReport,evidenceWithQuotes} from './research-contract.js';
+import {RESEARCH_POLICY,DATA_RULE,ANALYST_PROMPT,REVIEW_PROMPT,ARCHIVED_ANALYST_PROMPT,ARCHIVED_REVIEW_PROMPT,fields,textValue,validateReport,validateReview,reviewOutcome,resolveReport,evidenceWithQuotes} from './research-contract.js';
 export {RESEARCH_POLICY,ANALYST_PROMPT,validateReport,validateReview} from './research-contract.js';
 const iso = () => new Date().toISOString();
 function currentPolicy(row) {if(row?.policy!==RESEARCH_POLICY)throw Error('This investigation uses an older research policy. Start a fresh investigation within the existing allowance.');}
@@ -19,15 +20,24 @@ export function validateDecision(value, context) {
   throw Error('The investigator selected an unavailable or repeated tool.');
 }
 
-export async function startInvestigation(env, actor, kind = 'research', evaluationSuite='end_to_end') {
+export async function startInvestigation(env, actor, kind = 'research', evaluationSuite='end_to_end', reference=null) {
   if(!['end_to_end','critic'].includes(evaluationSuite)||(kind!=='evaluation'&&evaluationSuite!=='end_to_end'))throw Error('Choose a supported research evaluation.');
+  if(reference!==null && (reference!=='next' || kind!=='evaluation' || evaluationSuite!=='end_to_end'))throw Error('Choose the next fixed reference batch.');
   if (!['research','evaluation'].includes(kind) || !env.RESEARCH_WORKFLOW) throw Error('Research workflow unavailable.');
   const open = await env.DB.prepare("SELECT id,state FROM agent_investigations WHERE state IN ('queued','running') LIMIT 1").first();
   if (open) return { ...open, reused: true };
+  let referenceId=null;
+  if(reference==='next') {
+    const progress=await referenceProgress(env);
+    if(!progress.next_batch)throw Error('The reference evaluation is complete, unavailable or needs attention.');
+    if(progress.profile && (progress.profile.policy!==RESEARCH_POLICY || progress.profile.models!==JSON.stringify(researchModels(env))))throw Error('The reference model or policy changed. Preserve this campaign and prepare a separate version.');
+    referenceId=progress.next_batch;
+    await referenceEvidence(env,referenceId); // Verify every pinned byte before reserving paid work.
+  }
   const day = iso().slice(0,10), id = 'research-' + crypto.randomUUID();
   await env.DB.prepare('INSERT INTO agent_research_budget(day) VALUES(?) ON CONFLICT DO NOTHING').bind(day).run();
   const batch = await env.DB.batch([
-    env.DB.prepare("INSERT INTO agent_investigations(id,kind,state,actor,created_at,policy,models,evaluation_suite) SELECT ?,?,'queued',?,?,?,?,? WHERE (SELECT runs FROM agent_research_budget WHERE day=?)<4 RETURNING id").bind(id,kind,actor,iso(),RESEARCH_POLICY,JSON.stringify(researchModels(env)),evaluationSuite,day),
+    env.DB.prepare("INSERT INTO agent_investigations(id,kind,state,actor,created_at,policy,models,evaluation_suite,reference_batch) SELECT ?,?,'queued',?,?,?,?,?,? WHERE (SELECT runs FROM agent_research_budget WHERE day=?)<4 RETURNING id").bind(id,kind,actor,iso(),RESEARCH_POLICY,JSON.stringify(researchModels(env)),evaluationSuite,referenceId,day),
     env.DB.prepare('UPDATE agent_research_budget SET runs=runs+1 WHERE day=? AND EXISTS(SELECT 1 FROM agent_investigations WHERE id=?)').bind(day,id),
   ]);
   if (!batch[0].results?.length) throw Error('Four daily shared research and marketing attempts have been used. Try tomorrow.');
@@ -50,7 +60,8 @@ export async function researchContext(env, runId) {
   const paused = await env.DB.prepare('SELECT source_id FROM agent_source_controls WHERE paused=1').all();
   const context = { sources: sources.filter(x => !paused.results.some(p => p.source_id === x.id))
     .map(x => ({ id:x.id, ...health.results.find(h => h.id === x.id) })).filter(x => x.count > 0),
-    candidates: [], evidence: run.kind === 'evaluation' ? (run.evaluation_suite==='critic'?criticChallenge().evidence:evaluationEvidence()) : [], listed: [], decisions: [], memory: [] };
+    candidates: [], evidence: run.kind === 'evaluation' ? (run.reference_batch ? await referenceEvidence(env,run.reference_batch) : run.evaluation_suite==='critic'?criticChallenge().evidence:evaluationEvidence()) : [], listed: [], decisions: [], memory: [],
+    ...(run.reference_batch?{limitations:['Fixed historical advert snapshots for provisional evaluation only. They do not establish current availability, independent accuracy or visa eligibility.']}: {}) };
   await env.DB.prepare("UPDATE agent_investigations SET state='running',context=? WHERE id=?").bind(JSON.stringify(context), runId).run();
   return context;
 }
@@ -59,8 +70,12 @@ export async function modelStep(env, runId, name, role, prompt, input, validate)
   const prior = await env.DB.prepare('SELECT state,output FROM agent_research_steps WHERE run_id=? AND name=?').bind(runId,name).first();
   if (prior?.state === 'completed') return validate(JSON.parse(prior.output));
   if (prior) throw Error('A prior model attempt has an uncertain outcome. No duplicate call was made.');
-  const run = await env.DB.prepare('SELECT models,created_at,state FROM agent_investigations WHERE id=?').bind(runId).first();
+  const run = await env.DB.prepare('SELECT models,created_at,state,reference_batch FROM agent_investigations WHERE id=?').bind(runId).first();
   if (!run || run.state !== 'running' || Date.now()-Date.parse(run.created_at)>3600000) throw Error('Research session expired.');
+  if(run.reference_batch) {
+    const controls=await env.DB.prepare('SELECT enabled,research FROM business_controls WHERE singleton=1').first();
+    if(!controls?.enabled||!controls.research)throw Error('Reference research is paused. No new model call was made.');
+  }
   const models = JSON.parse(run.models), day = iso().slice(0,10);
   // Atomic reservations: failed calls and process interruptions remain counted.
   await env.DB.batch([
@@ -163,28 +178,30 @@ export async function prepareCriticChallenge(env,runId) {
 }
 
 export async function analyseResearch(env, runId, revision = false) {
-  const row = await env.DB.prepare('SELECT context,report,policy,state FROM agent_investigations WHERE id=?').bind(runId).first();
+  const row = await env.DB.prepare('SELECT context,report,policy,state,kind,reference_batch FROM agent_investigations WHERE id=?').bind(runId).first();
   currentPolicy(row);
   if(row.state!=='running')throw Error('Research is no longer active.');
   const context = JSON.parse(row.context), previous = row.report ? JSON.parse(row.report) : null;
-  const report = await modelStep(env,runId,revision ? 'revision' : 'analysis','investigator',ANALYST_PROMPT,
+  const historical=row.kind==='evaluation'&&!!referenceBatch(row.reference_batch);
+  const report = await modelStep(env,runId,revision ? 'revision' : 'analysis','investigator',historical?ARCHIVED_ANALYST_PROMPT:ANALYST_PROMPT,
     { evidence:evidenceWithQuotes(context.evidence), approved_observations:context.memory, limitations:context.limitations || [],
       ...(revision ? { previous:previous.report, independent_review:previous.review, task:'Reconsider the critique against original evidence. Correct unsupported conclusions, but do not accept unsupported criticism.' } : {}) },
-    x => resolveReport(x, context.evidence));
+    x => resolveReport(x, context.evidence,{historical}));
   const saved=await env.DB.prepare("UPDATE agent_investigations SET report=? WHERE id=? AND state='running' RETURNING id").bind(JSON.stringify({ report, revision, previous_review:previous?.review || null,previous_report:previous?.report || null }),runId).first();
   if(!saved)throw Error('Research changed before analysis was stored.');
   return { count: report.assessments.length };
 }
 
 export async function reviewResearch(env, runId, revision = false) {
-  const row = await env.DB.prepare('SELECT context,report,models,policy,state FROM agent_investigations WHERE id=?').bind(runId).first();
+  const row = await env.DB.prepare('SELECT context,report,models,policy,state,kind,reference_batch FROM agent_investigations WHERE id=?').bind(runId).first();
   currentPolicy(row);
   if(row.state!=='running')throw Error('Research is no longer active.');
   const context = JSON.parse(row.context), result = JSON.parse(row.report);
-  validateReport(result.report,context.evidence);
+  const historical=row.kind==='evaluation'&&!!referenceBatch(row.reference_batch);
+  validateReport(result.report,context.evidence,{historical});
   const models = JSON.parse(row.models);
   if (models.investigator.model === models.reviewer.model && models.investigator.provider === models.reviewer.provider) throw Error('Independent review requires a different model.');
-  const review = await modelStep(env,runId,revision ? 'review-revision' : 'review','reviewer',REVIEW_PROMPT,
+  const review = await modelStep(env,runId,revision ? 'review-revision' : 'review','reviewer',historical?ARCHIVED_REVIEW_PROMPT:REVIEW_PROMPT,
     { evidence:context.evidence, proposed:result.report }, x => validateReview(x,result.report));
   const quality=reviewOutcome(result.report,review);
   const saved=await env.DB.prepare("UPDATE agent_investigations SET report=? WHERE id=? AND state='running' RETURNING id").bind(JSON.stringify({ ...result,review,quality }),runId).first();
@@ -193,11 +210,12 @@ export async function reviewResearch(env, runId, revision = false) {
 }
 
 export async function finishResearch(env, runId) {
-  const row = await env.DB.prepare('SELECT kind,context,report,state,policy,evaluation_suite,finished_at FROM agent_investigations WHERE id=?').bind(runId).first();
+  const row = await env.DB.prepare('SELECT kind,context,report,state,policy,evaluation_suite,finished_at,reference_batch FROM agent_investigations WHERE id=?').bind(runId).first();
   if (!row || !['running','review'].includes(row.state)) throw Error('Research is no longer active.');
   currentPolicy(row);
   const context = JSON.parse(row.context), result = JSON.parse(row.report);
-  validateReport(result.report,context.evidence);
+  const historical=row.kind==='evaluation'&&!!referenceBatch(row.reference_batch);
+  validateReport(result.report,context.evidence,{historical});
   const quality=reviewOutcome(result.report,result.review);
   if(row.state==='review') {
     if(!row.finished_at||result.human_review_required!==true||result.publication!=='none')throw Error('Report completion receipt is incomplete.');
@@ -206,7 +224,7 @@ export async function finishResearch(env, runId) {
   const report = { ...result, quality, evidence:context.evidence.map(({ description,...e }) => e),
     decisions:context.decisions, limitations:context.limitations || [], remembered_observations:context.memory.length,
     human_review_required:true, publication:'none',
-    ...(row.kind === 'evaluation' ? { evaluation:row.evaluation_suite==='critic'?scoreCriticEvaluation(result.review):scoreEvaluation(result.report) } : {}) };
+    ...(row.kind === 'evaluation' ? { evaluation:historical?scoreReferenceEvaluation(result.report,row.reference_batch):row.evaluation_suite==='critic'?scoreCriticEvaluation(result.review):scoreEvaluation(result.report) } : {}) };
   const saved=await env.DB.prepare("UPDATE agent_investigations SET state='review',report=?,finished_at=? WHERE id=? AND state='running' RETURNING id")
     .bind(JSON.stringify(report),iso(),runId).first();
   if (!saved) throw Error('Research changed before completion.');
@@ -233,10 +251,11 @@ export async function approveObservation(env, runId, jobId, actor) {
 }
 
 export async function researchSnapshot(env) {
-  const rows = await env.DB.prepare('SELECT id,kind,evaluation_suite,state,created_at,finished_at,policy,models,report,error,calls FROM agent_investigations ORDER BY created_at DESC LIMIT 8').all();
+  const rows = await env.DB.prepare('SELECT id,kind,evaluation_suite,reference_batch,state,created_at,finished_at,policy,models,report,error,calls FROM agent_investigations ORDER BY created_at DESC LIMIT 8').all();
   const budget = await env.DB.prepare('SELECT runs,calls FROM agent_research_budget WHERE day=?').bind(iso().slice(0,10)).first();
   const memories = await env.DB.prepare('SELECT job_id,verdict,approved_at,expires_at FROM agent_research_memory WHERE expires_at>? ORDER BY approved_at DESC LIMIT 30').bind(iso()).all();
   const steps = rows.results[0] ? await env.DB.prepare("SELECT name,role,state,usage,duration_ms,CASE WHEN state='failed' THEN json_extract(output,'$.failure') ELSE NULL END AS failure FROM agent_research_steps WHERE run_id=? ORDER BY created_at").bind(rows.results[0].id).all() : { results:[] };
   return { enabled:!!env.RESEARCH_WORKFLOW,policy:RESEARCH_POLICY, models:researchModels(env), budget:{ runs:budget?.runs || 0, calls:budget?.calls || 0, run_limit:4, call_limit:32 },
-    runs:rows.results.map(r => ({ ...r,models:JSON.parse(r.models),report:r.report ? JSON.parse(r.report) : null })), memories:memories.results, steps:steps.results };
+    runs:rows.results.map(r => ({ ...r,models:JSON.parse(r.models),report:r.report ? JSON.parse(r.report) : null })), memories:memories.results, steps:steps.results,
+    reference:await referenceProgress(env) };
 }

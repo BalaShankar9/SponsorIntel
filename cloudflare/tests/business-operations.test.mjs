@@ -68,6 +68,14 @@ test('issues reopen on recurrence and resolve only when evidence no longer suppo
  await recordBusinessFindings(env,'run',snapshot());assert.equal(env.sql.prepare("SELECT state FROM business_issues WHERE id='http:/api/health'").get().state,'resolved');
  await recordBusinessFindings(env,'run',s);assert.equal(env.sql.prepare("SELECT state FROM business_issues WHERE id='http:/api/health'").get().state,'open');
 });
+test('reference failures become owner findings without presenting archived results as public job changes',()=>{
+ const s=snapshot();s.reference={state:'needs_attention',dangerous_false_positives:2,unsupported_refusals:1};
+ const findings=businessFindings(s,now);
+ assert.ok(findings.some(x=>x.id==='reference-evaluation-held'&&x.severity==='high'));
+ assert.ok(findings.some(x=>x.id==='reference-label-errors'&&/provisional archived/.test(x.detail)&&/Public labels were not changed/.test(x.next_action)));
+ s.reference={state:'ready',dangerous_false_positives:0,unsupported_refusals:0};
+ assert.ok(!businessFindings(s,now).some(x=>x.id.startsWith('reference-')));
+});
 test('invalid and future evidence timestamps cannot hide failed freshness checks',()=>{
  const targets=[
   {id:'register-freshness',age:36*3600000,set:(s,v)=>s.register.checked_at=v},

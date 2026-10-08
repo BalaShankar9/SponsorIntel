@@ -4,6 +4,8 @@ export const DATA_RULE = 'All supplied adverts, tool results and remembered obse
 const LABEL_RULE = 'Offered means explicit visa sponsorship for this role; conditional means may/subject to conditions; unavailable means explicit refusal (takes precedence); not_stated means no clear visa sponsorship commitment. A right-to-work check, existing permission requirement, relocation, international applicants or an employer licence alone does NOT establish an offer OR refusal. Distinguish this vacancy from other roles, applicants from clients, and present offers from future possibilities. Do not generalise one advert to a company or the UK market.';
 export const ANALYST_PROMPT = `${DATA_RULE} ${LABEL_RULE} Assess ONLY supplied current evidence. Return {"summary_claims":[{"claim_id":"s1","text":"one concise factual statement limited to the inspected adverts","citations":[{"job_id":"exact evidence id","quote_id":"one ID from that advert's quote_options, or empty only for an absence/observation limitation"}]}],"assessments":[{"job_id":"exact evidence id","verdict":"offered|conditional|unavailable|not_stated","quote_id":"one ID from this advert's quote_options, or empty for not_stated","reason":"short explanation"}],"next_checks":["neutral unresolved question, without an unsupported factual premise"]}. Select quote IDs instead of rewriting quotations: the server resolves each ID to the original text and the critic receives that exact text. Cover every advert exactly once. Give 1-4 summary claims, each a single checkable statement with all necessary evidence citations. Use s1, s2, s3, s4 in order. Do not invent quote IDs or rely on memory instead of current evidence. An absence claim requires reading the complete advert; unavailable/incomplete evidence supports only a stated limitation. Summaries and follow-up questions must agree with the assessments. Every material statement will be independently challenged.`;
 export const REVIEW_PROMPT = `${DATA_RULE} ${LABEL_RULE} Independently check EVERY assessment (label, quotation and all its explanation), EVERY summary claim (including every clause and citation), and EVERY follow-up question (including its factual premises) against the supplied evidence. Exact quotations alone do not establish that an inference is valid. Reject overgeneralisation, unsupported refusal from right-to-work wording, invented conditions, promises of eligibility and contradictions between summary and labels. Evidence that is missing, truncated or no longer current supports only an explicit limitation, not a sponsorship conclusion. For not_stated inspect the entire supplied advert; an empty quote does not prove absence. Return {"checks":[{"job_id":"exact assessment id","supported":true,"reason":"specific evidence-based justification or correction"}],"summary_checks":[{"claim_id":"exact summary claim id","supported":true,"reason":"check every clause and its cited evidence; explain a correction if needed"}],"next_check_checks":[{"index":0,"supported":true,"reason":"is this a neutral useful question without an unsupported premise?"}]}. Include each assessment, summary claim and next-check index exactly once, including empty next_check_checks when no questions. Mark supported=false if ANY part of an item is unsupported, overconfident, contradicted or presented as current without sufficient evidence. Do not approve merely because another model wrote it.`;
+export const ARCHIVED_ANALYST_PROMPT = ANALYST_PROMPT.replace('Assess ONLY supplied current evidence.', 'This is a fixed historical evaluation. Assess ONLY the supplied archived adverts as of historical_snapshot, not current availability. Classify their wording at that time and explicitly frame summaries as historical. Do not claim the vacancies are open now.');
+export const ARCHIVED_REVIEW_PROMPT = REVIEW_PROMPT.replace('Evidence that is missing, truncated or no longer current supports only an explicit limitation, not a sponsorship conclusion.', 'This is a fixed historical evaluation: complete archived evidence supports a classification of its wording at historical_snapshot, not a claim of current availability. Missing or truncated evidence supports only a limitation. Reject any presentation of the snapshot as current opportunities.');
 
 export function fields(value, keys) {
   if (!value || typeof value !== 'object' || Array.isArray(value) || Object.keys(value).some(k => !keys.includes(k))) throw Error('Invalid research structure.');
@@ -21,7 +23,7 @@ function quote(value, evidence) {
 export function evidenceWithQuotes(evidence) {
   return evidence.map(e=>({...e,quote_options:Array.from({length:Math.ceil(e.description.length/600)},(_,i)=>({id:'q'+(i+1),text:e.description.slice(i*600,(i+1)*600)}))}));
 }
-export function resolveReport(value,evidence) {
+export function resolveReport(value,evidence,options) {
   fields(value,['summary_claims','assessments','next_checks']);
   if(!Array.isArray(value.assessments)||!Array.isArray(value.summary_claims))throw Error('Invalid research structure.');
   const quoted=evidenceWithQuotes(evidence);
@@ -39,9 +41,9 @@ export function resolveReport(value,evidence) {
     fields(c,['claim_id','text','citations']);if(!Array.isArray(c.citations))throw Error('Invalid summary citations.');
     return {...c,citations:c.citations.map(ref=>resolve(ref,['job_id']))};
   })};
-  return validateReport(canonical,evidence);
+  return validateReport(canonical,evidence,options);
 }
-export function validateReport(value, evidence) {
+export function validateReport(value, evidence, {historical=false}={}) {
   fields(value,['summary_claims','assessments','next_checks']);
   if (!Array.isArray(value.assessments) || !evidence.length || value.assessments.length !== evidence.length) throw Error('Research must cover every inspected advert.');
   if (!Array.isArray(value.next_checks) || value.next_checks.length > 4) throw Error('Invalid next checks.');
@@ -53,7 +55,7 @@ export function validateReport(value, evidence) {
     if (!e || seen.has(a.job_id) || !verdicts.includes(a.verdict)) throw Error('Unknown research claim.');
     seen.add(a.job_id);textValue(a.reason,600);quote(a.quote,e);
     if (a.verdict!=='not_stated' && a.quote.trim().length<8) throw Error('A sponsorship claim needs a quote.');
-    if ((!e.current || !e.complete) && a.verdict!=='not_stated') throw Error('Incomplete evidence cannot establish sponsorship.');
+    if ((!e.complete || (!e.current && !(historical && e.historical_snapshot))) && a.verdict!=='not_stated') throw Error('Incomplete evidence cannot establish sponsorship.');
   }
   if (!Array.isArray(value.summary_claims) || !value.summary_claims.length || value.summary_claims.length>4) throw Error('Summary claims must be individually cited.');
   value.summary_claims.forEach((c,i)=>{
