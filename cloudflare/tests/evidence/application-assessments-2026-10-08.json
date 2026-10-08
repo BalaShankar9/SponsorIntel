@@ -1,0 +1,138 @@
+{
+  "release": "2.40.0",
+  "tests": {
+    "passed": 412,
+    "failed": 0
+  },
+  "isolated_runtime": {
+    "checked_at": "2026-10-08T14:06:36.694Z",
+    "environment": "Actual Worker/auth/D1 with all 27 migrations in isolated Workerd; fictional accounts and case outputs; no AI or remote bindings.",
+    "parallel_auth_requests": 28,
+    "parallel_auth_isolation": "verified",
+    "owner_save": "verified",
+    "member_and_anonymous": "403",
+    "other_origin": "403",
+    "replay_duplicate_rows": 0,
+    "audit_rows": 1,
+    "model_calls": 0,
+    "outbound": 0,
+    "automatic_promotion": false,
+    "limitation": "This verifies access, evidence retention and API behavior. These fictional ratings are not model-quality or independent-review evidence."
+  },
+  "browser": {
+    "environment": "Isolated local Workerd; fictional accounts and copied fictional outputs only",
+    "invalid_quote": "rejected with source-occurrence error",
+    "initial_save": "confirmed",
+    "revision_history": [
+      1,
+      2
+    ],
+    "paired_summary": "one pair, revised from both acceptable to current-only acceptable",
+    "viewport_width": 390,
+    "document_width": 390,
+    "limitation": "No real model output was rated or independent human review inferred."
+  },
+  "production": {
+    "status": "live HTTP and signed-in owner UI verified",
+    "live_checks": {
+      "checked_at": "2026-10-08T14:15:05.662044+00:00",
+      "worker": "ce103ed9-157b-468c-b6f8-5b9c37d00531",
+      "checks": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "body": {
+            "ok": true,
+            "version": "2.40.0",
+            "register": {
+              "date": "2026-10-07",
+              "count": 127949,
+              "checked_at": "2026-10-08T07:15:42.693Z"
+            }
+          }
+        },
+        {
+          "path": "/jobs",
+          "status": 200
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 200
+        },
+        {
+          "path": "/api/admin/application-evaluation",
+          "status": 403
+        },
+        {
+          "path": "/api/admin/business",
+          "status": 403
+        }
+      ]
+    },
+    "assessment_rows": 0,
+    "completed_evaluation_outputs": 0,
+    "shared_budget": {
+      "day": "2026-10-08",
+      "runs": 4,
+      "calls": 6
+    },
+    "migration": "0027 applied; only pending migration",
+    "recovery_before": {
+      "observed_at": "2026-10-08T14:13:21.828Z",
+      "database": "sponsorintel-db",
+      "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+      "status": "schema_drift",
+      "current_recovery_point_available": true,
+      "bookmark_sha256": "30dff0a59e4f330ca7b3422ff1b89e8a573ef5e5ee542066468fe0d88e4af528",
+      "database_size_bytes": 96346112,
+      "region": "WEUR",
+      "schema": {
+        "expected_objects": 116,
+        "actual_objects": 112,
+        "migration_files": 27,
+        "expected_sha256": "3751c153a4cd9549d149c123c9958d84df49dcc0ae5c221a8948f892c7447320",
+        "actual_sha256": "44380d94b744719e3adcb526565655b86637deeeb009f1eac0c499e8f50d0595",
+        "missing": [
+          "index:application_assessment_case",
+          "table:application_assessments",
+          "trigger:application_assessment_no_delete",
+          "trigger:application_assessment_no_update"
+        ],
+        "extra": [],
+        "changed": []
+      },
+      "production_data_exported": false,
+      "production_restore_performed": false,
+      "retention_window_verified": false,
+      "customer_data_restoration_verified": false
+    },
+    "recovery_after": {
+      "observed_at": "2026-10-08T14:14:33.651Z",
+      "database": "sponsorintel-db",
+      "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+      "status": "available",
+      "current_recovery_point_available": true,
+      "bookmark_sha256": "7ff4b7f21bc7805edf1a1efd788423ad1bf3019fe9ee722f373ac86a28985f65",
+      "database_size_bytes": 96366592,
+      "region": "WEUR",
+      "schema": {
+        "expected_objects": 116,
+        "actual_objects": 116,
+        "migration_files": 27,
+        "expected_sha256": "3751c153a4cd9549d149c123c9958d84df49dcc0ae5c221a8948f892c7447320",
+        "actual_sha256": "3751c153a4cd9549d149c123c9958d84df49dcc0ae5c221a8948f892c7447320",
+        "missing": [],
+        "extra": [],
+        "changed": []
+      },
+      "production_data_exported": false,
+      "production_restore_performed": false,
+      "retention_window_verified": false,
+      "customer_data_restoration_verified": false
+    },
+    "automation": "Existing daily routine updated and exact saved content/status/schedule/target verified.",
+    "ai_calls_for_release": 0,
+    "social_actions_for_release": 0,
+    "first_real_assessment": "pending"
+  }
+}

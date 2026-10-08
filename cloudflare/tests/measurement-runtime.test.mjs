@@ -13,7 +13,7 @@ test('real Worker/auth/D1 excludes signed-in owners and their first login, but c
    const response=await worker.fetch(request,env,{waitUntil(p){ctx.waitUntil(p);pending.push(p);}});
    await Promise.all(pending);
    return response;
- }};`,resolveDir:root},bundle:true,format:'esm',write:false,platform:'browser',external:['cloudflare:*','node:*'],target:'es2022'});
+ }};`,resolveDir:root},bundle:true,format:'esm',write:false,platform:'browser',conditions:['workerd','worker','browser'],external:['cloudflare:*','node:*'],target:'es2022'});
  let outbound=0;
  const origin='http://127.0.0.1:8788';
  const mf=new Miniflare(convertV4MiniflareOptions({modules:true,script:bundle.outputFiles[0].text,compatibilityDate:'2026-10-04',compatibilityFlags:['nodejs_compat'],cf:false,
@@ -47,6 +47,14 @@ test('real Worker/auth/D1 excludes signed-in owners and their first login, but c
   assert.equal(ownerResult.status,200);assert.equal(ownerResult.headers.has('X-SI-Preparation-Kind'),false);assert.equal((await ownerResult.json()).kind,'analysis');
   assert.equal((await db.prepare('SELECT COUNT(*) n FROM analytics_public_daily').first()).n,0);
   const member=await signup('Fictional member','member@example.invalid');
+  // Match Wrangler's export conditions and exercise overlapping authentication.
+  // A browser-only bundle selects the library's non-isolated fallback instead.
+  const identities=Array.from({length:16},(_,i)=>i%2?owner:member);
+  await Promise.all(identities.map(async identity=>{
+   const response=await mf.dispatchFetch(origin+'/api/auth/get-session',{headers:{Cookie:identity.cookie}});
+   assert.equal(response.status,200);
+   assert.equal((await response.json()).user.id,identity.id);
+  }));
   assert.equal((await post('/api/metrics',page,member.cookie)).status,200);
   assert.equal((await post('/api/metrics',page,'',{'X-SI-Metrics':'exclude'})).status,200);
   const result=await post('/api/career/generate',analysis);

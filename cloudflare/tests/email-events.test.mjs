@@ -80,8 +80,13 @@ test('retention removes old event metadata and expired temporary holds while per
  assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM email_delivery_events').get().n,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM email_alert_blocks').get().n,1);
 });
 test('conflicting duplicate event IDs cannot suppress a different recipient, including concurrent inserts',async t=>{
- const {env}=fixture(t),one=event('delivered'),two=event('bounced');two.payload.eventId=one.payload.eventId;two.payload.recipient='other@example.invalid';
- const results=await Promise.allSettled([recordEmailEvent(env,one,now),recordEmailEvent(env,two,now)]);assert.equal(results.filter(x=>x.status==='fulfilled').length,1);assert.equal(await alertEmailBlock(env,'other@example.invalid'),null);
+ const one=event('delivered'),two=event('bounced');two.payload.eventId=one.payload.eventId;two.payload.recipient='other@example.invalid';
+ // The first committed event owns the ID, not the first promise in an array.
+ // Exercise both known orders and the genuine race without assuming digest order.
+ for(const first of [one,two]){const {env}=fixture(t);await recordEmailEvent(env,first,now);await assert.rejects(recordEmailEvent(env,first===one?two:one,now),/Conflicting/);assert.equal((await alertEmailBlock(env,'other@example.invalid'))?.reason||null,first===two?'hard_bounce':null);}
+ const {env}=fixture(t),results=await Promise.allSettled([recordEmailEvent(env,one,now),recordEmailEvent(env,two,now)]);assert.equal(results.filter(x=>x.status==='fulfilled').length,1);
+ const winner=results[0].status==='fulfilled'?one:two,saved=env.sql.prepare('SELECT recipient_key,event_type FROM email_delivery_events').get();assert.equal(saved.recipient_key,await emailRecipientKey(winner.payload.recipient));assert.equal(saved.event_type,winner.payload.delivery.status);
+ assert.equal((await alertEmailBlock(env,'other@example.invalid'))?.reason||null,winner===two?'hard_bounce':null);assert.equal(await alertEmailBlock(env,recipient),null);
 });
 test('a bounce arriving after reservation prevents the provider handoff',async t=>{
  const {env,sent}=fixture(t);await configureOperationAlerts(env,'owner',{enabled:true,revision:null});

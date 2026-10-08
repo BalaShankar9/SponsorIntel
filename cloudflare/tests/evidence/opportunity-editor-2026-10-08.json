@@ -171,7 +171,38 @@
     "automation": "Existing daily routine updated and exact prompt/schedule/status/target read back successfully.",
     "ai_calls_for_release": 0,
     "social_actions_for_release": 0,
-    "first_scheduled_business_receipt": "pending",
+    "first_scheduled_business_receipt": {
+      "id": "business-497629",
+      "trigger_kind": "scheduled",
+      "finished_at": "2026-10-08T13:45:58.586Z",
+      "platform_complete": true,
+      "platform_finished_at": "2026-10-08T13:45:58.722Z",
+      "opportunities": {
+        "checked_at": "2026-10-08T13:45:49.934Z",
+        "enabled": true,
+        "checked": 0,
+        "held": [],
+        "changed": [],
+        "external_attention": 0,
+        "limited": false,
+        "external_actions": 0
+      },
+      "links": [
+        {
+          "id": "e8f7ec5830eaf9b6a636583b",
+          "state": "checked",
+          "reason": "title_observed",
+          "requests": 1
+        },
+        {
+          "id": "5fd3d2eca4e7e8e8bfa028fb",
+          "state": "checked",
+          "reason": "title_observed",
+          "requests": 1
+        }
+      ],
+      "limitation": "Scheduled empty-pool monitor and two page checks; no real vacancy model decision, invalidation or external action."
+    },
     "first_real_opportunity_model_verdict": "pending"
   }
 }

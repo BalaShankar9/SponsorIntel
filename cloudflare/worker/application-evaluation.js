@@ -4,6 +4,7 @@ import {candidatePassages,reviewPrompt,validateReview} from './career-review.js'
 import {candidateReviewPrompt,validateCandidateReview,CANDIDATE_REVIEW_POLICY} from './career-review-candidate.js';
 import {cleanDraft,preserveCVContacts,draftWarnings} from './career-quality.js';
 import {bodyJSON,digest,limit,reply,sameOrigin} from './auth.js';
+import {applicationAssessmentDetails,applicationAssessmentSummary,recordApplicationAssessment} from './application-assessments.js';
 export const APPLICATION_FIXTURE_HASH='5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3';
 export const APPLICATION_EVAL_POLICY='paired-application-development-v1';
 const REVIEW_OPTIONS=Object.freeze({max_tokens:2700,temperature:.1,response_format:{type:'json_object'}});
@@ -135,23 +136,25 @@ export async function finishApplicationEvaluation(env,id,failure=null){
 export async function applicationEvaluationHealth(env){
  const progress=await applicationProgress(env);
  const changed=progress.profile&&JSON.stringify(progress.profile)!==JSON.stringify(await applicationProfile(env));
- return {state:changed?'needs_attention':progress.state,completed:progress.completed,total:progress.total};
+ return {state:changed?'needs_attention':progress.state,completed:progress.completed,total:progress.total,assessments:await applicationAssessmentSummary(env)};
 }
 export async function applicationEvaluationSnapshot(env){
  const progress=await applicationProgress(env),health=await applicationEvaluationHealth(env),budget=await env.DB.prepare('SELECT runs,calls FROM agent_research_budget WHERE day=?').bind(iso().slice(0,10)).first();
- return {enabled:await enabled(env),evaluation_enabled:!!(await env.DB.prepare('SELECT enabled FROM application_eval_controls WHERE singleton=1').first())?.enabled,state:health.state,total:progress.total,completed:progress.completed,next_cases:progress.next,profile:progress.profile,budget:{runs:budget?.runs||0,calls:budget?.calls||0,run_limit:4,call_limit:32},runs:progress.runs.slice(-12).reverse().map(r=>({...r,profile:JSON.parse(r.profile),case_ids:JSON.parse(r.case_ids),result:r.result?JSON.parse(r.result):null})),cases:applicationCases(),scope:'Twenty fictional CV/advert cases. No customer records, public output, application submission or automatic reviewer promotion. Two cases per eligible UTC day, at most six calls within the existing shared allowance.'};
+ return {enabled:await enabled(env),evaluation_enabled:!!(await env.DB.prepare('SELECT enabled FROM application_eval_controls WHERE singleton=1').first())?.enabled,state:health.state,total:progress.total,completed:progress.completed,next_cases:progress.next,profile:progress.profile,assessments:health.assessments,budget:{runs:budget?.runs||0,calls:budget?.calls||0,run_limit:4,call_limit:32},runs:progress.runs.slice(-12).reverse().map(r=>({...r,profile:JSON.parse(r.profile),case_ids:JSON.parse(r.case_ids),result:r.result?JSON.parse(r.result):null})),cases:applicationCases(),scope:'Twenty fictional CV/advert cases. No customer records, public output, application submission or automatic reviewer promotion. Two cases per eligible UTC day, at most six calls within the existing shared allowance.'};
 }
 export async function applicationEvaluationAPI(request,env,owner){
  const url=new URL(request.url);
  if(request.method==='GET'&&url.pathname==='/api/admin/application-evaluation')return reply(await applicationEvaluationSnapshot(env));
  if(request.method==='GET'&&url.pathname==='/api/admin/application-evaluation/case'){
   const id=url.searchParams.get('id');let c;try{c=evaluationCase(id);}catch{return reply({error:'Unknown test case.'},404);}
-  const steps=(await env.DB.prepare('SELECT s.run_id,s.stage,s.state,s.output,s.error,s.created_at FROM application_eval_steps s WHERE s.case_id=? ORDER BY s.created_at LIMIT 30').bind(id).all()).results.map(s=>({...s,output:s.output?JSON.parse(s.output):null}));
-  return reply({case:c,steps});
+  return reply({case:c,...await applicationAssessmentDetails(env,id)});
  }
  if(request.method!=='POST'||!sameOrigin(request))return reply({error:'Use the owner dashboard.'},403);
  if(!await limit(env,'application-eval-owner:'+owner.user.id,12))return reply({error:'Please try again later.'},429);
- let body;try{body=await bodyJSON(request,512);}catch{return reply({error:'Invalid request.'},400);}
+ let body;try{body=await bodyJSON(request,url.pathname==='/api/admin/application-evaluation/assessment'?14000:512);}catch{return reply({error:'Invalid request.'},400);}
+ if(url.pathname==='/api/admin/application-evaluation/assessment'){
+  try{return reply(await recordApplicationAssessment(env,body,owner.user.id));}catch(error){if(!error.status)throw error;return reply({error:error.message},error.status);}
+ }
  if(url.pathname==='/api/admin/application-evaluation/run'&&body&&Object.keys(body).length===0)return reply(await dispatchApplicationEvaluation(env,'owner'));
  if(url.pathname==='/api/admin/application-evaluation/settings'&&typeof body?.enabled==='boolean'&&Object.keys(body).length===1){
   await env.DB.batch([env.DB.prepare('UPDATE application_eval_controls SET enabled=?,updated_at=?,actor=? WHERE singleton=1').bind(body.enabled?1:0,iso(),owner.user.id),env.DB.prepare('INSERT INTO admin_audit(actor,action,target,created_at) VALUES(?,?,?,?)').bind(owner.user.id,'application-evaluation',String(body.enabled),iso())]);return reply({ok:true});
