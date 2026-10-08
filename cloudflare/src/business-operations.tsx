@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react';
 import {Activity,ArrowUpRight,Pause,Play,RefreshCw,ShieldCheck} from 'lucide-react';
 import './business-operations.css';
+import {OperationAlerts} from './operation-alerts';
 type Settings={enabled:number;publishing:number;research:number};
 type Run={id:string;state:string;trigger_kind:'unknown'|'owner'|'scheduled';created_at:string;finished_at:string|null;snapshot:any;result:any};
 type Issue={id:string;category:string;severity:string;title:string;detail:string;next_action:string};
@@ -27,6 +28,7 @@ export function BusinessOperations(){
         {[['Site & security checks','Hourly','Five public route and browser-header checks, including anonymous owner-access rejection. Full security audits and dependency fixes need engineering work.'],['Data housekeeping','Hourly','Retire roles last observed over 72 hours ago. Retain customer workspaces, feedback and job records.'],['Editorial reports','Weekly','Publish a dated evidence report only after source and count checks pass. Legal interpretation stays out of automatic publication.'],['Research agents','Daily','One bounded investigation daily. Archived-advert test batches run first while unfinished; outputs stay private for review.']].map(([name,frequency,detail])=><article key={name}><span>{frequency}</span><h3>{name}</h3><p>{detail}</p></article>)}
       </div>
       <div className="business-controls">{(['publishing','research'] as const).map(setting=><label key={setting}><input type="checkbox" checked={!!data.settings[setting]} disabled={busy} onChange={e=>void act('/settings',{setting,value:e.target.checked})}/>{setting==='publishing'?'Automatic evidence reports':'Scheduled research'}</label>)}</div>
+      <OperationAlerts/>
       {run?.result&&<p className="business-receipt"><ShieldCheck size={16}/> Last receipt: {run.result.cleanup?.stale_roles??0} stale roles retired · Publication: {run.result.publication?.state||'not reached'} · Research: {run.result.research?.state||'not reached'}{run.result.publication?.reason?' · '+run.result.publication.reason:''}{run.result.error?' · '+run.result.error:''}</p>}
       <section className="business-supervision" aria-labelledby="supervision-heading"><div className="business-section-heading"><h3 id="supervision-heading">Agent supervision</h3><span>{run?.trigger_kind==='scheduled'?'Scheduled cloud run':run?.trigger_kind==='owner'?'Owner-triggered run':'Run origin not recorded'}</span></div>
        <p>Checks research and editorial runs that remain unfinished after one hour. It closes their records only after Cloudflare confirms execution ended, preserving evidence and consumed allowance.</p>
