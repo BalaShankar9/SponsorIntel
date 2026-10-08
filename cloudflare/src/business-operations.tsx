@@ -2,11 +2,12 @@ import React,{useEffect,useState} from 'react';
 import {Activity,ArrowUpRight,Pause,Play,RefreshCw,ShieldCheck} from 'lucide-react';
 import './business-operations.css';
 import {OperationAlerts} from './operation-alerts';
+import {SocialDeliveryStatus,type SocialDeliveryHealth} from './social-delivery-health';
 type Settings={enabled:number;publishing:number;research:number};
 type Run={id:string;state:string;trigger_kind:'unknown'|'owner'|'scheduled';created_at:string;finished_at:string|null;snapshot:any;result:any};
 type Issue={id:string;category:string;severity:string;title:string;detail:string;next_action:string};
 type Draft={id:string;audience:string;text:string;state:string;expires_at:string};
-type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];publications:{slug:string;title:string;state:string;updated_at:string}[]};
+type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];social_delivery?:SocialDeliveryHealth;publications:{slug:string;title:string;state:string;updated_at:string}[]};
 const stamp=(x:string)=>new Date(x).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
 async function api(path='',body?:unknown){const r=await fetch('/api/admin/business'+path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});const v=await r.json();if(!r.ok)throw Error(v.error||'Operations could not load.');return v;}
 export function BusinessOperations(){
@@ -36,6 +37,7 @@ export function BusinessOperations(){
         <div className="business-supervision-checks">{run.result.supervision.checks.map((c:{kind:string;action:string;run_id?:string;reason?:string;platform_status?:string})=><details key={c.kind}><summary><strong>{c.kind==='research'?'Research':'Editorial'}</strong> · {({idle:'No unfinished run',paused:'Paused',within_window:'Within its execution window',reconciled:'Stopped run recorded safely',still_active:'Long-running workflow — inspect',uncertain:'Outcome uncertain — inspect',changed_during_check:'Changed during check — inspect',already_finished:'Application receipt already finished'} as Record<string,string>)[c.action]||c.action}</summary>{c.run_id&&<p className="business-fine">{c.run_id}{c.platform_status?' · Cloudflare: '+c.platform_status:''}</p>}{c.reason&&<p>{c.reason}</p>}</details>)}</div></>:<p className="business-fine">No supervision receipt for this run yet. The next eligible hourly run will check both queues.</p>}
        <p className="business-fine">No model calls or social posts are sent by this supervisor. Uncertain, paused or still-running workflows are retained for investigation. This checks execution records; content quality and external delivery require their own evidence.</p>
       </section>
+      <SocialDeliveryStatus health={data.social_delivery}/>
       <div className="business-section-heading"><h3>What needs attention</h3><span>{data.issues.length} open items</span></div>
       <div className="business-issues">{data.issues.length?data.issues.map(x=><details key={x.id}><summary><span className={'business-priority '+x.severity}>{x.severity}</span>{x.title}<small>{x.category}</small></summary><p>{x.detail}</p><p><strong>Next action:</strong> {x.next_action}</p></details>):<p className="business-fine">No open findings have been recorded. This is not proof that every business or security requirement has been met.</p>}</div>
       <div className="business-section-heading"><h3>Growth baseline</h3><span>Completed UTC days · up to 14 days</span></div>

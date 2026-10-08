@@ -13,6 +13,7 @@ import {EXPLAINERS} from './immigration-explainers.js';
 import {searchNotificationHealth} from './search-notifications.js';
 import {emailDeliveryHealth,emailDeliveryFindings} from './email-events.js';
 import {jobSearchPageHealth} from './job-search-health.js';
+import {socialDeliveryHealth,socialDeliveryFindings} from './social-delivery-health.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -98,7 +99,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     immigration:rows[2].results.map(({content,...source})=>({...source,explanation_status:summaryState({...source,content},EXPLAINERS[source.id],now).status})), register:register ? JSON.parse(register.value) : null,
     metrics:rows[4].results, held_batches:rows[5].results[0].total,
     feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}), application_evaluation:await applicationEvaluationHealth(env),
-    search_notifications:await searchNotificationHealth(env),email_delivery:await emailDeliveryHealth(env,now),
+    search_notifications:await searchNotificationHealth(env),email_delivery:await emailDeliveryHealth(env,now),social_delivery:await socialDeliveryHealth(env,now),
     reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
       dangerous_false_positives:reference.dangerous_false_positives,unsupported_refusals:reference.unsupported_refusals,disputed_items:reference.disputed_items} };
 }
@@ -107,6 +108,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   const issues = [];
   const add = (id,category,severity,title,detail,next_action) => issues.push({id,category,severity,title,detail,next_action});
   issues.push(...emailDeliveryFindings(snapshot.email_delivery,now));
+  issues.push(...socialDeliveryFindings(snapshot.social_delivery));
   const notifications=snapshot.search_notifications;
   if (notifications?.followed && (notifications.awaiting_first_check || notifications.last_run?.failed || !currentTimestamp(notifications.oldest_check,now,3600000)))
     add('search-notifications','product','normal','Check saved-search matching','Some followed searches are waiting for a check, have failed, or have not been checked within an hour.','Inspect the scheduled matching receipt and queue capacity. Do not reset subscribers or mark unseen matches as read.');
@@ -130,7 +132,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   if (snapshot.feedback_count) add('feedback','product',snapshot.support?.overdue_quality?'high':'normal','Review unresolved user reports',snapshot.feedback_count+' reports remain unresolved; '+(snapshot.support?.overdue||0)+' are beyond the internal 72-hour review threshold.','Open the Support queue, reproduce the issue or verify its original source. Record evidence before resolving a report; preserve private messages and review history.');
   if(snapshot.application_evaluation?.state==='needs_attention')add('application-evaluation-held','quality','normal','Inspect the application comparison hold','A private application test stopped or its policy/model fingerprint changed.','Inspect the Application quality lab and retained workflow evidence. Do not retry an uncertain call or promote the candidate reviewer from literal checks alone.');
   issues.push(...searchFindings(snapshot.search));
-  add('social-connection','distribution','normal','Connect company and personal social destinations','Social posts are prepared; no publishing account is connected to this workflow.','Connect Metricool or an approved publishing API and verify the exact company and personal accounts before scheduling posts.');
+  add('social-publisher-bridge','distribution','normal','Complete the cloud publishing connection','Provider scheduling and delivery reconciliation use the connected Codex routine and native social schedulers. This cloud workflow does not directly send or verify social posts.','Preserve existing queues and exact-account receipts. A supported cloud publishing adapter is still required; do not infer a connection from a recorded schedule or purchase a plan without approval.');
   add('premium-validation','business','normal','Validate a premium offer with users','Payments, paid subscriptions and revenue measurement are not implemented.','Prioritise trustworthy job alerts, saved research and stronger application review. Validate willingness to pay before setting a price or opening checkout.');
   const totals = snapshot.metrics.reduce((a,x)=>(a[x.event]=(a[x.event]||0)+x.count,a),{});
   if (!(totals.application_generated>0)) add('activation','growth','normal','Improve the first useful application journey','No successful application generation was recorded in the available completed days of this 14-day window.','Verify the job-to-studio-to-export journey; improve the step where users get stuck. Event counts are not unique people.');
@@ -216,7 +218,7 @@ export async function businessSnapshot(env) {
   return {settings:await controls(env),measured_at:iso(),schedule:'Every hour at minute 45 UTC; research once per UTC day; evidence report at most once every 7 days.',
     heartbeat:!latest?'not_started':Date.now()-Date.parse(latest.created_at)>2*3600000?'overdue':latest.state,
     runs:results[0].results.map(x=>({...x,snapshot:x.snapshot?JSON.parse(x.snapshot):null,result:x.result?JSON.parse(x.result):null})),
-    issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,
+    issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,social_delivery:await socialDeliveryHealth(env),
     connections:{social:false,search_console:(await searchSnapshot(env,Date.now(),{compact:true})).connected,payments:false},
     limits:{hourly_runs:1,external_health_requests:5,research_runs_daily:1,publication_interval_days:7,customer_data_access:false}};
 }

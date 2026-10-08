@@ -2,7 +2,13 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.32 search access and scheduled queue health
+## Latest: 2.33 confirmed Facebook delivery
+
+The original Metricool schedule `390622747` reached Published and its exact [public post](https://www.facebook.com/122093616117512994/posts/122093924469512994) was verified against Sponsor Intel profile `61595389821505`, full version-1 copy and the dated report link. Marketing desk now retains the exact provider post identity and URL as version 1/revision 2, recorded at 09:09:26.936 UTC on 8 October. Original scheduling history is preserved. No replacement or retry was sent. This closes the first actual scheduled Facebook-delivery gate; a model-to-publisher cycle, complete unattended reconciliation and audience outcomes remain separate.
+
+The live 2.33 owner monitor reports one recorded publication and three schedules, with zero overdue or uncertain observations. Hourly findings now flag overdue, uncertain or incomplete delivery records and distinguish these from actual provider failure; they cannot send posts. The existing daily routine was updated in place to follow the original active provider job and record exact verified outcomes, preserving its 10:00 UK schedule and limits. Next genuine hourly collection and future unattended daily reconciliation remain due. See `cloudflare/RELEASE-2.33.md` and its evidence.
+
+## 2.32 search access and scheduled queue health
 
 Current vacancies, native search/filter forms and ordinary pagination links now appear in initial HTML. Server/browser availability rules and short-lived snapshot expiry agree; database failures return 503 instead of stale or misleading empty results. The hourly monitor now checks initial job content as well as HTTP/header health and holds report publication on a content regression. All 345 tests and production HTML/API parity checks pass; real 390px browser width was verified. First scheduled execution of the new content check remains due; Google indexing/ranking improvement is not established. See `cloudflare/RELEASE-2.32.md`.
 
@@ -32,7 +38,7 @@ Learning means measured revisions to versioned policies and prompts after compar
 
 - Observed: `business-497616` ran from its real scheduled trigger at 00:45:34 UTC on 8 October and completed at 00:45:40 UTC. Both supervised agent types were idle, with zero recovery actions, no additional model calls and no high-priority findings. This proves the normal scheduled path; terminal recovery remains verified in the isolated runtime, not via a manufactured production incident.
 - Observed: the scheduled `marketing-2026-10-08` run chose `no_post` at 00:45:42 UTC because the existing queue offered no eligible slot. It made zero model calls and created no draft. The first real planner/writer/reviewer output still needs observation when a legitimate slot opens. Never clear reservations or remove valid scheduled posts to force a demonstration.
-- Facebook post 390622747 is scheduled for 8 October at 10:00 Europe/London. Verify its actual delivery and record a live URL or a confirmed failure. Later launch schedules remain 10 and 12 October; LinkedIn's company report remains 9 October.
+- Facebook post 390622747 is now verified Published with its live URL and exact-account receipt recorded above. Later Facebook launch schedules remain 10 and 12 October; LinkedIn's company report remains 9 October. Reconcile these existing provider jobs before any replacement.
 - Actual execution evidence for the existing daily Codex heartbeat, independently of cloud cron execution.
 
 ## Retained boundaries and blockers
