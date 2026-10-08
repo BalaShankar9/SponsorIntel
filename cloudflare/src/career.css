@@ -1075,6 +1075,17 @@
   margin-top: 18px;
   align-items: center;
 }
+.document-ready {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: var(--sage-50, #f3f5ed);
+  border: 1px solid var(--border, #dfe3d8);
+  border-radius: 12px;
+  overflow-wrap: anywhere;
+}
+.document-ready p { margin: 0 0 10px; }
+.document-ready .fine-print { margin: 10px 0 0; }
+.document-ready a { width: fit-content; text-decoration: none; }
 .document-actions button {
   font-size: 11px;
 }

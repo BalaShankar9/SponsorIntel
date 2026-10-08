@@ -149,7 +149,7 @@ export function exportJSONResume(p: CareerProfile) {
     "application/json",
   );
 }
-export async function exportDocument(
+export async function createDocument(
   text: string,
   type: "pdf" | "docx",
   name: string,
@@ -194,7 +194,7 @@ export async function exportDocument(
         },
       ],
     });
-    download(await Packer.toBlob(doc), filename + ".docx");
+    return { blob: await Packer.toBlob(doc), filename: filename + ".docx" };
   } else {
     const { jsPDF } = await import("jspdf");
     const doc = new jsPDF({ unit: "mm", format: "a4" });
@@ -261,7 +261,7 @@ export async function exportDocument(
       }
       y += blockGap;
     }
-    doc.save(filename + ".pdf");
+    return { blob: doc.output("blob"), filename: filename + ".pdf" };
   }
 }
 export function exportCalendar(a: CareerApplication) {

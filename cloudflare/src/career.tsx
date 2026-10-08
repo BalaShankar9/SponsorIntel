@@ -50,11 +50,11 @@ import {
 } from "./career-data";
 import {
   importCV,
-  exportDocument,
   exportJSONResume,
   exportCalendar,
 } from "./documents";
 import "./career.css";
+import { DocumentDownloads } from "./document-downloads";
 import { type ReportFeedback } from "./feedback";
 import { buildEvidenceReview } from "../worker/career-evidence.js";
 import { draftWarnings, sourceWarnings } from "../worker/career-quality.js";
@@ -755,24 +755,6 @@ function Studio({ go }: { go: Go }) {
       setBusy("");
     }
   }
-  async function output(type: "pdf" | "docx") {
-    setBusy("export");
-    try {
-      await exportDocument(
-        value,
-        type,
-        `${c.data.profile.name || "My"} ${tabs.find((t) => t.id === tab)?.label} ${a.company}`,
-      );
-    } catch (e) {
-      setMessage(
-        e instanceof Error
-          ? e.message
-          : "The download could not be created. Try plain text.",
-      );
-    } finally {
-      setBusy("");
-    }
-  }
   const enough =
     (tab === "companyResearch" || c.data.profile.cv.trim().length >= 100) &&
     a.description.trim().length >= 80;
@@ -1040,30 +1022,13 @@ function Studio({ go }: { go: Go }) {
                   : `Your ${tabs.find((t) => t.id === tab)?.label.toLowerCase()} will appear here. Edit every line to make it yours.`
               }
             />
+            <DocumentDownloads
+              key={`${a.id}:${tab}`}
+              text={value}
+              name={`${c.data.profile.name || "My"} ${tabs.find((t) => t.id === tab)?.label} ${a.company}`}
+              disabled={!!busy}
+            />
             <div className="document-actions">
-              <button
-                className="secondary-button"
-                disabled={!value || !!busy}
-                onClick={() => void output("docx")}
-              >
-                <Download size={15} />
-                Word
-              </button>
-              <button
-                className="secondary-button"
-                disabled={!value || !!busy}
-                onClick={() => void output("pdf")}
-              >
-                <Download size={15} />
-                PDF
-              </button>
-              <button
-                className="text-button"
-                disabled={!value}
-                onClick={() => download(value, tab + ".txt")}
-              >
-                Plain text
-              </button>
               <button
                 className="text-button"
                 disabled={!value}
