@@ -6,6 +6,8 @@ import {
   canonicalJobURL,
 } from "./jobs.js";
 import { employerLicences } from "./employer-licences.js";
+import { sourceDiagnostic } from './source-errors.js';
+import { sourceFailureHistory } from '../shared/source-diagnostics.js';
 
 export const OPERATIONS_POLICY = "sources-v1";
 const terminal = new Set(["published", "needs_review", "failed", "skipped"]);
@@ -180,7 +182,7 @@ async function finishTask(
 ) {
   await DB.batch([
     DB.prepare(
-      "UPDATE agent_tasks SET state=?,error_code=?,finished_at=?,evidence=? WHERE run_id=? AND source_id=?",
+      "UPDATE agent_tasks SET state=?,error_code=?,finished_at=?,evidence=json_patch(COALESCE(evidence,'{}'),?) WHERE run_id=? AND source_id=?",
     ).bind(state, code, iso(now), JSON.stringify(evidence), runId, sourceId),
     DB.prepare("UPDATE agent_runs SET updated_at=? WHERE id=?").bind(
       iso(now),
@@ -271,9 +273,13 @@ export async function executeSourceTask(
     let jobs;
     try {
       jobs = await readBoard(board, {DB, leaseOwner, now});
-    } catch {
+    } catch (error) {
       const attempts = task.attempts + 1;
+      const attemptFailures=[...sourceFailureHistory(task.evidence).filter(x=>x.attempt!==attempts),
+        {attempt:attempts,checked_at:iso(now),...sourceDiagnostic(error)}].slice(-3);
       await DB.batch([
+        DB.prepare("UPDATE agent_tasks SET evidence=json_patch(COALESCE(evidence,'{}'),?) WHERE run_id=? AND source_id=?")
+          .bind(JSON.stringify({attempt_failures:attemptFailures}),runId,sourceId),
         DB.prepare(
           "INSERT INTO agent_source_controls(source_id,updated_at,failures,cooldown_until) VALUES(?,?,1,?) ON CONFLICT(source_id) DO UPDATE SET failures=failures+1,updated_at=excluded.updated_at,cooldown_until=CASE WHEN failures+1>=3 THEN ? ELSE cooldown_until END",
         ).bind(sourceId, iso(now), 0, now + 6 * 3600000),
@@ -368,6 +374,7 @@ export async function executeSourceTask(
       duplicate_links: 0,
       ...(jobs.collection ? {collection:jobs.collection} : {}),
       ...(board.provider === "university-rss" && jobs.feed_review ? {feed_review:jobs.feed_review} : {}),
+      ...(sourceFailureHistory(task.evidence).length ? {attempt_failures:sourceFailureHistory(task.evidence)} : {}),
     };
     // Publication and receipt are one transaction: replay cannot repeat a committed publication.
     await storeBoardJobs(
@@ -521,8 +528,10 @@ export async function operationsSnapshot(env) {
       "SELECT id,created_at,model,output FROM agent_briefs ORDER BY created_at DESC LIMIT 1",
     ),
     DB.prepare('SELECT * FROM source_collection_progress'),
+    // Bound the history to the same recent runs shown by the owner dashboard.
+    DB.prepare("SELECT t.run_id,t.source_id,t.company,t.state,t.error_code,t.evidence,r.created_at FROM agent_tasks t JOIN agent_runs r ON r.id=t.run_id WHERE t.run_id IN (SELECT id FROM agent_runs ORDER BY created_at DESC LIMIT 15) AND (json_array_length(t.evidence,'$.attempt_failures')>0 OR t.error_code IN ('fetch_retry','fetch_failed','execution_failed','workflow_ended')) ORDER BY r.created_at DESC,t.source_id LIMIT 10"),
   ]);
-  const [runs, tasks, controls, reviews, budget, health, briefs, progress] = results.map(
+  const [runs, tasks, controls, reviews, budget, health, briefs, progress, diagnostics] = results.map(
     (r) => r.results || [],
   );
   const licences = await employerLicences(
@@ -541,6 +550,7 @@ export async function operationsSnapshot(env) {
       ...t,
       evidence: t.evidence ? JSON.parse(t.evidence) : null,
     })),
+    diagnostics: diagnostics.map(({evidence,...task})=>({...task,attempt_failures:sourceFailureHistory(evidence)})),
     sources: sources.map((b) => ({
       id: b.id,
       company: b.company,

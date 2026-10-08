@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import "./agent-operations.css";
 import { AgentResearch } from './agent-research';
+import { SourceDiagnostics, type SourceCheckReceipt } from './source-diagnostics';
 
 type Finding = {
   id: string;
@@ -40,6 +41,7 @@ type Snapshot = {
   measured_at: string;
   enabled: boolean;
   runs: Run[];
+  diagnostics?: SourceCheckReceipt[];
   tasks: {
     source_id: string;
     company: string;
@@ -422,6 +424,7 @@ export function AgentOperations() {
               </>
             )}
           </details>
+          <SourceDiagnostics receipts={data.diagnostics||[]} />
           <details className="agent-panel">
             <summary>
               Source controls · {data.sources.length} approved feeds

@@ -6,6 +6,7 @@ import {collectSmartRecruiters,smartRecruitersDetail} from '../worker/smartrecru
 import {fetchBoard,normaliseBoardJobs} from '../worker/jobs.js';
 import {dispatchSources,initialiseRun,executeSourceTask,completeRun,operationsSnapshot} from '../worker/agent-operations.js';
 import {operationFindings} from '../worker/agent-brief.js';
+import {sourceDiagnostic} from '../worker/source-errors.js';
 const stamp=()=>new Date().toISOString();
 function lease(env){env.sql.prepare("INSERT INTO feed_locks VALUES('jobs','fixture',?) ON CONFLICT(name) DO UPDATE SET owner=excluded.owner,expires=excluded.expires").run(Date.now()+120000);return {DB:env.DB,leaseOwner:'fixture'};}
 async function start(env,id){await dispatchSources(env,{id,sourceId:source.id});await initialiseRun(env,id);}
@@ -66,7 +67,7 @@ test('unchanged text reuses its original retrieval time, stale text is fetched a
 });
 
 test('an interrupted batch preserves derivative cache but cannot save after losing its lease',async t=>{
- const env=sourceDatabase(t),f=provider([posting(1),posting(2)],(v,u)=>{if(u.pathname.endsWith(posting(2).id))env.sql.exec("UPDATE feed_locks SET owner='new-operation'");return v;});await assert.rejects(collectSmartRecruiters(source,{...lease(env),fetcher:f.fetcher}),/lease ended/);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM source_posting_cache').get().n,1);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM source_collection_progress').get().n,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM jobs').get().n,0);
+ const env=sourceDatabase(t),f=provider([posting(1),posting(2)],(v,u)=>{if(u.pathname.endsWith(posting(2).id))env.sql.exec("UPDATE feed_locks SET owner='new-operation'");return v;});await assert.rejects(collectSmartRecruiters(source,{...lease(env),fetcher:f.fetcher}),e=>sourceDiagnostic(e).code==='lease_ended');assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM source_posting_cache').get().n,1);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM source_collection_progress').get().n,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM jobs').get().n,0);
 });
 
 test('request ceilings and owner pause prevent paged collection before fetching',async t=>{

@@ -2,6 +2,12 @@
 
 Observed 8 October 2026, 15:13–15:18 UTC. The owner specifically asked why the sponsorship count remains 50 and requested both LinkedIn job listings and ordinary recruiting posts in the discovery work.
 
+## Latest: 2.48 source failure records and confirmed 55-claim monitoring
+
+Release 2.48 is deployed as Worker `5ca33c35-76fc-4394-b980-1192f6f809bf`, with 467 local tests passing. New paged-source failures retain safe stage/status/reference diagnostics through recovery; raw provider content is excluded. The live owner panel separates the real older unclassified failure from the completed 51/249 private collection. Other unclassified adapters and legacy records do not acquire an invented cause. A future genuine classified-failure receipt remains an open observation gate; no production incident was manufactured.
+
+The genuine 18:45 business run `business-497634` completed at 18:46:35.509 UTC and Cloudflare independently confirms success. Its movement capture records 12 entries, 10 exits, one sponsorship claim gained and none lost: **924 → 926 jobs and 54 → 55 mentions**. PortmanDentex correctly appears as normal private collection progress. This closes the earlier pending post-repair monitoring gate. Its first natural collection continuation remains due at 00:30 UTC on 9 October; full publication and autonomous new-employer/LinkedIn ingestion remain open. See `cloudflare/RELEASE-2.48.md` and its evidence receipt.
+
 ## Latest: 2.47.1 paged employer collection and a genuine scheduled increase
 
 Production is Worker `f6193a11-3be4-4870-8e60-195bfbe6d00c`, with 461 local tests passing. The new fixed PortmanDentex source is gathering complete public advert descriptions in bounded, paced passes. An initial live section-layout failure was corrected and regression-tested; the failed receipts and consumed reservations remain. A reviewed owner recovery pass completed at 18:36:51.709 UTC with 51/249 descriptions ready, 40 newly checked and zero public jobs. Its next natural continuation is 00:30 UTC on 9 October. Complete public publication and unattended successful continuation remain unverified; do not force extra passes or claim 249 sponsorship jobs.
