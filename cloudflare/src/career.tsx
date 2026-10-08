@@ -55,6 +55,8 @@ import {
 } from "./documents";
 import "./career.css";
 import { DocumentDownloads } from "./document-downloads";
+import {type CVImportResult} from './cv-import';
+import {profileSignature,applyCVPreview} from '../shared/cv-import.js';
 import { type ReportFeedback } from "./feedback";
 import { buildEvidenceReview } from "../worker/career-evidence.js";
 import { draftWarnings, sourceWarnings } from "../worker/career-quality.js";
@@ -496,24 +498,40 @@ function Profile({ go }: { go: Go }) {
   const [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
   const ref = useRef<HTMLInputElement>(null);
+  const operation = useRef(0);
+  const [preview,setPreview] = useState<{file:string;parsed:CVImportResult;baseline:string;applying?:boolean;expected?:string}|null>(null);
+  const [useDetails,setUseDetails] = useState(false);
+  useEffect(()=>{setPreview(null);setBusy(false);return()=>{operation.current++;};},[c.user?.id]);
+  useEffect(()=>{
+    if(!preview?.applying)return;
+    if(profileSignature(p)===preview.expected){setPreview(null);setMessage('CV text replaced. Check the text and your workspace’s save status before preparing an application.');}
+    else if(profileSignature(p)!==preview.baseline){setPreview({...preview,applying:false});setMessage('Your profile changed before this import could apply. Choose the file again to review it against the latest profile.');}
+  },[p,preview]);
   const update = (patch: Partial<typeof p>) =>
     c.setData((d) => ({ ...d, profile: { ...d.profile, ...patch } }));
   async function upload(file?: File) {
-    if (!file) return;
+    if (!file || busy) return;
+    const current=++operation.current,baseline=profileSignature(p);
     setBusy(true);
     setMessage("");
+    setPreview(null);
+    setUseDetails(false);
     try {
       const parsed = await importCV(file);
-      update({ ...parsed.profile, cv: parsed.text });
-      setMessage(
-        "CV imported. Check the text and contact details before preparing an application.",
-      );
+      if(current!==operation.current)return;
+      setPreview({file:file.name,parsed,baseline});
+      setMessage('Preview ready. Your saved CV has not changed.');
     } catch (e) {
-      setMessage((e as Error).message);
+      if(current===operation.current)setMessage((e as Error).message || 'The file could not be read. Paste your CV text instead; your saved CV has not changed.');
     } finally {
-      setBusy(false);
-      if (ref.current) ref.current.value = "";
+      if(current===operation.current){setBusy(false);if (ref.current) ref.current.value = "";}
     }
+  }
+  function applyImport(){
+    if(!preview||profileSignature(p)!==preview.baseline)return;
+    const next=applyCVPreview({profile:p},preview.baseline,preview.parsed,useDetails);
+    c.setData(d=>applyCVPreview(d,preview.baseline,preview.parsed,useDetails));
+    setPreview({...preview,applying:true,expected:profileSignature(next.profile)});
   }
   return (
     <>
@@ -591,7 +609,7 @@ function Profile({ go }: { go: Go }) {
               ) : (
                 <Upload size={15} />
               )}
-              Import CV
+              {busy?'Reading CV…':'Import CV'}
             </button>
           </div>
           <input
@@ -603,13 +621,24 @@ function Profile({ go }: { go: Go }) {
           />
           <p>
             Import PDF, DOCX, TXT or JSON Resume, or paste your CV below. File
-            extraction happens in this browser.
+            extraction happens in this browser. Preview the text before replacing
+            your saved CV. Up to 5 MB, 30,000 characters and 15 PDF pages.
           </p>
           {message && (
             <p role="status" className="career-notice">
               {message}
             </p>
           )}
+          {preview&&<section className="cv-import-preview" aria-label="CV import preview">
+            <h3>Check your CV before replacing it</h3>
+            <p className="cv-import-filename">{preview.file} · {preview.parsed.text.length.toLocaleString()} characters{preview.parsed.pages?` · ${preview.parsed.pages} PDF page${preview.parsed.pages===1?'':'s'}`:''}</p>
+            <p>This preview stays in this browser. Replacing the CV uses your usual workspace storage; it does not send it to AI.</p>
+            {preview.parsed.warnings.map(w=><p className="career-notice" key={w}>{w}</p>)}
+            <label>Extracted CV text<textarea readOnly value={preview.parsed.text} rows={10}/></label>
+            {!!Object.keys(preview.parsed.profile||{}).length&&<details><summary>Detected profile details</summary><dl>{Object.entries(preview.parsed.profile||{}).map(([key,value])=><React.Fragment key={key}><dt>{({name:'Full name',email:'Contact email',phone:'Phone',city:'City',headline:'Professional headline',skills:'Key skills'} as Record<string,string>)[key]||key}</dt><dd>{value}</dd></React.Fragment>)}</dl><label className="cv-import-choice"><input type="checkbox" checked={useDetails} onChange={e=>setUseDetails(e.target.checked)}/>Also use these detected details for the matching profile fields</label><p className="fine-print">Unselected or missing details leave your existing fields unchanged. Roles and sponsorship preference are always preserved.</p></details>}
+            {profileSignature(p)!==preview.baseline&&<p role="alert">Your profile has changed since this file was selected. Choose the file again to review it against the latest profile.</p>}
+            <div className="cv-import-actions"><button className="primary-button" disabled={!!preview.applying||profileSignature(p)!==preview.baseline} onClick={applyImport}>{preview.applying?'Applying…':'Replace my CV with this text'}</button><button className="secondary-button" disabled={!!preview.applying} onClick={()=>{setPreview(null);setMessage('Preview discarded. Your saved CV has not changed.');}}>Discard preview</button></div>
+          </section>}
           <label className="sr-only" htmlFor="master-cv">
             Master CV text
           </label>
