@@ -1,0 +1,3 @@
+export const DISCOVERY_KINDS = {linkedin_job:'LinkedIn job advert',linkedin_post:'LinkedIn recruiting post',employer:'Employer original',recruiter:'Recruiter or other public lead'};
+export const DISCOVERY_STATES = {pending:'Needs review',held:'Held for evidence',rejected:'Rejected',linked:'Linked to a published job',duplicate:'Duplicate lead'};
+export const DISCOVERY_LIMITATION = 'Private review records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Source inspection and dates are reviewer-recorded.';

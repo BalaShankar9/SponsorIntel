@@ -2,7 +2,15 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: reviewed Sequence source expansion on 2.43.0
+## Latest: 2.44.1 private discovery queue and actual movement
+
+The live owner queue retains LinkedIn jobs, ordinary recruiting posts, employer originals and recruiter leads with immutable revision history, canonical duplicate detection, bounded dates/reasons, session attribution and explicit follow-up. Linked decisions require exact current approved-job evidence and count distinct jobs. Changed or expired evidence becomes historical; the queue cannot publish or withdraw roles. Three real prior review outcomes are retained: Sequence linked, Argo held, and an old post rejected. A date-input issue found during live verification was fixed in 2.44.1; all three corrections were appended without deleting the original records.
+
+All 443 tests, build/budgets, dry-run, actual isolated Worker/auth/D1 and BusinessWorkflow checks pass. The owner browser verifies review history, an unsupported-quotation rejection locally, exact corrected dates and a 390px phone layout. Migration 0030 and all 127 schema objects match. Live 2.44.1 is Worker `20e9918e-15f7-4895-9917-255237a1f170`.
+
+Genuine scheduled **business-497632** completed at **16:46:00.554 UTC** on 8 October, independently confirmed complete by Cloudflare at 16:46:00.723 UTC. Its new summary records three leads, one unresolved and one distinct current job link, with no overdue/changed records. The movement ledger captured all four Sequence entries and three sponsorship claims gained, none lost: **50 → 53** across **908 jobs / 34 employers**. The owner panel matches. This verifies the first real transition after the earlier baseline. The daily routine now uses this queue with its prior schedule/limits preserved, but its next unattended scouting pass and Sequence's 18:30 UTC source refresh remain open. See `cloudflare/RELEASE-2.44.md`, `docs/DISCOVERY_QUEUE.md` and the aggregate evidence.
+
+## Reviewed Sequence source expansion on 2.43.0
 
 The existing source-review flow now approves Sequence's public Ashby board, linked through the employer's legal notice to Sequence HQ Ltd's exact current sponsor-register entry. Owner-triggered run `owner-a7d161dd-44c8-45ca-9d44-6b938d801daa` published four London roles on its first attempt and completed at 15:58:22.284 UTC; Cloudflare independently confirms completion at 15:58:22.325 UTC. All 18 normalized fields match the reviewed feed for every saved role. Three adverts explicitly offer sponsorship; the designer advert remains not stated. Seven US roles were excluded.
 

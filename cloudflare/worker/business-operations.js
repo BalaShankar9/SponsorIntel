@@ -18,6 +18,7 @@ import {socialDeliveryHealth,socialDeliveryFindings} from './social-delivery-hea
 import {jobLinkHealth,jobLinkFindings} from './job-link-checks.js';
 import {opportunityBriefHealth,opportunityFindings} from './marketing-opportunities.js';
 import {captureJobMovement,jobMovementHealth,jobMovementFindings} from './job-movement.js';
+import {discoverySummary,discoveryFindings} from './discovery.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -106,6 +107,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}), application_evaluation:await applicationEvaluationHealth(env),
     search_notifications:await searchNotificationHealth(env),email_delivery:await emailDeliveryHealth(env,now),social_delivery:await socialDeliveryHealth(env,now),job_links:await jobLinkHealth(env,now),opportunity_promotions:await opportunityBriefHealth(env,now),
     job_movement:await jobMovementHealth(env,now,{compact:true}),
+    discovery:await discoverySummary(env,now),
     reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
       dangerous_false_positives:reference.dangerous_false_positives,unsupported_refusals:reference.unsupported_refusals,disputed_items:reference.disputed_items} };
 }
@@ -117,7 +119,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   issues.push(...socialDeliveryFindings(snapshot.social_delivery));
   issues.push(...jobLinkFindings(snapshot.job_links));
   issues.push(...opportunityFindings(snapshot.opportunity_promotions));
-  issues.push(...jobMovementFindings(snapshot.job_movement));
+  issues.push(...jobMovementFindings(snapshot.job_movement),...discoveryFindings(snapshot.discovery));
   const notifications=snapshot.search_notifications;
   if (notifications?.followed && (notifications.awaiting_first_check || notifications.last_run?.failed || !currentTimestamp(notifications.oldest_check,now,3600000)))
     add('search-notifications','product','normal','Check saved-search matching','Some followed searches are waiting for a check, have failed, or have not been checked within an hour.','Inspect the scheduled matching receipt and queue capacity. Do not reset subscribers or mark unseen matches as read.');

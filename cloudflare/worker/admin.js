@@ -12,6 +12,7 @@ import {searchAPI} from './search-console.js';
 import {supportAPI} from './support.js';
 import {applicationEvaluationAPI} from './application-evaluation.js';
 import {operationAlertsAPI} from './operation-alerts.js';
+import {discoveryAPI} from './discovery.js';
 export async function ownerFor(request, env) {
   const session = await sessionFor(request, env);
   if (!session?.user) return null;
@@ -86,6 +87,8 @@ export async function adminAPI(request, env) {
   if (!owner) return reply({ error: "The owner account is required." }, 403);
   const url = new URL(request.url),
     path = url.pathname;
+  if (path === '/api/admin/discovery' || path.startsWith('/api/admin/discovery/'))
+    return discoveryAPI(request, env, owner);
   if (path === '/api/admin/business/alerts' || path.startsWith('/api/admin/business/alerts/'))
     return operationAlertsAPI(request, env, owner);
   if (path === '/api/admin/application-evaluation' || path.startsWith('/api/admin/application-evaluation/'))
