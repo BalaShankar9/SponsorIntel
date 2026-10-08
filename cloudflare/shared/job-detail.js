@@ -1,3 +1,4 @@
+import { qualifiedJobPosting } from './job-posting.js';
 export const JOB_FRESHNESS_MS = 3 * 86400000;
 export const JOB_ORIGIN = "https://sponsorintel.london";
 export const jobLabels = {
@@ -39,11 +40,10 @@ export function jobMetadata(job, now = Date.now()) {
   };
 }
 
-export function jobStructuredData(job, now = Date.now()) {
+export function jobStructuredData(job, now = Date.now(), allowPosting = true) {
   const meta = jobMetadata(job, now);
   const url = JOB_ORIGIN + meta.path;
-  // The source does not consistently supply original posting dates and all
-  // required JobPosting fields. Do not invent them or claim a Google Jobs entry.
+  const posting = allowPosting && meta.path && meta.indexable ? qualifiedJobPosting(job, url, now) : null;
   return {
     "@context": "https://schema.org",
     "@graph": [
@@ -55,6 +55,7 @@ export function jobStructuredData(job, now = Date.now()) {
         { "@type": "ListItem", position: 2, name: "UK opportunities", item: JOB_ORIGIN + "/jobs" },
         { "@type": "ListItem", position: 3, name: job.title, item: url },
       ] },
+      ...(posting ? [posting] : []),
     ],
   };
 }

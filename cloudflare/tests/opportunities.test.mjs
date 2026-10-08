@@ -25,6 +25,7 @@ function database() {
     "0004_quality_updates.sql",
     "0006_owner_analytics.sql",
     "0019_job_deadlines.sql",
+    "0028_job_publication_date.sql",
   ])
     sql.exec(
       readFileSync(new URL("../migrations/" + name, import.meta.url), "utf8"),
@@ -182,6 +183,22 @@ test("prospect posts, explicit past deadlines and templates are excluded while t
   assert.equal(result.length, 1);
   assert.equal(result[0].title, "Test Engineer");
   await assert.rejects(normaliseBoardJobs([null], board), /Invalid vacancy/);
+});
+
+test('explicit candidate work-authorisation exclusions do not require the word visa', () => {
+  for (const text of [
+    'Candidates must be legally authorized to work in the country of employment without employer sponsorship.',
+    'Applicants must be authorised to work in the UK without employer sponsorship.',
+  ]) {
+    assert.deepEqual(sponsorshipEvidence(text), {status:'unavailable',quote:text});
+    assert.equal(sponsorshipEvidence('Visa sponsorship is available.\n'+text).status,'unavailable');
+  }
+  for (const text of [
+    'Candidates must comply with export laws without sponsorship for an export license.',
+    'Candidates must be legally authorized to work in the country of employment.',
+    'Work with commercial sponsors and employer sponsorship of conferences.',
+    'We welcome applicants who need visa sponsorship.',
+  ]) assert.equal(sponsorshipEvidence(text).status,'not_stated');
 });
 
 test("advert benefits are evidence but negation and questions never become positive sponsorship", () => {

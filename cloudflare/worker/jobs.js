@@ -79,6 +79,12 @@ export function sponsorshipEvidence(text) {
     .split(/(?<=[.!?])\s+|\n/)
     .map((s) => s.trim())
     .filter(Boolean);
+  // Some employer exclusions name work authorisation without saying "visa".
+  // Keep this scoped to a requirement on applicants, not commercial sponsors,
+  // export licences or a general statement about the organisation.
+  const authorisationExclusion = sentences.find(s =>
+    /\b(?:candidates|applicants) must be (?:legally )?authori[sz]ed to work\b.{0,120}\bwithout employer sponsorship\b/i.test(s));
+  if (authorisationExclusion) return { status: 'unavailable', quote: authorisationExclusion.slice(0, 500) };
   const relevant = sentences.filter(
     (s) =>
       /visa|immigration|work permit|right to work/i.test(s) &&
@@ -253,6 +259,15 @@ export async function normaliseBoardJobs(raw, board, now = Date.now()) {
       continue;
     seen.add(apply_url);
     const evidence = sponsorshipEvidence(description);
+    let source_first_published_at = null;
+    // Greenhouse first_published is original publication. Ashby publishedAt is
+    // the most recent publication; RSS pubDate is not assumed equivalent.
+    if (board.provider === 'greenhouse' && typeof job.first_published === 'string' && job.first_published.includes('T')) {
+      try {
+        const candidate = parseJobDeadline(job.first_published).closes_at;
+        if (Date.parse(candidate) <= now) source_first_published_at = candidate;
+      } catch { /* Missing/invalid optional SEO evidence does not lose the role. */ }
+    }
     result.push({
       id: await idFor(board.id + ":" + (job.id || apply_url)),
       board_id: board.id,
@@ -262,6 +277,7 @@ export async function normaliseBoardJobs(raw, board, now = Date.now()) {
       description,
       apply_url,
       provider: board.provider,
+      source_first_published_at,
       ...deadline,
       source_updated_at: String(job.updated_at || job.publishedAt || "").slice(
         0,
@@ -435,6 +451,7 @@ export async function storeBoardJobs(DB, board, jobs, now, receipts = [], guard 
     "apply_url",
     "provider",
     "source_updated_at",
+    "source_first_published_at",
     "application_deadline",
     "closes_at",
     "sponsorship",

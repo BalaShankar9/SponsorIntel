@@ -7,5 +7,5 @@ export function jobAvailability(job: Job, now?: number): "current" | "removed" |
 export function jobMetadata(job: Job, now?: number): {
   path: string; title: string; description: string; indexable: boolean;
 };
-export function jobStructuredData(job: Job, now?: number): object;
+export function jobStructuredData(job: Job, now?: number, allowPosting?: boolean): object;
 export function jobTimestamp(value: string): string;

@@ -143,7 +143,7 @@ export function updateJobMetadata(
           "Read the employer's advert, sponsorship wording and source checks on Sponsor Intel.",
         indexable: false,
       };
-  applyMetadata(page, job ? jobStructuredData(job) : null, page.indexable);
+  applyMetadata(page, job ? jobStructuredData(job, Date.now(), !location.hostname.endsWith('.workers.dev')) : null, page.indexable);
 }
 function applyMetadata(
   page: { title: string; path: string; description: string },

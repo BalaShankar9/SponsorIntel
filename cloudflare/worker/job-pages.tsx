@@ -37,7 +37,7 @@ export async function renderJobPage(request: Request, assets: { fetch: typeof fe
   html = html.replace(/<link rel="canonical" href="[^"]*"\s*\/?>/,
     () => '<link rel="canonical" href="' + JOB_ORIGIN + meta.path + '" />');
   html = html.replace(/<script\b[^>]*id="structured-data"[^>]*>[\s\S]*?<\/script>/,
-    () => '<script type="application/ld+json" id="structured-data">' + safeJSON(jobStructuredData(job, now)) + "</script>");
+    () => '<script type="application/ld+json" id="structured-data">' + safeJSON(jobStructuredData(job, now, !fallbackHost)) + "</script>");
   const body = renderToString(
     <div className="role-server-shell">
       <header className="role-server-brand"><a href="/">Sponsor<span>Intel</span></a><a href="/jobs">Explore UK opportunities</a></header>

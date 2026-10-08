@@ -2,7 +2,11 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.41 CV input fidelity
+## Latest: 2.42 qualified job metadata and sourcing audit
+
+Original Greenhouse dates are now retained separately from edits/observations. Current adverts with a verified date, full visible text and explicit UK location can emit JobPosting; missing, expired, stale and ambiguous evidence cannot. Nine GoCardless pages passed live source/HTML/browser checks after an owner-triggered refresh. This improves technical eligibility; Google acceptance/ranking remains unobserved. The new sourcing audit confirms that maintenance works across 33 sources but discovery is still too narrow: 50 offered/conditional roles, heavily concentrated in six employers. LinkedIn jobs and ordinary posts are not connected to the production ingestion pipeline. See `cloudflare/RELEASE-2.42.md` and `docs/SOURCING_DISCOVERY.md` for evidence and next work.
+
+## 2.41 CV input fidelity
 
 CV import now requires a local preview before replacing the source. It rejects over-limit text without slicing, retains JSON Resume sections and extensions, reports extraction limitations, preserves profile details by default and blocks stale previews. All 418 tests and real built-browser imports of fictional PDF/Word/text/JSON files pass, including preservation after rejection/discard, explicit application and reload. This protects the application's source material; it does not establish model-quality or universal document extraction accuracy. Live 2.41 HTTP and signed-in owner preview/discard checks pass. A fictional PDF was previewed and discarded; the saved owner CV remained exactly unchanged. See `cloudflare/RELEASE-2.41.md`.
 

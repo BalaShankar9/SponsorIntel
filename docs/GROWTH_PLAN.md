@@ -2,6 +2,10 @@
 
 Updated 5 October 2026 for Bala Bollineni. Build a trusted UK work, study and immigration planning service around reliable evidence and useful applications. Search leadership is a long-term outcome to earn and measure; no supplier can guarantee first place for every sponsorship or immigration query.
 
+## 8 October implementation update
+
+Release 2.42 retains original publication dates and emits qualified JobPosting on source-backed current adverts. Nine live GoCardless roles passed description/date parity checks after a normal owner source refresh. Collection, expired/stale and fallback-host exclusions remain. This is technical eligibility, not observed Google acceptance or ranking. Other employers acquire optional date evidence during scheduled refresh. Source diversity and newly verified opportunities now take priority alongside SEO: see `SOURCING_DISCOVERY.md`; the current 50-role sponsorship counter is not a measure of market coverage or agent intelligence.
+
 ## Brand and domain decision
 
 On 5 October 2026, Bala chose to keep **Sponsor Intel**. Retain **sponsorintel.london** as the primary website and use the name consistently across the product, search metadata, account emails and community materials. The replacement-name proposals and migration plan are retired. The descriptor is “UK jobs, study and visa guidance”.
