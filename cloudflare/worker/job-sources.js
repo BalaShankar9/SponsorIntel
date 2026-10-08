@@ -1,5 +1,6 @@
 // Reviewed public employer boards. Requests never use user-supplied destinations.
 import {SMARTRECRUITERS_REQUEST_COST} from './smartrecruiters.js';
+import {TEACHING_REQUEST_COST} from './teaching-vacancies.js';
 // Sectors describe the employer, not the occupation or visa eligibility.
 export const SECTORS = {
   technology: "Technology",
@@ -310,6 +311,7 @@ export function universityFeedIds(boardId) {
 }
 
 export function sourceRequestCost(board) {
+  if (board.provider === 'teaching-vacancies') return TEACHING_REQUEST_COST;
   if (board.provider === 'smartrecruiters') return SMARTRECRUITERS_REQUEST_COST;
   return board.provider === "university-rss" ? universityFeedIds(board.id).length : 1;
 }

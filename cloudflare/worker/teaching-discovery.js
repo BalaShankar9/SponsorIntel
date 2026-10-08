@@ -1,10 +1,8 @@
 import {parseDocument} from 'htmlparser2';
 import {sponsorshipEvidence} from './jobs.js';
 
-export const TEACHING_ORIGIN='https://teaching-vacancies.service.gov.uk';
-export const TEACHING_QUOTE='Skilled Worker visas can be sponsored';
-export const TEACHING_TERMS=TEACHING_ORIGIN+'/pages/terms-and-conditions#terms-and-conditions-for-api-users';
-export const TEACHING_ATTRIBUTION='Contains Department for Education Teaching Vacancies listing information licensed under the Open Government Licence v3.0. Advertiser claims require review.';
+import {TEACHING_ORIGIN,TEACHING_QUOTE,teachingJobURL} from './teaching-source.js';
+export {TEACHING_ORIGIN,TEACHING_QUOTE,TEACHING_TERMS,TEACHING_ATTRIBUTION,teachingJobURL} from './teaching-source.js';
 const norm=s=>String(s||'').normalize('NFKC').replace(/\s+/g,' ').trim();
 const text=node=>node.type==='text'?node.data:['script','style','noscript','template'].includes(node.name)?'':(node.children||[]).map(text).join(' ');
 const find=(node,test)=>[...(test(node)?[node]:[]),...(node.children||[]).flatMap(n=>find(n,test))];
@@ -12,9 +10,6 @@ const hasClass=(node,name)=>node.attribs?.class?.split(/\s+/).includes(name);
 const fail=reason=>{throw Object.assign(Error(reason),{reason});};
 const bound=(s,max)=>typeof s==='string'&&norm(s).length>0&&norm(s).length<=max?norm(s):null;
 
-export function teachingJobURL(value){
- try{const u=new URL(value,TEACHING_ORIGIN);return u.origin===TEACHING_ORIGIN&&!u.username&&!u.password&&!u.port&&!u.search&&!u.hash&&/^\/jobs\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(u.pathname)&&u.pathname.length<=250?u.href:null;}catch{return null;}
-}
 export function teachingSearchURL(page=1){
  if(![1,2].includes(page))throw Error('Search page outside allowance');
  return TEACHING_ORIGIN+'/jobs?visa_sponsorship_availability%5B%5D=true&sort_by=publish_on'+(page===2?'&page=2':'');

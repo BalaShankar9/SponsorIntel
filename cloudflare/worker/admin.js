@@ -1,6 +1,7 @@
 import { currentJobs } from "./current-jobs.js";
 import { sessionFor, reply, bodyJSON, sameOrigin, limit } from "./auth.js";
-import { BOARDS, SECTORS } from "./job-sources.js";
+import { BOARDS, SECTORS, sourceRequestCost } from "./job-sources.js";
+import {teachingBoardIdentity} from './teaching-source.js';
 import { fetchBoard } from "./jobs.js";
 import { refreshStudents } from "./study.js";
 import { agentOperationsAPI } from "./agent-api.js";
@@ -23,6 +24,14 @@ export async function ownerFor(request, env) {
     .first();
   return role ? session : null;
 }
+export async function probeReviewedBoard(DB,board,reader=fetchBoard) {
+  if(board.provider!=='teaching-vacancies')return reader(board);
+  const day=new Date().toISOString().slice(0,10),cost=sourceRequestCost(board);
+  await DB.prepare('INSERT INTO agent_daily_budget(day) VALUES(?) ON CONFLICT DO NOTHING').bind(day).run();
+  const reserved=await DB.prepare('UPDATE agent_daily_budget SET requests=requests+? WHERE day=? AND requests+?<=500 RETURNING day').bind(cost,day,cost).first();
+  if(!reserved)throw Error('The shared source allowance is used. Review this source on a later day.');
+  return reader(board,{readOnlyProbe:true});
+}
 export function validateBoard(body) {
   if (!body || typeof body !== "object")
     throw Error("Enter the employer details.");
@@ -39,7 +48,7 @@ export function validateBoard(body) {
   };
   if (
     !value.company ||
-    !["greenhouse", "lever", "ashby"].includes(value.provider) ||
+    !["greenhouse", "lever", "ashby", "teaching-vacancies"].includes(value.provider) ||
     !/^[a-zA-Z0-9_-]{1,80}$/.test(value.board) ||
     !Object.hasOwn(SECTORS, value.sector) ||
     !/^[a-f0-9]{24}$/.test(value.sponsor_id) ||
@@ -64,6 +73,7 @@ export function validateBoard(body) {
   )
     throw Error("Enter the public HTTPS careers page.");
   value.careers = url.href;
+  if(value.provider==='teaching-vacancies')teachingBoardIdentity(value);
   if (
     BOARDS.some(
       (b) =>
@@ -283,7 +293,8 @@ export async function adminAPI(request, env) {
         throw Error(
           "The sponsor is no longer in the current Skilled Worker snapshot. Re-check it.",
         );
-      await fetchBoard(b); // Probe only a fixed, supported ATS endpoint. Never the submitted URL.
+      // Reserve expensive school probes before I/O; failures remain counted.
+      await probeReviewedBoard(env.DB,b);
     }
     const now = new Date().toISOString();
     const statements = [

@@ -373,7 +373,7 @@ export async function executeSourceTask(
       duplicate_ids: 0,
       duplicate_links: 0,
       ...(jobs.collection ? {collection:jobs.collection} : {}),
-      ...(board.provider === "university-rss" && jobs.feed_review ? {feed_review:jobs.feed_review} : {}),
+      ...(["university-rss","teaching-vacancies"].includes(board.provider) && jobs.feed_review ? {feed_review:jobs.feed_review} : {}),
       ...(sourceFailureHistory(task.evidence).length ? {attempt_failures:sourceFailureHistory(task.evidence)} : {}),
     };
     // Publication and receipt are one transaction: replay cannot repeat a committed publication.

@@ -187,3 +187,9 @@ test('prepared external model adapters reject redirects without sending credenti
  for(const provider of ['openai','anthropic'])await assert.rejects(callResearchModel({OPENAI_API_KEY:'test-key',ANTHROPIC_API_KEY:'test-key'},{provider,model:'test-model'},'Return JSON',{}),/unavailable/);
  assert.equal(requests,2);
 });
+
+test('original-advert research shares the source allowance and refuses exhausted outbound work',async t=>{
+ const {env,id,jobs}=await realSetup(t),day=new Date().toISOString().slice(0,10);assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget WHERE day=?').get(day).requests,1);
+ const ctx=JSON.parse(env.sql.prepare('SELECT context FROM agent_investigations WHERE id=?').get(id).context);ctx.evidence=[];ctx.decisions=[];env.sql.prepare('UPDATE agent_investigations SET context=? WHERE id=?').run(JSON.stringify(ctx),id);env.sql.prepare('UPDATE agent_daily_budget SET requests=500 WHERE day=?').run(day);let calls=0;
+ await assert.rejects(executeResearchTool(env,id,2,{tool:'inspect_job',id:jobs[0].id,purpose:'Inspect original'},async()=>{calls++;return jobs;}),/allowance/);assert.equal(calls,0);assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget WHERE day=?').get(day).requests,500);
+});

@@ -69,6 +69,22 @@ export async function smartRecruitersDetail(detail,row,board,now=Date.now()){
     description_checked_at:iso(now)};
 }
 
+export function smartRecruitersJobURL(board,value) {
+ const c=config(board);let u;try{u=new URL(value);}catch{return null;}
+ return u.protocol==='https:'&&u.host==='jobs.smartrecruiters.com'&&!u.username&&!u.password&&!u.search&&!u.hash&&
+   new RegExp(`^/${c.identifier}/[0-9]{6,25}(?:-[^/]+)?/?$`).test(u.pathname)?u.href:null;
+}
+export async function fetchSmartRecruitersVacancy(board,stored,{fetcher=fetch,now=Date.now()}={}) {
+ const c=config(board),url=smartRecruitersJobURL(board,stored.apply_url);if(!url)throw new SourceCheckError('invalid_destination');
+ const id=new URL(url).pathname.split('/')[2].match(/^[0-9]+/)[0];
+ const response=await fetcher(`https://api.smartrecruiters.com/v1/companies/${c.identifier}/postings/${id}`,{redirect:'manual',signal:AbortSignal.timeout(12000),headers:{Accept:'application/json'}});
+ if(response.status!==200){await response.body?.cancel();throw new SourceCheckError(response.status>=300&&response.status<400?'redirected':'http_error',{http_status:response.status});}
+ let data;try{data=JSON.parse(await boundedText(response,2_000_000));}catch{throw new SourceCheckError('invalid_payload');}
+ if(data.id!==id||data.name!==stored.title)throw new SourceCheckError('posting_identity');
+ const checked=identity(data,c,now);if(excludedLocation(checked))return null;
+ return smartRecruitersDetail(data,data,board,now);
+}
+
 // Cache progress survives a failed/replayed workflow step. Publication remains
 // atomic in the caller and is only possible after a complete second catalogue.
 export async function collectSmartRecruiters(board,{DB,leaseOwner,fetcher=fetch,now=Date.now()}={}){

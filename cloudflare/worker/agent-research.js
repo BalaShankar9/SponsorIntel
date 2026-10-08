@@ -1,6 +1,7 @@
 import { currentJobs } from './current-jobs.js';
 import { approvedSources } from './agent-operations.js';
-import { fetchBoard } from './jobs.js';
+import { fetchBoard,fetchBoardJob } from './jobs.js';
+import { sourceRequestCost } from './job-sources.js';
 import { researchModels, callResearchModel } from './research-model.js';
 import { evaluationEvidence, scoreEvaluation,criticChallenge,scoreCriticEvaluation } from './research-evals.js';
 import {referenceBatch,referenceEvidence,referenceProgress,scoreReferenceEvaluation} from './research-reference.js';
@@ -141,9 +142,14 @@ export async function executeResearchTool(env, runId, turn, decision, fetcher = 
     if (!board || paused?.paused) throw Error('The selected employer source is no longer available.');
     // Fresh fetch uses existing fixed provider URLs, redirect/size/time limits.
     // No cached vacancy or model-supplied URL can masquerade as current evidence.
-    const jobs = await fetcher(board);
+    const cached = await env.DB.prepare('SELECT id,title,apply_url,description,last_seen FROM jobs WHERE id=?').bind(candidate.id).first();
+    if(!cached)throw Error('The selected advert is no longer available.');
+    const cost=['teaching-vacancies','smartrecruiters'].includes(board.provider)?1:sourceRequestCost(board),day=iso().slice(0,10);
+    await env.DB.prepare('INSERT INTO agent_daily_budget(day) VALUES(?) ON CONFLICT DO NOTHING').bind(day).run();
+    const reserved=await env.DB.prepare('UPDATE agent_daily_budget SET requests=requests+? WHERE day=? AND requests+?<=500 RETURNING day').bind(cost,day,cost).first();
+    if(!reserved)throw Error('The shared source allowance is used. Research cannot fetch another advert today.');
+    const jobs = fetcher===fetchBoard ? await fetchBoardJob(board,cached) : await fetcher(board);
     const fresh = jobs.find(x => x.id === candidate.id);
-    const cached = await env.DB.prepare('SELECT description,last_seen FROM jobs WHERE id=?').bind(candidate.id).first();
     const description = fresh?.description || '';
     const hash = await contentHash(description);
     const evidence = { id: candidate.id, company:candidate.company,title:candidate.title,

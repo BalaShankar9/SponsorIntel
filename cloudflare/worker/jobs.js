@@ -9,7 +9,10 @@ import { parseJobDeadline, universityClosingDate } from "./job-deadlines.js";
 import { payEvidence } from "../shared/pay-evidence.js";
 import { JOB_FRESHNESS_MS } from "../shared/job-detail.js";
 import { advertHTMLText, advertPlainText } from './advert-text.js';
-import {collectSmartRecruiters} from './smartrecruiters.js';
+import {collectSmartRecruiters,fetchSmartRecruitersVacancy} from './smartrecruiters.js';
+import {collectTeachingVacancies,fetchTeachingVacancy} from './teaching-vacancies.js';
+import {TEACHING_QUOTE,TEACHING_UNAVAILABLE} from './teaching-source.js';
+import {SourceCheckError} from './source-errors.js';
 export { BOARDS } from "./job-sources.js";
 
 export function plainText(value) {
@@ -111,7 +114,7 @@ export function sponsorshipEvidence(text) {
   const positive = relevant.find(
     (s) =>
       !s.endsWith("?") &&
-      (arrangesSponsorship(s) || /\bwe (?:can |will |may |do |are able to |are happy to )?(?:offer|provide|support) (?:\w+ ){0,3}(?:visa|immigration|work permit) sponsorship|\b(?:visa|immigration|work permit) sponsorship (?:is |will be |can be |may be )?(?:available|provided|offered|supported)\b|\bwe (?:can|will|may|are able to) sponsor (?:your |a |the )?(?:visa|work permit)|^[-• ]*relocation (?:support|assistance|benefits) and (?:visa|immigration) sponsorship\b/i.test(
+      (arrangesSponsorship(s) || /^Skilled Worker visas can be sponsored[.!]?$/i.test(s) || /\bwe (?:can |will |may |do |are able to |are happy to )?(?:offer|provide|support) (?:\w+ ){0,3}(?:visa|immigration|work permit) sponsorship|\b(?:visa|immigration|work permit) sponsorship (?:is |will be |can be |may be )?(?:available|provided|offered|supported)\b|\bwe (?:can|will|may|are able to) sponsor (?:your |a |the )?(?:visa|work permit)|^[-• ]*relocation (?:support|assistance|benefits) and (?:visa|immigration) sponsorship\b/i.test(
         s,
       )),
   );
@@ -271,6 +274,10 @@ export async function normaliseBoardJobs(raw, board, now = Date.now()) {
       continue;
     seen.add(apply_url);
     const evidence = sponsorshipEvidence(description);
+    if(board.provider==='teaching-vacancies' &&
+      (job.visa_wording===TEACHING_QUOTE ? !['offered','conditional'].includes(evidence.status) :
+       job.visa_wording!==TEACHING_UNAVAILABLE || evidence.status!=='unavailable'))
+      throw new SourceCheckError('posting_changed',{},'The advert has conflicting sponsorship wording.');
     let source_first_published_at = null;
     // Greenhouse first_published is original publication. Ashby publishedAt is
     // the most recent publication; RSS pubDate is not assumed equivalent.
@@ -407,7 +414,23 @@ export function combineUniversitySnapshots(board, snapshots) {
   }};
 }
 
+// Research reads one current original advert for paged providers. It must not
+// bootstrap a whole catalogue or write into the collection cache.
+export async function fetchBoardJob(board,stored,context={}) {
+  let raw;
+  if(board.provider==='teaching-vacancies')raw=await fetchTeachingVacancy(board,{url:stored.apply_url,title:stored.title},context);
+  else if(board.provider==='smartrecruiters')raw=await fetchSmartRecruitersVacancy(board,stored,context);
+  else return (await fetchBoard(board,context)).filter(j=>j.id===stored.id);
+  return (await normaliseBoardJobs(raw?[raw]:[],board,context.now??Date.now())).filter(j=>j.id===stored.id);
+}
+
 export async function fetchBoard(board, context = {}) {
+  if (board.provider === 'teaching-vacancies') {
+    const collection=await collectTeachingVacancies(board,context);
+    const jobs=await normaliseBoardJobs(collection.raw,board,context.now??Date.now());
+    jobs.feed_review=collection.review;
+    return jobs;
+  }
   if (board.provider === 'smartrecruiters') {
     const collected = await collectSmartRecruiters(board, context);
     if (collected.pending) return collected;

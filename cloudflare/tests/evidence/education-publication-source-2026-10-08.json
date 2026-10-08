@@ -1,0 +1,78 @@
+{
+  "checked_at": "2026-10-08T20:29:57.273Z",
+  "mode": "read-only; no production source or job writes",
+  "review": {
+    "provider": "teaching-vacancies",
+    "school_urn": "136202",
+    "organisation_slug": "king-s-lynn-academy",
+    "advert_count": 7,
+    "requests": 9,
+    "checked_at": "2026-10-08T20:29:54.957Z",
+    "full_catalogue_checked": true
+  },
+  "jobs": [
+    {
+      "title": "Pupil Progress Coordinator",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/pupil-progress-coordinator",
+      "sponsorship": "unavailable",
+      "evidence": "Visas cannot be sponsored",
+      "published": "2026-10-08",
+      "closes_at": "2026-10-29T23:59:00.000Z",
+      "description_length": 3269
+    },
+    {
+      "title": "Teacher of English",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-6f190dda-8595-415d-bc69-d3a0de3eaf46",
+      "sponsorship": "conditional",
+      "evidence": "Skilled Worker visas can be sponsored",
+      "published": "2026-10-08",
+      "closes_at": "2026-10-19T22:59:00.000Z",
+      "description_length": 2857
+    },
+    {
+      "title": "Lead Science Technician",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/lead-science-technician-king-s-lynn-academy",
+      "sponsorship": "unavailable",
+      "evidence": "Visas cannot be sponsored",
+      "published": "2026-10-06",
+      "closes_at": "2026-10-29T23:59:00.000Z",
+      "description_length": 3396
+    },
+    {
+      "title": "Teacher of Drama",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+      "sponsorship": "conditional",
+      "evidence": "Skilled Worker visas can be sponsored",
+      "published": "2026-09-29",
+      "closes_at": "2026-10-21T22:59:00.000Z",
+      "description_length": 2852
+    },
+    {
+      "title": "Science Technician",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/science-technician-king-s-lynn-academy",
+      "sponsorship": "unavailable",
+      "evidence": "Visas cannot be sponsored",
+      "published": "2026-09-25",
+      "closes_at": "2026-10-15T22:59:00.000Z",
+      "description_length": 3945
+    },
+    {
+      "title": "Exam Invigilator",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/exam-invigilator-9f911711-9994-4683-8ee1-d718bbef04ba",
+      "sponsorship": "unavailable",
+      "evidence": "Visas cannot be sponsored",
+      "published": "2026-09-16",
+      "closes_at": "2026-12-08T23:59:00.000Z",
+      "description_length": 2967
+    },
+    {
+      "title": "Senior Exam Invigilator",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/senior-exam-invigilator-king-s-lynn-academy",
+      "sponsorship": "unavailable",
+      "evidence": "Visas cannot be sponsored",
+      "published": "2026-09-16",
+      "closes_at": "2026-11-01T23:59:00.000Z",
+      "description_length": 3231
+    }
+  ]
+}

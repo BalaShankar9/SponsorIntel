@@ -93,3 +93,10 @@ test('a valid resumed partial collection clears its fetch error without inventin
  const r=await executeSourceTask(env,'resumed',source.id,{readBoard:async()=>({pending:true,progress})});
  assert.equal(r.error_code,'details_pending');assert.equal(env.sql.prepare('SELECT error FROM job_sources').get().error,null);assert.equal(env.sql.prepare('SELECT last_success FROM job_sources').get().last_success,null);assert.equal(env.sql.prepare('SELECT failures FROM agent_source_controls').get().failures,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM source_runs').get().n,0);assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget').get().requests,50);
 });
+
+test('single-advert research validates original identity without a source lease or collection cache',async()=>{
+ const {fetchBoardJob}=await import('../worker/jobs.js'),{approvedJobLink}=await import('../worker/job-link-checks.js');const row=posting(1),f=provider([row]),[stored]=await normaliseBoardJobs([await smartRecruitersDetail(detail(row),row,source)],source);
+ assert.equal((await fetchBoardJob(source,stored,{fetcher:f.fetcher}))[0].id,stored.id);assert.equal(f.calls.length,1);assert.equal(approvedJobLink(source,stored.apply_url),stored.apply_url);assert.equal(approvedJobLink(source,stored.apply_url+'?token=secret'),null);
+ await assert.rejects(fetchBoardJob(source,{...stored,title:'Another job'},{fetcher:f.fetcher}));await assert.rejects(fetchBoardJob(source,{...stored,apply_url:'https://evil.invalid/job'},{fetcher:f.fetcher}));assert.equal(f.calls.length,2);
+ const outside=provider([row],value=>{value.location.country='ie';return value;});assert.equal((await fetchBoardJob(source,stored,{fetcher:outside.fetcher})).length,0);
+});

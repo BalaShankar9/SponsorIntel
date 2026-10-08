@@ -59,6 +59,8 @@ export function OwnerDashboard({ go }: { go: Go }) {
     sector: "technology",
     sponsor_id: "",
     evidence: "",
+    school_urn: "",
+    school_slug: "",
   });
   async function load() {
     setBusy(true);
@@ -483,7 +485,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
             <h2>Add a reliable employer feed</h2>
             <p>
               Find the employer’s official careers page, follow its Greenhouse,
-              Lever or Ashby board, and match the legal entity in the sponsor
+              Lever or Ashby board, or its DfE Teaching Vacancies school page, and match the legal entity in the sponsor
               register. A licence alone does not mean every role offers
               sponsorship.
             </p>
@@ -493,7 +495,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
                 className="platform-form"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  void act({ action: "add", ...form });
+                  void act({ action: "add", ...form, ...(form.provider==='teaching-vacancies'?{board:form.school_urn+'--'+form.school_slug}: {}) });
                 }}
               >
                 {[
@@ -503,11 +505,12 @@ export function OwnerDashboard({ go }: { go: Go }) {
                     "board",
                     "Job-board name (from its Greenhouse, Lever or Ashby link)",
                   ],
-                ].map(([k, label]) => (
+                ].filter(([k])=>k!=="board"||form.provider!=="teaching-vacancies").map(([k, label]) => (
                   <label key={k}>
                     {label}
                     <input
-                      required
+                      required={k!=='board'||form.provider!=='teaching-vacancies'}
+                      disabled={k==='board'&&form.provider==='teaching-vacancies'}
                       value={(form as any)[k]}
                       onChange={(e) =>
                         setForm((f) => ({ ...f, [k]: e.target.value }))
@@ -523,14 +526,15 @@ export function OwnerDashboard({ go }: { go: Go }) {
                   <select
                     value={form.provider}
                     onChange={(e) =>
-                      setForm((f) => ({ ...f, provider: e.target.value }))
+                      setForm((f) => ({ ...f, provider: e.target.value, ...(e.target.value==='teaching-vacancies'?{sector:'education'}:{}) }))
                     }
                   >
-                    {["greenhouse", "lever", "ashby"].map((x) => (
-                      <option key={x}>{x}</option>
+                    {["greenhouse", "lever", "ashby", "teaching-vacancies"].map((x) => (
+                      <option key={x} value={x}>{x==='teaching-vacancies'?'DfE Teaching Vacancies (one school)':x}</option>
                     ))}
                   </select>
                 </label>
+                {form.provider==='teaching-vacancies'&&<><label>School URN (six-digit official school identifier)<input required pattern="[0-9]{6}" maxLength={6} value={form.school_urn} onChange={e=>setForm(f=>({...f,school_urn:e.target.value}))}/></label><label>School name in the Teaching Vacancies link<input required maxLength={72} pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="For example, king-s-lynn-academy" value={form.school_slug} onChange={e=>setForm(f=>({...f,school_slug:e.target.value}))}/></label><p className="fine-print">Use the school’s exact display name above. Review its legal employer or academy trust separately against the sponsor register. A different school, trust-wide feed or unidentified employer will be held. Up to 20 adverts per school; all original adverts and the complete list must pass before publication.</p></>}
                 <label>
                   Employer sector
                   <select

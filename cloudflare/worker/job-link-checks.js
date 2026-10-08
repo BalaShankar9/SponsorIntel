@@ -3,6 +3,8 @@ import { approvedSources } from './agent-operations.js';
 import { currentJobs } from './current-jobs.js';
 import { idFor } from './data.js';
 import { UNIVERSITY_FEEDS, universityFeedIds } from './job-sources.js';
+import { teachingJobURL,teachingBoardIdentity } from './teaching-source.js';
+import { smartRecruitersJobURL } from './smartrecruiters.js';
 
 const iso=(now=Date.now())=>new Date(now).toISOString();
 const normalize=value=>String(value||'').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]+/gu,' ').trim();
@@ -18,7 +20,11 @@ export function approvedJobLink(board,value,original=value) {
     const url=new URL(value),first=new URL(original);
     if ([url,first].some(u=>u.protocol!=='https:'||u.username||u.password||u.port||u.href.length>2000)) return null;
     let valid=false;
-    if(board.provider==='university-rss') {
+    if(board.provider==='teaching-vacancies') {
+      teachingBoardIdentity(board);valid=!!teachingJobURL(first.href)&&teachingJobURL(url.href)===first.href;
+    } else if(board.provider==='smartrecruiters') {
+      valid=!!smartRecruitersJobURL(board,first.href)&&smartRecruitersJobURL(board,url.href)===first.href;
+    } else if(board.provider==='university-rss') {
       const feeds=universityFeedIds(board.id).map(id=>UNIVERSITY_FEEDS[id]);
       const ref=first.searchParams.get('ref');
       valid=!!ref&&/^[a-z0-9-]{1,80}$/i.test(ref)&&url.searchParams.get('ref')===ref&&
