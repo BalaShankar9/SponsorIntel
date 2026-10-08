@@ -1,0 +1,44 @@
+{
+  "release": "2.25.0",
+  "checked_at": "2026-10-08",
+  "scope": "Local Workerd/D1 and real durable Workflow steps with a deterministic synthetic model adapter. Execution and controls only; no model-quality or external-delivery claim.",
+  "fixture": "tests/fixtures/marketing-existing-runtime.js",
+  "platform_status": "complete",
+  "run": {
+    "id": "marketing-2026-10-08",
+    "state": "reviewed",
+    "calls": 1
+  },
+  "briefs": [
+    {
+      "id": "a561bfd8-9426-4607-abfe-335e08a5f9f4",
+      "state": "reviewed",
+      "version": 2,
+      "revision": 3
+    }
+  ],
+  "steps": [
+    {
+      "name": "review-existing",
+      "role": "reviewer",
+      "state": "completed"
+    }
+  ],
+  "budget": [
+    {
+      "day": "2026-10-08",
+      "runs": 1,
+      "calls": 1
+    }
+  ],
+  "model_calls": [
+    {
+      "model": "synthetic-reviewer",
+      "units": 14
+    }
+  ],
+  "reviewed_units": 14,
+  "provider_receipts": 0,
+  "replay_unchanged": true,
+  "remote_bindings": []
+}

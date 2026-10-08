@@ -1,4 +1,5 @@
 import {decideBrief} from './marketing.js';
+import {currentWelcomeTarget} from './marketing-existing.js';
 
 const HOUR=3600000,iso=n=>new Date(n).toISOString();
 const ENDED=new Set(['complete','errored','terminated']);
@@ -35,8 +36,9 @@ async function reconcileEnded(env,businessId,area,run,status,now){
  if(area.kind==='marketing'&&current.brief_id){
   const brief=await env.DB.prepare('SELECT b.revision,b.state,v.writer FROM marketing_briefs b JOIN marketing_versions v ON v.brief_id=b.id AND v.version=b.version WHERE b.id=?').bind(current.brief_id).first();
   const writer='marketing-writer:'+JSON.parse(current.models).writer.model;
+  const existing=JSON.parse(current.context||'{}').existing_review;
   draft='owner_decision_preserved';
-  if(brief?.state==='proposed'&&brief.writer===writer){
+  if(brief?.state==='proposed'&&(existing?!!await currentWelcomeTarget(env,current):brief.writer===writer)){
    try{await decideBrief(env,{id:current.brief_id,revision:brief.revision,kind:'held',note:'Cloudflare confirmed that this editorial workflow ended without a final application receipt. Evidence and call reservations are preserved; inspect before further use.',request_key:'supervision:'+run.id},'agent-supervisor',now);draft='held';}
    catch{
     const after=await env.DB.prepare('SELECT revision FROM marketing_briefs WHERE id=?').bind(current.brief_id).first();

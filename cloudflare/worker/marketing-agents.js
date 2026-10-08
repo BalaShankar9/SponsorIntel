@@ -5,8 +5,9 @@ import {callResearchModel} from './research-model.js';
 import {createBrief,decideBrief} from './marketing.js';
 import {campaignById} from '../shared/campaigns.js';
 import {publishedGuideFetcher} from './guide-evidence.js';
+import {captureWelcomeReview,prepareWelcomeReview,currentWelcomeTarget,validateExistingReview,existingAccepted,recheckWelcomeReview,EXISTING_REVIEW_PROMPT} from './marketing-existing.js';
 
-export const MARKETING_POLICY='sourced-guides-v1';
+export const MARKETING_POLICY='sourced-guides-and-welcome-v2';
 const iso=(now=Date.now())=>new Date(now).toISOString();
 const HOUR=3600000,DAY=24*HOUR;
 const normalize=s=>plainText(s).replace(/\s+/g,' ').trim();
@@ -125,9 +126,11 @@ export async function captureMarketingContext(env,id,fetcher=publishedGuideFetch
  for(const definition of EDITORIAL_SOURCES){try{sources.push(await readEditorialSource(definition,fetcher,now));}catch{unavailable.push(definition.id);}}
  const candidates=sources.filter(s=>!queue.some(q=>q.topic_key===s.topic_key||q.text.includes(s.path)&&s.id==='advert-wording'));
  const slot=editorialSlot(queue,now,Math.min(...sources.map(s=>Date.parse(s.expires_at)),now+7*DAY));
+ let existing_review=null,existing_review_unavailable=null;
+ try{existing_review=await captureWelcomeReview(env,slot,fetcher,now);}catch{existing_review_unavailable='The welcome source or registered artwork could not be verified. No welcome review was started.';}
  const metrics=(await env.DB.prepare("SELECT event,dimension,SUM(count) count FROM analytics_daily WHERE day>=? AND day<? AND event IN ('campaign_page_view','campaign_account_created','campaign_application_generated') GROUP BY event,dimension LIMIT 40").bind(iso(now-7*DAY).slice(0,10),iso(now).slice(0,10)).all()).results.filter(r=>campaignById(r.dimension));
- const context={observed_at:iso(now),sources,candidates,unavailable,slot,queue:queue.map(({text,...q})=>({...q,text:text.slice(0,400)})),metrics,measurement_limit:'Counts are not unique people or causal evidence. The first three fb-evidence page opens on 7 October were operator checks. External social reach is not connected.'};
- await env.DB.prepare("UPDATE marketing_agent_runs SET state='running',context=? WHERE id=? AND state='queued'").bind(JSON.stringify(context),id).run();
+ const context={observed_at:iso(now),sources,candidates,unavailable,slot,existing_review,existing_review_unavailable,queue:queue.map(({text,...q})=>({...q,text:text.slice(0,400)})),metrics,measurement_limit:'Counts are not unique people or causal evidence. The first three fb-evidence page opens on 7 October were operator checks. External social reach is not connected.'};
+ await env.DB.prepare("UPDATE marketing_agent_runs SET state='running',context=?,brief_id=? WHERE id=? AND state='queued'").bind(JSON.stringify(context),existing_review?.id||null,id).run();
  return context;
 }
 export async function marketingModelStep(env,id,name,role,prompt,input,validate,caller=callResearchModel,now=Date.now()){
@@ -137,7 +140,7 @@ export async function marketingModelStep(env,id,name,role,prompt,input,validate,
  const run=await runRow(env,id);
  if(run.state!=='running'||now-Date.parse(run.created_at)>HOUR||!await enabled(env))throw Error('Run expired or paused.');
  const models=JSON.parse(run.models),day=iso(now).slice(0,10);
- if(!models[role]||!['plan','write','review','revise','review-revision'].includes(name))throw Error('Unknown model stage.');
+ if(!models[role]||!['plan','write','review','revise','review-revision','review-existing'].includes(name))throw Error('Unknown model stage.');
  await env.DB.batch([
   env.DB.prepare('INSERT INTO agent_research_budget(day) VALUES(?) ON CONFLICT DO NOTHING').bind(day),
   env.DB.prepare('UPDATE agent_research_budget SET calls=calls+1 WHERE day=?').bind(day),
@@ -154,6 +157,34 @@ export async function planMarketing(env,id,caller,now=Date.now()){
  const context=JSON.parse((await runRow(env,id)).context);
  if(!context.candidates.length||!context.slot)return {decision:'no_post',source_id:'',reason:!context.candidates.length?'No fresh, non-duplicate guide is available.':'No eligible slot: the queue is full, expired or needs delivery reconciliation.',ranked:[],timing_reason:'Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first.'};
  return marketingModelStep(env,id,'plan','writer',PLANNER_PROMPT,context,x=>validatePlan(x,context),caller,now);
+}
+export async function prepareExistingMarketing(env,id,now=Date.now()){
+ const run=await runRow(env,id);
+ if(run.state!=='running'||!await enabled(env))throw Error('Marketing review paused or no longer active.');
+ return prepareWelcomeReview(env,run,now);
+}
+export async function critiqueExistingMarketing(env,id,caller,now=Date.now()){
+ const run=await runRow(env,id),models=JSON.parse(run.models),target=JSON.parse(run.context).existing_review;
+ if(!target||models.writer.model===models.reviewer.model||!await currentWelcomeTarget(env,run))throw Error('Existing review target changed or reviewer is not independent.');
+ const input={destination:'Instagram · sponsorintellondon',scope:target.scope,units:target.units,sources:target.sources.map(({id,title,excerpt,checked_at})=>({id,title,excerpt,checked_at}))};
+ return marketingModelStep(env,id,'review-existing','reviewer',EXISTING_REVIEW_PROMPT,input,x=>validateExistingReview(x,target),caller,now);
+}
+export async function concludeExistingMarketing(env,id,review,fetcher=publishedGuideFetcher(env),now=Date.now()){
+ const run=await runRow(env,id);
+ if(!['running','queued'].includes(run.state))return {state:run.state};
+ const target=JSON.parse(run.context).existing_review;
+ const modelReceipt=await env.DB.prepare("SELECT output FROM marketing_agent_steps WHERE run_id=? AND name='review-existing' AND role='reviewer' AND state='completed'").bind(id).first();
+ if(!modelReceipt||JSON.stringify(JSON.parse(modelReceipt.output))!==JSON.stringify(review))throw Error('The exact independent model review receipt is required.');
+ const saved=await env.DB.prepare('SELECT e.kind,e.detail,b.last_event,e.id FROM marketing_events e JOIN marketing_briefs b ON b.id=e.brief_id WHERE e.request_key=?').bind(id+':existing-final').first();
+ if(saved)return finishMarketingAgent(env,id,saved.last_event===saved.id&&saved.kind==='reviewed'?'reviewed':'held',{reason:saved.last_event===saved.id?JSON.parse(saved.detail).note:'A later owner decision is preserved.',brief_id:run.brief_id,independent_review:review,review_scope:target.scope,publication:'none'},now);
+ let passed=existingAccepted(review),reason=review.reason,brief=await currentWelcomeTarget(env,run);
+ if(!brief)return finishMarketingAgent(env,id,'held',{reason:'The welcome was edited or held outside this run. No automatic decision was applied.',brief_id:run.brief_id,publication:'none'},now);
+ if(!await enabled(env)){passed=false;reason='Marketing agents paused before the final decision.';}
+ try{await recheckWelcomeReview(env,run,fetcher,now);}catch{passed=false;reason='Welcome sources, artwork or content changed or expired before the final decision.';}
+ const slot=editorialSlot(await editorialQueue(env),now,Date.parse(brief.expires_at));
+ if(!slot){passed=false;reason='No company publishing slot remains or delivery needs reconciliation. No post was sent.';}
+ await decideBrief(env,{id:target.id,revision:brief.revision,kind:passed?'reviewed':'held',note:reason+' Review covers registered artwork text and accessibility description, not pixel analysis. No post was sent.',checks:passed?{claims:true,sources:true,destination:true,duplication:true,media:true}:undefined,request_key:id+':existing-final'},'marketing-reviewer:'+JSON.parse(run.models).reviewer.model,now);
+ return finishMarketingAgent(env,id,passed?'reviewed':'held',{reason,brief_id:target.id,proposed_slot:slot,independent_review:review,review_scope:target.scope,publication:'none'},now);
 }
 export async function writeMarketing(env,id,plan,prior=null,caller,now=Date.now()){
  const context=JSON.parse((await runRow(env,id)).context),source=context.candidates.find(s=>s.id===plan.source_id);
@@ -200,7 +231,9 @@ export async function concludeMarketing(env,id,plan,copy,review,fetcher=publishe
 }
 export async function failMarketingAgent(env,id){
  const run=await runRow(env,id);
- if(run.brief_id){const b=await env.DB.prepare('SELECT revision,state FROM marketing_briefs WHERE id=?').bind(run.brief_id).first();if(b&&b.state==='proposed')try{await decideBrief(env,{id:run.brief_id,revision:b.revision,kind:'held',note:'Agent execution stopped before a complete, current independent review. Inspect the run before further action.',request_key:id+':failure'},'marketing-controller');}catch{/* A concurrent owner decision wins. */}}
+ if(run.brief_id){const existing=JSON.parse(run.context||'{}').existing_review;
+  const b=existing?await currentWelcomeTarget(env,run):await env.DB.prepare('SELECT revision,state FROM marketing_briefs WHERE id=?').bind(run.brief_id).first();
+  if(b&&b.state==='proposed')try{await decideBrief(env,{id:run.brief_id,revision:b.revision,kind:'held',note:'Agent execution stopped before a complete, current independent review. Inspect the run before further action.',request_key:id+':failure'},'marketing-controller');}catch{/* A concurrent owner decision wins. */}}
  return finishMarketingAgent(env,id,'held',{reason:'Agent execution stopped or a model outcome was uncertain. No automatic retry; inspect the step records.',brief_id:run.brief_id});
 }
 export async function marketingAgentSnapshot(env){

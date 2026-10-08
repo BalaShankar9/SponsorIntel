@@ -1,4 +1,5 @@
 import {boundedText} from './data.js';
+import {digest} from './auth.js';
 import {plainText} from './jobs.js';
 import {currentJobs} from './current-jobs.js';
 import assets from '../shared/marketing-media.json' with {type:'json'};
@@ -26,7 +27,7 @@ export async function instagramWelcomeContent(env,fetcher=publishedGuideFetcher(
   const article=html.match(/<article\b[^>]*class="resource-article"[^>]*>([\s\S]*?)<\/article>/i)?.[1];
   const visible=article?plainText(article).replace(/\s+/g,' ').trim():'';
   if(!source.facts.every(f=>visible.includes(f)))throw Object.assign(Error('Welcome source changed; review its claims before preparing another draft.'),{status:409});
-  sources.push({url,title:source.title,excerpt:source.facts.join(' '),checked_at});
+  sources.push({url,title:source.title,excerpt:source.facts.join(' '),checked_at,content_hash:await digest(visible)});
  }
  const current=currentJobs(now);
  const jobs=await env.DB.prepare(`SELECT COUNT(*) total FROM jobs WHERE ${current.sql}`).bind(...current.values).first();

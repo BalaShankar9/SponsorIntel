@@ -6,6 +6,37 @@
     "width": 1080,
     "height": 1080,
     "type": "image/png",
-    "alt": "Sponsor Intel. Your next chapter starts with clarity. Find UK employer vacancies, check the sponsorship evidence and prepare a focused application. For international students, graduates and migrants. sponsorintel.london."
+    "alt": "Sponsor Intel. Your next chapter starts with clarity. Find UK employer vacancies, check the sponsorship evidence and prepare a focused application. For international students, graduates and migrants. sponsorintel.london.",
+    "visible_text": [
+      {
+        "text": "Sponsor Intel",
+        "claim": false
+      },
+      {
+        "text": "Your next chapter starts with clarity.",
+        "claim": false
+      },
+      {
+        "text": "Find UK employer vacancies",
+        "claim": true
+      },
+      {
+        "text": "Check the sponsorship evidence",
+        "claim": true
+      },
+      {
+        "text": "Prepare a focused application",
+        "claim": true
+      },
+      {
+        "text": "For international students, graduates and migrants.",
+        "claim": false
+      },
+      {
+        "text": "sponsorintel.london",
+        "claim": false
+      }
+    ],
+    "transcription_checked_at": "2026-10-08"
   }
 ]
