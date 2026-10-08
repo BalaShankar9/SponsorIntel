@@ -2,7 +2,7 @@
 
 Observed 8 October 2026, 15:13–15:18 UTC. The owner specifically asked why the sponsorship count remains 50 and requested both LinkedIn job listings and ordinary recruiting posts in the discovery work.
 
-## What is established
+## Initial audit at 15:13–15:18 UTC
 
 The public API reports 904 current vacancies from 33 employers; all approved sources refreshed successfully on 8 October. 851 roles have a reviewed employer licence link, a separate fact from vacancy-level sponsorship. There are 16 offered-wording and 34 conditional-wording roles, totaling 50. The distribution is Monzo 31, Callosum 10, Seamflow 5, Maven 2, Sampura 1 and Nottingham 1. This concentration shows limited source diversity, not broad UK-market coverage.
 
@@ -31,10 +31,20 @@ No third-party post was republished, no recruiter was contacted and no paywall, 
 4. Add daily movement evidence: verified new roles, closures, changed sponsorship wording, duplicate/rejected leads, new employers, source age, review backlog and source concentration. Show offered and conditional counts separately. Alert on failed discovery output/overdue reviews, not merely a flat headline count. Old first-seen timestamps cannot reconstruct a missing historical transition ledger.
 5. Expand the independent phrase-quality evaluation with these actual exclusions and social-post edge cases: recruiter claims, sponsorship requested by a jobseeker, questions, overseas-only roles, visa switching restrictions and expired reposts. No automatic model promotion from these examples.
 
-The next meaningful success is a new employer and a genuinely checked additional opportunity discovered from a documented lead, plus a repeatable scheduled receipt. Maintenance checks, model calls, more agent titles and a larger unverified count are not that outcome.
+The next meaningful success is a new employer and a genuinely checked additional opportunity discovered from a documented lead, plus a repeatable scheduled receipt. The Sequence addition below establishes the first two parts; its scheduled refresh remains to be observed. Maintenance checks, model calls, more agent titles and a larger unverified count are not that outcome.
 
 The existing 10:00 UK daily Codex routine now includes the bounded public-lead review above; its full saved prompt was read back exactly. This schedules scouting work, not a connected LinkedIn feed or a guarantee of daily publishable vacancies.
 
 ## 2.43 implementation progress
 
-Prospective hourly movement is implemented and live in the owner operating desk. The first capture is a baseline; later captures show offered/conditional totals, gains/losses, entered/returned/left roles, exact before/after sponsorship excerpts and source concentration. Daily totals reconcile all observed events; the most recent 50 changes are individually inspectable. No historic change is inferred and events between observations may be missed. This partially addresses priority 4; private lead decisions/backlog and new-employer discovery remain unimplemented. The first genuine scheduled observation is verified: business-497631 at 15:45:50.632 UTC, completed in D1 and independently by Cloudflare. The owner panel matches all 904/16/34/33 totals. A later observation with an actual transition remains a separate gate.
+Prospective hourly movement is implemented and live in the owner operating desk. The first capture is a baseline; later captures show offered/conditional totals, gains/losses, entered/returned/left roles, exact before/after sponsorship excerpts and source concentration. Daily totals reconcile all observed events; the most recent 50 changes are individually inspectable. No historic change is inferred and events between observations may be missed. This partially addresses priority 4; a private lead-decision ledger/backlog and automated new-employer discovery remain unimplemented. The first genuine scheduled observation is verified: business-497631 at 15:45:50.632 UTC, completed in D1 and independently by Cloudflare. The owner panel matches all 904/16/34/33 totals. A later observation with an actual transition remains a separate gate.
+
+## Verified source expansion at 15:58 UTC
+
+A LinkedIn lead was followed to Sequence's own careers page and current public Ashby board. The employer's legal notice identifies Sequence HQ Ltd in Canterbury, matching its exact current Skilled Worker register entry. The existing owner review flow approved this specific source and licence relationship; no broad company-name inference or new adapter was used.
+
+The first owner-triggered collection published four London roles, including three whose adverts explicitly say visa sponsorship is available. The fourth, Senior Product Designer, stays `not_stated`. Seven US vacancies and an older London sales lead absent from the current feed were not published. All 18 normalized fields, including complete descriptions and application links, match the four saved records.
+
+The public browser now shows **908 roles, 34 employers, 53 offered/conditional sponsorship claims and 855 licence-linked jobs**. This is a reviewed configuration addition on release 2.43.0, not a new code deployment or a connected LinkedIn collector. Ordinary recruiting posts continue to enter the bounded discovery review as leads; they require the same employer-original, date and identity checks.
+
+Cloudflare independently confirms that `owner-a7d161dd-44c8-45ca-9d44-6b938d801daa` completed at 15:58:22.325 UTC. The new board participates in the existing six-hour collection schedule; its first unattended refresh is due at 18:30 UTC and is not yet verified. The next hourly movement observation is also pending; the earlier 904-job baseline is preserved. See [Sequence source review](SEQUENCE_SOURCE_REVIEW.md) and `cloudflare/tests/evidence/sequence-source-2026-10-08.json`.

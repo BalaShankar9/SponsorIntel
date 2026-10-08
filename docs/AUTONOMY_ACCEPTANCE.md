@@ -2,7 +2,13 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.43 prospective job movement
+## Latest: reviewed Sequence source expansion on 2.43.0
+
+The existing source-review flow now approves Sequence's public Ashby board, linked through the employer's legal notice to Sequence HQ Ltd's exact current sponsor-register entry. Owner-triggered run `owner-a7d161dd-44c8-45ca-9d44-6b938d801daa` published four London roles on its first attempt and completed at 15:58:22.284 UTC; Cloudflare independently confirms completion at 15:58:22.325 UTC. All 18 normalized fields match the reviewed feed for every saved role. Three adverts explicitly offer sponsorship; the designer advert remains not stated. Seven US roles were excluded.
+
+The public browser verifies **908 jobs / 34 employers / 53 offered-or-conditional sponsorship claims / 855 licence-linked jobs**, with the new AI Engineer detail showing its exact wording, original application link and enabled preparation control. The original employer's empty application form is accessible; no application was submitted. This adds an employer through existing configuration, with no code deployment or new AI call. Sequence's first scheduled refresh, due 18:30 UTC, and the next actual hourly movement transition remain unobserved. LinkedIn ingestion remains disconnected. See `docs/SEQUENCE_SOURCE_REVIEW.md` and its aggregate evidence.
+
+## 2.43 prospective job movement
 
 The hourly workflow now captures an atomic baseline and later current-list transitions, including entered/returned/left roles, changed sponsorship labels and supporting wording. The owner panel separates offered/conditional totals, reconciles gains/losses, retains before/after evidence and exposes employer concentration. History is prospective and sampled hourly; no historical discoveries or employer closures are invented. All 432 tests, build/budgets/dry-run and actual isolated BusinessWorkflow checks pass. Live 2.43.0 and migration 0029 are verified. Genuine scheduled run business-497631 recorded 904 jobs / 16 offered / 34 conditional / 33 employers at 15:45:50.632 UTC and completed at 15:45:59.471 UTC, independently confirmed complete by Cloudflare. The owner browser matches the receipt; zero change events were invented for the baseline. The first later real transition remains pending. See `cloudflare/RELEASE-2.43.md`.
 
