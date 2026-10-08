@@ -15,6 +15,7 @@ import {searchNotificationHealth} from './search-notifications.js';
 import {emailDeliveryHealth,emailDeliveryFindings} from './email-events.js';
 import {jobSearchPageHealth} from './job-search-health.js';
 import {socialDeliveryHealth,socialDeliveryFindings} from './social-delivery-health.js';
+import {jobLinkHealth,jobLinkFindings} from './job-link-checks.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -101,7 +102,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     immigration:rows[2].results.map(({content,...source})=>({...source,explanation_status:summaryState({...source,content},EXPLAINERS[source.id],now).status})), register:register ? JSON.parse(register.value) : null,
     metrics:rows[4].results, measurement, held_batches:rows[5].results[0].total,
     feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}), application_evaluation:await applicationEvaluationHealth(env),
-    search_notifications:await searchNotificationHealth(env),email_delivery:await emailDeliveryHealth(env,now),social_delivery:await socialDeliveryHealth(env,now),
+    search_notifications:await searchNotificationHealth(env),email_delivery:await emailDeliveryHealth(env,now),social_delivery:await socialDeliveryHealth(env,now),job_links:await jobLinkHealth(env,now),
     reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
       dangerous_false_positives:reference.dangerous_false_positives,unsupported_refusals:reference.unsupported_refusals,disputed_items:reference.disputed_items} };
 }
@@ -111,6 +112,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   const add = (id,category,severity,title,detail,next_action) => issues.push({id,category,severity,title,detail,next_action});
   issues.push(...emailDeliveryFindings(snapshot.email_delivery,now));
   issues.push(...socialDeliveryFindings(snapshot.social_delivery));
+  issues.push(...jobLinkFindings(snapshot.job_links));
   const notifications=snapshot.search_notifications;
   if (notifications?.followed && (notifications.awaiting_first_check || notifications.last_run?.failed || !currentTimestamp(notifications.oldest_check,now,3600000)))
     add('search-notifications','product','normal','Check saved-search matching','Some followed searches are waiting for a check, have failed, or have not been checked within an hour.','Inspect the scheduled matching receipt and queue capacity. Do not reset subscribers or mark unseen matches as read.');
@@ -176,6 +178,7 @@ export async function housekeeping(env, id, now=Date.now()) {
     env.DB.prepare("UPDATE social_outbox SET state='superseded' WHERE state='needs_connection' AND expires_at<=?").bind(iso(now)),
     env.DB.prepare("DELETE FROM business_runs WHERE state NOT IN ('queued','running') AND created_at<?").bind(iso(now-90*86400000)),
     env.DB.prepare('DELETE FROM business_daily WHERE day<?').bind(iso(now-90*86400000).slice(0,10)),
+    env.DB.prepare('DELETE FROM job_link_daily_budget WHERE day<?').bind(iso(now-90*86400000).slice(0,10)),
   ]);
   return JSON.parse((await env.DB.prepare("SELECT result FROM business_steps WHERE run_id=? AND name='housekeeping'").bind(id).first()).result);
 }
@@ -221,7 +224,7 @@ export async function businessSnapshot(env) {
   return {settings:await controls(env),measured_at:iso(),schedule:'Every hour at minute 45 UTC; research once per UTC day; evidence report at most once every 7 days.',
     heartbeat:!latest?'not_started':Date.now()-Date.parse(latest.created_at)>2*3600000?'overdue':latest.state,
     runs:results[0].results.map(x=>({...x,snapshot:x.snapshot?JSON.parse(x.snapshot):null,result:x.result?JSON.parse(x.result):null})),
-    issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,social_delivery:await socialDeliveryHealth(env),
+    issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,social_delivery:await socialDeliveryHealth(env),job_links:await jobLinkHealth(env),
     connections:{social:false,search_console:(await searchSnapshot(env,Date.now(),{compact:true})).connected,payments:false},
     limits:{hourly_runs:1,external_health_requests:5,research_runs_daily:1,publication_interval_days:7,customer_data_access:false}};
 }

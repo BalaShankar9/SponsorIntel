@@ -31,3 +31,5 @@ The next genuine business run at 12:45 UTC and next eligible marketing context m
 GitHub hosted checks remain subject to the account billing lock; current-commit results must be checked separately. The three moderate Mammoth/argparse/sprintf-js findings remain.
 
 Code can roll back to 2.36 without dropping either analytics table or restoring production data. Keep the boundary and later customer/operational state. A rollback would resume old mixed collection and create a gap in the new baseline; flag affected days as incomplete and do not treat them as zero usage. Do not delete counters or modify immutable receipts to make a trend look better.
+
+Follow-up acceptance: original source run `scheduled-1791462638000` completed at 12:32:38.370 UTC, and original business run `business-497628` at 12:45:57.218 UTC with measurement version 2. Both platform statuses are complete. See RELEASE-2.38.md; the next eligible new marketing context remains unverified.

@@ -2,11 +2,21 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.37 usage measurement
+## Latest: 2.38 employer application-link checks
+
+The hourly business workflow now checks a rotating sample of current employer application links, two employers per run and one role per employer per UTC day. Exact provider/advert redirect rules, timeout/body limits, two atomic request ceilings, pause and source-approval checks protect the boundary. Broken, uncertain, unfinished and overdue checks remain visible in the owner desk. They never change public roles, source timestamps or sponsorship labels. No model, email, Google retry, paid connection or new permission is used.
+
+391 tests, build, 17 prerenders and Worker dry-run pass. An actual isolated BusinessWorkflow with all migrations and fictional HTTP fixtures retains the sample and evidence, charges four slots, and does not fetch again on replay. A separate real diagnostic sample reached corresponding titles for 33/33 employer pages. Neither test establishes every advert's availability or a working application submission. See `cloudflare/RELEASE-2.38.md` for deployment and genuine scheduled receipts.
+
+The original source run `scheduled-1791462638000` completed at 12:32:38.370 UTC; Cloudflare confirms completion, all 33 tasks published and 34 requests were recorded. Both Cardiff Metropolitan campus feeds reconciled to 14 roles with the one explicit internal-only exclusion retained. This closes the first genuine source-run gates for 2.35/2.36.
+
+The original scheduled business run `business-497628` completed at **12:45:57.218 UTC** on 8 October, with Cloudflare status `complete`. Both Allica Bank and ApotheCom initial job-page titles matched. Two real page requests consumed eight conservatively reserved slots; 31 other employers remained awaiting rotation. The snapshot contains measurement version 2 with zero complete UTC days, healthy five-route checks and zero high findings. It reused existing research, editorial, application-evaluation and Google receipts without additional calls. The signed-in owner dashboard shows these exact results and an expanded sample receipt. This closes the first scheduled business acceptance for 2.37/2.38; it does not verify all future runs or every employer page.
+
+## 2.37 usage measurement
 
 The new owner-filtered aggregate baseline is live from 11:57:33.807 UTC on 8 October. Authenticated owner visits and fresh sign-ins, plus declared QA requests, are excluded; older mixed totals are retained separately. CV/cover-letter results are distinct from preparation exercises, and sourced guidance replies from clarification/insufficient evidence. No private content or identity is stored in analytics. Signed-out operators, repeats and bots can remain, and counts do not prove downloads, submissions, accuracy, customers or revenue.
 
-All 380 tests, build and Worker dry-run pass. The actual Worker/auth/D1 path was tested with fictional accounts in isolated Workerd and no external calls. The live owner browser and an explicitly declared QA request added no public counts; old totals were unchanged. Business and new marketing inputs require complete UTC days after the boundary. The first full day is 9 October, available only after 00:00 UTC on 10 October. The next genuine 12:45 business run and next eligible marketing context remain acceptance gates. No AI calls, Google retry, test email or social send were forced. See `cloudflare/RELEASE-2.37.md` and `GROWTH_PLAN.md`.
+All 380 tests, build and Worker dry-run pass. The actual Worker/auth/D1 path was tested with fictional accounts in isolated Workerd and no external calls. The live owner browser and an explicitly declared QA request added no public counts; old totals were unchanged. Business and new marketing inputs require complete UTC days after the boundary. The first full day is 9 October, available only after 00:00 UTC on 10 October. The genuine 12:45 business run subsequently confirmed measurement version 2; the next eligible new marketing context remains a separate acceptance gate. No AI calls, Google retry, test email or social send were forced. See `cloudflare/RELEASE-2.37.md` and `GROWTH_PLAN.md`.
 
 ## 2.36 grouped campus sourcing
 
@@ -14,7 +24,7 @@ Cardiff Metropolitan University's two explicitly reviewed UK campus feeds now pu
 
 The collector merges an identical shared reference across campuses, preserves both locations and holds conflicting text/deadlines/restrictions or a failed campus response. Every configured feed is reserved inside the existing 500-per-day and 150-per-run ceilings, including uncertain/failed attempts. The newly observed “only available to current employees and students” wording is excluded; ordinary external-applicant and negated wording stays accepted by the diagnostic fixtures. This is narrow source screening, not proof of universal eligibility.
 
-All 372 tests, build and dry-run pass. The actual SourceWorkflow also completed against fixed downloaded public bytes in isolated Workerd/D1, with all 14 records matching Node and no extra requests on replay. Production 2.36.0 and public HTML/API/browser checks pass. The first genuine scheduled collection of the grouped source remains due at 12:30 UTC, alongside the first scheduled importer check for 2.35. No model, Google, email or social call was forced. See `cloudflare/RELEASE-2.36.md` and `cloudflare/tests/evidence/cardiff-campus-2026-10-08.json`.
+All 372 tests, build and dry-run pass. The actual SourceWorkflow also completed against fixed downloaded public bytes in isolated Workerd/D1, with all 14 records matching Node and no extra requests on replay. Production 2.36.0 and public HTML/API/browser checks pass. The first genuine scheduled collection and 2.35 importer check subsequently completed at 12:32:38.370 UTC; see the 2.38 acceptance above. No model, Google, email or social call was forced. See `cloudflare/RELEASE-2.36.md` and `cloudflare/tests/evidence/cardiff-campus-2026-10-08.json`.
 
 ## 2.35 employer-text quality correction
 
