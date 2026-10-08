@@ -33,5 +33,10 @@
     "typescript": "5.7.2",
     "vite": "6.4.3",
     "wrangler": "4.147.0"
+  },
+  "overrides": {
+    "miniflare": {
+      "sharp": "0.35.5"
+    }
   }
 }
