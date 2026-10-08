@@ -25,6 +25,10 @@ These deterministic rules are narrow and can miss new wording. They are not a cl
 
 ## Further coverage
 
+### Employer-advert extraction, 8 October
+
+Release 2.35 fixes a reproduced Greenhouse encoded-HTML defect found in two current Graphcore adverts. The parser removes formatting attributes without treating a quoted `>` as a tag boundary, preserves text/paragraphs and keeps plain-description fields separate. A same-input review of 85 UK records has unchanged sponsorship labels; local Workerd matches Node exactly. Two guarded production text corrections preserve their original observations, labels and other public fields. The next scheduled source execution remains an acceptance gate. No historical reference annotation or customer draft was rewritten. See the release and `cloudflare/tests/evidence/advert-import-2026-10-08.json`.
+
 ### Eucalyptus identity review, 8 October
 
 The [employer's own privacy notice](https://www.eucalyptus.health/privacy-policy), Annex B / United Kingdom, names **Fill Function UK Limited** for employer, consumer-services and service-provider contracts. The current imported official register (source date 6 October, checked 7 October) contains **Fill Function UK Ltd**, London, Skilled Worker, record `d6a811754495f7de7da70032`. The reviewed company link uses this evidence and the register's normal freshness checks. No link is inferred from Eucalyptus Holdco Limited or the Coventry Juniper Tech Limited name matches.

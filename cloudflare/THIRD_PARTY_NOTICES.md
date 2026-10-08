@@ -46,6 +46,7 @@ Versions are pinned in package-lock.json. Distributable notices are collected in
 - Mammoth — BSD-2-Clause, browser-local DOCX text extraction.
 - docx — MIT, Word exports.
 - jsPDF — MIT, text-based PDF exports.
+- htmlparser2 — MIT; entities and supporting DOM packages — BSD-2-Clause, employer-advert text extraction.
 - React, Lucide and their dependencies — see the collected notices.
 - Noto Sans Regular — SIL Open Font License 1.1; unmodified font from https://github.com/notofonts/noto-fonts/blob/main/hinted/ttf/NotoSans/NotoSans-Regular.ttf. License bundled beside the font. PDF export checks glyph coverage and directs unsupported scripts to Word/text rather than silently dropping characters.
 

@@ -8,6 +8,7 @@ import { jobFilter } from "./job-filters.js";
 import { parseJobDeadline, universityClosingDate } from "./job-deadlines.js";
 import { payEvidence } from "../shared/pay-evidence.js";
 import { JOB_FRESHNESS_MS } from "../shared/job-detail.js";
+import { advertHTMLText, advertPlainText } from './advert-text.js';
 export { BOARDS } from "./job-sources.js";
 
 export function plainText(value) {
@@ -185,21 +186,22 @@ export function careerLevel(title) {
 // Lever stores requirements and exclusions outside the introduction. Include
 // every published section before looking for sponsorship evidence.
 export function advertText(job, provider) {
+  const textOrHTML = (text, html) => text ? advertPlainText(text) : advertHTMLText(html);
   const parts =
     provider === "lever"
       ? [
-          job.descriptionPlain || job.description,
+          textOrHTML(job.descriptionPlain, job.description),
           ...(Array.isArray(job.lists) ? job.lists : []).map((x) =>
-            [x.text, x.content].filter(Boolean).join("\n"),
+            [advertPlainText(x.text), advertHTMLText(x.content)].filter(Boolean).join("\n"),
           ),
-          job.additionalPlain || job.additional,
-          job.salaryDescriptionPlain || job.salaryDescription,
+          textOrHTML(job.additionalPlain, job.additional),
+          textOrHTML(job.salaryDescriptionPlain, job.salaryDescription),
         ]
       : [
-          job.content || job.descriptionPlain || job.descriptionHtml,
-          job.compensation?.scrapeableCompensationSalarySummary,
+          job.content ? (provider === 'university-rss' ? advertPlainText(job.content) : advertHTMLText(job.content, provider === 'greenhouse')) : textOrHTML(job.descriptionPlain, job.descriptionHtml),
+          advertPlainText(job.compensation?.scrapeableCompensationSalarySummary),
         ];
-  return parts.map(plainText).filter(Boolean).join("\n\n");
+  return parts.filter(Boolean).join("\n\n");
 }
 
 export function isTalentPool(title) {

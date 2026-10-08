@@ -2,7 +2,13 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: isolated cloud recovery exercise
+## Latest: 2.35 employer-text quality correction
+
+The public-data audit found formatting attributes in two current Graphcore descriptions. The importer now parses employer HTML correctly, including encoded tags with a greater-than sign inside a quoted attribute. All 364 tests pass; the complete 85-UK-role output from the same 180-record source agrees between Node and isolated Workerd. All 85 sponsorship labels agree with the old extractor on those inputs. Only the two affected production descriptions were corrected, using exact-text/observation guards; source dates, labels and all other detail fields are unchanged. Live HTML/API/browser checks pass. This is not an independent classification-accuracy result. The next genuine source run must establish unattended use. No AI, Google, email or social call was added. See `cloudflare/RELEASE-2.35.md` and its evidence.
+
+The full dependency audit also records an existing development-tooling sharp/librsvg advisory in the Wrangler/Miniflare path. It is separate from the known Mammoth/sprintf-js issue and the new parser dependencies; compatible remediation remains to be validated.
+
+## Isolated cloud recovery exercise
 
 On 8 October, an actual Cloudflare Time Travel restore and its returned undo point were exercised in a temporary unbound database with fictional data and all 105 production schema objects. Fifteen result sets matched each target state; foreign-key/integrity checks passed. The exercise demonstrated that old checkpoints also revive deleted users and lose newer budget/publication evidence. Undo restored the later deletion and receipts. The temporary database was removed and its absence verified. Production was read only, its current bookmark is available, and its schema matches all 23 migration files.
 
