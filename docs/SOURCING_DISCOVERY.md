@@ -34,3 +34,7 @@ No third-party post was republished, no recruiter was contacted and no paywall, 
 The next meaningful success is a new employer and a genuinely checked additional opportunity discovered from a documented lead, plus a repeatable scheduled receipt. Maintenance checks, model calls, more agent titles and a larger unverified count are not that outcome.
 
 The existing 10:00 UK daily Codex routine now includes the bounded public-lead review above; its full saved prompt was read back exactly. This schedules scouting work, not a connected LinkedIn feed or a guarantee of daily publishable vacancies.
+
+## 2.43 implementation progress
+
+Prospective hourly movement is implemented and live in the owner operating desk. The first capture is a baseline; later captures show offered/conditional totals, gains/losses, entered/returned/left roles, exact before/after sponsorship excerpts and source concentration. Daily totals reconcile all observed events; the most recent 50 changes are individually inspectable. No historic change is inferred and events between observations may be missed. This partially addresses priority 4; private lead decisions/backlog and new-employer discovery remain unimplemented. The first genuine scheduled observation is verified: business-497631 at 15:45:50.632 UTC, completed in D1 and independently by Cloudflare. The owner panel matches all 904/16/34/33 totals. A later observation with an actual transition remains a separate gate.

@@ -4,11 +4,12 @@ import './business-operations.css';
 import {OperationAlerts} from './operation-alerts';
 import {SocialDeliveryStatus,type SocialDeliveryHealth} from './social-delivery-health';
 import {JobLinkStatus,type JobLinkHealth} from './job-link-health';
+import {JobMovementStatus,type JobMovementHealth} from './job-movement';
 type Settings={enabled:number;publishing:number;research:number};
 type Run={id:string;state:string;trigger_kind:'unknown'|'owner'|'scheduled';created_at:string;finished_at:string|null;snapshot:any;result:any};
 type Issue={id:string;category:string;severity:string;title:string;detail:string;next_action:string};
 type Draft={id:string;audience:string;text:string;state:string;expires_at:string};
-type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];social_delivery?:SocialDeliveryHealth;job_links?:JobLinkHealth;publications:{slug:string;title:string;state:string;updated_at:string}[]};
+type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];social_delivery?:SocialDeliveryHealth;job_links?:JobLinkHealth;job_movement?:JobMovementHealth;publications:{slug:string;title:string;state:string;updated_at:string}[]};
 const stamp=(x:string)=>new Date(x).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
 async function api(path='',body?:unknown){const r=await fetch('/api/admin/business'+path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});const v=await r.json();if(!r.ok)throw Error(v.error||'Operations could not load.');return v;}
 export function BusinessOperations(){
@@ -41,6 +42,7 @@ export function BusinessOperations(){
       </section>
       <SocialDeliveryStatus health={data.social_delivery}/>
       <JobLinkStatus health={data.job_links}/>
+      <JobMovementStatus health={data.job_movement}/>
       <div className="business-section-heading"><h3>What needs attention</h3><span>{data.issues.length} open items</span></div>
       <div className="business-issues">{data.issues.length?data.issues.map(x=><details key={x.id}><summary><span className={'business-priority '+x.severity}>{x.severity}</span>{x.title}<small>{x.category}</small></summary><p>{x.detail}</p><p><strong>Next action:</strong> {x.next_action}</p></details>):<p className="business-fine">No open findings have been recorded. This is not proof that every business or security requirement has been met.</p>}</div>
       <div className="business-section-heading"><h3>Growth baseline</h3><span>{measurement?.completed_days||0} completed UTC days · up to 14 days</span></div>

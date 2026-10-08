@@ -17,6 +17,7 @@ import {jobSearchPageHealth} from './job-search-health.js';
 import {socialDeliveryHealth,socialDeliveryFindings} from './social-delivery-health.js';
 import {jobLinkHealth,jobLinkFindings} from './job-link-checks.js';
 import {opportunityBriefHealth,opportunityFindings} from './marketing-opportunities.js';
+import {captureJobMovement,jobMovementHealth,jobMovementFindings} from './job-movement.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -104,6 +105,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     metrics:rows[4].results, measurement, held_batches:rows[5].results[0].total,
     feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}), application_evaluation:await applicationEvaluationHealth(env),
     search_notifications:await searchNotificationHealth(env),email_delivery:await emailDeliveryHealth(env,now),social_delivery:await socialDeliveryHealth(env,now),job_links:await jobLinkHealth(env,now),opportunity_promotions:await opportunityBriefHealth(env,now),
+    job_movement:await jobMovementHealth(env,now,{compact:true}),
     reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
       dangerous_false_positives:reference.dangerous_false_positives,unsupported_refusals:reference.unsupported_refusals,disputed_items:reference.disputed_items} };
 }
@@ -115,6 +117,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   issues.push(...socialDeliveryFindings(snapshot.social_delivery));
   issues.push(...jobLinkFindings(snapshot.job_links));
   issues.push(...opportunityFindings(snapshot.opportunity_promotions));
+  issues.push(...jobMovementFindings(snapshot.job_movement));
   const notifications=snapshot.search_notifications;
   if (notifications?.followed && (notifications.awaiting_first_check || notifications.last_run?.failed || !currentTimestamp(notifications.oldest_check,now,3600000)))
     add('search-notifications','product','normal','Check saved-search matching','Some followed searches are waiting for a check, have failed, or have not been checked within an hour.','Inspect the scheduled matching receipt and queue capacity. Do not reset subscribers or mark unseen matches as read.');
@@ -153,6 +156,7 @@ export async function captureBusiness(env, id, supervision=null) {
   const run = await env.DB.prepare('SELECT snapshot FROM business_runs WHERE id=?').bind(id).first();
   if (!run) throw Error('Missing business run.');
   if (run.snapshot) return JSON.parse(run.snapshot);
+  await captureJobMovement(env,id);
   const snapshot = {...await collectBusinessSnapshot(env),supervision};
   await env.DB.prepare("UPDATE business_runs SET state='running',snapshot=? WHERE id=? AND state IN ('queued','running')").bind(JSON.stringify(snapshot),id).run();
   return snapshot;
@@ -229,7 +233,7 @@ export async function businessSnapshot(env) {
   return {settings:await controls(env),measured_at:iso(),schedule:'Every hour at minute 45 UTC; research once per UTC day; evidence report at most once every 7 days.',
     heartbeat:!latest?'not_started':Date.now()-Date.parse(latest.created_at)>2*3600000?'overdue':latest.state,
     runs:results[0].results.map(x=>({...x,snapshot:x.snapshot?JSON.parse(x.snapshot):null,result:x.result?JSON.parse(x.result):null})),
-    issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,social_delivery:await socialDeliveryHealth(env),job_links:await jobLinkHealth(env),
+    issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,social_delivery:await socialDeliveryHealth(env),job_links:await jobLinkHealth(env),job_movement:await jobMovementHealth(env),
     connections:{social:false,search_console:(await searchSnapshot(env,Date.now(),{compact:true})).connected,payments:false},
     limits:{hourly_runs:1,external_health_requests:5,research_runs_daily:1,publication_interval_days:7,customer_data_access:false}};
 }

@@ -2,7 +2,11 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.42 qualified job metadata and sourcing audit
+## Latest: 2.43 prospective job movement
+
+The hourly workflow now captures an atomic baseline and later current-list transitions, including entered/returned/left roles, changed sponsorship labels and supporting wording. The owner panel separates offered/conditional totals, reconciles gains/losses, retains before/after evidence and exposes employer concentration. History is prospective and sampled hourly; no historical discoveries or employer closures are invented. All 432 tests, build/budgets/dry-run and actual isolated BusinessWorkflow checks pass. Live 2.43.0 and migration 0029 are verified. Genuine scheduled run business-497631 recorded 904 jobs / 16 offered / 34 conditional / 33 employers at 15:45:50.632 UTC and completed at 15:45:59.471 UTC, independently confirmed complete by Cloudflare. The owner browser matches the receipt; zero change events were invented for the baseline. The first later real transition remains pending. See `cloudflare/RELEASE-2.43.md`.
+
+## 2.42 qualified job metadata and sourcing audit
 
 Original Greenhouse dates are now retained separately from edits/observations. Current adverts with a verified date, full visible text and explicit UK location can emit JobPosting; missing, expired, stale and ambiguous evidence cannot. Nine GoCardless pages passed live source/HTML/browser checks after an owner-triggered refresh. This improves technical eligibility; Google acceptance/ranking remains unobserved. The new sourcing audit confirms that maintenance works across 33 sources but discovery is still too narrow: 50 offered/conditional roles, heavily concentrated in six employers. LinkedIn jobs and ordinary posts are not connected to the production ingestion pipeline. See `cloudflare/RELEASE-2.42.md` and `docs/SOURCING_DISCOVERY.md` for evidence and next work.
 
