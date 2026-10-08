@@ -47,6 +47,7 @@ import "./styles.css";
 import { CareerProvider } from "./career-data";
 import { CareerWorkspace, CareerAccountLink } from "./career";
 import { ImmigrationUpdates } from "./updates";
+import "./updates.css";
 import { AccountActions, OwnerDashboard, PageTracking } from "./owner";
 import { AdviserDirectory } from "./advisers";
 import { ImmigrationAssistant } from "./ask";

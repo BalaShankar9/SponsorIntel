@@ -78,7 +78,8 @@
   gap: 8px;
   margin: 25px 0 10px;
 }
-.updates-topics button {
+.updates-topics a {
+  text-decoration: none;
   border: 1px solid #dedfd4;
   background: #fffefa;
   color: #596c5f;
@@ -88,13 +89,13 @@
   font-size: 12px;
   cursor: pointer;
 }
-.updates-topics button.selected {
+.updates-topics a.selected {
   background: #dce6c8;
   border-color: #b8c7a1;
   color: #294634;
   font-weight: 650;
 }
-.updates-topics button:focus-visible,
+.updates-topics a:focus-visible,
 .explanation-card a:focus-visible {
   outline: 3px solid #8ea65e;
   outline-offset: 3px;
@@ -465,7 +466,7 @@
   .updates-topics {
     gap: 7px;
   }
-  .updates-topics button {
+  .updates-topics a {
     font-size: 11px;
     padding: 9px 12px;
   }

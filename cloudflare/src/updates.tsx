@@ -8,7 +8,6 @@ import {
   RefreshCw,
   ShieldCheck,
 } from "lucide-react";
-import "./updates.css";
 import { type ReportFeedback } from "./feedback";
 
 type Explanation = {
@@ -46,7 +45,7 @@ type Update = {
   kind: string;
   review?: {text: string; evidence: string[]; prepared_at: string} | null;
 };
-type Feed = {
+export type Feed = {
   sources: Source[];
   events: Update[];
   interval_minutes: number;
@@ -100,8 +99,31 @@ const notices: Record<string, string> = {
     "The explanation’s supporting wording could not be verified. It is hidden while the evidence is reviewed; read GOV.UK for the current guidance.",
 };
 
-export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
+export function readInitialImmigrationFeed(raw: string, now = Date.now()): Feed | null {
+  try {
+    const data: Feed = JSON.parse(raw);
+    const age = now - Date.parse(data?.generated_at);
+    if (!(age >= -5000 && age < 60000) || !Array.isArray(data.sources) || !Array.isArray(data.events)) return null;
+    const sources = data.sources.map(source => {
+      const checked = Date.parse(source.last_success);
+      return source.summary && (!Number.isFinite(checked) || checked > now + 300000 || now - checked > 3600000 || source.error)
+        ? {...source,summary:null,status:'delayed'} : source;
+    });
+    const current = new Set(sources.filter(s=>s.status==='explained' && s.summary).map(s=>s.id));
+    return {...data,sources,events:data.events.map(e=>({...e,review:current.has(e.source_id) ? e.review : null}))};
+  } catch { return null; }
+}
+
+function initialBrowserFeed(): Feed | null {
+  if (typeof document === 'undefined' || location.pathname !== '/updates') return null;
+  const element = document.getElementById('immigration-data');
+  if (!element) return null;
+  return readInitialImmigrationFeed(element.textContent || 'null');
+}
+
+export function ImmigrationUpdates({ onReport, initialFeed, initialTopic }: { onReport?: ReportFeedback; initialFeed?: Feed; initialTopic?: string }) {
   const [topic, setTopic] = useState(() => {
+    if (initialTopic && topics[initialTopic]) return initialTopic;
     if (typeof window === "undefined") return "all";
     const fromURL = new URLSearchParams(
       typeof location === "undefined" ? "" : location.search,
@@ -114,14 +136,19 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
       return "all";
     }
   });
-  const [feed, setFeed] = useState<Feed | null>(null),
+  const [feed, setFeed] = useState<Feed | null>(()=>initialFeed || initialBrowserFeed()),
     [error, setError] = useState(""),
-    [busy, setBusy] = useState(true),
+    [busy, setBusy] = useState(!feed),
     [key, setKey] = useState(0);
   useEffect(() => {
+    // Remove after initialization, including React's repeated development render.
+    // Returning to this view later must fetch current evidence.
+    document.getElementById('immigration-data')?.remove();
     const controller = new AbortController();
+    let latestRequest = 0;
     async function load(initial = false) {
       if (!initial && document.hidden) return;
+      const requestNumber = ++latestRequest;
       try {
         const response = await fetch("/api/updates", {
           signal: controller.signal,
@@ -131,22 +158,26 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
         const result: Feed = await response.json();
         if (!Array.isArray(result.sources) || !Array.isArray(result.events))
           throw new Error("Updates could not be loaded.");
+        if (requestNumber !== latestRequest || controller.signal.aborted) return;
         setFeed(result);
         setError("");
       } catch (e) {
-        if (!controller.signal.aborted)
+        if (!controller.signal.aborted && requestNumber === latestRequest)
           setError(
             "Updates could not be loaded. Please try again or open the official source below.",
           );
       } finally {
-        if (!controller.signal.aborted) setBusy(false);
+        if (!controller.signal.aborted && requestNumber === latestRequest) setBusy(false);
       }
     }
     void load(true);
     const interval = window.setInterval(() => void load(), 60000);
+    const resumed = () => { if (!document.hidden) void load(); };
+    document.addEventListener('visibilitychange',resumed);
     return () => {
       controller.abort();
       clearInterval(interval);
+      document.removeEventListener('visibilitychange',resumed);
     };
   }, [key]);
   function choose(next: string) {
@@ -227,18 +258,19 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
         aria-label="Filter immigration topics"
       >
         {Object.entries(topics).map(([id, label]) => (
-          <button
+          <a
             key={id}
-            aria-pressed={topic === id}
+            href={"/updates" + (id === "all" ? "" : "?topic=" + id)}
+            aria-current={topic === id ? "page" : undefined}
             className={topic === id ? "selected" : ""}
-            onClick={() => choose(id)}
+            onClick={(event) => { event.preventDefault(); choose(id); }}
           >
             {label}
-          </button>
+          </a>
         ))}
       </div>
       <p className="updates-filter-note">
-        Your topic choice is remembered on this device. All explanations cover
+        Choose a topic to focus your briefing. All explanations cover
         general rules; your own circumstances can change the answer.
       </p>
       {error && (
@@ -340,7 +372,7 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
                           </>
                         )}
                       </small>
-                      <button
+                      {onReport && <button
                         className="report-information"
                         onClick={() =>
                           onReport("data", {
@@ -351,7 +383,7 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
                         }
                       >
                         Report incorrect information
-                      </button>
+                      </button>}
                     </footer>
                   </article>
                 ))}
@@ -454,7 +486,7 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
                     <div>
                       <small>Checked {time(s.last_success)}</small>
                       <br />
-                      <button
+                      {onReport && <button
                         className="report-information"
                         onClick={() =>
                           onReport("data", {
@@ -465,7 +497,7 @@ export function ImmigrationUpdates({ onReport }: { onReport: ReportFeedback }) {
                         }
                       >
                         Report incorrect information
-                      </button>
+                      </button>}
                     </div>
                   </article>
                 ))}

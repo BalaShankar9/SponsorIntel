@@ -104,6 +104,14 @@ export async function pageResponse(request, env) {
   let assetPath;
   let status = 200;
   if (insightPaths.has(url.pathname)) return insightsResponse(request,env);
+  if (url.pathname === '/updates') {
+    const {renderImmigrationPage,immigrationUnavailable} = await import('./immigration-pages.tsx');
+    try { return await renderImmigrationPage(request,env); }
+    catch (error) {
+      console.error(JSON.stringify({event:'immigration_page_unavailable',message:error instanceof Error ? error.message : 'Unknown failure'}));
+      return immigrationUnavailable();
+    }
+  }
   if (url.pathname === "/sitemap.xml") {
     try {
       return await sitemapResponse(env);
