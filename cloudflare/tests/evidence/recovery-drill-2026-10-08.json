@@ -1,0 +1,94 @@
+{
+  "recorded_at": "2026-10-08T10:09:10.756921+00:00",
+  "production_check": {
+    "observed_at": "2026-10-08T10:05:31.857Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "2671b511c4a5c08a01125ef890c9c2590fe38ea475f011035133eb55f34fc1c1",
+    "database_size_bytes": 96034816,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 105,
+      "actual_objects": 105,
+      "migration_files": 23,
+      "expected_sha256": "7731f1c53c16fd9b197f0f26819d9976b2aca168740e4b03259636cfd8ffd567",
+      "actual_sha256": "7731f1c53c16fd9b197f0f26819d9976b2aca168740e4b03259636cfd8ffd567",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "exercise": {
+    "provider": "Cloudflare D1 Time Travel",
+    "database_name": "sponsorintel-recovery-drill-20261008",
+    "database_id": "1e45dd8b-1551-4ea5-b30b-4bbac5b173c2",
+    "region": "WEUR",
+    "bound_to_worker": false,
+    "public_route": false,
+    "fictional_records_only": true,
+    "migration_files_applied": 23,
+    "schema_objects": 105,
+    "exact_schema_matches_production": true,
+    "result_sets_compared": 15,
+    "restore_matches_checkpoint": true,
+    "undo_matches_pre_restore_state": true,
+    "foreign_key_violations": 0,
+    "quick_check": "ok",
+    "restored_deleted_account": true,
+    "restored_older_budget": true,
+    "lost_newer_fictional_publication_receipt_on_restore": true,
+    "undo_restored_later_deletion_budget_and_receipt": true,
+    "temporary_database_removed": true,
+    "account_database_count_after_cleanup": 9,
+    "restored_checkpoint_sha256": "067bcb7dffe74da6aeb25af39973552105a6da040df692dda13c456fe32cf572",
+    "undo_state_sha256": "ec672d0a6b343b78f800d0e52ae0d2aa9cd112219b65a2b1a805d7758ad59dd9",
+    "restore_response": {
+      "bookmark": "00000001-0000000c-000050fe-b33c5b1fc261890232b37a5a30618dc2",
+      "previous_bookmark": "00000001-ffffffff-000050fe-b28a47f36c749c30417ab8b2d0f1f12a",
+      "message": "Resetting Durable Object to restore database to bookmark: 00000001-0000000c-000050fe-b33c5b1fc261890232b37a5a30618dc2"
+    },
+    "undo_response": {
+      "bookmark": "00000001-ffffffff-000050fe-b28a47f36c749c30417ab8b2d0f1f12a",
+      "previous_bookmark": "00000002-ffffffff-000050fe-4ecf7546b373cb386013ed9a9ed9a081",
+      "message": "Resetting Durable Object to restore database to bookmark: 00000001-ffffffff-000050fe-b28a47f36c749c30417ab8b2d0f1f12a"
+    }
+  },
+  "fixture_sha256": {
+    "seed.sql": "7d6ae662478165250451122202bfd20664e32e19f0009cb7b1f071ea6e2bc0c4",
+    "mutate.sql": "8657286ef31248ea6a29d90c4736d5c2ea076a7c501ba376186b90b405e830d9",
+    "read-state.sql": "aaf5cc5a2684caee536d9b4a9838c5a4a4bda29aa67459aa421d8c4b7b8a463f"
+  },
+  "automation": {
+    "id": "sponsor-intel-daily-improvement",
+    "status": "ACTIVE",
+    "schedule_preserved": true,
+    "read_only_recovery_step_saved": true,
+    "future_scheduled_execution_observed": false
+  },
+  "customer_data_copied": false,
+  "production_restored": false,
+  "production_schema_changed": false,
+  "new_worker_deployment": false,
+  "ai_calls": 0,
+  "external_posts": 0,
+  "emails_sent": 0,
+  "remaining": [
+    "Production customer-data recovery is unverified.",
+    "Account-plan retention window is unverified.",
+    "Independent deletion-aware recovery journal and backup are absent.",
+    "New daily recovery-check execution has not yet been observed."
+  ],
+  "validation": {
+    "local_tests_passed": 359,
+    "local_tests_failed": 0,
+    "live_health_version": "2.34.0",
+    "live_health_ok": true,
+    "hosted_ci": "evaluate separately on current commit"
+  }
+}

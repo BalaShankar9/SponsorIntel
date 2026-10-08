@@ -1,0 +1,83 @@
+{
+  "verified_on": "2026-10-07",
+  "brand_id": 7294726,
+  "facebook_page_id": "1319703417896763",
+  "status": "scheduled_not_published",
+  "timezone_note": "Stored connector times and Europe/London calendar cards show 10:00. Reopening the editor displays 11:00 despite those values. Re-saving as 10:00 did not change the stored time. Treat this as an unresolved editor-display discrepancy and check actual delivery; do not repeatedly shift posts.",
+  "posts": [
+    {
+      "id": 390622747,
+      "uuid": "-9208903732162113867",
+      "date": {
+        "dateTime": "2026-10-08T10:00:00",
+        "timezone": "Europe/London"
+      },
+      "text": "846 roles. Three very different sponsorship signals.\n\nOur 7 October snapshot of 30 selected UK employer boards found:\n• 16 adverts with wording that states sponsorship is offered.\n• 34 with conditional sponsorship wording.\n• 705 without a clear sponsorship commitment.\nAnother 91 explicitly said sponsorship was unavailable.\n\nThese are automated readings of adverts, not confirmed sponsorship offers or a picture of the whole UK job market. Always read the employer’s current advert and check anything unclear with them.\n\nThe report shows the date, contributing boards and limitations, so you can judge the evidence yourself.\n\nRead the snapshot: https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot\n\n#UKJobs #VisaSponsorship #InternationalStudents",
+      "providers": [
+        {
+          "network": "facebook",
+          "status": "PENDING",
+          "detailedStatus": "Pending"
+        }
+      ],
+      "autoPublish": true,
+      "draft": false,
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7294726&openWithPostUuid=-9208903732162113867"
+    },
+    {
+      "id": 390623458,
+      "uuid": "3760308173592281444",
+      "date": {
+        "dateTime": "2026-10-10T10:00:00",
+        "timezone": "Europe/London"
+      },
+      "text": "“Sponsorship not stated” is a question to investigate.\n\nIt does not tell you that the employer will sponsor this vacancy. It also does not, by itself, mean sponsorship has been refused.\n\nBefore tailoring your application:\n1. Open the employer’s current advert.\n2. Read the exact sponsorship wording, including any conditions.\n3. Check the employer’s identity against the sponsor register.\n4. If the answer is unclear, ask about the exact role and reference number.\n\nA useful question: “Does this vacancy support Skilled Worker sponsorship, and are there any restrictions applicants should know before applying?”\n\nOur guide explains the four labels: Offered, Conditional, Not stated and Unavailable. The labels are automated research aids, so check the original source.\n\nhttps://sponsorintel.london/guides/sponsorship-in-job-adverts?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=advert_wording\n\n#UKJobSearch #InternationalStudents #VisaSponsorship",
+      "providers": [
+        {
+          "network": "facebook",
+          "status": "PENDING",
+          "detailedStatus": "Pending"
+        }
+      ],
+      "autoPublish": true,
+      "draft": false,
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7294726&openWithPostUuid=3760308173592281444"
+    },
+    {
+      "id": 390624032,
+      "uuid": "8669160755592973829",
+      "date": {
+        "dateTime": "2026-10-12T10:00:00",
+        "timezone": "Europe/London"
+      },
+      "text": "Before you send an AI-assisted application, do these three checks.\n\n1. Evidence: can you point to a real example behind every skill or achievement?\n2. Accuracy: are the dates, qualifications and job titles yours, with no guessed details?\n3. Relevance: does the application answer this employer’s requirements?\n\nA polished sentence is only useful if you can stand behind it in an interview.\n\nSponsor Intel’s Application Studio brings your selected role, CV evidence and editable application drafts into one workspace. Use it to prepare a focused application, review it yourself, then submit through the employer’s own website.\n\nTry one role: https://sponsorintel.london/studio?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=application_review\n\nIf something is confusing, use Feedback & support in the app. Your experience helps us decide what to improve next.\n\n#JobApplications #InternationalStudents #UKJobs",
+      "providers": [
+        {
+          "network": "facebook",
+          "status": "PENDING",
+          "detailedStatus": "Pending"
+        }
+      ],
+      "autoPublish": true,
+      "draft": false,
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7294726&openWithPostUuid=8669160755592973829"
+    }
+  ],
+  "native_linkedin_posts": [
+    {
+      "company_id": "146710167",
+      "public_account": "https://www.linkedin.com/company/sponsorintellondon/",
+      "scheduled_for": "2026-10-09T10:00:00+01:00",
+      "timezone": "Europe/London",
+      "timezone_label_observed": "British Summer Time",
+      "status": "scheduled_not_published",
+      "text": "846 roles. Three very different sponsorship signals.\n\nOur 7 October snapshot of 30 selected UK employer boards found:\n• 16 adverts with wording that states sponsorship is offered.\n• 34 with conditional sponsorship wording.\n• 705 without a clear sponsorship commitment.\nAnother 91 explicitly said sponsorship was unavailable.\n\nThese are automated readings of adverts, not confirmed sponsorship offers or a picture of the whole UK job market. Always read the employer’s current advert and check anything unclear with them.\n\nThe report shows the date, contributing boards and limitations, so you can judge the evidence yourself.\n\nRead the snapshot: https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=linkedin&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot\n\n#UKJobs #VisaSponsorship #InternationalStudents",
+      "confirmation": "Post scheduled.",
+      "readback": "Sponsor Intel’s scheduled posts: Posting Fri, Oct 9 at 10:00 AM",
+      "scheduled_items_observed": 1,
+      "admin_url": "https://www.linkedin.com/company/146710167/admin/page-posts/published/",
+      "external_post_url": null,
+      "screenshot": "outputs/sponsor-intel-social-kit/linkedin-scheduled-report.png"
+    }
+  ]
+}

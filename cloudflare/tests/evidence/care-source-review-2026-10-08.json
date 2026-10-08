@@ -1,0 +1,178 @@
+{
+  "observed_date": "2026-10-08",
+  "app_version": "2.46.0",
+  "worker_version": "19b5c628-5713-47f2-b6f1-b9e028a2111f",
+  "scope": "Read-only employer-feed review; Priory is not an approved or published source.",
+  "source_url": "https://jobs.priorygroup.com/postings.json",
+  "bytes": 2990170,
+  "sha256": "e564386010ecad8a2ed2f8053986835b02d1b7eb8c1ff0ad49be3dd46a7a04fb",
+  "raw_postings": 488,
+  "unique_ids": 488,
+  "unique_urls": 488,
+  "declared_deadlines": 43,
+  "records_without_postcode": 7,
+  "records_with_sponsor_or_visa_keyword": 371,
+  "after_classifier": {
+    "not_stated": 484,
+    "unavailable": 4
+  },
+  "new_refusals": [
+    {
+      "id": "560023",
+      "title": "Senior Staff Nurse Rehab and Recovery ",
+      "url": "https://jobs.priorygroup.com/en/postings/3b42a685-dcc7-436b-b2a5-141d06d29038",
+      "evidence": {
+        "status": "unavailable",
+        "quote": "We are currently not offering sponsorship for this role."
+      }
+    },
+    {
+      "id": "564765",
+      "title": "Housekeeper",
+      "url": "https://jobs.priorygroup.com/en/postings/e5c119bb-1104-4975-9149-58fd41a10668",
+      "evidence": {
+        "status": "unavailable",
+        "quote": "Due to limits on sponsorship allocations, we are not currently in a position to offer sponsorship to new candidates for these roles, this remains under review."
+      }
+    },
+    {
+      "id": "571724",
+      "title": "Registered Psychologist ",
+      "url": "https://jobs.priorygroup.com/en/postings/b341d144-a806-459d-a790-61d2022a30b2",
+      "evidence": {
+        "status": "unavailable",
+        "quote": "Due to limits on sponsorship allocations, we are not currently in a position to offer sponsorship to new candidates for this role; this remains under review."
+      }
+    },
+    {
+      "id": "591781",
+      "title": "Physiotherapist",
+      "url": "https://jobs.priorygroup.com/en/postings/12b0f204-5956-4017-bac5-29fbe1ae548b",
+      "evidence": {
+        "status": "unavailable",
+        "quote": "We are unable to offer sponsorship for this role."
+      }
+    }
+  ],
+  "existing_job_replay": {
+    "count": 924,
+    "changed_labels_or_excerpts": 0
+  },
+  "current_register_candidate": {
+    "id": "b76a3e66800d7c2f4fb4d757",
+    "name": "Priory Group",
+    "city": "London",
+    "route": "Skilled Worker",
+    "rating": "Worker (A rating)",
+    "vacancy_employing_entity_verified": false
+  },
+  "browser_checked_advert": "https://jobs.priorygroup.com/en/postings/3b42a685-dcc7-436b-b2a5-141d06d29038",
+  "discovery_record": {
+    "id": "c5992afd-9523-4a38-9a95-a4a09a4a1a91",
+    "revision": 1,
+    "state": "rejected",
+    "observed_at": "2026-10-08T17:41:00.000Z",
+    "method": "agent_assisted",
+    "recorded_at": "2026-10-08T17:44:43.906Z"
+  },
+  "validation": {
+    "full_suite": 445,
+    "targeted_suite": 22,
+    "failed": 0,
+    "pinned_node": "24.19.0",
+    "build_and_prerenders": true,
+    "worker_dry_run": true
+  },
+  "not_verified": [
+    "Pinpoint adapter and source approval",
+    "Priory linking/reuse clearance and attribution implementation",
+    "Per-vacancy legal employer identity",
+    "Source publication dates and UK location handling",
+    "Independent phrase-quality accuracy",
+    "Automated LinkedIn ingestion",
+    "Unattended discovery routine execution"
+  ],
+  "scheduled_business_run": {
+    "id": "business-497633",
+    "state": "completed",
+    "created_at": "2026-10-08T17:45:38.000Z",
+    "finished_at": "2026-10-08T17:45:59.797Z",
+    "platform": {
+      "status": "Completed",
+      "success": true,
+      "workflow_version_id": "2acccbe8-3d76-4c60-8267-511946bad97d",
+      "end_local": "2026-10-08 18:45:59 Europe/London",
+      "observed_via": "Wrangler workflows instances describe"
+    }
+  },
+  "movement": {
+    "id": "business-497633",
+    "observed_at": "2026-10-08T17:45:50.511Z",
+    "previous_at": "2026-10-08T16:45:51.705Z",
+    "trigger_kind": "scheduled",
+    "baseline": 0,
+    "before_counts": {
+      "total": 908,
+      "employers": 34,
+      "offered": 19,
+      "conditional": 34,
+      "unavailable": 92,
+      "not_stated": 763
+    },
+    "counts": {
+      "total": 924,
+      "employers": 35,
+      "offered": 20,
+      "conditional": 34,
+      "unavailable": 92,
+      "not_stated": 778
+    },
+    "changes": {
+      "entered": 16,
+      "returned": 0,
+      "left": 0,
+      "sponsorship_changed": 0,
+      "evidence_changed": 0,
+      "stated_gained": 1,
+      "stated_lost": 0
+    }
+  },
+  "discovery_summary": {
+    "checked_at": "2026-10-08T17:45:50.776Z",
+    "total": 5,
+    "unresolved": 1,
+    "overdue": 0,
+    "changed_links": 0,
+    "current_linked_jobs": 2,
+    "last_recorded_at": "2026-10-08T17:44:43.906Z",
+    "counts": [
+      {
+        "source_kind": "employer",
+        "state": "linked",
+        "total": 1
+      },
+      {
+        "source_kind": "employer",
+        "state": "rejected",
+        "total": 1
+      },
+      {
+        "source_kind": "linkedin_job",
+        "state": "linked",
+        "total": 1
+      },
+      {
+        "source_kind": "linkedin_post",
+        "state": "rejected",
+        "total": 1
+      },
+      {
+        "source_kind": "recruiter",
+        "state": "held",
+        "total": 1
+      }
+    ],
+    "limitation": "Private review records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Source inspection and dates are reviewer-recorded."
+  },
+  "automation_full_prompt_and_fields_readback": true
+}

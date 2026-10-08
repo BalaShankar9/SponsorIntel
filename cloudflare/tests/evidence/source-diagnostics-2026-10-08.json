@@ -1,0 +1,77 @@
+{
+  "release": "2.48.0",
+  "worker_version": "5ca33c35-76fc-4394-b980-1192f6f809bf",
+  "observed_at": "2026-10-08T19:19:48.008142+00:00",
+  "production_business_run": {
+    "id": "business-497634",
+    "trigger_kind": "scheduled",
+    "state": "completed",
+    "created_at": "2026-10-08T18:45:47.000Z",
+    "finished_at": "2026-10-08T18:46:35.509Z",
+    "jobs": {
+      "total": 926,
+      "employers": 35,
+      "offered": 21,
+      "conditional": 34,
+      "unavailable": 93,
+      "not_stated": 778,
+      "early_career": 51,
+      "salary": 150
+    }
+  },
+  "platform_independently_completed": true,
+  "movement": {
+    "id": "business-497634",
+    "observed_at": "2026-10-08T18:46:22.273Z",
+    "before_counts": {
+      "total": 924,
+      "employers": 35,
+      "offered": 20,
+      "conditional": 34,
+      "unavailable": 92,
+      "not_stated": 778
+    },
+    "counts": {
+      "total": 926,
+      "employers": 35,
+      "offered": 21,
+      "conditional": 34,
+      "unavailable": 93,
+      "not_stated": 778
+    },
+    "changes": {
+      "entered": 12,
+      "returned": 0,
+      "left": 10,
+      "sponsorship_changed": 0,
+      "evidence_changed": 0,
+      "stated_gained": 1,
+      "stated_lost": 0
+    }
+  },
+  "source_progress_finding": {
+    "id": "collecting:portmandentex",
+    "severity": "normal",
+    "state": "open",
+    "detail": "51 of 249 descriptions gathered privately; no partial catalogue is published."
+  },
+  "local_validation": {
+    "tests": 467,
+    "pass": 467,
+    "runtime": "Actual SourceWorkflow and D1 in isolated Workerd with fictional public postings. First 503 response is retained; a real delayed retry stages 40 of 41 privately; another bounded run publishes 41. Replay makes no external request.",
+    "requests": 46,
+    "reservations": 150,
+    "old_receipt_and_private_progress_ui_verified": true,
+    "new_classified_failure_ui": "Fictional local fixture only. No production failure was manufactured."
+  },
+  "remaining_gates": [
+    "First natural classified failure receipt",
+    "PortmanDentex first unattended continuation and complete publication",
+    "Continuous LinkedIn ingestion and autonomous new-employer discovery",
+    "Independent advert and model quality acceptance"
+  ],
+  "production_ai_calls": 0,
+  "production_source_checks_for_this_release": 0,
+  "production_data_exported": false,
+  "production_restore_performed": false
+}

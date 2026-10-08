@@ -1,0 +1,98 @@
+{
+  "release": "2.12.0",
+  "worker": "5317f8b7-e248-411e-97fb-7ea0b9307746",
+  "checked_at": "2026-10-07T16:56:03.787Z",
+  "tests_passed": 133,
+  "run": {
+    "id": "business-497608",
+    "state": "completed",
+    "trigger": "owner acceptance; hourly cron configured, first cron run not yet observed",
+    "created_at": "2026-10-07T16:50:39.782Z",
+    "finished_at": "2026-10-07T16:50:44.378Z",
+    "health_checks": 5,
+    "health_passed": 5,
+    "stale_roles_retired": 0,
+    "publication": "published",
+    "research": "held by availability or budget controls; no quota reset"
+  },
+  "report": {
+    "roles": 846,
+    "boards": 30,
+    "offered": 16,
+    "conditional": 34,
+    "not_stated": 705,
+    "unavailable": 91,
+    "early_career": 49,
+    "salary_excerpt": 102
+  },
+  "social": {
+    "drafts": 2,
+    "delivered": 0,
+    "state": "needs_connection",
+    "audiences": [
+      "company",
+      "personal"
+    ]
+  },
+  "codex_heartbeat": {
+    "id": "sponsor-intel-daily-improvement",
+    "state": "ACTIVE",
+    "schedule": "10:00 local daily",
+    "first_run_observed": false
+  },
+  "ui": {
+    "article_desktop": "verified",
+    "article_390px": "verified; document width 390",
+    "owner_dashboard": "verified desktop; mobile viewport override did not apply to claimed tab"
+  },
+  "http": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "canonical": null,
+      "article_schema": false,
+      "contains_report": false,
+      "noindex": null
+    },
+    {
+      "path": "/insights",
+      "status": 200,
+      "canonical": "https://sponsorintel.london/insights",
+      "article_schema": false,
+      "contains_report": true,
+      "noindex": null
+    },
+    {
+      "path": "/insights/uk-sponsorship-jobs-report",
+      "status": 200,
+      "canonical": "https://sponsorintel.london/insights/uk-sponsorship-jobs-report",
+      "article_schema": true,
+      "contains_report": true,
+      "noindex": null
+    },
+    {
+      "path": "/insights/feed.xml",
+      "status": 200,
+      "canonical": null,
+      "article_schema": false,
+      "contains_report": true,
+      "noindex": null
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "canonical": null,
+      "article_schema": false,
+      "contains_report": true,
+      "noindex": null
+    },
+    {
+      "path": "/api/admin/business",
+      "status": 403,
+      "canonical": null,
+      "article_schema": false,
+      "contains_report": false,
+      "noindex": null
+    }
+  ]
+}

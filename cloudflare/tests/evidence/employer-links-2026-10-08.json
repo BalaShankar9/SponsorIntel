@@ -1,0 +1,2647 @@
+{
+  "checked_at": "2026-10-08T12:39:40.750Z",
+  "sample_scope": "One current advert per configured source; preference to positive/conditional wording within each source. Bounded initial HTML reads, at most four simultaneous requests and three allowlisted-host redirects. No authentication or submissions. This is a diagnostic sample, not a job-availability estimate.",
+  "samples": [
+    {
+      "id": "0c9fb11fbd46aac1df9bc808",
+      "board_id": "allica-bank",
+      "company": "Allica Bank",
+      "title": "Head of Third Party Management",
+      "apply_url": "https://jobs.ashbyhq.com/allica-bank/c98de71e-067b-42dd-94e3-dfa63d0263c0",
+      "provider": "ashby",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.ashbyhq.com/allica-bank/c98de71e-067b-42dd-94e3-dfa63d0263c0",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Head of Third Party Management @ Allica Bank",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 44,
+      "seconds": 0.54
+    },
+    {
+      "id": "4a8dda1883232aac291eec5d",
+      "board_id": "apothecom",
+      "company": "ApotheCom",
+      "title": "Associate Medical Director",
+      "apply_url": "https://job-boards.greenhouse.io/apothecom/jobs/8015646",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/apothecom/jobs/8015646",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Associate Medical Director at ApotheCom",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 12328,
+      "seconds": 0.65
+    },
+    {
+      "id": "00cbf7b3b07794f782413306",
+      "board_id": "axon",
+      "company": "AXON",
+      "title": "Medical Writer 2",
+      "apply_url": "https://job-boards.greenhouse.io/axonag/jobs/5113991007",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/axonag/jobs/5113991007",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Medical Writer 2  at AXON",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 6247,
+      "seconds": 0.58
+    },
+    {
+      "id": "005c6f3c82136410266a6d6e",
+      "board_id": "bakerhicks",
+      "company": "BakerHicks",
+      "title": "Civil & Structural Engineer",
+      "apply_url": "https://job-boards.eu.greenhouse.io/bakerhicks/jobs/4781467101",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://job-boards.eu.greenhouse.io/bakerhicks/jobs/4781467101",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Civil & Structural Engineer at BakerHicks",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 7168,
+      "seconds": 0.61
+    },
+    {
+      "id": "12e2ffa6760ac658a8367004",
+      "board_id": "callosum",
+      "company": "Callosum",
+      "title": "Research Engineer, Evals - Member of Technical Staff",
+      "apply_url": "https://jobs.ashbyhq.com/callosum/07abc888-1e91-4a04-ba37-f463ae7e864c",
+      "provider": "ashby",
+      "sponsorship": "offered",
+      "chain": [
+        {
+          "url": "https://jobs.ashbyhq.com/callosum/07abc888-1e91-4a04-ba37-f463ae7e864c",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Research Engineer, Evals - Member of Technical Staff @ Callosum ",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 63,
+      "seconds": 0.5
+    },
+    {
+      "id": "01a7eebe6044426d5eb4ff5e",
+      "board_id": "cloudflare",
+      "company": "Cloudflare",
+      "title": "Senior Director of Engineering, Billing Platform",
+      "apply_url": "https://boards.greenhouse.io/cloudflare/jobs/8152825?gh_jid=8152825",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://boards.greenhouse.io/cloudflare/jobs/8152825?gh_jid=8152825",
+          "status": 301
+        },
+        {
+          "url": "https://job-boards.greenhouse.io/cloudflare/jobs/8152825?gh_jid=8152825",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Senior Director of Engineering, Billing Platform at Cloudflare",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 15696,
+      "seconds": 0.95
+    },
+    {
+      "id": "0016bafc89a4dacf63aeedde",
+      "board_id": "deliveroo",
+      "company": "Deliveroo",
+      "title": "Field-Based Business Development Representative (Mandarin Speaking) - Birmingham",
+      "apply_url": "https://job-boards.greenhouse.io/deliveroo/jobs/8258651",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/deliveroo/jobs/8258651",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Field-Based Business Development Representative (Mandarin Speaking) - Birmingham at Deliveroo ",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 9653,
+      "seconds": 0.7
+    },
+    {
+      "id": "024ac38fe9b635d1e1be2b47",
+      "board_id": "eucalyptus",
+      "company": "Eucalyptus",
+      "title": "Influencer Marketing Manager",
+      "apply_url": "https://job-boards.greenhouse.io/eucalyptus/jobs/4632521005",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/eucalyptus/jobs/4632521005",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Influencer Marketing Manager at Careers at Eucalyptus",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 10194,
+      "seconds": 0.53
+    },
+    {
+      "id": "04bccfe86b32ab77df56d82b",
+      "board_id": "figma",
+      "company": "Figma",
+      "title": "Program Manager, Scale Onboarding (London, United Kingdom)",
+      "apply_url": "https://boards.greenhouse.io/figma/jobs/6130540004?gh_jid=6130540004",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://boards.greenhouse.io/figma/jobs/6130540004?gh_jid=6130540004",
+          "status": 301
+        },
+        {
+          "url": "https://job-boards.greenhouse.io/figma/jobs/6130540004?gh_jid=6130540004",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Program Manager, Scale Onboarding (London, United Kingdom)  at Figma",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 6879,
+      "seconds": 0.9
+    },
+    {
+      "id": "0d779e21ef2990aab81ceb4d",
+      "board_id": "funding-circle",
+      "company": "Funding Circle",
+      "title": "FlexiPay Sales Team Manager",
+      "apply_url": "https://jobs.ashbyhq.com/fundingcircle/28b66989-4d3e-41cf-b299-bc58018e90a7",
+      "provider": "ashby",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.ashbyhq.com/fundingcircle/28b66989-4d3e-41cf-b299-bc58018e90a7",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "FlexiPay Sales Team Manager @ Funding Circle",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 44,
+      "seconds": 0.41
+    },
+    {
+      "id": "0587ae81759f331071e503db",
+      "board_id": "gocardless",
+      "company": "GoCardless",
+      "title": "Sales Development Representative",
+      "apply_url": "https://job-boards.greenhouse.io/gocardless/jobs/7988744",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/gocardless/jobs/7988744",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Sales Development Representative  at GoCardless",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 8752,
+      "seconds": 0.52
+    },
+    {
+      "id": "05ca9a7667a82da221576c33",
+      "board_id": "graphcore",
+      "company": "Graphcore",
+      "title": "Senior Machine Learning Engineer (Large Systems)",
+      "apply_url": "https://job-boards.greenhouse.io/graphcore/jobs/8337829002",
+      "provider": "greenhouse",
+      "sponsorship": "unavailable",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/graphcore/jobs/8337829002",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Senior Machine Learning Engineer (Large Systems) at Graphcore",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 6924,
+      "seconds": 0.51
+    },
+    {
+      "id": "3582475326b5ae9b4adc1e62",
+      "board_id": "hr-wallingford",
+      "company": "HR Wallingford",
+      "title": "Senior Dredging Consultant",
+      "apply_url": "https://job-boards.eu.greenhouse.io/hrwallingford/jobs/4899743101",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://job-boards.eu.greenhouse.io/hrwallingford/jobs/4899743101",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Senior Dredging Consultant at HR Wallingford",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 7717,
+      "seconds": 0.47
+    },
+    {
+      "id": "ba13722887e956bd8978bc4f",
+      "board_id": "invinity",
+      "company": "Invinity Energy Systems",
+      "title": "Technical Support Engineer ( Graduate Level)",
+      "apply_url": "https://jobs.lever.co/invinity/57248770-cd29-426c-a7a8-02fad6d8199b",
+      "provider": "lever",
+      "sponsorship": "unavailable",
+      "chain": [
+        {
+          "url": "https://jobs.lever.co/invinity/57248770-cd29-426c-a7a8-02fad6d8199b",
+          "status": 200
+        }
+      ],
+      "truncated": true,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Invinity Energy Systems - Technical Support Engineer ( Graduate Level)",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 70,
+      "seconds": 1.49
+    },
+    {
+      "id": "042cd46377025e215a7ecb16",
+      "board_id": "maven",
+      "company": "Maven Securities",
+      "title": "Graduate Infrastructure Engineer Programme",
+      "apply_url": "https://job-boards.greenhouse.io/mavensecuritiesholdingltd/jobs/8105020",
+      "provider": "greenhouse",
+      "sponsorship": "conditional",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/mavensecuritiesholdingltd/jobs/8105020",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Graduate Infrastructure Engineer Programme at Maven",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 10086,
+      "seconds": 0.62
+    },
+    {
+      "id": "050b200128e730f82ac87693",
+      "board_id": "monzo",
+      "company": "Monzo",
+      "title": "Senior Data Scientist",
+      "apply_url": "https://job-boards.greenhouse.io/monzo/jobs/6180814",
+      "provider": "greenhouse",
+      "sponsorship": "conditional",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/monzo/jobs/6180814",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Senior Data Scientist at Monzo",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 9442,
+      "seconds": 0.56
+    },
+    {
+      "id": "012426d8b72935475e056cbb",
+      "board_id": "multiverse",
+      "company": "Multiverse",
+      "title": "Director of Data Products",
+      "apply_url": "https://jobs.ashbyhq.com/multiverse/f678fe12-cb69-44c0-aa70-6252777a597c",
+      "provider": "ashby",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.ashbyhq.com/multiverse/f678fe12-cb69-44c0-aa70-6252777a597c",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Director of Data Products  @ Multiverse",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 38,
+      "seconds": 0.43
+    },
+    {
+      "id": "01d0b351237c7dbbfa6443bf",
+      "board_id": "nucleus",
+      "company": "Nucleus Global",
+      "title": "Medical Writer",
+      "apply_url": "https://job-boards.greenhouse.io/nucleus/jobs/8158859",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/nucleus/jobs/8158859",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Medical Writer at Nucleus Global",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 6374,
+      "seconds": 0.56
+    },
+    {
+      "id": "01839db25b3ed8d64ca449ad",
+      "board_id": "numan",
+      "company": "Numan",
+      "title": "Paid Social Lead",
+      "apply_url": "https://jobs.eu.lever.co/numan/97f78be9-156f-4c32-b7e9-2b2205265993",
+      "provider": "lever",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.eu.lever.co/numan/97f78be9-156f-4c32-b7e9-2b2205265993",
+          "status": 200
+        }
+      ],
+      "truncated": true,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Numan - Paid Social Lead",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 24,
+      "seconds": 0.71
+    },
+    {
+      "id": "09f47e798ac831a0796f21e0",
+      "board_id": "octopus-energy",
+      "company": "Octopus Energy",
+      "title": "Capital Markets Operations Analyst",
+      "apply_url": "https://jobs.lever.co/octoenergy/3b72a09a-83dd-446b-9e78-322948ae4c2f",
+      "provider": "lever",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.lever.co/octoenergy/3b72a09a-83dd-446b-9e78-322948ae4c2f",
+          "status": 200
+        }
+      ],
+      "truncated": true,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Octopus Energy Group - Capital Markets Operations Analyst",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 57,
+      "seconds": 0.89
+    },
+    {
+      "id": "536dbe194e98b812b77cd933",
+      "board_id": "precision-aq",
+      "company": "Precision AQ",
+      "title": "Associate Director, Global Dossier and Value Communications",
+      "apply_url": "https://job-boards.greenhouse.io/precisionaq/jobs/6200459004",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://job-boards.greenhouse.io/precisionaq/jobs/6200459004",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Job Application for Associate Director, Global Dossier and Value Communications at Precision AQ",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 9194,
+      "seconds": 0.57
+    },
+    {
+      "id": "3cc5f95f3040d983352ebd23",
+      "board_id": "sampura",
+      "company": "Sampura Research",
+      "title": "Founding Member of Technical Staff",
+      "apply_url": "https://jobs.ashbyhq.com/sampura/a83213a5-6d70-4ed1-8f79-542a34051637",
+      "provider": "ashby",
+      "sponsorship": "offered",
+      "chain": [
+        {
+          "url": "https://jobs.ashbyhq.com/sampura/a83213a5-6d70-4ed1-8f79-542a34051637",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Founding Member of Technical Staff @ Sampura Research",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 53,
+      "seconds": 0.65
+    },
+    {
+      "id": "156dcad0d5442365f1ed1ecf",
+      "board_id": "seamflow",
+      "company": "Seamflow",
+      "title": "Forward Deployed Engineer",
+      "apply_url": "https://jobs.ashbyhq.com/seamflow/83e5dd13-b293-462f-9cb6-bc9cc325b155",
+      "provider": "ashby",
+      "sponsorship": "offered",
+      "chain": [
+        {
+          "url": "https://jobs.ashbyhq.com/seamflow/83e5dd13-b293-462f-9cb6-bc9cc325b155",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Forward Deployed Engineer @ Seamflow",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 36,
+      "seconds": 0.45
+    },
+    {
+      "id": "011fe419776886518a624428",
+      "board_id": "stripe",
+      "company": "Stripe",
+      "title": "Partner Development Manager (Banks)",
+      "apply_url": "https://stripe.com/jobs/search?gh_jid=7289456",
+      "provider": "greenhouse",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://stripe.com/jobs/search?gh_jid=7289456",
+          "status": 307
+        },
+        {
+          "url": "https://stripe.com/careers/search/redirect?gh_jid=7289456",
+          "status": 307
+        },
+        {
+          "url": "https://stripe.com/careers/listing/partner-development-manager-banks/7289456?gh_jid=7289456",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Stripe Careers | Partner Development Manager (Banks)",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 8345,
+      "seconds": 1.46
+    },
+    {
+      "id": "06a82d1298a1413a8cafd9c2",
+      "board_id": "university-bath",
+      "company": "University of Bath",
+      "title": "Sous Chef (KD13917R)",
+      "apply_url": "https://www.bath.ac.uk/jobs/rss/click.aspx?ref=KD13917R",
+      "provider": "university-rss",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://www.bath.ac.uk/jobs/rss/click.aspx?ref=KD13917R",
+          "status": 302
+        },
+        {
+          "url": "https://www.bath.ac.uk/jobs/Vacancy.aspx?ref=KD13917R",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "\r\n\tKD13917R Sous Chef - Jobs at Bath\r\n",
+      "advert_title_in_initial_html": false,
+      "closure_signals": [],
+      "visible_characters": 7627,
+      "seconds": 0.74
+    },
+    {
+      "id": "023e641290c2e46efd40b7e9",
+      "board_id": "university-cardiff-met",
+      "company": "Cardiff Metropolitan University",
+      "title": "Lecturer in Architecture (2627007)",
+      "apply_url": "https://jobs.cardiffmet.ac.uk/rss/click.aspx?ref=2627007",
+      "provider": "university-rss",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.cardiffmet.ac.uk/rss/click.aspx?ref=2627007",
+          "status": 302
+        },
+        {
+          "url": "https://jobs.cardiffmet.ac.uk/Vacancy.aspx?ref=2627007",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "\r\n\t2627007 Lecturer in Architecture - Jobs at Cardiff Metropolitan\r\n",
+      "advert_title_in_initial_html": false,
+      "closure_signals": [],
+      "visible_characters": 7347,
+      "seconds": 0.68
+    },
+    {
+      "id": "01fcf2374a4165cca09b4910",
+      "board_id": "university-greater-manchester",
+      "company": "University of Greater Manchester",
+      "title": "Contracts Manager (0124-26-R)",
+      "apply_url": "https://jobs.greatermanchester.ac.uk/RSS/click.aspx?ref=0124-26-R",
+      "provider": "university-rss",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.greatermanchester.ac.uk/RSS/click.aspx?ref=0124-26-R",
+          "status": 302
+        },
+        {
+          "url": "https://jobs.greatermanchester.ac.uk/Vacancy.aspx?ref=0124-26-R",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "\r\n\t0124-26-R Contracts Manager - Jobs at University of Greater Manchester\r\n",
+      "advert_title_in_initial_html": false,
+      "closure_signals": [],
+      "visible_characters": 4895,
+      "seconds": 0.78
+    },
+    {
+      "id": "0ba7e250afa1ed106ab2890f",
+      "board_id": "university-nottingham",
+      "company": "University of Nottingham",
+      "title": "Senior Data Protection Adviser (REG806726)",
+      "apply_url": "https://jobs.nottingham.ac.uk/rss/click.aspx?ref=REG806726",
+      "provider": "university-rss",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.nottingham.ac.uk/rss/click.aspx?ref=REG806726",
+          "status": 302
+        },
+        {
+          "url": "https://jobs.nottingham.ac.uk/Vacancy.aspx?ref=REG806726",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "\r\n\tREG806726 Senior Data Protection Adviser - Jobs at the University of Nottingham\r\n",
+      "advert_title_in_initial_html": false,
+      "closure_signals": [],
+      "visible_characters": 5057,
+      "seconds": 0.81
+    },
+    {
+      "id": "01d6dc93ed3932aec09227c0",
+      "board_id": "university-southampton",
+      "company": "University of Southampton",
+      "title": "Medical/Clinic Coordinator (AIS Plus) (3499026LH-R)",
+      "apply_url": "https://jobs.soton.ac.uk/rss/click.aspx?ref=3499026LH-R",
+      "provider": "university-rss",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.soton.ac.uk/rss/click.aspx?ref=3499026LH-R",
+          "status": 302
+        },
+        {
+          "url": "https://jobs.soton.ac.uk/Vacancy.aspx?ref=3499026LH-R",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "\r\n\t3499026LH-R Medical/Clinic Coordinator (AIS Plus) - Recruitment at the University of Southampton\r\n",
+      "advert_title_in_initial_html": false,
+      "closure_signals": [],
+      "visible_characters": 6118,
+      "seconds": 0.68
+    },
+    {
+      "id": "112236a03bfaccaa503175d4",
+      "board_id": "voleon",
+      "company": "The Voleon Group",
+      "title": "Research Intern (London)",
+      "apply_url": "https://jobs.ashbyhq.com/voleon/ef2b0892-1772-4240-a535-4043d66d848e",
+      "provider": "ashby",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.ashbyhq.com/voleon/ef2b0892-1772-4240-a535-4043d66d848e",
+          "status": 200
+        }
+      ],
+      "truncated": false,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Research Intern (London) @ The Voleon Group",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 43,
+      "seconds": 0.48
+    },
+    {
+      "id": "163e7cb8e25f6dded1791db0",
+      "board_id": "wep-clinical",
+      "company": "WEP Clinical",
+      "title": "Senior Project Manager (French Speaking - Early Access)",
+      "apply_url": "https://jobs.lever.co/wepclinical/d20d4dab-cd89-4ef3-a93c-a1c4193d23bb",
+      "provider": "lever",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.lever.co/wepclinical/d20d4dab-cd89-4ef3-a93c-a1c4193d23bb",
+          "status": 200
+        }
+      ],
+      "truncated": true,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "WEP Clinical  - Senior Project Manager (French Speaking - Early Access)",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 70,
+      "seconds": 1.68
+    },
+    {
+      "id": "1e5a11c1b6930bb31e7b132f",
+      "board_id": "zeeco",
+      "company": "Zeeco",
+      "title": "Class 1 Welder / Fabricator / Plater",
+      "apply_url": "https://jobs.lever.co/zeeco/0e6e43a4-757f-4b1a-96cb-ccf603eb2f25",
+      "provider": "lever",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.lever.co/zeeco/0e6e43a4-757f-4b1a-96cb-ccf603eb2f25",
+          "status": 200
+        }
+      ],
+      "truncated": true,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Zeeco - Class 1 Welder / Fabricator / Plater",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 44,
+      "seconds": 0.66
+    },
+    {
+      "id": "0439fef63b9f49852de0285e",
+      "board_id": "zopa",
+      "company": "Zopa",
+      "title": "Product Manager - Unsecured personal loans",
+      "apply_url": "https://jobs.lever.co/zopa/5e422360-db37-45f8-af32-02e757d27020",
+      "provider": "lever",
+      "sponsorship": "not_stated",
+      "chain": [
+        {
+          "url": "https://jobs.lever.co/zopa/5e422360-db37-45f8-af32-02e757d27020",
+          "status": 200
+        }
+      ],
+      "truncated": true,
+      "content_type": "text/html; charset=utf-8",
+      "page_title": "Zopa - Product Manager - Unsecured personal loans",
+      "advert_title_in_initial_html": true,
+      "closure_signals": [],
+      "visible_characters": 49,
+      "seconds": 1.76
+    }
+  ],
+  "sample_interpretation": "33 final HTTP 200 responses and matching corresponding initial titles. Five university reference suffixes differ in presentation; exact reference removal before matching is required. No form submission or every-role availability claim.",
+  "isolated_runtime": {
+    "checked_at": "2026-10-08T12:39:40.750Z",
+    "environment": "Actual BusinessWorkflow in isolated Workerd/D1; all 25 migrations; fictional job and fixed HTTP responses; no remote bindings, AI, email or real external requests.",
+    "state": "attention",
+    "links": [
+      {
+        "id": "47222cc2a42ac8ac95f69c41",
+        "state": "checked",
+        "reason": "title_observed",
+        "requests": 2
+      }
+    ],
+    "matched": 1,
+    "measurement_version": 2,
+    "requests": [
+      "https://job-boards.greenhouse.io/monzo/jobs/123",
+      "https://boards.greenhouse.io/monzo/jobs/123",
+      "https://sponsorintel.london/api/health",
+      "https://sponsorintel.london/jobs",
+      "https://sponsorintel.london/insights",
+      "https://sponsorintel.london/sitemap.xml",
+      "https://sponsorintel.london/api/admin/session"
+    ],
+    "shared_budget_reserved": 4,
+    "replay_requests": 0,
+    "public_job_unchanged": true,
+    "limitation": "The incomplete fixture site deliberately creates health findings. This verifies execution and state boundaries, not a healthy production site or every employer application form."
+  },
+  "scheduled_source": {
+    "id": "scheduled-1791462638000",
+    "platform_status": "complete",
+    "tasks": 33,
+    "published": 33,
+    "requests": 34,
+    "cardiff": {
+      "source_id": "university-cardiff-met",
+      "state": "published",
+      "attempts": 1,
+      "count": 14,
+      "evidence": "{\"policy\":\"sources-v1\",\"checked_at\":\"2026-10-08T12:32:35.381Z\",\"received\":14,\"sponsorship_worded\":0,\"register_available\":true,\"licence_id\":\"0303f81c635c02e7229152c2\",\"licence_is_not_vacancy_sponsorship\":true,\"duplicate_ids\":0,\"duplicate_links\":0,\"feed_review\":{\"policy\":\"university-campus-group-v1\",\"url\":\"https://jobs.cardiffmet.ac.uk/RSS/\",\"channel\":\"Cardiff Metropolitan University (reviewed campus feeds)\",\"received\":15,\"accepted\":14,\"duplicate_refs\":0,\"excluded\":[{\"ref\":\"2627038\",\"reason\":\"internal_only\",\"feed_id\":\"cardiff-met-llandaff\"}],\"feeds\":[{\"feed_id\":\"cardiff-met-cyncoed\",\"policy\":\"university-campus-v2\",\"url\":\"https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1081&type=9\",\"channel\":\"Jobs at Cardiff Metropolitan | Cyncoed Campus\",\"received\":4,\"accepted\":4,\"excluded\":[]},{\"feed_id\":\"cardiff-met-llandaff\",\"policy\":\"university-campus-v2\",\"url\":\"https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1080&type=9\",\"channel\":\"Jobs at Cardiff Metropolitan | Llandaff Campus\",\"received\":11,\"accepted\":10,\"excluded\":[{\"ref\":\"2627038\",\"reason\":\"internal_only\"}]}],\"normalised\":14}}",
+      "error_code": null
+    }
+  },
+  "research_budget_unchanged": [
+    {
+      "day": "2026-10-08",
+      "runs": 4,
+      "calls": 6
+    }
+  ],
+  "tests": 391,
+  "deployment": {
+    "version": "2.38.0",
+    "worker": "f9c4508e-4074-4f8f-bd38-4c4d76e135ce",
+    "migration": "0025_job_link_checks.sql",
+    "pre_migration_bookmark": "000002fd-00000000-000050fe-534b09800cb141068a1f63aa75670268",
+    "public_routes": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "bytes": 118,
+        "content_type": "application/json",
+        "health": {
+          "ok": true,
+          "version": "2.38.0",
+          "register": {
+            "date": "2026-10-07",
+            "count": 127949,
+            "checked_at": "2026-10-08T07:15:42.693Z"
+          }
+        }
+      },
+      {
+        "path": "/api/admin/business",
+        "status": 403,
+        "bytes": 42,
+        "content_type": "application/json",
+        "health": null
+      },
+      {
+        "path": "/jobs",
+        "status": 200,
+        "bytes": 92323,
+        "content_type": "text/html; charset=utf-8",
+        "health": null
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "bytes": 72985,
+        "content_type": "application/xml; charset=utf-8",
+        "health": null
+      }
+    ],
+    "browser_before_first_run": {
+      "eligible_sources": 33,
+      "matched": 0,
+      "awaiting": 33,
+      "needs_attention": 0
+    }
+  },
+  "scheduled_business": {
+    "run": {
+      "id": "business-497628",
+      "state": "completed",
+      "trigger_kind": "scheduled",
+      "created_at": "2026-10-08T12:45:38.000Z",
+      "finished_at": "2026-10-08T12:45:57.218Z",
+      "snapshot": {
+        "measured_at": "2026-10-08T12:45:49.760Z",
+        "jobs": {
+          "total": 904,
+          "employers": 33,
+          "offered": 16,
+          "conditional": 34,
+          "unavailable": 90,
+          "not_stated": 764,
+          "early_career": 51,
+          "salary": 156
+        },
+        "sources": [
+          {
+            "id": "axon",
+            "company": "AXON",
+            "careers_url": "https://job-boards.greenhouse.io/axonag",
+            "last_success": "2026-10-08T12:31:17.649Z",
+            "error": null,
+            "paused": 0,
+            "roles": 4
+          },
+          {
+            "id": "allica-bank",
+            "company": "Allica Bank",
+            "careers_url": "https://jobs.ashbyhq.com/allica-bank",
+            "last_success": "2026-10-08T12:31:24.549Z",
+            "error": null,
+            "paused": 0,
+            "roles": 30
+          },
+          {
+            "id": "apothecom",
+            "company": "ApotheCom",
+            "careers_url": "https://job-boards.greenhouse.io/apothecom",
+            "last_success": "2026-10-08T12:31:14.432Z",
+            "error": null,
+            "paused": 0,
+            "roles": 3
+          },
+          {
+            "id": "bakerhicks",
+            "company": "BakerHicks",
+            "careers_url": "https://job-boards.greenhouse.io/bakerhicks",
+            "last_success": "2026-10-08T12:31:21.042Z",
+            "error": null,
+            "paused": 0,
+            "roles": 97
+          },
+          {
+            "id": "callosum",
+            "company": "Callosum",
+            "careers_url": "https://jobs.ashbyhq.com/callosum",
+            "last_success": "2026-10-08T12:31:29.759Z",
+            "error": null,
+            "paused": 0,
+            "roles": 10
+          },
+          {
+            "id": "university-cardiff-met",
+            "company": "Cardiff Metropolitan University",
+            "careers_url": "https://jobs.cardiffmet.ac.uk/",
+            "last_success": "2026-10-08T12:32:35.381Z",
+            "error": null,
+            "paused": 0,
+            "roles": 14
+          },
+          {
+            "id": "cloudflare",
+            "company": "Cloudflare",
+            "careers_url": "https://www.cloudflare.com/careers/jobs/",
+            "last_success": "2026-10-08T12:30:45.755Z",
+            "error": null,
+            "paused": 0,
+            "roles": 60
+          },
+          {
+            "id": "deliveroo",
+            "company": "Deliveroo",
+            "careers_url": "https://careers.deliveroo.co.uk/",
+            "last_success": "2026-10-08T12:30:50.346Z",
+            "error": null,
+            "paused": 0,
+            "roles": 130
+          },
+          {
+            "id": "eucalyptus",
+            "company": "Eucalyptus",
+            "careers_url": "https://www.eucalyptus.health/careers",
+            "last_success": "2026-10-08T12:31:38.720Z",
+            "error": null,
+            "paused": 0,
+            "roles": 31
+          },
+          {
+            "id": "figma",
+            "company": "Figma",
+            "careers_url": "https://www.figma.com/careers/",
+            "last_success": "2026-10-08T12:30:55.148Z",
+            "error": null,
+            "paused": 0,
+            "roles": 19
+          },
+          {
+            "id": "funding-circle",
+            "company": "Funding Circle",
+            "careers_url": "https://www.fundingcircle.com/uk/careers/",
+            "last_success": "2026-10-08T12:30:59.655Z",
+            "error": null,
+            "paused": 0,
+            "roles": 19
+          },
+          {
+            "id": "gocardless",
+            "company": "GoCardless",
+            "careers_url": "https://gocardless.com/about/careers/",
+            "last_success": "2026-10-08T12:30:48.527Z",
+            "error": null,
+            "paused": 0,
+            "roles": 9
+          },
+          {
+            "id": "graphcore",
+            "company": "Graphcore",
+            "careers_url": "https://job-boards.greenhouse.io/graphcore",
+            "last_success": "2026-10-08T12:31:19.232Z",
+            "error": null,
+            "paused": 0,
+            "roles": 85
+          },
+          {
+            "id": "hr-wallingford",
+            "company": "HR Wallingford",
+            "careers_url": "https://job-boards.greenhouse.io/hrwallingford",
+            "last_success": "2026-10-08T12:31:22.897Z",
+            "error": null,
+            "paused": 0,
+            "roles": 4
+          },
+          {
+            "id": "invinity",
+            "company": "Invinity Energy Systems",
+            "careers_url": "https://jobs.lever.co/invinity/",
+            "last_success": "2026-10-08T12:31:07.230Z",
+            "error": null,
+            "paused": 0,
+            "roles": 1
+          },
+          {
+            "id": "maven",
+            "company": "Maven Securities",
+            "careers_url": "https://job-boards.greenhouse.io/mavensecuritiesholdingltd",
+            "last_success": "2026-10-08T12:31:34.548Z",
+            "error": null,
+            "paused": 0,
+            "roles": 16
+          },
+          {
+            "id": "monzo",
+            "company": "Monzo",
+            "careers_url": "https://monzo.com/careers/",
+            "last_success": "2026-10-08T12:30:43.534Z",
+            "error": null,
+            "paused": 0,
+            "roles": 54
+          },
+          {
+            "id": "multiverse",
+            "company": "Multiverse",
+            "careers_url": "https://jobs.ashbyhq.com/multiverse",
+            "last_success": "2026-10-08T12:31:28.067Z",
+            "error": null,
+            "paused": 0,
+            "roles": 23
+          },
+          {
+            "id": "nucleus",
+            "company": "Nucleus Global",
+            "careers_url": "https://job-boards.greenhouse.io/nucleus",
+            "last_success": "2026-10-08T12:31:12.773Z",
+            "error": null,
+            "paused": 0,
+            "roles": 16
+          },
+          {
+            "id": "numan",
+            "company": "Numan",
+            "careers_url": "https://careers.numan.com/",
+            "last_success": "2026-10-08T12:31:36.291Z",
+            "error": null,
+            "paused": 0,
+            "roles": 8
+          },
+          {
+            "id": "octopus-energy",
+            "company": "Octopus Energy",
+            "careers_url": "https://octopus.energy/careers/",
+            "last_success": "2026-10-08T12:30:56.891Z",
+            "error": null,
+            "paused": 0,
+            "roles": 79
+          },
+          {
+            "id": "precision-aq",
+            "company": "Precision AQ",
+            "careers_url": "https://job-boards.greenhouse.io/precisionaq",
+            "last_success": "2026-10-08T12:31:16.060Z",
+            "error": null,
+            "paused": 0,
+            "roles": 2
+          },
+          {
+            "id": "sampura",
+            "company": "Sampura Research",
+            "careers_url": "https://jobs.ashbyhq.com/sampura",
+            "last_success": "2026-10-08T12:31:31.356Z",
+            "error": null,
+            "paused": 0,
+            "roles": 1
+          },
+          {
+            "id": "seamflow",
+            "company": "Seamflow",
+            "careers_url": "https://jobs.ashbyhq.com/seamflow",
+            "last_success": "2026-10-08T12:31:32.893Z",
+            "error": null,
+            "paused": 0,
+            "roles": 8
+          },
+          {
+            "id": "stripe",
+            "company": "Stripe",
+            "careers_url": "https://stripe.com/jobs",
+            "last_success": "2026-10-08T12:30:52.686Z",
+            "error": null,
+            "paused": 0,
+            "roles": 53
+          },
+          {
+            "id": "voleon",
+            "company": "The Voleon Group",
+            "careers_url": "https://jobs.ashbyhq.com/voleon",
+            "last_success": "2026-10-08T12:31:26.392Z",
+            "error": null,
+            "paused": 0,
+            "roles": 10
+          },
+          {
+            "id": "university-bath",
+            "company": "University of Bath",
+            "careers_url": "https://www.bath.ac.uk/jobs/",
+            "last_success": "2026-10-08T12:32:11.370Z",
+            "error": null,
+            "paused": 0,
+            "roles": 29
+          },
+          {
+            "id": "university-greater-manchester",
+            "company": "University of Greater Manchester",
+            "careers_url": "https://jobs.greatermanchester.ac.uk/",
+            "last_success": "2026-10-08T12:32:20.419Z",
+            "error": null,
+            "paused": 0,
+            "roles": 5
+          },
+          {
+            "id": "university-nottingham",
+            "company": "University of Nottingham",
+            "careers_url": "https://jobs.nottingham.ac.uk/",
+            "last_success": "2026-10-08T12:32:26.727Z",
+            "error": null,
+            "paused": 0,
+            "roles": 15
+          },
+          {
+            "id": "university-southampton",
+            "company": "University of Southampton",
+            "careers_url": "https://jobs.soton.ac.uk/",
+            "last_success": "2026-10-08T12:32:23.295Z",
+            "error": null,
+            "paused": 0,
+            "roles": 27
+          },
+          {
+            "id": "wep-clinical",
+            "company": "WEP Clinical",
+            "careers_url": "https://jobs.lever.co/wepclinical/",
+            "last_success": "2026-10-08T12:31:10.829Z",
+            "error": null,
+            "paused": 0,
+            "roles": 3
+          },
+          {
+            "id": "zeeco",
+            "company": "Zeeco",
+            "careers_url": "https://jobs.lever.co/zeeco/",
+            "last_success": "2026-10-08T12:31:04.726Z",
+            "error": null,
+            "paused": 0,
+            "roles": 5
+          },
+          {
+            "id": "zopa",
+            "company": "Zopa",
+            "careers_url": "https://jobs.lever.co/zopa/",
+            "last_success": "2026-10-08T12:31:01.533Z",
+            "error": null,
+            "paused": 0,
+            "roles": 34
+          }
+        ],
+        "immigration": [
+          {
+            "id": "expansion",
+            "title": "UK Expansion Worker visa (Global Business Mobility)",
+            "kind": "guidance",
+            "content_hash": "9465b609f7acec966400122c37c0ccaab2444b3d481d53872b6ca7fd51774392",
+            "checked_at": "2026-10-08T12:45:44.671Z",
+            "last_success": "2026-10-08T12:45:44.671Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "family",
+            "title": "Family visas: apply, extend or switch",
+            "kind": "guidance",
+            "content_hash": "ee7dc58b671cb911cbe6577e7b29afc9649e624e2a9e94faf894acb486b928e1",
+            "checked_at": "2026-10-08T12:45:46.294Z",
+            "last_success": "2026-10-08T12:45:46.294Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "founder",
+            "title": "Innovator Founder visa",
+            "kind": "guidance",
+            "content_hash": "34b27109c731f426a83deadce557aa9d013c7a5a54c78955d81dea574b4c5a0b",
+            "checked_at": "2026-10-08T12:45:39.992Z",
+            "last_success": "2026-10-08T12:45:39.992Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "founder-eligibility",
+            "title": "Innovator Founder visa: Eligibility",
+            "kind": "guidance",
+            "content_hash": "b3bdb6ef97507a635a2d8d657bbc15ed11540c42c495be57007ff60d4fbbf799",
+            "checked_at": "2026-10-08T12:45:40.524Z",
+            "last_success": "2026-10-08T12:45:40.524Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "global-talent",
+            "title": "Apply for the Global Talent visa",
+            "kind": "guidance",
+            "content_hash": "7357e415c6753d902dc5ee183497c3a849da79c29612884eb23f3f6af6e5b2de",
+            "checked_at": "2026-10-08T12:45:43.867Z",
+            "last_success": "2026-10-08T12:45:43.867Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "graduate",
+            "title": "Graduate visa",
+            "kind": "guidance",
+            "content_hash": "42ecc16a9cc35461326f0b11e64abb356321800384f7a14c470e7c63ddf896a6",
+            "checked_at": "2026-10-08T12:45:47.553Z",
+            "last_success": "2026-10-08T12:45:47.553Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "healthcare-job",
+            "title": "Health and Care Worker visa: Your job",
+            "kind": "guidance",
+            "content_hash": "ac9b2e5d63dbea7f0c979c9dc9dd4ca09defa0d21f18830706d11ce239dbc123",
+            "checked_at": "2026-10-08T12:30:50.176Z",
+            "last_success": "2026-10-08T12:30:50.176Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "hpi",
+            "title": "High Potential Individual (HPI) visa",
+            "kind": "guidance",
+            "content_hash": "ad763ca011123beca389d3d653c5348f42f6d493bfb2a8c0a37620f8d28959bf",
+            "checked_at": "2026-10-08T12:45:43.030Z",
+            "last_success": "2026-10-08T12:45:43.030Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "ihs",
+            "title": "Pay for UK healthcare as part of your immigration application: How much you have to pay",
+            "kind": "guidance",
+            "content_hash": "6f3fa6778d227e72e3f1f8f15db6405a509b24f42158d68b0d47b5016bc54101",
+            "checked_at": "2026-10-08T12:45:46.774Z",
+            "last_success": "2026-10-08T12:45:46.774Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "india-young-professionals",
+            "title": "India Young Professionals Scheme visa",
+            "kind": "guidance",
+            "content_hash": "3a981e53dba48ed0e52b637e4a5434d6644d655777cbce9e9515eddd6324ddcb",
+            "checked_at": "2026-10-08T12:45:42.245Z",
+            "last_success": "2026-10-08T12:45:42.245Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "rules",
+            "title": "Immigration Rules: statement of changes",
+            "kind": "collection",
+            "content_hash": "d2ef84eca57959da9fdc0eb62dc92308fad71911095c5c1cf53906b3e244431a",
+            "checked_at": "2026-10-08T12:30:50.971Z",
+            "last_success": "2026-10-08T12:30:50.971Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "official_publication"
+          },
+          {
+            "id": "scale-up",
+            "title": "Scale-up Worker visa",
+            "kind": "guidance",
+            "content_hash": "57f8c782b150bed51dc3d3cc0716179bc3646f82dffacb517fe32e4f0cd2dde4",
+            "checked_at": "2026-10-08T12:45:45.336Z",
+            "last_success": "2026-10-08T12:45:45.336Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "skilled-job",
+            "title": "Skilled Worker visa: Your job",
+            "kind": "guidance",
+            "content_hash": "c302b17ae57be36db212254dddb703820bb941962734d5a722472b80ba4cf725",
+            "checked_at": "2026-10-08T12:45:48.613Z",
+            "last_success": "2026-10-08T12:45:48.613Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "skilled-salary",
+            "title": "Skilled Worker visa: When you can be paid less",
+            "kind": "guidance",
+            "content_hash": "f5d4f8034d3cd7d48bb3648f42ecc26788a03f6fa411bdf8711316a956a22847",
+            "checked_at": "2026-10-08T12:45:49.421Z",
+            "last_success": "2026-10-08T12:45:49.421Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "sponsor-certificate",
+            "title": "UK visa sponsorship for employers: Certificates of sponsorship",
+            "kind": "guidance",
+            "content_hash": "0cd7a27f652c753094f009b9c98f09cdca424a24b6507191b1ff0e6b9534795d",
+            "checked_at": "2026-10-08T12:45:41.433Z",
+            "last_success": "2026-10-08T12:45:41.433Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "sponsor-fees",
+            "title": "UK visa sponsorship for employers: Apply for your licence",
+            "kind": "guidance",
+            "content_hash": "e0e34577f63127a2b5a53b4c686e8bfa9d567b468de2680868ddca41ead3bf1e",
+            "checked_at": "2026-10-08T12:45:40.902Z",
+            "last_success": "2026-10-08T12:45:40.902Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "sponsor-skills-charge",
+            "title": "UK visa sponsorship for employers: Immigration skills charge",
+            "kind": "guidance",
+            "content_hash": "2f07b204d074f92064a86226450d80dda1f52bb5767d8ccbda5447e4dc3d9df0",
+            "checked_at": "2026-10-08T12:45:41.870Z",
+            "last_success": "2026-10-08T12:45:41.870Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "statement-6b9fcd2bcdc166ae54d5a58b",
+            "title": "Statement of changes to the Immigration Rules: HC 259, 9 July 2026",
+            "kind": "publication",
+            "content_hash": "dd69054ce51f408fe3ab6d333776f5b17e24d854c2e23a2dc88c0299265f1afd",
+            "checked_at": "2026-10-08T12:30:52.562Z",
+            "last_success": "2026-10-08T12:30:52.562Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "official_publication"
+          },
+          {
+            "id": "statement-75e5e09388a385fac081c226",
+            "title": "Statement of changes to the Immigration Rules: HC 584, 3 September 2026",
+            "kind": "publication",
+            "content_hash": "4d13b84adaab915c739bd63f623d6390a31700696c0c66bc10d695a11abb85a8",
+            "checked_at": "2026-10-08T12:30:51.790Z",
+            "last_success": "2026-10-08T12:30:51.790Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "official_publication"
+          },
+          {
+            "id": "statement-b4d663bec5fef7b03d80060a",
+            "title": "Statement of changes to the Immigration Rules: HC 1691, 5 March 2026",
+            "kind": "publication",
+            "content_hash": "9d32284b7430931fe9612460b93ecb403bbb61b40615a23f293e7901250cce69",
+            "checked_at": "2026-10-08T12:30:53.554Z",
+            "last_success": "2026-10-08T12:30:53.554Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "official_publication"
+          },
+          {
+            "id": "statement-d663ff187b9807a10dc10175",
+            "title": "Statement of changes to the Immigration Rules: HC 1491, 9 December 2025",
+            "kind": "publication",
+            "content_hash": "ee8a1ad35c586f84cbed32d5c9a744003eefa7ae0c1dc558d581b88a06a5c737",
+            "checked_at": "2026-10-08T12:30:54.026Z",
+            "last_success": "2026-10-08T12:30:54.026Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "official_publication"
+          },
+          {
+            "id": "student",
+            "title": "Student visa",
+            "kind": "guidance",
+            "content_hash": "a0a28099940f5a4eb4dca3d3db19ca8715981d5991394da286bbe038bda9e90f",
+            "checked_at": "2026-10-08T12:45:48.240Z",
+            "last_success": "2026-10-08T12:45:48.240Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "student-course",
+            "title": "Student visa : Your course",
+            "kind": "guidance",
+            "content_hash": "1603b600de9eea45f2cd29ea9c560b452acd2587509fe46d577af7fca259f654",
+            "checked_at": "2026-10-08T12:45:39.590Z",
+            "last_success": "2026-10-08T12:45:39.590Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          },
+          {
+            "id": "student-money",
+            "title": "Student visa : Money you need",
+            "kind": "guidance",
+            "content_hash": "b23a066c18052daea737a40dc36b1df355a4b632f4682f1e747a347be2bb0412",
+            "checked_at": "2026-10-08T12:45:38.767Z",
+            "last_success": "2026-10-08T12:45:38.767Z",
+            "error": null,
+            "withdrawn": 0,
+            "explanation_status": "explained"
+          }
+        ],
+        "register": {
+          "snapshot": "2026-10-07-597a2913",
+          "source_date": "2026-10-07",
+          "source_url": "https://assets.publishing.service.gov.uk/media/6ac60ad235adbc27761df954/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-07.csv",
+          "publication_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+          "checked_at": "2026-10-08T07:15:42.693Z",
+          "imported_at": "2026-10-08T07:17:22.124Z",
+          "employers": 127949,
+          "source_rows": 143176,
+          "skilled_worker": 122542,
+          "cities": 6342,
+          "routes": [
+            {
+              "name": "Skilled Worker",
+              "count": 122542
+            },
+            {
+              "name": "Creative Worker",
+              "count": 1580
+            },
+            {
+              "name": "Tier 2 Ministers of Religion",
+              "count": 1960
+            },
+            {
+              "name": "Global Business Mobility: UK Expansion Worker",
+              "count": 430
+            },
+            {
+              "name": "Global Business Mobility: Senior or Specialist Worker",
+              "count": 10383
+            },
+            {
+              "name": "International Agreement",
+              "count": 134
+            },
+            {
+              "name": "Scale-up",
+              "count": 92
+            },
+            {
+              "name": "Global Business Mobility: Graduate Trainee",
+              "count": 621
+            },
+            {
+              "name": "Global Business Mobility: Service Supplier",
+              "count": 56
+            },
+            {
+              "name": "Charity Worker",
+              "count": 1531
+            },
+            {
+              "name": "Religious Worker",
+              "count": 1433
+            },
+            {
+              "name": "International Sportsperson",
+              "count": 1466
+            },
+            {
+              "name": "Government Authorised Exchange",
+              "count": 245
+            },
+            {
+              "name": "Seasonal Worker",
+              "count": 6
+            },
+            {
+              "name": "Global Business Mobility: Secondment Worker",
+              "count": 6
+            },
+            {
+              "name": "Intra-company Routes",
+              "count": 1
+            },
+            {
+              "name": "Intra Company Transfers (ICT)",
+              "count": 1
+            },
+            {
+              "name": "Tier 2 General",
+              "count": 5
+            }
+          ],
+          "refresh_error": null
+        },
+        "metrics": [],
+        "measurement": {
+          "version": 2,
+          "enabled_at": "2026-10-08T11:57:33.807Z",
+          "first_full_day": "2026-10-09",
+          "completed_days": 0,
+          "from": "2026-10-09",
+          "to": "2026-10-08",
+          "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes."
+        },
+        "held_batches": 0,
+        "feedback_count": 0,
+        "support": {
+          "total": 0,
+          "open": 0,
+          "new": 0,
+          "in_progress": 0,
+          "resolved": 0,
+          "closed": 0,
+          "overdue": 0,
+          "overdue_quality": 0
+        },
+        "tracking_started": null,
+        "checks": [
+          {
+            "path": "/api/health",
+            "status": 200,
+            "ok": true,
+            "security": true
+          },
+          {
+            "path": "/jobs",
+            "status": 200,
+            "ok": true,
+            "security": true,
+            "content": {
+              "ok": true,
+              "visible_roles": 12,
+              "matching_roles": 904,
+              "generated_at": "2026-10-08T12:45:50.492Z"
+            }
+          },
+          {
+            "path": "/insights",
+            "status": 200,
+            "ok": true,
+            "security": true
+          },
+          {
+            "path": "/sitemap.xml",
+            "status": 200,
+            "ok": true,
+            "security": true
+          },
+          {
+            "path": "/api/admin/session",
+            "status": 403,
+            "ok": true,
+            "security": true
+          }
+        ],
+        "search": {
+          "property": "https://sponsorintel.london/",
+          "enabled": true,
+          "reading_enabled": true,
+          "business_enabled": true,
+          "configured": true,
+          "status": "failed",
+          "latest": {
+            "day": "2026-10-08",
+            "state": "failed",
+            "trigger_kind": "owner",
+            "created_at": "2026-10-08T02:19:02.116Z",
+            "finished_at": "2026-10-08T02:19:02.426Z",
+            "requests": 1,
+            "result": {
+              "error": "network_unavailable"
+            }
+          },
+          "runs": [],
+          "schedule": "Once per UTC day through the hourly business workflow.",
+          "scope": "Read-only Google search data for this property; no raw search queries or customer records.",
+          "limits": {
+            "requests_daily": 10,
+            "inspection_urls": 4,
+            "page_rows": 100
+          },
+          "connected": false
+        },
+        "application_evaluation": {
+          "state": "ready",
+          "completed": 0,
+          "total": 20
+        },
+        "search_notifications": {
+          "followed": 0,
+          "oldest_check": null,
+          "awaiting_first_check": null,
+          "last_run": {
+            "checked_at": "2026-10-08T12:45:38.527Z",
+            "checked": 0,
+            "failed": 0
+          }
+        },
+        "email_delivery": {
+          "configured": true,
+          "events_7d": 0,
+          "last_received": null,
+          "failures_7d": 0,
+          "blocked_owners": 0,
+          "queues": {
+            "incoming": {
+              "backlogCount": 0,
+              "backlogBytes": 0,
+              "oldestMessageTimestamp": 0,
+              "checked_at": "2026-10-08T12:45:49.760Z"
+            },
+            "unprocessed": {
+              "backlogCount": 0,
+              "backlogBytes": 0,
+              "oldestMessageTimestamp": 0,
+              "checked_at": "2026-10-08T12:45:49.760Z"
+            }
+          }
+        },
+        "social_delivery": {
+          "available": true,
+          "checked_at": "2026-10-08T12:45:49.760Z",
+          "records_checked": 4,
+          "limited": false,
+          "scheduled": 3,
+          "awaiting_check": 0,
+          "overdue": 0,
+          "uncertain": 0,
+          "failed_30d": 0,
+          "published_30d": 1,
+          "invalid_records": 0,
+          "last_published_observation": "2026-10-08T09:09:26.936Z",
+          "next_scheduled_at": "2026-10-09T09:00:00.000Z"
+        },
+        "job_links": {
+          "checked_at": "2026-10-08T12:45:49.760Z",
+          "enabled": true,
+          "started_at": "2026-10-08T12:41:43.607Z",
+          "policy": "one-current-advert-per-source-per-UTC-day-v1",
+          "eligible_sources": 33,
+          "sampled_sources": 2,
+          "matched": 2,
+          "needs_attention": 0,
+          "awaiting": 31,
+          "overdue": 0,
+          "limits": {
+            "sources_per_run": 2,
+            "reserved_requests_per_check": 4,
+            "reserved_requests_daily": 160,
+            "shared_source_requests_daily": 500
+          },
+          "items": [
+            {
+              "id": "31faa6e048e63e276e855a00",
+              "run_id": "business-497628",
+              "source_id": "allica-bank",
+              "job_id": "0c9fb11fbd46aac1df9bc808",
+              "day": "2026-10-08",
+              "company": "Allica Bank",
+              "title": "Head of Third Party Management",
+              "url": "https://jobs.ashbyhq.com/allica-bank/c98de71e-067b-42dd-94e3-dfa63d0263c0",
+              "source_seen_at": "2026-10-08T12:31:24.549Z",
+              "state": "checked",
+              "reason": "title_observed",
+              "created_at": "2026-10-08T12:45:45.509Z",
+              "started_at": "2026-10-08T12:45:46.186Z",
+              "finished_at": "2026-10-08T12:45:47.665Z",
+              "reserved_requests": 4,
+              "evidence": {
+                "chain": [
+                  {
+                    "url": "https://jobs.ashbyhq.com/allica-bank/c98de71e-067b-42dd-94e3-dfa63d0263c0",
+                    "status": 200
+                  }
+                ],
+                "title_match": true,
+                "observed_heading": "Head of Third Party Management @ Allica Bank",
+                "closure_signal": null,
+                "body_sha256": "2bcbe98b6e26df98549d5ba988db9f0a4dad4ca17d2cce5ee6d3cb17d6d590c4"
+              },
+              "eligible_source": "allica-bank",
+              "first_seen": "2026-10-04T16:46:03.603Z",
+              "advert_current": 1,
+              "overdue": false,
+              "status": "matched"
+            },
+            {
+              "id": "7fe738668fc278a43557b778",
+              "run_id": "business-497628",
+              "source_id": "apothecom",
+              "job_id": "4a8dda1883232aac291eec5d",
+              "day": "2026-10-08",
+              "company": "ApotheCom",
+              "title": "Associate Medical Director",
+              "url": "https://job-boards.greenhouse.io/apothecom/jobs/8015646",
+              "source_seen_at": "2026-10-08T12:31:14.432Z",
+              "state": "checked",
+              "reason": "title_observed",
+              "created_at": "2026-10-08T12:45:45.509Z",
+              "started_at": "2026-10-08T12:45:47.807Z",
+              "finished_at": "2026-10-08T12:45:49.527Z",
+              "reserved_requests": 4,
+              "evidence": {
+                "chain": [
+                  {
+                    "url": "https://job-boards.greenhouse.io/apothecom/jobs/8015646",
+                    "status": 200
+                  }
+                ],
+                "title_match": true,
+                "observed_heading": "Job Application for Associate Medical Director at ApotheCom",
+                "closure_signal": null,
+                "body_sha256": "deb78ff78bce83444b105afd5168dc4d53b666c066fa129c8bfa761f2aa20745"
+              },
+              "eligible_source": "apothecom",
+              "first_seen": "2026-10-04T16:46:02.331Z",
+              "advert_current": 1,
+              "overdue": false,
+              "status": "matched"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "axon",
+              "job_id": null,
+              "day": null,
+              "company": "AXON",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "axon",
+              "first_seen": "2026-10-04T16:46:02.674Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "bakerhicks",
+              "job_id": null,
+              "day": null,
+              "company": "BakerHicks",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "bakerhicks",
+              "first_seen": "2026-10-04T16:46:03.133Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "callosum",
+              "job_id": null,
+              "day": null,
+              "company": "Callosum",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "callosum",
+              "first_seen": "2026-10-04T16:46:04.170Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "cloudflare",
+              "job_id": null,
+              "day": null,
+              "company": "Cloudflare",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "cloudflare",
+              "first_seen": "2026-10-04T16:45:51.287Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "deliveroo",
+              "job_id": null,
+              "day": null,
+              "company": "Deliveroo",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "deliveroo",
+              "first_seen": "2026-10-04T11:52:48.970Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "eucalyptus",
+              "job_id": null,
+              "day": null,
+              "company": "Eucalyptus",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "eucalyptus",
+              "first_seen": "2026-10-07T09:22:22.363Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "figma",
+              "job_id": null,
+              "day": null,
+              "company": "Figma",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "figma",
+              "first_seen": "2026-10-04T13:31:48.987Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "funding-circle",
+              "job_id": null,
+              "day": null,
+              "company": "Funding Circle",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "funding-circle",
+              "first_seen": "2026-10-04T13:31:51.617Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "gocardless",
+              "job_id": null,
+              "day": null,
+              "company": "GoCardless",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "gocardless",
+              "first_seen": "2026-10-04T11:52:48.758Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "graphcore",
+              "job_id": null,
+              "day": null,
+              "company": "Graphcore",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "graphcore",
+              "first_seen": "2026-10-04T16:46:02.879Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "hr-wallingford",
+              "job_id": null,
+              "day": null,
+              "company": "HR Wallingford",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "hr-wallingford",
+              "first_seen": "2026-10-04T16:46:03.422Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "invinity",
+              "job_id": null,
+              "day": null,
+              "company": "Invinity Energy Systems",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "invinity",
+              "first_seen": "2026-10-04T16:46:00.536Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "maven",
+              "job_id": null,
+              "day": null,
+              "company": "Maven Securities",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "maven",
+              "first_seen": "2026-10-04T16:46:04.740Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "monzo",
+              "job_id": null,
+              "day": null,
+              "company": "Monzo",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "monzo",
+              "first_seen": "2026-10-04T11:52:48.124Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "multiverse",
+              "job_id": null,
+              "day": null,
+              "company": "Multiverse",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "multiverse",
+              "first_seen": "2026-10-04T16:46:03.983Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "nucleus",
+              "job_id": null,
+              "day": null,
+              "company": "Nucleus Global",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "nucleus",
+              "first_seen": "2026-10-04T16:46:02.137Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "numan",
+              "job_id": null,
+              "day": null,
+              "company": "Numan",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "numan",
+              "first_seen": "2026-10-07T09:22:22.082Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "octopus-energy",
+              "job_id": null,
+              "day": null,
+              "company": "Octopus Energy",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "octopus-energy",
+              "first_seen": "2026-10-04T13:31:49.284Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "precision-aq",
+              "job_id": null,
+              "day": null,
+              "company": "Precision AQ",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "precision-aq",
+              "first_seen": "2026-10-04T16:46:02.499Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "sampura",
+              "job_id": null,
+              "day": null,
+              "company": "Sampura Research",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "sampura",
+              "first_seen": "2026-10-04T16:46:04.382Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "seamflow",
+              "job_id": null,
+              "day": null,
+              "company": "Seamflow",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "seamflow",
+              "first_seen": "2026-10-04T16:46:04.579Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "stripe",
+              "job_id": null,
+              "day": null,
+              "company": "Stripe",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "stripe",
+              "first_seen": "2026-10-04T11:52:49.584Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "university-bath",
+              "job_id": null,
+              "day": null,
+              "company": "University of Bath",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "university-bath",
+              "first_seen": "2026-10-07T09:22:22.628Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "university-cardiff-met",
+              "job_id": null,
+              "day": null,
+              "company": "Cardiff Metropolitan University",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "university-cardiff-met",
+              "first_seen": "2026-10-08T11:27:20.780Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "university-greater-manchester",
+              "job_id": null,
+              "day": null,
+              "company": "University of Greater Manchester",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "university-greater-manchester",
+              "first_seen": "2026-10-07T09:22:23.154Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "university-nottingham",
+              "job_id": null,
+              "day": null,
+              "company": "University of Nottingham",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "university-nottingham",
+              "first_seen": "2026-10-08T03:25:28.307Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "university-southampton",
+              "job_id": null,
+              "day": null,
+              "company": "University of Southampton",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "university-southampton",
+              "first_seen": "2026-10-08T03:24:52.945Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "voleon",
+              "job_id": null,
+              "day": null,
+              "company": "The Voleon Group",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "voleon",
+              "first_seen": "2026-10-04T16:46:03.808Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "wep-clinical",
+              "job_id": null,
+              "day": null,
+              "company": "WEP Clinical",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "wep-clinical",
+              "first_seen": "2026-10-04T16:46:01.900Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "zeeco",
+              "job_id": null,
+              "day": null,
+              "company": "Zeeco",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "zeeco",
+              "first_seen": "2026-10-04T16:45:58.192Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            },
+            {
+              "id": null,
+              "run_id": null,
+              "source_id": "zopa",
+              "job_id": null,
+              "day": null,
+              "company": "Zopa",
+              "title": null,
+              "url": null,
+              "source_seen_at": null,
+              "state": null,
+              "reason": null,
+              "created_at": null,
+              "started_at": null,
+              "finished_at": null,
+              "reserved_requests": null,
+              "evidence": null,
+              "eligible_source": "zopa",
+              "first_seen": "2026-10-04T16:45:56.522Z",
+              "advert_current": 0,
+              "overdue": false,
+              "status": "awaiting"
+            }
+          ],
+          "limitation": "A rotating sample checks initial page headings and response codes. It does not establish every vacancy is open, rendered application-form functionality or sponsorship. No public vacancy is changed by this check."
+        },
+        "reference": {
+          "state": "ready",
+          "evaluated_adverts": 0,
+          "total_adverts": 50,
+          "dangerous_false_positives": 0,
+          "unsupported_refusals": 0,
+          "disputed_items": 0
+        },
+        "supervision": {
+          "checked_at": "2026-10-08T12:45:42.598Z",
+          "checks": [
+            {
+              "kind": "research",
+              "action": "idle"
+            },
+            {
+              "kind": "marketing",
+              "action": "idle"
+            },
+            {
+              "kind": "applications",
+              "action": "idle"
+            }
+          ],
+          "reconciled": 0,
+          "needs_attention": 0,
+          "model_calls": 0,
+          "external_posts": 0
+        }
+      },
+      "result": {
+        "health": {
+          "findings": 4,
+          "high": 0
+        },
+        "supervision": {
+          "checked_at": "2026-10-08T12:45:42.598Z",
+          "checks": [
+            {
+              "kind": "research",
+              "action": "idle"
+            },
+            {
+              "kind": "marketing",
+              "action": "idle"
+            },
+            {
+              "kind": "applications",
+              "action": "idle"
+            }
+          ],
+          "reconciled": 0,
+          "needs_attention": 0,
+          "model_calls": 0,
+          "external_posts": 0
+        },
+        "search": {
+          "day": "2026-10-08",
+          "state": "failed",
+          "requests": 1,
+          "reused": true
+        },
+        "links": [
+          {
+            "id": "31faa6e048e63e276e855a00",
+            "state": "checked",
+            "reason": "title_observed",
+            "requests": 1
+          },
+          {
+            "id": "7fe738668fc278a43557b778",
+            "state": "checked",
+            "reason": "title_observed",
+            "requests": 1
+          }
+        ],
+        "cleanup": {
+          "state": "completed",
+          "stale_roles": 0,
+          "policy": "Hide records last observed over 72 hours ago; retain the records, feedback and customer workspaces."
+        },
+        "publication": {
+          "state": "not_due",
+          "next_due": "2026-10-14T16:50:43.330Z"
+        },
+        "marketing": {
+          "prepared": 0,
+          "external_posts_sent": 0
+        },
+        "editorial": {
+          "id": "marketing-2026-10-08",
+          "state": "no_post",
+          "result": {
+            "decision": "no_post",
+            "source_id": "",
+            "reason": "No eligible slot: the queue is full, expired or needs delivery reconciliation.",
+            "ranked": [],
+            "timing_reason": "Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first."
+          },
+          "reused": true
+        },
+        "research": {
+          "state": "held",
+          "research_id": null,
+          "detail": "Research was held by its availability or budget controls. No automatic retry today."
+        },
+        "applications": {
+          "id": "application-eval-2026-10-08",
+          "state": "held",
+          "reused": true
+        }
+      }
+    },
+    "platform_status": "complete",
+    "link_checks": [
+      {
+        "id": "31faa6e048e63e276e855a00",
+        "run_id": "business-497628",
+        "source_id": "allica-bank",
+        "state": "checked",
+        "reason": "title_observed",
+        "created_at": "2026-10-08T12:45:45.509Z",
+        "finished_at": "2026-10-08T12:45:47.665Z",
+        "reserved_requests": 4,
+        "evidence": "{\"chain\":[{\"url\":\"https://jobs.ashbyhq.com/allica-bank/c98de71e-067b-42dd-94e3-dfa63d0263c0\",\"status\":200}],\"title_match\":true,\"observed_heading\":\"Head of Third Party Management @ Allica Bank\",\"closure_signal\":null,\"body_sha256\":\"2bcbe98b6e26df98549d5ba988db9f0a4dad4ca17d2cce5ee6d3cb17d6d590c4\"}"
+      },
+      {
+        "id": "7fe738668fc278a43557b778",
+        "run_id": "business-497628",
+        "source_id": "apothecom",
+        "state": "checked",
+        "reason": "title_observed",
+        "created_at": "2026-10-08T12:45:45.509Z",
+        "finished_at": "2026-10-08T12:45:49.527Z",
+        "reserved_requests": 4,
+        "evidence": "{\"chain\":[{\"url\":\"https://job-boards.greenhouse.io/apothecom/jobs/8015646\",\"status\":200}],\"title_match\":true,\"observed_heading\":\"Job Application for Associate Medical Director at ApotheCom\",\"closure_signal\":null,\"body_sha256\":\"deb78ff78bce83444b105afd5168dc4d53b666c066fa129c8bfa761f2aa20745\"}"
+      }
+    ],
+    "link_budget": [
+      {
+        "day": "2026-10-08",
+        "reserved_requests": 8
+      }
+    ],
+    "research_budget": [
+      {
+        "day": "2026-10-08",
+        "runs": 4,
+        "calls": 6
+      }
+    ]
+  },
+  "automation": {
+    "id": "sponsor-intel-daily-improvement",
+    "saved_prompt_verified": true,
+    "schedule_and_target_preserved": true
+  },
+  "browser_after_scheduled_run": {
+    "eligible_sources": 33,
+    "matched": 2,
+    "needs_attention": 0,
+    "awaiting": 31,
+    "expanded_receipt": "31faa6e048e63e276e855a00"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "discover": {
+    "path": "/",
+    "title": "Find UK Sponsor Employers & Jobs | Sponsor Intel",
+    "description": "Search UK licensed sponsor employers, explore current vacancies and prepare your application. Free tools for international students, graduates and job seekers."
+  },
+  "jobs": {
+    "path": "/jobs",
+    "title": "UK Jobs with Sponsorship Evidence | Sponsor Intel",
+    "description": "Explore UK vacancies from selected employer job boards. Read the actual sponsorship wording, check pay where listed, and save roles to your application tracker."
+  },
+  "updates": {
+    "path": "/updates",
+    "title": "UK Immigration Updates, Explained | Sponsor Intel",
+    "description": "Understand selected UK immigration guidance in plain English. Follow Student, Graduate and Skilled Worker updates, with official GOV.UK sources and clear dates."
+  },
+  "guides": {
+    "path": "/guides",
+    "title": "UK Sponsor Job Search Guides | Sponsor Intel",
+    "description": "Practical guides for your UK job search: check a sponsor employer, understand sponsorship wording and build a focused application shortlist."
+  },
+  "guides/check-uk-sponsor": {
+    "path": "/guides/check-uk-sponsor",
+    "title": "How to Check a UK Sponsor Employer | Sponsor Intel",
+    "description": "Learn how to check an employer against the UK sponsor register, match the legal name and separate a sponsor licence from sponsorship for a specific job."
+  },
+  "guides/sponsorship-in-job-adverts": {
+    "path": "/guides/sponsorship-in-job-adverts",
+    "title": "Visa Sponsorship in Job Adverts: What to Check | Sponsor Intel",
+    "description": "Understand offered, conditional, unavailable and unstated sponsorship in job adverts. Use a clear question to confirm whether an employer can sponsor a role."
+  },
+  "guides/build-a-shortlist": {
+    "path": "/guides/build-a-shortlist",
+    "title": "Build a Focused UK Job Search Shortlist | Sponsor Intel",
+    "description": "A practical job search routine for international students and graduates: research three employers, check the exact role, tailor your CV and track the next step."
+  },
+  "about": {
+    "path": "/about",
+    "title": "About Our Data & Sources | Sponsor Intel",
+    "description": "How Sponsor Intel collects sponsor records, checks vacancies and explains immigration updates. Understand our sources, freshness checks and limitations."
+  },
+  "advisers": {
+    "path": "/advisers",
+    "title": "Find Immigration Advisers & Solicitors | Sponsor Intel",
+    "description": "Search a dated official IAA organisation directory, check current registrations and find solicitor regulators. Compare carefully with clear sources and review links."
+  },
+  "ask": {
+    "path": "/ask",
+    "title": "Ask UK Immigration Questions with Official Sources | Sponsor Intel",
+    "description": "Understand UK immigration guidance in plain English with GOV.UK sources fetched when you ask. General information, source quotations and clear check times."
+  },
+  "routes": {
+    "path": "/routes",
+    "title": "UK Visa Routes: Work, Study & Business | Sponsor Intel",
+    "description": "Compare selected UK work, study, business and family visa routes with official sources, key conditions and practical next steps.",
+    "reviewed": "2026-10-05"
+  },
+  "routes/business-self-sponsorship": {
+    "path": "/routes/business-self-sponsorship",
+    "title": "UK Self-Sponsorship & Business Visa Guide | Sponsor Intel",
+    "description": "Understand business sponsorship, sponsor licence requirements, Innovator Founder and the real costs. An editable employer-charge illustration with official sources.",
+    "reviewed": "2026-10-05"
+  },
+  "routes/india-to-uk": {
+    "path": "/routes/india-to-uk",
+    "title": "UK Visa Options from India: Work, Study & Business | Sponsor Intel",
+    "description": "Plan a move from India with a comparison of UK work, study, business and Young Professionals routes. Check evidence, costs and official requirements.",
+    "reviewed": "2026-10-05"
+  },
+  "study": {
+    "path": "/study",
+    "title": "UK Student Sponsor Directory: Universities & Colleges | Sponsor Intel",
+    "description": "Search the official UK Student and Child Student sponsor register by institution, location and provider type. Check licence status before choosing a course.",
+    "reviewed": "2026-10-05"
+  },
+  "study/uk-costs": {
+    "path": "/study/uk-costs",
+    "title": "UK Study Costs: International Fees & Budget Planner | Sponsor Intel",
+    "description": "Compare selected published international course fees and calculate tuition, living costs, visa expenses and separate financial evidence for UK study.",
+    "reviewed": "2026-10-05"
+  },
+  "immigration-sources": {
+    "path": "/immigration-sources",
+    "title": "UK Immigration News Sources & Social Channels | Sponsor Intel",
+    "description": "Find official UKVI channels, specialist immigration publishers and international student information. Check original sources before acting on social posts.",
+    "reviewed": "2026-10-05"
+  },
+  "editorial-policy": {
+    "path": "/editorial-policy",
+    "title": "Our Editorial Standards & Corrections Policy | Sponsor Intel",
+    "description": "Who prepares Sponsor Intel guidance, how we check official sources, what our comparisons cover and how to report a correction.",
+    "reviewed": "2026-10-05"
+  }
+}

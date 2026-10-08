@@ -2,13 +2,28 @@
 
 **[Project guide](docs/SHOWCASE.md)** · [Source](https://github.com/BalaShankar9/SponsorIntel) · [Issues](https://github.com/BalaShankar9/SponsorIntel/issues) · [Bala's work](https://github.com/BalaShankar9)
 
-> **Current stage:** Application code · source freshness validation pending. [See the evidence and next release checklist](docs/SHOWCASE.md).
+> **Current stage: Sponsor Intel × Hire Stack 2.52 beta.** [Open Sponsor Intel](https://sponsorintel.london) · [Immigration updates](https://sponsorintel.london/updates) · [Cloudflare fallback](https://sponsorintel.balashankarbollineni4.workers.dev). The integrated app lives in [`cloudflare/`](cloudflare/README.md). [Current release evidence](cloudflare/RELEASE-2.52.md) · [Build roadmap](docs/PRODUCT_ROADMAP.md) · [Community and search growth](docs/GROWTH_PLAN.md).
 
 # SponsorIntel
 
-A UK sponsor research platform combining organisation records, job information, search and background data collection. Coverage and freshness depend on the imported sources and deployment.
+A welcoming workspace for international students and people building a career in the UK: discover licensed employers, compare a shortlist, and track applications. The Cloudflare beta uses a dated official GOV.UK register and clearly separates a sponsor licence from an advertised job offering sponsorship.
 
-## Quick Start
+## Current Cloudflare app
+
+- Responsive React interface with employer search, city/route/rating filters and employer profiles.
+- 127,902 employer/location records from the 2 October 2026 register at initial release; live counts and dates appear in the app.
+- UK vacancies from configured public employer boards, with source dates and exact sponsorship wording.
+- Hire Stack application workspace: master CV, evidence checks, editable CV and cover-letter drafts, interview preparation, stages and follow-up dates.
+- PDF/DOCX/TXT/JSON Resume import; Word/PDF/text/calendar exports and workspace backups.
+- Optional private accounts with cross-device career workspace sync and single-use recovery codes; guest mode remains available.
+- Official immigration guidance checked every 15 minutes, source-version-pinned explanations, effective dates and a change history; private feedback.
+- Visible site-wide feedback, bug reports and contextual data corrections, with private delivery and confirmation references.
+- Eight readable public pages, practical sponsor-search guides, a share preview and canonical/sitemap controls.
+- Cloudflare Worker, Workers AI, static assets and D1 with scheduled register and vacancy refreshes.
+
+See [`cloudflare/README.md`](cloudflare/README.md) for setup, maintenance and rollback. The older services below remain in the repository for reference and staged migration. Their accounts, alerts, billing, scrapers and scoring are **not** connected to the beta.
+
+## Legacy application quick start
 
 ### Prerequisites
 - Docker & Docker Compose

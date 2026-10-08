@@ -1,0 +1,21 @@
+{
+  "student": {
+    "from_hash": "d597add4320be4eebd482a9ab216c699c60f065fd10edf0ca50642d8e39e5307",
+    "to_hash": "a0a28099940f5a4eb4dca3d3db19ca8715981d5991394da286bbe038bda9e90f",
+    "text": "The overview now explicitly lists Erasmus+ traineeships with a participating licensed student sponsor, and Erasmus+ study at a participating academy or local authority-funded school. These additions were absent from our previous saved version. Confirm the programme and provider conditions before relying on them.",
+    "evidence": [
+      "do a traineeship through the Erasmus+ programme with a participating licensed student sponsor",
+      "study through the Erasmus+ programme at a participating academy or local authority-funded school (also known as a maintained school)"
+    ],
+    "prepared_at": "2026-10-08"
+  },
+  "student-course": {
+    "from_hash": "d612cc6888880d505eec16ec8f2a19dc740dbb73787ffb48d875e6992a6fb8ea",
+    "to_hash": "1603b600de9eea45f2cd29ea9c560b452acd2587509fe46d577af7fca259f654",
+    "text": "The course list now explicitly includes RQF level 2 or above for an Erasmus+ programme with a participating licensed student sponsor. That category was absent from our previous saved version. The page still requires an unconditional offer and a Confirmation of Acceptance for Studies (CAS).",
+    "evidence": [
+      "a course that’s RQF level 2 or above if you’re on an Erasmus+ programme with a participating licensed student sponsor"
+    ],
+    "prepared_at": "2026-10-08"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "release": "2.24.0",
+  "checked_at": "2026-10-08T04:28:28.000Z",
+  "worker_version": "2b8c7700-bc0f-4932-8734-c90554c4da6e",
+  "previous_worker_version": "fa395fd1-141d-4afe-a593-3b487b711617",
+  "pre_migration_bookmark": "000002ae-00000000-000050fe-0532d1e347930196f62c6090a97d24cf",
+  "migration": "0020_marketing_media.sql",
+  "health": {
+    "ok": true,
+    "version": "2.24.0",
+    "register": {
+      "date": "2026-10-06",
+      "count": 127934,
+      "checked_at": "2026-10-07T07:15:14.478Z"
+    }
+  },
+  "image": {
+    "status": 200,
+    "sha256": "f4987b2ec82651645cdf93f1185bc938fe5d62e93a1d7c94fb007b77b720416c"
+  },
+  "instagram_footer": true,
+  "instagram_sameAs": true,
+  "anonymous_marketing_status": 403,
+  "posts_sent": 0,
+  "initial_worker_version": "fdda821e-4d9a-446c-a8a3-5e976823fba5",
+  "initial_welcome_attempt": {
+    "outcome": "source_unavailable",
+    "draft_created": false,
+    "correction": "Read the deployed guide articles through the ASSETS binding."
+  },
+  "production_briefs": [
+    {
+      "id": "a19f14be-af7f-45d2-9382-2026162075f3",
+      "destination": "instagram-company",
+      "state": "proposed",
+      "version": 1,
+      "revision": 1,
+      "created_at": "2026-10-08T04:32:16.218Z",
+      "expires_at": "2026-10-15T04:32:15.871Z",
+      "image_count": 1,
+      "receipt_count": 0,
+      "review_count": 0
+    }
+  ],
+  "ai_budget": [
+    {
+      "day": "2026-10-08",
+      "runs": 4,
+      "calls": 6
+    }
+  ],
+  "browser": {
+    "draft_persisted_after_reload": true,
+    "image_loaded": true,
+    "image_dimensions": [
+      1080,
+      1080
+    ],
+    "screenshot_in_task_outputs": "sponsorintel-instagram-draft-live.png"
+  },
+  "previous_scheduled_marketing": {
+    "id": "marketing-2026-10-08",
+    "state": "no_post",
+    "source_count": 3,
+    "unavailable_sources": [],
+    "calls": 0,
+    "reason": "No eligible slot: the queue is full, expired or needs delivery reconciliation."
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "at": "2026-10-08T08:16:12.699786+00:00",
+  "version": "2.31.0",
+  "worker": "4ba65df7-691c-42c8-a4d6-20888f234489",
+  "rollback_worker": "79264854-357a-466e-ad63-d942327168bd",
+  "build_baseline": {
+    "at": "2026-10-08T08:10:34.498Z",
+    "version": "2.30.0",
+    "resources": [
+      {
+        "path": "/assets/index-JJRPCsN3.js",
+        "bytes": 501398,
+        "gzip_bytes": 148289
+      },
+      {
+        "path": "/assets/index-Duu_OIVf.css",
+        "bytes": 125984,
+        "gzip_bytes": 25661
+      }
+    ]
+  },
+  "build_after": {
+    "initial_javascript": {
+      "files": [
+        {
+          "file": "assets/index-DcjWSvMr.js",
+          "bytes": 403092,
+          "gzip_bytes": 122981
+        }
+      ],
+      "bytes": 403092,
+      "gzip_bytes": 122981
+    },
+    "initial_css": {
+      "files": [
+        {
+          "file": "assets/index-zg5qwyH1.css",
+          "bytes": 103091,
+          "gzip_bytes": 21679
+        }
+      ],
+      "bytes": 103091,
+      "gzip_bytes": 21679
+    },
+    "deferred_owner": "assets/owner-DHfbnDfP.js",
+    "public_pages": 17
+  },
+  "browser_before": {
+    "at": "2026-10-08T08:06:35.303Z",
+    "resources": [
+      {
+        "url": "https://sponsorintel.london/assets/index-Duu_OIVf.css",
+        "type": "Stylesheet",
+        "status": 200,
+        "encoding": "zstd",
+        "cached": false,
+        "encoded": 30271
+      },
+      {
+        "url": "https://sponsorintel.london/assets/index-JJRPCsN3.js",
+        "type": "Script",
+        "status": 200,
+        "encoding": "zstd",
+        "cached": false,
+        "encoded": 152981
+      }
+    ],
+    "truncated": false,
+    "hasMore": false
+  },
+  "browser_after": {
+    "at": "2026-10-08T08:13:00.016Z",
+    "resources": [
+      {
+        "url": "https://sponsorintel.london/assets/index-zg5qwyH1.css",
+        "type": "Stylesheet",
+        "status": 200,
+        "encoding": "zstd",
+        "cached": false,
+        "encoded": 25529
+      },
+      {
+        "url": "https://sponsorintel.london/assets/index-DcjWSvMr.js",
+        "type": "Script",
+        "status": 200,
+        "encoding": "zstd",
+        "cached": false,
+        "encoded": 127038
+      }
+    ],
+    "truncated": false,
+    "hasMore": false
+  },
+  "http": {
+    "at": "2026-10-08T08:13:41.043Z",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "cache_control": "no-store",
+        "robots": null,
+        "health": {
+          "ok": true,
+          "version": "2.31.0",
+          "register": {
+            "date": "2026-10-07",
+            "count": 127949,
+            "checked_at": "2026-10-08T07:15:42.693Z"
+          }
+        }
+      },
+      {
+        "path": "/jobs",
+        "status": 200,
+        "cache_control": "public, max-age=0, must-revalidate",
+        "robots": null,
+        "has_heading": true,
+        "new_public_entry": true,
+        "owner_preloaded": false
+      },
+      {
+        "path": "/updates",
+        "status": 200,
+        "cache_control": "no-store",
+        "robots": null,
+        "has_heading": true,
+        "new_public_entry": true,
+        "owner_preloaded": false
+      },
+      {
+        "path": "/admin",
+        "status": 200,
+        "cache_control": "private, no-store",
+        "robots": "noindex, follow"
+      },
+      {
+        "path": "/api/admin/dashboard",
+        "status": 403,
+        "cache_control": "no-store",
+        "robots": null
+      }
+    ]
+  },
+  "local_runtime": {
+    "initial_public_owner_asset_requests": 0,
+    "owner_navigation_loaded_js_and_css": true,
+    "blocked_owner_javascript_showed_recovery": true,
+    "reload_recovered_dashboard": true,
+    "jobs_return_navigation": true,
+    "synthetic_fixtures_only": true
+  },
+  "production_browser": {
+    "current_roles": 885,
+    "owner_js_and_css_loaded_on_admin_navigation": true,
+    "return_to_jobs": true,
+    "console_errors_or_warnings": [],
+    "observed_viewport_width": 1384,
+    "document_width": 1384,
+    "mobile_override_applied": false
+  },
+  "latest_scheduled_alert_check": {
+    "checked_at": "2026-10-08T08:00:40.084Z",
+    "owners": 1,
+    "attempted": 0,
+    "accepted": 0,
+    "held": 0
+  },
+  "latest_business_run": {
+    "id": "business-497623",
+    "trigger_kind": "scheduled",
+    "state": "completed",
+    "created_at": "2026-10-08T07:45:38.000Z",
+    "finished_at": "2026-10-08T07:45:49.326Z"
+  },
+  "provider_event_count": 0,
+  "tests": {
+    "passed": 336,
+    "failed": 0,
+    "public_prerenders": 17,
+    "browser_budget_passed": true,
+    "typecheck_and_build": true,
+    "worker_dry_run": true
+  },
+  "new_email_sends": 0,
+  "production_model_calls": 0,
+  "google_retries": 0,
+  "social_sends": 0,
+  "limits": [
+    "One before/after desktop browser sample with cache disabled; extensions present, no network throttling. Resource bytes do not establish Core Web Vitals, a Lighthouse score, traffic or ranking gains.",
+    "The responsive viewport override did not apply: actual width stayed 1384 px in both attempts; no new mobile acceptance is claimed.",
+    "First genuine provider email lifecycle event and the next hourly queue-health snapshot remain unobserved."
+  ]
+}

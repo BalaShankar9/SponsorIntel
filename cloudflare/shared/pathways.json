@@ -1,0 +1,221 @@
+{
+  "reviewed": "2026-10-05",
+  "routes": [
+    {
+      "name": "Skilled Worker",
+      "goal": "Work",
+      "url": "https://www.gov.uk/skilled-worker-visa",
+      "summary": "An eligible job with a licensed employer. Check the occupation, salary, English requirement and exact offer before applying.",
+      "watch": "A sponsor licence alone does not mean the employer will sponsor your role.",
+      "next": "Compare the advert with the employer's written sponsorship policy."
+    },
+    {
+      "name": "Health and Care Worker",
+      "goal": "Work",
+      "url": "https://www.gov.uk/health-care-worker-visa",
+      "summary": "For eligible health and care roles with an approved employer. The job, employer and professional registration requirements matter.",
+      "watch": "Overseas recruitment for care workers and senior care workers has closed. Other eligible occupations have different rules.",
+      "next": "Check the precise occupation and application location in the official guide."
+    },
+    {
+      "name": "Student",
+      "goal": "Study",
+      "url": "https://www.gov.uk/student-visa",
+      "summary": "For an eligible course, a Confirmation of Acceptance for Studies and the required finances and English evidence.",
+      "watch": "Permission depends on your course and conditions. Students cannot normally be self-employed or run a business.",
+      "next": "Verify the provider, course, total cost and CAS conditions before paying."
+    },
+    {
+      "name": "Graduate",
+      "goal": "After UK study",
+      "url": "https://www.gov.uk/graduate-visa",
+      "summary": "For eligible graduates applying in the UK after their institution reports successful completion. Check your current permission and deadline.",
+      "watch": "The published duration is two years for applications by 31 December 2026, and 18 months from 1 January 2027. Doctoral graduates have separate three-year provision.",
+      "next": "Check your likely application date. It cannot be extended and does not itself provide a direct settlement route."
+    },
+    {
+      "name": "India Young Professionals Scheme",
+      "goal": "From India",
+      "url": "https://www.gov.uk/india-young-professionals-scheme-visa",
+      "summary": "A ballot-based route for eligible Indian citizens aged 18–30, with a qualifying degree and required savings.",
+      "watch": "Selection is not guaranteed. A route being listed here does not mean a ballot is open.",
+      "next": "Check the official ballot notice and full eligibility rules; never pay someone to guarantee selection."
+    },
+    {
+      "name": "High Potential Individual",
+      "goal": "Work",
+      "url": "https://www.gov.uk/high-potential-individual-visa",
+      "summary": "For eligible recent graduates of universities on the qualifying list for their graduation year. A job offer is not required.",
+      "watch": "Your university, award and graduation date must qualify. A UK degree is not eligible for this route.",
+      "next": "Check the correct annual university list and qualification verification process."
+    },
+    {
+      "name": "Global Talent",
+      "goal": "Work",
+      "url": "https://www.gov.uk/global-talent",
+      "summary": "For leaders or potential leaders in specified research, arts and digital technology fields, through the relevant endorsement or eligible prize pathway.",
+      "watch": "A strong CV alone does not establish eligibility; evidence must meet the route's specific requirements.",
+      "next": "Read the endorsement guidance for your exact field before preparing evidence."
+    },
+    {
+      "name": "Innovator Founder",
+      "goal": "Business",
+      "url": "https://www.gov.uk/innovator-founder-visa",
+      "summary": "For a new business idea assessed by an approved endorsing body as innovative, viable and scalable.",
+      "watch": "Ordinary company registration is insufficient. Business funding, personal maintenance and endorsement costs are separate.",
+      "next": "Test the commercial case and endorsement fit before buying an immigration package."
+    },
+    {
+      "name": "UK Expansion Worker",
+      "goal": "Business",
+      "url": "https://www.gov.uk/uk-expansion-worker-visa",
+      "summary": "For qualifying overseas businesses sending eligible senior employees to establish a UK presence that has not started trading.",
+      "watch": "This is not a general route for a new solo business and is not a direct settlement route.",
+      "next": "Check the overseas business history, employment, sponsorship and UK expansion requirements."
+    },
+    {
+      "name": "Scale-up Worker",
+      "goal": "Work",
+      "url": "https://www.gov.uk/scale-up-worker-visa",
+      "summary": "Initially requires an eligible sponsored job with an approved scale-up business. Later permission has distinct earnings conditions.",
+      "watch": "An employer describing itself as a startup does not make it an approved scale-up sponsor.",
+      "next": "Check the employer's licence category, qualifying role and earnings rules."
+    },
+    {
+      "name": "Family visa",
+      "goal": "Family",
+      "url": "https://www.gov.uk/uk-family-visa",
+      "summary": "For qualifying family relationships and circumstances. Relationship, financial and other evidence varies by application.",
+      "watch": "This is a separate assessment, not an employment or study shortcut.",
+      "next": "Use the guide for the specific family relationship and seek regulated advice where needed."
+    }
+  ],
+  "fees": [
+    {
+      "institution": "Wrexham University",
+      "city": "Wrexham",
+      "course": "Undergraduate international fee band",
+      "level": "Undergraduate",
+      "year": "2026/27",
+      "gbp": 11750,
+      "basis": "Per academic year; multiply by course length",
+      "url": "https://wrexham.ac.uk/international-students/international-fees/",
+      "type": "Published fee band"
+    },
+    {
+      "institution": "Wrexham University",
+      "city": "Wrexham",
+      "course": "MA / MSc international fee band",
+      "level": "Postgraduate",
+      "year": "2026/27",
+      "gbp": 12500,
+      "basis": "Published MA/MSc band; confirm the exact course and duration",
+      "url": "https://wrexham.ac.uk/international-students/international-fees/",
+      "type": "Published fee band"
+    },
+    {
+      "institution": "Wrexham University",
+      "city": "Wrexham",
+      "course": "MBA",
+      "level": "Postgraduate",
+      "year": "2026/27",
+      "gbp": 13000,
+      "basis": "Published international MBA tuition; confirm intake availability",
+      "url": "https://wrexham.ac.uk/courses/postgraduate-courses/mba/",
+      "feeSource": "https://wrexham.ac.uk/international-students/international-fees/",
+      "type": "Named course"
+    },
+    {
+      "institution": "University of Chester",
+      "city": "Chester",
+      "course": "International Finance MSc",
+      "level": "Postgraduate",
+      "year": "2026/27",
+      "gbp": 15500,
+      "basis": "International tuition per year",
+      "url": "https://www.chester.ac.uk/study/course-search/international-finance-msc/",
+      "type": "Named course"
+    },
+    {
+      "institution": "University of Chester",
+      "city": "Chester",
+      "course": "Law LLM",
+      "level": "Postgraduate",
+      "year": "2026/27",
+      "gbp": 15500,
+      "basis": "Published international tuition; confirm course duration and intake",
+      "url": "https://www.chester.ac.uk/study/course-search/law-llm/",
+      "type": "Named course"
+    },
+    {
+      "institution": "University of Chester",
+      "city": "Chester",
+      "course": "TESOL MA",
+      "level": "Postgraduate",
+      "year": "2026/27",
+      "gbp": 15500,
+      "basis": "Published international tuition; confirm course duration and intake",
+      "url": "https://www.chester.ac.uk/study/course-search/tesol-teaching-english-to-speakers-of-other-languages-ma/",
+      "type": "Named course"
+    },
+    {
+      "institution": "Teesside University",
+      "city": "Middlesbrough",
+      "course": "One-year taught MA / MSc international fee band",
+      "level": "Postgraduate",
+      "year": "2026/27",
+      "gbp": 17000,
+      "basis": "Full one-year programme; specialist courses can differ",
+      "url": "https://www.tees.ac.uk/sections/international/fees.cfm",
+      "type": "Published fee band"
+    },
+    {
+      "institution": "Leeds Beckett University",
+      "city": "Leeds",
+      "course": "Management MSc",
+      "level": "Postgraduate",
+      "year": "2026/27",
+      "gbp": 18440,
+      "basis": "Published international tuition for 2026/27; later intakes differ",
+      "url": "https://www.leedsbeckett.ac.uk/courses/management-msc",
+      "type": "Named course"
+    }
+  ],
+  "channels": [
+    {
+      "name": "Home Office / UKVI",
+      "kind": "Official government",
+      "scope": "Immigration and wider Home Office work",
+      "url": "https://www.gov.uk/government/organisations/home-office/about/social-media-use",
+      "note": "Use this official directory to reach its social accounts. Posts also cover non-immigration topics."
+    },
+    {
+      "name": "UKVI support videos",
+      "kind": "Official government",
+      "scope": "Visa applications, eVisas and proving status",
+      "url": "https://www.gov.uk/government/collections/ukvi-support-videos",
+      "note": "A curated official video collection with service walkthroughs."
+    },
+    {
+      "name": "UKCISA",
+      "kind": "Student advice charity",
+      "scope": "International student immigration and student life",
+      "url": "https://www.ukcisa.org.uk/",
+      "note": "Follow social links from its own website. It does not provide individual advice through social media."
+    },
+    {
+      "name": "Free Movement",
+      "kind": "Specialist legal publisher",
+      "scope": "UK immigration and nationality law",
+      "url": "https://freemovement.org.uk/about/subscription-information/",
+      "note": "Its own page links its Bluesky and LinkedIn accounts. Some articles and training require a subscription."
+    },
+    {
+      "name": "Study UK / British Council",
+      "kind": "Education information",
+      "scope": "UK study and scholarship information",
+      "url": "https://study-uk.britishcouncil.org/",
+      "note": "Useful for education research. It is not a personal immigration adviser."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "base": "https://sponsorintel.london",
+  "checked_at": "2026-10-08T06:41:45.362Z",
+  "total_jobs": 885,
+  "licensed_company_jobs": 833,
+  "linked_employers": 24,
+  "advert_wording": {
+    "offered": 0,
+    "conditional": 34,
+    "not_stated": 708,
+    "unavailable": 91
+  },
+  "register": {
+    "available": true,
+    "source_date": "2026-10-06",
+    "checked_at": "2026-10-07T07:15:14.478Z"
+  },
+  "sample_role": "/jobs/413e9219af5df15b324e9293"
+}

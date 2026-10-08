@@ -1,0 +1,15 @@
+# Sponsor Intel 2.45 — recognize explicit sponsorship arrangements
+
+A newly reviewed Wintermute advert commits to arranging UK visa sponsorship, but the classifier only recognized other offer verbs. This release recognizes a narrow direct-employer arrangement statement, keeps modal/conditional wording conditional, and preserves refusal precedence. It does not classify general questions, requests to ask the employer, third-party hopes, introductions to advisers or US-specific arrangements as a UK sponsorship offer.
+
+A replay of all 908 pre-existing active jobs changes no label or excerpt. Of 16 UK-inclusive Wintermute jobs, exactly the London Product Engineering - Team Lead changes from not stated to offered. The separately approved employer source publishes all 16 jobs, with two New York-only roles excluded. Public counts increase from 908/34/53 to **924 jobs / 35 employers / 54 sponsorship claims**. All 18 normalized fields match every stored new role, including full descriptions and original links. See `../docs/WINTERMUTE_SOURCE_REVIEW.md` and `tests/evidence/wintermute-source-2026-10-08.json`.
+
+## Verification
+
+All **444 tests pass** on the pinned Node 24.19.0 runtime in 8.1 seconds. An earlier system-Node run had 443 passes and one account-measurement timeout; the unchanged case passed alone before deployment, and the complete pinned-runtime suite now passes without cancellations. All 21 targeted sourcing/career tests also pass, including the new arrangement, condition, question and refusal cases. TypeScript, production build, all 17 prerenders, browser asset budget and Worker dry-run pass. This is a narrow classifier regression check, not independently measured classification accuracy.
+
+Production is **2.45.0**, Worker `f3410515-006d-4aa8-9882-12f63b4fc453`. Existing 30 migrations / 127 schema objects match exactly, with a current recovery point available; no schema change, production restore or deletion was needed. Owner collection `owner-8c14dccd-83ef-4416-b2cd-693911c71cb5` completed on its first attempt at 17:20:18.514 UTC, independently confirmed by Cloudflare. The actual public browser verifies aggregate totals and the new role's source wording. A retained private discovery record links the employer-original lead to the existing published role, with real inspection time and no invented original dates.
+
+The daily routine was updated in place and read back exactly. Source refresh at 18:30 UTC and the next hourly movement remain unobserved; owner-triggered publication does not close those unattended gates. Automated LinkedIn ingestion, broader sector/early-career coverage, independent quality, model/editorial/social delivery and commercial outcomes remain open. No additional production model, Google, email, social or application call was made. Hosted GitHub checks remain subject to the account billing block.
+
+Rollback code to 2.44.1 Worker `20e9918e-15f7-4895-9917-255237a1f170` if needed. The Wintermute source can be paused through the owner UI if its evidence becomes unreliable. Preserve retained discovery history, customer data and shared allowances.

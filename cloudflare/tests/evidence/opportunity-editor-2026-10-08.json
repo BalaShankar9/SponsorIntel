@@ -1,0 +1,208 @@
+{
+  "release": "2.39.0",
+  "tests": {
+    "passed": 401,
+    "failed": 0
+  },
+  "marketing_runtime": {
+    "checked_at": "2026-10-08T13:17:15.015Z",
+    "environment": "Actual MarketingWorkflow logic in isolated Workerd/D1 with all 26 migrations, fictional vacancy/identity/page evidence and deterministic local-only planner/critic adapters. No remote binding, real AI call or external publication.",
+    "outcomes": [
+      {
+        "mode": "accept",
+        "state": "reviewed",
+        "synthetic_model_calls": [
+          {
+            "model": "fixture-planner",
+            "stage": "plan"
+          },
+          {
+            "model": "fixture-critic",
+            "stage": "review"
+          }
+        ],
+        "proof_versions": 1,
+        "provider_receipts": 0,
+        "replay_calls": 0,
+        "invalidation": {
+          "checked_at": "2026-10-08T13:17:13.689Z",
+          "enabled": true,
+          "checked": 1,
+          "held": [
+            "e9755e24-7efc-49a8-8f56-bf94f92b9de7"
+          ],
+          "changed": [],
+          "external_attention": 0,
+          "limited": false,
+          "external_actions": 0
+        },
+        "outbound": 0
+      },
+      {
+        "mode": "reject",
+        "state": "held",
+        "synthetic_model_calls": [
+          {
+            "model": "fixture-planner",
+            "stage": "plan"
+          },
+          {
+            "model": "fixture-critic",
+            "stage": "review"
+          }
+        ],
+        "proof_versions": 1,
+        "provider_receipts": 0,
+        "replay_calls": 0,
+        "invalidation": null,
+        "outbound": 0
+      },
+      {
+        "mode": "change",
+        "state": "held",
+        "synthetic_model_calls": [
+          {
+            "model": "fixture-planner",
+            "stage": "plan"
+          },
+          {
+            "model": "fixture-critic",
+            "stage": "review"
+          }
+        ],
+        "proof_versions": 1,
+        "provider_receipts": 0,
+        "replay_calls": 0,
+        "invalidation": null,
+        "outbound": 0
+      }
+    ],
+    "limitation": "This verifies workflow, ledger and evidence-change behavior. It does not measure real model judgment, independent adjudication, actual vacancy quality or provider delivery."
+  },
+  "business_runtime": {
+    "checked_at": "2026-10-08T13:23:17.122Z",
+    "environment": "Actual BusinessWorkflow in isolated Workerd/D1; all 26 migrations; fictional job and fixed HTTP responses; no remote bindings, AI, email or real external requests.",
+    "state": "attention",
+    "links": [
+      {
+        "id": "9e4ab61e27815b46bc33b020",
+        "state": "checked",
+        "reason": "title_observed",
+        "requests": 2
+      }
+    ],
+    "matched": 1,
+    "measurement_version": 2,
+    "opportunities": {
+      "checked_at": "2026-10-08T13:23:16.865Z",
+      "enabled": false,
+      "checked": 0,
+      "held": [],
+      "changed": [],
+      "external_attention": 0,
+      "limited": false,
+      "external_actions": 0
+    },
+    "requests": [
+      "https://job-boards.greenhouse.io/monzo/jobs/123",
+      "https://boards.greenhouse.io/monzo/jobs/123",
+      "https://sponsorintel.london/api/health",
+      "https://sponsorintel.london/jobs",
+      "https://sponsorintel.london/insights",
+      "https://sponsorintel.london/sitemap.xml",
+      "https://sponsorintel.london/api/admin/session"
+    ],
+    "shared_budget_reserved": 4,
+    "replay_requests": 0,
+    "public_job_unchanged": true,
+    "limitation": "The incomplete fixture site deliberately creates health findings. This verifies execution and state boundaries, not a healthy production site or every employer application form."
+  },
+  "production": {
+    "status": "live HTTP and signed-in owner UI verified",
+    "version": "2.39.0",
+    "worker": "611bc9b7-0eab-456b-942a-6635994607ef",
+    "live_checks": {
+      "checked_at": "2026-10-08T13:27:39.874272+00:00",
+      "worker": "611bc9b7-0eab-456b-942a-6635994607ef",
+      "checks": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "body": {
+            "ok": true,
+            "version": "2.39.0",
+            "register": {
+              "date": "2026-10-07",
+              "count": 127949,
+              "checked_at": "2026-10-08T07:15:42.693Z"
+            }
+          }
+        },
+        {
+          "path": "/jobs",
+          "status": 200
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 200
+        },
+        {
+          "path": "/api/admin/marketing/agents",
+          "status": 403
+        },
+        {
+          "path": "/api/admin/business",
+          "status": 403
+        }
+      ]
+    },
+    "candidate_pool": {
+      "checked_at": "2026-10-08T13:27:00Z",
+      "ready": 0,
+      "held": 0,
+      "limitation": "No real vacancy presently met the full promotion gate. This is a bounded candidate pool, not the public job count."
+    },
+    "opportunity_proof_versions": 0,
+    "shared_budget": {
+      "day": "2026-10-08",
+      "runs": 4,
+      "calls": 6
+    },
+    "automation": "Existing daily routine updated and exact prompt/schedule/status/target read back successfully.",
+    "ai_calls_for_release": 0,
+    "social_actions_for_release": 0,
+    "first_scheduled_business_receipt": {
+      "id": "business-497629",
+      "trigger_kind": "scheduled",
+      "finished_at": "2026-10-08T13:45:58.586Z",
+      "platform_complete": true,
+      "platform_finished_at": "2026-10-08T13:45:58.722Z",
+      "opportunities": {
+        "checked_at": "2026-10-08T13:45:49.934Z",
+        "enabled": true,
+        "checked": 0,
+        "held": [],
+        "changed": [],
+        "external_attention": 0,
+        "limited": false,
+        "external_actions": 0
+      },
+      "links": [
+        {
+          "id": "e8f7ec5830eaf9b6a636583b",
+          "state": "checked",
+          "reason": "title_observed",
+          "requests": 1
+        },
+        {
+          "id": "5fd3d2eca4e7e8e8bfa028fb",
+          "state": "checked",
+          "reason": "title_observed",
+          "requests": 1
+        }
+      ],
+      "limitation": "Scheduled empty-pool monitor and two page checks; no real vacancy model decision, invalidation or external action."
+    },
+    "first_real_opportunity_model_verdict": "pending"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "purpose": "First genuine scheduled education discovery invocation; allowance hold, not successful candidate discovery",
+  "business": {
+    "id": "business-497636",
+    "state": "completed",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-08T20:45:47.000Z",
+    "finished_at": "2026-10-08T20:46:40.594Z"
+  },
+  "scout": {
+    "day": "2026-10-08",
+    "run_id": "business-497636",
+    "state": "held",
+    "reason": "daily_lead_allowance_used",
+    "started_at": "2026-10-08T20:46:24.342Z",
+    "finished_at": "2026-10-08T20:46:24.342Z",
+    "capacity": 0,
+    "reserved_requests": 0,
+    "requests": 0,
+    "retained": 0,
+    "inspected": 0,
+    "search_pages": 0
+  },
+  "existing_leads_on_day": 5,
+  "platform": {
+    "id": "business-497636",
+    "versionId": "12ba2e12-cc44-4bc3-a2c6-087c9019a272",
+    "start": "2026-10-08T20:46:12.427Z",
+    "end": "2026-10-08T20:46:40.793Z",
+    "success": true,
+    "status": "complete"
+  },
+  "discovery_step": {
+    "name": "discover-daily-education-leads-1",
+    "start": "2026-10-08T20:46:24.340Z",
+    "end": "2026-10-08T20:46:26.022Z",
+    "success": true
+  },
+  "interpretation": {
+    "scheduled_invocation_verified": true,
+    "daily_allowance_hold_verified": true,
+    "automatic_new_candidate_retention_verified": false,
+    "new_public_jobs": 0,
+    "forced_run_or_budget_reset": false
+  }
+}

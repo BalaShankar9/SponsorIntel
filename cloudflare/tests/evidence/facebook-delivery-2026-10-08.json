@@ -1,0 +1,50 @@
+{
+  "observed_at": "2026-10-08 09:17:31 UTC",
+  "brand_id": "7294726",
+  "provider": "metricool",
+  "destination": "facebook-company",
+  "facebook_page_id": "1319703417896763",
+  "public_profile_id": "61595389821505",
+  "schedule_id": 390622747,
+  "publicationDate": {
+    "dateTime": "2026-10-08T10:00:00",
+    "timezone": "Europe/London"
+  },
+  "text": "846 roles. Three very different sponsorship signals.\n\nOur 7 October snapshot of 30 selected UK employer boards found:\n• 16 adverts with wording that states sponsorship is offered.\n• 34 with conditional sponsorship wording.\n• 705 without a clear sponsorship commitment.\nAnother 91 explicitly said sponsorship was unavailable.\n\nThese are automated readings of adverts, not confirmed sponsorship offers or a picture of the whole UK job market. Always read the employer’s current advert and check anything unclear with them.\n\nThe report shows the date, contributing boards and limitations, so you can judge the evidence yourself.\n\nRead the snapshot: https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot\n\n#UKJobs #VisaSponsorship #InternationalStudents",
+  "providers": [
+    {
+      "network": "facebook",
+      "id": "1319703417896763_122093924469512994",
+      "status": "PUBLISHED",
+      "publicUrl": "https://facebook.com/122093616117512994/posts/122093924469512994",
+      "detailedStatus": "Published"
+    }
+  ],
+  "autoPublish": true,
+  "live_url": "https://www.facebook.com/122093616117512994/posts/122093924469512994",
+  "browser_verification": {
+    "author_profile_match": true,
+    "public_audience": true,
+    "full_caption_match": true,
+    "dated_counts_preserved": true,
+    "campaign_query_match": true
+  },
+  "ledger": {
+    "brief_id": "launch-fb-evidence",
+    "version": 1,
+    "revision": 2,
+    "state": "published",
+    "recorded_at": "2026-10-08T09:09:26.936Z",
+    "read_back_from_remote_database": true
+  },
+  "new_schedules": 0,
+  "retries": 0,
+  "model_calls": 0,
+  "email_sends": 0,
+  "actual_provider_published_time": null,
+  "limits": [
+    "Provider publication was observed after the scheduled 10:00 UK slot; the exact external publication timestamp was not returned.",
+    "This is verified scheduled delivery followed by operator reconciliation, not an autonomous model-to-publisher cycle.",
+    "No reach, unique audience or attributed product success is established by publication."
+  ]
+}

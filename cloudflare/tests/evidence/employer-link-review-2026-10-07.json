@@ -1,0 +1,183 @@
+{
+  "reviewed_at": "2026-10-07",
+  "register_source": "https://assets.publishing.service.gov.uk/media/6ac4b79911ed58342ad8e4c5/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-06.csv",
+  "added_links": [
+    {
+      "id": "cloudflare",
+      "sponsor_id": "f836d0c9dd3bae29019003a4",
+      "evidence_url": "https://www.cloudflare.com/gdpr/subprocessors/cloudflare-services/",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Cloudflare Limited",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "deliveroo",
+      "sponsor_id": "ef82b77104d718b9c266786a",
+      "evidence_url": "https://deliveroo.co.uk/legal/",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Roofoods Ltd t/a Deliveroo",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "stripe",
+      "sponsor_id": "a4c1ffd864c2e3e38a892774",
+      "evidence_url": "https://stripe.com/gb/legal/spukl",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Stripe Payments UK Ltd",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "figma",
+      "sponsor_id": "dc5e5b0f2185b97f8f8e48c6",
+      "evidence_url": "https://www.figma.com/uk-tax-strategy/",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Figma UK Limited",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "octopus-energy",
+      "sponsor_id": "1b963b6bb4838b96938a96f4",
+      "evidence_url": "https://octopus.energy/quote/terms-and-conditions/",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Octopus Energy Limited",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "zeeco",
+      "sponsor_id": "d4272f5f1029b6c7acec8818",
+      "evidence_url": "https://www.zeeco.com/privacy-policy",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Zeeco Europe Limited",
+      "register_city": "Rutland",
+      "register_county": "Rutland"
+    },
+    {
+      "id": "invinity",
+      "sponsor_id": "89325f0cfb4d4758510a45aa",
+      "evidence_url": "https://invinity.com/wp-content/uploads/2024/10/2022.05.12-Invinity-Energy-UK-Ltd-Terms-and-Conditions-for-the-Supply-of-Goods-FINAL-1.pdf",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Invinity Energy (UK) Limited",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "axon",
+      "sponsor_id": "9df83e5777ab2d551ba89677",
+      "evidence_url": "https://axon-com.com/legal-and-privacy/",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Axon Communications Inc.",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "bakerhicks",
+      "sponsor_id": "15f4e702e4bf277db585f025",
+      "evidence_url": "https://bakerhicks.com/en/privacy",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Baker Hicks Limited",
+      "register_city": "Warwickshire",
+      "register_county": ""
+    },
+    {
+      "id": "hr-wallingford",
+      "sponsor_id": "2b50a3b31eb0a6cb8348780d",
+      "evidence_url": "https://www.hrwallingford.com/sites/default/files/2024-10/bc048_sustainability-report-2024-r02-00_0.pdf",
+      "reviewed_at": "2026-10-07",
+      "register_name": "HR Wallingford Group Limited",
+      "register_city": "Wallingford",
+      "register_county": "Oxfordshire"
+    },
+    {
+      "id": "multiverse",
+      "sponsor_id": "a59d4845eaf070b6d5b23bf1",
+      "evidence_url": "https://community.multiverse.io/privacy_policy",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Multiverse Group Limited",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "maven",
+      "sponsor_id": "17b565a57b9527eeb262e8cb",
+      "evidence_url": "https://downloads.modern-slavery-statement-registry.service.gov.uk/pdf-published/Z4ESldnl/2023/2023%20-%20Slavery%20and%20Human%20Trafficking%20Statement.pdf",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Maven Securities Holding Limited.",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "numan",
+      "sponsor_id": "251f88c057cdf37907a9c838",
+      "evidence_url": "https://www.numan.com/legal/terms-and-conditions",
+      "reviewed_at": "2026-10-07",
+      "register_name": "Vir Health Limited trading as Numan",
+      "register_city": "London",
+      "register_county": ""
+    },
+    {
+      "id": "university-bath",
+      "sponsor_id": "172ea1ba3df39d083228ae40",
+      "evidence_url": "https://www.bath.ac.uk/jobs/rss/",
+      "reviewed_at": "2026-10-07",
+      "register_name": "University of Bath",
+      "register_city": "Bath",
+      "register_county": "Bath and North East Somerset"
+    },
+    {
+      "id": "university-greater-manchester",
+      "sponsor_id": "f30b3f2408fe12130a3c4b24",
+      "evidence_url": "https://greatermanchester.ac.uk/assets/Uploads/Instrument-of-Government.pdf",
+      "reviewed_at": "2026-10-07",
+      "register_name": "University of Bolton",
+      "register_city": "Bolton",
+      "register_county": ""
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "wep-clinical",
+      "reason": "No exact WEP Clinical entry; public privacy page does not establish the registered sponsor identity. Similar WEP names are not evidence.",
+      "source": "https://www.wepclinical.com/privacy-policy/"
+    },
+    {
+      "id": "nucleus",
+      "reason": "No Nucleus Global entry. Nucleus financial-services records are unrelated; possible medical-group relationship needs a documented employing entity.",
+      "source": "https://job-boards.greenhouse.io/nucleus"
+    },
+    {
+      "id": "apothecom",
+      "reason": "No exact brand entry. ApotheCom is part of Inizio Medical, but a group connection alone does not resolve which sponsor record to show.",
+      "source": "https://www.apothecom.com/"
+    },
+    {
+      "id": "precision-aq",
+      "reason": "Precision AQ Intl, Ltd is a plausible record; the reviewed privacy page and careers site do not establish the UK legal entity connection sufficiently.",
+      "source": "https://www.precisionmedicinegrp.com/privacy-policy/"
+    },
+    {
+      "id": "voleon",
+      "reason": "No Voleon-name Skilled Worker record in this snapshot; legal-entity evidence still needed.",
+      "source": "https://jobs.ashbyhq.com/voleon"
+    },
+    {
+      "id": "callosum",
+      "reason": "Callosum Ltd is on the register, while the website names Callosum Technologies Ltd. Do not equate them without evidence.",
+      "source": "https://www.callosum.com/privacy-policy"
+    },
+    {
+      "id": "sampura",
+      "reason": "No exact Sampura entry; no reviewed UK sponsor identity.",
+      "source": "https://jobs.ashbyhq.com/sampura"
+    },
+    {
+      "id": "seamflow",
+      "reason": "Seamflow Ltd in Cheshire is a candidate, but the reviewed public terms name Seamflow Inc. The Ashby board has not been tied to that UK legal entity.",
+      "source": "https://www.seamflow.com/terms"
+    }
+  ]
+}
