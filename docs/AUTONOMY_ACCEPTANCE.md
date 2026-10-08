@@ -2,7 +2,11 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.51 school identity and genuine discovery invocation
+## Latest: 2.52 individual advert evidence control
+
+The owner can hold an exact advert without changing its employer feed approval or bypassing complete source validation. Immutable history, atomic retirement, stable job identity after first matching, replay protection and a required post-release source collection protect current jobs. Hourly findings keep overdue holds visible. Local fictional runtime/browser evidence verifies the controls; no real advert hold or school approval has been recorded. The King's Lynn external deadline conflict remains unresolved, and its source remains unconfigured within today's discovery limit. See [Advert reviews](ADVERT_REVIEWS.md) and `cloudflare/RELEASE-2.52.md`.
+
+## Previous: 2.51 school identity and genuine discovery invocation
 
 Release 2.50 connected individually reviewed Teaching Vacancies schools to the existing atomic source workflow, with exact school identifiers, separate trust/licence review and 24-request reservations. Release 2.51 now prevents multiple adverts or a renamed school with the same official identifier from consuming additional new-school leads. Pending/approved/paused source configurations are preserved. Different schools sharing a name remain distinct. All 498 tests, build/budget checks and deployment dry run pass; no new schema migration is needed beyond the verified 33-migration schema.
 

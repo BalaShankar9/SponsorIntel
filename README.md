@@ -2,7 +2,7 @@
 
 **[Project guide](docs/SHOWCASE.md)** · [Source](https://github.com/BalaShankar9/SponsorIntel) · [Issues](https://github.com/BalaShankar9/SponsorIntel/issues) · [Bala's work](https://github.com/BalaShankar9)
 
-> **Current stage: Sponsor Intel × Hire Stack 2.51 beta.** [Open Sponsor Intel](https://sponsorintel.london) · [Immigration updates](https://sponsorintel.london/updates) · [Cloudflare fallback](https://sponsorintel.balashankarbollineni4.workers.dev). The integrated app lives in [`cloudflare/`](cloudflare/README.md). [Current release evidence](cloudflare/RELEASE-2.51.md) · [Build roadmap](docs/PRODUCT_ROADMAP.md) · [Community and search growth](docs/GROWTH_PLAN.md).
+> **Current stage: Sponsor Intel × Hire Stack 2.52 beta.** [Open Sponsor Intel](https://sponsorintel.london) · [Immigration updates](https://sponsorintel.london/updates) · [Cloudflare fallback](https://sponsorintel.balashankarbollineni4.workers.dev). The integrated app lives in [`cloudflare/`](cloudflare/README.md). [Current release evidence](cloudflare/RELEASE-2.52.md) · [Build roadmap](docs/PRODUCT_ROADMAP.md) · [Community and search growth](docs/GROWTH_PLAN.md).
 
 # SponsorIntel
 

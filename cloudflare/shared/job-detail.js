@@ -15,6 +15,7 @@ export function jobPath(id) {
 // Presence in a recently read board is evidence of a listing, not a promise
 // that the employer will accept an application or sponsor the applicant.
 export function jobAvailability(job, now = Date.now()) {
+  if (job.review_hold) return job.review_hold === "held" ? "held" : "awaiting_refresh";
   if (job.closes_at != null) {
     const deadline = Date.parse(job.closes_at);
     if (!Number.isFinite(deadline) || new Date(deadline).toISOString() !== job.closes_at) return "stale";

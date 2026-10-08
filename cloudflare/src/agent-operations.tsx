@@ -49,7 +49,7 @@ type Snapshot = {
     attempts: number;
     count: number;
     error_code: string | null;
-    evidence?: {collection?:{total:number;ready:number;fetched:number;state:string;requests:number};feed_review?: {received:number;accepted:number;normalised?:number;excluded:{ref:string;reason:string;closing_date?:string}[]}} | null;
+    evidence?: {adverts_on_review_hold?:number;collection?:{total:number;ready:number;fetched:number;state:string;requests:number};feed_review?: {received?:number;advert_count?:number;accepted?:number;normalised?:number;excluded?:{ref:string;reason:string;closing_date?:string}[]}} | null;
   }[];
   sources: Source[];
   reviews: {
@@ -372,7 +372,7 @@ export function AgentOperations() {
                         <th>Employer</th>
                         <th>Result</th>
                         <th>Attempts</th>
-                        <th>Published roles</th>
+                        <th>Collected roles</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -395,7 +395,8 @@ export function AgentOperations() {
                           </td>
                           <td>{t.attempts} / 3</td>
                           <td>{t.state === "published" ? t.count : "—"}
-                            {t.evidence?.feed_review&&<details><summary>Source screening</summary><p>{t.evidence.feed_review.received} feed entries; {t.evidence.feed_review.excluded.length} excluded before publication.</p>{t.evidence.feed_review.excluded.length>0&&<ul>{t.evidence.feed_review.excluded.map(e=><li key={e.ref}>{e.ref}: {label(e.reason)}{e.closing_date?' ('+e.closing_date+')':''}</li>)}</ul>}<p className="fine-print">An unreviewed distribution marker means we need clarification; it does not prove the role is closed or internal.</p></details>}
+                            {!!t.evidence?.adverts_on_review_hold&&<p>{t.evidence.adverts_on_review_hold} adverts remain on evidence hold.</p>}
+                            {t.evidence?.feed_review&&<details><summary>Source screening</summary><p>{t.evidence.feed_review.received??t.evidence.feed_review.advert_count??0} feed entries; {t.evidence.feed_review.excluded?.length||0} excluded before publication.</p>{!!t.evidence.feed_review.excluded?.length&&<ul>{t.evidence.feed_review.excluded.map(e=><li key={e.ref}>{e.ref}: {label(e.reason)}{e.closing_date?' ('+e.closing_date+')':''}</li>)}</ul>}<p className="fine-print">An unreviewed distribution marker means we need clarification; it does not prove the role is closed or internal.</p></details>}
                           </td>
                         </tr>
                       ))}

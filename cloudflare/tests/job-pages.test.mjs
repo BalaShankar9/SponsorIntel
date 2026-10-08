@@ -18,7 +18,7 @@ function job(patch = {}) {
 }
 function fixture(rows) {
   const sql = new DatabaseSync(":memory:");
-  for (const name of ["0001_initial.sql", "0002_career.sql", "0004_quality_updates.sql", "0010_business_operations.sql", "0019_job_deadlines.sql", "0028_job_publication_date.sql"])
+  for (const name of ["0001_initial.sql", "0002_career.sql", "0004_quality_updates.sql", "0010_business_operations.sql", "0019_job_deadlines.sql", "0028_job_publication_date.sql", "0034_job_review_holds.sql"])
     sql.exec(readFileSync(new URL("../migrations/" + name, import.meta.url), "utf8"));
   for (const row of rows) {
     const keys = Object.keys(row);

@@ -57,6 +57,7 @@ export type Job = {
   first_seen: string;
   level: string;
   active?: number;
+  review_hold?: "held" | "released" | null;
   salary_excerpt?: string;
   employment_type?: string;
   workplace?: string;

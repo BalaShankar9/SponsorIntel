@@ -58,3 +58,8 @@ A new advert URL is not necessarily a new school. The scout now requires the ori
 The actual scheduled `business-497636` run completed at 20:46:40 UTC on 8 October, independently confirmed by Cloudflare. Its first discovery step correctly held at the five-existing-lead limit and started/reserved zero requests. This proves scheduled invocation and the allowance control, not automatic discovery of a new candidate. The first eligible next-day run must be inspected separately. See `tests/evidence/education-scout-scheduled-2026-10-08.json` under `cloudflare/`.
 
 The initial King's Lynn school review found a real external deadline conflict: Drama is 21 October on DfE but 16 October on the DfE-linked employer portal, reference 3600-R0174. The school/trust legal relationship and current licence record were checked, but the source remains unconfigured. Do not admit it until this conflict is reconciled or a separately reviewed per-advert hold can exclude the affected role. See [the full source review](KINGS_LYNN_SOURCE_REVIEW.md). No applicant information or screening answers were entered.
+
+
+## Individual advert holds (2.52)
+
+The owner can record a specific external evidence conflict through [Advert reviews](ADVERT_REVIEWS.md) before approving a configured school. The complete school catalogue and every original advert still pass the existing parser; this cannot bypass a parser or identity failure. A held role stays private while unaffected validated roles can be published. The King's Lynn source remains unconfigured on 8 October; no additional lead, source, hold or public job has been created. Review the original conflict again and record the exact hold before any later admission within the existing limits.

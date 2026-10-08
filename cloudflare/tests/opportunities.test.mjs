@@ -25,7 +25,7 @@ function database() {
     "0004_quality_updates.sql",
     "0006_owner_analytics.sql",
     "0019_job_deadlines.sql",
-    "0028_job_publication_date.sql",
+    "0028_job_publication_date.sql", "0034_job_review_holds.sql",
     "0031_paged_sources.sql",
   ])
     sql.exec(

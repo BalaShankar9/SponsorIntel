@@ -35,8 +35,12 @@ export function JobDetailView({
       {availability !== "current" && (
         <div className="role-availability" role="status">
           <Clock3 size={21} />
-          <div><strong>{availability === "expired" ? "The advertised deadline has passed" : availability === "removed" ? "No longer in our current collection" : "This information needs a fresh check"}</strong>
-            <p>{availability === "expired"
+          <div><strong>{availability === "held" ? "This advert is under review" : availability === "awaiting_refresh" ? "Waiting for a fresh employer check" : availability === "expired" ? "The advertised deadline has passed" : availability === "removed" ? "No longer in our current collection" : "This information needs a fresh check"}</strong>
+            <p>{availability === "held"
+              ? "We found conflicting or uncertain information and have paused this role in current opportunities. The saved advert below is historical evidence, not a verified current offer."
+              : availability === "awaiting_refresh"
+              ? "The evidence review is complete. This role stays outside current opportunities until a later employer refresh confirms it."
+              : availability === "expired"
               ? "The closing date supplied by the employer has passed. We have removed this role from current opportunities."
               : availability === "removed"
               ? "This advert was absent from the last successful employer-board refresh. It may have closed or moved."

@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useCareer } from "./career-data";
 import { AgentOperations } from './agent-operations';
+import {JobReviews} from './job-reviews';
 import { DiscoveryDesk } from './discovery-desk';
 import { BusinessOperations } from './business-operations';
 import { SearchPerformance } from './search-performance';
@@ -184,6 +185,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
           <MarketingDesk />
           <AgentOperations />
           <DiscoveryDesk />
+          <JobReviews />
           <CampaignAnalytics data={data.campaigns} />
           <p className="fine-print">
             Checked {date(data.measured_at)} · New measurement baseline enabled {date(data.measurement?.enabled_at)}.

@@ -26,3 +26,6 @@ Original DfE pages: [English](https://teaching-vacancies.service.gov.uk/jobs/tea
 The source remains unconfigured. Recheck the contradictory original pages before admission. If the conflict persists, keep the source held or implement a separately reviewed, evidence-backed per-advert conflict hold before approving unaffected roles. Never silently pick the later date, infer a closure from absence, or treat this note as permission to exceed the daily discovery limit. Once eligible for admission, use the existing owner review/probe; verify publication and a later scheduled refresh separately.
 
 The 2.50 collector validates complete school catalogues and internal DfE consistency. It does not automatically reconcile every external application portal or attachment. This review demonstrates that additional gate with real evidence rather than implying the collector already handles it.
+
+
+Release 2.52 implements the [individual advert hold control](ADVERT_REVIEWS.md), including source-publication enforcement and history. This is not a recorded hold for this school: it remains unconfigured on 8 October, no additional daily lead was added, and its original evidence must be rechecked before a later source/advert decision.

@@ -4,4 +4,8 @@ test('public school detail identifies original source, date precision, attributi
  const template='<html><head><title>Test</title><link rel="canonical" href="https://sponsorintel.london" /><meta name="robots" content="index" /><script id="structured-data" type="application/ld+json">{}</script></head><body><div id="root"></div></body></html>';
  const response=await renderJobPage(new Request('https://sponsorintel.london/jobs/'+job.id),{fetch:async()=>new Response(template)},current);const html=await response.text();
  assert.match(html,/Department for Education — Teaching Vacancies/);assert.match(html,/Published on Teaching Vacancies/);assert.match(html,/calendar date, without a publication time/);assert.match(html,/Open Government Licence v3.0/);assert.match(html,/attachments and external application forms may contain further conditions/);assert.match(html,/Read the original advert for free/);assert.match(html,/Conditional sponsorship/);assert.ok(html.includes(job.apply_url));assert.doesNotMatch(html,/original publication date supplied by Greenhouse/);
+ for(const [state,label] of [['held','This advert is under review'],['released','Waiting for a fresh employer check']]){
+ const result=await renderJobPage(new Request('https://sponsorintel.london/jobs/'+job.id),{fetch:async()=>new Response(template)},{...current,active:0,review_hold:state});const body=await result.text();assert.match(result.headers.get('x-robots-tag'),/noindex/);assert.ok(body.includes(label));assert.match(body,/Preparation is paused for this listing/);assert.doesNotMatch(body,/\"@type\":\"JobPosting\"/);
+ }
+
 });

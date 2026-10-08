@@ -384,7 +384,7 @@ export async function executeSourceTask(
       iso(now),
       [
         DB.prepare(
-          "UPDATE agent_tasks SET state='published',count=?,evidence=?,error_code=NULL,finished_at=? WHERE run_id=? AND source_id=?",
+          "UPDATE agent_tasks SET state='published',count=?,evidence=json_set(?,'$.adverts_on_review_hold',(SELECT COUNT(*) FROM jobs j WHERE j.board_id=agent_tasks.source_id AND EXISTS(SELECT 1 FROM job_review_holds h JOIN job_review_targets t ON t.source_id=h.source_id AND t.apply_url=h.apply_url WHERE t.job_id=j.id AND h.state='held'))),error_code=NULL,finished_at=? WHERE run_id=? AND source_id=?",
         ).bind(
           jobs.length,
           JSON.stringify(evidence),
