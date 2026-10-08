@@ -1,7 +1,7 @@
 import { boundedText, idFor } from "./data.js";
 import { XMLParser, XMLValidator } from "fast-xml-parser";
 
-import { BOARDS, SECTORS, UNIVERSITY_FEEDS } from "./job-sources.js";
+import { BOARDS, SECTORS, UNIVERSITY_FEEDS, universityFeedIds } from "./job-sources.js";
 import { employerLicences } from "./employer-licences.js";
 import { currentJobs } from "./current-jobs.js";
 import { jobFilter } from "./job-filters.js";
@@ -294,6 +294,7 @@ export function universityRestriction(title, description, feed = {}) {
   if (/\binternal(?:[ -](?:candidates|applicants))?[ -]only\b/i.test(heading) ||
       /\b(?:this (?:post|role|vacancy|position|opportunity)|applications?) (?:is |are |will be )?(?:restricted|limited) to (?:current|existing|internal) (?:members of staff|staff|employees|applicants|candidates)\b/i.test(text) ||
       /\b(?:open|available) (?:only|exclusively) to (?:current|existing|internal) (?:members of staff|staff|employees|applicants|candidates)\b/i.test(text) ||
+      /\b(?:this (?:post|role|vacancy|position|opportunity)|applications?) (?:is |are |will be )?(?:only|exclusively) (?:open|available) to (?:current|existing|internal) (?:members of staff|staff|employees|applicants|candidates)\b/i.test(text) ||
       /\b(?:open|available) to internal (?:applicants|candidates) only\b/i.test(text))
     return "internal_only";
   if ((feed.holdMarkers || []).some(marker => text.split(/\s+/).includes(marker)))
@@ -344,14 +345,51 @@ export function parseUniversityFeed(xml, boardId, now = Date.now()) {
   return universityFeedSnapshot(xml,boardId,now).jobs;
 }
 
+export function combineUniversitySnapshots(board, snapshots) {
+  const ids = universityFeedIds(board.id);
+  if (snapshots.length !== ids.length || snapshots.some((s,i) => s.feed_id !== ids[i]))
+    throw Error("Incomplete campus collection");
+  if (ids.length === 1) return snapshots[0];
+  const records = new Map(), excludedRefs = new Set();
+  let duplicates = 0;
+  for (const snapshot of snapshots) {
+    for (const excluded of snapshot.review.excluded) excludedRefs.add(excluded.ref);
+    for (const job of snapshot.jobs) {
+      const {location, ...content} = job;
+      const prior = records.get(job.id);
+      if (prior) {
+        // A shared vacancy may cover two campuses. Differing content/deadlines
+        // are uncertain and must not replace the previous complete snapshot.
+        if (JSON.stringify(prior.content) !== JSON.stringify(content))
+          throw Error("Conflicting campus vacancy");
+        prior.locations.add(location); duplicates++;
+      } else records.set(job.id,{content,locations:new Set([location])});
+    }
+  }
+  if ([...excludedRefs].some(ref => records.has(ref))) throw Error("Conflicting campus restriction");
+  const jobs = [...records.values()].map(({content,locations}) => ({...content,location:[...locations].join("; ")}));
+  return {jobs,review:{
+    policy:"university-campus-group-v1", url:UNIVERSITY_FEEDS[board.id].directory,
+    channel:board.company + " (reviewed campus feeds)",
+    received:snapshots.reduce((n,s)=>n+s.review.received,0), accepted:jobs.length,
+    duplicate_refs:duplicates,
+    excluded:snapshots.flatMap(s=>s.review.excluded.map(e=>({...e,feed_id:s.feed_id}))),
+    feeds:snapshots.map(s=>({feed_id:s.feed_id,...s.review})),
+  }};
+}
+
 export async function fetchBoard(board) {
   if (board.provider === "university-rss") {
-    const feed = UNIVERSITY_FEEDS[board.id];
-    if (!feed) throw new Error("Unreviewed university feed");
-    const response = await fetch(feed.url, { headers: { Accept: "application/rss+xml, text/xml", "User-Agent": "SponsorIntel/2.9 (+https://sponsorintel.london)" },
-      signal: AbortSignal.timeout(25000), redirect: "manual" });
-    const xml = await boundedText(response, 2_000_000, feed.encoding);
-    const snapshot = universityFeedSnapshot(xml, board.id);
+    const snapshots = [];
+    const now = Date.now();
+    for (const feedId of universityFeedIds(board.id)) {
+      const feed = UNIVERSITY_FEEDS[feedId];
+      const response = await fetch(feed.url, { headers: { Accept: "application/rss+xml, text/xml", "User-Agent": "SponsorIntel/2.9 (+https://sponsorintel.london)" },
+        signal: AbortSignal.timeout(25000), redirect: "manual" });
+      const xml = await boundedText(response, 2_000_000, feed.encoding);
+      snapshots.push({feed_id:feedId,...universityFeedSnapshot(xml, feedId, now)});
+    }
+    const snapshot = combineUniversitySnapshots(board,snapshots);
     const jobs = await normaliseBoardJobs(snapshot.jobs, board);
     // Private, bounded source decisions travel inside the same workflow step.
     // JSON array publication never exposes this metadata as a public vacancy.

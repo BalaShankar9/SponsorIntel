@@ -1,0 +1,489 @@
+{
+  "observed_at": "2026-10-08T11:18:24.044Z",
+  "files": [
+    {
+      "id": "cardiff-met-cyncoed",
+      "url": "https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1081&type=9",
+      "bytes": 19168,
+      "sha256": "651ea5923f99e8789ebd71cf023e0e7a9cda8174cb464562b8d9501136aa68b6"
+    },
+    {
+      "id": "cardiff-met-llandaff",
+      "url": "https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1080&type=9",
+      "bytes": 73395,
+      "sha256": "8c326fe81db04b386ccff989536d43d7ee0d4669849c6986fa4b5dfbe7c0382a"
+    }
+  ],
+  "review": {
+    "policy": "university-campus-group-v1",
+    "url": "https://jobs.cardiffmet.ac.uk/RSS/",
+    "channel": "Cardiff Metropolitan University (reviewed campus feeds)",
+    "received": 15,
+    "accepted": 14,
+    "duplicate_refs": 0,
+    "excluded": [
+      {
+        "ref": "2627038",
+        "reason": "internal_only",
+        "feed_id": "cardiff-met-llandaff"
+      }
+    ],
+    "feeds": [
+      {
+        "feed_id": "cardiff-met-cyncoed",
+        "policy": "university-campus-v2",
+        "url": "https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1081&type=9",
+        "channel": "Jobs at Cardiff Metropolitan | Cyncoed Campus",
+        "received": 4,
+        "accepted": 4,
+        "excluded": []
+      },
+      {
+        "feed_id": "cardiff-met-llandaff",
+        "policy": "university-campus-v2",
+        "url": "https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1080&type=9",
+        "channel": "Jobs at Cardiff Metropolitan | Llandaff Campus",
+        "received": 11,
+        "accepted": 10,
+        "excluded": [
+          {
+            "ref": "2627038",
+            "reason": "internal_only"
+          }
+        ]
+      }
+    ]
+  },
+  "normalised": 14,
+  "worded_sponsorship": 0,
+  "public_ids": [
+    "886c9e35eee1d89242266a75",
+    "6bf967974507a5fa1cf818e9",
+    "1953a0e5c6b788e2220acfba",
+    "71610ca4da44caefce18dc5b",
+    "d219f15272a0f4762f0bf738",
+    "7ddcbabd979d7b2b09a1892f",
+    "2d5a876f355b72e3bff8e049",
+    "f6ca6eb7ad3f8f622f60df0c",
+    "eee2ab888a468f6c62711ead",
+    "d29de14f5c2dd97e42ed47e3",
+    "85123cf1041bf0fe371de3aa",
+    "863c68afb658f3b1374e4d89",
+    "bbcf855d133421fa29b837b7",
+    "023e641290c2e46efd40b7e9"
+  ],
+  "record_checks": [
+    {
+      "id": "886c9e35eee1d89242266a75",
+      "title": "Casual Coach \u2013 Hockey (2526010-H-6)",
+      "application_deadline": "2026-10-14",
+      "location": "Cyncoed Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "6bf967974507a5fa1cf818e9",
+      "title": "Casual Coach \u2013 Tennis (2526010-TC-6)",
+      "application_deadline": "2026-10-14",
+      "location": "Cyncoed Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "1953a0e5c6b788e2220acfba",
+      "title": "Casual Coach - Athletics (2526010-A-6)",
+      "application_deadline": "2026-10-14",
+      "location": "Cyncoed Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "71610ca4da44caefce18dc5b",
+      "title": "Casual Coach \u2013 Gymnastics (2526010-GYM-5)",
+      "application_deadline": "2026-10-14",
+      "location": "Cyncoed Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "d219f15272a0f4762f0bf738",
+      "title": "Registry Advisor (Student Lifecycle) (2627112)",
+      "application_deadline": "2026-10-22",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "7ddcbabd979d7b2b09a1892f",
+      "title": "Registry Officer (Student Lifecycle) (2627100)",
+      "application_deadline": "2026-10-19",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "2d5a876f355b72e3bff8e049",
+      "title": "Process Operations Manager (2627090)",
+      "application_deadline": "2026-10-30",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "f6ca6eb7ad3f8f622f60df0c",
+      "title": "Estates Capital Projects Officer (2627011)",
+      "application_deadline": "2026-10-18",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "eee2ab888a468f6c62711ead",
+      "title": "Senior Technician (2526529)",
+      "application_deadline": "2026-10-18",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "d29de14f5c2dd97e42ed47e3",
+      "title": "Admissions Officer (2627077)",
+      "application_deadline": "2026-10-11",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "85123cf1041bf0fe371de3aa",
+      "title": "Student Insight Team Member (2627029)",
+      "application_deadline": "2026-10-14",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "863c68afb658f3b1374e4d89",
+      "title": "Technologist (2526595-1)",
+      "application_deadline": "2026-10-25",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "bbcf855d133421fa29b837b7",
+      "title": "Lecturer in Architecture - Professional Studies Advisor (2627006)",
+      "application_deadline": "2026-10-11",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    },
+    {
+      "id": "023e641290c2e46efd40b7e9",
+      "title": "Lecturer in Architecture (2627007)",
+      "application_deadline": "2026-10-11",
+      "location": "Llandaff Campus, Cardiff, United Kingdom",
+      "sponsorship": "not_stated"
+    }
+  ],
+  "scope": "Two explicitly reviewed UK campus RSS feeds grouped under one employer; no whole-university or national coverage claim.",
+  "discovery": "https://jobs.cardiffmet.ac.uk/RSS/",
+  "register_match": {
+    "id": "0303f81c635c02e7229152c2",
+    "name": "Cardiff Metropolitan University",
+    "city": "CARDIFF",
+    "routes": [
+      "International Sportsperson",
+      "Skilled Worker"
+    ],
+    "source_date": "2026-10-07",
+    "other_record_not_used": "6e4a40d8149871e47b8f40b5 has International Sportsperson only"
+  },
+  "runtime": {
+    "checked_at": "2026-10-08T11:22:59.401Z",
+    "environment": "Isolated local Workerd/D1 with the actual SourceWorkflow; fixed downloaded public feed bytes, no remote bindings or requests.",
+    "run": {
+      "id": "isolated-campus-236",
+      "state": "completed",
+      "requests": 2
+    },
+    "requests": 2,
+    "records": 14,
+    "all_normalised_fields_match_node": true,
+    "exclusion": [
+      {
+        "ref": "2627038",
+        "reason": "internal_only",
+        "feed_id": "cardiff-met-llandaff"
+      }
+    ],
+    "replay": {
+      "id": "isolated-campus-236",
+      "state": "completed",
+      "reused": true
+    },
+    "recovery_scope": "No production database or external calls; failure/budget boundaries also covered by focused SQLite/parser tests."
+  },
+  "existing_campus_review": {
+    "reviewed": 72,
+    "restricted": []
+  },
+  "tests": {
+    "full_suite": 372,
+    "passed": 372,
+    "failed": 0,
+    "build": "passed",
+    "worker_dry_run": "passed"
+  },
+  "publication": {
+    "worker_version": "153aa785-d64f-495d-9c8a-edea0d27805a",
+    "app_version": "2.36.0",
+    "state": "verified_owner_triggered",
+    "run": {
+      "id": "owner-4721cfa2-8e38-4ed8-aa44-2418f85645ae",
+      "state": "completed",
+      "created_at": "2026-10-08T11:27:01.294Z",
+      "finished_at": "2026-10-08T11:27:21.471Z",
+      "trigger_kind": "owner",
+      "requests": 2,
+      "source_id": "university-cardiff-met",
+      "task_state": "published",
+      "attempts": 1,
+      "count": 14,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T11:27:20.780Z",
+        "received": 14,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "0303f81c635c02e7229152c2",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0,
+        "feed_review": {
+          "policy": "university-campus-group-v1",
+          "url": "https://jobs.cardiffmet.ac.uk/RSS/",
+          "channel": "Cardiff Metropolitan University (reviewed campus feeds)",
+          "received": 15,
+          "accepted": 14,
+          "duplicate_refs": 0,
+          "excluded": [
+            {
+              "ref": "2627038",
+              "reason": "internal_only",
+              "feed_id": "cardiff-met-llandaff"
+            }
+          ],
+          "feeds": [
+            {
+              "feed_id": "cardiff-met-cyncoed",
+              "policy": "university-campus-v2",
+              "url": "https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1081&type=9",
+              "channel": "Jobs at Cardiff Metropolitan | Cyncoed Campus",
+              "received": 4,
+              "accepted": 4,
+              "excluded": []
+            },
+            {
+              "feed_id": "cardiff-met-llandaff",
+              "policy": "university-campus-v2",
+              "url": "https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1080&type=9",
+              "channel": "Jobs at Cardiff Metropolitan | Llandaff Campus",
+              "received": 11,
+              "accepted": 10,
+              "excluded": [
+                {
+                  "ref": "2627038",
+                  "reason": "internal_only"
+                }
+              ]
+            }
+          ],
+          "normalised": 14
+        }
+      }
+    },
+    "next_scheduled_refresh": "2026-10-08T12:30:00Z",
+    "scheduled_execution_observed": false
+  },
+  "public_acceptance": {
+    "checked_at": "2026-10-08T11:28:22.908Z",
+    "health": {
+      "ok": true,
+      "version": "2.36.0",
+      "register": {
+        "date": "2026-10-07",
+        "count": 127949,
+        "checked_at": "2026-10-08T07:15:42.693Z"
+      }
+    },
+    "collections": {
+      "total": 899,
+      "employers": 33,
+      "early_career": 51,
+      "sponsorship": 50,
+      "licensed": 847,
+      "salary": 155
+    },
+    "new_source": 14,
+    "licence_id": "0303f81c635c02e7229152c2",
+    "all_public_detail_fields_match_review": true,
+    "details": [
+      {
+        "id": "d29de14f5c2dd97e42ed47e3",
+        "status": 200,
+        "deadline": "2026-10-11",
+        "closes_at": "2026-10-11T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "1953a0e5c6b788e2220acfba",
+        "status": 200,
+        "deadline": "2026-10-14",
+        "closes_at": "2026-10-14T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "71610ca4da44caefce18dc5b",
+        "status": 200,
+        "deadline": "2026-10-14",
+        "closes_at": "2026-10-14T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "886c9e35eee1d89242266a75",
+        "status": 200,
+        "deadline": "2026-10-14",
+        "closes_at": "2026-10-14T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "6bf967974507a5fa1cf818e9",
+        "status": 200,
+        "deadline": "2026-10-14",
+        "closes_at": "2026-10-14T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "f6ca6eb7ad3f8f622f60df0c",
+        "status": 200,
+        "deadline": "2026-10-18",
+        "closes_at": "2026-10-18T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "023e641290c2e46efd40b7e9",
+        "status": 200,
+        "deadline": "2026-10-11",
+        "closes_at": "2026-10-11T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "bbcf855d133421fa29b837b7",
+        "status": 200,
+        "deadline": "2026-10-11",
+        "closes_at": "2026-10-11T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "2d5a876f355b72e3bff8e049",
+        "status": 200,
+        "deadline": "2026-10-30",
+        "closes_at": "2026-10-31T00:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "d219f15272a0f4762f0bf738",
+        "status": 200,
+        "deadline": "2026-10-22",
+        "closes_at": "2026-10-22T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "7ddcbabd979d7b2b09a1892f",
+        "status": 200,
+        "deadline": "2026-10-19",
+        "closes_at": "2026-10-19T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "eee2ab888a468f6c62711ead",
+        "status": 200,
+        "deadline": "2026-10-18",
+        "closes_at": "2026-10-18T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "85123cf1041bf0fe371de3aa",
+        "status": 200,
+        "deadline": "2026-10-14",
+        "closes_at": "2026-10-14T23:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      },
+      {
+        "id": "863c68afb658f3b1374e4d89",
+        "status": 200,
+        "deadline": "2026-10-25",
+        "closes_at": "2026-10-26T00:00:00.000Z",
+        "last_seen": "2026-10-08T11:27:20.780Z"
+      }
+    ]
+  },
+  "browser": {
+    "url": "https://sponsorintel.london/jobs?q=Cardiff%20Metropolitan",
+    "matching_roles": 14,
+    "catalogue_roles": 899,
+    "employers": 33,
+    "sponsorship_mentioned": 50,
+    "screenshot": "outputs/sponsorintel-cardiff-opportunities-236.png",
+    "owner_receipt_verified": true,
+    "exclusion_visible": "2627038: internal only"
+  },
+  "opportunity_checks": {
+    "base": "https://sponsorintel.london",
+    "passed": 12,
+    "boards": 33,
+    "collections": {
+      "total": 899,
+      "employers": 33,
+      "early_career": 51,
+      "sponsorship": 50,
+      "licensed": 847,
+      "salary": 155
+    },
+    "early_career_with_sponsorship_wording": 2,
+    "checked_at": "2026-10-08T11:28:57.419Z"
+  },
+  "search_html_checks": {
+    "checked_at": "2026-10-08T11:28:59.605Z",
+    "origin": "https://sponsorintel.london",
+    "checks": [
+      {
+        "path": "/jobs",
+        "status": 200,
+        "total": 899,
+        "visible_roles": 12,
+        "page": 1,
+        "canonical": "https://sponsorintel.london/jobs",
+        "cache": "no-store",
+        "html_api_agree": true
+      },
+      {
+        "path": "/jobs?page=2",
+        "status": 200,
+        "total": 899,
+        "visible_roles": 12,
+        "page": 2,
+        "canonical": "https://sponsorintel.london/jobs?page=2",
+        "cache": "no-store",
+        "html_api_agree": true
+      },
+      {
+        "path": "/jobs?sponsorship=mentioned",
+        "status": 200,
+        "total": 50,
+        "visible_roles": 12,
+        "page": 1,
+        "canonical": "https://sponsorintel.london/jobs?sponsorship=mentioned",
+        "cache": "no-store",
+        "html_api_agree": true
+      },
+      {
+        "path": "/jobs?q=SponsorIntelNoMatchingRoleQA",
+        "status": 200,
+        "total": 0,
+        "visible_roles": 0,
+        "page": 1,
+        "canonical": "https://sponsorintel.london/jobs?q=SponsorIntelNoMatchingRoleQA",
+        "cache": "no-store",
+        "html_api_agree": true
+      }
+    ]
+  }
+}

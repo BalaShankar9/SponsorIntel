@@ -243,11 +243,31 @@ export const BOARDS = [
     id: "university-nottingham", company: "University of Nottingham", provider: "university-rss",
     sector: "education", careers: "https://jobs.nottingham.ac.uk/",
   },
+  {
+    id: "university-cardiff-met", company: "Cardiff Metropolitan University", provider: "university-rss",
+    sector: "education", careers: "https://jobs.cardiffmet.ac.uk/",
+  },
 ];
 
 // Explicit campus feeds only: a UK university can also advertise overseas roles.
 // These URLs cannot be supplied by an intake form or a feed item.
 export const UNIVERSITY_FEEDS = {
+  "university-cardiff-met": {
+    directory: "https://jobs.cardiffmet.ac.uk/RSS/",
+    campuses: ["cardiff-met-cyncoed", "cardiff-met-llandaff"],
+  },
+  "cardiff-met-cyncoed": {
+    url: "https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1081&type=9",
+    location: "Cyncoed Campus, Cardiff, United Kingdom", origin: "https://jobs.cardiffmet.ac.uk",
+    path: "/rss/click.aspx", title: "Jobs at Cardiff Metropolitan | Cyncoed Campus",
+    encoding: "utf-8", // Observed bytes are UTF-8 despite the ISO-8859-1 declaration.
+  },
+  "cardiff-met-llandaff": {
+    url: "https://jobs.cardiffmet.ac.uk/RSS/rss.aspx?cat=1080&type=9",
+    location: "Llandaff Campus, Cardiff, United Kingdom", origin: "https://jobs.cardiffmet.ac.uk",
+    path: "/rss/click.aspx", title: "Jobs at Cardiff Metropolitan | Llandaff Campus",
+    encoding: "utf-8",
+  },
   "university-southampton": {
     url: "https://jobs.soton.ac.uk/RSS/rss.aspx?cat=282&type=9",
     location: "Highfield Campus, Southampton, United Kingdom", origin: "https://jobs.soton.ac.uk",
@@ -274,3 +294,18 @@ export const UNIVERSITY_FEEDS = {
     encoding: "utf-8",
   },
 };
+
+// Grouped campuses remain one employer and one atomic publication. All network
+// destinations are explicitly reviewed here; never expand from RSS links.
+export function universityFeedIds(boardId) {
+  const root = UNIVERSITY_FEEDS[boardId];
+  const ids = root?.campuses || [boardId];
+  if (!root || !Array.isArray(ids) || !ids.length || ids.length > 4 ||
+      new Set(ids).size !== ids.length || ids.some(id => !UNIVERSITY_FEEDS[id]?.url || UNIVERSITY_FEEDS[id]?.campuses))
+    throw Error("Unreviewed university feed");
+  return ids;
+}
+
+export function sourceRequestCost(board) {
+  return board.provider === "university-rss" ? universityFeedIds(board.id).length : 1;
+}

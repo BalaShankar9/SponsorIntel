@@ -2,13 +2,21 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.35 employer-text quality correction
+## Latest: 2.36 grouped campus sourcing
+
+Cardiff Metropolitan University's two explicitly reviewed UK campus feeds now publish atomically as one employer. One real owner-triggered cloud run completed at 11:27:21 UTC on 8 October: 15 feed entries, one staff/student-only exclusion, 14 published roles and two request reservations. All 14 public records match the reviewed text, source dates, closing dates and links. The collection contains 899 roles across 33 employers; 50 have offered/conditional sponsorship wording. None of the Cardiff adverts explicitly offers sponsorship. Their exact current Skilled Worker register link remains separate from vacancy and applicant eligibility.
+
+The collector merges an identical shared reference across campuses, preserves both locations and holds conflicting text/deadlines/restrictions or a failed campus response. Every configured feed is reserved inside the existing 500-per-day and 150-per-run ceilings, including uncertain/failed attempts. The newly observed “only available to current employees and students” wording is excluded; ordinary external-applicant and negated wording stays accepted by the diagnostic fixtures. This is narrow source screening, not proof of universal eligibility.
+
+All 372 tests, build and dry-run pass. The actual SourceWorkflow also completed against fixed downloaded public bytes in isolated Workerd/D1, with all 14 records matching Node and no extra requests on replay. Production 2.36.0 and public HTML/API/browser checks pass. The first genuine scheduled collection of the grouped source remains due at 12:30 UTC, alongside the first scheduled importer check for 2.35. No model, Google, email or social call was forced. See `cloudflare/RELEASE-2.36.md` and `cloudflare/tests/evidence/cardiff-campus-2026-10-08.json`.
+
+## 2.35 employer-text quality correction
 
 Follow-up: genuine scheduled business run `business-497626` completed at 10:45:50.619 UTC with healthy HTTP/content checks, empty email queues and no high-priority findings. The scheduled source importer is still due separately. After owner-authorised removal of regenerable caches and unused browser downloads, the scoped sharp security fix now passes a clean install, all 365 tests, build and Worker dry-run. Actual loaded sharp 0.35.5 / librsvg 2.63.2 are verified through an isolated Images binding. The full audit has no high/critical findings; the three moderate Mammoth/argparse/sprintf-js entries remain. The verified local-state archive is preserved, and the daily routine checks disk capacity before local work. Live health and job HTML agree at 11:05 UTC; production remains 2.35.0 with no deployment for this tooling change. Linux hosted checks remain blocked by GitHub billing. See `TOOLCHAIN_SECURITY.md` and the 10:45 scheduled-run evidence.
 
 The public-data audit found formatting attributes in two current Graphcore descriptions. The importer now parses employer HTML correctly, including encoded tags with a greater-than sign inside a quoted attribute. All 364 tests pass; the complete 85-UK-role output from the same 180-record source agrees between Node and isolated Workerd. All 85 sponsorship labels agree with the old extractor on those inputs. Only the two affected production descriptions were corrected, using exact-text/observation guards; source dates, labels and all other detail fields are unchanged. Live HTML/API/browser checks pass. This is not an independent classification-accuracy result. The next genuine source run must establish unattended use. No AI, Google, email or social call was added. See `cloudflare/RELEASE-2.35.md` and its evidence.
 
-The full dependency audit also records an existing development-tooling sharp/librsvg advisory in the Wrangler/Miniflare path. It is separate from the known Mammoth/sprintf-js issue and the new parser dependencies; compatible remediation remains to be validated.
+The development-tooling sharp/librsvg advisory has since been remediated and locally validated as recorded in `TOOLCHAIN_SECURITY.md`. The moderate Mammoth/sprintf-js issue and unavailable hosted Linux validation remain separate open items.
 
 ## Isolated cloud recovery exercise
 

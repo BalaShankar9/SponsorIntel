@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { parseUniversityFeed, universityFeedSnapshot, universityRestriction, normaliseBoardJobs, fetchBoard, BOARDS } from '../worker/jobs.js';
-import { UNIVERSITY_FEEDS } from '../worker/job-sources.js';
+import { UNIVERSITY_FEEDS, universityFeedIds, sourceRequestCost } from '../worker/job-sources.js';
 
 const id = 'university-bath', board = BOARDS.find(b => b.id === id);
 const now = Date.parse('2026-10-07T10:00:00Z');
@@ -113,5 +113,65 @@ test('new campus fetches keep source bytes, stable links and private exclusion r
   const xml=feed(item({ref:'NEW',close:'20 Oct 2099',text:'A café role – with original source details.',link:f.origin+f.path+'?ref=NEW'}),f.title).replace('<?xml version="1.0"?>','<?xml version="1.0" encoding="ISO-8859-1"?>');
   globalThis.fetch=async(url,options)=>{assert.equal(url,f.url);assert.equal(options.redirect,'manual');return new Response(new TextEncoder().encode(xml));};
   const jobs=await fetchBoard(b);assert.equal(jobs.length,1);assert.match(jobs[0].description,/café role –/);assert.equal(jobs[0].sponsorship,'not_stated');assert.equal(jobs.feed_review.received,1);assert.equal(jobs.feed_review.excluded.length,0);assert.doesNotMatch(JSON.stringify(jobs),/feed_review/);
+ }
+});
+
+const cardiff = BOARDS.find(b=>b.id==='university-cardiff-met');
+function campusXML(feedId, records) {
+ const campus=UNIVERSITY_FEEDS[feedId];
+ return feed(records.map(record=>item({...record,close:record.close||'20 Oct 2099',link:campus.origin+campus.path+'?ref='+record.ref})).join(''),campus.title);
+}
+function campusFetch(t, responses) {
+ const real=globalThis.fetch;t.after(()=>globalThis.fetch=real);
+ const calls=[];
+ globalThis.fetch=async(url,options)=>{
+  calls.push(url);assert.equal(options.redirect,'manual');
+  if(!Object.hasOwn(responses,url))throw Error('unreviewed destination');
+  const response=responses[url]; return typeof response==='string'?new Response(response):response;
+ };
+ return calls;
+}
+
+test('only-available staff/student restrictions are retained without inventing visa exclusions',()=>{
+ assert.equal(universityRestriction('Researcher','This opportunity is only available to current employees and students at the University'),'internal_only');
+ assert.equal(universityRestriction('Researcher','Applications are exclusively open to existing employees.'),'internal_only');
+ for(const text of ['This opportunity is not only available to current employees; external applicants are welcome.','This opportunity is available to current employees and external applicants.','Students and employees contribute to this research.'])
+  assert.equal(universityRestriction('Researcher',text),null);
+});
+
+test('two reviewed campuses produce one employer with exact source text, one shared vacancy and two reserved requests',async t=>{
+ const ids=universityFeedIds(cardiff.id), [a,b]=ids, responses={};
+ const shared={ref:'SHARED',text:'A café role – salary and visa details are in the advert.'};
+ responses[UNIVERSITY_FEEDS[a].url]=campusXML(a,[shared,{ref:'COACH',title:'Sports Coach',text:'If your visa restricts employment as a professional sports coach, you are unlikely to be eligible for this role.'}]);
+ responses[UNIVERSITY_FEEDS[b].url]=campusXML(b,[shared,{ref:'STAFF',text:'This opportunity is only available to current employees and students at the University.'}]);
+ const calls=campusFetch(t,responses), jobs=await fetchBoard(cardiff);
+ assert.equal(sourceRequestCost(cardiff),2);assert.equal(sourceRequestCost(board),1);assert.equal(calls.length,2);
+ assert.equal(jobs.length,2);assert.ok(jobs.every(j=>j.board_id===cardiff.id&&j.company===cardiff.company&&j.sponsorship==='not_stated'));
+ const sharedJob=jobs.find(j=>j.apply_url.endsWith('SHARED'));
+ assert.match(sharedJob.location,/Cyncoed Campus.*Llandaff Campus/);assert.match(sharedJob.description,/café role –/);
+ assert.match(jobs.find(j=>j.apply_url.endsWith('COACH')).description,/visa restricts employment/);
+ assert.equal(jobs.feed_review.received,4);assert.equal(jobs.feed_review.accepted,2);assert.equal(jobs.feed_review.duplicate_refs,1);
+ assert.deepEqual(jobs.feed_review.excluded,[{ref:'STAFF',reason:'internal_only',feed_id:b}]);
+ assert.equal(jobs.feed_review.feeds.length,2);assert.doesNotMatch(JSON.stringify(jobs),/feed_review/);
+});
+
+test('a failed or swapped second campus cannot publish a partial employer snapshot',async t=>{
+ const [a,b]=universityFeedIds(cardiff.id), responses={};
+ responses[UNIVERSITY_FEEDS[a].url]=campusXML(a,[{ref:'FIRST'}]);
+ responses[UNIVERSITY_FEEDS[b].url]=new Response('Unavailable',{status:503});
+ const calls=campusFetch(t,responses);
+ await assert.rejects(fetchBoard(cardiff),/unavailable/);assert.equal(calls.length,2);
+ responses[UNIVERSITY_FEEDS[b].url]=campusXML(a,[{ref:'WRONG-CAMPUS'}]);
+ await assert.rejects(fetchBoard(cardiff),/identity/);
+ await assert.rejects(fetchBoard({...cardiff,id:'unreviewed'}),/Unreviewed/);
+});
+
+test('shared campus records with conflicting content, closing dates or restrictions fail the collection',async t=>{
+ const [a,b]=universityFeedIds(cardiff.id), responses={};
+ responses[UNIVERSITY_FEEDS[a].url]=campusXML(a,[{ref:'SAME',text:'A public role.'}]);
+ campusFetch(t,responses);
+ for(const change of [{text:'Different advert wording.'},{close:'21 Oct 2099',text:'A public role.'},{text:'This opportunity is only available to current employees.'}]){
+  responses[UNIVERSITY_FEEDS[b].url]=campusXML(b,[{ref:'SAME',...change}]);
+  await assert.rejects(fetchBoard(cardiff),/Conflicting campus/);
  }
 });

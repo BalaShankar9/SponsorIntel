@@ -25,6 +25,16 @@ These deterministic rules are narrow and can miss new wording. They are not a cl
 
 ## Further coverage
 
+### Cardiff Metropolitan campus collection, 8 October
+
+The [university's own RSS directory](https://jobs.cardiffmet.ac.uk/RSS/) exposes fixed Cyncoed and Llandaff feeds. Both have exact pinned channel names, origins, vacancy-link paths and reviewed UK locations. The unscoped and “Other” feeds are not configured. Live bytes are UTF-8 despite a legacy ISO-8859-1 declaration. Two feeds now belong to one source/employer so campus expansion cannot inflate employer counts or duplicate identical cross-campus references.
+
+The reviewed sample contains four Cyncoed and eleven Llandaff entries. Llandaff reference `2627038` explicitly restricts applications to current university employees and students; the corrected word-order check excludes it and preserves a private reason. The other fourteen records were published by a real owner-triggered source workflow at 11:27:20 UTC, with both HTTP requests reserved before collection. There are now 33 employer sources and 34 configured feed requests per complete attempt, within unchanged ceilings. The first unattended refresh remains due at 12:30 UTC. No general market-coverage claim follows.
+
+All fourteen adverts lack an explicit sponsorship offer. Coaching adverts retain their original warning about visa restrictions on professional sports work; student-related titles do not establish eligibility. The exact current Skilled Worker register record is `0303f81c635c02e7229152c2`, Cardiff Metropolitan University, CARDIFF, source date 7 October. A second same-name record has only International Sportsperson and was not used for the Skilled Worker connection. A current company licence is not a vacancy offer or an applicant assessment.
+
+Grouped feeds must all succeed before publication. Identical references merge locations; differing text, dates or restriction decisions stop the collection and preserve the last complete snapshot. Uncertain/failing requests retain their reservations; replayed completed work makes no new request. Existing single-campus collection behavior is unchanged. Tests include partial failure, conflict, duplicate and near-budget-boundary cases. All 72 previously stored current university adverts were also screened against the added word order, with no newly matched restriction. See `cloudflare/RELEASE-2.36.md` and the campus evidence receipt.
+
 ### Employer-advert extraction, 8 October
 
 Release 2.35 fixes a reproduced Greenhouse encoded-HTML defect found in two current Graphcore adverts. The parser removes formatting attributes without treating a quoted `>` as a tag boundary, preserves text/paragraphs and keeps plain-description fields separate. A same-input review of 85 UK records has unchanged sponsorship labels; local Workerd matches Node exactly. Two guarded production text corrections preserve their original observations, labels and other public fields. The next scheduled source execution remains an acceptance gate. No historical reference annotation or customer draft was rewritten. See the release and `cloudflare/tests/evidence/advert-import-2026-10-08.json`.

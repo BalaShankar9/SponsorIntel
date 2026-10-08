@@ -1,4 +1,4 @@
-import { BOARDS } from "./job-sources.js";
+import { BOARDS, sourceRequestCost } from "./job-sources.js";
 import {
   fetchBoard,
   storeBoardJobs,
@@ -246,6 +246,7 @@ export async function executeSourceTask(
     if (task.attempts >= 3)
       return finishTask(DB, runId, sourceId, "failed", "attempt_limit", now);
     // Reserve before fetching. Any uncertain/failing request remains counted.
+    const requestCost = sourceRequestCost(board);
     const day = iso(now).slice(0, 10);
     await DB.prepare(
       "INSERT INTO agent_daily_budget(day) VALUES(?) ON CONFLICT DO NOTHING",
@@ -254,11 +255,11 @@ export async function executeSourceTask(
       .run();
     const reserved = await DB.batch([
       DB.prepare(
-        "UPDATE agent_daily_budget SET requests=requests+1 WHERE day=? AND requests<500 RETURNING requests",
-      ).bind(day),
+        "UPDATE agent_daily_budget SET requests=requests+? WHERE day=? AND requests+?<=500 RETURNING requests",
+      ).bind(requestCost, day, requestCost),
       DB.prepare(
-        "UPDATE agent_runs SET requests=requests+1,updated_at=? WHERE id=? AND requests<150 RETURNING requests",
-      ).bind(iso(now), runId),
+        "UPDATE agent_runs SET requests=requests+?,updated_at=? WHERE id=? AND requests+?<=150 RETURNING requests",
+      ).bind(requestCost, iso(now), runId, requestCost),
     ]);
     if (reserved.some((r) => !r.results?.length))
       return finishTask(DB, runId, sourceId, "skipped", "request_budget", now);

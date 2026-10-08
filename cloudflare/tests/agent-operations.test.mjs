@@ -141,6 +141,43 @@ test("publication and receipt are atomic; replay does not fetch or duplicate the
   assert.equal((await completeRun(env.DB, "run-1")).state, "completed");
 });
 
+test("grouped campus collection reserves every feed request and replay spends nothing", async(t)=>{
+ const env=database(t), campus=BOARDS.find(b=>b.id==='university-cardiff-met');
+ await dispatchSources(env,{id:'campus-run',sourceId:campus.id});await initialiseRun(env,'campus-run');
+ const jobs=await normaliseBoardJobs([{id:'CAMPUS-1',title:'Fictional Research Assistant',location:'Cardiff, United Kingdom',content:'A fictional UK vacancy.',absolute_url:'https://jobs.cardiffmet.ac.uk/rss/click.aspx?ref=CAMPUS-1'}],campus);
+ let calls=0;
+ const readBoard=async()=>{calls++;assert.equal(query(env,'SELECT requests FROM agent_daily_budget').requests,2);assert.equal(query(env,'SELECT requests FROM agent_runs').requests,2);return jobs;};
+ assert.equal((await executeSourceTask(env,'campus-run',campus.id,{readBoard})).state,'published');
+ assert.equal((await executeSourceTask(env,'campus-run',campus.id,{readBoard})).replay,true);
+ assert.equal(calls,1);assert.equal(query(env,'SELECT requests FROM agent_daily_budget').requests,2);
+});
+
+test("a grouped source cannot fetch when either request ceiling has only one slot left", async(t)=>{
+ for(const limit of ['daily','run']){
+  const env=database(t), campus=BOARDS.find(b=>b.id==='university-cardiff-met');
+  await dispatchSources(env,{id:'campus-limit',sourceId:campus.id});await initialiseRun(env,'campus-limit');
+  const day=new Date().toISOString().slice(0,10);
+  env.sql.prepare('INSERT INTO agent_daily_budget(day,requests) VALUES(?,?)').run(day,limit==='daily'?499:0);
+  if(limit==='run')env.sql.exec("UPDATE agent_runs SET requests=149 WHERE id='campus-limit'");
+  const result=await executeSourceTask(env,'campus-limit',campus.id,{readBoard:async()=>{assert.fail('No request is allowed');}});
+  assert.equal(result.error_code,'request_budget');assert.equal(result.state,'skipped');
+  assert.ok(query(env,'SELECT requests FROM agent_daily_budget').requests<=500);
+  assert.ok(query(env,'SELECT requests FROM agent_runs').requests<=150);
+  assert.equal(query(env,'SELECT attempts FROM agent_tasks').attempts,0);
+ }
+});
+
+test("a failed campus fetch keeps its reservations and the previous publication",async t=>{
+ const env=database(t),campus=BOARDS.find(b=>b.id==='university-cardiff-met');
+ const jobs=await normaliseBoardJobs([{id:'OLD',title:'Fictional existing role',location:'Cardiff, United Kingdom',content:'A retained role.',absolute_url:'https://jobs.cardiffmet.ac.uk/rss/click.aspx?ref=OLD'}],campus);
+ const observed=new Date(Date.now()-3600000).toISOString();await storeBoardJobs(env.DB,campus,jobs,observed);
+ await dispatchSources(env,{id:'campus-failed',sourceId:campus.id});await initialiseRun(env,'campus-failed');
+ await assert.rejects(executeSourceTask(env,'campus-failed',campus.id,{readBoard:async()=>{throw Error('Second feed failed');}}),SourceRetry);
+ assert.equal(query(env,'SELECT requests FROM agent_daily_budget').requests,2);
+ assert.equal(query(env,'SELECT last_seen FROM jobs').last_seen,observed);
+ assert.equal(query(env,'SELECT last_success FROM job_sources').last_success,observed);
+});
+
 test("receipt write failure rolls the entire publication back and a bounded retry can recover", async (t) => {
   const env = database(t);
   await run(env);
