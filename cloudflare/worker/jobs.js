@@ -85,6 +85,12 @@ export function sponsorshipEvidence(text) {
   const authorisationExclusion = sentences.find(s =>
     /\b(?:candidates|applicants) must be (?:legally )?authori[sz]ed to work\b.{0,120}\bwithout employer sponsorship\b/i.test(s));
   if (authorisationExclusion) return { status: 'unavailable', quote: authorisationExclusion.slice(0, 500) };
+  // Some care adverts refuse sponsorship for the vacancy without saying visa.
+  // Require a direct employer refusal tied to this role or its new candidates;
+  // qualification funding, event sponsors and application questions do not count.
+  const roleExclusion = sentences.find(s => !s.endsWith('?') &&
+    /^(?:due to limits on sponsorship allocations, )?we are (?:currently not offering|not (?:currently )?offering|unable to offer|not (?:currently )?in a position to offer) sponsorship(?: to new candidates)? for (?:this|these) roles?(?=$|[.,;])/i.test(s));
+  if (roleExclusion) return { status: 'unavailable', quote: roleExclusion.slice(0, 500) };
   const relevant = sentences.filter(
     (s) =>
       /visa|immigration|work permit|right to work/i.test(s) &&

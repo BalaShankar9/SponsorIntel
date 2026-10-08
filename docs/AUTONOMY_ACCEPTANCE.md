@@ -2,7 +2,14 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.44.1 private discovery queue and actual movement
+## Latest: 2.46 care-source quality review
+
+Release 2.46 recognizes four direct employer refusals discovered in a 488-posting Priory feed. They omit the word visa; qualification funding and application questions remain separate. All 924 existing active labels/excerpts are unchanged. The Bristol nursing advert was checked in the browser and rejected as a sponsorship lead in the private queue. Priory is not activated or republished: reuse/linking clearance, adapter validation, UK locations and vacancy employing entities remain open. All 445 tests, build/prerenders/budgets and dry-run pass; production is Worker `19b5c628-5713-47f2-b6f1-b9e028a2111f`. This quality correction does not claim independent accuracy or automated new-employer discovery. See `cloudflare/RELEASE-2.46.md` and `docs/CARE_SOURCE_REVIEW.md`.
+
+
+The next genuine scheduled business run, `business-497633`, completed at 17:45:59.797 UTC, independently confirmed successful by Cloudflare. Its 17:45:50.511 UTC movement capture records 16 Wintermute entries and one sponsorship claim gained, none lost: **53 → 54**, **908 → 924 jobs**, **34 → 35 employers**. The actual owner browser matches. The same run sees all five retained leads, one unresolved and two distinct current linked jobs, with no overdue reviews or changed links. The daily routine was updated in place and its full prompt, schedule and target read back exactly. The Sequence/Wintermute 18:30 UTC source refresh and next unattended discovery pass remain unobserved; this receipt proves movement monitoring, not autonomous source discovery.
+
+## 2.44.1 private discovery queue and actual movement
 
 The live owner queue retains LinkedIn jobs, ordinary recruiting posts, employer originals and recruiter leads with immutable revision history, canonical duplicate detection, bounded dates/reasons, session attribution and explicit follow-up. Linked decisions require exact current approved-job evidence and count distinct jobs. Changed or expired evidence becomes historical; the queue cannot publish or withdraw roles. Three real prior review outcomes are retained: Sequence linked, Argo held, and an old post rejected. A date-input issue found during live verification was fixed in 2.44.1; all three corrections were appended without deleting the original records.
 

@@ -61,6 +61,27 @@ test("direct sponsorship arrangements preserve conditions and reject questions o
   ]) assert.equal(sponsorshipEvidence(text).status, "unavailable", text);
 });
 
+test("employer refusals tied to the vacancy do not require the word visa", () => {
+  for (const text of [
+    "We are currently not offering sponsorship for this role.",
+    "Due to limits on sponsorship allocations, we are not currently in a position to offer sponsorship to new candidates for these roles, this remains under review.",
+    "Due to limits on sponsorship allocations, we are not currently in a position to offer sponsorship to new candidates for this role; this remains under review.",
+    "We are unable to offer sponsorship for this role.",
+  ]) {
+    assert.deepEqual(sponsorshipEvidence(text), {status: "unavailable", quote: text});
+    assert.equal(sponsorshipEvidence("We offer visa sponsorship in our other offices.\n" + text).status, "unavailable");
+  }
+  for (const text of [
+    "Sponsorship of professional qualifications through our Individual Professional Development (IPD) panel",
+    "We are unable to offer sponsorship of professional qualifications for this role.",
+    "We are unable to offer sponsorship for this event.",
+    "We are unable to offer sponsorship for this role?",
+    "Ask whether we are unable to offer sponsorship for this role.",
+    "Do you require sponsorship for this role?",
+    "We are not offering sponsorship for the local football club.",
+  ]) assert.equal(sponsorshipEvidence(text).status, "not_stated", text);
+});
+
 test("UK filter rejects similarly named overseas locations and unspecified remote roles", () => {
   assert.equal(isUK("Cardiff, London or Remote (UK)"), true);
   assert.equal(isUK("London, Ontario, Canada"), false);
