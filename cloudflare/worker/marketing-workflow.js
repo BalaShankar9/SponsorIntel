@@ -17,7 +17,7 @@ export class MarketingWorkflow extends WorkflowEntrypoint {
    let copy=await step.do('write-evidenced-copy',modelOptions,()=>writeMarketing(this.env,id,plan));
    await step.do('save-first-version',()=>storeMarketingDraft(this.env,id,plan,copy));
    let review=await step.do('independent-paragraph-review',modelOptions,()=>critiqueMarketing(this.env,id,plan,copy));
-   if(!accepted(review)){
+   if(!accepted(review)&&context.candidates.find(source=>source.id===plan.source_id)?.kind!=='opportunity'){
     const previous={copy,review};
     copy=await step.do('one-bounded-revision',modelOptions,()=>writeMarketing(this.env,id,plan,previous));
     await step.do('save-revised-version',()=>storeMarketingDraft(this.env,id,plan,copy,true));

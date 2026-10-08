@@ -72,7 +72,7 @@ export async function planJobLinkChecks(env,runId,now=Date.now()) {
   const rows=(await env.DB.prepare(`WITH candidates AS (
     SELECT j.id,j.board_id,j.company,j.title,j.apply_url,j.last_seen,
       (SELECT MAX(c.created_at) FROM job_link_checks c WHERE c.source_id=j.board_id) source_checked,
-      ROW_NUMBER() OVER(PARTITION BY j.board_id ORDER BY (SELECT MAX(c.created_at) FROM job_link_checks c WHERE c.job_id=j.id),j.id) position
+      ROW_NUMBER() OVER(PARTITION BY j.board_id ORDER BY (SELECT MAX(c.created_at) FROM job_link_checks c WHERE c.job_id=j.id),CASE WHEN j.sponsorship IN ('offered','conditional') THEN 0 ELSE 1 END,j.id) position
     FROM jobs j LEFT JOIN agent_source_controls s ON s.source_id=j.board_id
     WHERE ${current.sql} AND COALESCE(s.paused,0)=0 AND j.board_id IN (SELECT value FROM json_each(?))
       AND NOT EXISTS(SELECT 1 FROM job_link_checks c WHERE c.source_id=j.board_id AND c.day=?)

@@ -2,7 +2,13 @@
 
 Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
-## Latest: 2.38 employer application-link checks
+## Latest: 2.39 opportunity editor
+
+Marketing preparation now includes a bounded pool of current offered/conditional vacancies with exact employer wording, reviewed licence identity and a recent matching application-page check. A planner can select one only when the existing queue has a slot before evidence expiry. Fixed vacancy facts go to a different-model critic; the employer quotation is never rewritten. Evidence is pinned to each immutable version. Changed local drafts lose approval; external schedules are flagged for provider action, never falsely cancelled.
+
+Live 2.39.0 and the signed-in owner editor are verified, with zero eligible candidates and no production opportunity draft at 13:27 UTC. The saved daily routine was updated and read back. All 401 tests, the build and dry-run pass. The actual MarketingWorkflow passed accept/reject/change/replay cases in isolated Workerd/D1 with fictional evidence and deterministic local model responses; the actual BusinessWorkflow also passed with all 26 migrations. These establish state behavior, not real model quality or provider delivery. The first genuine new business monitor receipt, real vacancy model decision and complete editorial-to-delivery cycle remain open. No production AI or Google retry, test email, social send or budget reset was forced. See `cloudflare/RELEASE-2.39.md`.
+
+## 2.38 employer application-link checks
 
 The hourly business workflow now checks a rotating sample of current employer application links, two employers per run and one role per employer per UTC day. Exact provider/advert redirect rules, timeout/body limits, two atomic request ceilings, pause and source-approval checks protect the boundary. Broken, uncertain, unfinished and overdue checks remain visible in the owner desk. They never change public roles, source timestamps or sponsorship labels. No model, email, Google retry, paid connection or new permission is used.
 

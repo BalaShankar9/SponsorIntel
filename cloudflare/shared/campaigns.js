@@ -9,6 +9,7 @@ export const campaigns = Object.freeze([
   ['fb-adverts', 'facebook', 'launch_week', 'advert_wording', 'Facebook · Reading adverts'],
   ['fb-applications', 'facebook', 'launch_week', 'application_review', 'Facebook · Application review'],
   ['fb-shortlist', 'facebook', 'editorial_guides', 'small_shortlist', 'Facebook · Building a shortlist'],
+  ['fb-opportunity', 'facebook', 'current_opportunities', 'dated_vacancy', 'Facebook · Dated vacancy'],
 ].map(([id, source, campaign, content, label]) => Object.freeze({id, source, campaign, content, label, medium: 'organic_social'})));
 
 export function campaignById(id) {

@@ -2,6 +2,7 @@ import {bodyJSON,digest,limit,reply,sameOrigin} from './auth.js';
 import launch from '../shared/marketing-launch.json' with {type:'json'};
 import approvedMedia from '../shared/marketing-media.json' with {type:'json'};
 import {instagramWelcomeContent,WELCOME_TOPIC} from './marketing-welcome.js';
+import {requireOpportunity,opportunityWriteGuard,opportunityBriefHealth} from './marketing-opportunities.js';
 
 export const destinations=Object.freeze({
  'facebook-company':{label:'Facebook · Sponsor Intel',account:'1319703417896763',provider:'metricool',url:'https://www.facebook.com/profile.php?id=61595389821505'},
@@ -43,6 +44,17 @@ export function validateVersion(input,now=Date.now(),destination){
  if(destination==='instagram-company'&&(media.length<1||text.length>2200))fail('Instagram needs an image and a caption of at most 2,200 characters.');
  return {purpose,text,sources,expires_at:stamp(expiry),media};
 }
+async function opportunityVersion(env,input,topic,destination,version,now){
+ if(!topic.startsWith('opportunity:')){if(input.opportunity)fail('Vacancy evidence needs its own opportunity topic.');return null;}
+ const source=await requireOpportunity(env,input.opportunity,now);
+ if(topic!==source.topic_key||destination!=='facebook-company'||version.media.length||
+   Date.parse(version.expires_at)>Date.parse(input.opportunity.expires_at)||
+   source.required_segments.some(segment=>!version.text.includes(segment))||
+   version.sources.length!==1||version.sources[0].url!==source.url||version.sources[0].checked_at!==stamp(Date.parse(input.opportunity.checked_at)))
+  fail('Keep the exact vacancy facts, quotation, limitations and dated evidence in this opportunity version.',409);
+ return source;
+}
+const proofStatement=(DB,id,version,proof)=>DB.prepare('INSERT INTO marketing_opportunity_versions VALUES(?,?,?,?,?,?,?)').bind(id,version,proof.job_id,proof.fingerprint,proof.link_check_id,stamp(Date.parse(proof.checked_at)),stamp(Date.parse(proof.expires_at)));
 async function existingEvent(env,key,hash){
  const event=await env.DB.prepare('SELECT brief_id,request_hash FROM marketing_events WHERE request_key=?').bind(key).first();
  if(!event)return null;
@@ -54,17 +66,19 @@ export async function createBrief(env,input,actor,now=Date.now()){
  const destination=clean(input.destination,60),topic=clean(input.topic_key,160),title=clean(input.title,160);
  if(!Object.hasOwn(destinations,destination)||!/^[a-zA-Z0-9:_-]+$/.test(topic))fail('Unknown destination or topic.');
  const version=validateVersion(input,now,destination),id=crypto.randomUUID(),event=crypto.randomUUID();
+ const opportunity=await opportunityVersion(env,input,topic,destination,version,now),guard=opportunityWriteGuard(opportunity,now);
  const {media,...textVersion}=version;
  // Preserve replay hashes for existing text-only briefs across this release.
- const hash=await digest(JSON.stringify({topic,destination,title,...textVersion,...(media.length?{media}:{})}));
+ const hash=await digest(JSON.stringify({topic,destination,title,...textVersion,...(media.length?{media}:{}),...(opportunity?{opportunity:input.opportunity}:{})}));
  const key='create:'+await digest(topic+':'+destination);
  const prior=await existingEvent(env,key,hash);if(prior)return prior;
  const sql=[
-  env.DB.prepare("INSERT INTO marketing_briefs VALUES(?,?,?,?,'proposed',1,1,?,?,?)").bind(id,topic,destination,title,event,stamp(now),stamp(now)),
+  env.DB.prepare("INSERT INTO marketing_briefs SELECT ?,?,?,?,'proposed',1,1,?,?,? WHERE "+guard.sql).bind(id,topic,destination,title,event,stamp(now),stamp(now),...guard.values),
   env.DB.prepare('INSERT INTO marketing_versions VALUES(?,1,?,?,?,?,?,?)').bind(id,version.purpose,version.text,JSON.stringify(version.sources),version.expires_at,actor,stamp(now)),
   env.DB.prepare('INSERT INTO marketing_media_versions VALUES(?,1,?)').bind(id,JSON.stringify(version.media)),
   env.DB.prepare('INSERT INTO marketing_events VALUES(?,?,1,1,?,?,?,?,?,?)').bind(event,id,'proposed',actor,'Brief prepared. No review or delivery is implied.',stamp(now),key,hash),
  ];
+ if(opportunity)sql.push(proofStatement(env.DB,id,1,input.opportunity));
  try{await env.DB.batch(sql);}catch(e){const replay=await existingEvent(env,key,hash);if(replay)return replay;throw e;}
  return {id,replayed:false};
 }
@@ -96,7 +110,7 @@ function validateReceipt(input,brief,kind,now){
 export async function decideBrief(env,input,actor,now=Date.now()){
  const key=clean(input.request_key,100),hash=await digest(JSON.stringify({actor,input}));
  const replay=await existingEvent(env,key,hash);if(replay)return replay;
- const brief=await env.DB.prepare('SELECT b.*,v.writer,v.expires_at FROM marketing_briefs b JOIN marketing_versions v ON v.brief_id=b.id AND v.version=b.version WHERE b.id=?').bind(input.id).first();
+ const brief=await env.DB.prepare('SELECT b.*,v.writer,v.expires_at,v.text,v.sources FROM marketing_briefs b JOIN marketing_versions v ON v.brief_id=b.id AND v.version=b.version WHERE b.id=?').bind(input.id).first();
  if(!brief)fail('Brief not found.',404);
  const storedMedia=await env.DB.prepare('SELECT assets FROM marketing_media_versions WHERE brief_id=? AND version=?').bind(brief.id,brief.version).first();
  brief.media=JSON.parse(storedMedia?.assets||'[]');
@@ -106,10 +120,11 @@ export async function decideBrief(env,input,actor,now=Date.now()){
   const publication=await env.DB.prepare("SELECT v.id FROM insight_versions v JOIN insight_publications p ON p.slug=v.slug WHERE v.id=? AND p.state='published' AND p.updated_at=v.created_at").bind(brief.topic_key.slice(7)).first();
   if(!publication)fail('This report was withdrawn or replaced. Prepare a brief for the current version.',409);
  }
- let next=kind,version=brief.version,draft=null,receipt=null;
+ let next=kind,version=brief.version,draft=null,receipt=null,opportunity=null,proof=null;
  if(kind==='revise'){
   if(!['proposed','held','reviewed'].includes(brief.state))fail('Reconcile delivery before changing scheduled content.',409);
   draft=validateVersion(input.content,now,brief.destination);version++;next='proposed';
+  opportunity=await opportunityVersion(env,input.content,brief.topic_key,brief.destination,draft,now);proof=input.content.opportunity;
  }else if(kind==='held'){
   if(!['proposed','held','reviewed'].includes(brief.state))fail('Holding a brief does not cancel a provider schedule.',409);
  }else if(kind==='reviewed'){
@@ -129,9 +144,16 @@ export async function decideBrief(env,input,actor,now=Date.now()){
   const duplicate=await env.DB.prepare('SELECT brief_id FROM marketing_receipts WHERE provider=? AND destination=? AND external_id=? AND brief_id<>? LIMIT 1').bind(receipt.provider,brief.destination,receipt.external_id,brief.id).first();
   if(duplicate)fail('This provider receipt already belongs to another brief.',409);
  }else fail('Unknown decision.');
- const sql=[env.DB.prepare('UPDATE marketing_briefs SET state=?,version=?,revision=revision+1,last_event=?,updated_at=? WHERE id=? AND revision=? RETURNING id').bind(next,version,event,stamp(now),brief.id,brief.revision)];
+ if(brief.topic_key.startsWith('opportunity:')&&['reviewed','scheduled'].includes(kind)){
+  const stored=await env.DB.prepare('SELECT job_id,fingerprint,link_check_id,checked_at,expires_at FROM marketing_opportunity_versions WHERE brief_id=? AND version=?').bind(brief.id,brief.version).first();
+  opportunity=await opportunityVersion(env,{opportunity:stored},brief.topic_key,brief.destination,{text:brief.text,sources:JSON.parse(brief.sources),expires_at:brief.expires_at,media:brief.media},now);
+ }
+ const guard=opportunityWriteGuard(opportunity,now);
+ if(actor==='opportunity-monitor')guard.sql+=' AND (SELECT enabled FROM business_controls WHERE singleton=1)=1 AND (SELECT enabled FROM marketing_agent_controls WHERE singleton=1)=1';
+ const sql=[env.DB.prepare('UPDATE marketing_briefs SET state=?,version=?,revision=revision+1,last_event=?,updated_at=? WHERE id=? AND revision=? AND '+guard.sql+' RETURNING id').bind(next,version,event,stamp(now),brief.id,brief.revision,...guard.values)];
  if(draft)sql.push(env.DB.prepare('INSERT INTO marketing_versions SELECT id,?,?,?,?,?,?,? FROM marketing_briefs WHERE id=? AND last_event=?').bind(version,draft.purpose,draft.text,JSON.stringify(draft.sources),draft.expires_at,actor,stamp(now),brief.id,event));
  if(draft)sql.push(env.DB.prepare('INSERT INTO marketing_media_versions SELECT id,?,? FROM marketing_briefs WHERE id=? AND last_event=?').bind(version,JSON.stringify(draft.media),brief.id,event));
+ if(draft&&opportunity)sql.push(env.DB.prepare('INSERT INTO marketing_opportunity_versions SELECT id,?,?,?,?,?,? FROM marketing_briefs WHERE id=? AND last_event=?').bind(version,proof.job_id,proof.fingerprint,proof.link_check_id,stamp(Date.parse(proof.checked_at)),stamp(Date.parse(proof.expires_at)),brief.id,event));
  sql.push(env.DB.prepare('INSERT INTO marketing_events SELECT ?,id,revision,version,?,?,?,?,?,? FROM marketing_briefs WHERE id=? AND last_event=?').bind(event,kind,actor,JSON.stringify({note,checks:kind==='reviewed'?input.checks:undefined,media_sha256:receipt&&['scheduled','published'].includes(kind)?brief.media.map(m=>m.sha256):undefined}),stamp(now),key,hash,brief.id,event));
  if(receipt)sql.push(env.DB.prepare('INSERT INTO marketing_receipts SELECT ?,id,version,destination,?,?,?,?,?,?,? FROM marketing_briefs WHERE id=? AND last_event=?').bind(event,receipt.provider,receipt.external_id,kind,receipt.scheduled_at,receipt.post_url,receipt.observed_at,receipt.evidence,brief.id,event));
  let results;try{results=await env.DB.batch(sql);}catch(e){const prior=await existingEvent(env,key,hash);if(prior)return prior;throw e;}
@@ -171,7 +193,16 @@ export async function syncMarketing(env,now=Date.now()){
  }
  return {prepared,external_posts_sent:0};
 }
+export async function reconcileOpportunities(env,now=Date.now()){
+ const health=await opportunityBriefHealth(env,now),held=[],changed=[];
+ for(const item of health.items.filter(x=>!x.current&&['proposed','reviewed'].includes(x.state))){
+  try{await decideBrief(env,{id:item.id,revision:item.revision,kind:'held',note:'Vacancy evidence changed, expired or failed its current source/link checks. A fresh version and review are required. No external post was sent or cancelled.',request_key:'opportunity-hold:'+item.id+':'+item.revision},'opportunity-monitor',now);held.push(item.id);}
+  catch(error){if(error.status!==409)throw error;changed.push(item.id);}
+ }
+ return {checked_at:stamp(now),enabled:health.enabled,checked:health.items.length,held,changed,external_attention:health.external_attention,limited:health.limited,external_actions:0};
+}
 export async function marketingSnapshot(env,now=Date.now()){
+ const opportunityHealth=await opportunityBriefHealth(env,now);
  const recent='SELECT id FROM marketing_briefs ORDER BY updated_at DESC LIMIT 50';
  const records=await env.DB.batch([
   env.DB.prepare('SELECT b.*,v.purpose,v.text,v.sources,v.expires_at,v.writer FROM marketing_briefs b JOIN marketing_versions v ON v.brief_id=b.id AND v.version=b.version ORDER BY b.updated_at DESC LIMIT 50'),
@@ -182,8 +213,9 @@ export async function marketingSnapshot(env,now=Date.now()){
  const items=[];
  for(const b of records[0].results){
   const receipts=records[2].results.filter(r=>r.brief_id===b.id).slice(0,10),last=receipts[0];
-  items.push({...b,sources:JSON.parse(b.sources),media:JSON.parse(records[3].results.find(m=>m.brief_id===b.id)?.assets||'[]'),events:records[1].results.filter(e=>e.brief_id===b.id).sort((a,b)=>b.revision-a.revision).slice(0,30),receipts,
-   attention:b.state==='scheduled'&&last?.scheduled_at&&Date.parse(last.scheduled_at)<=now?'Delivery check due':
+  const opportunity=opportunityHealth.items.find(x=>x.id===b.id);
+  items.push({...b,opportunity,sources:JSON.parse(b.sources),media:JSON.parse(records[3].results.find(m=>m.brief_id===b.id)?.assets||'[]'),events:records[1].results.filter(e=>e.brief_id===b.id).sort((a,b)=>b.revision-a.revision).slice(0,30),receipts,
+   attention:opportunity&&!opportunity.current?opportunity.action:b.state==='scheduled'&&last?.scheduled_at&&Date.parse(last.scheduled_at)<=now?'Delivery check due':
     b.state==='uncertain'?'Reconcile before retry':!['published','cancelled','failed'].includes(b.state)&&Date.parse(b.expires_at)<=now?'Evidence expired':null});
  }
  return {items,destinations,measured_at:stamp(now),publishing_connected:false};
