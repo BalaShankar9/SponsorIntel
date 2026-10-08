@@ -1,15 +1,16 @@
 import React,{useEffect,useState} from 'react';
 import {Activity,ArrowUpRight,Pause,Play,RefreshCw,ShieldCheck} from 'lucide-react';
 import './business-operations.css';
+import {DiscoveryScoutStatus,type DiscoveryScoutHealth} from './discovery-scout';
 import {OperationAlerts} from './operation-alerts';
 import {SocialDeliveryStatus,type SocialDeliveryHealth} from './social-delivery-health';
 import {JobLinkStatus,type JobLinkHealth} from './job-link-health';
 import {JobMovementStatus,type JobMovementHealth} from './job-movement';
-type Settings={enabled:number;publishing:number;research:number};
+type Settings={enabled:number;publishing:number;research:number;discovery:number};
 type Run={id:string;state:string;trigger_kind:'unknown'|'owner'|'scheduled';created_at:string;finished_at:string|null;snapshot:any;result:any};
 type Issue={id:string;category:string;severity:string;title:string;detail:string;next_action:string};
 type Draft={id:string;audience:string;text:string;state:string;expires_at:string};
-type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];social_delivery?:SocialDeliveryHealth;job_links?:JobLinkHealth;job_movement?:JobMovementHealth;publications:{slug:string;title:string;state:string;updated_at:string}[]};
+type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];social_delivery?:SocialDeliveryHealth;job_links?:JobLinkHealth;job_movement?:JobMovementHealth;discovery_scout?:DiscoveryScoutHealth;publications:{slug:string;title:string;state:string;updated_at:string}[]};
 const stamp=(x:string)=>new Date(x).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
 async function api(path='',body?:unknown){const r=await fetch('/api/admin/business'+path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});const v=await r.json();if(!r.ok)throw Error(v.error||'Operations could not load.');return v;}
 export function BusinessOperations(){
@@ -31,7 +32,7 @@ export function BusinessOperations(){
       <div className="business-grid">
         {[['Site & security checks','Hourly','Five public route and browser-header checks, including anonymous owner-access rejection. Full security audits and dependency fixes need engineering work.'],['Data housekeeping','Hourly','Retire roles last observed over 72 hours ago. Retain customer workspaces, feedback and job records.'],['Editorial reports','Weekly','Publish a dated evidence report only after source and count checks pass. Legal interpretation stays out of automatic publication.'],['Research agents','Daily','One bounded investigation daily. Archived-advert test batches run first while unfinished; outputs stay private for review.']].map(([name,frequency,detail])=><article key={name}><span>{frequency}</span><h3>{name}</h3><p>{detail}</p></article>)}
       </div>
-      <div className="business-controls">{(['publishing','research'] as const).map(setting=><label key={setting}><input type="checkbox" checked={!!data.settings[setting]} disabled={busy} onChange={e=>void act('/settings',{setting,value:e.target.checked})}/>{setting==='publishing'?'Automatic evidence reports':'Scheduled research'}</label>)}</div>
+      <div className="business-controls">{(['publishing','research','discovery'] as const).map(setting=><label key={setting}><input type="checkbox" checked={!!data.settings[setting]} disabled={busy} onChange={e=>void act('/settings',{setting,value:e.target.checked})}/>{setting==='publishing'?'Automatic evidence reports':setting==='research'?'Scheduled research':'Automatic education discovery'}</label>)}</div>
       <OperationAlerts/>
       {run?.result&&<p className="business-receipt"><ShieldCheck size={16}/> Last receipt: {run.result.cleanup?.stale_roles??0} stale roles retired · Publication: {run.result.publication?.state||'not reached'} · Research: {run.result.research?.state||'not reached'}{run.result.publication?.reason?' · '+run.result.publication.reason:''}{run.result.error?' · '+run.result.error:''}</p>}
       <section className="business-supervision" aria-labelledby="supervision-heading"><div className="business-section-heading"><h3 id="supervision-heading">Agent supervision</h3><span>{run?.trigger_kind==='scheduled'?'Scheduled cloud run':run?.trigger_kind==='owner'?'Owner-triggered run':'Run origin not recorded'}</span></div>
@@ -43,6 +44,7 @@ export function BusinessOperations(){
       <SocialDeliveryStatus health={data.social_delivery}/>
       <JobLinkStatus health={data.job_links}/>
       <JobMovementStatus health={data.job_movement}/>
+      <DiscoveryScoutStatus health={data.discovery_scout}/>
       <div className="business-section-heading"><h3>What needs attention</h3><span>{data.issues.length} open items</span></div>
       <div className="business-issues">{data.issues.length?data.issues.map(x=><details key={x.id}><summary><span className={'business-priority '+x.severity}>{x.severity}</span>{x.title}<small>{x.category}</small></summary><p>{x.detail}</p><p><strong>Next action:</strong> {x.next_action}</p></details>):<p className="business-fine">No open findings have been recorded. This is not proof that every business or security requirement has been met.</p>}</div>
       <div className="business-section-heading"><h3>Growth baseline</h3><span>{measurement?.completed_days||0} completed UTC days · up to 14 days</span></div>

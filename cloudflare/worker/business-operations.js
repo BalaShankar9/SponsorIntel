@@ -20,6 +20,7 @@ import {jobLinkHealth,jobLinkFindings} from './job-link-checks.js';
 import {opportunityBriefHealth,opportunityFindings} from './marketing-opportunities.js';
 import {captureJobMovement,jobMovementHealth,jobMovementFindings} from './job-movement.js';
 import {discoverySummary,discoveryFindings} from './discovery.js';
+import {discoveryScoutHealth,discoveryScoutFindings} from './discovery-scout.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -109,7 +110,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}), application_evaluation:await applicationEvaluationHealth(env),
     search_notifications:await searchNotificationHealth(env),email_delivery:await emailDeliveryHealth(env,now),social_delivery:await socialDeliveryHealth(env,now),job_links:await jobLinkHealth(env,now),opportunity_promotions:await opportunityBriefHealth(env,now),
     job_movement:await jobMovementHealth(env,now,{compact:true}),
-    discovery:await discoverySummary(env,now),
+    discovery:await discoverySummary(env,now),discovery_scout:await discoveryScoutHealth(env,now),
     reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
       dangerous_false_positives:reference.dangerous_false_positives,unsupported_refusals:reference.unsupported_refusals,disputed_items:reference.disputed_items} };
 }
@@ -121,7 +122,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   issues.push(...socialDeliveryFindings(snapshot.social_delivery));
   issues.push(...jobLinkFindings(snapshot.job_links));
   issues.push(...opportunityFindings(snapshot.opportunity_promotions));
-  issues.push(...jobMovementFindings(snapshot.job_movement),...discoveryFindings(snapshot.discovery));
+  issues.push(...jobMovementFindings(snapshot.job_movement),...discoveryFindings(snapshot.discovery),...discoveryScoutFindings(snapshot.discovery_scout));
   const notifications=snapshot.search_notifications;
   if (notifications?.followed && (notifications.awaiting_first_check || notifications.last_run?.failed || !currentTimestamp(notifications.oldest_check,now,3600000)))
     add('search-notifications','product','normal','Check saved-search matching','Some followed searches are waiting for a check, have failed, or have not been checked within an hour.','Inspect the scheduled matching receipt and queue capacity. Do not reset subscribers or mark unseen matches as read.');
@@ -236,10 +237,10 @@ export async function businessSnapshot(env) {
     env.DB.prepare('SELECT * FROM business_daily ORDER BY day DESC LIMIT 7'),
   ]);
   const latest=results[0].results[0];
-  return {settings:await controls(env),measured_at:iso(),schedule:'Every hour at minute 45 UTC; research once per UTC day; evidence report at most once every 7 days.',
+  return {settings:await controls(env),measured_at:iso(),schedule:'Every hour at minute 45 UTC; research and education discovery once per UTC day; evidence report at most once every 7 days.',
     heartbeat:!latest?'not_started':Date.now()-Date.parse(latest.created_at)>2*3600000?'overdue':latest.state,
     runs:results[0].results.map(x=>({...x,snapshot:x.snapshot?JSON.parse(x.snapshot):null,result:x.result?JSON.parse(x.result):null})),
-    issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,social_delivery:await socialDeliveryHealth(env),job_links:await jobLinkHealth(env),job_movement:await jobMovementHealth(env),
+    issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,social_delivery:await socialDeliveryHealth(env),job_links:await jobLinkHealth(env),job_movement:await jobMovementHealth(env),discovery_scout:await discoveryScoutHealth(env),
     connections:{social:false,search_console:(await searchSnapshot(env,Date.now(),{compact:true})).connected,payments:false},
     limits:{hourly_runs:1,external_health_requests:5,research_runs_daily:1,publication_interval_days:7,customer_data_access:false}};
 }
@@ -254,7 +255,7 @@ export async function businessAPI(request,env,owner) {
   let body; try {body=await bodyJSON(request,1024);} catch {return reply({error:'Invalid request.'},400);}
   if (path==='/api/admin/business/run') return reply(await dispatchBusiness(env));
   if (path==='/api/admin/business/settings') {
-    if (!['enabled','publishing','research'].includes(body?.setting) || typeof body.value!=='boolean') return reply({error:'Invalid setting.'},400);
+    if (!['enabled','publishing','research','discovery'].includes(body?.setting) || typeof body.value!=='boolean') return reply({error:'Invalid setting.'},400);
     await env.DB.batch([
       env.DB.prepare(`UPDATE business_controls SET ${body.setting}=?,updated_at=?,actor=? WHERE singleton=1`).bind(body.value?1:0,iso(),owner.user.id),
       env.DB.prepare('INSERT INTO admin_audit(actor,action,target,created_at) VALUES(?,?,?,?)').bind(owner.user.id,'business-setting',body.setting+':'+body.value,iso()),
