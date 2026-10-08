@@ -11,8 +11,8 @@ Updated 8 October 2026. The owner's objective is end-to-end autonomous operation
 | 3 | Useful editorial output | Observe a real planner/writer/independent-review result on approved sources; source freshness and owner overrides hold across failures; no-post is a valid outcome |
 | 4 | Social delivery and correction | Verify the next due post at the exact company destination, record provider identity and live URL, reconcile uncertain delivery before another send; then implement a credentialed supported cloud adapter |
 | 5 | Opportunity sourcing and promotion | Refresh approved employer sources, verify employer identity and advert-level sponsorship evidence, recheck closures; promotion uses only current evidence and never implies a licence guarantees an offer |
-| 6 | Product and support quality | Complete 20 CV/advert evaluation cases and the real user journey; triage feedback, reproduce bugs and verify fixes without exposing private CVs or customer messages |
-| 7 | Search and growth decisions | 2.18 implements the bounded daily reader and private search desk; authorize its dedicated Restricted Google identity, verify genuine scheduled reads, establish useful-application/search baselines, then run one recorded experiment at a time with attribution limits |
+| 6 | Product and support quality | Complete 20 CV/advert evaluation cases and the real user journey; 2.20 keeps a persistent, owner-reviewed support queue; reproduce bugs and verify fixes without exposing private CVs or customer messages |
+| 7 | Search and growth decisions | 2.18 implements the bounded daily reader and private search desk; its dedicated Restricted Google identity is authorized and installed; 2.20 fixes the reproduced transport bug, then verify genuine scheduled reads, establish useful-application/search baselines, then run one recorded experiment at a time with attribution limits |
 | 8 | Security and external alerting | Independent uptime observation, actionable alerts, dependency remediation, access/backup/restore checks; HEAD checks do not constitute a security audit |
 | 9 | Premium business | Validate an offer with willing users, define pricing/support/refund terms and approvals, then build payments and verify successful and failed financial events |
 
@@ -31,7 +31,7 @@ Learning means measured revisions to versioned policies and prompts after compar
 
 ## Retained boundaries and blockers
 
-Facebook is connected through the Codex Metricool integration, not through a Cloudflare publisher bridge. LinkedIn native scheduling is available; paid Metricool LinkedIn access is not approved. Dedicated Instagram profile editing/professional setup is incomplete. Search Console and an external incident delivery channel are unconnected. GitHub hosted CI was unable to start due account billing; local passing checks do not fix it. No payment, paid advertisement, new subscription, legal-advice authority or higher AI allowance has been granted.
+Facebook is connected through the Codex Metricool integration, not through a Cloudflare publisher bridge. LinkedIn native scheduling is available; paid Metricool LinkedIn access is not approved. Dedicated Instagram profile editing/professional setup is incomplete. Search Console credentials are installed, but the first read failed and successful Google reporting is unverified. An external incident delivery channel remains unconnected. GitHub hosted CI was unable to start due account billing; local passing checks do not fix it. No payment, paid advertisement, new subscription, legal-advice authority or higher AI allowance has been granted.
 
 The owner dashboard, operational documents and release receipts are the evidence sources. Do not replace missing outcomes with a count of agent names or configured workflows.
 
@@ -46,3 +46,9 @@ The expanded audit also found two different salary lower bounds in one Monzo adv
 ## 2.19 real-advert evaluation
 
 The frozen reference set has 50 adverts, 49 distinct bodies and 16 bounded batches. Full text stays in private D1; code pins source metadata and expected interpretations without putting answer keys into model context. It replaces the usual once-daily investigation, never increases shared limits, and holds on failed or uncertain attempts. Snapshot classifications cannot update public labels or learning memory. Historical results remain visibly separate from current jobs. The initial live model batch, genuine scheduled progression, complete coverage and independent adjudication are still acceptance requirements.
+
+## 2.20 support and Google activation
+
+A private support queue now routes report categories, preserves all unresolved ages, records review outcomes and immutable history, and prevents duplicate/stale review overwrites. Business monitoring uses aggregate counts, with older unresolved information/technical reports escalated after an internal 72-hour threshold. This is deterministic routing and owner review, not autonomous bug repair or customer reply delivery. Production had no customer reports during setup; all report mutations used synthetic local records.
+
+Google Search Console API is enabled, its dedicated identity has Restricted access only to the exact URL-prefix property, and the Worker secret is installed. The first owner-triggered attempt failed before a token response because the deployed runtime rejects redirect mode `error`. The 2.20 fix uses manual redirects and rejects non-success responses. Local runtime verification does not prove Google permission or actual metrics. Keep 8 October's failed 1-request receipt unchanged and verify the next eligible scheduled read on 9 October UTC.

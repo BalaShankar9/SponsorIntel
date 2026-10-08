@@ -98,3 +98,11 @@ The acceptance sequence for the full autonomy objective is tracked in `AUTONOMY_
 ### Scheduled acceptance observed on 8 October
 
 Business run `business-497616` recorded its genuine scheduled origin and completed at 00:45:40 UTC. Supervision found both agent types idle; no recovery action or high-priority health issue was needed. The following editorial run `marketing-2026-10-08` correctly chose no post because the launch queue had no eligible slot. It made zero model calls; the retained attempt reservation brought the shared daily count to 4/4 (6/32 calls), so research held. This is normal unattended execution proof, not production-incident recovery proof, useful generated copy or delivered social content. See the 2.17.1 release and advert audit receipt.
+
+## Support queue — 2.20
+
+The private owner desk replaces the latest-50 feedback list with stable pagination and category queues: bugs go to engineering, data corrections to evidence, and other feedback to product. These are deterministic queues, not separate autonomous responders. The original message, source page and receipt date are preserved. Every review needs a private note and has an immutable history; closing a report requires a recorded reason or verified repair. Version checks and action identifiers prevent stale overwrites and duplicate reviews.
+
+Unresolved reports remain in business findings at any age. Technical/information reports older than 72 hours raise high-priority internal review findings. This threshold is not a promised customer response time. No feedback or notes are passed to AI, and no automatic reply is sent. Zero customer reports were present at setup; UI and mutation checks used an isolated local database. See `SUPPORT_OPERATIONS.md`.
+
+The Google service account/API setup is authorized and installed. The first owner-triggered read on 8 October failed during local request construction; 2.20 corrects its unsupported redirect setting. Keep that failed receipt and its request reservation. The next eligible automatic run is on 9 October UTC. Search reporting, sustained unattended reads and ranking growth remain unverified; see `SEARCH_CONSOLE_OPERATIONS.md`.

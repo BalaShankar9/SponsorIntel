@@ -8,6 +8,7 @@ import { campaignSummary } from './analytics.js';
 import { marketingAPI } from './marketing.js';
 import {marketingAgentsAPI} from './marketing-agents.js';
 import {searchAPI} from './search-console.js';
+import {supportAPI} from './support.js';
 export async function ownerFor(request, env) {
   const session = await sessionFor(request, env);
   if (!session?.user) return null;
@@ -82,6 +83,8 @@ export async function adminAPI(request, env) {
   if (!owner) return reply({ error: "The owner account is required." }, 403);
   const url = new URL(request.url),
     path = url.pathname;
+  if (path === '/api/admin/support' || path.startsWith('/api/admin/support/'))
+    return supportAPI(request, env, owner);
   if (path === '/api/admin/search' || path.startsWith('/api/admin/search/'))
     return searchAPI(request, env, owner);
   if (path === '/api/admin/business' || path.startsWith('/api/admin/business/'))
@@ -136,9 +139,6 @@ export async function adminAPI(request, env) {
         "SELECT key,value FROM metadata WHERE key IN ('register','adviser_dataset','students')",
       ),
       env.DB.prepare(
-        "SELECT id,kind,message,created_at,context,app_version FROM feedback ORDER BY created_at DESC LIMIT 50",
-      ),
-      env.DB.prepare(
         "SELECT id,company,provider,board,careers,sector,sponsor_id,evidence,state,created_at,reviewed_at FROM employer_boards ORDER BY created_at DESC LIMIT 100",
       ),
       env.DB.prepare(
@@ -167,10 +167,9 @@ export async function adminAPI(request, env) {
       metadata: Object.fromEntries(
         rows[7].map((r) => [r.key, JSON.parse(r.value)]),
       ),
-      feedback: rows[8],
-      boards: rows[9],
-      runs: rows[10],
-      jobs: rows[11][0],
+      boards: rows[8],
+      runs: rows[9],
+      jobs: rows[10][0],
     });
   }
   if (request.method !== "POST" || path !== "/api/admin/boards")

@@ -17,6 +17,7 @@ import "./platform.css";
 import { trackPage } from './metrics';
 import { CampaignAnalytics } from './campaign-analytics';
 import {MarketingDesk} from './marketing-desk';
+import {SupportDesk} from './support-desk';
 type Go = (view: string) => void;
 async function api(path: string, body?: unknown) {
   const r = await fetch(
@@ -649,34 +650,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
               wording on each advert.
             </p>
           </section>
-          <section className="career-panel">
-            <h2>Latest feedback & bug reports</h2>
-            <p>
-              Latest 50 reports. Reports may contain personal information:
-              handle them privately.
-            </p>
-            {data.feedback.length ? (
-              data.feedback.map((f: any) => (
-                <article className="feedback-entry" key={f.id}>
-                  <span className="tag">{f.kind}</span>{" "}
-                  <small>{date(f.created_at)}</small>
-                  <p className="preserve-lines">{f.message}</p>
-                  <small>
-                    {(() => {
-                      try {
-                        return JSON.parse(f.context).page || "";
-                      } catch {
-                        return "";
-                      }
-                    })()}{" "}
-                    · {f.app_version}
-                  </small>
-                </article>
-              ))
-            ) : (
-              <p>No feedback yet.</p>
-            )}
-          </section>
+          <SupportDesk />
         </>
       )}
     </div>

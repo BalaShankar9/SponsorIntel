@@ -111,7 +111,9 @@ export async function syncSearchConsole(env,trigger='scheduled',now=Date.now(),f
   // A consumed reservation is not released after an unknown network outcome.
   const allowed=await env.DB.prepare("UPDATE search_runs SET requests=requests+1 WHERE day=? AND state='running' AND requests<10 RETURNING requests").bind(day).first();
   if(!allowed)fail('read_failed');
-  let response;try{response=await fetcher(url,{...options,redirect:'error',signal:AbortSignal.timeout(8000)});}catch{fail('network_unavailable');}
+  // This deployed Workerd version only accepts manual/follow. Never follow a
+  // redirect with an assertion or bearer token; readJSON rejects every 3xx.
+  let response;try{response=await fetcher(url,{...options,redirect:'manual',signal:AbortSignal.timeout(8000)});}catch{fail('network_unavailable');}
   return readJSON(response);
  };
  try {

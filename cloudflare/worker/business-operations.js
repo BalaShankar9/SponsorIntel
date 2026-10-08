@@ -2,6 +2,7 @@ import { bodyJSON, limit, reply, sameOrigin } from './auth.js';
 import { JOB_FRESHNESS_MS, JOB_ORIGIN } from '../shared/job-detail.js';
 import { startInvestigation } from './agent-research.js';
 import { referenceProgress } from './research-reference.js';
+import {supportSummaryStatement} from './support.js';
 import { publishInsight } from './insights.js';
 import { supervisionFindings } from './agent-supervision.js';
 import {searchSnapshot,searchFindings} from './search-console.js';
@@ -68,7 +69,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     env.DB.prepare("SELECT value FROM metadata WHERE key='register'"),
     env.DB.prepare('SELECT day,event,SUM(count) count FROM analytics_daily WHERE day>=? AND day<? GROUP BY day,event ORDER BY day,event').bind(iso(now-14*86400000).slice(0,10),iso(now).slice(0,10)),
     env.DB.prepare("SELECT COUNT(*) total FROM agent_reviews WHERE state='open'"),
-    env.DB.prepare('SELECT COUNT(*) total FROM feedback WHERE created_at>=?').bind(iso(now-7*86400000)),
+    supportSummaryStatement(env.DB,now),
     env.DB.prepare('SELECT MIN(day) started FROM analytics_daily'),
   ]);
   const checks = [];
@@ -86,7 +87,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
   return { measured_at:iso(now), jobs:rows[0].results[0], sources:rows[1].results,
     immigration:rows[2].results, register:register ? JSON.parse(register.value) : null,
     metrics:rows[4].results, held_batches:rows[5].results[0].total,
-    feedback_count:rows[6].results[0].total, tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}),
+    feedback_count:rows[6].results[0].open, support:rows[6].results[0], tracking_started:rows[7].results[0].started, checks, search:await searchSnapshot(env,now,{compact:true}),
     reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
       dangerous_false_positives:reference.dangerous_false_positives,unsupported_refusals:reference.unsupported_refusals,disputed_items:reference.disputed_items} };
 }
@@ -107,7 +108,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   if (snapshot.held_batches) add('held-batches','quality','high','Review held source batches',snapshot.held_batches+' source review records remain open.','Inspect the existing evidence queue before releasing held data.');
   if(snapshot.reference?.state==='needs_attention')add('reference-evaluation-held','quality','high','Resolve the real-advert test hold','A failed, incomplete or mixed-version reference attempt needs attention.','Inspect its retained report and workflow outcome. Do not remove the attempt or reset its model-call reservations to retry.');
   if(snapshot.reference?.dangerous_false_positives||snapshot.reference?.unsupported_refusals)add('reference-label-errors','quality','high','Review unsupported reference interpretations',`${snapshot.reference.dangerous_false_positives} unsupported positives and ${snapshot.reference.unsupported_refusals} unsupported refusals were found against provisional archived-advert expectations.`,'Review original wording and disputed expectations with an independent reviewer. Public labels were not changed; do not promote model authority from this test.');
-  if (snapshot.feedback_count) add('feedback','product','normal','Review recent user feedback',snapshot.feedback_count+' feedback submissions were received in the last seven days.','Read the owner feedback queue, reproduce bugs and fix the highest impact issue. Do not expose messages in public reports.');
+  if (snapshot.feedback_count) add('feedback','product',snapshot.support?.overdue_quality?'high':'normal','Review unresolved user reports',snapshot.feedback_count+' reports remain unresolved; '+(snapshot.support?.overdue||0)+' are beyond the internal 72-hour review threshold.','Open the Support queue, reproduce the issue or verify its original source. Record evidence before resolving a report; preserve private messages and review history.');
   issues.push(...searchFindings(snapshot.search));
   add('social-connection','distribution','normal','Connect company and personal social destinations','Social posts are prepared; no publishing account is connected to this workflow.','Connect Metricool or an approved publishing API and verify the exact company and personal accounts before scheduling posts.');
   add('premium-validation','business','normal','Validate a premium offer with users','Payments, paid subscriptions and revenue measurement are not implemented.','Prioritise trustworthy job alerts, saved research and stronger application review. Validate willingness to pay before setting a price or opening checkout.');

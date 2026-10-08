@@ -66,7 +66,7 @@ test('missing connection and pause make no outbound requests or run reservations
 });
 test('real signed read pipeline is fixed-property, bounded, replay-safe and secret-free',async t=>{
  const env=await envFor(t),fixture=googleFixture();const run=await syncSearchConsole(env,'scheduled',now,fixture.fetcher);assert.equal(run.state,'completed');assert.equal(fixture.calls.length,10);
- assert.ok(fixture.calls.every(c=>c.options.redirect==='error'&&c.options.signal));assert.ok(fixture.calls.every(c=>!c.url.includes('attacker')));
+ assert.ok(fixture.calls.every(c=>c.options.redirect==='manual'&&c.options.signal));assert.ok(fixture.calls.every(c=>!c.url.includes('attacker')));
  const reads=fixture.calls.slice(1);assert.ok(reads.every(c=>c.options.headers.Authorization==='Bearer synthetic-token'));
  assert.ok(reads.filter(c=>c.body?.dimensions).every(c=>!c.body.dimensions.includes('query')&&c.body.dataState==='final'));
  assert.ok(reads.filter(c=>c.url.includes('index:inspect')).every(c=>c.body.siteUrl===SEARCH_PROPERTY&&c.body.inspectionUrl.startsWith(SEARCH_PROPERTY)));
@@ -82,6 +82,19 @@ test('failed authentication is counted, sanitized and not retried that day',asyn
  const env=await envFor(t),f=googleFixture(()=>new Response('private token in error',{status:403}));
  assert.equal((await syncSearchConsole(env,'scheduled',now,f.fetcher)).state,'failed');await syncSearchConsole(env,'owner',now,f.fetcher);assert.equal(f.calls.length,1);
  const s=await searchSnapshot(env,now);assert.equal(s.latest.result.error,'permission_denied');assert.doesNotMatch(JSON.stringify(s),/private token/);
+});
+test('Google redirects are rejected without forwarding credentials or retrying the daily run',async t=>{
+ for(const status of [301,302,303,307,308]){
+  const env=await envFor(t),f=googleFixture((_url,options)=>{
+   assert.equal(options.redirect,'manual');
+   return new Response('provider body contains private data',{status,headers:{location:'https://attacker.invalid/token'}});
+  });
+  assert.equal((await syncSearchConsole(env,'scheduled',now,f.fetcher)).state,'failed');
+  await syncSearchConsole(env,'owner',now,f.fetcher);
+  assert.equal(f.calls.length,1);
+  const s=await searchSnapshot(env,now);assert.equal(s.latest.requests,1);assert.equal(s.latest.result.error,'google_unavailable');
+  assert.doesNotMatch(JSON.stringify(s),/attacker|private data|PRIVATE KEY|assertion/);
+ }
 });
 test('partial failure retains successful sections and marks the missing section explicitly',async t=>{
  const env=await envFor(t),f=googleFixture((url,opts,body)=>body?.dimensions?.[0]==='page'?new Response('quota',{status:429}):undefined);
