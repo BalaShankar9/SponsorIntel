@@ -244,9 +244,11 @@ export async function careerAPI(request, env) {
       let result;
       if (body.revision === 0)
         result = await env.DB.prepare(
-          "INSERT INTO career_workspaces(user_id,data,revision,updated_at) VALUES(?,?,1,?) ON CONFLICT(user_id) DO NOTHING",
+          // Authentication can precede a concurrent account deletion. Check
+          // existence inside this write so an in-flight save cannot recreate data.
+          "INSERT INTO career_workspaces(user_id,data,revision,updated_at) SELECT ?,?,1,? WHERE EXISTS(SELECT 1 FROM user WHERE id=?) ON CONFLICT(user_id) DO NOTHING",
         )
-          .bind(user.id, JSON.stringify(data), now)
+          .bind(user.id, JSON.stringify(data), now, user.id)
           .run();
       else
         result = await env.DB.prepare(
@@ -258,7 +260,7 @@ export async function careerAPI(request, env) {
         return reply(
           {
             error:
-              "This workspace changed on another device. Export this copy, then reload before saving.",
+              "The workspace changed or your account is no longer available. Export this copy, then reload before saving.",
           },
           409,
         );
@@ -277,11 +279,13 @@ export async function careerAPI(request, env) {
         403,
       );
     const code = token();
-    await env.DB.prepare(
-      "INSERT INTO recovery_codes(user_id,hash,created_at) VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET hash=excluded.hash,created_at=excluded.created_at",
+    const result = await env.DB.prepare(
+      "INSERT INTO recovery_codes(user_id,hash,created_at) SELECT ?,?,? WHERE EXISTS(SELECT 1 FROM user WHERE id=?) ON CONFLICT(user_id) DO UPDATE SET hash=excluded.hash,created_at=excluded.created_at",
     )
-      .bind(user.id, await digest(code), new Date().toISOString())
+      .bind(user.id, await digest(code), new Date().toISOString(), user.id)
       .run();
+    if (!result.meta.changes)
+      return reply({ error: "Your account is no longer available. Please sign in again." }, 401);
     return reply({ code });
   }
   if (url.pathname === "/api/career/account" && request.method === "DELETE") {
