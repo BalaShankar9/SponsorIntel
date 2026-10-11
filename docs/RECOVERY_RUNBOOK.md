@@ -41,3 +41,12 @@ There is currently no independently durable, deletion-aware recovery journal cov
 Cloudflare documents Time Travel as an in-place operation that cancels in-flight queries and returns an undo reference. History is enabled automatically; its available window depends on the account plan and database age. Validate the requested point rather than assuming a fixed number of days. Time Travel does not currently provide a production clone/fork for this workflow. See [Time Travel and backups](https://developers.cloudflare.com/d1/reference/time-travel/) and the [D1 command reference](https://developers.cloudflare.com/d1/wrangler-commands/). The actual account retention window was not measured in this exercise.
 
 Future independent backup work needs a protected destination, retention and deletion reconciliation, a verified restore test and an explicit cost/access decision. Never place a raw production export in this repository or create extra customer-data copies merely to make a check pass.
+
+
+## Prepared 0035 deployment boundary (11 October)
+
+Marketing performance migration 0035 adds five objects, bringing the prepared schema from 34 migrations/141 objects to 35/146. It has not been applied in production. The fresh 11 October pre-change inspection failed access; the 8 October recovery receipt is historical.
+
+After authorised access renewal, run the read-only inspection against the prior 34-migration baseline (commit 2153dd7bf746d64b7ab4bacab234ec80801337df) before migration. Use an isolated baseline checkout/path; do not reset or hide current work, remove a migration, or classify an unexplained live difference as expected. Validate exact database identity and preserve the private current bookmark separately under the existing runbook. Apply only reviewed 0035 after this baseline passes, then inspect using the current 35-migration checkout. A pre-migration comparison against all 35 files must report the five absent objects; it is not a healthy schema match.
+
+The existing 2.52 Worker remains the code rollback reference. If code is rolled back after the additive migration, retain the unused table and all observation/audit history. Schema monitoring still uses the full applied 35-file history. Do not restore production or drop observation data to make a code rollback or schema check look clean.

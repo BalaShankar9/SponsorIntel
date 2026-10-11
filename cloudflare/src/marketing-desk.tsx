@@ -2,6 +2,7 @@ import React,{useEffect,useState} from 'react';
 import {RefreshCw,ArrowUpRight,FileCheck2} from 'lucide-react';
 import './marketing-desk.css';
 import {MarketingAgents} from './marketing-agents';
+import {MarketingPerformance} from './marketing-performance';
 type Source={title:string;url:string;excerpt:string;checked_at?:string;observed_on?:string};
 type Media={id:string;url:string;sha256:string;width:number;height:number;alt:string};
 type Receipt={version:number;provider:string;external_id:string;state:string;scheduled_at:string|null;post_url:string|null;observed_at:string;evidence:string};
@@ -55,6 +56,7 @@ export function MarketingDesk(){
   <header className="business-head"><div><p className="business-eyebrow">From idea to delivery</p><h2 id="marketing-heading">Marketing desk</h2><p>Content, sources, review decisions and delivery evidence in one place.</p></div><div className="business-actions"><button aria-label="Refresh marketing desk" onClick={()=>void load()}><RefreshCw size={16}/></button><button disabled={busy} onClick={()=>void sync()}>Prepare & reconcile</button><button disabled={busy} onClick={()=>void welcome()}>Prepare Instagram welcome</button></div></header>
   <p className="marketing-boundary">Editorial agents prepare sourced drafts and record independent model reviews here. Facebook and Instagram are connected through Metricool; LinkedIn uses its native scheduler. This desk records drafts, reviews and observed receipts. It does not send posts or automatically verify delivery. The Instagram welcome is a sourced template and needs a separate review.</p>
   <MarketingAgents/>
+  <MarketingPerformance/>
   {error&&<p className="career-error" role="alert">{error}</p>}{message&&<p role="status">{message}</p>}
   {!data?<p>Loading marketing records…</p>:<>
    <div className="business-metrics marketing-metrics">{[['proposed','Needs review'],['scheduled','Scheduled'],['published','Published'],['attention','Needs attention']].map(([key,label])=><div key={key}><strong>{data.items.filter(b=>key==='attention'?b.attention||['held','failed','uncertain'].includes(b.state):b.state===key).length}</strong><span>{label}</span></div>)}</div>

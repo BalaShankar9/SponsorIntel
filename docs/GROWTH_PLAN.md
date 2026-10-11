@@ -1,5 +1,7 @@
 # Sponsor Intel search growth and brand plan
 
+11 October follow-up: [current marketing results and the two-week experiment](MARKETING_REVIEW-2026-10-11.md) are recorded. The prepared [performance log](MARKETING_PERFORMANCE.md) will retain platform windows and unknowns for eligible planner context. It is not deployed, does not establish causal conversion and cannot change spending or posting limits.
+
 Updated 5 October 2026 for Bala Bollineni. Build a trusted UK work, study and immigration planning service around reliable evidence and useful applications. Search leadership is a long-term outcome to earn and measure; no supplier can guarantee first place for every sponsorship or immigration query.
 
 ## 8 October implementation update

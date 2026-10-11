@@ -1,5 +1,7 @@
 # Sponsor Intel marketing agents
 
+Prepared 2.53 now adds [dated platform performance observations](MARKETING_PERFORMANCE.md) to new planner contexts. This is not deployed or a direct analytics feed. Live policy remains v3; prepared policy is `sourced-guides-and-observed-performance-v4`. Retaining a real observation and its next genuine scheduled use remain separate acceptance gates.
+
 Current performance and next experiment: [11 October marketing review](MARKETING_REVIEW-2026-10-11.md). The custom workflow is operating, but repeatable acquisition, audience learning and sales outcomes are unproven.
 
 Updated 8 October 2026. Release 2.15 implements a bounded editorial planner, writer and different-model reviewer using Cloudflare Workflows. Release 2.25 extends that same daily workflow to independently review the unchanged Instagram welcome when a company queue slot is available. Release 2.39 adds up to three checked vacancy candidates alongside the three-topic Facebook guide pilot. Model quality and a complete external delivery cycle are not yet verified. The daily Codex routine remains a separate agent run; source ingestion and reviewed report templates are separate automations.

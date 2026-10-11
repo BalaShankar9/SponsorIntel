@@ -1,5 +1,7 @@
 # Sponsor Intel operating system
 
+Prepared 2.53 adds [marketing performance observations](MARKETING_PERFORMANCE.md): the daily Codex routine collects provider evidence through existing authorised access; a new cloud planner context can use the retained aggregates. Collection is not a direct Cloudflare analytics feed, production deployment is pending and improved decisions/growth are unproven.
+
 Updated 11 October 2026. See [the current operating receipt](OPERATIONS-2026-10-11.md) for verified deliveries, scheduled readings and outstanding failures; earlier activation notes below are historical.
 
  Owner: Bala Bollineni. Primary site: https://sponsorintel.london. The owner requested autonomous operation across the website, publishing, security, SEO, growth and social media, and confirmed both company pages and personal LinkedIn as intended audiences. This grants implementation and routine business-content authority; it does not supply social credentials, a spending ceiling, contractual authority or a regulated adviser.

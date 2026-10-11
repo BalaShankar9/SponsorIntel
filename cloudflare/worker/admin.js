@@ -9,6 +9,7 @@ import { businessAPI } from './business-operations.js';
 import { campaignSummary, publicMeasurement } from './analytics.js';
 import { marketingAPI } from './marketing.js';
 import {marketingAgentsAPI} from './marketing-agents.js';
+import {marketingPerformanceAPI} from './marketing-performance.js';
 import {searchAPI} from './search-console.js';
 import {supportAPI} from './support.js';
 import {applicationEvaluationAPI} from './application-evaluation.js';
@@ -113,6 +114,8 @@ export async function adminAPI(request, env) {
     return businessAPI(request, env, owner);
   if (path === '/api/admin/marketing/agents' || path.startsWith('/api/admin/marketing/agents/'))
     return marketingAgentsAPI(request, env, owner);
+  if (path === '/api/admin/marketing/performance')
+    return marketingPerformanceAPI(request, env, owner);
   if (path === '/api/admin/marketing' || path.startsWith('/api/admin/marketing/'))
     return marketingAPI(request, env, owner);
   if (path === '/api/admin/agents' || path.startsWith('/api/admin/agents/'))
