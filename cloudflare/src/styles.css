@@ -3782,3 +3782,5 @@ footer button {
     visibility: visible;
   }
 }
+
+.application-instructions{margin:16px 0;padding:18px;border:1px solid #cbd8bd;border-radius:14px;background:#f6f9f1;min-width:0;overflow-wrap:anywhere}.application-instructions h3{margin:0 0 12px;font-size:17px}.application-instructions p{font-size:14px;line-height:1.6}.application-instructions blockquote{margin:12px 0;padding-left:12px;border-left:3px solid #53764c;font-size:14px;line-height:1.6;white-space:pre-wrap}.application-instructions .text-button{white-space:normal;text-align:left}

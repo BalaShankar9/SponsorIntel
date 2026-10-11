@@ -4,6 +4,7 @@ import type { Job } from "./career-data";
 import { jobAvailability, jobLabels, jobTimestamp } from "../shared/job-detail.js";
 import { payEvidence } from "../shared/pay-evidence.js";
 import { originalJobPublication } from "../shared/job-posting.js";
+import { ApplicationInstructions } from './application-instructions';
 
 const external = { target: "_blank", rel: "noopener noreferrer" };
 export function JobDetailView({
@@ -99,6 +100,7 @@ export function JobDetailView({
           <section className="role-panel role-next-step">
             <p className="role-section-label">YOUR NEXT STEP</p>
             <h2>{availability === "current" ? "Make a thoughtful application." : "Find a current opportunity."}</h2>
+            <ApplicationInstructions description={job.description} url={job.apply_url} />
             <p>{availability === "current"
               ? "Keep this role with your applications, then prepare documents using your own experience."
               : "Preparation is paused for this listing. You can still check the employer’s website."}</p>

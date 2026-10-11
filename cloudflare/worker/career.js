@@ -20,6 +20,7 @@ import { reviewDraft } from "./career-review.js";
 import { validateWorkspace } from "./career-validation.js";
 import { companyBrief } from "./company-brief.js";
 import { preparationReply } from './analytics.js';
+import { cvApplicationRestriction } from '../shared/application-instructions.js';
 import { configureSearchMonitor, searchInbox, markSearchMatchesRead } from './search-notifications.js';
 export { validateWorkspace } from "./career-validation.js";
 
@@ -137,6 +138,8 @@ export async function careerAPI(request, env) {
         },
         400,
       );
+    if (body.kind === 'cv' && cvApplicationRestriction(workspace.applications[0].description))
+      return reply({ error: 'This advert says CVs are not accepted for this application. Use your evidence notes with the employer’s requested format. Existing drafts remain editable.' }, 409);
     if (body.kind === "analysis")
       return preparationReply({
         text: buildEvidenceReview(workspace.profile, workspace.applications[0]),

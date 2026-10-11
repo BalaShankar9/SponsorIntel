@@ -1,4 +1,5 @@
 import { sourceWarnings } from "./career-quality.js";
+import { cvApplicationRestriction } from '../shared/application-instructions.js';
 // Evidence checks are deterministic. Shared terms are not eligibility or hiring scores.
 const TERMS = [
   "Python",
@@ -70,6 +71,7 @@ export function buildEvidenceReview(profile, application) {
     )
     .slice(0, 14);
   const years = [...new Set(cv.match(/\b(?:19|20)\d{2}\b/g) || [])].sort();
+  const format = cvApplicationRestriction(advert);
   return [
     "EVIDENCE THAT FITS — SHARED TERMS",
     "These terms occur in both your CV and the advert. This is not a check of proficiency, eligibility or every requirement.",
@@ -104,6 +106,7 @@ export function buildEvidenceReview(profile, application) {
       ? "Original advert wording: “" + application.evidence + "”"
       : "No clear sponsorship statement has been saved for this role.",
     "An employer licence does not confirm sponsorship for this role. Your work authorisation has not been verified. Check the advert and official guidance; ask the employer about this specific role.",
+    ...(format ? ['APPLICATION FORMAT', 'Advert wording: “' + format.quote + '”\nUse the employer’s requested format. These evidence notes and your CV do not replace its questions, word limits or application form.'] : []),
     "NEXT THREE ACTIONS",
     "1. Confirm the dates, qualifications, location and availability conditions against your own circumstances.",
     "2. Add specific, truthful examples for the requirements you meet. Keep missing experience visible.",

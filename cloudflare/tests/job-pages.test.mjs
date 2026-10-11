@@ -124,6 +124,12 @@ test("server-rendered role pages have readable evidence, safe metadata and corre
   assert.match(html, /name="robots"\s+content="index,follow,max-image-preview:large"/);
   assert.equal(r.headers.get("cache-control"), "no-store");
   assert.match(html, /may still be licensed/);
+  const formRole=await renderJobPage(request,assets,{...current,description:'Complete the employer application form. CVs will not be accepted for this application.'});
+  const formHTML=await formRole.text();
+  assert.match(formHTML,/Follow the employer’s application format/);
+  assert.match(formHTML,/Open employer instructions/);
+  assert.match(formHTML,/CVs will not be accepted for this application/);
+  assert.doesNotMatch(html,/Follow the employer’s application format/);
   const linked = await renderJobPage(request, assets, { ...current, employer_licence: {
     id: "a".repeat(24), name: "LOCAL QA Legal <Company>", city: "London", routes: ["Skilled Worker"], ratings: ["Worker (A rating)"],
     source_date: "2026-10-05", checked_at: "2026-10-06T08:00:00Z", reviewed_at: "2026-10-06", evidence_url: "https://example.com/legal",

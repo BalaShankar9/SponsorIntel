@@ -54,6 +54,8 @@ import {
 import "./career.css";
 import { DocumentDownloads } from "./document-downloads";
 import { StudioReadiness, studioReadiness } from "./studio-readiness";
+import { ApplicationInstructions } from './application-instructions';
+import { applicationSourceURL, cvApplicationRestriction } from '../shared/application-instructions.js';
 import {type CVImportResult} from './cv-import';
 import {profileSignature,applyCVPreview} from '../shared/cv-import.js';
 import { buildEvidenceReview } from "../worker/career-evidence.js";
@@ -713,6 +715,8 @@ function Studio({ go }: { go: Go }) {
     }
   }
   const readiness = studioReadiness(tab, c.data.profile.cv, a.description, consent);
+  const applicationFormat = cvApplicationRestriction(a.description);
+  const originalInstructions = applicationSourceURL(a.url);
   function editDescription() {
     if (sourceDetails.current) sourceDetails.current.open = true;
     sourceEditor.current?.focus();
@@ -752,6 +756,7 @@ function Studio({ go }: { go: Go }) {
           ))}
         </select>
       </div>
+      <ApplicationInstructions description={a.description} url={a.url} />
       {draftWarnings(value, c.data.profile.cv, tab).map((warning: string) => (
         <p className="career-notice" key={warning}>
           {warning}
@@ -902,6 +907,7 @@ function Studio({ go }: { go: Go }) {
             </div>
             {tab !== "followup" &&
               tab !== "analysis" &&
+              !readiness.cvRestricted &&
               tab !== "companyResearch" && (
                 <>
                   <p className="fine-print">
@@ -950,9 +956,11 @@ function Studio({ go }: { go: Go }) {
                 {message}
               </p>
             )}
-            {tab === "analysis" && value && <button className="text-button studio-next" onClick={() => { setTab("cv"); setMessage(""); }}>
-              Next: prepare my tailored CV <ArrowRight size={15} />
-            </button>}
+            {tab === "analysis" && value && (applicationFormat
+              ? originalInstructions
+                ? <a className="text-button studio-next" href={originalInstructions} target="_blank" rel="noopener noreferrer">Next: open employer instructions <ArrowRight size={15} /></a>
+                : <button className="text-button studio-next" onClick={editDescription}>Next: check application instructions <ArrowRight size={15} /></button>
+              : <button className="text-button studio-next" onClick={() => { setTab("cv"); setMessage(""); }}>Next: prepare my tailored CV <ArrowRight size={15} /></button>)}
             <label className="sr-only" htmlFor="application-document">
               {tabs.find((t) => t.id === tab)?.label}
             </label>

@@ -10,6 +10,8 @@ The existing automated lead `ec758817-56e3-4585-89cc-4cf4202799bd` is now **link
 
 The public English detail retains the exact sponsorship quote, 19 October 23:59 BST deadline, degree/QTS requirements, original DfE link and OGL attribution. It explicitly requires an application form and says CVs will not be accepted. No application was submitted. First scheduled publication is verified; the later repeat refresh (next scheduled opportunity 18:30 UTC) and full application/attachment checks remain separate. Preserve all three holds until fresh evidence supports release. Evidence: `cloudflare/tests/evidence/kings-lynn-publication-2026-10-11.json`.
 
+The later genuine hourly application receipt `business-497700` (12:45 UTC) now captures the four entries and 54 → 55 sponsorship mentions, with no lost claims or changed existing labels. Its application state is attention with research held; no separate Cloudflare platform-status receipt was obtained for that business run. This verifies movement monitoring after first publication. It does not replace the later repeat source-refresh check.
+
 ## Admission decision — 11 October 2026, before publication
 
 The existing automated English lead has now been reviewed through the owner account. The single-school source `reviewed-teaching-vacancies-136202--king-s-lynn-academy` is **approved after its bounded probe**, with **three exact advert holds recorded before approval**. This supersedes the unconfigured state below. Public import and repeated scheduled refresh are still unverified: at 10:37:17 UTC the public query returned zero school jobs, with the wider collection unchanged at 924 jobs / 54 offered-or-conditional adverts. Do not force a workflow to manufacture scheduled evidence.

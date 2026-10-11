@@ -1,14 +1,16 @@
 import React from 'react';
+import { cvApplicationRestriction } from '../shared/application-instructions.js';
 
 export function studioReadiness(kind: string, cv: string, description: string, consent: boolean) {
+  const cvRestricted = kind === 'cv' && !!cvApplicationRestriction(description);
   const needsCV = !['companyResearch', 'followup'].includes(kind);
   const needsAdvert = kind !== 'followup';
-  const needsConsent = !['analysis', 'companyResearch', 'followup'].includes(kind);
+  const needsConsent = !cvRestricted && !['analysis', 'companyResearch', 'followup'].includes(kind);
   const cvReady = cv.trim().length >= 100;
   const advertReady = description.trim().length >= 80;
   return {
-    needsCV, needsAdvert, needsConsent, cvReady, advertReady,
-    ready: (!needsCV || cvReady) && (!needsAdvert || advertReady) && (!needsConsent || consent),
+    needsCV, needsAdvert, needsConsent, cvReady, advertReady, cvRestricted,
+    ready: !cvRestricted && (!needsCV || cvReady) && (!needsAdvert || advertReady) && (!needsConsent || consent),
   };
 }
 
@@ -17,6 +19,10 @@ export function StudioReadiness({ kind, cv, description, consent, busy, onCV, on
   onCV: () => void; onAdvert: () => void;
 }) {
   const state = studioReadiness(kind, cv, description, consent);
+  if (state.cvRestricted) return <section className="studio-readiness" aria-labelledby="studio-readiness-title">
+    <h3 id="studio-readiness-title">Use the employer’s requested format</h3>
+    <p>The advert says CVs are not accepted for this application, so CV generation is paused. Use Evidence &amp; gaps to prepare notes for the requested format. Existing drafts remain editable.</p>
+  </section>;
   if (kind === 'followup' || state.ready) return null;
   return <section className="studio-readiness" aria-labelledby="studio-readiness-title">
     <h3 id="studio-readiness-title">{kind === 'analysis' ? 'Before your evidence check' : 'Before preparing this draft'}</h3>
