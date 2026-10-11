@@ -1,6 +1,14 @@
 # Application quality evaluation
 
-Updated 8 October 2026. This is an authored development comparison, not a held-out accuracy benchmark or a claim that documents are safe to submit without review.
+Updated 11 October 2026. This is an authored development comparison, not a held-out accuracy benchmark or a claim that documents are safe to submit without review.
+
+## Verified 11 October checkpoint
+
+Three scheduled batches retained six writer drafts, three completed current-reviewer outputs, three rejected current-reviewer outputs and six rejected candidate-reviewer outputs. All nine completed outputs now have revision-1 evidence assessments, explicitly agent-assisted through the owner account: six need work, three acceptable for those inputs. Every criterion was covered; none is stale. There are zero completed candidate outputs and no paired current/candidate quality comparison. These are development judgments, not independent human adjudication or customer accuracy.
+
+The evaluator is **paused** through the existing owner control after the repeated candidate rejections. Keep it paused until the retained failure causes and a reviewed next step are established. No additional model call was made; the shared 11 October allowance remained two starts/six calls. Customer generation and automatic promotion remain unchanged. The substantive writer issue is a fictional training exercise presented as workplace activity; other findings concern unsupported status/title inferences, relevant omissions, placeholders and clarity. See `cloudflare/tests/evidence/application-quality-2026-10-11.json`.
+
+Prepared release 2.53 adds read-only diagnostics for rejected reviews under a matching recorded configuration. It is not deployed. It preserves the historical rejection even if content now passes, because original provider completion metadata may be unavailable. No raw response is returned, no model is called and no retry or promotion is authorized. See `cloudflare/RELEASE-2.53.md`.
 
 ## Purpose and customer boundary
 
@@ -34,4 +42,4 @@ Migration 0018 is additive. Record a D1 recovery bookmark before applying it. Fo
 
 The isolated local Workerd/D1 run uses a synthetic adapter, no remote AI binding or credentials. It verifies actual workflow execution, six reserved synthetic calls, paired outputs, no-call replay and the owner UI controls. Local evidence cannot establish model reasoning quality.
 
-At preparation, 8 October's live allowance is exhausted at four starts and six reserved calls. No real application-evaluation calls were made. Observe the first eligible scheduled run, inspect each original input/output, retain rejected/uncertain outcomes, complete all cases and independent review before claiming improvement.
+At initial preparation, 8 October's live allowance is exhausted at four starts and six reserved calls. No real application-evaluation calls were made. Observe the first eligible scheduled run, inspect each original input/output, retain rejected/uncertain outcomes, complete all cases and independent review before claiming improvement.

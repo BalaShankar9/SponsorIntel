@@ -1,6 +1,7 @@
 import fixture from '../tests/fixtures/application-development-20.json' with {type:'json'};
 import {digest} from './auth.js';
 import {APPLICATION_ASSESSMENT_POLICY,APPLICATION_RUBRIC,ASSESSMENT_LIMITATION} from '../shared/application-assessment.js';
+import {retainedReviewDiagnostic} from './application-diagnostics.js';
 
 const iso=n=>new Date(n).toISOString(),normal=s=>s.normalize('NFKC').replace(/\s+/g,' ').trim();
 const canonical=v=>JSON.stringify(v&&typeof v==='object'?Array.isArray(v)?v.map(x=>JSON.parse(canonical(x))):Object.fromEntries(Object.keys(v).sort().map(k=>[k,JSON.parse(canonical(v[k]))])):v);
@@ -74,7 +75,7 @@ export async function recordApplicationAssessment(env,input,actor,now=Date.now()
  if(!saved[0].results?.length){const existing=await replay(env,requestKey,requestHash);if(existing)return existing;fail('This assessment or its source changed in another session. Refresh before saving.',409);}
  return {assessment:publicAssessment(await env.DB.prepare('SELECT * FROM application_assessments WHERE id=?').bind(id).first()),replayed:false};
 }
-export async function applicationAssessmentDetails(env,caseId){
+export async function applicationAssessmentDetails(env,caseId,expectedProfile){
  const rows=(await env.DB.prepare(selectTarget+' WHERE s.case_id=? ORDER BY s.created_at DESC,s.run_id DESC,s.stage LIMIT 30').bind(caseId).all()).results;
  const history=(await env.DB.prepare('SELECT * FROM (SELECT a.*,ROW_NUMBER() OVER(PARTITION BY run_id,stage ORDER BY revision DESC) position FROM application_assessments a WHERE case_id=?) WHERE position<=10 ORDER BY created_at DESC,revision DESC LIMIT 300').bind(caseId).all()).results;
  const fixtureHash=await digest(canonical(fixture)),steps=[];
@@ -83,6 +84,7 @@ export async function applicationAssessmentDetails(env,caseId){
   const revisions=history.filter(a=>a.run_id===row.run_id&&a.stage===row.stage).sort((a,b)=>b.revision-a.revision);
   const latest=revisions[0];
   steps.push({run_id:row.run_id,stage:row.stage,state:row.state,output:row.output?JSON.parse(row.output):null,error:row.error,created_at:row.created_at,
+   diagnostic:retainedReviewDiagnostic(row,fixture.cases.find(c=>c.id===caseId),expectedProfile),
    assessment_target:target?{fingerprint:target.fingerprint,revision:latest?.revision||0}:null,assessment_unavailable:unavailable,
    assessment:publicAssessment(latest),assessment_current:!!target&&latest?.output_fingerprint===target.fingerprint,
    assessment_history:revisions.slice(0,10).map(publicAssessment)});

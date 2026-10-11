@@ -1,6 +1,6 @@
 # Sponsor Intel operations — 9–11 October 2026
 
-This receipt supersedes the older pending observations where stated. The desktop check spanned sleep/interruption and later heartbeat triggers; observations below retain their actual dates. Production remains **2.52.0**, verified through `/api/health` on 11 October. Release 2.52.1 is prepared, tested and awaiting authorized Cloudflare sign-in; it is not live.
+This receipt supersedes the older pending observations where stated. The desktop check spanned sleep/interruption and later heartbeat triggers; observations below retain their actual dates. Production remains **2.52.0**, verified through `/api/health` on 11 October. Release 2.53 now includes the tested 2.52.1 reservation repair and retained-review diagnostics, awaiting authorized Cloudflare sign-in; it is not live.
 
 ## Source failure contained and admission defect repaired locally
 
@@ -41,3 +41,11 @@ Cloudflare CLI OAuth expired on 9 October; automatic renewal failed. The Google-
 The local 2.52.1 repair passes 509 tests, TypeScript, production build, 17 prerenders, asset budgets and final Wrangler dry-run on pinned Node 24.19.0. Available disk was 8.3 GiB on 9 October and 5.6 GiB at the 11 October check. No dependency installation or personal-file deletion occurred. The 9 October audit still reports zero high/critical findings and three moderate entries in the existing Mammoth/argparse/sprintf-js chain; the [reviewed upstream advisory](https://github.com/advisories/GHSA-hp3w-g68c-fv3c) lists no patched sprintf-js version. No forced dependency downgrade was made.
 
 Next: regain authorized Cloudflare access; run recovery inspection; deploy/verify 2.52.1; diagnose the exact held dental identity conflict and failed research/editorial receipts; assess retained fictional application outputs; work existing education leads before expanding discovery. Preserve all budgets, paused sources, unknown outcomes and marketing limits. Automatic LinkedIn ingestion and a fully autonomous business remain unproven.
+
+## Later 11 October application quality review
+
+The source-backed review is now recorded in production: nine of nine completed fictional outputs assessed, six needs-work judgments, no unassessed criteria or stale records, and no completed current/candidate pair. Every rationale discloses agent assistance through the owner account. Five needs-work outputs are original writer drafts; one is a current-reviewer clarity judgment. These are not independent human judgments or customer accuracy claims.
+
+All six candidate responses and three current-reviewer responses were rejected by their contracts across the original 9–11 October runs. After confirming the runs were complete, the development evaluator was paused with the existing owner control. Its receipts and shared two-start/six-call allowance remain unchanged. No paid test or customer-generation change followed. The 10 October research step reveals the retained class `Model response incomplete.` after one call and 157.1 seconds; its provider-side cause remains unresolved and no recovery was attempted.
+
+Release 2.53 prepares safe, read-only contract diagnostics for already retained reviewer responses. All 514 tests, TypeScript/build/prerenders/budgets and dry-run pass, with actual isolated Worker/auth/D1 and browser checks. The bundled evaluation profile matches live commit d8861939886a71b693920bc09150396bf4d4aed5 exactly. This is not deployed and cannot yet diagnose the actual retained production responses. Preserve the evaluator pause after deployment until those failures are reviewed. See the release and `cloudflare/tests/evidence/application-quality-2026-10-11.json`.

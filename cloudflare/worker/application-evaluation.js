@@ -147,7 +147,7 @@ export async function applicationEvaluationAPI(request,env,owner){
  if(request.method==='GET'&&url.pathname==='/api/admin/application-evaluation')return reply(await applicationEvaluationSnapshot(env));
  if(request.method==='GET'&&url.pathname==='/api/admin/application-evaluation/case'){
   const id=url.searchParams.get('id');let c;try{c=evaluationCase(id);}catch{return reply({error:'Unknown test case.'},404);}
-  return reply({case:c,...await applicationAssessmentDetails(env,id)});
+  return reply({case:c,...await applicationAssessmentDetails(env,id,JSON.stringify(await applicationProfile(env)))});
  }
  if(request.method!=='POST'||!sameOrigin(request))return reply({error:'Use the owner dashboard.'},403);
  if(!await limit(env,'application-eval-owner:'+owner.user.id,12))return reply({error:'Please try again later.'},429);

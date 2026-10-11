@@ -1,6 +1,6 @@
 # Sponsor Intel autonomy acceptance
 
-Updated 11 October 2026. [Current operating evidence](OPERATIONS-2026-10-11.md) confirms two social deliveries, scheduled education candidates and Google reads. Research batch two is held, application quality is unassessed, PortmanDentex is paused, and Cloudflare access/recovery verification needs renewal. The tested 2.52.1 reservation repair is not deployed; production remains 2.52.0.
+Updated 11 October 2026. [Current operating evidence](OPERATIONS-2026-10-11.md) confirms two social deliveries, scheduled education candidates and Google reads. Research batch two is held, nine completed application outputs have agent-assisted assessments (six need work) and the evaluator is paused after six candidate rejections, PortmanDentex is paused, and Cloudflare access/recovery verification needs renewal. Prepared 2.53 includes the 2.52.1 reservation repair and new read-only rejection diagnostics; neither is deployed, and production remains 2.52.0. Independent application quality and full end-to-end autonomy remain unproven. See `cloudflare/RELEASE-2.53.md`.
 
  The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
