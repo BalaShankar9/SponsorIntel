@@ -2,7 +2,8 @@ import { currentJobs } from './current-jobs.js';
 import { approvedSources } from './agent-operations.js';
 import { fetchBoard,fetchBoardJob } from './jobs.js';
 import { sourceRequestCost } from './job-sources.js';
-import { researchModels, callResearchModel } from './research-model.js';
+import { researchModels, callResearchModel, researchResponseFailure } from './research-model.js';
+import { researchCompletion } from '../shared/research-completion.js';
 import { evaluationEvidence, scoreEvaluation,criticChallenge,scoreCriticEvaluation } from './research-evals.js';
 import {referenceBatch,referenceEvidence,referenceProgress,scoreReferenceEvaluation} from './research-reference.js';
 
@@ -87,17 +88,20 @@ export async function modelStep(env, runId, name, role, prompt, input, validate)
     env.DB.prepare("INSERT INTO agent_research_steps(run_id,name,role,state,created_at) VALUES(?,?,?,'calling',?)").bind(runId,name,role,iso()),
   ]);
   const started = Date.now();
-  let response;
+  let response, phase = 'call';
   try {
     response = await callResearchModel(env, models[role], prompt, input);
+    phase = 'validation';
     const output = validate(response.value);
+    phase = 'retention';
     await env.DB.prepare("UPDATE agent_research_steps SET state='completed',output=?,usage=?,duration_ms=? WHERE run_id=? AND name=?")
       .bind(JSON.stringify(output),JSON.stringify(response.usage),Date.now()-started,runId,name).run();
     return output;
   } catch (error) {
     const known = ['Invalid model response.','Model response incomplete.','Invalid research structure.','Invalid research text.','Research must cover every inspected advert.','Research quote is absent from the original.','Incomplete evidence cannot establish sponsorship.','Incomplete independent review.','Invalid independent review.','Summary claims must be individually cited.','Invalid summary citations.','Choose one original quote reference.','Unknown original quote reference.','The investigator selected an unavailable or repeated tool.'];
     const failure = known.includes(error.message) ? error.message : 'Model service or structured output validation failed.';
-    await env.DB.prepare("UPDATE agent_research_steps SET state='failed',output=?,usage=?,duration_ms=? WHERE run_id=? AND name=?").bind(JSON.stringify({failure,...(response?{rejected_draft:response.value}: {})}),JSON.stringify(response?.usage||null),Date.now()-started,runId,name).run();
+    const completion = response ? researchCompletion({...response.completion, failure_stage:phase==='validation'?'contract_validation':'retention_unconfirmed'}) : researchResponseFailure(error);
+    await env.DB.prepare("UPDATE agent_research_steps SET state='failed',output=?,usage=?,duration_ms=? WHERE run_id=? AND name=?").bind(JSON.stringify({failure,...(completion?{completion}:{}),...(response?{rejected_draft:response.value}: {})}),JSON.stringify(response?.usage||completion?.usage||null),Date.now()-started,runId,name).run();
     throw Error('The model could not produce a validated result. No public content changed.');
   }
 }
@@ -262,8 +266,8 @@ export async function researchSnapshot(env) {
   const rows = await env.DB.prepare('SELECT id,kind,evaluation_suite,reference_batch,state,created_at,finished_at,policy,models,report,error,calls FROM agent_investigations ORDER BY created_at DESC LIMIT 8').all();
   const budget = await env.DB.prepare('SELECT runs,calls FROM agent_research_budget WHERE day=?').bind(iso().slice(0,10)).first();
   const memories = await env.DB.prepare('SELECT job_id,verdict,approved_at,expires_at FROM agent_research_memory WHERE expires_at>? ORDER BY approved_at DESC LIMIT 30').bind(iso()).all();
-  const steps = rows.results[0] ? await env.DB.prepare("SELECT name,role,state,usage,duration_ms,CASE WHEN state='failed' THEN json_extract(output,'$.failure') ELSE NULL END AS failure FROM agent_research_steps WHERE run_id=? ORDER BY created_at").bind(rows.results[0].id).all() : { results:[] };
+  const steps = rows.results[0] ? await env.DB.prepare("SELECT name,role,state,usage,duration_ms,CASE WHEN state='failed' THEN json_extract(output,'$.failure') ELSE NULL END AS failure,CASE WHEN state='failed' THEN json_extract(output,'$.completion') ELSE NULL END AS completion FROM agent_research_steps WHERE run_id=? ORDER BY created_at").bind(rows.results[0].id).all() : { results:[] };
   return { enabled:!!env.RESEARCH_WORKFLOW,policy:RESEARCH_POLICY, models:researchModels(env), budget:{ runs:budget?.runs || 0, calls:budget?.calls || 0, run_limit:4, call_limit:32 },
-    runs:rows.results.map(r => ({ ...r,models:JSON.parse(r.models),report:r.report ? JSON.parse(r.report) : null })), memories:memories.results, steps:steps.results,
+    runs:rows.results.map(r => ({ ...r,models:JSON.parse(r.models),report:r.report ? JSON.parse(r.report) : null })), memories:memories.results, steps:steps.results.map(s=>{let completion;try{completion=researchCompletion(JSON.parse(s.completion));}catch{completion=null;}return {...s,completion};}),
     reference:await referenceProgress(env) };
 }

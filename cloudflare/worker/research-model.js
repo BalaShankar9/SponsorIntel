@@ -1,5 +1,9 @@
 // Provider choice is deployment configuration, never model-controlled input.
 // Premium providers remain disconnected until keys AND explicit provider configuration exist.
+import {boundedResearchUsage, researchCompletion} from '../shared/research-completion.js';
+const responseFailures = new WeakMap();
+export const researchResponseFailure = error => responseFailures.get(error) || null;
+
 export function researchModels(env) {
   const provider = env.RESEARCH_PROVIDER || 'cloudflare';
   const reviewer = env.RESEARCH_REVIEW_PROVIDER || 'cloudflare';
@@ -41,7 +45,12 @@ export async function callResearchModel(env, config, system, input) {
   const content = JSON.stringify(input);
   if (content.length > 90000) throw Error('Research context exceeded limit.');
   const messages = [{ role: 'system', content: system }, { role: 'user', content }];
-  let value, usage, finish;
+  let value, usage, finish, received;
+  const rejectResponse = (message, failure_stage) => {
+    const error = Error(message);
+    if (received) responseFailures.set(error, researchCompletion({...received, failure_stage}));
+    return error;
+  };
   if (config.provider === 'cloudflare') {
     const r = await env.AI.run(config.model, {
       messages, max_tokens: 8192, temperature: 0.1,
@@ -49,7 +58,9 @@ export async function callResearchModel(env, config, system, input) {
       response_format: { type: 'json_object' },
     });
     value = r.response || r.choices?.[0]?.message?.content;
-    usage = r.usage; finish = r.choices?.[0]?.finish_reason;
+    usage = boundedResearchUsage(r.usage); finish = r.choices?.[0]?.finish_reason;
+    received = {version:1, provider:'cloudflare', finish_reason:finish ?? 'not_reported',
+      response_kind:typeof value==='string'?'text':value==null?'missing':typeof value==='object'&&!Array.isArray(value)?'object':'other', usage};
   } else if (config.provider === 'openai' && env.OPENAI_API_KEY) {
     const r = await boundedJSON(await fetch('https://api.openai.com/v1/responses', {
       method: 'POST', redirect: 'manual', signal: AbortSignal.timeout(100000),
@@ -71,7 +82,13 @@ export async function callResearchModel(env, config, system, input) {
     value = r.content?.filter(x => x.type === 'text').map(x => x.text).join('');
     usage = r.usage; finish = r.stop_reason;
   } else throw Error('Selected model provider is not connected.');
-  if (['length', 'max_tokens'].includes(finish)) throw Error('Model response incomplete.');
+  if (['length', 'max_tokens'].includes(finish)) throw rejectResponse('Model response incomplete.', 'incomplete_response');
   // Record usage and the structured decision, never private chain of thought.
-  return { value: parseModelJSON(value), usage: usage || null };
+  let parsed;
+  try { parsed = parseModelJSON(value); }
+  catch (error) {
+    if (!received) throw error;
+    throw rejectResponse('Invalid model response.', error instanceof SyntaxError ? 'invalid_json' : 'invalid_response');
+  }
+  return { value: parsed, usage: usage || null, completion:received || null };
 }

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrainCircuit, FlaskConical, SearchCheck } from 'lucide-react';
+import { ResearchCompletionNote } from './research-completion';
+import type { ResearchCompletion } from '../shared/research-completion.js';
 
 type Assessment = { job_id:string; verdict:string; quote:string; reason:string };
 type SummaryClaim={claim_id:string;text:string;citations:{job_id:string;quote:string}[]};
@@ -18,7 +20,7 @@ type Run = {id:string;kind:string;evaluation_suite?:string;reference_batch?:stri
 type Data = { enabled:boolean;policy:string;models:Record<string,{provider:string;model:string}>;
   budget:{runs:number;calls:number;run_limit:number;call_limit:number};runs:Run[];
   reference?:{state:string;snapshot_at:string;total_adverts:number;unique_descriptions:number;evaluated_adverts:number;completed_batches:number;total_batches:number;correct:number;scored:number;ambiguous:number;disputed_items:number;comparable:boolean;next_batch:string|null;limitation:string;batches:{id:string;state:string;adverts:number;run_id:string|null}[]};
-  memories:{job_id:string;expires_at:string}[];steps:{name:string;role:string;state:string;duration_ms:number|null;failure?:string}[] };
+  memories:{job_id:string;expires_at:string}[];steps:{name:string;role:string;state:string;duration_ms:number|null;failure?:string;completion?:ResearchCompletion|null}[] };
 const label = (s:string) => s.replaceAll('_',' ');
 async function api(path='',body?:unknown) {
   const r = await fetch('/api/admin/agents/research'+path,body === undefined ? {} : { method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body) });
@@ -97,7 +99,7 @@ export function AgentResearch() {
         </>}
       </article>}
       <details className="agent-panel"><summary>Learning and execution records</summary><p>{data.memories.length} approved observations with unexpired retention. They are reused only after a fresh advert fetch matches the saved content exactly. Each expires after seven days.</p><p>Learning does not alter model weights, grant new permissions or deploy code. Model and prompt upgrades require new test results and a reviewed release.</p>
-      {data.steps.length>0&&<><h4>Latest investigation’s execution records</h4><ul>{data.steps.map(s=><li key={s.name}>{label(s.name)} · {s.role} · {s.state}{s.duration_ms!==null&&` · ${(s.duration_ms/1000).toFixed(1)}s`}{s.failure&&` — ${s.failure}`}</li>)}</ul></>}</details>
+      {data.steps.length>0&&<><h4>Latest investigation’s execution records</h4><ul>{data.steps.map(s=><li key={s.name}>{label(s.name)} · {s.role} · {s.state}{s.duration_ms!==null&&` · ${(s.duration_ms/1000).toFixed(1)}s`}{s.failure&&` — ${s.failure}`}{s.state==='failed'&&<ResearchCompletionNote value={s.completion}/>}</li>)}</ul></>}</details>
     </>}
   </section>;
 }
