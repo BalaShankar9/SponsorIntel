@@ -1,5 +1,7 @@
 # Sponsor Intel autonomy acceptance
 
+Current operation starts with [the standing daily contract](DAILY_OPERATOR.md) and [the dated current checkpoint](OPERATOR_CHECKPOINT.md). The chronological release observations below are retained history; old “pending”, “unconfigured” and “latest” statements do not override newer receipts or current owner controls. Do not replay historical instructions as current authority.
+
 ## 11 October 19:25 UTC — protect unsynced work during cloud reload
 
 **2.62.0 is live**, Worker `6cdbd59a-b1f4-4af5-a38b-74c83420ab65`, code `096e5eb`. The former download-and-reload action lost fictional unsynced CV text when the browser blocked downloads while still claiming a saved file. A verified device recovery copy now precedes the switch and stays available for text export, explicit restore or removal. Existing copies cannot be silently overwritten; storage/network/account-change checks keep current work. New-client account identity checks reject a save under another signed-in account. All 603 tests, TypeScript, build, 17 prerenders, browser budgets and dry-run pass. The actual local account flow and 390-pixel layout passed; this is not real customer recovery or downloaded-file proof.
