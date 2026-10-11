@@ -1,0 +1,27 @@
+# Sponsor Intel 2.55 — separate application comparison with stable source identity
+
+Prepared on 11 October 2026; production deployment is not yet verified. Rollback reference: 2.54 Worker `c2eee049-7c16-4eda-84f6-374f7cfb946a`. Additive migration `0036_application_campaigns.sql` is required. Keep the evaluator paused during release and on 11 October; no further production AI request is part of this release.
+
+## Problem and final behavior
+
+Six original candidate reviews were rejected: five malformed structures and one invalid JSON response. The original function-string identity also changed solely because the complete bundle renamed local variables. Release 2.54 preserved the old contracts for inspection; this release gives a genuinely separate development comparison a stable identity and a bounded candidate response schema. It does not reinterpret or restart the original campaign.
+
+The candidate request now supplies a CV- or letter-specific JSON schema using the existing reviewer, temperature and 2,700-token ceiling. The writer, current reviewer, prompts and candidate content validation remain unchanged. The customer writer was moved verbatim into an isolated module shared with its existing caller. [Cloudflare's official JSON Mode documentation](https://developers.cloudflare.com/workers-ai/features/json-mode/), checked 11 October, supports this request form and the existing reviewer, but explicitly does not guarantee compliance. The existing rejected/unknown-outcome behavior and zero model retries remain. A structured response is not evidence that its claims are entailed by the CV or that its writing is better.
+
+An explicitly reviewed source manifest covers exact bytes of the writer, both reviewers, helpers, request options and fictional fixture. Builds verify it and reject changes or untracked imports. Normal and minified complete Worker builds retain the same profile; edited source bytes require an explicit new identity. Earlier runtime hashes remain intact and continue to use their archived inspection path.
+
+The owner lab can prepare a separate comparison only while the evaluator is paused and no prior run or model call is active or uncertain. Preparation records the actual actor, time, reason, exact proposed profile and request identity atomically. It keeps the evaluator paused. Repeating an uncertain save returns the same record; overlapping identical requests produce one audit. The exact same profile cannot be restarted. Existing runs gain only a `legacy-v1` relationship; no original result, assessment, call reservation or timestamp changes. The legacy record time means creation of the migration boundary, not a fabricated original campaign start.
+
+Two cases and six calls remain the maximum per evaluation run. Daily uniqueness applies across all comparisons, and the original shared four-start/32-call ceilings remain. Preparing a comparison cannot create another attempt on an already-used UTC day. Pause and active-version checks run again atomically at reservation time. UI case counts explicitly refer to the selected comparison; historical runs and assessments remain inspectable and cannot be mixed into a quality pair.
+
+## Validation and release gates
+
+Focused unit and actual full Worker/auth/D1 checks pass with fictional local data and zero external calls. They cover immutable migration history and rollback inserts, stale and foreign-origin requests, anonymous denial, identical/different concurrent saves, lost acknowledgements, truthful replay after resume, global daily uniqueness, pause races, source edits/import coverage, unchanged archived diagnostics, and exactly one synthetic model reservation on replay. All **565 tests pass** on Node 24.19.0 in 111.5 seconds. An initial historical-runtime fixture lacked the newly required migration seed; the corrected fixture and full suite pass.
+
+TypeScript/build, 17 prerenders and browser budgets pass. Initial JavaScript is 367,164 bytes / 112,329 gzip; CSS 105,467 / 22,020 gzip. The actual owner component was checked at 1,280 and 390 pixels, with no horizontal overflow. A fictional local save kept the pause and six-call counter while selecting the new comparison; no production write or external call was involved. The temporary preview was closed.
+
+The current dependency audit retains three moderate findings and zero high/critical findings; no dependency or spending change was made.
+
+Fresh read-only recovery at 16:25:18.276 UTC matched production against the committed 35 migrations / 146 objects and retained a current recovery-point digest. It does not restore/export customer data or prove the retention window. A transient authentication error cleared on a read-only retry with the existing authorized scopes; no new login permission was added. Before release, four runs, 18 steps, nine assessments, one pause control and the shared 11 October two-start/six-call budget were retained for an exact before/after comparison.
+
+Remaining acceptance: apply the migration and verify schema/preservation; deploy and inspect the live owner form; prepare an evidence-reviewed version while preserving the pause; on a later eligible day separately resume it for its genuine scheduled opportunity, then inspect actual provider outputs, failures and all writing criteria. Complete all 20 cases, independent adjudication and a separately held-out evaluation before any proposed customer promotion. There is no promotion endpoint. Local and synthetic success cannot close those gates.

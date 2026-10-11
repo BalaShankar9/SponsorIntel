@@ -1,53 +1,47 @@
 import fixture from '../tests/fixtures/application-development-20.json' with {type:'json'};
-import {writeCareerDraft,generationPrompt} from './career.js';
-import {candidatePassages,reviewPrompt,validateReview} from './career-review.js';
-import {candidateReviewPrompt,validateCandidateReview,CANDIDATE_REVIEW_POLICY} from './career-review-candidate.js';
-import {cleanDraft,preserveCVContacts,draftWarnings} from './career-quality.js';
-import {bodyJSON,digest,limit,reply,sameOrigin} from './auth.js';
+import {writeCareerDraft} from './career-writer.js';
+import {reviewPrompt,validateReview} from './career-review.js';
+import {candidateReviewPrompt,validateCandidateReview} from './career-review-candidate.js';
+import {preserveCVContacts,draftWarnings} from './career-quality.js';
+import {bodyJSON,limit,reply,sameOrigin} from './auth.js';
 import {applicationAssessmentDetails,applicationAssessmentSummary,recordApplicationAssessment} from './application-assessments.js';
-export const APPLICATION_FIXTURE_HASH='5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3';
-export const APPLICATION_EVAL_POLICY='paired-application-development-v1';
-const REVIEW_OPTIONS=Object.freeze({max_tokens:2700,temperature:.1,response_format:{type:'json_object'}});
+import {applicationProfile,baselineReviewOptions,candidateReviewOptions} from './application-profile.js';
+export {applicationProfile,APPLICATION_FIXTURE_HASH,APPLICATION_EVAL_POLICY} from './application-profile.js';
+import {activeApplicationCampaign,applicationCampaignProposal,prepareApplicationCampaign} from './application-campaigns.js';
 const iso=(n=Date.now())=>new Date(n).toISOString(),HOUR=3600000;
-const canonical=v=>JSON.stringify(v&&typeof v==='object'?Array.isArray(v)?v.map(x=>JSON.parse(canonical(x))):Object.fromEntries(Object.keys(v).sort().map(k=>[k,JSON.parse(canonical(v[k]))])):v);
 const enabled=async env=>!!(await env.DB.prepare('SELECT enabled FROM business_controls WHERE singleton=1').first())?.enabled&&!!(await env.DB.prepare('SELECT enabled FROM application_eval_controls WHERE singleton=1').first())?.enabled;
 const rowFor=(env,id)=>env.DB.prepare('SELECT * FROM application_eval_runs WHERE id=?').bind(id).first();
 export const applicationCases=()=>fixture.cases.map(c=>({id:c.id,kind:c.kind,title:c.application.title,review_question:c.review_questions}));
 export function evaluationCase(id){const c=fixture.cases.find(x=>x.id===id);if(!c)throw Error('Unknown application test case');return c;}
-export async function applicationProfile(env){
- if(await digest(canonical(fixture))!==APPLICATION_FIXTURE_HASH)throw Error('Application fixture changed');
- const c=fixture.cases[0],prompts=['cv','coverLetter'].map(kind=>[generationPrompt(kind,c.profile,c.application),reviewPrompt('fixed draft',c.profile,c.application,kind),candidateReviewPrompt('fixed draft',c.profile,c.application,kind)]);
- return {suite:fixture.version,fixture_hash:APPLICATION_FIXTURE_HASH,policy:APPLICATION_EVAL_POLICY,candidate_policy:CANDIDATE_REVIEW_POLICY,writer:env.AI_MODEL,reviewer:env.AI_REVIEW_MODEL,review_options:REVIEW_OPTIONS,
-  implementation:await digest(JSON.stringify(prompts)+writeCareerDraft.toString()+validateReview.toString()+validateCandidateReview.toString()+candidatePassages.toString()+cleanDraft.toString()+preserveCVContacts.toString())};
-}
 export async function applicationProgress(env){
- const runs=(await env.DB.prepare('SELECT * FROM application_eval_runs ORDER BY created_at').all()).results;
+ const campaign=await activeApplicationCampaign(env);
+ const runs=(await env.DB.prepare('SELECT * FROM application_eval_runs WHERE campaign_id=? ORDER BY created_at').bind(campaign.id).all()).results;
  const attempted=runs.filter(r=>JSON.parse(r.case_ids).length),first=attempted[0];
  const completed=new Set(attempted.filter(r=>r.state==='completed').flatMap(r=>JSON.parse(r.case_ids)));
  const held=attempted.find(r=>!['completed','queued','running'].includes(r.state));
  const active=attempted.find(r=>['queued','running'].includes(r.state));
  const same=attempted.every(r=>r.profile===first?.profile);
  const next=!held&&!active&&same?fixture.cases.filter(c=>!completed.has(c.id)).slice(0,2).map(c=>c.id):[];
- return {total:fixture.cases.length,completed:completed.size,state:!same||held?'needs_attention':active?'running':completed.size===fixture.cases.length?'awaiting_independent_review':'ready',next,profile:first?JSON.parse(first.profile):null,runs};
+ return {total:fixture.cases.length,completed:completed.size,state:!same||held?'needs_attention':active?'running':completed.size===fixture.cases.length?'awaiting_independent_review':'ready',next,profile:first?JSON.parse(first.profile):null,campaign,runs};
 }
 export async function dispatchApplicationEvaluation(env,trigger='scheduled',now=Date.now()){
  if(!['scheduled','owner'].includes(trigger))throw Error('Unknown application trigger');
  if(!await enabled(env))return {state:'paused'};
  if(!env.APPLICATION_EVAL_WORKFLOW||!env.AI_MODEL||!env.AI_REVIEW_MODEL||env.AI_MODEL===env.AI_REVIEW_MODEL)return {state:'unavailable'};
- const day=iso(now).slice(0,10),id='application-eval-'+day;
- const prior=await rowFor(env,id);if(prior)return {id,state:prior.state,reused:true};
+ const day=iso(now).slice(0,10),campaign=await activeApplicationCampaign(env),id=(campaign.id==='legacy-v1'?'application-eval-':'application-'+campaign.id+'-')+day;
+ const prior=await env.DB.prepare('SELECT id,state,campaign_id FROM application_eval_runs WHERE day=?').bind(day).first();if(prior)return {id:prior.id,state:prior.state,reused:true,other_campaign:prior.campaign_id!==campaign.id};
  const progress=await applicationProgress(env);if(!progress.next.length)return {state:progress.state};
  const profile=await applicationProfile(env),serial=JSON.stringify(profile);
- if(progress.profile&&JSON.stringify(progress.profile)!==serial)return {state:'needs_attention',reason:'The evaluation policy or models changed. Preserve this campaign and review a separate version.'};
+ if(campaign.profile&&campaign.profile!==serial||progress.profile&&JSON.stringify(progress.profile)!==serial)return {state:'needs_attention',reason:'The evaluation policy or models changed. Preserve this campaign and review a separate version.'};
  await env.DB.prepare('INSERT INTO agent_research_budget(day) VALUES(?) ON CONFLICT DO NOTHING').bind(day).run();
  let batch;
  try{batch=await env.DB.batch([
-  env.DB.prepare("INSERT INTO application_eval_runs(id,day,trigger_kind,state,created_at,profile,case_ids) SELECT ?,?,?,'queued',?,?,? WHERE (SELECT runs<4 AND calls<=26 FROM agent_research_budget WHERE day=?) RETURNING id").bind(id,day,trigger,iso(now),serial,JSON.stringify(progress.next),day),
-  env.DB.prepare('UPDATE agent_research_budget SET runs=runs+1 WHERE day=? AND EXISTS(SELECT 1 FROM application_eval_runs WHERE id=?)').bind(day,id)
- ]);}catch{const winner=await rowFor(env,id);if(winner)return {id,state:winner.state,reused:true};throw Error('Application reservation failed');}
+  env.DB.prepare("INSERT INTO application_eval_runs(id,day,trigger_kind,state,created_at,profile,case_ids,campaign_id) SELECT ?,?,?,'queued',?,?,?,? WHERE (SELECT runs<4 AND calls<=26 FROM agent_research_budget WHERE day=?) AND (SELECT enabled FROM business_controls WHERE singleton=1)=1 AND (SELECT enabled FROM application_eval_controls WHERE singleton=1)=1 AND (SELECT campaign_id FROM application_eval_campaign_control WHERE singleton=1)=? RETURNING id").bind(id,day,trigger,iso(now),serial,JSON.stringify(progress.next),campaign.id,day,campaign.id),
+  env.DB.prepare('UPDATE agent_research_budget SET runs=runs+1 WHERE day=? AND changes()=1').bind(day)
+ ]);}catch{const winner=await env.DB.prepare('SELECT id,state FROM application_eval_runs WHERE day=?').bind(day).first();if(winner)return {id:winner.id,state:winner.state,reused:true};throw Error('Application reservation failed');}
  if(!batch[0].results?.length){
-  await env.DB.prepare("INSERT INTO application_eval_runs(id,day,trigger_kind,state,created_at,finished_at,profile,case_ids,error) VALUES(?,?,?,'held',?,?,?,'[]',?) ON CONFLICT DO NOTHING").bind(id,day,trigger,iso(now),iso(now),serial,'Shared daily allowance unavailable. No model call made.').run();
-  return {id,state:'held',calls:0};
+  const held=await env.DB.prepare("INSERT INTO application_eval_runs(id,day,trigger_kind,state,created_at,finished_at,profile,case_ids,error,campaign_id) SELECT ?,?,?,'held',?,?,?,'[]',?,? WHERE (SELECT enabled FROM business_controls WHERE singleton=1)=1 AND (SELECT enabled FROM application_eval_controls WHERE singleton=1)=1 AND (SELECT campaign_id FROM application_eval_campaign_control WHERE singleton=1)=? ON CONFLICT DO NOTHING RETURNING id").bind(id,day,trigger,iso(now),iso(now),serial,'Shared daily allowance unavailable. No model call made.',campaign.id,campaign.id).all();
+  return held.results.length?{id,state:'held',calls:0}:{state:'paused_or_changed',calls:0};
  }
  try{await env.APPLICATION_EVAL_WORKFLOW.create({id,params:{runId:id}});}catch{
   // A lost create acknowledgement is not a reason to create a second workflow.
@@ -57,7 +51,7 @@ export async function dispatchApplicationEvaluation(env,trigger='scheduled',now=
 }
 export async function initialiseApplicationEvaluation(env,id){
  const row=await rowFor(env,id);if(!row||!['queued','running'].includes(row.state))throw Error('Application test is not active');
- if(!await enabled(env)||JSON.stringify(await applicationProfile(env))!==row.profile)throw Error('Application test paused or changed');
+ if(!await enabled(env)||(await activeApplicationCampaign(env)).id!==row.campaign_id||JSON.stringify(await applicationProfile(env))!==row.profile)throw Error('Application test paused or changed');
  await env.DB.prepare("UPDATE application_eval_runs SET state='running' WHERE id=? AND state='queued'").bind(id).run();
  return JSON.parse(row.case_ids);
 }
@@ -69,7 +63,7 @@ export async function applicationModelStep(env,id,caseId,stage,now=Date.now()){
  if(previous)throw Error('Application model outcome is uncertain; no duplicate call');
  const run=await rowFor(env,id),c=evaluationCase(caseId);
  const age=now-Date.parse(run?.created_at);
- if(!run||run.state!=='running'||!JSON.parse(run.case_ids).includes(caseId)||(!Number.isFinite(age)||age<0||age>HOUR)||!await enabled(env)||run.profile!==JSON.stringify(await applicationProfile(env)))throw Error('Application test expired, changed or paused');
+ if(!run||run.state!=='running'||!JSON.parse(run.case_ids).includes(caseId)||(!Number.isFinite(age)||age<0||age>HOUR)||!await enabled(env)||(await activeApplicationCampaign(env)).id!==run.campaign_id||run.profile!==JSON.stringify(await applicationProfile(env)))throw Error('Application test expired, changed or paused');
  let draft;
  if(stage!=='write'){
   const writer=await env.DB.prepare("SELECT output,state FROM application_eval_steps WHERE run_id=? AND case_id=? AND stage='write'").bind(id,caseId).first();
@@ -79,12 +73,13 @@ export async function applicationModelStep(env,id,caseId,stage,now=Date.now()){
  const day=iso(now).slice(0,10);
  // CHECK constraints atomically bound all agents to the existing 4-start/32-call
  // daily allowance. This run additionally has a six-call ceiling.
- await env.DB.batch([
+ const reservation=await env.DB.batch([
   env.DB.prepare('INSERT INTO agent_research_budget(day) VALUES(?) ON CONFLICT DO NOTHING').bind(day),
-  env.DB.prepare('UPDATE agent_research_budget SET calls=calls+1 WHERE day=?').bind(day),
-  env.DB.prepare('UPDATE application_eval_runs SET calls=calls+1 WHERE id=?').bind(id),
-  env.DB.prepare("INSERT INTO application_eval_steps(run_id,case_id,stage,state,created_at) VALUES(?,?,?,'calling',?)").bind(id,caseId,stage,iso(now))
+  env.DB.prepare("INSERT INTO application_eval_steps(run_id,case_id,stage,state,created_at) SELECT ?,?,?,'calling',? WHERE (SELECT enabled FROM business_controls WHERE singleton=1)=1 AND (SELECT enabled FROM application_eval_controls WHERE singleton=1)=1 AND (SELECT campaign_id FROM application_eval_campaign_control WHERE singleton=1)=? AND EXISTS(SELECT 1 FROM application_eval_runs WHERE id=? AND state='running' AND profile=? AND campaign_id=?) RETURNING run_id").bind(id,caseId,stage,iso(now),run.campaign_id,id,run.profile,run.campaign_id),
+  env.DB.prepare('UPDATE agent_research_budget SET calls=calls+1 WHERE day=? AND changes()=1').bind(day),
+  env.DB.prepare('UPDATE application_eval_runs SET calls=calls+1 WHERE id=? AND changes()=1').bind(id)
  ]);
+ if(!reservation[1].results.length)throw Error('Application test paused or changed before reserving a call');
  let response,raw=null,output=null,state='completed',error=null;
  try{
   if(stage==='write'){
@@ -93,7 +88,7 @@ export async function applicationModelStep(env,id,caseId,stage,now=Date.now()){
    try{output={text:await writeCareerDraft(wrapped,c.kind,c.profile,c.application)};}catch(e){if(!response)throw e;state='rejected';error='Writer output did not meet the existing document contract.';}
   }else{
    const prompt=stage==='baseline'?reviewPrompt(draft,c.profile,c.application,c.kind):candidateReviewPrompt(draft,c.profile,c.application,c.kind);
-   response=await env.AI.run(env.AI_REVIEW_MODEL,{messages:[{role:'system',content:prompt.system},{role:'user',content:prompt.user}],...REVIEW_OPTIONS});
+   response=await env.AI.run(env.AI_REVIEW_MODEL,{messages:[{role:'system',content:prompt.system},{role:'user',content:prompt.user}],...(stage==='candidate'?candidateReviewOptions(c.kind):baselineReviewOptions())});
    try{
     if(response.choices?.[0]?.finish_reason==='length')throw Error('Truncated review');
     const value=responseValue(response);
@@ -135,12 +130,13 @@ export async function finishApplicationEvaluation(env,id,failure=null){
 }
 export async function applicationEvaluationHealth(env){
  const progress=await applicationProgress(env);
- const changed=progress.profile&&JSON.stringify(progress.profile)!==JSON.stringify(await applicationProfile(env));
+ const serial=JSON.stringify(await applicationProfile(env)),changed=progress.campaign.profile&&progress.campaign.profile!==serial||progress.profile&&JSON.stringify(progress.profile)!==serial;
  return {state:changed?'needs_attention':progress.state,completed:progress.completed,total:progress.total,assessments:await applicationAssessmentSummary(env)};
 }
 export async function applicationEvaluationSnapshot(env){
  const progress=await applicationProgress(env),health=await applicationEvaluationHealth(env),budget=await env.DB.prepare('SELECT runs,calls FROM agent_research_budget WHERE day=?').bind(iso().slice(0,10)).first();
- return {enabled:await enabled(env),evaluation_enabled:!!(await env.DB.prepare('SELECT enabled FROM application_eval_controls WHERE singleton=1').first())?.enabled,state:health.state,total:progress.total,completed:progress.completed,next_cases:progress.next,profile:progress.profile,assessments:health.assessments,budget:{runs:budget?.runs||0,calls:budget?.calls||0,run_limit:4,call_limit:32},runs:progress.runs.slice(-12).reverse().map(r=>({...r,profile:JSON.parse(r.profile),case_ids:JSON.parse(r.case_ids),result:r.result?JSON.parse(r.result):null})),cases:applicationCases(),scope:'Twenty fictional CV/advert cases. No customer records, public output, application submission or automatic reviewer promotion. Two cases per eligible UTC day, at most six calls within the existing shared allowance.'};
+ const campaigns=await applicationCampaignProposal(env),allRuns=(await env.DB.prepare('SELECT * FROM application_eval_runs ORDER BY created_at DESC LIMIT 12').all()).results;
+ return {campaigns,enabled:await enabled(env),evaluation_enabled:!!(await env.DB.prepare('SELECT enabled FROM application_eval_controls WHERE singleton=1').first())?.enabled,state:health.state,total:progress.total,completed:progress.completed,next_cases:progress.next,profile:progress.profile,assessments:health.assessments,budget:{runs:budget?.runs||0,calls:budget?.calls||0,run_limit:4,call_limit:32},runs:allRuns.map(r=>({...r,profile:JSON.parse(r.profile),case_ids:JSON.parse(r.case_ids),result:r.result?JSON.parse(r.result):null})),cases:applicationCases(),scope:'Twenty fictional CV/advert cases. No customer records, public output, application submission or automatic reviewer promotion. Two cases per eligible UTC day, at most six calls within the existing shared allowance.'};
 }
 export async function applicationEvaluationAPI(request,env,owner){
  const url=new URL(request.url);
@@ -151,7 +147,10 @@ export async function applicationEvaluationAPI(request,env,owner){
  }
  if(request.method!=='POST'||!sameOrigin(request))return reply({error:'Use the owner dashboard.'},403);
  if(!await limit(env,'application-eval-owner:'+owner.user.id,12))return reply({error:'Please try again later.'},429);
- let body;try{body=await bodyJSON(request,url.pathname==='/api/admin/application-evaluation/assessment'?14000:512);}catch{return reply({error:'Invalid request.'},400);}
+ let body;try{body=await bodyJSON(request,url.pathname==='/api/admin/application-evaluation/assessment'?14000:url.pathname==='/api/admin/application-evaluation/campaign'?4096:512);}catch{return reply({error:'Invalid request.'},400);}
+ if(url.pathname==='/api/admin/application-evaluation/campaign'){
+  try{return reply(await prepareApplicationCampaign(env,body,owner.user.id));}catch(error){if(!error.status)throw error;return reply({error:error.message},error.status);}
+ }
  if(url.pathname==='/api/admin/application-evaluation/assessment'){
   try{return reply(await recordApplicationAssessment(env,body,owner.user.id));}catch(error){if(!error.status)throw error;return reply({error:error.message},error.status);}
  }
