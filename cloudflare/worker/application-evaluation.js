@@ -131,12 +131,19 @@ export async function finishApplicationEvaluation(env,id,failure=null){
 export async function applicationEvaluationHealth(env){
  const progress=await applicationProgress(env);
  const serial=JSON.stringify(await applicationProfile(env)),changed=progress.campaign.profile&&progress.campaign.profile!==serial||progress.profile&&JSON.stringify(progress.profile)!==serial;
- return {state:changed?'needs_attention':progress.state,completed:progress.completed,total:progress.total,assessments:await applicationAssessmentSummary(env)};
+ const controls=await env.DB.prepare('SELECT (SELECT enabled FROM business_controls WHERE singleton=1) business_enabled,(SELECT enabled FROM application_eval_controls WHERE singleton=1) evaluation_enabled').first();
+ const business_enabled=controls?.business_enabled===1,evaluation_enabled=controls?.evaluation_enabled===1,enabled=business_enabled&&evaluation_enabled;
+ const progress_state=changed?'needs_attention':progress.state;
+ // A pause stops new reservations; it does not resolve a failure or undo an
+ // already-started call. Keep execution controls and retained progress separate.
+ return {state:progress_state==='needs_attention'?'needs_attention':enabled?progress_state:'paused',operation_state:enabled?'enabled':'paused',progress_state,enabled,business_enabled,evaluation_enabled,
+  pause_reason:enabled?null:!business_enabled&&!evaluation_enabled?'business_and_evaluation':!business_enabled?'business':'evaluation',
+  campaign_id:progress.campaign.id,completed:progress.completed,total:progress.total,assessments:await applicationAssessmentSummary(env)};
 }
 export async function applicationEvaluationSnapshot(env){
  const progress=await applicationProgress(env),health=await applicationEvaluationHealth(env),budget=await env.DB.prepare('SELECT runs,calls FROM agent_research_budget WHERE day=?').bind(iso().slice(0,10)).first();
  const campaigns=await applicationCampaignProposal(env),allRuns=(await env.DB.prepare('SELECT * FROM application_eval_runs ORDER BY created_at DESC LIMIT 12').all()).results;
- return {campaigns,enabled:await enabled(env),evaluation_enabled:!!(await env.DB.prepare('SELECT enabled FROM application_eval_controls WHERE singleton=1').first())?.enabled,state:health.state,total:progress.total,completed:progress.completed,next_cases:progress.next,profile:progress.profile,assessments:health.assessments,budget:{runs:budget?.runs||0,calls:budget?.calls||0,run_limit:4,call_limit:32},runs:allRuns.map(r=>({...r,profile:JSON.parse(r.profile),case_ids:JSON.parse(r.case_ids),result:r.result?JSON.parse(r.result):null})),cases:applicationCases(),scope:'Twenty fictional CV/advert cases. No customer records, public output, application submission or automatic reviewer promotion. Two cases per eligible UTC day, at most six calls within the existing shared allowance.'};
+ return {campaigns,enabled:health.enabled,evaluation_enabled:health.evaluation_enabled,business_enabled:health.business_enabled,pause_reason:health.pause_reason,state:health.state,progress_state:health.progress_state,total:progress.total,completed:progress.completed,next_cases:progress.next,profile:progress.profile,assessments:health.assessments,budget:{runs:budget?.runs||0,calls:budget?.calls||0,run_limit:4,call_limit:32},runs:allRuns.map(r=>({...r,profile:JSON.parse(r.profile),case_ids:JSON.parse(r.case_ids),result:r.result?JSON.parse(r.result):null})),cases:applicationCases(),scope:'Twenty fictional CV/advert cases. No customer records, public output, application submission or automatic reviewer promotion. Two cases per eligible UTC day, at most six calls within the existing shared allowance.'};
 }
 export async function applicationEvaluationAPI(request,env,owner){
  const url=new URL(request.url);

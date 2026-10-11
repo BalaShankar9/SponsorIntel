@@ -1,0 +1,132 @@
+{
+  "observed_date": "2026-10-11",
+  "run_id": "business-497705",
+  "trigger_kind": "scheduled",
+  "application_state": "attention",
+  "finished_at": "2026-10-11T17:46:08.584Z",
+  "platform": {
+    "workflow": "sponsorintel-business",
+    "status": "completed",
+    "success": true,
+    "end_utc_to_seconds": "2026-10-11T17:46:08Z",
+    "workflow_version": "1aa094cb-8eb7-4428-a92d-ecc8de6d48b9"
+  },
+  "jobs": {
+    "total": 928,
+    "employers": 36,
+    "offered": 21,
+    "conditional": 34,
+    "unavailable": 96,
+    "not_stated": 777,
+    "early_career": 51,
+    "salary": 144
+  },
+  "reference": {
+    "state": "paused",
+    "dataset": "real-adverts-2026-10-08-compact-v2",
+    "original_state": "needs_attention",
+    "evaluated_adverts": 0,
+    "total_adverts": 50,
+    "dangerous_false_positives": 0,
+    "unsupported_refusals": 0,
+    "disputed_items": 0
+  },
+  "applications": {
+    "state": "ready",
+    "completed": 0,
+    "total": 20,
+    "assessments": {
+      "assessable_outputs": 9,
+      "assessed_outputs": 9,
+      "unassessed_outputs": 0,
+      "needs_work": 6,
+      "incomplete": 0,
+      "stale": 0,
+      "groups": [],
+      "limited": false,
+      "automatic_promotion": false,
+      "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+    }
+  },
+  "dispatch": {
+    "research": {
+      "state": "held",
+      "research_id": null,
+      "detail": "Research was held by its availability or budget controls. No automatic retry today."
+    },
+    "applications": {
+      "state": "paused"
+    }
+  },
+  "new_link_samples": [
+    {
+      "id": "cd0d6b586be936e9bc4b75b5",
+      "company": "Wintermute",
+      "state": "uncertain",
+      "reason": "response_body_limit",
+      "url": "https://jobs.lever.co/wintermute-trading/8c31337e-9989-4cf2-9cab-e876cbc96f10",
+      "finished_at": "2026-10-11T17:45:48.829Z"
+    },
+    {
+      "id": "6e3a652fd4a27097fd193c48",
+      "company": "Sampura Research",
+      "state": "checked",
+      "reason": "title_observed",
+      "url": "https://jobs.ashbyhq.com/sampura/a83213a5-6d70-4ed1-8f79-542a34051637",
+      "finished_at": "2026-10-11T17:45:51.620Z"
+    }
+  ],
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "ok": true,
+      "security": true
+    },
+    {
+      "path": "/jobs",
+      "status": 200,
+      "ok": true,
+      "security": true,
+      "content": {
+        "ok": true,
+        "visible_roles": 12,
+        "matching_roles": 928,
+        "generated_at": "2026-10-11T17:45:53.909Z"
+      }
+    },
+    {
+      "path": "/insights",
+      "status": 200,
+      "ok": true,
+      "security": true
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "ok": true,
+      "security": true
+    },
+    {
+      "path": "/api/admin/session",
+      "status": 403,
+      "ok": true,
+      "security": true
+    }
+  ],
+  "measurement": {
+    "version": 2,
+    "enabled_at": "2026-10-08T11:57:33.807Z",
+    "first_full_day": "2026-10-09",
+    "completed_days": 2,
+    "from": "2026-10-09",
+    "to": "2026-10-11",
+    "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes."
+  },
+  "shared_AI": {
+    "runs": 2,
+    "calls": 6
+  },
+  "source_reservations_after_run": 304,
+  "scope": "Genuine scheduled monitoring with independent platform completion. Proves selected research pause and retained original hold, not candidate execution or quality. Application summary said ready despite paused dispatch; release 2.58 corrects that new-snapshot reporting mismatch. Historical receipt is preserved."
+}
