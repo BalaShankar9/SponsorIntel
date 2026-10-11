@@ -16,4 +16,10 @@ TypeScript, build, 17 prerenders, unchanged browser budgets and deployment dry-r
 
 ## Production boundary
 
-Existing source data and discovery history are not rewritten at deployment. At the next genuine scheduled collection, the removal of the old navigation phrase can create one expected description/proof change; review that exact transition without silently rebasing earlier evidence. A subsequent genuine count change/refresh is needed to prove live stability. Do not force an owner refresh, release an advert hold, reclassify sponsorship or reset any allowance to manufacture acceptance. Unattended model quality, marketing acquisition and end-to-end autonomous business outcomes remain separate open gates. Live verification is recorded after deployment.
+Existing source data and discovery history are not rewritten at deployment. At the next genuine scheduled collection, the removal of the old navigation phrase can create one expected description/proof change; review that exact transition without silently rebasing earlier evidence. A subsequent genuine count change/refresh is needed to prove live stability. Do not force an owner refresh, release an advert hold, reclassify sponsorship or reset any allowance to manufacture acceptance. Unattended model quality, marketing acquisition and end-to-end autonomous business outcomes remain separate open gates. Live verification follows.
+
+## Live verification — 11 October 19:02 UTC
+
+Worker `bd079c7f-3a02-44b5-850b-a0918d3b994f` serves 2.61.0 on sponsorintel.london from code `b21419bada3ef3ca1c0d7d5921ed1b52551838b3`. Excluded HTTP QA confirms health, 928 current roles / 36 employers / 55 sponsorship-worded / 887 licence-linked, and 403 for the anonymous owner dashboard. Compared school jobs, English discovery revisions, model controls/history, owner pauses and the two-start/six-call budget are unchanged; foreign-key inspection has zero rows. Both prepared model source identities are unchanged. No migration or dependency update was needed.
+
+Exact code-head checks 114549339942 and 114549329255 did not start because the account is locked by GitHub billing; both annotations were read. Secret scan 114549380590 passed. This limitation remains separate from the complete local checks. Aggregate receipt: `tests/evidence/teaching-navigation-2026-10-11.json`.

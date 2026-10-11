@@ -1,0 +1,172 @@
+{
+  "release": "2.61.0",
+  "worker_version": "bd079c7f-3a02-44b5-850b-a0918d3b994f",
+  "code_commit": "b21419bada3ef3ca1c0d7d5921ed1b52551838b3",
+  "rollback_worker": "0dda75ee-b323-494d-be95-02bde39c200f",
+  "live": {
+    "observed_at": "2026-10-11T19:02:16.274Z",
+    "health": {
+      "ok": true,
+      "version": "2.61.0",
+      "register": {
+        "date": "2026-10-09",
+        "count": 127981,
+        "checked_at": "2026-10-11T07:15:39.995Z"
+      }
+    },
+    "collections": {
+      "total": 928,
+      "employers": 36,
+      "early_career": 51,
+      "sponsorship": 55,
+      "licensed": 887,
+      "salary": 144
+    },
+    "anonymous_dashboard_status": 403,
+    "QA_excluded": true
+  },
+  "archived_original_replay": {
+    "observed_at": "2026-10-11T19:00:06.548Z",
+    "mode": "Offline replay of an archived public original retained 8 October; no new network request or production write.",
+    "source": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-6f190dda-8595-415d-bc69-d3a0de3eaf46",
+    "archive_sha256": "0a238f8bf43bbfd06baea3716c7db90213235f915bfa4ed7f13adfde9f80d6f7",
+    "source_fields_changed": [
+      "descriptionPlain"
+    ],
+    "only_removed_navigation": "View all Suitable for early career teachers ( 843 ) jobs",
+    "label_retained": "Suitable for early career teachers",
+    "remaining_description_exact": true,
+    "before_description_sha256": "1226848ef4e2753ed85f8cc54723b8bc872a11157f55114b59339bb08ccd7034",
+    "after_description_sha256": "f565a7a46c664a52e4338db321356dbc3adf1524754463d524171d2efe538f71",
+    "job_id": "e2f7bc10bb188fa2488bacc4",
+    "sponsorship_before": "conditional",
+    "sponsorship_after": "conditional",
+    "evidence_unchanged": true,
+    "deadline_unchanged": true,
+    "deadline": "2026-10-19T22:59:00.000Z",
+    "production_refresh_forced": false
+  },
+  "preservation": {
+    "at": "2026-10-11T19:02:17.513Z",
+    "phase": "after",
+    "entries": [
+      {
+        "name": "application_controls",
+        "rows": 1,
+        "sha256": "87ded263de1203b116af8cf50af94350348a26df13a78765c9ec4ddf1004b737"
+      },
+      {
+        "name": "application_selection",
+        "rows": 1,
+        "sha256": "49c3235f79bffe6292c56479d022654494da716602632792431f356790c224f6"
+      },
+      {
+        "name": "application_campaigns",
+        "rows": 2,
+        "sha256": "309698eb2f559d8f554049944a5de4e73c0d85d9028e8943d36c052a42fa939e"
+      },
+      {
+        "name": "application_runs",
+        "rows": 4,
+        "sha256": "b02e208868b899f04a46f731a75e900b1ed8c764597a65741d3d57b0a50e611c"
+      },
+      {
+        "name": "application_steps",
+        "rows": 18,
+        "sha256": "93f190869414d48392ce7ed6ea96f0242b9337ce9c5cdbd21b1da540cf96ef6a"
+      },
+      {
+        "name": "assessments",
+        "rows": 9,
+        "sha256": "d4f2fed6230d0a8e246c22bfc521db323186e8b615a4789eea120bc6c4713ffb"
+      },
+      {
+        "name": "reference_control",
+        "rows": 1,
+        "sha256": "4df30d0b1ce65eaae74216650bb6782a0d09797d941874a82137474eaeb4c7f0"
+      },
+      {
+        "name": "reference_reviews",
+        "rows": 1,
+        "sha256": "f811f65a496beea9bb9a1e2e81cff01a91828cc194747b7e71cdc79081e627ba"
+      },
+      {
+        "name": "research_runs",
+        "rows": 9,
+        "sha256": "c476ee5a5c3cb8e97e6faa22134efb299664a9aa8bc2836b3fd4429075c98851"
+      },
+      {
+        "name": "AI_budget",
+        "rows": 1,
+        "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13"
+      },
+      {
+        "name": "business_controls",
+        "rows": 1,
+        "sha256": "fa4ff3d06c5e455910a634ab41f8217fe07c1b2e4f97cba5b0f202bc59bda0b5"
+      },
+      {
+        "name": "source_pause",
+        "rows": 1,
+        "sha256": "13159c7ff9c606ab374f96f120e1437c8ba23ac39ec8e3fead24fd57097cddbf"
+      },
+      {
+        "name": "school_jobs",
+        "rows": 7,
+        "sha256": "1cb845120c3da6d30a44a886ec2c241b259e06d8829b45e285bd201c282c03f4"
+      },
+      {
+        "name": "school_link",
+        "rows": 4,
+        "sha256": "b05a9d3325bf70d4f91a767dc10f116ea837f61b7d94e3929191c533cb34f21c"
+      },
+      {
+        "name": "foreign_keys",
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    ],
+    "AI_budget": {
+      "day": "2026-10-11",
+      "runs": 2,
+      "calls": 6
+    },
+    "production_writes": false,
+    "changed": []
+  },
+  "validation": {
+    "node": "24.19.0",
+    "tests": 595,
+    "passed": 595,
+    "failed": 0,
+    "duration_ms": 54896.752167,
+    "typecheck": true,
+    "build": true,
+    "prerenders": 17,
+    "browser_budgets": true,
+    "deployment_dry_run": true,
+    "new_migrations": 0,
+    "dependencies_changed": false
+  },
+  "hosted_code_head": {
+    "check_ids": [
+      114549339942,
+      114549329255
+    ],
+    "annotations_read": true,
+    "result": "Jobs did not start: account billing lock. Local validation is not hosted Linux evidence.",
+    "secret_scan_check": 114549380590,
+    "secret_scan_conclusion": "success"
+  },
+  "remaining_gates": [
+    "First genuine scheduled import of the normalised school description",
+    "Review any initial exact proof transition without rebasing prior evidence",
+    "Later actual navigation-count change and scheduled refresh proving production stability",
+    "First new business and marketing contexts using browser measurement",
+    "First full browser-report day 12 October, available 13 October UTC"
+  ],
+  "source_refresh_forced": false,
+  "new_AI_Google_calls": 0,
+  "new_leads": 0,
+  "new_external_sends": 0
+}

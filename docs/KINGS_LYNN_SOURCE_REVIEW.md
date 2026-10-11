@@ -1,5 +1,9 @@
 # King's Lynn Academy source review
 
+## Navigation extraction repair — 11 October 19:02 UTC
+
+Release 2.61 is deployed. Only the known official early-career navigation phrase inside the Job role row is normalised, retaining the suitability label. Unknown text and exact discovery comparison remain unchanged. Existing seven school rows and four lead revisions have identical before/after hashes. At the genuine 00:30 UTC 12 October collection, separately verify the initial clean-up transition, all three holds and the complete batch; append a review if the old linked proof changes. A later real navigation-count change is needed to establish production stability. Do not force a source run or silently rewrite proof. See `cloudflare/RELEASE-2.61.md`.
+
 ## Repeated scheduled refresh — 11 October 18:33 UTC
 
 Genuine run `scheduled-1791743436000` again collected all seven adverts in nine actual requests, preserved all three holds and kept four roles active. Source observation is 18:33:06.763 UTC; the application run finished 18:33:16.325 UTC and Cloudflare independently confirms completion. Overall state remains attention: 36 published / one owner-paused PortmanDentex. This closes the first repeated unattended refresh gate. It does not establish autonomous employer admission, independent human approval or full application/attachment validation.
