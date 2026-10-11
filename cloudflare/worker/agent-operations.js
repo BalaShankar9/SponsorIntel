@@ -255,12 +255,15 @@ export async function executeSourceTask(
     )
       .bind(day)
       .run();
+    // Admit both ceilings in the same transaction. A rejected reservation must
+    // not consume the other counter when no source request can start. Once
+    // admitted, failed or uncertain attempts remain charged as before.
     const reserved = await DB.batch([
       DB.prepare(
-        "UPDATE agent_daily_budget SET requests=requests+? WHERE day=? AND requests+?<=500 RETURNING requests",
-      ).bind(requestCost, day, requestCost),
+        "UPDATE agent_daily_budget SET requests=requests+? WHERE day=? AND requests+?<=500 AND EXISTS(SELECT 1 FROM agent_runs WHERE id=? AND requests+?<=150) RETURNING requests",
+      ).bind(requestCost, day, requestCost, runId, requestCost),
       DB.prepare(
-        "UPDATE agent_runs SET requests=requests+?,updated_at=? WHERE id=? AND requests+?<=150 RETURNING requests",
+        "UPDATE agent_runs SET requests=requests+?,updated_at=? WHERE id=? AND changes()=1 AND requests+?<=150 RETURNING requests",
       ).bind(requestCost, iso(now), runId, requestCost),
     ]);
     if (reserved.some((r) => !r.results?.length))

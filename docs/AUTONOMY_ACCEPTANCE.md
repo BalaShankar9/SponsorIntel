@@ -1,6 +1,8 @@
 # Sponsor Intel autonomy acceptance
 
-Updated 8 October 2026. The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
+Updated 11 October 2026. [Current operating evidence](OPERATIONS-2026-10-11.md) confirms two social deliveries, scheduled education candidates and Google reads. Research batch two is held, application quality is unassessed, PortmanDentex is paused, and Cloudflare access/recovery verification needs renewal. The tested 2.52.1 reservation repair is not deployed; production remains 2.52.0.
+
+ The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
 ## Latest: 2.52 individual advert evidence control
 

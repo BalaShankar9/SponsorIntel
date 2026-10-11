@@ -1,6 +1,8 @@
 # Sponsor Intel social publishing
 
-Updated 8 October 2026. Owner authorised routine company posts and personal LinkedIn introductions. No advertising spend or subscription purchase is approved.
+Updated 11 October 2026. See [the dated operating receipt](OPERATIONS-2026-10-11.md): LinkedIn evidence report and Facebook advert-reading guide are now verified Published; only the 12 October Facebook application guide remains queued. Instagram welcome v2 is held after a failed/uncertain review. Older pending statements below are historical.
+
+ Owner authorised routine company posts and personal LinkedIn introductions. No advertising spend or subscription purchase is approved.
 
 ## Verified destinations
 

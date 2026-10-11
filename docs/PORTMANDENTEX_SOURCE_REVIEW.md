@@ -1,4 +1,6 @@
-# PortmanDentex source review — 8 October 2026
+# PortmanDentex source review — updated 11 October 2026
+
+**Current: paused, zero public jobs.** Three 9 October scheduled collections repeatedly failed the identity comparison for advert `744000145730189`. The exact mismatch is unresolved. The agent-assisted owner pause prevents further collection until reviewed repair; do not resume or force a bootstrap from the older continuation instructions below. Existing cache, failure receipts and consumed budgets remain retained. See [the operating receipt](OPERATIONS-2026-10-11.md). The prepared reservation-accounting fix does not resolve this separate identity conflict.
 
 The approved fixed source uses SmartRecruiters’ public Posting API for the PortmanDentex UK catalogue. This is employer-original collection, not LinkedIn ingestion or a partner/publication feed. The user delegated reviewed employer-source expansion; no new account, credential, scope, payment, subscription, employer contact or application was used.
 

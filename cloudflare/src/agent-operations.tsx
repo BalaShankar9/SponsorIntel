@@ -476,7 +476,7 @@ export function AgentOperations() {
                   <a href={s.careers} target="_blank" rel="noreferrer">
                     {s.company}
                   </a>
-                  {s.collection?.state==='collecting'&&<small>Gathering descriptions: {s.collection.ready} / {s.collection.total}. Next scheduled pass continues the collection.</small>}
+                  {s.collection?.state==='collecting'&&<small>Gathering descriptions: {s.collection.ready} / {s.collection.total}. {s.paused ? 'Collection is paused.' : 'Continuation requires an eligible scheduled pass and available request allowance.'}</small>}
                   <small>
                     {s.paused
                       ? "Paused"

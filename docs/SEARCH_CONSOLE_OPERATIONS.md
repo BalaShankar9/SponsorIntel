@@ -1,6 +1,6 @@
 # Google search operations
 
-Release 2.18 adds a private, read-only Google Search Console reader to the hourly business workflow. On 8 October the owner authorized the dedicated connection and separately accepted Google API terms. The API is enabled and the restricted credential is installed. The first owner-triggered read failed before a token response; successful Google reporting and unattended reads are not yet verified.
+Release 2.18 adds a private, read-only Google Search Console reader to the hourly business workflow. On 8 October the owner authorized the dedicated connection and separately accepted Google API terms. The API is enabled and the restricted credential is installed. The first owner-triggered read failed before a token response. The owner desk subsequently verified successful scheduled reads on 9 and 11 October, each within ten requests, with lagged property metrics, indexing inspections and sitemap observations. See [the dated receipt](OPERATIONS-2026-10-11.md); direct same-period Search Console reconciliation remains separate.
 
 ## Exact connection
 

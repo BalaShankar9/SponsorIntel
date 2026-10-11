@@ -1,6 +1,8 @@
 # Sponsor Intel operating system
 
-Updated 8 October 2026. Owner: Bala Bollineni. Primary site: https://sponsorintel.london. The owner requested autonomous operation across the website, publishing, security, SEO, growth and social media, and confirmed both company pages and personal LinkedIn as intended audiences. This grants implementation and routine business-content authority; it does not supply social credentials, a spending ceiling, contractual authority or a regulated adviser.
+Updated 11 October 2026. See [the current operating receipt](OPERATIONS-2026-10-11.md) for verified deliveries, scheduled readings and outstanding failures; earlier activation notes below are historical.
+
+ Owner: Bala Bollineni. Primary site: https://sponsorintel.london. The owner requested autonomous operation across the website, publishing, security, SEO, growth and social media, and confirmed both company pages and personal LinkedIn as intended audiences. This grants implementation and routine business-content authority; it does not supply social credentials, a spending ceiling, contractual authority or a regulated adviser.
 
 ## Operating model
 
@@ -35,7 +37,7 @@ The owner can pause business operations, automatic reports or scheduled research
 
 ## Publishing and search quality
 
-Release 2.18 adds a bounded daily Google search reader and private owner desk. It reads finalized aggregate/page metrics, the primary sitemap and four stored indexing inspections; it does not submit URLs or change content. The API and dedicated Restricted identity are authorized and installed. The first owner-triggered read failed before token delivery; 2.20 repairs its reproduced request-construction bug. A successful genuine scheduled read is still unverified. Browser baseline: two impressions, zero clicks and a successful 779-URL sitemap in Google's last processed copy. See [connection scope, reporting limits and acceptance](SEARCH_CONSOLE_OPERATIONS.md).
+Release 2.18 adds a bounded daily Google search reader and private owner desk. It reads finalized aggregate/page metrics, the primary sitemap and four stored indexing inspections; it does not submit URLs or change content. The API and dedicated Restricted identity are authorized and installed. The first owner-triggered read failed before token delivery; 2.20 repairs its reproduced request-construction bug. Successful scheduled reads on 9 and 11 October are now visible in the owner desk; same-period direct provider reconciliation remains separate. Browser baseline: two impressions, zero clicks and a successful 779-URL sitemap in Google's last processed copy. See [connection scope, reporting limits and acceptance](SEARCH_CONSOLE_OPERATIONS.md).
 
 The first report has one stable address: `/insights/uk-sponsorship-jobs-report`. Each publication stores the true measurement time, a previous snapshot comparison when available and its contributing boards. Refresh the useful report rather than multiplying near-identical weekly URLs. The visible report and Article metadata agree. Unavailable or withdrawn articles return 404/410 with noindex. The insight hub, live article, feed and job pages are crawlable without JavaScript.
 

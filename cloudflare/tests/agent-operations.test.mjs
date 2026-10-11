@@ -161,8 +161,8 @@ test("a grouped source cannot fetch when either request ceiling has only one slo
   if(limit==='run')env.sql.exec("UPDATE agent_runs SET requests=149 WHERE id='campus-limit'");
   const result=await executeSourceTask(env,'campus-limit',campus.id,{readBoard:async()=>{assert.fail('No request is allowed');}});
   assert.equal(result.error_code,'request_budget');assert.equal(result.state,'skipped');
-  assert.ok(query(env,'SELECT requests FROM agent_daily_budget').requests<=500);
-  assert.ok(query(env,'SELECT requests FROM agent_runs').requests<=150);
+  assert.equal(query(env,'SELECT requests FROM agent_daily_budget').requests,limit==='daily'?499:0);
+  assert.equal(query(env,'SELECT requests FROM agent_runs').requests,limit==='run'?149:0);
   assert.equal(query(env,'SELECT attempts FROM agent_tasks').attempts,0);
  }
 });
@@ -176,6 +176,16 @@ test("a failed campus fetch keeps its reservations and the previous publication"
  assert.equal(query(env,'SELECT requests FROM agent_daily_budget').requests,2);
  assert.equal(query(env,'SELECT last_seen FROM jobs').last_seen,observed);
  assert.equal(query(env,'SELECT last_success FROM job_sources').last_success,observed);
+});
+
+test("reservation transaction failure rolls back both counters before any source call",async t=>{
+ const env=database(t);await run(env,'reservation-failed');
+ env.sql.exec("CREATE TRIGGER fixture_reservation_failure BEFORE UPDATE OF requests ON agent_runs BEGIN SELECT RAISE(ABORT,'fictional storage failure'); END");
+ await assert.rejects(executeSourceTask(env,'reservation-failed',board.id,{readBoard:async()=>assert.fail('No request before admission')}),/fictional storage failure/);
+ assert.equal(query(env,'SELECT requests FROM agent_daily_budget').requests,0);
+ assert.equal(query(env,'SELECT requests FROM agent_runs').requests,0);
+ assert.equal(query(env,'SELECT attempts FROM agent_tasks').attempts,0);
+ assert.equal(query(env,'SELECT COUNT(*) n FROM feed_locks').n,0);
 });
 
 test("receipt write failure rolls the entire publication back and a bounded retry can recover", async (t) => {
