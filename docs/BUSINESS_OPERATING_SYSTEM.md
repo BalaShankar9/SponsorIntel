@@ -1,5 +1,9 @@
 # Sponsor Intel operating system
 
+## 11 October 18:16 UTC — account deletion race fixed
+
+**2.59.0 is live**, Worker `47ef7c6c-a03d-427d-b482-306e9f933f9e`, code `0d1f834`. A confirmed fictional-runtime race allowed an already-authenticated first save or recovery-code write to recreate a row after account deletion. Atomic account-existence guards now reject those writes. All 585 tests, build and dry-run pass; isolated ordinary/minified Worker tests cover both races. Live anonymous access protections pass and aggregate inspection finds zero current orphan rows, without establishing historical absence. No customer account was changed. Both prepared model identities, all compared controls/history and today's two starts/six calls remain unchanged. No migration, AI/Google call, forced workflow, source resume or send occurred. Public totals remain 928 / 36 / 55 / 887; exact code-head hosted checks remain billing-blocked. See `cloudflare/RELEASE-2.59.md` and `docs/ACCOUNT_DATA_BOUNDARIES.md`. The next genuine source/hourly receipts are still separate observation gates.
+
 ## 11 October 18:00 UTC — truthful application pause reporting
 
 **2.58.0 is live**, Worker `6419c7c8-42d1-43d0-a9db-fc3cebee1aab`, code `ddded30`. The hourly application-health receipt now distinguishes paused operation from retained evaluation progress. Failures or changed policy still raise their existing finding while paused; an in-flight run is not labelled cancelled. All 581 tests, build and dry-run pass. The live owner view and anonymous 403 are verified; original runs, assessments, controls and budgets have matching before/after hashes. Prepared research/application identities are unchanged and both stay paused on 11 October. No migration, AI/Google call, source resume or forced workflow. The first genuine new hourly receipt remains to be observed. See `cloudflare/RELEASE-2.58.md`.
