@@ -1,6 +1,6 @@
 # Sponsor Intel operating system
 
-Prepared 2.53 adds [marketing performance observations](MARKETING_PERFORMANCE.md): the daily Codex routine collects provider evidence through existing authorised access; a new cloud planner context can use the retained aggregates. Collection is not a direct Cloudflare analytics feed, production deployment is pending and improved decisions/growth are unproven.
+Live 2.53 adds [marketing performance observations](MARKETING_PERFORMANCE.md): the daily Codex routine collects provider evidence through existing authorised access; a new cloud planner context can use the retained aggregates. Collection is not a direct Cloudflare analytics feed, the first real observation is retained; next genuine planner use and improved decisions/growth are unproven.
 
 Updated 11 October 2026. See [the current operating receipt](OPERATIONS-2026-10-11.md) for verified deliveries, scheduled readings and outstanding failures; earlier activation notes below are historical.
 

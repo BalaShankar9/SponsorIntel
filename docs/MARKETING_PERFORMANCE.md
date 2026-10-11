@@ -1,6 +1,6 @@
 # Marketing performance observations
 
-Prepared 11 October 2026 in release 2.53. **Not deployed.** Production remains 2.52.0. This is an owner-only record of observed public post aggregates, not a direct provider connection, an independent audit, automatic optimisation or an acquisition result.
+Live 11 October 2026 in release 2.53, Worker `389877c3-9b6e-43b3-a117-245c3a176f09`. Migration 0035 and the exact 35-migration/146-object schema are verified. This is an owner-only record of observed public post aggregates, not a direct provider connection, an independent audit, automatic optimisation or an acquisition result.
 
 ## Why it exists
 
@@ -35,3 +35,7 @@ TypeScript/build, 17 prerenders, unchanged browser budgets and Worker dry run pa
 ### Approved Metricool evidence links
 
 Use the visible company analytics URL: `https://app.metricool.com/evolution/facebookPage?blogId=7294726` or the equivalent `/evolution/instagram` for the company Instagram account. The form also accepts the current provider UI's optional `userId=5655720` selector but removes it before storage. Brand summary paths are accepted only with this exact brand. Different accounts, network paths and arbitrary query parameters are rejected. Native post permalinks remain free of query parameters. These links do not establish post authorship or metric accuracy automatically.
+
+## First production observation, 11 October
+
+The owner desk retained `b25098d4-c062-4677-9258-f68ee55d9a75`, read at 15:14 UTC and saved at 15:16:06 UTC. Native LinkedIn shows 103 impressions, 70 reached, two general clicks and zero reactions/comments/reposts for the company welcome. Views, external clicks and saves are unknown. Matching account/post copy and the existing tagged destination were inspected; exact publication and provider freshness timestamps remain unavailable. The note records those limitations. UI reload and independent read-only D1 inspection agree. This closes real retention only. Next genuine planner use and improved growth remain unobserved; do not force a call or backfill a context. Earlier preparation/deployment gates above are historical and superseded by the production release receipt.
