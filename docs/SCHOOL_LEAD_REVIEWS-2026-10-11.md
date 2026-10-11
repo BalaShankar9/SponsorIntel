@@ -1,5 +1,19 @@
 # Existing school-lead reviews — 11 October 2026
 
+Later 13:07 UTC review also appends a hold to today's existing Lift Kingswood candidate; details below. It adds no new lead or public vacancy. The queue at that observation is 14 retained / seven unresolved / three current linked jobs / zero overdue or changed links, superseding the older aggregate at the bottom of this file.
+
+## Lift Kingswood — conflicting closing dates and requirements
+
+The [DfE English advert](https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-60c8518e-bccf-49cb-aeec-1f52c3ab24c0) identifies Lift Kingswood, Hull HU7 4WR, URN 139118. It explicitly permits Skilled Worker sponsorship, welcomes ECTs, states permanent full-time work at £34,069–£46,940 and a January 2027 start, and rejects CV-only applications. Its visible deadline is **16 October 2026 at 08:23 BST**. The original automatically retained metadata gives `2026-10-16T08:23:33+01:00`.
+
+The advert's Aplitrak link redirects to the [Lift Schools employer original](https://careers.liftschools.org/jobs/teacher-of-english-hull-england-united-kingdom), reference **0175**, matching school/address, title, salary and permanent contract. That original says **Closing date: 19 October 2026**, with no time, and **Advert opened: 7 September 2026**. DfE separately lists 9 October publication. Different source publication dates do not supply an exact original posting timestamp. The closing dates genuinely conflict and must not be silently reconciled.
+
+Both pages describe an English teacher/English-degree route yet ask for a passion for teaching **PE**. They also retain a September 2026 QTS-training target, earlier than the stated January 2027 start. The source wording needs clarification; Sponsor Intel has not corrected or guessed the employer's requirements. The employer's Apply now control opens a blank first-name/last-name/email/privacy-consent form. No data or consent was entered, and the full application, attachments and legal-employer/sponsor relationship remain unchecked.
+
+Lead `150311d7-86c7-48dc-9132-691482dc924b`, **revision 2: Held for evidence**, agent-assisted through the owner account. Follow-up moved earlier to **13 October 14:00 BST**, ahead of the earlier advertised deadline. The ambiguous normalized closing timestamp is blank; both source statements and the previous exact DfE timestamp remain in append-only evidence. Original automated revision and recorded-at time remain preserved. No school source, advert-level source hold or public job was created. This private discovery hold is not a source pause or a conclusion that sponsorship is unavailable.
+
+Saved-form receipt: `cloudflare/tests/evidence/lift-school-review-2026-10-11.json`. Recheck the exact originals and then complete identity, attachments and catalogue review before considering admission.
+
 Two existing 10 October education-scout records now have agent-assisted revision 2 decisions. Their original automated revisions remain preserved. No new discovery identity, employer source, public vacancy, source probe, workflow refresh, AI call or application was added. Today's five-new-lead allowance remains fully used; these are reviews of already retained candidates.
 
 ## Hazelwick School — contract needs reconciliation

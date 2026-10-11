@@ -6,6 +6,8 @@ The daily allowance is now exhausted: two automatically retained school candidat
 
 ## Danu Insights: conditional future sponsorship
 
+Later 13:05 UTC admission review: now agent-assisted **revision 2, Held for evidence**. The employer catalogue lists one open role, but the custom site/ClickUp route has no reviewed supported intake. The complete right-to-work/later-sponsorship paragraph is retained; LinkedIn observation, unknown posting time and 13 October follow-up are unchanged. See [the source-admission review](DANU_SOURCE_REVIEW.md). Revision 1 below remains historical.
+
 - [LinkedIn advert](https://www.linkedin.com/jobs/view/4477654390/), [employer original](https://www.danu-insights.com/careers/biotech-automation-engineer), [Companies House SC788592](https://find-and-update.company-information.service.gov.uk/company/SC788592).
 - Biotech Automation Engineer (Wet Lab and AI), Edinburgh and UK partner sites, £45,000–£65,000 plus options, full-time permanent. Closing date: **26 October 2026, 23:59 GMT**. Precise original posting timestamp remains blank; LinkedIn's relative date is retained separately.
 - The original strongly prefers current UK right to work, welcomes time-limited permission such as a Graduate visa, and says it can consider sponsorship **later in the role**. This is not an immediate sponsorship or overseas-entry promise.
