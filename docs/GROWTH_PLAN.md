@@ -74,6 +74,8 @@ Customer star ratings need a permitted provider integration and exact firm match
 
 ## Measurement and review
 
+11 October loading follow-up: the prepared 2.53 build defers private application tools and reduces initial JavaScript from 419,996 to 363,654 bytes (13.4%; gzip 128,998 to 111,014 bytes). The same asset ceilings and 17 public prerenders pass. Local browser tests cover on-demand loading, failure recovery and saved-work preservation; no customer timing, rankings or conversion improvement is established. The change remains undeployed pending the existing Cloudflare approval and current recovery evidence. Measure field performance after deployment before making speed claims.
+
 11 October first-use follow-up: the two completed baseline days contain 59 page events and no successful preparation events, not 59 people or a proven conversion failure. Direct inspection found an unexplained disabled evidence-check action when CV/advert text was missing. Prepared release 2.53 adds specific guidance and links to the inputs, then a CV-preparation next step. Fictional local desktop/mobile testing passed, including consent and failure preservation; it remains undeployed pending Cloudflare renewal. After deployment, inspect genuine preparation events and voluntary feedback before claiming an improvement in customer outcomes. No synthetic production funnel event was created. See `../cloudflare/RELEASE-2.53.md`.
 
 Check Search Console weekly for indexed canonical pages, non-branded impressions, clicks, relevant queries and crawl errors. Compare equivalent time periods after sufficient data accumulates. A sitemap submission is not indexing, and indexing is not ranking. Improve pages that already attract relevant impressions before expanding coverage.

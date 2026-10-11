@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { JobDetail } from "./job-detail";
-import { Vacancies } from "./vacancies";
 import { Title, Empty } from "./career-ui";
 import { AccountEmailHelp } from "./account-email";
 import { SavedSearches } from "./search-notifications";
@@ -58,7 +56,6 @@ import { DocumentDownloads } from "./document-downloads";
 import { StudioReadiness, studioReadiness } from "./studio-readiness";
 import {type CVImportResult} from './cv-import';
 import {profileSignature,applyCVPreview} from '../shared/cv-import.js';
-import { type ReportFeedback } from "./feedback";
 import { buildEvidenceReview } from "../worker/career-evidence.js";
 import { draftWarnings, sourceWarnings } from "../worker/career-quality.js";
 const external = { target: "_blank", rel: "noopener noreferrer" };
@@ -98,85 +95,11 @@ function Modal({
     </dialog>
   );
 }
-export function CareerAccountLink({ go }: { go: Go }) {
-  const { user, status } = useCareer();
-  return (
-    <button className="career-account-link" onClick={() => go("account")}>
-      <Cloud size={17} />
-      <span>
-        <strong>{user?.name || "Your private workspace"}</strong>
-        <small>{user ? status : "Sign in to save across devices"}</small>
-      </span>
-      <ChevronRight size={15} />
-    </button>
-  );
-}
-export function CareerWorkspace({
-  mode,
-  go,
-  onReport,
-}: {
-  mode: string;
-  go: Go;
-  onReport: ReportFeedback;
-}) {
-  const c = useCareer();
-  const roleId = mode.match(/^jobs\/([a-f0-9]{24})$/)?.[1];
-  if (
-    !c.ready &&
-    !["account", "signin", "signup", "jobs"].includes(mode) &&
-    !roleId
-  )
-    return (
-      <div className="career career-panel">
-        <h2>Opening your workspace…</h2>
-        <p>{c.error || "Loading your saved work."}</p>
-        {c.error && (
-          <button className="secondary-button" onClick={() => void c.reload()}>
-            Try again
-          </button>
-        )}
-      </div>
-    );
-  return (
-    <div className="career">
-      <div className="career-status">
-        <span>
-          <span className={"status-dot " + (c.user ? "online" : "")} />
-          {c.status}
-        </span>
-        <button onClick={() => go("account")}>
-          {c.user ? "Account & backup" : "Sign in for cloud sync"}
-          <ArrowRight size={13} />
-        </button>
-      </div>
-      {c.error && (
-        <div role="alert" className="career-error">
-          {c.error}
-          <button onClick={() => c.setError("")} aria-label="Dismiss error">
-            <X size={16} />
-          </button>
-        </div>
-      )}
-      {roleId ? (
-        <JobDetail key={roleId} id={roleId} go={go} onReport={onReport} />
-      ) : mode === "jobs" ? (
-        <Vacancies go={go} />
-      ) : mode === "applications" ? (
-        <Applications go={go} />
-      ) : mode === "studio" ? (
-        <Studio go={go} />
-      ) : mode === "career-profile" ? (
-        <Profile go={go} />
-      ) : (
-        <Account
-          key={mode}
-          go={go}
-          initialMode={mode === "signin" ? "signin" : "signup"}
-        />
-      )}
-    </div>
-  );
+export function CareerTools({ mode, go }: { mode: string; go: Go }) {
+  return mode === "applications" ? <Applications go={go} />
+    : mode === "studio" ? <Studio go={go} />
+    : mode === "career-profile" ? <Profile go={go} />
+    : <Account key={mode} go={go} initialMode={mode === "signin" ? "signin" : "signup"} />;
 }
 
 

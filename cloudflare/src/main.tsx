@@ -45,7 +45,7 @@ import {
 } from "lucide-react";
 import "./styles.css";
 import { CareerProvider } from "./career-data";
-import { CareerWorkspace, CareerAccountLink } from "./career";
+import { CareerWorkspace, CareerAccountLink } from "./career-workspace";
 import { ImmigrationUpdates } from "./updates";
 import "./updates.css";
 import { AccountActions, PageTracking } from "./account-navigation";

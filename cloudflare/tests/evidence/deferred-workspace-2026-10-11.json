@@ -1,0 +1,141 @@
+{
+  "checked_on": "2026-10-11",
+  "scope": "Prepared release 2.53, isolated built local browser only; production remains 2.52.0",
+  "runtime": "Node 24.19.0",
+  "initial_javascript": {
+    "before_bytes": 419996,
+    "after_bytes": 363654,
+    "before_gzip_bytes": 128998,
+    "after_gzip_bytes": 111014,
+    "raw_reduction_percent": 13.4,
+    "gzip_reduction_percent": 13.9,
+    "budget_unchanged": true
+  },
+  "initial_css": {
+    "bytes": 104972,
+    "gzip_bytes": 21931,
+    "changed": false
+  },
+  "final_entries": {
+    "public": "assets/index-CtMWxKd4.js",
+    "application_tools": "assets/career-B0BuKkTH.js",
+    "owner": "assets/owner-Bm5HBulk.js"
+  },
+  "build": {
+    "typescript": "passed",
+    "public_prerenders": 17,
+    "asset_budgets": "passed",
+    "private_preload_guards": "passed",
+    "deployment_dry_run": "passed",
+    "deployed": false
+  },
+  "tests": {
+    "passed": 518,
+    "failed": 0,
+    "duration_ms": 107608.35625
+  },
+  "browser": {
+    "about_and_jobs_without_private_chunk": true,
+    "first_studio_visit_requests_private_chunk": true,
+    "final_build_jobs_without_private_chunk_at": "2026-10-11T12:06:18.392Z",
+    "final_build_private_chunk_deliberately_blocked_at": "2026-10-11T12:06:29.595Z",
+    "jobs_work_during_failure": true,
+    "backup_hidden_until_requested": true,
+    "backup_readonly_json_parses": true,
+    "fictional_cv_advert_application_evidence_retained": true,
+    "reloaded_private_chunk_success_at": "2026-10-11T12:07:06.946Z",
+    "recovered_evidence_characters": 1373,
+    "signin_and_signup_forms_render": true,
+    "credentials_entered": false,
+    "accounts_submitted": false,
+    "mobile": {
+      "viewport_width": 390,
+      "document_width": 390,
+      "override_reset": true
+    },
+    "download_completion_observed": false,
+    "download_limitation": "No completed file receipt was observed; the supported download-event wait timed out. The JSON display and saved-work recovery were verified separately."
+  },
+  "script_receipts": [
+    {
+      "at": "2026-10-11T11:55:47.896Z",
+      "kind": "script",
+      "path": "/assets/index-BteTDxPy.js",
+      "status": 200
+    },
+    {
+      "at": "2026-10-11T11:56:17.222Z",
+      "kind": "script",
+      "path": "/assets/career-TTtjjlh6.js",
+      "status": 200
+    },
+    {
+      "at": "2026-10-11T11:57:50.800Z",
+      "kind": "script",
+      "path": "/assets/index-BteTDxPy.js",
+      "status": 200
+    },
+    {
+      "at": "2026-10-11T11:57:51.235Z",
+      "kind": "script",
+      "path": "/assets/career-TTtjjlh6.js",
+      "status": 503
+    },
+    {
+      "at": "2026-10-11T12:06:18.392Z",
+      "kind": "script",
+      "path": "/assets/index-CtMWxKd4.js",
+      "status": 200
+    },
+    {
+      "at": "2026-10-11T12:06:29.595Z",
+      "kind": "script",
+      "path": "/assets/career-B0BuKkTH.js",
+      "status": 503
+    },
+    {
+      "at": "2026-10-11T12:06:39.230Z",
+      "kind": "script",
+      "path": "/assets/index-CtMWxKd4.js",
+      "status": 200
+    },
+    {
+      "at": "2026-10-11T12:06:39.426Z",
+      "kind": "script",
+      "path": "/assets/career-B0BuKkTH.js",
+      "status": 503
+    },
+    {
+      "at": "2026-10-11T12:07:06.779Z",
+      "kind": "script",
+      "path": "/assets/index-CtMWxKd4.js",
+      "status": 200
+    },
+    {
+      "at": "2026-10-11T12:07:06.946Z",
+      "kind": "script",
+      "path": "/assets/career-B0BuKkTH.js",
+      "status": 200
+    }
+  ],
+  "external_effects": {
+    "external_model_calls": 0,
+    "external_services": 0,
+    "production_metrics": 0,
+    "source_refreshes": 0,
+    "social_sends": 0,
+    "database_changes": 0,
+    "new_permissions": 0
+  },
+  "limits": [
+    "Fictional local data and API fixture; no customer accuracy or production acceptance.",
+    "Reduced bytes do not establish field speed, rankings, conversions or a completed download.",
+    "Production deployment and fresh recovery inspection await the existing Cloudflare renewal approval."
+  ],
+  "source_sha256": {
+    "cloudflare/src/career-workspace.tsx": "000623d8f8daac1b2b63b1626cba1cb5483c7d55b72d84c6f89fc202931a5603",
+    "cloudflare/src/career.tsx": "cfc0fcd8c9b8458755b65636e2357dd796ffdae0742e9df7d0df5fa704b48aea",
+    "cloudflare/src/main.tsx": "39d0b1411ec10d0bed982bdf5f038fe7115ea07fe3dbd76060b24bfccb0554c7",
+    "cloudflare/scripts/verify-browser-budget.mjs": "e1308ac8244e62f55d49bf51fdf766bf44d0956057b54d2aa1990d4ce02764d3"
+  }
+}

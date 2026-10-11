@@ -18,6 +18,9 @@ visit(entry);
 const owner = manifest["src/owner.tsx"];
 assert.ok(owner?.isDynamicEntry, "Owner tools must remain an on-demand entry");
 assert.ok(!initial.has("src/owner.tsx"), "Public pages must not preload owner tools");
+const career = manifest["src/career.tsx"];
+assert.ok(career?.isDynamicEntry, "Application tools must remain an on-demand entry");
+assert.ok(!initial.has("src/career.tsx"), "Public pages must not preload application tools");
 
 const javascript = new Set([...initial].map((key) => manifest[key].file));
 const styles = new Set([...initial].flatMap((key) => manifest[key].css || []));
@@ -38,7 +41,9 @@ for (const page of Object.values(pages)) {
   const html = await readFile(new URL(file, dist), "utf8");
   assert.match(html, /<h1[\s>]/, `${file} lost its prerendered heading`);
   assert.ok(!html.includes("Opening your dashboard") && !html.includes("The dashboard couldn’t open"), `${file} contains an admin loading state`);
+  assert.ok(!html.includes("Opening your application tools") && !html.includes("Your application tools couldn’t open"), `${file} contains an application-tools loading state`);
   const links = html.match(/<(?:script|link)\b[^>]*>/g) || [];
   assert.ok(!links.some((tag) => tag.includes(owner.file) || (owner.css || []).some((file) => tag.includes(file))), `${file} preloads owner-only assets`);
+  assert.ok(!links.some((tag) => tag.includes(career.file) || (career.css || []).some((file) => tag.includes(file))), `${file} preloads application-tool assets`);
 }
-console.log(JSON.stringify({ initial_javascript: js, initial_css: css, deferred_owner: owner.file, public_pages: Object.keys(pages).length }, null, 2));
+console.log(JSON.stringify({ initial_javascript: js, initial_css: css, deferred_owner: owner.file, deferred_application_tools: career.file, public_pages: Object.keys(pages).length }, null, 2));
