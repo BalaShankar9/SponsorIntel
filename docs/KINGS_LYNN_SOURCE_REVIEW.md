@@ -1,6 +1,16 @@
 # King's Lynn Academy source review
 
-## Current decision — 11 October 2026
+## Current publication — 11 October 2026, 12:38 UTC
+
+The genuine `scheduled-1791721811000` source run published the four unaffected roles on its first attempt. It collected all seven school adverts, and all three previously recorded evidence holds remain active and absent from the complete public four-role result. The source-screening receipt says seven feed entries and zero parser exclusions; the **three advert holds are a separate publication control**. The exact original workflow's owner execution-status check returned **complete**. The overall application receipt remains **attention**, with 36/37 sources published and PortmanDentex skipped as owner-paused. The run reserved 60 requests; the observed daily counter is 256/500.
+
+Public readback at 12:38:21 UTC shows 928 roles, 36 employers, 55 offered/conditional sponsorship adverts and 876 licence-linked roles. The school source observation is `2026-10-11T12:31:17.919Z`, not an invented workflow completion time. Teacher of English is conditional; Exam Invigilator, Lead Science Technician and Pupil Progress Coordinator explicitly say visas cannot be sponsored. All four retain the separately reviewed Eastern Multi-Academy Trust link.
+
+The existing automated lead `ec758817-56e3-4585-89cc-4cf4202799bd` is now **linked at revision 3** to current job `e2f7bc10bb188fa2488bacc4`. This appended agent-assisted review preserves the automated origin and prior decisions; it adds no lead or job. The owner queue now shows 14 retained, seven unresolved, three current linked jobs and zero overdue/changed links. Today's five new-lead slots remain used.
+
+The public English detail retains the exact sponsorship quote, 19 October 23:59 BST deadline, degree/QTS requirements, original DfE link and OGL attribution. It explicitly requires an application form and says CVs will not be accepted. No application was submitted. First scheduled publication is verified; the later repeat refresh (next scheduled opportunity 18:30 UTC) and full application/attachment checks remain separate. Preserve all three holds until fresh evidence supports release. Evidence: `cloudflare/tests/evidence/kings-lynn-publication-2026-10-11.json`.
+
+## Admission decision — 11 October 2026, before publication
 
 The existing automated English lead has now been reviewed through the owner account. The single-school source `reviewed-teaching-vacancies-136202--king-s-lynn-academy` is **approved after its bounded probe**, with **three exact advert holds recorded before approval**. This supersedes the unconfigured state below. Public import and repeated scheduled refresh are still unverified: at 10:37:17 UTC the public query returned zero school jobs, with the wider collection unchanged at 924 jobs / 54 offered-or-conditional adverts. Do not force a workflow to manufacture scheduled evidence.
 

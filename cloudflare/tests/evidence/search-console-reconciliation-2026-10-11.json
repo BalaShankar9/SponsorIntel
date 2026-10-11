@@ -1,0 +1,100 @@
+{
+  "observed_date_utc": "2026-10-11",
+  "kind": "signed_in_provider_ui_compared_with_owner_stored_report",
+  "property": "https://sponsorintel.london/",
+  "search_type": "web",
+  "date_window_pacific": {
+    "start": "2026-09-10",
+    "end": "2026-10-07"
+  },
+  "stored_report": {
+    "attempt_started_minute_utc": "2026-10-11T00:45Z",
+    "trigger": "scheduled",
+    "requests": 10,
+    "request_cap": 10,
+    "data_state": "final",
+    "clicks": 0,
+    "impressions": 12,
+    "ctr_percent": 0,
+    "average_position": 3.5
+  },
+  "google_ui": {
+    "clicks": 0,
+    "impressions": 14,
+    "ctr_percent": 0,
+    "average_position": 3.9,
+    "last_update_display": "65.5 hours ago",
+    "daily_rows": [
+      {
+        "date": "2026-10-07",
+        "clicks": 0,
+        "impressions": 2
+      },
+      {
+        "date": "2026-10-06",
+        "clicks": 0,
+        "impressions": 5
+      },
+      {
+        "date": "2026-10-05",
+        "clicks": 0,
+        "impressions": 5
+      },
+      {
+        "date": "2026-10-04",
+        "clicks": 0,
+        "impressions": 2
+      },
+      {
+        "date": "2026-10-03",
+        "clicks": 0,
+        "impressions": 0
+      }
+    ]
+  },
+  "reconciliation": {
+    "state": "discrepancy_unresolved",
+    "impressions_difference": 2,
+    "reason": null,
+    "stored_snapshot_overwritten": false,
+    "code_parser_defect_demonstrated": false
+  },
+  "separately_corroborated": {
+    "sitemap": {
+      "path": "/sitemap.xml",
+      "google_ui_state": "Success",
+      "google_ui_discovered_pages": 945,
+      "google_ui_last_read": "2026-10-09",
+      "stored_api_submitted_pages": 945,
+      "stored_api_errors": 0,
+      "field_names_preserved": true
+    },
+    "stored_inspection": {
+      "url": "https://sponsorintel.london/updates",
+      "google_ui_verdict": "URL is on Google; Page is indexed",
+      "last_crawl_display": "5 October 2026, 11:59:45",
+      "crawler": "Googlebot smartphone",
+      "crawl_allowed": true,
+      "fetch_successful": true,
+      "indexing_allowed": true,
+      "canonical": "Inspected URL",
+      "corroborated_url_count": 1,
+      "app_fixed_url_count": 4
+    }
+  },
+  "actions": {
+    "service_account_api_reads_for_this_comparison": 0,
+    "live_url_tests": 0,
+    "indexing_requests": 0,
+    "sitemap_submissions": 0,
+    "new_permissions": 0,
+    "budget_resets": 0
+  },
+  "limitations": [
+    "Google UI and stored API report were observed at different times; no causal explanation for their mismatch is established.",
+    "Do not sum page rows to obtain property totals.",
+    "One stored URL corroboration is not whole-site coverage or a live crawl.",
+    "Tiny average-position sample is not broad ranking or growth.",
+    "Raw search queries, tokens and private account data are excluded."
+  ]
+}

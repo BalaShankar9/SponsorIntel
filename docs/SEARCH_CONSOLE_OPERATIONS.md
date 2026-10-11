@@ -2,6 +2,16 @@
 
 Release 2.18 adds a private, read-only Google Search Console reader to the hourly business workflow. On 8 October the owner authorized the dedicated connection and separately accepted Google API terms. The API is enabled and the restricted credential is installed. The first owner-triggered read failed before a token response. The owner desk subsequently verified successful scheduled reads on 9 and 11 October, each within ten requests, with lagged property metrics, indexing inspections and sitemap observations. See [the dated receipt](OPERATIONS-2026-10-11.md); direct same-period Search Console reconciliation remains separate.
 
+## Same-period browser reconciliation — 11 October 2026
+
+The signed-in Google Search Console Web report was set explicitly to **10 September–7 October 2026**, the same Pacific-date window as the retained 11 October scheduled read. Google UI showed **0 clicks, 14 impressions, 0% CTR and 3.9 average position**, with its last-update notice at 65.5 hours. The stored scheduled report (00:45 UTC, ten requests) shows **0 clicks, 12 impressions, 0% CTR and 3.5 average position**. These observations disagree. The reason is not established; reporting lag alone must not be asserted as the cause. Preserve both rather than overwriting the snapshot, resetting allowance or forcing another API read.
+
+The reader's current code retains provider totals and requests final Web data, with by-property aggregation for totals/dates and by-page for page rows. No parser defect has been demonstrated. Google page rows are not additive property totals; the tiny average-position sample does not establish broad ranking. The same-period acceptance gate remains **unresolved discrepancy**, not completed reconciliation.
+
+Two separate provider checks agree: Google's primary sitemap UI reports Success, 945 discovered pages, last read 9 October (the app stores the API's 945 submitted pages and zero errors); and the stored `/updates` URL inspection shows URL on Google/Page indexed, crawl allowed, successful fetch and last crawl 5 October at 11:59:45 displayed time. That corroborates **one** of the app's four fixed URL inspections, not all four or whole-site indexing. The lagged Pages overview is a different report. No live URL test, indexing request, sitemap submission, new permission or service-account API call was initiated by this reconciliation.
+
+See `cloudflare/tests/evidence/search-console-reconciliation-2026-10-11.json`. Inspect the next genuine daily report and its dates before any further comparison; do not erase this differing historical observation.
+
 ## Exact connection
 
 - Property: `https://sponsorintel.london/` (URL-prefix property observed in the owner's Google account).

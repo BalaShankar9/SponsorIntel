@@ -4,17 +4,23 @@ Updated 11 October 2026. [Current operating evidence](OPERATIONS-2026-10-11.md) 
 
  The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
+## 11 October: first reviewed school publication
+
+Genuine source run `scheduled-1791721811000` published four King's Lynn Academy roles from seven collected adverts while retaining all three previously saved evidence holds. The exact workflow execution-status check returned complete; the overall application receipt remains attention because PortmanDentex is owner-paused (36/37 published). Public readback shows 928 roles / 36 employers / 55 sponsorship-worded roles / 876 licence-linked roles. The automated English lead is linked at agent-assisted revision 3 to its exact conditional-sponsorship role. This proves the first observed automated-school-candidate → reviewed employer/advert controls → scheduled publication → checked current-job link path. It includes agent-assisted admission, not unattended employer approval or independent human judgment. Repeat scheduled refresh remains unverified. See [school review](KINGS_LYNN_SOURCE_REVIEW.md).
+
+The first direct same-period Google reconciliation found 14 UI impressions versus 12 stored, and average position 3.9 versus 3.5. Zero clicks agrees; the reason for the difference remains unknown. One stored URL inspection and the primary sitemap were separately corroborated. Keep metric reconciliation open and do not force another read. See [search operations](SEARCH_CONSOLE_OPERATIONS.md). Production remains 2.52.0; unreleased code, Cloudflare access/recovery and hosted CI limitations are unchanged.
+
 ## 11 October: genuine operational email cycle, placement still unproven
 
 Five incident notifications and one reported-findings-cleared message from 9–11 October match the owner desk, native provider Message-ID and exact mailbox body receipt. Six corresponding successful delivery events are observed; seven domain-level events and empty incoming/dead-letter queues are a separate aggregate. This proves the first genuine scheduled incident/recovery transport and provider-success correlation. Production failure/complaint handling, independent provider-outage detection and owner attention remain open.
 
 All six messages were in Spam at inspection despite passing SPF, aligned DKIM and DMARC. The single latest verified alert was moved to Inbox and read back as Inbox/non-Spam/still Unread. Automatic future Inbox placement remains unproven. No filters, contacts, security settings, owner-confirmation fields, extra sends, tests or synthetic incidents were changed/created. See [operational email evidence](OPERATION_ALERTS.md) and `cloudflare/tests/evidence/email-lifecycle-2026-10-11.json`. Earlier zero-event/first-test-only statements are dated history.
 
-## Latest: 2.52 individual advert evidence control
+## Historical 8 October: 2.52 individual advert evidence control
 
 The owner can hold an exact advert without changing its employer feed approval or bypassing complete source validation. Immutable history, atomic retirement, stable job identity after first matching, replay protection and a required post-release source collection protect current jobs. Hourly findings keep overdue holds visible. Local fictional runtime/browser evidence verifies the controls; no real advert hold or school approval has been recorded. The King's Lynn external deadline conflict remains unresolved, and its source remains unconfigured within today's discovery limit. See [Advert reviews](ADVERT_REVIEWS.md) and `cloudflare/RELEASE-2.52.md`.
 
-## Previous: 2.51 school identity and genuine discovery invocation
+## Historical 8 October: 2.51 school identity and genuine discovery invocation
 
 Release 2.50 connected individually reviewed Teaching Vacancies schools to the existing atomic source workflow, with exact school identifiers, separate trust/licence review and 24-request reservations. Release 2.51 now prevents multiple adverts or a renamed school with the same official identifier from consuming additional new-school leads. Pending/approved/paused source configurations are preserved. Different schools sharing a name remain distinct. All 498 tests, build/budget checks and deployment dry run pass; no new schema migration is needed beyond the verified 33-migration schema.
 
