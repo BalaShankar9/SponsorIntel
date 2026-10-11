@@ -31,6 +31,26 @@ test('a complete advert can place the role under Company Description while Job D
  assert.equal((await normaliseBoardJobs([await smartRecruitersDetail(d,row,source)],source))[0].sponsorship,'unavailable');
 });
 
+test('identity comparison reports each differing published field without retaining its value or relaxing rejection',async()=>{
+ const row=posting(1),other=posting(2);
+ const changes={posting_id:d=>d.id=other.id,posting_uuid:d=>d.uuid=other.uuid,advert_id:d=>d.jobAdId=other.jobAdId,
+  title:d=>d.name='PRIVATE_FIXTURE',release_date:d=>d.releasedDate='2026-02-01T09:00:00Z',
+  city:d=>d.location.city='PRIVATE_FIXTURE',country:d=>d.location.country='ie',region:d=>d.location.region='PRIVATE_FIXTURE',
+  address:d=>d.location.address='PRIVATE_FIXTURE',postal_code:d=>d.location.postalCode='PRIVATE_FIXTURE',
+  remote:d=>d.location.remote=true,hybrid:d=>d.location.hybrid=true,employment_type:d=>d.typeOfEmployment.label='PRIVATE_FIXTURE',
+  active_status:d=>delete d.active};
+ for(const [field,change] of Object.entries(changes)){
+  const d=structuredClone(detail(row));change(d);
+  await assert.rejects(smartRecruitersDetail(d,row,source),error=>{
+   assert.deepEqual(sourceDiagnostic(error),{code:'posting_changed',changed_fields:[field]});
+   assert.ok(!JSON.stringify(sourceDiagnostic(error)).includes('PRIVATE_FIXTURE'));return true;
+  });
+ }
+ delete row.location.region;
+ const d=structuredClone(detail(row));d.location.country=d.location.country.toUpperCase();d.location.region='';
+ assert.deepEqual(await smartRecruitersDetail(d,row,source,Date.parse('2026-10-11T10:00:00Z')),await smartRecruitersDetail(detail(row),row,source,Date.parse('2026-10-11T10:00:00Z')));
+});
+
 test('41 roles stage 40 privately, resume one, publish atomically and spend nothing on replay',async t=>{
  const env=sourceDatabase(t),fixture=provider(Array.from({length:41},(_,i)=>posting(i+1)));
  const readBoard=(board,context)=>fetchBoard(board,{...context,fetcher:fixture.fetcher});

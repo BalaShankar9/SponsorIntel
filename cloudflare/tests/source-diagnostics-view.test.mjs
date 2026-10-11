@@ -17,6 +17,9 @@ test('owner failure view distinguishes recovered, still-private and legacy recei
   const html=render([base]);assert.match(html,/Recovered within this run and published/);assert.match(html,/Advert sections are missing or unsupported/);assert.match(html,/744000100000001/);assert.ok(!html.includes('PRIVATE_FIXTURE'));assert.ok(!html.includes('private.invalid'));
   assert.match(render([{...base,state:'skipped',error_code:'details_pending'}]),/descriptions remain private/);
   assert.match(render([{...base,state:'failed',attempt_failures:[]}]),/cause is unconfirmed/);
+  const changed={...base,state:'failed',attempt_failures:[{...base.attempt_failures[0],code:'posting_changed',changed_fields:['city','title','PRIVATE_FIXTURE','<script>secret</script>'],values:{city:'PRIVATE_FIXTURE'}}]};
+  const changedHtml=render([changed]);assert.match(changedHtml,/Fields that failed comparison: Title, City/);assert.match(changedHtml,/does not establish why they differed/);assert.ok(!changedHtml.includes('PRIVATE_FIXTURE'));assert.ok(!changedHtml.includes('<script>'));
+  assert.match(render([{...changed,attempt_failures:[{...changed.attempt_failures[0],changed_fields:undefined}]}]),/differing fields were not recorded/);
   const hostile=render([{...base,company:'<script>alert(1)</script>',attempt_failures:[{...base.attempt_failures[0],code:'PRIVATE_FIXTURE',posting_ref:'<script>PRIVATE_FIXTURE</script>'}]}]);
   assert.ok(!hostile.includes('<script>'));assert.ok(!hostile.includes('PRIVATE_FIXTURE'));assert.match(hostile,/without a classified cause/);
  }finally{await rm(dir,{recursive:true,force:true});}

@@ -42,7 +42,16 @@ function excludedLocation(i){
 }
 export async function smartRecruitersDetail(detail,row,board,now=Date.now()){
   const c=config(board), expected=identity(row,c,now), actual=identity(detail,c,now);
-  if(detail.active!==true||stable(actual)!==stable(expected))throw new SourceCheckError('posting_changed',{},'Posting changed during collection');
+  if(detail.active!==true||stable(actual)!==stable(expected)){
+    const fields={posting_id:'id',posting_uuid:'uuid',advert_id:'jobAdId',title:'name',release_date:'releasedDate',employment_type:'employment'};
+    const locations={city:'city',country:'country',region:'region',address:'address',postal_code:'postalCode',remote:'remote',hybrid:'hybrid'};
+    const changed_fields=[
+      ...Object.entries(fields).filter(([,key])=>expected[key]!==actual[key]).map(([label])=>label),
+      ...Object.entries(locations).filter(([,key])=>expected.location[key]!==actual.location[key]).map(([label])=>label),
+      ...(detail.active!==true?['active_status']:[]),
+    ];
+    throw new SourceCheckError('posting_changed',{changed_fields},'Posting changed during collection');
+  }
   let u;try{u=new URL(detail.postingUrl);}catch{throw new SourceCheckError('invalid_destination');}
   if(u.protocol!=='https:'||u.host!=='jobs.smartrecruiters.com'||u.username||u.password||u.search||u.hash||
       !u.pathname.startsWith(`/${c.identifier}/${row.id}`)||!new RegExp(`^/${c.identifier}/${row.id}(?:-[^/]+)?/?$`).test(u.pathname))

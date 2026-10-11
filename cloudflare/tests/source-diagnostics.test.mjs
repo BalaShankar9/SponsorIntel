@@ -41,6 +41,32 @@ test('catalogue network, redirect, body and timeout failures identify the stage 
  }
 });
 
+test('changed-field diagnostics are finite, ordered, deduplicated and survive context and stored history',()=>{
+ const input={code:'posting_changed',changed_fields:['active_status','city','city','title','__proto__','PRIVATE_FIXTURE',{toString(){throw Error('must not coerce');}}],values:{city:'PRIVATE_FIXTURE'}};
+ const expected={code:'posting_changed',changed_fields:['title','city','active_status']};
+ assert.deepEqual(safeSourceDiagnostic(input),expected);
+ assert.deepEqual(safeSourceDiagnostic({...input,code:'http_error'}),{code:'http_error'});
+ for(const changed_fields of ['title',null,{},['PRIVATE_FIXTURE']])assert.deepEqual(safeSourceDiagnostic({...input,changed_fields}),{code:'posting_changed'});
+ const wrapped=withSourceContext(new SourceCheckError(input.code,input),{phase:'description',posting_ref:posting(1).id,requests:2});
+ const retained=sourceFailureHistory({attempt_failures:[{attempt:1,checked_at:stamp(),...sourceDiagnostic(wrapped)}]})[0];
+ assert.deepEqual(retained.changed_fields,expected.changed_fields);assert.equal(retained.phase,'description');assert.equal(retained.requests,2);
+ assert.ok(!JSON.stringify(retained).includes('PRIVATE_FIXTURE'));
+ assert.equal(safeSourceDiagnostic({code:'posting_changed',changed_fields:Array(100).fill('PRIVATE_FIXTURE').concat('title')}).changed_fields,undefined);
+});
+
+test('repeated identity disagreements retain fields and reservations but never publish a partial source',async t=>{
+ const env=sourceDatabase(t),f=provider([posting(1)],(value,u)=>{if(!u.search){value=structuredClone(value);value.location.city='PRIVATE_FIXTURE';value.name='PRIVATE_FIXTURE';value.active=false;}return value;});
+ await start(env,'identity-conflict');const readBoard=(b,c)=>fetchBoard(b,{...c,fetcher:f.fetcher});
+ for(let i=0;i<2;i++)await assert.rejects(executeSourceTask(env,'identity-conflict',source.id,{readBoard}),SourceRetry);
+ assert.equal((await executeSourceTask(env,'identity-conflict',source.id,{readBoard})).state,'failed');
+ const snapshot=await operationsSnapshot(env),failures=snapshot.diagnostics[0].attempt_failures;
+ assert.equal(failures.length,3);assert.ok(failures.every(f=>JSON.stringify(f.changed_fields)===JSON.stringify(['title','city','active_status'])));
+ assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget').get().requests,150);assert.equal(f.calls.length,6);
+ assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM jobs').get().n,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM source_posting_cache').get().n,0);
+ assert.ok(!JSON.stringify(snapshot).includes('PRIVATE_FIXTURE'));
+ await executeSourceTask(env,'identity-conflict',source.id,{readBoard});assert.equal(f.calls.length,6);
+});
+
 test('three invalid advert attempts retain a precise safe history, spend bounded reservations and replay without fetching',async t=>{
  const env=sourceDatabase(t),f=provider([posting(1)],(value,u)=>{if(!u.search)delete value.jobAd.sections.qualifications;return value;});
  await start(env,'invalid-advert');const readBoard=(b,c)=>fetchBoard(b,{...c,fetcher:f.fetcher});

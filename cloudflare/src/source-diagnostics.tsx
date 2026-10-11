@@ -1,5 +1,5 @@
 import React from 'react';
-import {SOURCE_DIAGNOSTICS,sourceFailureHistory} from '../shared/source-diagnostics.js';
+import {SOURCE_DIAGNOSTICS,SOURCE_CHANGED_FIELDS,sourceFailureHistory} from '../shared/source-diagnostics.js';
 
 export type SourceCheckReceipt={run_id:string;source_id:string;company:string;state:string;error_code:string|null;created_at:string;attempt_failures:unknown[]};
 const date=(value:string)=>new Date(value).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
@@ -20,6 +20,7 @@ export function SourceDiagnostics({receipts}:{receipts:SourceCheckReceipt[]}){
           <ol>{failures.map(f=>{const detail=SOURCE_DIAGNOSTICS[f.code];return <li key={f.attempt}>
             <strong>Attempt {f.attempt}: {detail.title}</strong>
             <p>{[phase[f.phase||''],f.posting_ref?'Advert reference '+f.posting_ref:'',f.page_offset!==undefined?'Page '+(1+f.page_offset/100):'',f.http_status?'Response '+f.http_status:'',f.requests!==undefined?f.requests+(f.requests===1?' request used':' requests used'):''].filter(Boolean).join(' · ')}</p>
+            {f.code==='posting_changed'&&(f.changed_fields?.length?<p>Fields that failed comparison: {f.changed_fields.map(field=>SOURCE_CHANGED_FIELDS[field]).join(', ')}. Values are not retained; this does not establish why they differed.</p>:<p>The differing fields were not recorded. The cause remains unconfirmed.</p>)}
             <small>{date(f.checked_at)}</small><p>{detail.action}</p>
           </li>;})}</ol>}
       </article>;

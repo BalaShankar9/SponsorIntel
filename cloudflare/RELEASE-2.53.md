@@ -1,4 +1,4 @@
-# Sponsor Intel 2.53 — inspect retained reviewer rejections
+# Sponsor Intel 2.53 — diagnose reviewer and source failures
 
 Prepared on 11 October 2026. **Not deployed**: production remains 2.52.0, Worker `3a133af1-df7d-443c-8ea9-e15e77f2ba5f`, while the existing Cloudflare sign-in agreement approval is pending. This release includes the tested, also-undeployed 2.52.1 source-reservation repair. No migration, new service or budget increase is needed.
 
@@ -34,3 +34,13 @@ Evidence: `tests/evidence/application-quality-2026-10-11.json`. The production s
 ## Remaining acceptance
 
 After authorized Cloudflare renewal, obtain a current read-only recovery receipt, deploy and verify this combined release. Inspect the six retained production candidate failures without new model calls. Preserve rejected/failed outcomes, the research hold, the evaluator pause, all original reservations and the PortmanDentex pause. A future model/prompt change requires a separate reviewed evaluation version; never delete or relabel this campaign. Hosted CI at the pushed head remains a separate check and is subject to the account billing lock. Do not merge the PR.
+
+## Unreleased follow-up: precise source comparison failures
+
+The PortmanDentex investigation found a diagnostic gap: the 9 October receipts identify advert `744000145730189`, but not which identity field disagreed. On 11 October at 10:47 UTC, a targeted public detail read and a public catalogue search for East Kilbride returned matching identity fields and `active: true`; the original renders as Associate Dentist, part-time, requiring GDC registration. It contains no sponsorship offer. These two manual API requests and the browser original inspection were not a production collection or a complete catalogue check. They do not reconstruct the earlier cause. The source remains paused with zero public jobs; production reservations were observed unchanged at 180/500.
+
+Future consistency failures now retain only finite field names: posting/advert identifiers, title, release date, public location fields, employment type and active status. All mismatches still reject the collection. The owner view explains which fields failed comparison and explicitly says that values and the reason are unconfirmed. Earlier receipts state that their differing fields were not recorded. Arbitrary names, provider values, response bodies and private metadata are stripped. This changes diagnostics only, with no schema, source admission, resume, request, retry, cache or publication rule change.
+
+Evidence is retained in `tests/evidence/portmandentex-diagnostic-2026-10-11.json`. The local browser preview is clearly labelled fictional and not deployed. No production model call, source retry, social send, application or source refresh was triggered for this change.
+
+Final combined validation: **517 tests pass** on pinned Node 24.19.0, including the actual isolated SourceWorkflow/D1 receipt, recovery and replay test. Individual field changes, simultaneous conflicts, sanitization, legacy rendering and no-partial-publication behavior are covered. The eight focused source/view tests were also rerun after the final explanatory-copy change. TypeScript, production build, 17 prerenders, browser budgets and deployment dry run pass. The live owner panel still reports PortmanDentex owner-paused. No migration or production deployment occurred; the existing Cloudflare renewal approval and fresh recovery check remain prerequisites.
