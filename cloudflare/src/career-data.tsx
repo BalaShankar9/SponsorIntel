@@ -8,6 +8,8 @@ import React, {
 import { campaignHeaders } from './metrics';
 import {beginPreparedDraft,acceptPreparedDraft,type PreparationTicket} from '../shared/prepared-draft.js';
 
+import {readRecoveryCopy,discardRecoveryCopy,switchCloudWorkspace,type RecoveryCopy} from '../shared/workspace-recovery.js';
+
 export type CareerProfile = {
   name: string;
   email: string;
@@ -200,6 +202,10 @@ type CareerContextValue = {
   setError: (s: string) => void;
   reload: () => Promise<void>;
   logout: () => Promise<void>;
+  recoveryCopy: RecoveryCopy | null;
+  reloadCloud: () => Promise<void>;
+  restoreRecovery: () => Promise<void>;
+  removeRecovery: () => void;
   saveJob: (job: Job) => string;
   updateApplication: (id: string, patch: Partial<CareerApplication>) => void;
   beginPreparation: (id: string, kind: string) => PreparationTicket;
@@ -219,6 +225,9 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
     [error, setError] = useState(""),
     [ready, setReady] = useState(false),
     [selected, setSelected] = useState("");
+  const [recoveryCopy,setRecoveryCopy] = useState<RecoveryCopy|null>(null);
+  const replacing = useRef(false);
+  const cacheGuard = useRef<{key:string;raw:string|null}|null>(null);
   const revision = useRef(0),
     lastSaved = useRef(""),
     saving = useRef(false),
@@ -254,6 +263,7 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
   }
   async function load() {
     const version = ++loadVersion.current;
+    cacheGuard.current=null;
     setReady(false);
     setError("");
     blocked.current = false;
@@ -263,11 +273,14 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
       const u = s?.user || null;
       setUser(u);
       currentUser.current = u?.id || "";
+      try { setRecoveryCopy(u ? readRecoveryCopy(localStorage,u.id) : null); }
+      catch { setRecoveryCopy(null); /* Cloud reads remain usable when device storage is unavailable. Switching still requires verified storage. */ }
       if (u) {
         setData(emptyData());
         setStatus("Loading your workspace…");
         const w = await request("/api/career/workspace");
         if (version !== loadVersion.current) return;
+        if(w.accountId!==u.id)throw Error("Your signed-in account changed. Sign in again before syncing.");
         revision.current = w.revision;
         const cached = readLocal("si.career.user." + u.id);
         const remote = w.data || emptyData();
@@ -281,7 +294,7 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
             );
           }
         } else setData(remote);
-        setStatus("Synced to your account");
+        setStatus(cached?.dirty ? "Changes saved on this device" : "Synced to your account");
       } else {
         setData(readLocal("si.career.guest.v2")?.data || emptyData());
         setStatus("Saved on this browser");
@@ -307,33 +320,34 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
     if (!ready) return;
     const key = user ? "si.career.user." + user.id : "si.career.guest.v2";
     try {
-      localStorage.setItem(
-        key,
-        JSON.stringify({
-          data,
-          revision: revision.current,
-          dirty: !!user && JSON.stringify(data) !== lastSaved.current,
-        }),
-      );
+      if(cacheGuard.current?.key===key&&localStorage.getItem(key)!==cacheGuard.current.raw){
+        blocked.current=true;
+        setError('Another tab changed the saved copy. Your current work and recovery copy remain available here; download them before reloading.');
+        return;
+      }
+      const raw=JSON.stringify({data,revision:revision.current,dirty:!!user&&JSON.stringify(data)!==lastSaved.current});
+      localStorage.setItem(key,raw);
+      if(cacheGuard.current?.key===key)cacheGuard.current.raw=raw;
     } catch {
-      setError("Your browser storage is full. Export a backup before closing.");
+      setError('Your browser storage is full or unavailable. Export a backup before closing.');
     }
     if (!user || blocked.current) return;
     const timer = setTimeout(() => void sync(user.id), 900);
     return () => clearTimeout(timer);
   }, [data, user, ready]);
   async function sync(userId: string) {
-    if (saving.current || blocked.current || currentUser.current !== userId)
+    if (saving.current || replacing.current || blocked.current || currentUser.current !== userId)
       return;
     saving.current = true;
     try {
-      while (currentUser.current === userId && !blocked.current) {
+      while (currentUser.current === userId && !blocked.current && !replacing.current) {
         const copy = latest.current,
           json = JSON.stringify(copy);
         if (json === lastSaved.current) break;
         setStatus("Saving…");
         const r = await request("/api/career/workspace", "PUT", {
           data: copy,
+          accountId: userId,
           revision: revision.current,
         });
         if (currentUser.current !== userId) break;
@@ -348,6 +362,7 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
             dirty: JSON.stringify(latest.current) !== json,
           }),
         );
+        if(cacheGuard.current?.key==="si.career.user."+userId)cacheGuard.current.raw=localStorage.getItem(cacheGuard.current.key);
       }
     } catch (e) {
       setStatus("Changes saved on this device");
@@ -357,7 +372,55 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
       saving.current = false;
     }
   }
+  async function reloadCloud() {
+    const id=currentUser.current;
+    if(!id||!ready||saving.current||replacing.current)throw Error('Wait for your workspace to finish saving or loading.');
+    cacheGuard.current={key:"si.career.user."+id,raw:localStorage.getItem("si.career.user."+id)};
+    replacing.current=true;
+    const version=++loadVersion.current;
+    setReady(false);setError('');
+    try {
+      const remote=await switchCloudWorkspace({storage:localStorage,id,data:latest.current,revision:revision.current,
+        readCloud:async()=>{
+          const session=await request('/api/auth/get-session');
+          if(session?.user?.id!==id)throw Error('Your signed-in account changed. Your current work was kept.');
+          const w=await request('/api/career/workspace');
+          return {...w,data:w.data||emptyData()};
+        },
+        isCurrent:before=>version===loadVersion.current&&currentUser.current===id&&JSON.stringify(latest.current)===before,
+        onPreserved:setRecoveryCopy});
+      cacheGuard.current.raw=localStorage.getItem(cacheGuard.current.key);
+      revision.current=remote.revision;lastSaved.current=JSON.stringify(remote.data);
+      setData(remote.data);setSelected('');blocked.current=false;
+      setStatus('Synced to your account');
+    } catch(e) {
+      if(version===loadVersion.current&&currentUser.current===id){blocked.current=true;setStatus('Current copy kept on this device');setError((e as Error).message);}
+      throw e;
+    } finally {
+      replacing.current=false;
+      if(version===loadVersion.current&&currentUser.current===id)setReady(true);
+    }
+  }
+  function removeRecovery() {
+    const id=currentUser.current;
+    if(!id||!ready||replacing.current||!recoveryCopy)throw Error('Wait for your workspace to finish loading.');
+    discardRecoveryCopy(localStorage,id,recoveryCopy.raw);setRecoveryCopy(null);
+  }
+  async function restoreRecovery() {
+    const id=currentUser.current,version=loadVersion.current,before=JSON.stringify(latest.current);
+    if(!id||!ready||saving.current||replacing.current)throw Error('Wait for your workspace to finish saving or loading.');
+    const copy=readRecoveryCopy(localStorage,id);
+    if(!copy?.snapshot||copy.raw!==recoveryCopy?.raw)throw Error('This recovery copy changed or cannot be restored. Save its text and review it first.');
+    const {validateWorkspace}=await import('../worker/career-validation.js');
+    const restored=validateWorkspace(copy.snapshot.data) as CareerData;
+    if(version!==loadVersion.current||currentUser.current!==id||replacing.current||saving.current||JSON.stringify(latest.current)!==before||readRecoveryCopy(localStorage,id)?.raw!==copy.raw)throw Error('Your workspace changed. Try again after it finishes loading.');
+    // Keep the recovery copy until explicitly removed. Normal revision checks
+    // still prevent a restore from overwriting a newer cloud revision.
+    setData(restored);setSelected('');setStatus('Recovered copy restored on this device');
+  }
   async function logout() {
+    if(replacing.current)throw Error('Wait for your workspace to finish loading.');
+    if(currentUser.current&&readRecoveryCopy(localStorage,currentUser.current))throw Error('Save or restore your recovery copy in Account & backup, then remove it before signing out.');
     if (user && JSON.stringify(latest.current) !== lastSaved.current) {
       await sync(user.id);
       if (JSON.stringify(latest.current) !== lastSaved.current)
@@ -370,6 +433,7 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
     if (user) localStorage.removeItem("si.career.user." + user.id);
     currentUser.current = "";
     setUser(null);
+    setRecoveryCopy(null);
     setData(readLocal("si.career.guest.v2")?.data || emptyData());
     setSelected("");
     setError("");
@@ -451,6 +515,10 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
         setError,
         reload: load,
         logout,
+        recoveryCopy,
+        reloadCloud,
+        restoreRecovery,
+        removeRecovery,
         saveJob,
         updateApplication,
         beginPreparation,

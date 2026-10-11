@@ -52,6 +52,8 @@ import {
   exportCalendar,
 } from "./documents";
 import "./career.css";
+import { WorkspaceRecovery } from "./workspace-recovery";
+import { recoveryKey } from "../shared/workspace-recovery.js";
 import { DocumentDownloads } from "./document-downloads";
 import { StudioReadiness, studioReadiness } from "./studio-readiness";
 import {trackEvidenceCheck} from './metrics';
@@ -1135,7 +1137,10 @@ function Account({
     setBusy(true);
     try {
       await request("/api/career/account", "DELETE", {});
-      if (c.user) localStorage.removeItem("si.career.user." + c.user.id);
+      if (c.user) {
+        localStorage.removeItem("si.career.user." + c.user.id);
+        localStorage.removeItem(recoveryKey(c.user.id));
+      }
       await c.reload();
       setDeleteModal(false);
       setMessage("Your account and cloud workspace have been deleted.");
@@ -1193,25 +1198,7 @@ function Account({
                   Sign out
                 </button>
               </div>
-              <button
-                className="text-button"
-                disabled={!c.ready || c.status === "Saving…"}
-                onClick={async () => {
-                  download(
-                    JSON.stringify(c.data, null, 2),
-                    "sponsor-intel-before-reload.json",
-                    "application/json",
-                  );
-                  if (c.user)
-                    localStorage.removeItem("si.career.user." + c.user.id);
-                  await c.reload();
-                  setMessage(
-                    "Your previous copy was downloaded. The latest cloud workspace is now loaded.",
-                  );
-                }}
-              >
-                Download backup & reload cloud copy
-              </button>
+              <WorkspaceRecovery />
               <button
                 className="text-button"
                 onClick={() => {

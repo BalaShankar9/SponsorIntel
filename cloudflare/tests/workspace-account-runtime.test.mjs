@@ -27,15 +27,19 @@ test('actual Worker/auth/D1 isolates private workspaces, preserves concurrent ed
   assert.equal((await call('/api/career/workspace',{method:'PUT',body:{revision:0,data:workspace('anonymous marker')}})).status,401);
   const put=(user,revision,marker,requestOrigin=origin)=>call('/api/career/workspace',{method:'PUT',cookie:user.cookie,requestOrigin,body:{revision,user_id:a.id,data:{...workspace(marker),user_id:a.id}}});
   assert.equal((await put(a,0,'Fictional A private CV')).status,200);
-  const other=await call('/api/career/workspace?user_id='+a.id,{cookie:b.cookie});assert.equal(other.status,200);assert.equal((await other.json()).data,null);
+  const other=await call('/api/career/workspace?user_id='+a.id,{cookie:b.cookie});assert.equal(other.status,200);const otherData=await other.json();assert.equal(otherData.data,null);assert.equal(otherData.accountId,b.id);
   assert.equal((await put(b,0,'Fictional B private CV')).status,200);
+  const bBeforeScope=await db.prepare('SELECT data,revision FROM career_workspaces WHERE user_id=?').bind(b.id).first();
+  const wrongScope=await call('/api/career/workspace',{method:'PUT',cookie:b.cookie,body:{accountId:a.id,revision:1,data:workspace('Must not leak A work to B')}});
+  assert.equal(wrongScope.status,409);assert.deepEqual(await db.prepare('SELECT data,revision FROM career_workspaces WHERE user_id=?').bind(b.id).first(),bBeforeScope);
+
   assert.equal((await (await call('/api/career/workspace',{cookie:a.cookie})).json()).data.profile.cv,'Fictional A private CV');
   assert.equal((await put(a,1,'Cross-origin replacement','https://untrusted.example')).status,403);
   assert.equal((await put(a,0,'Stale replacement')).status,409);
   const attempts=await Promise.all([put(a,1,'First concurrent edit'),put(a,1,'Second concurrent edit')]);
   assert.deepEqual(attempts.map(r=>r.status).sort(),[200,409]);
   const saved=await (await call('/api/career/workspace',{cookie:a.cookie})).json();assert.equal(saved.revision,2);assert.ok(['First concurrent edit','Second concurrent edit'].includes(saved.data.profile.cv));
-  assert.equal(saved.data.user_id,undefined);
+  assert.equal(saved.data.user_id,undefined);assert.equal(saved.accountId,a.id);
   await db.prepare('UPDATE user SET emailVerified=1').run();
   const monitor=async user=>{const r=await call('/api/career/search-notifications',{method:'PUT',cookie:user.cookie,body:{enabled:true,search_id:'fictional-search',user_id:a.id}});assert.equal(r.status,200);return (await r.json()).id;};
   const aMonitor=await monitor(a),bMonitor=await monitor(b);assert.notEqual(aMonitor,bMonitor);

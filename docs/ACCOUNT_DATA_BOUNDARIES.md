@@ -1,5 +1,9 @@
 # Private account data boundaries
 
+## Device recovery and account changes in 2.62
+
+A cloud switch now preserves a private browser recovery copy before replacing current work. Exact-copy checks protect concurrent changes; the account screen keeps export, restore and removal distinct. Authenticated workspace reads report their account ID, and new clients send that expected identity on saves. A mismatch is rejected without changing either account. This is an additional stale-session guard, not authority to choose a user from a request. Older clients retain session-based isolation. See [workspace recovery](WORKSPACE_RECOVERY.md) for local retention, sign-out and deletion boundaries.
+
 The application takes the account identity from its authenticated session, never a submitted user ID. Workspace writes use optimistic revisions: one of two simultaneous edits wins and the other receives a conflict. Search monitors are scoped to the same account. Account deletion requires a recent sign-in and atomically removes workspace, recovery material, sessions, credentials and the user; dependent search records cascade.
 
 ## Deletion race corrected in 2.59

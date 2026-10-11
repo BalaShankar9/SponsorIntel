@@ -219,6 +219,7 @@ export async function careerAPI(request, env) {
         .bind(user.id)
         .first();
       return reply({
+        accountId: user.id,
         data: r ? JSON.parse(r.data) : null,
         revision: r?.revision || 0,
         updatedAt: r?.updated_at || null,
@@ -240,6 +241,8 @@ export async function careerAPI(request, env) {
           400,
         );
       }
+      if(body.accountId!==undefined&&body.accountId!==user.id)
+        return reply({error:'Your signed-in account changed. Your current work was not saved to another account.'},409);
       const now = new Date().toISOString();
       let result;
       if (body.revision === 0)

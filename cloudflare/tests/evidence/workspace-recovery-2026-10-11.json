@@ -1,0 +1,58 @@
+{
+  "release": "2.62.0",
+  "validation": {
+    "node": "24.19.0",
+    "tests": 603,
+    "pass": 603,
+    "fail": 0,
+    "duration_ms": 53161.479167,
+    "focused_runtime_and_recovery": 12,
+    "typecheck": true,
+    "build": true,
+    "prerenders": 17,
+    "browser_budgets": true,
+    "dry_run": true
+  },
+  "reproduced_before": {
+    "browser_download_deliberately_blocked": true,
+    "requested_downloads": 1,
+    "current_cv_replaced_by_cloud": true,
+    "false_downloaded_message": true
+  },
+  "fictional_browser_after": {
+    "quota_failure_keeps_current": true,
+    "cloud_failure_keeps_current_and_recovery": true,
+    "blocked_download_keeps_readable_recovery": true,
+    "recovery_survives_page_reload": true,
+    "recovery_present_after_browser_restart": true,
+    "explicit_restore_restores_fictional_cv": true,
+    "normal_save_conflict_remains_visible": true,
+    "removal_keeps_current_workspace": true,
+    "signout_holds_until_recovery_dealt_with": true,
+    "cloud_load_works_when_device_reads_blocked": true,
+    "switch_is_held_when_device_reads_blocked": true,
+    "viewport_width": 390,
+    "body_scroll_width": 390,
+    "recovery_region_width": 302,
+    "screenshot": "workspace-recovery-mobile-2026-10-11.png"
+  },
+  "runtime_isolation": {
+    "authenticated_account_id_returned": true,
+    "mismatched_expected_account_write_rejected": true,
+    "other_account_data_revision_unchanged": true,
+    "account_deletion_race_checks_retained": true,
+    "external_fixture_calls": 0
+  },
+  "limitations": [
+    "Fictional local records only; no real customer recovery proved",
+    "Browser download requests do not prove saved files",
+    "Device recovery is not cloud or disaster recovery",
+    "Legacy clients without expected account ID retain prior session-based behavior"
+  ],
+  "new_migrations": 0,
+  "dependencies_changed": false,
+  "customer_data_changed": false,
+  "production_AI_Google_calls": 0,
+  "source_refresh_forced": false,
+  "external_sends": 0
+}
