@@ -677,27 +677,15 @@ function Studio({ go }: { go: Go }) {
     setBusy(tab);
     setMessage("");
     if (a.stage === "Saved") c.updateApplication(a.id, { stage: "Preparing" });
-    const id = a.id,
-      kind = tab;
+    const kind = tab;
     try {
+      const ticket=c.beginPreparation(a.id,kind);
       const r = await request("/api/career/generate", "POST", {
-        profile: c.data.profile,
-        application: {
-          id: a.id,
-          jobId: a.jobId,
-          title: a.title,
-          company: a.company,
-          description: a.description,
-          sponsorship: a.sponsorship,
-          evidence: a.evidence,
-        },
+        ...ticket.input,
         kind,
         consent,
       });
-      c.updateApplication(id, {
-        [kind]: r.text,
-        preparedAt: r.generatedAt,
-      });
+      if(!c.finishPreparation(ticket,r))return;
       setMessage(
         (kind === "companyResearch"
           ? (r.text.startsWith("COMPANY BRIEF — EMPLOYER ADVERT EVIDENCE")

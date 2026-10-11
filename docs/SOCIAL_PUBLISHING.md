@@ -2,6 +2,8 @@
 
 Updated 11 October 2026. See [the dated operating receipt](OPERATIONS-2026-10-11.md): LinkedIn evidence report and Facebook advert-reading guide are now verified Published; only the 12 October Facebook application guide remains queued. Instagram welcome v2 is held after a failed/uncertain review. Older pending statements below are historical.
 
+Fresh 11 October platform performance and the next bounded experiment are recorded in [MARKETING_REVIEW-2026-10-11.md](MARKETING_REVIEW-2026-10-11.md). Personal LinkedIn reports 136 impressions, 81 members reached, one save and two website-link visits; company welcome reports 102 impressions and two clicks. These are provider observations, not verified product conversions. Facebook analytics currently omit a separately verified delivered post; do not treat the missing row as zero reach.
+
  Owner authorised routine company posts and personal LinkedIn introductions. No advertising spend or subscription purchase is approved.
 
 ## Verified destinations

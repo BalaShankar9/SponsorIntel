@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import { campaignHeaders } from './metrics';
+import {beginPreparedDraft,acceptPreparedDraft,type PreparationTicket} from '../shared/prepared-draft.js';
 
 export type CareerProfile = {
   name: string;
@@ -201,6 +202,8 @@ type CareerContextValue = {
   logout: () => Promise<void>;
   saveJob: (job: Job) => string;
   updateApplication: (id: string, patch: Partial<CareerApplication>) => void;
+  beginPreparation: (id: string, kind: string) => PreparationTicket;
+  finishPreparation: (ticket: PreparationTicket, result: {text:string;generatedAt:string}) => boolean;
   selected: string;
   setSelected: (id: string) => void;
   importGuest: () => void;
@@ -208,7 +211,7 @@ type CareerContextValue = {
 };
 const Context = createContext<CareerContextValue | null>(null);
 export function CareerProvider({ children }: { children: React.ReactNode }) {
-  const [data, setData] = useState<CareerData>(
+  const [data, setStateData] = useState<CareerData>(
     () => readLocal("si.career.guest.v2")?.data || emptyData(),
   );
   const [user, setUser] = useState<CareerContextValue["user"]>(null),
@@ -222,8 +225,33 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
     currentUser = useRef(""),
     blocked = useRef(false),
     loadVersion = useRef(0),
-    latest = useRef(data);
-  latest.current = data;
+    latest = useRef(data),
+    preparationSerial = useRef(0),
+    preparationRequests = useRef(new Map<string,number>());
+  // Update the same current snapshot synchronously for edits, account loads and
+  // async completions; an old response must not race a queued React update.
+  const setData: React.Dispatch<React.SetStateAction<CareerData>> = action => {
+    const next = typeof action === 'function' ? action(latest.current) : action;
+    latest.current = next;
+    setStateData(next);
+  };
+  const preparationScope = () => `${loadVersion.current}:${currentUser.current}`;
+  function beginPreparation(id:string,kind:string) {
+    if(!ready)throw Error('Wait for your workspace to finish loading.');
+    const ticket=beginPreparedDraft(latest.current,id,kind,preparationScope(),++preparationSerial.current);
+    preparationRequests.current.set(`${id}:${kind}`,ticket.requestId);
+    return ticket;
+  }
+  function finishPreparation(ticket:PreparationTicket,result:{text:string;generatedAt:string}) {
+    const key=`${ticket.input.application.id}:${ticket.kind}`;
+    const accepted=acceptPreparedDraft(latest.current,ticket,result,preparationScope(),preparationRequests.current.get(key));
+    if(preparationRequests.current.get(key)===ticket.requestId)preparationRequests.current.delete(key);
+    if(accepted.status==='saved'){setData(accepted.data);return true;}
+    if(accepted.status!=='superseded')setError(accepted.status==='changed'
+      ? 'Your CV, application or draft changed during preparation. Your current work was kept; the returned draft was not saved. Review your evidence before preparing again.'
+      : 'The returned draft could not be saved. Your current work was kept.');
+    return false;
+  }
   async function load() {
     const version = ++loadVersion.current;
     setReady(false);
@@ -425,6 +453,8 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
         logout,
         saveJob,
         updateApplication,
+        beginPreparation,
+        finishPreparation,
         selected,
         setSelected,
         importGuest,
