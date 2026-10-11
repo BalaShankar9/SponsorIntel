@@ -29,3 +29,15 @@ Reference attempts and their child step receipts are excluded from ordinary 30-d
 Do not equate loading the snapshot, passing tests or configuring the schedule with successful real-model evaluation. See the 2.19 release receipt for the current observed state.
 
 Cloudflare operational references: [D1 command reference](https://developers.cloudflare.com/d1/wrangler-commands/), [Time Travel recovery](https://developers.cloudflare.com/d1/reference/time-travel/) and [Workflow limits](https://developers.cloudflare.com/workflows/reference/limits/).
+
+## Separate compact comparison — 2.57
+
+The original 10 October batch-two failure is retained; its provider Workflow completed the failure handler, not the analysis. Its historical `Model response incomplete.` message is consistent with the old output-limit branch, but no raw finish reason or usage counters survived. Do not assign a fabricated stop reason or reset that run.
+
+The candidate `real-adverts-2026-10-08-compact-v2` uses policy `investigator-v4-compact-reference`. All 50 original pinned records and 16 batch memberships remain unchanged. Complete ordered quotation blocks replace the duplicate description in analyst input; their concatenation must reproduce every original character and preserve quotation IDs. The reviewer still sees complete original text. Llama review uses the [official JSON-schema interface](https://developers.cloudflare.com/workers-ai/features/json-mode/); GLM retains the existing JSON-object interface and reasoning setting. Schema validity cannot prove interpretation quality.
+
+`node scripts/research-source.mjs` verifies explicit checked-in contract files against the generated manifest. Changing those files requires a reviewed explicit `--write`, a new preflight and comparison review; deployed bundles use the same source identity. The 50-record read-only preflight is `node scripts/research-comparison-preflight.mjs PRIVATE_RECORDS.json AGGREGATE_RECEIPT.json`. Never commit complete source exports or customer data. Character savings do not establish token/cost savings or better reasoning.
+
+After reviewed migration 0037, the existing owner desk offers prepare, resume and pause. Preparation revalidates every original record and selects the candidate **paused**. Resume needs the exact prepared source/model profile and can only enable the next eligible existing daily dispatch. Neither action starts a workflow or resets the current day's receipt. Keep failed/unknown attempts, consumed reservations and the original high-priority finding. An uncertain save must reconcile/replay the exact request. A pause blocks subsequent call reservations but cannot undo an already-started provider call.
+
+Candidate and original scores stay separate. All sixteen candidate batches must reach reviewed output before independent adjudication; provisional annotations and agent assistance remain disclosed. A complete comparison stays `awaiting_independent_review`, with no automatic live-policy promotion, learning, publication or ordinary-research fallback. Any failure/configuration change holds it without an automatic second attempt.

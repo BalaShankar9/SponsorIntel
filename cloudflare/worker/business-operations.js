@@ -5,7 +5,7 @@ import { bodyJSON, limit, reply, sameOrigin } from './auth.js';
 import { publicMeasurement } from './analytics.js';
 import { JOB_FRESHNESS_MS, JOB_ORIGIN } from '../shared/job-detail.js';
 import { startInvestigation } from './agent-research.js';
-import { referenceProgress } from './research-reference.js';
+import { referenceProgress,referenceSet } from './research-reference.js';
 import {supportSummaryStatement} from './support.js';
 import {applicationEvaluationHealth} from './application-evaluation.js';
 import { publishInsight } from './insights.js';
@@ -112,7 +112,7 @@ export async function collectBusinessSnapshot(env, fetcher = fetch, now = Date.n
     search_notifications:await searchNotificationHealth(env),email_delivery:await emailDeliveryHealth(env,now),social_delivery:await socialDeliveryHealth(env,now),job_links:await jobLinkHealth(env,now),opportunity_promotions:await opportunityBriefHealth(env,now),
     job_movement:await jobMovementHealth(env,now,{compact:true}),
     job_reviews:await jobReviewSummary(env,now),discovery:await discoverySummary(env,now),discovery_scout:await discoveryScoutHealth(env,now),
-    reference:{state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
+    reference:{state:reference.state,dataset:reference.dataset,original_state:reference.dataset!==referenceSet.id?(await referenceProgress(env,referenceSet)).state:reference.state,evaluated_adverts:reference.evaluated_adverts,total_adverts:reference.total_adverts,
       dangerous_false_positives:reference.dangerous_false_positives,unsupported_refusals:reference.unsupported_refusals,disputed_items:reference.disputed_items} };
 }
 
@@ -144,7 +144,7 @@ export function businessFindings(snapshot, now = Date.now()) {
   const missingExplanations=snapshot.immigration.filter(s=>s.kind==='guidance'&&s.explanation_status==='awaiting_summary');
   if(needsExplanationReview.length||missingExplanations.length)add('immigration-explanations','quality',needsExplanationReview.length?'high':'normal','Review immigration explanations',`${needsExplanationReview.length} explanations need source/evidence review; ${missingExplanations.length} monitored guides have no explanation. Affected sources: ${[...needsExplanationReview,...missingExplanations].map(s=>s.id).join(', ')}.`,'Open Immigration updates and compare the complete current GOV.UK text with the retained version. Review every point and quotation before a release. Do not simply replace a source hash, infer a legal effective date, or treat monitoring as legal review.');
   if (snapshot.held_batches) add('held-batches','quality','high','Review held source batches',snapshot.held_batches+' source review records remain open.','Inspect the existing evidence queue before releasing held data.');
-  if(snapshot.reference?.state==='needs_attention')add('reference-evaluation-held','quality','high','Resolve the real-advert test hold','A failed, incomplete or mixed-version reference attempt needs attention.','Inspect its retained report and workflow outcome. Do not remove the attempt or reset its model-call reservations to retry.');
+  if(snapshot.reference?.state==='needs_attention'||snapshot.reference?.original_state==='needs_attention')add('reference-evaluation-held','quality','high','Resolve the real-advert test hold','A failed, incomplete or mixed-version reference attempt needs attention.','Inspect its retained report and workflow outcome. Do not remove the attempt or reset its model-call reservations to retry.');
   if(snapshot.reference?.dangerous_false_positives||snapshot.reference?.unsupported_refusals)add('reference-label-errors','quality','high','Review unsupported reference interpretations',`${snapshot.reference.dangerous_false_positives} unsupported positives and ${snapshot.reference.unsupported_refusals} unsupported refusals were found against provisional archived-advert expectations.`,'Review original wording and disputed expectations with an independent reviewer. Public labels were not changed; do not promote model authority from this test.');
   if (snapshot.feedback_count) add('feedback','product',snapshot.support?.overdue_quality?'high':'normal','Review unresolved user reports',snapshot.feedback_count+' reports remain unresolved; '+(snapshot.support?.overdue||0)+' are beyond the internal 72-hour review threshold.','Open the Support queue, reproduce the issue or verify its original source. Record evidence before resolving a report; preserve private messages and review history.');
   if(snapshot.application_evaluation?.state==='needs_attention')add('application-evaluation-held','quality','normal','Inspect the application comparison hold','A private application test stopped or its policy/model fingerprint changed.','Inspect the Application quality lab and retained workflow evidence. Do not retry an uncertain call or promote the candidate reviewer from literal checks alone.');
@@ -210,7 +210,7 @@ export async function scheduleBusinessResearch(env, now=Date.now()) {
   if (!reserved) return await env.DB.prepare('SELECT research_state state,research_id,detail FROM business_daily WHERE day=?').bind(day).first();
   try {
     const reference=await referenceProgress(env);
-    if(reference.state==='needs_attention')throw Error('Resolve the retained reference attempt before continuing.');
+    if(['needs_attention','paused'].includes(reference.state)||reference.dataset==='real-adverts-2026-10-08-compact-v2'&&reference.state!=='ready'&&reference.state!=='complete')throw Error('Resolve the retained reference attempt before continuing.');
     // The fixed reference set replaces, rather than adds to, the existing daily
     // investigation. Completed batches cannot reserve a new attempt.
     const fixed=!!reference.next_batch;

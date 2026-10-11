@@ -41,7 +41,7 @@ async function boundedJSON(response) {
   return JSON.parse(new TextDecoder().decode(bytes));
 }
 
-export async function callResearchModel(env, config, system, input) {
+export async function callResearchModel(env, config, system, input, responseFormat=null) {
   const content = JSON.stringify(input);
   if (content.length > 90000) throw Error('Research context exceeded limit.');
   const messages = [{ role: 'system', content: system }, { role: 'user', content }];
@@ -55,7 +55,7 @@ export async function callResearchModel(env, config, system, input) {
     const r = await env.AI.run(config.model, {
       messages, max_tokens: 8192, temperature: 0.1,
       ...(config.model.includes('glm-4.7') ? { chat_template_kwargs: { enable_thinking: true } } : {}),
-      response_format: { type: 'json_object' },
+      response_format: responseFormat || { type: 'json_object' },
     });
     value = r.response || r.choices?.[0]?.message?.content;
     usage = boundedResearchUsage(r.usage); finish = r.choices?.[0]?.finish_reason;

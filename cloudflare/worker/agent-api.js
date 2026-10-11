@@ -1,3 +1,4 @@
+import {reviewReferenceComparison} from './research-reference-controls.js';
 import { bodyJSON, reply, sameOrigin, limit } from "./auth.js";
 import {
   dispatchSources,
@@ -25,6 +26,7 @@ export async function agentOperationsAPI(request, env, owner) {
       "/api/admin/agents/reconcile",
       "/api/admin/agents/recover",
       '/api/admin/agents/research/start',
+      '/api/admin/agents/research/reference',
       '/api/admin/agents/research/remember',
       '/api/admin/agents/research/reconcile',
       '/api/admin/agents/research/recover',
@@ -66,6 +68,10 @@ export async function agentOperationsAPI(request, env, owner) {
       try { await instance.restart(); }
       catch { return reply({message:'Recovery outcome is uncertain. Check execution status; do not start another run.'},202); }
       return reply({message:'Recovery requested for the same investigation. Evidence and original spending reservations are preserved.'},202);
+    }
+    if(path.endsWith('/research/reference')) {
+      const result=await reviewReferenceComparison(env,owner.user.id,body);
+      return reply({...result,message:body.action==='prepare'?'Separate comparison prepared and paused. No model call made.':body.action==='resume'?'Comparison enabled for the next eligible daily dispatch. No call was made by this review.':'Comparison paused. Existing attempts and reservations remain.'});
     }
     if (path.endsWith('/research/start')) {
       const result = await startInvestigation(env,owner.user.id,body.kind,body.evaluation_suite,body.reference_batch??null);

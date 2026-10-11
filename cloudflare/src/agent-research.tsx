@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrainCircuit, FlaskConical, SearchCheck } from 'lucide-react';
 import { ResearchCompletionNote } from './research-completion';
 import type { ResearchCompletion } from '../shared/research-completion.js';
+import {ResearchComparison,type ReferenceComparison} from './research-comparison';
 
 type Assessment = { job_id:string; verdict:string; quote:string; reason:string };
 type SummaryClaim={claim_id:string;text:string;citations:{job_id:string;quote:string}[]};
@@ -17,7 +18,7 @@ type Report = {
   evaluation?:{ target?:string;synthetic?:boolean;provisional?:boolean;ambiguous_cases?:number;limitation?:string;correct:number;total:number;dangerous_false_positives?:number;unsupported_refusals?:number;missed_unsupported?:number;incorrect_rejections?:number;cases:{id:string;correct:boolean|null;expected:string|boolean;actual:string|boolean}[] };
 };
 type Run = {id:string;kind:string;evaluation_suite?:string;reference_batch?:string|null;state:string;policy:string;created_at:string;calls:number;report:Report|null;error:string|null};
-type Data = { enabled:boolean;policy:string;models:Record<string,{provider:string;model:string}>;
+type Data = { reference_comparison?:ReferenceComparison; enabled:boolean;policy:string;models:Record<string,{provider:string;model:string}>;
   budget:{runs:number;calls:number;run_limit:number;call_limit:number};runs:Run[];
   reference?:{state:string;snapshot_at:string;total_adverts:number;unique_descriptions:number;evaluated_adverts:number;completed_batches:number;total_batches:number;correct:number;scored:number;ambiguous:number;disputed_items:number;comparable:boolean;next_batch:string|null;limitation:string;batches:{id:string;state:string;adverts:number;run_id:string|null}[]};
   memories:{job_id:string;expires_at:string}[];steps:{name:string;role:string;state:string;duration_ms:number|null;failure?:string;completion?:ResearchCompletion|null}[] };
@@ -65,6 +66,7 @@ export function AgentResearch() {
         <button className="secondary-button" disabled={busy||active||!data.enabled||!data.reference.next_batch||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'evaluation',reference_batch:'next'})}>Evaluate next advert batch</button>
         <details><summary>Batch progress</summary><ol>{data.reference.batches.map((b,i)=><li key={b.id}>Batch {i+1}: {b.adverts} adverts · {label(b.state)}</li>)}</ol></details>
       </section>}
+      {data.reference_comparison&&<ResearchComparison data={data.reference_comparison} active={!!active} refresh={load}/>}
       {data.runs.length>0&&<label className="research-history">Investigation history<select value={run?.id||''} onChange={e=>setSelected(e.target.value)}>{data.runs.map(r=><option key={r.id} value={r.id}>{new Date(r.created_at).toLocaleString('en-GB')} · {r.kind} · {r.state}</option>)}</select></label>}
       {run&&<article className="research-result"><div className="agent-heading"><h3>{run.reference_batch?'Real advert evaluation':run.kind==='evaluation'?(run.evaluation_suite==='critic'?'Reviewer challenge':'Capability test'):'Job quality investigation'}</h3><span className="agent-pill">{label(run.state)} · {run.calls} model {run.calls===1?'call':'calls'}</span></div>
         {run.reference_batch&&<p className="fine-print">Archived employer text from the fixed reference snapshot. These results assess historical wording and do not confirm that the jobs remain open.</p>}

@@ -1,15 +1,19 @@
 import { REFERENCE_SET } from './reference-manifest.js';
+import {RESEARCH_CANDIDATE_DATASET,candidateReferenceProfile} from './research-candidate.js';
+import {researchModels} from './research-model.js';
 
 export const referenceSet = REFERENCE_SET;
-export const referenceBatch = (id,set=REFERENCE_SET) => set.batches.find(b => b.id === id);
+export const candidateReferenceSet = {...REFERENCE_SET,id:RESEARCH_CANDIDATE_DATASET,source_dataset:REFERENCE_SET.id,batches:REFERENCE_SET.batches.map(b=>({...b,id:b.id.replace(REFERENCE_SET.id,RESEARCH_CANDIDATE_DATASET)}))};
+export const referenceSetForBatch = id => candidateReferenceSet.batches.some(b=>b.id===id)?candidateReferenceSet:REFERENCE_SET;
+export const referenceBatch = (id,set=referenceSetForBatch(id)) => set.batches.find(b => b.id === id);
 async function hash(value) {
   return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value)))).map(n => n.toString(16).padStart(2,'0')).join('');
 }
-export async function referenceEvidence(env, batchId, set=REFERENCE_SET) {
+export async function referenceEvidence(env, batchId, set=referenceSetForBatch(batchId)) {
   const batch = referenceBatch(batchId,set);
   if (!batch) throw Error('Choose a known reference batch.');
   const rows = await env.DB.prepare(`SELECT job_id,record FROM agent_reference_cases WHERE dataset=? AND job_id IN (${batch.job_ids.map(() => '?').join(',')})`)
-    .bind(set.id,...batch.job_ids).all();
+    .bind(set.source_dataset||set.id,...batch.job_ids).all();
   if (rows.results.length !== batch.job_ids.length) throw Error('The frozen reference snapshot is incomplete.');
   const evidence = [];
   for (const id of batch.job_ids) {
@@ -28,10 +32,10 @@ export async function referenceEvidence(env, batchId, set=REFERENCE_SET) {
 }
 
 export function scoreReferenceEvaluation(report,batchId) {
-  const batch = referenceBatch(batchId);
+  const set=referenceSetForBatch(batchId),batch = referenceBatch(batchId,set);
   if (!batch) throw Error('Choose a known reference batch.');
   const cases = batch.job_ids.map(id => {
-    const expected = REFERENCE_SET.cases.find(c => c.id === id).accepted_labels;
+    const expected = set.cases.find(c => c.id === id).accepted_labels;
     const answers = report.assessments.filter(a => a.job_id === id);
     const actual = answers.length === 1 ? answers[0].verdict : 'missing';
     return {id,expected:expected.join(' or '),actual,ambiguous:expected.length>1,
@@ -39,24 +43,29 @@ export function scoreReferenceEvaluation(report,batchId) {
       within_provisional_set:expected.includes(actual)};
   });
   const single = cases.filter(c => !c.ambiguous);
-  return {dataset:REFERENCE_SET.id,batch:batchId,synthetic:false,provisional:true,human_adjudicated:false,
-    snapshot_at:REFERENCE_SET.snapshot_at,correct:single.filter(c => c.correct).length,total:single.length,
+  return {dataset:set.id,batch:batchId,synthetic:false,provisional:true,human_adjudicated:false,
+    snapshot_at:set.snapshot_at,correct:single.filter(c => c.correct).length,total:single.length,
     evaluated_adverts:cases.length,ambiguous_cases:cases.length-single.length,
     dangerous_false_positives:single.filter(c => ['unavailable','not_stated'].includes(c.expected) && ['offered','conditional'].includes(c.actual)).length,
     unsupported_refusals:single.filter(c => c.expected==='not_stated' && c.actual==='unavailable').length,
     cases,limitation:'Fixed source-balanced development sample with AI-assisted provisional annotations. Ambiguous labels are excluded from the exact-label denominator. No independent human adjudication or population accuracy estimate; archived adverts are not current opportunities.'};
 }
 
-export async function referenceProgress(env) {
+export async function referenceProgress(env,selectedSet=null) {
+  const control=await env.DB.prepare('SELECT * FROM research_reference_control WHERE singleton=1').first();
+  const set=selectedSet||(control?.campaign===RESEARCH_CANDIDATE_DATASET?candidateReferenceSet:REFERENCE_SET);
+  const selected=control?.campaign===set.id;
+  let profileValid=true;
+  if(set.id===RESEARCH_CANDIDATE_DATASET)try{profileValid=control?.profile===JSON.stringify(candidateReferenceProfile(researchModels(env)));}catch{profileValid=false;}
   const controls=await env.DB.prepare('SELECT enabled,research FROM business_controls WHERE singleton=1').first();
-  const count = await env.DB.prepare('SELECT COUNT(*) n FROM agent_reference_cases WHERE dataset=?').bind(REFERENCE_SET.id).first();
-  const rows = await env.DB.prepare(`SELECT id,reference_batch,state,policy,models,report,calls FROM agent_investigations WHERE reference_batch IN (${REFERENCE_SET.batches.map(() => '?').join(',')}) ORDER BY created_at,id`).bind(...REFERENCE_SET.batches.map(b => b.id)).all();
-  const batches = REFERENCE_SET.batches.map(batch => {
+  const count = await env.DB.prepare('SELECT COUNT(*) n FROM agent_reference_cases WHERE dataset=?').bind(set.source_dataset||set.id).first();
+  const rows = await env.DB.prepare(`SELECT id,reference_batch,state,policy,models,report,calls,reference_profile FROM agent_investigations WHERE reference_batch IN (${set.batches.map(() => '?').join(',')}) ORDER BY created_at,id`).bind(...set.batches.map(b => b.id)).all();
+  const batches = set.batches.map(batch => {
     const run = rows.results.find(r => r.reference_batch===batch.id);
     let result = null;
     try { result = run?.report ? JSON.parse(run.report) : null; } catch { /* Held below. */ }
-    const valid = run?.state==='review' && result?.quality?.review_complete===true &&
-      result?.evaluation?.dataset===REFERENCE_SET.id && result.evaluation.batch===batch.id &&
+    const valid = (!run || set.id!==RESEARCH_CANDIDATE_DATASET || run.reference_profile===control?.profile) && run?.state==='review' && result?.quality?.review_complete===true &&
+      result?.evaluation?.dataset===set.id && result.evaluation.batch===batch.id &&
       result?.report?.assessments?.length===batch.job_ids.length &&
       batch.job_ids.every(id => result.report.assessments.filter(a => a.job_id===id).length===1);
     const score = valid ? scoreReferenceEvaluation(result.report,batch.id) : null;
@@ -67,11 +76,11 @@ export async function referenceProgress(env) {
       disputed_items:valid?result.quality.unsupported_items:0,policy:run?.policy||null,models:run?.models||null};
   });
   const evaluated = batches.filter(b => b.state==='reviewed'), profiles = new Set(batches.filter(b => b.run_id).map(b => b.policy+'|'+b.models));
-  const loaded = count?.n===REFERENCE_SET.cases.length;
-  const state = !loaded?'not_loaded':profiles.size>1||batches.some(b => b.state==='needs_attention')?'needs_attention':!controls?.enabled||!controls.research?'paused':
-    batches.some(b => b.state==='running')?'running':evaluated.length===batches.length?'complete':'ready';
-  return {dataset:REFERENCE_SET.id,snapshot_at:REFERENCE_SET.snapshot_at,state,snapshot_loaded:loaded,
-    total_adverts:REFERENCE_SET.cases.length,unique_descriptions:new Set(REFERENCE_SET.cases.map(c => c.content_hash)).size,
+  const loaded = count?.n===set.cases.length;
+  const state = set.id===RESEARCH_CANDIDATE_DATASET&&!control?.profile?'not_prepared':!loaded?'not_loaded':!profileValid||profiles.size>1||batches.some(b => b.state==='needs_attention')?'needs_attention':!controls?.enabled||!controls.research||!selected||!control?.enabled?'paused':
+    batches.some(b => b.state==='running')?'running':evaluated.length===batches.length?(set.id===RESEARCH_CANDIDATE_DATASET?'awaiting_independent_review':'complete'):'ready';
+  return {dataset:set.id,selected,control_revision:control?.revision||0,dataset_label:set.id===RESEARCH_CANDIDATE_DATASET?'Compact comparison':'Original comparison',snapshot_at:set.snapshot_at,state,snapshot_loaded:loaded,
+    total_adverts:set.cases.length,unique_descriptions:new Set(set.cases.map(c => c.content_hash)).size,
     evaluated_adverts:evaluated.reduce((n,b) => n+b.adverts,0),completed_batches:evaluated.length,total_batches:batches.length,
     correct:evaluated.reduce((n,b) => n+b.correct,0),scored:evaluated.reduce((n,b) => n+b.total,0),ambiguous:evaluated.reduce((n,b) => n+b.ambiguous,0),
     dangerous_false_positives:evaluated.reduce((n,b) => n+b.dangerous_false_positives,0),unsupported_refusals:evaluated.reduce((n,b) => n+b.unsupported_refusals,0),
