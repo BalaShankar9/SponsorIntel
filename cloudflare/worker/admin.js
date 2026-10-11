@@ -187,7 +187,7 @@ export async function adminAPI(request, env) {
         items: rows[4],
       },
       metrics: rows[2],
-      measurement: await publicMeasurement(env),
+      measurement: await publicMeasurement(env, Date.now(), days - 1),
       legacy_metrics: rows[11],
       campaigns: campaignSummary(rows[2]),
       tracking_started: rows[3][0]?.started || null,

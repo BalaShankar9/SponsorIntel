@@ -17,6 +17,7 @@ import { BusinessOperations } from './business-operations';
 import { SearchPerformance } from './search-performance';
 import "./platform.css";
 import { CampaignAnalytics } from './campaign-analytics';
+import {BrowserEvidenceAnalytics} from './browser-evidence-analytics';
 import {MarketingDesk} from './marketing-desk';
 import {SupportDesk} from './support-desk';
 import {ApplicationEvaluation} from './application-evaluation';
@@ -187,6 +188,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
           <DiscoveryDesk />
           <JobReviews />
           <CampaignAnalytics data={data.campaigns} />
+          <BrowserEvidenceAnalytics data={data.measurement?.browser_evidence} />
           <p className="fine-print">
             Checked {date(data.measured_at)} · New measurement baseline enabled {date(data.measurement?.enabled_at)}.
             Signed-in owners and declared test requests are excluded. Earlier dates have no comparable data; today is partial.
@@ -268,7 +270,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
                   <strong>{sum("sign_in")}</strong>
                 </p>
                 <p>
-                  <span>Evidence reviews, research & preparation plans</span>
+                  <span>Successful server research & preparation responses</span>
                   <strong>{sum("preparation_completed")}</strong>
                 </p>
                 <p>

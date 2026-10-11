@@ -1,0 +1,23 @@
+# Sponsor Intel 2.60 — measure browser evidence checks separately
+
+The actual Application Studio computes “Evidence & gaps” on the visitor's device. It does not call the generation endpoint, so its use was absent from the server preparation counters. The former owner label was too broad. Historical zero preparation counts therefore cannot establish that nobody used this local feature.
+
+After a local evidence check is prepared, the browser now sends one best-effort fixed action containing only `/studio` and an optional recognised campaign label. A separate aggregate table and dated collection boundary keep these browser reports distinct from successful server responses. The owner panel shows unknown/waiting until a complete UTC day exists. New business snapshots and eligible marketing contexts receive the same separate complete-day window. Marketing policy v5 explicitly forbids merging these reports with server success or interpreting them as saved applications, AI quality acceptance or conversions. Existing contexts and measurements are not rewritten.
+
+Known owners and declared QA remain excluded. The endpoint uses the existing shared page-event rate ceiling, same-origin check, 512-byte body limit and finite campaign vocabulary. Campaign and total writes are atomic. Reports contain no CV, advert, account ID or browsing history; no cookie, visitor ID, retry queue or additional provider is introduced. A rejected, lost or synchronously blocked report does not interrupt local preparation. Repeated actions and bots can remain. The new aggregates follow the existing 90-day cleanup schedule; campaign counts are a subset of total reports, not an additional total.
+
+Migration 0038 adds one aggregate table and one activation metadata entry, preserving earlier data. The 37-file baseline matched all 161 production objects with a current recovery point at 18:38:10 UTC. The earlier isolated read denial cleared on the identical read-only retry; no login, permission or account change was needed. A private recovery bookmark was retained outside the repository. Rollback is 2.59 Worker `47ef7c6c-a03d-427d-b482-306e9f933f9e`; retain the additive table and its records if rolling code back. This is not a customer restore or retention-window test.
+
+## Verification
+
+The final full 591-test suite passes on pinned Node 24.19.0 in 51.50 seconds. Focused tests cover finite actions, privacy, origin/owner/QA exclusions, the shared rate ceiling, atomic failures, independent date boundaries, null-versus-zero, selected windows, immutable planner contexts and zero model calls. Actual isolated Worker/auth/D1 tests distinguish two fictional non-owner reports from excluded owner/QA actions. The real Studio component was tested in a local fixture: one click emits exactly the fixed payload, renders/edits emit none, missing CV input disables the action, and offline delivery preserves the prepared result without retry. The owner waiting state fits 390 pixels without overflow. All fixture data and dates are explicitly fictional; no production activity was fabricated. The temporary tab and local server were closed.
+
+TypeScript, build, 17 prerenders, browser budgets and the deployment dry-run pass. Research and application source identities remain unchanged. Both prepared comparisons stay paused on 11 October. No production AI/Google call, social/email send, additional lead, forced workflow, source resume, customer mutation or quota reset is introduced.
+
+## Genuine scheduled source evidence
+
+`scheduled-1791743436000` finished at **18:33:16.325 UTC**, before this release, with 36 sources published and PortmanDentex skipped under its existing owner pause. Cloudflare independently confirms Completed/Success, workflow version `39fca48f-2d61-4de2-a751-f718c412bebe`, ending at 18:33:16 UTC. Its application state remains `attention`, not universal publication. The run reserved 60 requests; the day stood at 364/500 afterward.
+
+King's Lynn Academy again collected all seven adverts in nine actual requests, retained all three advert holds, and left four roles active. The English role remains conditional; the other three public roles explicitly decline sponsorship. All seven source observations are 18:33:06.763 UTC. This closes the school's first repeated scheduled-refresh gate; it is not independent employer approval or a new-school discovery result. The failed-source terminal handling introduced in 2.56 was not triggered by a manufactured failure.
+
+Final validation, migration and live results are appended after verification. Genuine new marketing-context use, the first complete measurement day and improved growth remain separate future gates.

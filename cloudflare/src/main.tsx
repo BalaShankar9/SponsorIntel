@@ -2199,8 +2199,8 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                   Open-source notices
                 </a>
                 . External career and guidance links open sites with their own
-                privacy policies. We count page opens and successful feature
-                actions in aggregate daily totals. We check an existing sign-in only to exclude owner testing; no account identity is stored in these totals. Declared test requests are excluded too. We do not use advertising
+                privacy policies. We count page opens, successful server responses
+                and browser-reported local evidence checks in separate aggregate daily totals. We check an existing sign-in only to exclude owner testing; no account identity is stored in these totals. Declared test requests are excluded too. We do not use advertising
                 trackers, analytics cookies, visitor IDs or fingerprinting.
                 Recognised labels on our social links also let us count page opens
                 and successful actions by campaign. Only a fixed public campaign

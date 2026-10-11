@@ -23,7 +23,7 @@ test('real Worker/auth/D1 excludes signed-in owners and their first login, but c
  try {
   const db=await mf.getD1Database('DB');
   // These fixed schema files have no triggers or embedded semicolons.
-  for(const name of ['0001_initial','0002_career','0003_auth','0006_owner_analytics','0024_public_measurement']){
+  for(const name of ['0001_initial','0002_career','0003_auth','0006_owner_analytics','0024_public_measurement','0038_browser_evidence_measurement']){
    const sql=await readFile(new URL('../migrations/'+name+'.sql',import.meta.url),'utf8');
    for(const statement of sql.replace(/^--.*$/gm,'').split(';').filter(s=>s.trim()))await db.prepare(statement).run();
   }
@@ -60,6 +60,15 @@ test('real Worker/auth/D1 excludes signed-in owners and their first login, but c
   const result=await post('/api/career/generate',analysis);
   assert.equal(result.status,200);assert.ok((await result.json()).text);
   assert.equal((await post('/api/career/generate',{...analysis,kind:'cv',consent:true})).status,503);
+  const browserAction={page:'/studio',action:'local_evidence_check',campaign:'fb-applications'};
+  assert.equal((await post('/api/metrics',browserAction,owner.cookie)).status,200);
+  assert.equal((await post('/api/metrics',browserAction,member.cookie)).status,200);
+  assert.equal((await post('/api/metrics',{...browserAction,user_id:owner.id,cv:'PRIVATE_CV'})).status,200);
+  assert.equal((await post('/api/metrics',browserAction,'',{'X-SI-Metrics':'exclude'})).status,200);
+  assert.equal((await post('/api/metrics',browserAction,member.cookie,{Origin:'https://other.example'})).status,403);
+  const browserRows=(await db.prepare('SELECT * FROM analytics_evidence_daily').all()).results;
+  assert.equal(browserRows.length,2);assert.equal(browserRows.find(r=>r.dimension==='').count,2);assert.equal(browserRows.find(r=>r.dimension==='fb-applications').count,2);
+  assert.doesNotMatch(JSON.stringify(browserRows),/PRIVATE|Fictional|example.invalid/);
   const rows=(await db.prepare('SELECT * FROM analytics_public_daily').all()).results;
   assert.equal(rows.find(r=>r.event==='account_created').count,1);
   assert.equal(rows.find(r=>r.event==='page_view').count,1);

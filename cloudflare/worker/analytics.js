@@ -2,6 +2,7 @@ import pages from "../shared/pages.json" with { type: "json" };
 import { bodyJSON, limit, reply, sameOrigin, sessionFor } from "./auth.js";
 import { boundedText } from './data.js';
 import { campaignById, campaigns } from '../shared/campaigns.js';
+import {BROWSER_EVIDENCE_ACTION,browserEvidenceMeasurement,recordBrowserEvidence} from './browser-measurement.js';
 const campaignEvents = new Set(['page_view', 'account_created', 'sign_in', 'document_prepared', 'preparation_completed', 'guidance_answer', 'guidance_followup', 'feedback_sent']);
 export const PREPARATION_HEADER = 'X-SI-Preparation-Kind';
 export const GUIDANCE_HEADER = 'X-SI-Guidance-Status';
@@ -20,7 +21,8 @@ export async function publicMeasurement(env, now = Date.now(), days = 14) {
   const from = firstFullDay && firstFullDay > windowStart ? firstFullDay : windowStart;
   return { version: 2, enabled_at: valid ? enabled : null, first_full_day: firstFullDay,
     completed_days: valid ? Math.max(0, (Date.parse(today) - Date.parse(from)) / DAY) : 0,
-    from: valid ? from : today, to: today, limitation: MEASUREMENT_LIMIT };
+    from: valid ? from : today, to: today, limitation: MEASUREMENT_LIMIT,
+    browser_evidence: await browserEvidenceMeasurement(env,now,days) };
 }
 
 // Uses an existing authenticated session only for exclusion; never stores identity.
@@ -128,6 +130,8 @@ export async function analyticsAPI(request, env) {
   }
   const route = metricRoute(body?.page);
   if (!route) return reply({ error: "Invalid page" }, 400);
+  if(body?.action!==undefined&&(body.action!==BROWSER_EVIDENCE_ACTION||route!=='/studio'))
+    return reply({error:'Invalid browser action'},400);
   if (await excludedRequest(env, request)) return reply({ ok: true });
   if (
     !(await limit(
@@ -137,6 +141,8 @@ export async function analyticsAPI(request, env) {
     ))
   )
     return reply({ error: "Event limit reached" }, 429);
-  await recordPublicEvent(env, 'page_view', route, body?.campaign);
+  if(body?.action===BROWSER_EVIDENCE_ACTION){
+    if(!await recordBrowserEvidence(env,body?.campaign))return reply({error:'Browser measurement is unavailable'},503);
+  }else await recordPublicEvent(env, 'page_view', route, body?.campaign);
   return reply({ ok: true });
 }

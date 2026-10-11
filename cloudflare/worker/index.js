@@ -438,6 +438,9 @@ export default {
         env.DB.prepare("DELETE FROM analytics_public_daily WHERE day<?").bind(
           new Date(Date.now() - 90 * 86400000).toISOString().slice(0, 10),
         ),
+        env.DB.prepare("DELETE FROM analytics_evidence_daily WHERE day<?").bind(
+          new Date(Date.now() - 90 * 86400000).toISOString().slice(0, 10),
+        ),
         env.DB.prepare("DELETE FROM source_runs WHERE checked_at<?").bind(
           new Date(Date.now() - 30 * 86400000).toISOString(),
         ),

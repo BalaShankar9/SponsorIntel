@@ -54,6 +54,7 @@ import {
 import "./career.css";
 import { DocumentDownloads } from "./document-downloads";
 import { StudioReadiness, studioReadiness } from "./studio-readiness";
+import {trackEvidenceCheck} from './metrics';
 import { ApplicationInstructions } from './application-instructions';
 import { applicationSourceURL, cvApplicationRestriction } from '../shared/application-instructions.js';
 import {type CVImportResult} from './cv-import';
@@ -669,6 +670,7 @@ function Studio({ go }: { go: Go }) {
         preparedAt: stamp(),
         stage: a.stage === "Saved" ? "Preparing" : a.stage,
       });
+      trackEvidenceCheck();
       setMessage(
         "Evidence check ready. Shared terms use source quotes; role conditions still need your review.",
       );

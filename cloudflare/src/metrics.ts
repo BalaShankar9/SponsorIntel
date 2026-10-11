@@ -17,3 +17,13 @@ export function trackPage(page: string) {
     body: JSON.stringify({page, campaign: context?.id() || null}), keepalive: true,
   }).catch(() => {});
 }
+// Called only after a local evidence check is prepared, never on render/load.
+// No CV, vacancy, account identifier or prepared text enters this request.
+export function trackEvidenceCheck() {
+  try {
+    void fetch('/api/metrics', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({page:'/studio',action:'local_evidence_check',campaign:context?.id()||null}),keepalive:true,
+    }).catch(()=>{});
+  } catch { /* A blocked report must never interrupt local preparation. */ }
+}
