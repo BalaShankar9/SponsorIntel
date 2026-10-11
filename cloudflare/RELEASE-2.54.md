@@ -1,6 +1,6 @@
 # Sponsor Intel 2.54 — inspect historical application failures
 
-Prepared 11 October 2026; deployment and live owner verification are pending. Production rollback reference: 2.53 Worker `389877c3-9b6e-43b3-a117-245c3a176f09`. No migration, new service, dependency, permission or allowance is introduced.
+**Live, 11 October 2026 at 16:02 UTC:** Worker `c2eee049-7c16-4eda-84f6-374f7cfb946a`, code commit `d7c3c759f412f8aca4306b15fad9410a5da7b8c6`. Production rollback reference: 2.53 Worker `389877c3-9b6e-43b3-a117-245c3a176f09`. No migration, new service, dependency, permission or allowance is introduced.
 
 ## Problem and change
 
@@ -20,4 +20,4 @@ Read-only production recovery inspection at 15:40:02.859 UTC matched all 146 obj
 
 The genuine pre-deployment `business-497703` run completed in Cloudflare at 15:46:11.144 UTC, with an attention application receipt at 15:46:10.940. It preserved the research hold and application pause, retained zero opportunity candidates, and reused the existing daily search/discovery/editorial receipts. This verifies the first hourly run after 2.53; it is not a 2.54 scheduled-run receipt or a successful autonomous business outcome.
 
-Evidence: [application history receipt](tests/evidence/application-history-2026-10-11.json). Hosted checks must be inspected at the exact pushed head; prior GitHub billing failure is not repaired by local tests. Preserve all model/Google/source/email/social limits and unresolved holds. Deployment verification must read the real owner diagnostics and compare the preserved application records and budget before claiming this live.
+Evidence: [application history receipt](tests/evidence/application-history-2026-10-11.json). Hosted checks must be inspected at the exact pushed head; prior GitHub billing failure is not repaired by local tests. Preserve all model/Google/source/email/social limits and unresolved holds. The live owner browser verified all nine historical rejection reasons across all six executed fictional cases. Health returns 2.54.0 and anonymous case access returns 403. Before/after hashes match all four run rows (including a historical held row), 18 steps, nine assessments, the pause control and the shared two-start/six-call budget. No model call, retry or other external action was added. The live public collection is unchanged at 928 roles, 36 employers, 55 sponsorship-worded adverts and 887 licence-linked roles. Exact code-head hosted checks 114511659475 and 114511651744 did not start because the GitHub account is locked for billing; GitGuardian passed. The genuine next scheduled run of 2.54 remains unobserved and must not be forced for acceptance.
