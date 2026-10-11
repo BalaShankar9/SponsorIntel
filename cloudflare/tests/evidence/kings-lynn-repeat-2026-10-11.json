@@ -1,0 +1,131 @@
+{
+  "source_run": {
+    "id": "scheduled-1791743436000",
+    "state": "attention",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-11T18:30:36.845Z",
+    "finished_at": "2026-10-11T18:33:16.325Z",
+    "requests": 60,
+    "summary": {
+      "published": 36,
+      "skipped": 1
+    }
+  },
+  "tasks": [
+    {
+      "source_id": "portmandentex",
+      "company": "PortmanDentex",
+      "state": "skipped",
+      "attempts": 0,
+      "count": 0,
+      "error_code": "owner_paused",
+      "evidence": {}
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "company": "King's Lynn Academy",
+      "state": "published",
+      "attempts": 1,
+      "count": 7,
+      "error_code": null,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-11T18:33:06.763Z",
+        "received": 7,
+        "sponsorship_worded": 2,
+        "register_available": true,
+        "licence_id": "117def56da94d6962dbec248",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0,
+        "feed_review": {
+          "provider": "teaching-vacancies",
+          "school_urn": "136202",
+          "organisation_slug": "king-s-lynn-academy",
+          "advert_count": 7,
+          "requests": 9,
+          "checked_at": "2026-10-11T18:33:06.763Z",
+          "full_catalogue_checked": true
+        },
+        "adverts_on_review_hold": 3
+      }
+    }
+  ],
+  "platform": {
+    "workflow": "sponsorintel-sources",
+    "instance": "scheduled-1791743436000",
+    "version": "39fca48f-2d61-4de2-a751-f718c412bebe",
+    "status": "completed",
+    "success": true,
+    "finished_utc": "2026-10-11T18:33:16Z"
+  },
+  "roles": [
+    {
+      "id": "1115e92cf16807fc8847ec63",
+      "title": "Lead Science Technician",
+      "active": 1,
+      "sponsorship": "unavailable",
+      "last_seen": "2026-10-11T18:33:06.763Z"
+    },
+    {
+      "id": "6b4fbe4aceb0108d216bb744",
+      "title": "Pupil Progress Coordinator",
+      "active": 1,
+      "sponsorship": "unavailable",
+      "last_seen": "2026-10-11T18:33:06.763Z"
+    },
+    {
+      "id": "a197301928ab6a783340bd60",
+      "title": "Senior Exam Invigilator",
+      "active": 0,
+      "sponsorship": "unavailable",
+      "last_seen": "2026-10-11T18:33:06.763Z"
+    },
+    {
+      "id": "b37865ea372f613bd3480edf",
+      "title": "Science Technician",
+      "active": 0,
+      "sponsorship": "unavailable",
+      "last_seen": "2026-10-11T18:33:06.763Z"
+    },
+    {
+      "id": "e2f7bc10bb188fa2488bacc4",
+      "title": "Teacher of English",
+      "active": 1,
+      "sponsorship": "conditional",
+      "last_seen": "2026-10-11T18:33:06.763Z"
+    },
+    {
+      "id": "e67693eef9b036224b5d1c74",
+      "title": "Teacher of Drama",
+      "active": 0,
+      "sponsorship": "conditional",
+      "last_seen": "2026-10-11T18:33:06.763Z"
+    },
+    {
+      "id": "e9e2ae13ace4e1e795f0c0f3",
+      "title": "Exam Invigilator",
+      "active": 1,
+      "sponsorship": "unavailable",
+      "last_seen": "2026-10-11T18:33:06.763Z"
+    }
+  ],
+  "daily_reserved_after_source": 364,
+  "review": {
+    "lead_id": "ec758817-56e3-4585-89cc-4cf4202799bd",
+    "revision": 4,
+    "recorded_at": "2026-10-11T18:49:36.868Z",
+    "observed_at": "2026-10-11T18:48:00.000Z",
+    "attribution": "agent_assisted",
+    "only_pinned_difference": "Description navigation link count 812 to 809; every other description character and pinned field unchanged.",
+    "original_browser_rechecked": true,
+    "current_linked_jobs_after": 3,
+    "changed_links_after": 0,
+    "parser_navigation_noise_fix_pending": true
+  },
+  "limitations": [
+    "No autonomous employer approval or independent human assessment.",
+    "Existing three advert holds remain; full application/attachments unverified.",
+    "No new lead, source approval, forced refresh or public job added by this review."
+  ]
+}

@@ -1,5 +1,11 @@
 # King's Lynn Academy source review
 
+## Repeated scheduled refresh — 11 October 18:33 UTC
+
+Genuine run `scheduled-1791743436000` again collected all seven adverts in nine actual requests, preserved all three holds and kept four roles active. Source observation is 18:33:06.763 UTC; the application run finished 18:33:16.325 UTC and Cloudflare independently confirms completion. Overall state remains attention: 36 published / one owner-paused PortmanDentex. This closes the first repeated unattended refresh gate. It does not establish autonomous employer admission, independent human approval or full application/attachment validation.
+
+The next hourly monitor flagged the English link because the page-navigation count changed 812 to 809. Read-only comparison shows every other pinned field and description character unchanged. The DfE original was browser-rechecked at 18:48 UTC; the same sponsorship wording, 19 October 23:59 deadline, QTS requirement and CV refusal remain. Agent-assisted revision 4 was saved at 18:49:36.868 UTC with that evidence and the repeat receipt. The queue is again three current linked jobs and zero changed links. Remove only proven navigation noise in a separately tested adapter repair; keep exact job-proof checks and all original revisions. No new discovery/publication or submission occurred. See `cloudflare/tests/evidence/kings-lynn-repeat-2026-10-11.json`.
+
 ## Current publication — 11 October 2026, 12:38 UTC
 
 The genuine `scheduled-1791721811000` source run published the four unaffected roles on its first attempt. It collected all seven school adverts, and all three previously recorded evidence holds remain active and absent from the complete public four-role result. The source-screening receipt says seven feed entries and zero parser exclusions; the **three advert holds are a separate publication control**. The exact original workflow's owner execution-status check returned **complete**. The overall application receipt remains **attention**, with 36/37 sources published and PortmanDentex skipped as owner-paused. The run reserved 60 requests; the observed daily counter is 256/500.

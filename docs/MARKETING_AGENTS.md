@@ -1,6 +1,6 @@
 # Sponsor Intel marketing agents
 
-Prepared 2.53 now adds [dated platform performance observations](MARKETING_PERFORMANCE.md) to new planner contexts. This is not deployed or a direct analytics feed. Live policy remains v3; prepared policy is `sourced-guides-and-observed-performance-v4`. Retaining a real observation and its next genuine scheduled use remain separate acceptance gates.
+Live 2.53 introduced [dated platform performance observations](MARKETING_PERFORMANCE.md); one real observation is retained. Live 2.60 policy `sourced-guides-and-browser-evidence-v5` also carries the separate browser-reported evidence-check measurement into new contexts, with its own boundary and null-versus-zero distinction. Existing contexts remain immutable. This is not a direct provider analytics feed or proven model learning. The next genuine eligible context, its model decision and improved growth remain separate gates.
 
 Current performance and next experiment: [11 October marketing review](MARKETING_REVIEW-2026-10-11.md). The custom workflow is operating, but repeatable acquisition, audience learning and sales outcomes are unproven.
 

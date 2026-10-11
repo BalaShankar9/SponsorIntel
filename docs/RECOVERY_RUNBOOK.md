@@ -58,3 +58,8 @@ At 15:07 UTC, the baseline matched all 141 objects from the isolated 34-file his
 ## 0037 verification completed, 11 October
 
 Before the research comparison migration, the isolated 36-file baseline matched all 154 production objects at 17:29:25 UTC. Only 0037 applied; at 17:33:20 UTC all 161 objects from 37 migrations matched with a current recovery point. Original reference snapshots/runs/steps, budgets, held day, source pause/cache/tasks and application controls retained identical hashes; no foreign-key errors. The new comparison was subsequently prepared paused through the owner desk. Keep its additive history on a Worker rollback; do not restore or drop it. A preceding authentication failure resolved on a same-scope read without new permission. These checks do not establish customer recovery or a retention window.
+
+
+## 0038 verification completed, 11 October
+
+The isolated 37-file baseline matched all 161 objects at 18:38:10 UTC. Only 0038 applied, adding the browser-evidence aggregate and activation metadata. At 18:45:15.668 UTC, all 162 objects from 38 migrations matched production with a current recovery point. The private pre-change bookmark remains outside Git. Compared controls, evaluation history, source pause and budgets retain identical hashes; foreign-key checks are empty. Keep the additive table and any reports if rolling code back to 2.59. No production restore, customer export or retention-window acceptance is established.
