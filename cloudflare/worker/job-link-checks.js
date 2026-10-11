@@ -105,10 +105,12 @@ async function currentPermission(env,check,now,board) {
     .bind(check.job_id,check.source_id,check.url,check.title,...current.values).first();
 }
 
+class PageBodyLimit extends Error {}
+class PageBodyMissing extends Error {}
 async function pageText(response,max=500000) {
-  if(!response.body)throw Error('empty');
+  if(!response.body)throw new PageBodyMissing();
   const reader=response.body.getReader(),decoder=new TextDecoder();let size=0,result='';
-  try {while(true){const item=await reader.read();if(item.done)break;size+=item.value.byteLength;if(size>max){await reader.cancel();throw Error('oversized');}result+=decoder.decode(item.value,{stream:true});}return result+decoder.decode();}
+  try {while(true){const item=await reader.read();if(item.done)break;size+=item.value.byteLength;if(size>max){try{await reader.cancel();}catch{}throw new PageBodyLimit();}result+=decoder.decode(item.value,{stream:true});}return result+decoder.decode();}
   finally {reader.releaseLock();}
 }
 
@@ -160,7 +162,7 @@ export async function checkJobLink(env,id,fetcher=fetch,clock=Date.now) {
       const evidence={chain,...observed,body_sha256:await crypto.subtle.digest('SHA-256',new TextEncoder().encode(html)).then(b=>Array.from(new Uint8Array(b),x=>x.toString(16).padStart(2,'0')).join(''))};
       if(iso(clock()).slice(0,10)!==day||!await currentPermission(env,check,clock(),board))return done('skipped','changed_during_check',evidence);
       return done(observed.title_match&&!observed.closure_signal?'checked':'needs_review',observed.closure_signal?'closure_wording':observed.title_match?'title_observed':'title_not_confirmed',evidence);
-    } catch { return done('uncertain','request_or_read_unavailable',{chain}); }
+    } catch(error) { return done('uncertain',error instanceof PageBodyLimit?'response_body_limit':error instanceof PageBodyMissing?'response_body_missing':'request_or_read_unavailable',{chain}); }
   }
   return done('needs_review','redirect_limit',{chain});
 }

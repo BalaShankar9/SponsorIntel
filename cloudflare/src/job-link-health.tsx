@@ -3,6 +3,11 @@ type LinkCheck={source_id:string;company:string;status:string;id:string|null;tit
 export type JobLinkHealth={enabled:boolean;checked_at:string;eligible_sources:number;sampled_sources:number;matched:number;needs_attention:number;awaiting:number;items:LinkCheck[]};
 const stamp=(value:string)=>new Date(value).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
 const labels:Record<string,string>={matched:'Page title matched',needs_attention:'Review needed',overdue:'Check overdue',awaiting:'Awaiting sample'};
+const readProblems:Record<string,string>={
+ response_body_limit:'The page exceeded the 500,000-byte check limit. A complete page was not inspected. Review the original advert; this does not show that it has closed.',
+ response_body_missing:'The response had no page body to inspect. Review the original advert; its availability is unconfirmed.',
+ request_or_read_unavailable:'The request or page read could not finish. The exact cause was not retained; an HTTP 200 alone does not confirm a complete page check.'
+};
 export function JobLinkStatus({health}:{health?:JobLinkHealth}){
  return <section aria-labelledby="job-links-heading">
   <div className="business-section-heading"><h3 id="job-links-heading">Employer application links</h3><span>{health?.enabled?'Rotating daily sample':'Checks paused or unavailable'}</span></div>
@@ -14,6 +19,7 @@ export function JobLinkStatus({health}:{health?:JobLinkHealth}){
     {item.id?<><p>{item.title} · {item.created_at&&stamp(item.created_at)}</p>{!item.advert_current&&<p>This sampled role is no longer in the current set. Another current role awaits a check.</p>}
     {item.url&&/^https:\/\//.test(item.url)&&<a href={item.url} target="_blank" rel="noreferrer">Open the sampled employer page</a>}
     <p className="business-fine">Result: {item.reason?.replaceAll('_',' ')||'Check pending'} · Receipt: {item.id}</p>
+    {item.reason&&readProblems[item.reason]&&<p>{readProblems[item.reason]}</p>}
     {item.evidence?.observed_heading&&<p>Observed heading: {item.evidence.observed_heading}</p>}{item.evidence?.closure_signal&&<p>Closure wording: {item.evidence.closure_signal}</p>}
     {item.evidence?.chain?.map((hop,index)=><p className="business-fine" key={index}>HTTP {hop.status} · {hop.url}</p>)}</>:<p>No sample has been checked yet.</p>}
    </details>)}</div></details>

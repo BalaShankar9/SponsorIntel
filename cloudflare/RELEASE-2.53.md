@@ -2,6 +2,10 @@
 
 Prepared on 11 October 2026. **Not deployed**: production remains 2.52.0, Worker `3a133af1-df7d-443c-8ea9-e15e77f2ba5f`, while the existing Cloudflare sign-in agreement approval is pending. This release includes the tested, also-undeployed 2.52.1 source-reservation repair. No migration, new service or budget increase is needed.
 
+Latest combined validation: **521 tests pass** on pinned Node 24.19.0 (107.0 seconds), including the actual isolated Worker/D1 body-limit/replay case. TypeScript, production build, 17 prerenders, unchanged asset budgets and deployment dry run pass. Initial JavaScript remains 363,654 bytes (111,013 gzip). No migration or production deployment occurred.
+
+Latest addition: application-link samples now distinguish a response that exceeds the existing 500,000-byte ceiling from a missing body and an unknown historical read failure. A new bounded manual read of one flagged Invinity advert confirmed the size limit; it does not reconstruct the seven historical failures. Partial bodies never establish title/closure acceptance, jobs stay unchanged, and consumed requests and replay holds remain. The owner explanation and actual isolated Worker/D1 tests retain these limits. See `../docs/EMPLOYER_LINK_CHECK_REVIEW-2026-10-11.md` and `tests/evidence/job-link-read-limits-2026-10-11.json`. Production observations and future scheduled acceptance remain separate.
+
 ## Why this change
 
 Three genuine scheduled application runs completed execution on 9–11 October, but all six replacement-reviewer responses were rejected. The current reviewer retained three outputs and rejected three; all six writer drafts completed. The owner UI previously showed only a generic contract failure. Execution completion did not establish a working replacement reviewer.

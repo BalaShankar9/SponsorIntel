@@ -71,7 +71,7 @@ test('redirects stay on the approved advert; HTTP failures, oversized pages and 
   [()=>new Response(null,{status:302,headers:{Location:'https://127.0.0.1/private'}}),'needs_review','unapproved_redirect'],
   [()=>new Response(null,{status:404}),'needs_review','http_404'],[()=>new Response(null,{status:429}),'uncertain','http_429'],
   [()=>new Response('{}',{headers:{'Content-Type':'application/json'}}),'uncertain','non_html_response'],
-  [()=>page('x'.repeat(500001)),'uncertain','request_or_read_unavailable'],[()=>page('<title>Login</title>'),'needs_review','title_not_confirmed'],
+  [()=>page('x'.repeat(500001)),'uncertain','response_body_limit'],[()=>page('<title>Login</title>'),'needs_review','title_not_confirmed'],
   [()=>page('<title>Fictional Engineer</title><p>This vacancy has been filled</p>'),'needs_review','closure_wording'],
   [()=>{throw Error('timeout');},'uncertain','request_or_read_unavailable']]){
    const env=database(t);seed(env);const [id]=await plan(env);let calls=0;const result=await checkJobLink(env,id,async()=>{calls++;return response();},clock);
@@ -98,4 +98,29 @@ test('missing, unfinished and stale checks remain visible; expired problems cann
  env.sql.prepare("UPDATE job_link_checks SET created_at='invalid'").run();health=await jobLinkHealth(env,now);assert.equal(health.overdue,1);assert.equal(jobLinkFindings(health).length,1);
  env.sql.prepare("UPDATE job_link_checks SET state='checking',created_at=?,started_at=?").run(stamp,new Date(now-120001).toISOString());health=await jobLinkHealth(env,now);assert.equal(health.needs_attention,1);
  env.sql.prepare('DELETE FROM business_runs').run();assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM job_link_checks').get().n,0);
+});
+
+test('body limits reject partial heading evidence, preserve budgets and jobs, and retain only finite failure reasons',async t=>{
+ const heading='<title>Fictional Engineer</title>';
+ for(const kind of ['at-limit','oversized-stream','cancel-fails','missing-body','read-fails','forged-error']){
+  const env=database(t);seed(env);const [id]=await plan(env);let calls=0,cancelled=0;
+  const before=env.sql.prepare('SELECT * FROM jobs').get();
+  const fetcher=async()=>{
+   calls++;
+   if(kind==='at-limit')return page(heading+' '.repeat(500000-heading.length));
+   if(kind==='missing-body')return new Response(null,{headers:{'Content-Type':'text/html'}});
+   if(kind==='forged-error'){const error=new Error('private provider error');error.name='PageBodyLimit';throw error;}
+   if(kind==='read-fails')return new Response(new ReadableStream({start(controller){controller.error(new Error('private body error'));}}),{headers:{'Content-Type':'text/html'}});
+   let sent=0;return new Response(new ReadableStream({pull(controller){controller.enqueue(new TextEncoder().encode(sent++===0?heading+' '.repeat(500000-heading.length):'!'));},cancel(){cancelled++;if(kind==='cancel-fails')throw Error('private cancellation error');}}),{headers:{'Content-Type':'text/html'}});
+  };
+  const result=await checkJobLink(env,id,fetcher,clock),row=checkRow(env),proof=JSON.parse(row.evidence);
+  assert.equal(result.state,kind==='at-limit'?'checked':'uncertain');
+  assert.equal(result.reason,kind==='at-limit'?'title_observed':kind==='missing-body'?'response_body_missing':['oversized-stream','cancel-fails'].includes(kind)?'response_body_limit':'request_or_read_unavailable');
+  if(['oversized-stream','cancel-fails'].includes(kind))assert.equal(cancelled,1);
+  if(kind!=='at-limit'){assert.equal(proof.title_match,undefined);assert.equal(proof.observed_heading,undefined);assert.equal(proof.body_sha256,undefined);assert.doesNotMatch(row.evidence,/Fictional Engineer|private|500000/);}
+  assert.deepEqual(env.sql.prepare('SELECT * FROM jobs').get(),before);
+  assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget').get().requests,4);
+  assert.equal(env.sql.prepare('SELECT reserved_requests FROM job_link_daily_budget').get().reserved_requests,4);
+  assert.equal((await checkJobLink(env,id,fetcher,clock)).replay,true);assert.equal(calls,1);
+ }
 });
