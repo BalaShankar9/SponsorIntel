@@ -12,7 +12,10 @@ for(const sameSchool of [false,true])test('actual discovery Workflow/D1 retains 
  import {scoutTeachingVacancies} from './worker/discovery-scout.js';
  export class ScoutFixture extends WorkflowEntrypoint {async run(event,step){return step.do('discover-daily-education-leads',{retries:{limit:0,delay:'1 second'},timeout:'3 minutes'},()=>scoutTeachingVacancies(this.env,event.payload.runId));}}
  export default {async fetch(request,env){const path=new URL(request.url).pathname;if(path==='/start')return Response.json(await env.SCOUT.create({id:'fictional-scout',params:{runId:'fictional-business'}}));if(path==='/status')return Response.json(await(await env.SCOUT.get('fictional-scout')).status());return Response.json(await scoutTeachingVacancies(env,'fictional-business'));}};`,resolveDir:root},bundle:true,format:'esm',write:false,platform:'browser',conditions:['workerd','worker','browser'],external:['cloudflare:*','node:*'],target:'es2022'});
- const now=Date.now(),fixture=provider(now,sameSchool?{pages:{[candidate(2).url]:advert(candidate(2),now,{hiringOrganization:{name:'Fictional school 1',identifier:'123451'}})}}:{}),mf=new Miniflare(convertV4MiniflareOptions({modules:true,script:bundle.outputFiles[0].text,compatibilityDate:'2026-10-04',compatibilityFlags:['nodejs_compat'],cf:false,d1Databases:{DB:'discovery-scout-isolated'},workflows:{SCOUT:{name:'discovery-scout-isolated',className:'ScoutFixture'}},outboundService:request=>fixture.fetch(request.url,{redirect:'manual'})}));
+ const now=Date.now(),deadline=new Date(now+2*86400000).toISOString(),fixture=provider(now,{pages:{
+  [candidate(1).url]:advert(candidate(1),now,{validThrough:deadline}),
+  ...(sameSchool?{[candidate(2).url]:advert(candidate(2),now,{hiringOrganization:{name:'Fictional school 1',identifier:'123451'}})}:{}),
+ }}),mf=new Miniflare(convertV4MiniflareOptions({modules:true,script:bundle.outputFiles[0].text,compatibilityDate:'2026-10-04',compatibilityFlags:['nodejs_compat'],cf:false,d1Databases:{DB:'discovery-scout-isolated'},workflows:{SCOUT:{name:'discovery-scout-isolated',className:'ScoutFixture'}},outboundService:request=>fixture.fetch(request.url,{redirect:'manual'})}));
  try{
   const db=await mf.getD1Database('DB'),schema=migrationSchema();
   for(const type of ['table','index','view','trigger']){const statements=schema.objects.filter(x=>x.type===type).map(x=>db.prepare(x.sql));if(statements.length)await db.batch(statements);}
@@ -22,6 +25,8 @@ for(const sameSchool of [false,true])test('actual discovery Workflow/D1 retains 
   assert.equal(state?.status,'complete',JSON.stringify(state));
   const run=await db.prepare('SELECT * FROM discovery_scout_runs').first();assert.equal(run.state,'completed');assert.equal(run.retained,sameSchool?1:2);assert.equal(run.requests,3);assert.equal(fixture.calls.length,3);
   assert.equal((await db.prepare('SELECT COUNT(*) n FROM discovery_revisions').first()).n,sameSchool?1:2);assert.equal((await db.prepare('SELECT COUNT(*) n FROM jobs').first()).n,0);
+  const saved=JSON.parse((await db.prepare('SELECT r.content FROM discovery_revisions r JOIN discovery_leads l ON l.id=r.lead_id WHERE l.source_url=?').bind(candidate(1).url).first()).content);
+  assert.equal(saved.deadline,deadline);assert.equal(saved.follow_up_at,new Date(now+86400000).toISOString());
   const replay=await(await mf.dispatchFetch('http://localhost/replay')).json();assert.equal(replay.replayed,true);assert.equal(fixture.calls.length,3);assert.equal((await db.prepare('SELECT requests FROM agent_daily_budget').first()).requests,4);
  }finally{await mf.dispose();}
 });

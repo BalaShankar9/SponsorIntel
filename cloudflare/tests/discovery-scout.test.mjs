@@ -4,7 +4,7 @@ import {database} from './research-db.mjs';
 import {candidate,search,advert,provider} from './fixtures/teaching-scout.mjs';
 import {parseTeachingAdvert,parseTeachingSearch,teachingJobURL,teachingSearchURL,TEACHING_QUOTE} from '../worker/teaching-discovery.js';
 import {scoutTeachingVacancies,discoveryScoutHealth,discoveryScoutFindings} from '../worker/discovery-scout.js';
-import {discoveryAPI} from '../worker/discovery.js';
+import {discoveryAPI,validateDiscovery} from '../worker/discovery.js';
 import {businessAPI} from '../worker/business-operations.js';
 const now=Date.parse('2026-10-08T10:00:00Z'),day='2026-10-08',at=n=>new Date(n).toISOString();
 function setup(t){const env=database(t);env.sql.prepare("INSERT INTO business_runs(id,state,created_at) VALUES('fictional-business','running',?)").run(at(now));return env;}
@@ -33,6 +33,28 @@ test('daily scout retains two distinct employers privately with server attributi
  const rows=env.sql.prepare('SELECT * FROM discovery_revisions').all();assert.equal(rows.length,2);assert.ok(rows.every(r=>r.actor==='system:teaching-vacancies-scout'&&JSON.parse(r.content).method==='automated_source'&&!r.job_proof));
  const health=await discoveryScoutHealth(env,now);assert.equal(health.items.length,2);assert.ok(health.items.every(i=>/^[a-f0-9]{64}$/.test(i.evidence.body_sha256)));assert.match(health.attribution,/Open Government/);
  assert.equal((await scoutTeachingVacancies(env,'fictional-business',fixture.fetch,()=>now)).replayed,true);assert.equal(fixture.calls.length,3);
+});
+test('scout follow-ups leave review time before closing, including imminent and offset deadlines',async t=>{
+ const cases=[
+  ['2026-10-20T12:00:00+01:00','2026-10-11T10:00:00.000Z'],
+  ['2026-10-10T12:00:00+01:00','2026-10-09T11:00:00.000Z'],
+  ['2026-10-09T10:00:00Z','2026-10-08T11:00:00.000Z'],
+  ['2026-10-08T10:20:00Z','2026-10-08T10:10:00.000Z'],
+  ['2026-10-08T10:00:00.002Z','2026-10-08T10:00:00.001Z'],
+ ];
+ for(const [deadline,due] of cases){
+  const c=candidate(1),content=parseTeachingAdvert(advert(c,now,{validThrough:deadline}),c,now);
+  assert.equal(content.follow_up_at,due);assert.ok(Date.parse(due)>now&&Date.parse(due)<Date.parse(deadline));
+  validateDiscovery({...content,method:'agent_assisted'},now);
+ }
+ const c=candidate(1);assert.throws(()=>parseTeachingAdvert(advert(c,now,{validThrough:at(now+1)}),c,now),{reason:'advert_closed_or_deadline_unknown'});
+ const env=setup(t),fixture=provider(now,{first:[c],pages:{[c.url]:advert(c,now,{validThrough:cases[1][0]})}});
+ const run=await scoutTeachingVacancies(env,'fictional-business',fixture.fetch,()=>now);
+ assert.equal(run.retained,1);const saved=env.sql.prepare('SELECT content FROM discovery_revisions').get().content;
+ assert.equal(JSON.parse(saved).follow_up_at,cases[1][1]);
+ const calls=fixture.calls.length;assert.equal((await scoutTeachingVacancies(env,'fictional-business',fixture.fetch,()=>now+1000)).replayed,true);
+ assert.equal(env.sql.prepare('SELECT content FROM discovery_revisions').get().content,saved);assert.equal(fixture.calls.length,calls);
+ assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM jobs').get().n,0);
 });
 test('shared five-lead and 500-request ceilings are reserved before I/O, including concurrent runs',async t=>{
  const full=setup(t);seeded(full);const f=provider(now);assert.equal((await scoutTeachingVacancies(full,'fictional-business',f.fetch,()=>now)).reason,'daily_lead_allowance_used');assert.equal(f.calls.length,0);

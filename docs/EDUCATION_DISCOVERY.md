@@ -63,3 +63,10 @@ The initial King's Lynn school review found a real external deadline conflict: D
 ## Individual advert holds (2.52)
 
 The owner can record a specific external evidence conflict through [Advert reviews](ADVERT_REVIEWS.md) before approving a configured school. The complete school catalogue and every original advert still pass the existing parser; this cannot bypass a parser or identity failure. A held role stays private while unaffected validated roles can be published. The King's Lynn source remains unconfigured on 8 October; no additional lead, source, hold or public job has been created. Review the original conflict again and record the exact hold before any later admission within the existing limits.
+
+
+## Review before closing (prepared 2.53, not deployed)
+
+The North Ridge review on 11 October exposed a reminder scheduled at the application deadline. Future candidates now receive a reminder at most three days from observation and, where possible, at least 24 hours before closing. If that margin is already unavailable, the reminder is within one hour, or halfway through the remaining interval when less than two hours remain. Deadlines with no representable future reminder before closing (one millisecond or less remaining) are rejected under the existing deadline check. This does not promise a completed review or publication before the deadline.
+
+The change preserves source observation/deadline evidence, the pending private state, budgets and immutable history. Replays never reschedule retained leads. Existing leads require an explicit appended review; North Ridge's agent-assisted revision 2 separately moves its follow-up to 12 October noon BST. No historical reminder is rewritten and no scheduled scout is forced for acceptance. After authorized deployment, inspect the next eligible genuine scout receipt for its saved reminder.

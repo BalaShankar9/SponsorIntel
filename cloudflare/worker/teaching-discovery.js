@@ -10,6 +10,14 @@ const hasClass=(node,name)=>node.attribs?.class?.split(/\s+/).includes(name);
 const fail=reason=>{throw Object.assign(Error(reason),{reason});};
 const bound=(s,max)=>typeof s==='string'&&norm(s).length>0&&norm(s).length<=max?norm(s):null;
 
+function reviewBeforeDeadline(now,closes){
+ // Leave one day for review before applications close, while retaining the
+ // existing three-day maximum. Near-closing candidates need a prompt reminder,
+ // not one scheduled at the deadline; half the remaining time handles <2 hours.
+ const usual=Math.min(now+3*86400000,closes-86400000);
+ return new Date(usual>now?usual:now+Math.min(3600000,Math.floor((closes-now)/2))).toISOString();
+}
+
 export function teachingSearchURL(page=1){
  if(![1,2].includes(page))throw Error('Search page outside allowance');
  return TEACHING_ORIGIN+'/jobs?visa_sponsorship_availability%5B%5D=true&sort_by=publish_on'+(page===2?'&page=2':'');
@@ -51,7 +59,7 @@ export function parseTeachingCandidate(html,candidate,now=Date.now()){
  const urn=j.hiringOrganization?.identifier;
  if(typeof urn!=='string'||!/^\d{6}$/.test(urn))fail('advert_school_identity_unknown');
  const closes=Date.parse(j.validThrough),posted=j.datePosted;
- if(typeof j.validThrough!=='string'||!/T\d\d:\d\d:\d\d(?:\.\d{1,3})?(?:Z|[+-]\d\d:\d\d)$/.test(j.validThrough)||!Number.isFinite(closes)||closes<=now)fail('advert_closed_or_deadline_unknown');
+ if(typeof j.validThrough!=='string'||!/T\d\d:\d\d:\d\d(?:\.\d{1,3})?(?:Z|[+-]\d\d:\d\d)$/.test(j.validThrough)||!Number.isFinite(closes)||closes<=now+1)fail('advert_closed_or_deadline_unknown');
  if(typeof posted!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(posted)||!Number.isFinite(Date.parse(posted))||new Date(posted).toISOString().slice(0,10)!==posted||posted>new Date(now).toISOString().slice(0,10))fail('advert_posting_date_unknown');
  const body=norm(text(sections[0]));
  if(/\b(?:this (?:job|role|position|vacancy) (?:is no longer available|has (?:now )?closed|has been (?:filled|removed))|applications (?:for this (?:role|position|vacancy) )?are (?:now )?closed|no longer accepting applications)\b/i.test(body))fail('advert_closed_or_deadline_unknown');
@@ -63,7 +71,7 @@ export function parseTeachingCandidate(html,candidate,now=Date.now()){
   deadline:new Date(closes).toISOString(),deadline_evidence:`Teaching Vacancies validThrough: ${j.validThrough}`,
   original_url:url,identity_url:'',identity_note:'The hiring organisation is named on the Teaching Vacancies advert. Its legal employer, external application destination and sponsor-register identity have not been reviewed.',
   quote:TEACHING_QUOTE,state:'pending',reason:'Automatically found in the Department for Education Teaching Vacancies sponsorship search. The individual advert names this employer and states that Skilled Worker visas can be sponsored. Review the full original application route, employer identity and any role-specific restrictions before publication.',
-  follow_up_at:new Date(Math.min(now+3*86400000,closes)).toISOString(),job_id:null,duplicate_of:null,method:'automated_source'};
+  follow_up_at:reviewBeforeDeadline(now,closes),job_id:null,duplicate_of:null,method:'automated_source'};
  return {content,school:{urn,name:employer}};
 }
 export function parseTeachingAdvert(html,candidate,now=Date.now()){

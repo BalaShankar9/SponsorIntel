@@ -1,5 +1,19 @@
 # Existing school-lead reviews — 11 October 2026
 
+## North Ridge — source pack reviewed; sponsor relationship remains open
+
+At 13:47 UTC, the existing English leadership candidate became **Held for evidence, revision 2**, lead `c40c5567-c617-4047-8f93-af72b9feacaa`. The saved owner form and both immutable revisions were read back. It is agent-assisted through the owner account, not independent human review. The queue stays 14 retained / seven unresolved / three current linked jobs / zero overdue or changed links; all five new-lead slots remain used.
+
+The [DfE advert](https://teaching-vacancies.service.gov.uk/jobs/teacher-english-tlr-teaching-and-leadership-role), its attached DOCX and the school's [English TLR PDF](https://northridge.manchester.sch.uk/wp-content/uploads/2019/02/English-TLR-advert-and-job-description-1.pdf), linked from [school vacancies](https://northridge.manchester.sch.uk/student-page/recruitment/), agree on permanent full-time work, January 2027 start and **13 October 2026 at noon BST** closing. Three years of English teaching/leadership and two years working with SEN pupils are required; the post is not suitable for ECTs. The source pack requires the school form and a supporting letter, with the blank form limiting that letter to three A4 sides. DfE rejects CV-only submissions. Nothing was completed, uploaded or emailed.
+
+The [official school record](https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/132905) was browser-verified after the web-reader failed: open community special school, URN 132905, Alworth Road, Blackley, Manchester M9 0RP, local authority Manchester, last confirmed 17 September 2026. The 9 October register snapshot returns zero North Ridge matches and an A-rated Skilled Worker entry for Manchester City Council. The school's MCC model recruitment policy and local-authority association do **not** establish that this role uses that licence. Exact employing/sponsoring identity remains the admission gate; no council licence was attached and no sponsorship refusal was inferred from a missing name or the blank form's right-to-work question.
+
+The two-role DfE school catalogue distinguishes this English role's positive visa field from the other teacher advert's explicit refusal. Neither claim transfers to the other. This is a browser catalogue observation, not a successful complete source probe. No source was configured and no job published.
+
+The original automated reminder coincided with the closing deadline. The review now falls on **12 October at noon BST**, 24 hours earlier. Recheck the legal-employer and role-specific sponsor relationship then, before considering complete catalogue/admission validation. This is a private discovery hold, not an advert-level hold on an approved source.
+
+Evidence: `cloudflare/tests/evidence/north-ridge-review-2026-10-11.json`; public blank source documents and extracted text are in the parent task's `outputs/school-review-2026-10-11/`. The original automated decision and unknown precise posting time remain preserved. The separately prepared 2.53 reminder repair affects only future candidates and remains undeployed.
+
 Later 13:07 UTC review also appends a hold to today's existing Lift Kingswood candidate; details below. It adds no new lead or public vacancy. The queue at that observation is 14 retained / seven unresolved / three current linked jobs / zero overdue or changed links, superseding the older aggregate at the bottom of this file.
 
 ## Lift Kingswood — conflicting closing dates and requirements
