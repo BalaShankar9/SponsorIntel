@@ -54,3 +54,7 @@ The existing 2.52 Worker remains the code rollback reference. If code is rolled 
 ## 0035 verification completed, 11 October
 
 At 15:07 UTC, the baseline matched all 141 objects from the isolated 34-file history. Only 0035 was pending and applied. At 15:10:51 UTC, all 146 objects from 35 migrations matched production with a current recovery point. Compared jobs, controls, reviews and budgets were identical; foreign-key checks were empty. The raw recovery reference remains private, outside Git. This is schema/recovery-point evidence, not a production restore or retention-window acceptance. See the 2.53 production receipt.
+
+## 0037 verification completed, 11 October
+
+Before the research comparison migration, the isolated 36-file baseline matched all 154 production objects at 17:29:25 UTC. Only 0037 applied; at 17:33:20 UTC all 161 objects from 37 migrations matched with a current recovery point. Original reference snapshots/runs/steps, budgets, held day, source pause/cache/tasks and application controls retained identical hashes; no foreign-key errors. The new comparison was subsequently prepared paused through the owner desk. Keep its additive history on a Worker rollback; do not restore or drop it. A preceding authentication failure resolved on a same-scope read without new permission. These checks do not establish customer recovery or a retention window.
