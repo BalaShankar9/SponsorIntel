@@ -4,6 +4,12 @@ Updated 11 October 2026. [Current operating evidence](OPERATIONS-2026-10-11.md) 
 
  The owner's objective is end-to-end autonomous operation. Expand each capability through observed acceptance; configured schedules, plausible model outputs and provider receipts for pending posts are separate facts.
 
+## 11 October: genuine operational email cycle, placement still unproven
+
+Five incident notifications and one reported-findings-cleared message from 9–11 October match the owner desk, native provider Message-ID and exact mailbox body receipt. Six corresponding successful delivery events are observed; seven domain-level events and empty incoming/dead-letter queues are a separate aggregate. This proves the first genuine scheduled incident/recovery transport and provider-success correlation. Production failure/complaint handling, independent provider-outage detection and owner attention remain open.
+
+All six messages were in Spam at inspection despite passing SPF, aligned DKIM and DMARC. The single latest verified alert was moved to Inbox and read back as Inbox/non-Spam/still Unread. Automatic future Inbox placement remains unproven. No filters, contacts, security settings, owner-confirmation fields, extra sends, tests or synthetic incidents were changed/created. See [operational email evidence](OPERATION_ALERTS.md) and `cloudflare/tests/evidence/email-lifecycle-2026-10-11.json`. Earlier zero-event/first-test-only statements are dated history.
+
 ## Latest: 2.52 individual advert evidence control
 
 The owner can hold an exact advert without changing its employer feed approval or bypassing complete source validation. Immutable history, atomic retirement, stable job identity after first matching, replay protection and a required post-release source collection protect current jobs. Hourly findings keep overdue holds visible. Local fictional runtime/browser evidence verifies the controls; no real advert hold or school approval has been recorded. The King's Lynn external deadline conflict remains unresolved, and its source remains unconfigured within today's discovery limit. See [Advert reviews](ADVERT_REVIEWS.md) and `cloudflare/RELEASE-2.52.md`.
