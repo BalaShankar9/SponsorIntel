@@ -8,9 +8,25 @@ const maxJobs=20,norm=s=>String(s||'').normalize('NFKC').replace(/\s+/g,' ').tri
 const uuid=s=>typeof s==='string'&&/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(s);
 const find=(n,f)=>[...(f(n)?[n]:[]),...(n.children||[]).flatMap(c=>find(c,f))];
 const hasClass=(n,c)=>n.attribs?.class?.split(/\s+/).includes(c);
-const visible=n=>n.type==='text'?n.data:['script','style','noscript','template'].includes(n.name)?'':(n.children||[]).map(visible).join(['p','div','li','section','dl','dt','dd','h1','h2','h3','br'].includes(n.name)?'\n':' ');
+const visibleText=(n,replacements)=>replacements?.has(n)?replacements.get(n):n.type==='text'?n.data:['script','style','noscript','template'].includes(n.name)?'':(n.children||[]).map(c=>visibleText(c,replacements)).join(['p','div','li','section','dl','dt','dd','h1','h2','h3','br'].includes(n.name)?'\n':' ');
+const visible=n=>visibleText(n);
 const fail=code=>{throw new SourceCheckError(code);};
 function config(board){try{return teachingBoardIdentity(board);}catch{throw new SourceCheckError('unreviewed_source',{phase:'configuration'});}}
+function roleText(section){
+ // This exact DfE Job role link mixes a useful suitability label with a
+ // site-wide result count. Retain the label; unfamiliar markup/text stays
+ // verbatim so a changed role condition still invalidates retained proof.
+ const replacements=new Map();
+ for(const row of find(section,n=>hasClass(n,'govuk-summary-list__row'))){
+  const keys=find(row,n=>n.name==='dt'),values=find(row,n=>n.name==='dd');
+  if(keys.length!==1||values.length!==1||norm(visible(keys[0]))!=='Job role')continue;
+  for(const link of find(values[0],n=>n.name==='a')){
+   if(!['/ect-suitable-jobs',TEACHING_ORIGIN+'/ect-suitable-jobs'].includes(link.attribs?.href))continue;
+   if(/^View all Suitable for early career teachers \(\s*(?:\d+|\d{1,3}(?:,\d{3})+)\s*\)\s*jobs$/.test(norm(visible(link))))replacements.set(link,'Suitable for early career teachers');
+  }
+ }
+ return visibleText(section,replacements);
+}
 function visa(node){
  const values=find(node,n=>hasClass(n,'govuk-summary-list__row')).flatMap(r=>{
   const k=find(r,n=>n.name==='dt'),v=find(r,n=>n.name==='dd');return k.length===1&&norm(visible(k[0]))==='Visa sponsorship'&&v.length===1?[norm(visible(v[0]))]:[];
@@ -56,7 +72,7 @@ export function parseTeachingVacancy(html,board,expected,now=Date.now()){
  // Full visible role section includes pay, qualifications, benefits, additional
  // restrictions and application instructions. Related roles and school contact
  // panels outside this section cannot contribute sponsorship wording.
- const description=visible(sections[0]).replace(/[ \t]+/g,' ').replace(/\n\s*\n/g,'\n').trim();
+ const description=roleText(sections[0]).replace(/[ \t]+/g,' ').replace(/\n\s*\n/g,'\n').trim();
  if(!description||description.length>80000)fail('oversized_advert');
  if(/\b(?:this (?:job|role|position|vacancy) (?:is no longer available|has (?:now )?closed|has been (?:filled|removed))|applications (?:for this (?:role|position|vacancy) )?are (?:now )?closed|no longer accepting applications)\b/i.test(description)&&Date.parse(closing)>now)fail('posting_changed');
  const location=[address.addressLocality,address.addressRegion,address.postalCode,'United Kingdom'].filter(v=>typeof v==='string'&&v.trim()).map(norm).join(', ');
