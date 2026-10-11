@@ -10,6 +10,15 @@ export class SourceCheckError extends Error {
 export function sourceDiagnostic(error){
   return checked.get(error)||safeSourceDiagnostic({code:error?.name==='TimeoutError'||error?.name==='AbortError'?'request_timeout':'unclassified'});
 }
+// Repeating a known identity/parser rejection inside the same run spends the
+// source allowance without establishing that the rejected batch became sound.
+// Transport, storage and unclassified failures keep their existing retry path.
+const reviewCodes=new Set(['unreviewed_source','redirected','invalid_payload','oversized_payload',
+  'incomplete_catalogue','duplicate_posting','posting_identity','posting_changed',
+  'invalid_destination','invalid_sections','oversized_advert']);
+export function sourceFailureNeedsReview(error){
+  return reviewCodes.has(checked.get(error)?.code);
+}
 export function withSourceContext(error,context){
   const diagnostic=sourceDiagnostic(error);
   // Preserve the more specific inner phase, adding the caller's current count.

@@ -6,7 +6,7 @@ import {
   canonicalJobURL,
 } from "./jobs.js";
 import { employerLicences } from "./employer-licences.js";
-import { sourceDiagnostic } from './source-errors.js';
+import { sourceDiagnostic, sourceFailureNeedsReview } from './source-errors.js';
 import { sourceFailureHistory } from '../shared/source-diagnostics.js';
 
 export const OPERATIONS_POLICY = "sources-v1";
@@ -278,8 +278,9 @@ export async function executeSourceTask(
       jobs = await readBoard(board, {DB, leaseOwner, now});
     } catch (error) {
       const attempts = task.attempts + 1;
+      const diagnostic=sourceDiagnostic(error),needsReview=sourceFailureNeedsReview(error);
       const attemptFailures=[...sourceFailureHistory(task.evidence).filter(x=>x.attempt!==attempts),
-        {attempt:attempts,checked_at:iso(now),...sourceDiagnostic(error)}].slice(-3);
+        {attempt:attempts,checked_at:iso(now),...diagnostic}].slice(-3);
       await DB.batch([
         DB.prepare("UPDATE agent_tasks SET evidence=json_patch(COALESCE(evidence,'{}'),?) WHERE run_id=? AND source_id=?")
           .bind(JSON.stringify({attempt_failures:attemptFailures}),runId,sourceId),
@@ -298,7 +299,18 @@ export async function executeSourceTask(
         DB.prepare(
           "INSERT INTO source_runs(source_id,checked_at,success,count) VALUES(?,?,0,0)",
         ).bind(sourceId, iso(now)),
+        ...(needsReview ? [
+          DB.prepare("INSERT INTO agent_reviews(id,run_id,source_id,kind,evidence,created_at) VALUES(?,?,?,?,?,?) ON CONFLICT DO NOTHING")
+            .bind(`${runId}:${sourceId}`,runId,sourceId,'source_validation',JSON.stringify({
+              message:'Source validation failed. No further collection attempt in this run; previous publication and private progress retained.',
+              diagnostic,policy:OPERATIONS_POLICY,retry_policy:'stop-this-run-v1',
+            }),iso(now)),
+          DB.prepare("UPDATE agent_tasks SET state='needs_review',error_code=?,finished_at=? WHERE run_id=? AND source_id=?")
+            .bind(diagnostic.code,iso(now),runId,sourceId),
+          DB.prepare('UPDATE agent_runs SET updated_at=? WHERE id=?').bind(iso(now),runId),
+        ] : []),
       ]);
+      if(needsReview)return {source_id:sourceId,state:'needs_review',error_code:diagnostic.code};
       if (attempts < 3) {
         await DB.prepare(
           "UPDATE agent_tasks SET error_code='fetch_retry' WHERE run_id=? AND source_id=?",
