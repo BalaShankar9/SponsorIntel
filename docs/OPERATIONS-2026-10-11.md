@@ -1,5 +1,7 @@
 # Sponsor Intel operations — 9–11 October 2026
 
+Latest discovery checkpoint, 11 October 11:14 UTC: the private queue now holds three reviewed LinkedIn leads (Danu needs review, Revolut held, an ordinary chef recruiting post rejected). Together with today's two automated school candidates, **all five new-lead slots are used**. The queue is 14 retained / eight unresolved / zero overdue / zero changed links / two current linked jobs. No public jobs were added by these records. Read [the source-backed discovery receipt](LINKEDIN_DISCOVERY-2026-10-11.md) before any further sourcing; older counts below remain historical.
+
 This receipt supersedes the older pending observations where stated. The desktop check spanned sleep/interruption and later heartbeat triggers; observations below retain their actual dates. Production remains **2.52.0**, verified through `/api/health` on 11 October. Release 2.53 now includes the tested 2.52.1 reservation repair, retained-review diagnostics and source comparison field diagnostics, awaiting authorized Cloudflare sign-in; it is not live.
 
 ## Source failure contained and admission defect repaired locally
