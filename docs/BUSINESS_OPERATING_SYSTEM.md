@@ -1,5 +1,7 @@
 # Sponsor Intel operating system
 
+Latest verified checkpoint, 11 October 16:33 UTC: **2.55.0 is live** as Worker `24d7ac43-84e6-4d81-8263-6f568a0b244a`, code `810a647`. The application lab now has a separately reviewed schema comparison with a build-stable source identity. It is saved and paused, with no new cases or production AI calls. All original runs, eighteen steps, nine assessments and today's two-start/six-call allowance remain unchanged. Migration 0036 and recovery verification match 36 migrations / 154 objects; 565 tests/build/dry-run pass. Hosted CI is still blocked by GitHub billing. Public collection remains 928 / 36 employers / 55 sponsorship-worded / 887 licence-linked. Real scheduled execution and independent writing-quality acceptance remain open. See `cloudflare/RELEASE-2.55.md`. Earlier timed entries below retain their original deployment status as history.
+
 Live 2.53 adds [marketing performance observations](MARKETING_PERFORMANCE.md): the daily Codex routine collects provider evidence through existing authorised access; a new cloud planner context can use the retained aggregates. Collection is not a direct Cloudflare analytics feed, the first real observation is retained; next genuine planner use and improved decisions/growth are unproven.
 
 Updated 11 October 2026. See [the current operating receipt](OPERATIONS-2026-10-11.md) for verified deliveries, scheduled readings and outstanding failures; earlier activation notes below are historical.
