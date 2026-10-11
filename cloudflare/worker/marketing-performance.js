@@ -3,7 +3,7 @@ import {destinations} from './marketing.js';
 import {campaignFromSearch} from '../shared/campaigns.js';
 
 const DAY=86400000;
-export const PERFORMANCE_METRICS=['impressions','reach','clicks','link_clicks','reactions','comments','shares','saves'];
+export const PERFORMANCE_METRICS=['impressions','views','reach','clicks','link_clicks','reactions','comments','shares','saves'];
 export const PERFORMANCE_LIMIT='Owner-observed platform aggregates, not an independently connected provider feed. Missing figures are unknown. Windows, post ages and metric definitions can differ; do not sum overlapping reach, infer unique customers or causal conversions, or declare a winning campaign from sparse observations. Observations cannot authorise publication or clear a hold.';
 const fail=(message,status=400)=>{throw Object.assign(Error(message),{status});};
 const text=(v,max,min=1)=>{if(typeof v!=='string'||v.trim().length<min||v.length>max)fail('Missing or oversized observation field.');return v.trim();};
@@ -11,10 +11,25 @@ function date(v,now){
  if(typeof v!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(v)||!Number.isFinite(Date.parse(v))||Date.parse(v)>now+300000)fail('Use a valid observed UTC timestamp, not a future time.');
  const canonical=new Date(v).toISOString();if(canonical!==v.replace(/(\d{2})Z$/,'$1.000Z')&&canonical!==v)fail('Use a real calendar timestamp.');return canonical;
 }
-function publicLink(v){
+function publicLink(v,allowQuery=false){
  let u;try{u=new URL(text(v,1000));}catch{fail('Use the exact public post URL.');}
- if(u.protocol!=='https:'||u.username||u.password||u.port||u.search||u.hash)fail('Use a clean public URL without credentials or tracking parameters.');
+ if(u.protocol!=='https:'||u.username||u.password||u.port||(!allowQuery&&u.search)||u.hash)fail('Use a clean public URL without credentials or tracking parameters.');
  u.hostname=u.hostname.replace(/^www\./,'');return u;
+}
+function evidenceLink(value,destination,provider){
+ const u=publicLink(value,provider==='metricool');
+ if(provider!=='metricool'){
+  if(u.hostname!=='linkedin.com')fail('Use the native LinkedIn analytics evidence page.');
+  return u;
+ }
+ const paths=['/evolution','/evolution/brandSummary',destination==='facebook-company'?'/evolution/facebookPage':'/evolution/instagram'];
+ const params=u.searchParams;
+ if(u.hostname!=='app.metricool.com'||!paths.includes(u.pathname.replace(/\/$/,''))||
+  params.getAll('blogId').length!==1||params.get('blogId')!=='7294726'||
+  params.getAll('userId').length>1||(params.has('userId')&&params.get('userId')!=='5655720')||
+  [...params.keys()].some(k=>!['blogId','userId'].includes(k)))fail('Use this company’s Metricool analytics link with blogId=7294726 and no extra parameters.');
+ // Keep the company context, without retaining the provider's user-switch identifier.
+ params.delete('userId');return u;
 }
 export function validatePerformance(input,now=Date.now()){
  if(!input||typeof input!=='object'||Array.isArray(input))fail('An observation is required.');
@@ -26,8 +41,7 @@ export function validatePerformance(input,now=Date.now()){
   post.hostname==='linkedin.com'&&/^\/feed\/update\/urn:li:(?:share|activity):\d+\/?$/.test(post.pathname);
  if(!valid)fail('Use the actual post permalink on the selected network.');
  const post_url='https://www.'+post.hostname+post.pathname.replace(/\/$/,'')+'/';
- const source=publicLink(input.evidence_url);
- if(input.provider==='metricool'?source.hostname!=='app.metricool.com':source.hostname!=='linkedin.com')fail('Use the native analytics or Metricool evidence page.');
+ const source=evidenceLink(input.evidence_url,input.destination,d.provider);
  const observed_at=date(input.observed_at,now),window_end=date(input.window_end,now);
  if(window_end>observed_at)fail('The reporting period cannot end after observation.');
  if(!['lifetime','period'].includes(input.window_type))fail('Select lifetime-to-date or a reporting period.');
@@ -56,7 +70,10 @@ export function validatePerformance(input,now=Date.now()){
   window_type:input.window_type,window_start,window_end,timezone,published_at,availability:input.availability,metrics,
   campaign_id,campaign_url,assessment_type:input.assessment_type,evidence_url:source.href,note:text(input.note,1000,20)};
 }
-const decode=row=>({...JSON.parse(row.payload),id:row.id,supersedes:row.supersedes,created_at:row.created_at});
+const decode=row=>{
+ const p=JSON.parse(row.payload);
+ return {...p,metrics:Object.fromEntries(PERFORMANCE_METRICS.map(k=>[k,p.metrics[k]??null])),id:row.id,supersedes:row.supersedes,created_at:row.created_at};
+};
 export async function recordPerformance(env,input,actor,now=Date.now()){
  const key=text(input.request_key,100);if(!/^[a-zA-Z0-9:_-]+$/.test(key))fail('Invalid observation request key.');
  const value=validatePerformance(input,now),supersedes=input.supersedes||null,hash=await digest(JSON.stringify({actor,value,supersedes}));

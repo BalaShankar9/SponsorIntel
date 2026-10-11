@@ -12,6 +12,19 @@ test('reported zero stays zero, missing stays unknown and plain links acquire no
  assert.equal(validatePerformance(observation({post_url:'https://linkedin.com/feed/update/urn:li:share:123456'}),now).post_url,v.post_url);
  assert.equal(validatePerformance(observation({availability:'unavailable',metrics:{}}),now).metrics.impressions,null);
 });
+test('views are not impressions and old observation payloads keep newly supported metrics unknown',async t=>{
+ const env=database(t),input=observation({metrics:{views:9,impressions:3}});
+ await recordPerformance(env,input,'owner',now);
+ const legacy=validatePerformance(observation({post_url:'https://www.linkedin.com/feed/update/urn:li:share:888/',metrics:{impressions:2}}),now);delete legacy.metrics.views;
+ env.sql.prepare('INSERT INTO marketing_performance VALUES(?,?,?,?,?,?,?,?,?,?)').run('legacy','legacy-key','legacy-hash',legacy.destination,legacy.post_url,legacy.observed_at,null,JSON.stringify(legacy),'owner',iso(now));
+ const saved=(await performanceSnapshot(env,now)).items,context=(await performanceContext(env,now)).items;
+ for(const rows of [saved,context]){
+  assert.equal(rows.find(p=>p.id==='legacy').metrics.views,null);
+  assert.equal(rows.find(p=>p.id!=='legacy').metrics.views,9);
+  assert.equal(rows.find(p=>p.id!=='legacy').metrics.impressions,3);
+ }
+ assert.equal(env.sql.prepare("SELECT json_type(payload,'$.metrics.views') t FROM marketing_performance WHERE id='legacy'").get().t,null);
+});
 test('invalid identity, unsupported metrics, future or impossible dates and sensitive URL components fail',()=>{
  for(const patch of [{account:'personal'},{provider:'metricool'},{identity_checked:false},{destination:'other'},{destination:'__proto__',account:undefined,provider:undefined},{destination:'constructor',account:undefined,provider:undefined},
   {metrics:{impressions:-1}},{metrics:{reach:1.2}},{metrics:{impressions:'0'}},{metrics:{followers:5}},{metrics:{}},
@@ -27,6 +40,19 @@ test('campaign evidence requires recognised exact tagging and the correct destin
  const url='https://sponsorintel.london/jobs?utm_source=linkedin&utm_medium=organic_social&utm_campaign=social_launch&utm_content=company_welcome';
  assert.equal(validatePerformance(observation({campaign_url:url}),now).campaign_id,'li-welcome');
  for(const campaign_url of [url.replace('linkedin','facebook'),url.replace('company_welcome','founder_intro'),url.replace('sponsorintel.london','other.example'),url+'&utm_source=linkedin',url+'&email=private'])assert.throws(()=>validatePerformance(observation({campaign_url}),now));
+});
+test('Metricool analytics links retain only the approved brand context and reject wrong accounts, networks and arbitrary parameters',async t=>{
+ const env=database(t),url='https://app.metricool.com/evolution/facebookPage?blogId=7294726&userId=5655720';
+ const input=observation({destination:'facebook-company',account:'1319703417896763',provider:'metricool',post_url:'https://www.facebook.com/123456/posts/987654/',evidence_url:url});
+ const saved=await recordPerformance(env,input,'owner',now),snapshot=await performanceSnapshot(env,now);
+ assert.equal(snapshot.items[0].id,saved.id);
+ assert.equal(snapshot.items[0].evidence_url,'https://app.metricool.com/evolution/facebookPage?blogId=7294726');
+ assert.doesNotMatch(JSON.stringify(await performanceContext(env,now)),/userId|5655720|evidence_url/);
+ assert.equal(validatePerformance({...input,evidence_url:url.replace('&userId=5655720','')},now).evidence_url,snapshot.items[0].evidence_url);
+ const instagram={...input,destination:'instagram-company',account:'sponsorintellondon',post_url:'https://www.instagram.com/p/fictionalPost/',evidence_url:url.replace('facebookPage','instagram')};
+ assert.match(validatePerformance(instagram,now).evidence_url,/evolution\/instagram\?blogId=7294726$/);
+ for(const evidence_url of [url.replace('7294726','1234'),url.replace('5655720','1234'),url.replace('facebookPage','instagram'),url.replace('/evolution/facebookPage','/planner/calendar'),url+'&token=secret',url+'&blogId=7294726',url+'&userId=5655720',url+'#secret',url.replace('https://','https://user:secret@'),url.replace('app.metricool.com','app.metricool.com.evil.example'),url.split('?')[0]])assert.throws(()=>validatePerformance({...input,evidence_url},now));
+ assert.throws(()=>validatePerformance({...instagram,evidence_url:url},now));
 });
 test('observations and audit are atomic, immutable and idempotent under replay or conflict',async t=>{
  const env=database(t),input=observation(),a=await recordPerformance(env,input,'owner',now);
