@@ -1,5 +1,12 @@
 # Sponsor Intel operating system
 
+## 11 October 18:00 UTC — truthful application pause reporting
+
+**2.58.0 is live**, Worker `6419c7c8-42d1-43d0-a9db-fc3cebee1aab`, code `ddded30`. The hourly application-health receipt now distinguishes paused operation from retained evaluation progress. Failures or changed policy still raise their existing finding while paused; an in-flight run is not labelled cancelled. All 581 tests, build and dry-run pass. The live owner view and anonymous 403 are verified; original runs, assessments, controls and budgets have matching before/after hashes. Prepared research/application identities are unchanged and both stay paused on 11 October. No migration, AI/Google call, source resume or forced workflow. The first genuine new hourly receipt remains to be observed. See `cloudflare/RELEASE-2.58.md`.
+
+The previous genuine `business-497705` finished at 17:46:08.584 UTC and Cloudflare independently confirms completion. It records the selected research comparison paused at 0/50 with the original `needs_attention` retained, closing 2.57's first scheduled pause-monitoring gate. Its application summary/dispatch mismatch prompted this repair; the original receipt remains unchanged. Public totals remain 928 / 36 / 55 / 887. This is execution/control evidence, not model-quality or growth acceptance.
+
+
 Latest verified checkpoint, 11 October 17:35 UTC: **2.57.0 is live** as Worker `4ffdf0c4-cb79-4a5e-9d20-711f7fc36750`, code `0d35a3d`. Research now has a separate compact comparison using the same 50 original adverts and 16 batches. Offline checks preserve every original character and quotation ID while reducing the maximum initial analyst input from 49,955 to 26,131 characters. It is prepared **paused, zero candidate attempts**, with the original failure/history and today's 2 starts / 6 calls unchanged. All 578 tests, build and dry-run pass; migration 0037 and recovery inspection match 37 migrations / 161 objects. The live owner and anonymous-access checks pass. This is preparation/execution-control evidence, not real-model quality; no production AI/Google call or forced workflow was added. Public counts remain 928 / 36 / 55 / 887. PortmanDentex and the separate application comparison remain paused. See `cloudflare/RELEASE-2.57.md` and `docs/REFERENCE_EVALUATION.md`.
 
 

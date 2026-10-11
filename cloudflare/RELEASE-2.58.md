@@ -15,3 +15,11 @@ All 581 tests pass on Node 24.19.0 in 56.4 seconds. Checks cover either or both 
 The Outwood Academy Shafton catalogue was rechecked: only the already-held Maths advert was listed. It supplies no additional clean role to publish. Its employer original was unavailable to the web reader; the earlier salary conflict was not treated as freshly resolved. The existing discovery hold remains and no source probe, extra lead or applicant action was added.
 
 Live deployment and preservation results are recorded below after verification. Rollback reference is 2.57 Worker `4ffdf0c4-cb79-4a5e-9d20-711f7fc36750`. First genuine scheduled use of the corrected application health fields remains a separate observation gate. No production model/Google call, forced workflow, source resume, email or social send is added.
+
+## Live verification, 17:57–18:00 UTC
+
+Live Worker `6419c7c8-42d1-43d0-a9db-fc3cebee1aab`, code `ddded30fbbc22d478ebddb60a7a3aae294f96d9f`. Health reports 2.58.0. QA-excluded catalogue totals remain **928 roles / 36 employers / 55 sponsorship-worded / 887 licence-linked**. Anonymous application-lab access is 403. The authenticated owner panel explicitly reports paused operation, ready progress within the selected comparison, 0/20 cases, 2/4 starts and 6/32 calls, with the run action disabled. Its nine historical assessments still show six needing work. Both temporary browser tabs were closed; no control was changed.
+
+Before/after hashes match across application controls, both comparison definitions, all four original runs, eighteen steps, nine assessments, research control/review and nine investigations, AI budget, business controls and the PortmanDentex pause. Foreign-key checks are empty. Neither source identity changed; no migration, model call, resume or new daily attempt occurred. Code-head hosted checks 114535878742 and 114535867584 did not start because of GitHub's account billing lock; both annotations were inspected, and GitGuardian passed. See `tests/evidence/application-health-release-2026-10-11.json`.
+
+The next genuine hourly snapshot must independently show the corrected fields. No synthetic capture or forced workflow was used to claim that future observation. Research and application quality, publishing integration and attributed business growth remain unproven.

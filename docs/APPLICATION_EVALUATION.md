@@ -1,5 +1,7 @@
 # Application quality evaluation
 
+Release 2.58 corrects the health snapshot after a real scheduled receipt said ready while dispatch was paused. New observations expose both control state and retained comparison progress, with a pause reason. Failures remain findings while paused; already-started work is not silently cancelled. The prepared version, history, budget and customer reviewer are unchanged. The live owner view is verified; first genuine scheduled use of the corrected fields remains pending. See `cloudflare/RELEASE-2.58.md`.
+
 Updated 11 October 2026. This is an authored development comparison, not a held-out accuracy benchmark or a claim that documents are safe to submit without review.
 
 ## Verified 11 October checkpoint
