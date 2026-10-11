@@ -1,4 +1,4 @@
-# Sponsor Intel 2.53 — diagnose reviewer and source failures
+# Sponsor Intel 2.53 — diagnose failures and clarify application preparation
 
 Prepared on 11 October 2026. **Not deployed**: production remains 2.52.0, Worker `3a133af1-df7d-443c-8ea9-e15e77f2ba5f`, while the existing Cloudflare sign-in agreement approval is pending. This release includes the tested, also-undeployed 2.52.1 source-reservation repair. No migration, new service or budget increase is needed.
 
@@ -44,3 +44,15 @@ Future consistency failures now retain only finite field names: posting/advert i
 Evidence is retained in `tests/evidence/portmandentex-diagnostic-2026-10-11.json`. The local browser preview is clearly labelled fictional and not deployed. No production model call, source retry, social send, application or source refresh was triggered for this change.
 
 Final combined validation: **517 tests pass** on pinned Node 24.19.0, including the actual isolated SourceWorkflow/D1 receipt, recovery and replay test. Individual field changes, simultaneous conflicts, sanitization, legacy rendering and no-partial-publication behavior are covered. The eight focused source/view tests were also rerun after the final explanatory-copy change. TypeScript, production build, 17 prerenders, browser budgets and deployment dry run pass. The live owner panel still reports PortmanDentex owner-paused. No migration or production deployment occurred; the existing Cloudflare renewal approval and fresh recovery check remain prerequisites.
+
+## Unreleased follow-up: a clear first preparation step
+
+The new measurement baseline has 59 page events across two completed UTC days and no successful preparation events. That does not establish unique users, abandonment or its cause. A separate UI/code inspection identified a concrete problem: the initial evidence-check button could be disabled without explaining missing input, while the advert editor was inside a collapsed section. The sidebar also called any nonempty advert saved, even when it was too short for preparation.
+
+The studio now shows the missing CV, advert or AI consent next to the preparation action. Its CV button opens the existing profile editor; its advert button opens and focuses the existing description field. The same trimmed-text requirements drive guidance, sidebar status and the action. Text-length checks are explicitly not suitability or quality judgments. An existing evidence review offers a next step to the tailored-CV tab; this does not invoke AI. Consent resets when the selected application or document changes. The server, model, prompts, storage and budgets are unchanged.
+
+Final combined validation is now **518 tests passing** on Node 24.19.0 (108.6 seconds). The new focused requirements/render test also passed after the final wording edit. TypeScript, production build, 17 prerenders and Wrangler deployment dry run pass. The initial build exceeded the existing JavaScript budget by 184 bytes; shorter guidance reduced it to 419,996 bytes / 128,998 gzip bytes without raising either limit. Future eager additions have almost no remaining byte headroom and should be deferred or replace existing code. Disk had 6.1 GiB available; no install was performed.
+
+The actual local browser journey used a fictional application and CV with an isolated API stub and no external services. It covered CV entry and return, short-advert repair/focus, browser-only evidence generation, transition to CV preparation, document-specific consent, the company-brief CV exemption and a simulated preparation failure preserving inputs and the earlier evidence review. A 390-pixel viewport had a 390-pixel page width. The one preparation request went only to the local failing stub, with zero external/model calls. This is usability and failure-path validation, not successful AI generation or measured customer conversion. Evidence: `tests/evidence/studio-readiness-2026-10-11.json`.
+
+Production remains 2.52.0. After access renewal and a fresh recovery receipt, deploy and verify the prepared 2.53 release with authenticated-owner QA. Keep application evaluation, research, PortmanDentex and editorial holds intact; the UI improvement does not resolve their quality gates.

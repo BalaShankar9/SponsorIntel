@@ -1025,6 +1025,19 @@
   justify-content: space-between;
   gap: 15px;
 }
+.studio-readiness {
+  margin: 0 0 22px;
+  padding: 18px;
+  border: 1px solid #dce4ce;
+  border-radius: 12px;
+  background: #f4f6ec;
+}
+.studio-readiness h3 { margin: 0 0 12px; font-size: 16px; }
+.studio-readiness ul { margin: 0; padding-left: 18px; }
+.studio-readiness li { font-size: 13px; line-height: 1.6; margin: 10px 0; }
+.studio-readiness .text-button { display: flex; margin-top: 5px; }
+.studio-readiness .fine-print { margin-bottom: 0; }
+.studio-next { margin: 12px 0; }
 .document-heading h2 {
   font-size: 22px;
   margin: 7px 0 5px;

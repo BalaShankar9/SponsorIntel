@@ -55,6 +55,7 @@ import {
 } from "./documents";
 import "./career.css";
 import { DocumentDownloads } from "./document-downloads";
+import { StudioReadiness, studioReadiness } from "./studio-readiness";
 import {type CVImportResult} from './cv-import';
 import {profileSignature,applyCVPreview} from '../shared/cv-import.js';
 import { type ReportFeedback } from "./feedback";
@@ -683,6 +684,8 @@ function Profile({ go }: { go: Go }) {
 
 function Studio({ go }: { go: Go }) {
   const c = useCareer();
+  const sourceDetails = useRef<HTMLDetailsElement>(null);
+  const sourceEditor = useRef<HTMLTextAreaElement>(null);
   const a =
     c.data.applications.find((x) => x.id === c.selected) ||
     c.data.applications[0];
@@ -699,6 +702,7 @@ function Studio({ go }: { go: Go }) {
     [busy, setBusy] = useState(""),
     [consent, setConsent] = useState(false),
     [message, setMessage] = useState("");
+  useEffect(() => { setConsent(false); }, [a?.id, tab]);
   const tabs = [
     { id: "analysis", label: "Evidence & gaps" },
     { id: "cv", label: "Tailored CV" },
@@ -733,6 +737,7 @@ function Studio({ go }: { go: Go }) {
     tab === "followup" ? followupDraft(a, c.data.profile.name) : a[tab] || "";
   async function generate() {
     if (!a || tab === "followup") return;
+    if (!studioReadiness(tab, c.data.profile.cv, a.description, consent).ready) return;
     if (tab === "analysis") {
       c.updateApplication(a.id, {
         analysis: buildEvidenceReview(c.data.profile, a),
@@ -784,9 +789,12 @@ function Studio({ go }: { go: Go }) {
       setBusy("");
     }
   }
-  const enough =
-    (tab === "companyResearch" || c.data.profile.cv.trim().length >= 100) &&
-    a.description.trim().length >= 80;
+  const readiness = studioReadiness(tab, c.data.profile.cv, a.description, consent);
+  function editDescription() {
+    if (sourceDetails.current) sourceDetails.current.open = true;
+    sourceEditor.current?.focus();
+    sourceEditor.current?.scrollIntoView({ block: "center", behavior: "auto" });
+  }
   return (
     <>
       <Title
@@ -850,13 +858,11 @@ function Studio({ go }: { go: Go }) {
             </label>
             <div className="studio-checks">
               <p>
-                <CheckCircle2 size={16} />
-                {a.description
-                  ? "Job description saved"
-                  : "Add a job description"}
+                {readiness.advertReady ? <CheckCircle2 size={16} /> : <FileText size={16} />}
+                <button onClick={editDescription}>{readiness.advertReady ? "Review job description" : "Complete job description"}</button>
               </p>
               <p>
-                {c.data.profile.cv.length >= 100 ? (
+                {readiness.cvReady ? (
                   <CheckCircle2 size={16} />
                 ) : (
                   <FileText size={16} />
@@ -941,6 +947,7 @@ function Studio({ go }: { go: Go }) {
             ))}
           </div>
           <div className="studio-document">
+            <StudioReadiness kind={tab} cv={c.data.profile.cv} description={a.description} consent={consent} busy={!!busy} onCV={() => go("career-profile")} onAdvert={editDescription} />
             <div className="document-heading">
               <div>
                 <span className="eyebrow">YOUR EDITABLE WORKING DRAFT</span>
@@ -951,8 +958,7 @@ function Studio({ go }: { go: Go }) {
                   className="primary-button"
                   disabled={
                     !!busy ||
-                    !enough ||
-                    (!["analysis", "companyResearch"].includes(tab) && !consent)
+                    !readiness.ready
                   }
                   onClick={() => void generate()}
                 >
@@ -976,9 +982,7 @@ function Studio({ go }: { go: Go }) {
               tab !== "companyResearch" && (
                 <>
                   <p className="fine-print">
-                    {!enough
-                      ? "Add your master CV and a full job description first."
-                      : "AI helps with wording and preparation. Check accuracy, dates and claims before applying. CVs and letters receive a second AI evidence review. Built with Llama."}
+                    AI helps with wording and preparation. Check accuracy, dates and claims before applying. CVs and letters receive a second AI evidence review. Built with Llama.
                   </p>
                   <label className="ai-consent">
                     <input
@@ -1023,6 +1027,9 @@ function Studio({ go }: { go: Go }) {
                 {message}
               </p>
             )}
+            {tab === "analysis" && value && <button className="text-button studio-next" onClick={() => { setTab("cv"); setMessage(""); }}>
+              Next: prepare my tailored CV <ArrowRight size={15} />
+            </button>}
             <label className="sr-only" htmlFor="application-document">
               {tabs.find((t) => t.id === tab)?.label}
             </label>
@@ -1077,7 +1084,7 @@ function Studio({ go }: { go: Go }) {
               </button>
             </div>
           </div>
-          <details className="career-sources">
+          <details className="career-sources" ref={sourceDetails}>
             <summary>Working job description and source evidence</summary>
             {a.evidence && (
               <>
@@ -1093,6 +1100,7 @@ function Studio({ go }: { go: Go }) {
             <label className="career-field">
               Job description
               <textarea
+                ref={sourceEditor}
                 rows={12}
                 value={a.description}
                 onChange={(e) =>

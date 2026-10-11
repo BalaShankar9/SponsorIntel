@@ -74,6 +74,8 @@ Customer star ratings need a permitted provider integration and exact firm match
 
 ## Measurement and review
 
+11 October first-use follow-up: the two completed baseline days contain 59 page events and no successful preparation events, not 59 people or a proven conversion failure. Direct inspection found an unexplained disabled evidence-check action when CV/advert text was missing. Prepared release 2.53 adds specific guidance and links to the inputs, then a CV-preparation next step. Fictional local desktop/mobile testing passed, including consent and failure preservation; it remains undeployed pending Cloudflare renewal. After deployment, inspect genuine preparation events and voluntary feedback before claiming an improvement in customer outcomes. No synthetic production funnel event was created. See `../cloudflare/RELEASE-2.53.md`.
+
 Check Search Console weekly for indexed canonical pages, non-branded impressions, clicks, relevant queries and crawl errors. Compare equivalent time periods after sufficient data accumulates. A sitemap submission is not indexing, and indexing is not ranking. Improve pages that already attract relevant impressions before expanding coverage.
 
 From release 2.37, use only the separate owner-filtered baseline for new growth decisions. Collection was enabled on 8 October 2026 at 11:57:33.807 UTC. Signed-in owners and declared QA requests are excluded; signed-out operators, repeat visits and bots may remain. Earlier mixed activity remains visible as historical counts and cannot be separated retrospectively. CV/cover-letter results are distinct from preparation exercises; sourced guidance responses are distinct from clarification or insufficient evidence.
