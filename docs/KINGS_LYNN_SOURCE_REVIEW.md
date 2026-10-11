@@ -1,5 +1,27 @@
 # King's Lynn Academy source review
 
+## Current decision — 11 October 2026
+
+The existing automated English lead has now been reviewed through the owner account. The single-school source `reviewed-teaching-vacancies-136202--king-s-lynn-academy` is **approved after its bounded probe**, with **three exact advert holds recorded before approval**. This supersedes the unconfigured state below. Public import and repeated scheduled refresh are still unverified: at 10:37:17 UTC the public query returned zero school jobs, with the wider collection unchanged at 924 jobs / 54 offered-or-conditional adverts. Do not force a workflow to manufacture scheduled evidence.
+
+The school's governance and careers pages, current Companies House entry, and 9 October worker-register snapshot were rechecked. Company 07338780 remains active at Queen Mary Road; the exact trust sponsor ID is unchanged. All seven DfE originals were read. The employer's full 15-role catalogue and the four unaffected detailed profiles were compared. Supporting attachments and full application screening were not completed; no applicant data or contact was submitted.
+
+| Advert | Current original evidence | Saved decision |
+| --- | --- | --- |
+| Teacher of Drama, 3600-R0174 | Still 21 October on DfE versus 16 October on the employer portal | Held for conflicting deadlines; follow-up 12 October 11:29 BST. Revision 2 rechecks the original evidence using the explicit checked-now control. |
+| Science Technician | DfE says 15 October, but its exact application link returns “No suitable matches”; absent from the full employer catalogue | Held for uncertain availability; follow-up 12 October 11:32 BST. Do not substitute Lead Science Technician or infer formal closure. |
+| Senior Exam Invigilator | DfE says 1 November, but its exact application link returns “No suitable matches”; absent from the full employer catalogue | Held for uncertain availability; follow-up 12 October 11:33 BST. Exam Invigilator is a different role. |
+| Teacher of English, 3600-R0185 | School, 19 October deadline, permanent/full-time terms and MPR/UPR agree. DfE explicitly permits Skilled Worker sponsorship; degree and QTS required | Eligible for the next complete source collection, subject to all existing checks. |
+| Lead Science Technician, 3600-R0181 | 29 October, 37 hours, term time + one week, £32,578–£34,811 FTE agree | DfE explicitly says visas cannot be sponsored. |
+| Pupil Progress Coordinator, 3600-R0060 | 29 October, 37 hours, term time + two weeks, £31,537–£33,699 FTE agree; employer separately gives actual pay | DfE explicitly says visas cannot be sponsored. |
+| Exam Invigilator, 3600-R0166 | 8 December, casual/part-time, £13.28 hourly agree | DfE explicitly says visas cannot be sponsored. |
+
+DfE listing dates and employer posting dates are source-specific and can differ; no earliest publication date is inferred. The probe consumed its full 24-request reservation, moving the observed daily allowance from 156 to 180 of 500. No unused reservations were refunded. Four unaffected roles are expected, including one conditional sponsorship advert; these are **expected results, not published counts**.
+
+The original automated lead `ec758817-56e3-4585-89cc-4cf4202799bd` remains pending at revision 2 until a current public role exists. Its automatic discovery attribution is preserved; the later review is agent-assisted, not independent human review. At the next genuine 12:30 UTC run, inspect the exact application/platform receipt, verify all three holds, public role fields, OGL attribution and free links, then link the matching lead. Verify a later repeat refresh separately. Evidence: `cloudflare/tests/evidence/source-reviews-2026-10-11.json`.
+
+## Historical review — 8 October
+
 Reviewed 8 October 2026. **Not admitted or approved.** No production lead/source/job was added by this review, and today's five-new-lead allowance was not expanded. The school feed is held because the original employer and Teaching Vacancies disagree on a current Drama vacancy deadline. The English role's application screening has only been viewed, not completed.
 
 ## Identity evidence

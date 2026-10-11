@@ -1,0 +1,9 @@
+# Outwood Academy Shafton review — 11 October 2026
+
+The retained automated Maths Teacher candidate remains private and **held**. No source was configured or approved. Discovery lead `615eda6e-601f-4e7e-905b-7c33460794e0` revision 2 records an explicitly agent-assisted review and follow-up on 13 October at 10:00 BST.
+
+The [DfE original](https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-outwood-academy-shafton) identifies URN 139211, says Skilled Worker visas can be sponsored, requires a relevant degree and QTS, and does not accept CV-only applications. Its 15 October noon deadline matches the [employer advert 7581](https://fa-eqvg-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_4001/job/7581/). Proposed start is 1 January 2027. DfE date listed is 7 October; the employer portal shows 09:19 without an explicit timezone, so no precise posting timestamp was entered.
+
+The employer page contradicts itself on salary: its Job Info fields say 32916–45352, while the actual-salary paragraph and DfE give £34,069–£52,835. No range was silently chosen. Recheck the same original before the deadline; the hold is not a sponsorship refusal or a conclusion that the vacancy closed.
+
+The [school website](https://www.shafton.outwood.com/) names Outwood Grange Academies Trust, company 06995649, and links to the same Oracle recruitment service. [Companies House](https://find-and-update.company-information.service.gov.uk/company/06995649) shows the company active at Potovens Lane, Outwood, Wakefield WF1 2PF. The current Sponsor Intel official-register snapshot dated 9 October contains exact trust ID `8f9d5d142549d0cea20e682d`, Wakefield, Skilled Worker, Worker (A rating). This supports legal identity, not individual applicant eligibility. Attachments and a complete application flow were not tested; no applicant data, contact or application was submitted.
