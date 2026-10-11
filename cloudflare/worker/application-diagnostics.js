@@ -2,6 +2,7 @@
 // Never changes a receipt, invokes a model or makes a rejected output assessable.
 import {validateReview} from './career-review.js';
 import {validateCandidateReview} from './career-review-candidate.js';
+import {historicalApplicationContract} from './application-contracts.js';
 
 const failures=new Map([
  ['Invalid candidate review structure',['structure','The response contains an invalid or unexpected structure.']],
@@ -24,10 +25,12 @@ const failures=new Map([
 const limitation='This is a read-only recheck of retained response content against the unchanged contract. It does not recover provider completion metadata, prove writing quality, change the original rejection or permit a retry.';
 export function retainedReviewDiagnostic(row,c,expectedProfile){
  if(row.state!=='rejected'||!['baseline','candidate'].includes(row.stage))return null;
- const result=(state,code,summary)=>({method:'retained_response_recheck_v1',state,code,summary,limitation});
+ const historical=expectedProfile&&row.profile!==expectedProfile?historicalApplicationContract(row.profile,expectedProfile):null;
+ const result=(state,code,summary)=>({method:historical?'archived_response_recheck_v1':'retained_response_recheck_v1',state,code,summary,
+  ...(historical?{contract:historical.evidence}:{}),limitation:historical?'Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality.':limitation});
  if(!['completed','failed'].includes(row.run_state)||!row.run_finished_at||!row.finished_at)
   return result('unavailable','unfinished','Wait for a finished evaluation receipt before inspecting its rejected review.');
- if(!expectedProfile||row.profile!==expectedProfile)
+ if(!expectedProfile||row.profile!==expectedProfile&&!historical)
   return result('unavailable','configuration_changed','The current fixture, models or contract differ from the recorded configuration. Preserve this response for review under its original version.');
  let members;try{members=JSON.parse(row.case_ids);}catch{}
  if(!Array.isArray(members)||!members.includes(c.id))return result('unavailable','case_mismatch','The retained run does not identify this fictional case.');
@@ -36,8 +39,8 @@ export function retainedReviewDiagnostic(row,c,expectedProfile){
  let value;try{value=JSON.parse(row.raw);}catch{return result('unavailable','retention_invalid','The retained response wrapper could not be decoded.');}
  if(value===null)return result('unavailable','response_unavailable','No retained response content is available for this recheck.');
  try{
-  if(row.stage==='candidate')validateCandidateReview(value,c.profile,c.application,c.kind);
-  else validateReview(value,c.profile,c.kind);
+  if(row.stage==='candidate')(historical?.validateCandidateReview||validateCandidateReview)(value,c.profile,c.application,c.kind);
+  else (historical?.validateReview||validateReview)(value,c.profile,c.kind);
   return result('passes_recheck','cause_unresolved','The retained content passes this contract recheck. The original rejection remains; missing provider metadata or another original condition still needs investigation.');
  }catch(error){
   const [code,summary]=error instanceof SyntaxError?['invalid_json','The retained model content is not valid JSON for this contract.']:failures.get(error?.message)||['contract_failure','The retained content fails validation; no more specific safe diagnostic is available.'];
