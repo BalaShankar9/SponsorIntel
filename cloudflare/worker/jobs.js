@@ -95,6 +95,12 @@ export function sponsorshipEvidence(text) {
   const roleExclusion = sentences.find(s => !s.endsWith('?') &&
     /^(?:due to limits on sponsorship allocations, )?we are (?:currently not offering|not (?:currently )?offering|unable to offer|not (?:currently )?in a position to offer) sponsorship(?: to new candidates)? for (?:this|these) roles?(?=$|[.,;])/i.test(s));
   if (roleExclusion) return { status: 'unavailable', quote: roleExclusion.slice(0, 500) };
+  // A route-specific employer refusal can say "Skilled Worker" without visa.
+  // Require a direct statement about this vacancy. Questions, hypothetical
+  // clauses, advice and qualification funding must not become refusals.
+  const skilledWorkerExclusion = sentences.find(s => !s.endsWith('?') &&
+    /^(?:(?:kindly|please) be advised that )?we (?:are unable to|cannot|can't|do not|don't|will not|won't) (?:offer|provide|support) (?:UK )?skilled worker sponsorship for (?:this|these) (?:roles?|positions?|jobs?|vacanc(?:y|ies))(?=$|[.,;])/i.test(s));
+  if (skilledWorkerExclusion) return { status: 'unavailable', quote: skilledWorkerExclusion.slice(0, 500) };
   const relevant = sentences.filter(
     (s) =>
       /visa|immigration|work permit|right to work/i.test(s) &&

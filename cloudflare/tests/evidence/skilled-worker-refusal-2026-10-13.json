@@ -1,0 +1,139 @@
+{
+  "observed_at": "2026-10-13T14:47:50.315Z",
+  "classification_replay_at": "2026-10-13T14:50:10.910Z",
+  "current_jobs": 935,
+  "baseline_stored_mismatches": 0,
+  "changed_count": 0,
+  "changed": [],
+  "baseline_sha256": "62b8df0cba3188aeb0aa2212b0d96e5a4d73c68c299c114ec2229f3115745bf8",
+  "movement": [
+    {
+      "id": "business-497750",
+      "observed_at": "2026-10-13T14:46:00.221Z",
+      "trigger_kind": "scheduled",
+      "before_counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "changes": {
+        "entered": 0,
+        "returned": 0,
+        "left": 0,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 0,
+        "stated_lost": 0
+      }
+    },
+    {
+      "id": "business-497749",
+      "observed_at": "2026-10-13T13:45:59.982Z",
+      "trigger_kind": "scheduled",
+      "before_counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "changes": {
+        "entered": 0,
+        "returned": 0,
+        "left": 0,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 0,
+        "stated_lost": 0
+      }
+    },
+    {
+      "id": "business-497748",
+      "observed_at": "2026-10-13T12:46:11.346Z",
+      "trigger_kind": "scheduled",
+      "before_counts": {
+        "total": 924,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 34,
+        "unavailable": 96,
+        "not_stated": 773
+      },
+      "counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "changes": {
+        "entered": 17,
+        "returned": 1,
+        "left": 7,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 0,
+        "stated_lost": 1
+      }
+    }
+  ],
+  "positive_events": [
+    {
+      "run_id": "business-497748",
+      "job_id": "47a756674e464ccc8d26b6e5",
+      "board_id": "maven",
+      "company": "Maven Securities",
+      "title": "Quant Trader Internship 2027 (6 months)",
+      "kind": "left",
+      "reason": "inactive_record",
+      "before_sponsorship": "conditional",
+      "after_sponsorship": null,
+      "before_evidence": "Visa sponsorship is available for this role and will be discussed with eligible candidates at later stages of the process",
+      "after_evidence": null
+    }
+  ],
+  "existing_review": [
+    {
+      "lead_id": "78a799ba-15b3-48c9-abb9-5bd25ff9c491",
+      "revision": 1,
+      "recorded_at": "2026-10-12T00:46:35.147Z",
+      "state": "pending",
+      "method": "automated_source",
+      "follow_up_at": "2026-10-15T00:46:34.654Z"
+    },
+    {
+      "lead_id": "78a799ba-15b3-48c9-abb9-5bd25ff9c491",
+      "revision": 2,
+      "recorded_at": "2026-10-13T14:46:25.819Z",
+      "state": "held",
+      "method": "agent_assisted",
+      "follow_up_at": "2026-10-15T09:00:00.000Z"
+    }
+  ],
+  "limitations": [
+    "Read-only stored-advert replay, not independent classification quality acceptance.",
+    "No production refresh or source request was triggered.",
+    "Inactive collection record does not establish formal employer closure."
+  ]
+}

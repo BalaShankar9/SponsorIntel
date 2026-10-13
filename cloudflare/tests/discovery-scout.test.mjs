@@ -34,6 +34,18 @@ test('daily scout retains two distinct employers privately with server attributi
  const health=await discoveryScoutHealth(env,now);assert.equal(health.items.length,2);assert.ok(health.items.every(i=>/^[a-f0-9]{64}$/.test(i.evidence.body_sha256)));assert.match(health.attribution,/Open Government/);
  assert.equal((await scoutTeachingVacancies(env,'fictional-business',fixture.fetch,()=>now)).replayed,true);assert.equal(fixture.calls.length,3);
 });
+test('Skilled Worker body refusals reject positive badges before retention, preserve reservations and replay without requests',async t=>{
+ const env=setup(t),one=candidate(1),two=candidate(2),fixture=provider(now,{pages:{
+  [one.url]:advert(one,now,{},TEACHING_QUOTE,'This is a full-time teaching vacancy. Kindly be advised that we are unable to provide skilled worker sponsorship for this position. Applicants must have the right to work in the country without the need for sponsorship.'),
+  [two.url]:advert(two,now,{},TEACHING_QUOTE,'This is a full-time teaching vacancy. We cannot offer Skilled Worker sponsorship for this role.')
+ }});
+ const run=await scoutTeachingVacancies(env,'fictional-business',fixture.fetch,()=>now);
+ assert.equal(run.retained,0);assert.equal(run.inspected,2);assert.equal(run.requests,3);assert.equal(run.reserved_requests,4);
+ const items=(await discoveryScoutHealth(env,now)).items;assert.equal(items.length,2);assert.ok(items.every(i=>i.state==='rejected'&&i.reason==='contradictory_sponsorship_wording'));
+ for(const table of ['discovery_leads','discovery_revisions','jobs'])assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM '+table).get().n,0);
+ assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget').get().requests,4);
+ assert.equal((await scoutTeachingVacancies(env,'fictional-business',fixture.fetch,()=>now)).replayed,true);assert.equal(fixture.calls.length,3);
+});
 test('scout follow-ups leave review time before closing, including imminent and offset deadlines',async t=>{
  const cases=[
   ['2026-10-20T12:00:00+01:00','2026-10-11T10:00:00.000Z'],

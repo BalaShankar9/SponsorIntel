@@ -10,7 +10,7 @@ import {fetchBoard,fetchBoardJob,normaliseBoardJobs} from '../worker/jobs.js';
 import {sourceRequestCost} from '../worker/job-sources.js';
 import {validateBoard} from '../worker/admin.js';
 import {approvedJobLink} from '../worker/job-link-checks.js';
-import {dispatchSources,initialiseRun,executeSourceTask} from '../worker/agent-operations.js';
+import {dispatchSources,initialiseRun,executeSourceTask,completeRun} from '../worker/agent-operations.js';
 const stamp=()=>new Date().toISOString();
 
 
@@ -49,6 +49,19 @@ test('single-advert research reads once, verifies stored identity and never walk
 });
 test('approved school publication is atomic, reserves 24 and replays without network',async t=>{
  const env=database(t);await seedSchool(env.DB);const f=provider(),readBoard=(b,c)=>fetchBoard(b,{...c,fetcher:f.fetcher});await dispatchSources(env,{id:'school-fixture',sourceId:school.id});await initialiseRun(env,'school-fixture');const result=await executeSourceTask(env,'school-fixture',school.id,{readBoard});assert.equal(result.state,'published');assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM jobs WHERE active=1').get().n,2);assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget').get().requests,24);assert.equal((await executeSourceTask(env,'school-fixture',school.id,{readBoard})).replay,true);assert.equal(f.calls.length,4);
+});
+test('a later Skilled Worker body refusal prevents partial publication and preserves the prior complete school snapshot',async t=>{
+ const env=database(t);await seedSchool(env.DB);const f=provider();
+ await dispatchSources(env,{id:'school-before-conflict',sourceId:school.id});await initialiseRun(env,'school-before-conflict');
+ await executeSourceTask(env,'school-before-conflict',school.id,{readBoard:(b,c)=>fetchBoard(b,{...c,fetcher:f.fetcher})});
+ await completeRun(env.DB,'school-before-conflict');
+ const before=env.sql.prepare('SELECT * FROM jobs ORDER BY id').all();assert.equal(before.length,2);
+ const changed=provider(undefined,{alter:(html,url)=>url===vacancy(1).url?html.replace('Qualified teacher status required.','Kindly be advised that we are unable to provide skilled worker sponsorship for this position.'):html});
+ await dispatchSources(env,{id:'school-after-conflict',sourceId:school.id});await initialiseRun(env,'school-after-conflict');
+ const result=await executeSourceTask(env,'school-after-conflict',school.id,{readBoard:(b,c)=>fetchBoard(b,{...c,fetcher:changed.fetcher})});
+ assert.notEqual(result.state,'published');assert.deepEqual(env.sql.prepare('SELECT * FROM jobs ORDER BY id').all(),before);
+ const task=env.sql.prepare("SELECT error_code,attempts FROM agent_tasks WHERE run_id='school-after-conflict'").get();assert.equal(task.error_code,'posting_changed');assert.equal(task.attempts,1);
+ assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget').get().requests,48);
 });
 test('provider migration preserves existing reviews, uniqueness and owner foreign keys',()=>{
  const sql=new DatabaseSync(':memory:');try{sql.exec('PRAGMA foreign_keys=ON');for(const name of readdirSync(new URL('../migrations/',import.meta.url)).filter(n=>n.endsWith('.sql')&&n<'0033').sort())sql.exec(readFileSync(new URL('../migrations/'+name,import.meta.url),'utf8'));

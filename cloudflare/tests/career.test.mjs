@@ -82,6 +82,26 @@ test("employer refusals tied to the vacancy do not require the word visa", () =>
   ]) assert.equal(sponsorshipEvidence(text).status, "not_stated", text);
 });
 
+test("role-specific Skilled Worker refusals override badges without treating questions or funding as immigration evidence", () => {
+  for (const text of [
+    'Kindly be advised that we are unable to provide skilled worker sponsorship for this position.',
+    'We cannot offer Skilled Worker sponsorship for this role.',
+    'We do not provide UK Skilled Worker sponsorship for these vacancies.',
+  ]) {
+    assert.deepEqual(sponsorshipEvidence(text), {status:'unavailable',quote:text});
+    assert.deepEqual(sponsorshipEvidence('Skilled Worker visas can be sponsored\n'+text), {status:'unavailable',quote:text});
+  }
+  for (const text of [
+    'We are unable to provide skilled worker sponsorship for this position?',
+    'Ask whether we are unable to provide skilled worker sponsorship for this position.',
+    'If we are unable to provide skilled worker sponsorship for this position, we will discuss alternatives.',
+    'We are not unable to provide skilled worker sponsorship for this position.',
+    'We cannot provide sponsorship for this professional qualification.',
+    'We cannot provide Skilled Worker sponsorship advice for this position.',
+    'We cannot provide Skilled Worker sponsorship for the other role.',
+  ]) assert.equal(sponsorshipEvidence(text).status,'not_stated',text);
+});
+
 test("UK filter rejects similarly named overseas locations and unspecified remote roles", () => {
   assert.equal(isUK("Cardiff, London or Remote (UK)"), true);
   assert.equal(isUK("London, Ontario, Canada"), false);
