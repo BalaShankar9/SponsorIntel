@@ -1,0 +1,24 @@
+{
+  "observed_at": "2026-10-13T17:19:13.342Z",
+  "database": "sponsorintel-db",
+  "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+  "status": "available",
+  "current_recovery_point_available": true,
+  "bookmark_sha256": "4370f067b13c7a2760a5b874b59f8aaaa62f2d5a7e3d00e32fe16996a93a139e",
+  "database_size_bytes": 107593728,
+  "region": "WEUR",
+  "schema": {
+    "expected_objects": 166,
+    "actual_objects": 166,
+    "migration_files": 40,
+    "expected_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+    "actual_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+    "missing": [],
+    "extra": [],
+    "changed": []
+  },
+  "production_data_exported": false,
+  "production_restore_performed": false,
+  "retention_window_verified": false,
+  "customer_data_restoration_verified": false
+}
