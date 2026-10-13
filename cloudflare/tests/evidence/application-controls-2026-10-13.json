@@ -139,7 +139,24 @@
     "initial_live_document_width": 424,
     "viewport": 390,
     "cause": "Full source identities in research and application review notes did not wrap.",
-    "fix": "Scoped owner review-panel overflow-wrap:anywhere; final verification pending."
+    "fix": "Scoped owner review-panel overflow-wrap:anywhere.",
+    "version": "2.69.1",
+    "worker": "6c841d96-b09f-4cae-9d3e-80f61523c4c7",
+    "code": "7a50b07db6ad772dbdaf608bc2cf5ac9836617b0",
+    "final_live_document_width": 390,
+    "final_live_viewport": 390,
+    "both_panels_computed_wrap": "anywhere",
+    "verified_at": "2026-10-13T15:59:03.995Z",
+    "all_14_resumed_state_hashes_unchanged": true,
+    "health_status": 200,
+    "health_version": "2.69.1",
+    "build_and_dry_run": true,
+    "hosted_billing_blocked": [
+      115397133740,
+      115397112451
+    ],
+    "annotations_inspected": true,
+    "security": "passed"
   },
   "hosted_code_checks": {
     "head": "9dbba56c12a74cccf8ab58a41acd0aecc140d976",
