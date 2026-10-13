@@ -11,3 +11,7 @@ Validation: 619 tests pass on pinned Node 24.19.0. New cases cover tied-time pag
 No migration, dependency version, prompt, model, timeout, campaign mapping or allowance changes. The same-day verified recovery point/schema check and dependency advisory review apply: 38 migrations/162 objects, zero high/critical and three existing moderate audit entries. No dependency content changed. No live AI, Google, social, source or email action was added. The 12 October timeout, 13 October no-post result, Facebook delivery awaiting authenticated recording, and every existing hold remain.
 
 Rollback: 2.63 Worker `b8ba07ed-8d1d-481c-80d2-d96eba48a94d`, preserving all database/history/device recovery records. Deployment, exact-head hosted checks and live evidence are recorded separately in the dated operations log; local tests are not hosted CI or production owner-browser proof.
+
+## Live verification
+
+Worker `f521603c-e638-44dc-a3c7-55051ccb46c2` serves 2.64.0 from code `7669c882d8ee0d8639047bd0999f321d15d508a3`. At 10:27:17 UTC, excluded health/jobs checks, history list/detail anonymous 403 and exact owner asset bytes passed. Eight compared state/history/budget hashes remain identical. Authenticated production rendering is not verified after the earlier browser block. Exact code-head hosted checks did not start due to the account billing lock; GitGuardian passed. See `tests/evidence/marketing-history-2026-10-13.json`.
