@@ -41,3 +41,7 @@
  .owner-period .platform-actions{flex-wrap:wrap}
  .owner-overview .business-section-heading{align-items:flex-start}
 }
+
+/* Version identities and review evidence must fit narrow owner panels. */
+.owner-section .research-lab .agent-panel,
+.owner-section .application-evaluation .support-report { overflow-wrap: anywhere; }

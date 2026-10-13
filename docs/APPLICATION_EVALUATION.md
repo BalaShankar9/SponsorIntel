@@ -55,3 +55,11 @@ This historical implementation hashed runtime function strings. Release 2.54 sub
 ## Separate comparison preparation in 2.55
 
 See `cloudflare/RELEASE-2.55.md` for deployment status and proof. A reasoned, version-pinned owner action prepares the candidate schema experiment without resuming it. Old runs, their call budgets, failures and assessments stay in `legacy-v1`; selected-comparison coverage starts separately and is labelled as such. The proposed schema targets the observed response-format failures only. Writer factual errors, unsupported implications, omissions, provider compliance and independent writing-quality acceptance remain open. Current customer generation is unchanged.
+
+## Reviewed resume — 13 October 2026
+
+The selected schema comparison is now **enabled/ready, 0/20**, after agent-assisted owner review revision 1 at **15:52:21.056 UTC**. Release 2.69 first replaced the unversioned toggle with a reasoned, profile-pinned review and exact-request replay. Original 9/10/11 October provider instances were freshly confirmed terminal at finish-1; nine rejected outputs remain known contract failures, no active/uncertain step exists and the retained prepared profile matches exactly. No subsequent owner hold was found. The source remains `4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2`.
+
+Independent readback preserves all four original runs, eighteen steps, nine assessments, daily records and allowances. The review itself made no model call or forced run; shared usage remains one start/zero calls. It enables the next eligible existing hourly dispatch, still at most one attempt per UTC day, two cases/six calls within shared four starts/32 calls. Do not claim an instance exists until its original receipt is observed. No model, source/social hold or customer reviewer changed.
+
+This comparison tests a bounded response schema against the retained formatting failures. Writer factual issues, unsupported implications and six needs-work judgments remain. Full 20-case coverage, output evidence, independent adjudication and a separate held-out comparison are required before any proposed customer change. New controls cannot retry unknown outcomes, reset a failed comparison or reapply an old resume after a newer pause. See `cloudflare/RELEASE-2.69.md` and `cloudflare/tests/evidence/application-controls-2026-10-13.json`.
