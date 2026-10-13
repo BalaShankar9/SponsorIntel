@@ -1,5 +1,7 @@
 # Sponsor Intel marketing agents
 
+Current state is in `OPERATOR_CHECKPOINT.md`. Release 2.63 preserves an exactly saved marketing completion after a lost acknowledgement and retains bounded failure diagnostics for future attempts. Existing failures/holds stay unchanged. The original 12 October planner timed out after 120 seconds; no retry or timeout change is included. The latest-run owner view does not yet provide historical run selection. See `../cloudflare/RELEASE-2.63.md`.
+
 Live 2.53 introduced [dated platform performance observations](MARKETING_PERFORMANCE.md); one real observation is retained. Live 2.60 policy `sourced-guides-and-browser-evidence-v5` also carries the separate browser-reported evidence-check measurement into new contexts, with its own boundary and null-versus-zero distinction. Existing contexts remain immutable. This is not a direct provider analytics feed or proven model learning. The next genuine eligible context, its model decision and improved growth remain separate gates.
 
 Current performance and next experiment: [11 October marketing review](MARKETING_REVIEW-2026-10-11.md). The custom workflow is operating, but repeatable acquisition, audience learning and sales outcomes are unproven.

@@ -1,5 +1,7 @@
 # Sponsor Intel social publishing
 
+**13 October update:** application-guide job **390624032** is verified Published at the provider and exact public Facebook URL. Its full copy, author and campaign link match. The owner ledger is still scheduled v1/revision 1 because Sponsor Intel browser navigation is blocked; record this existing outcome through the authenticated desk when available, without resending. See `cloudflare/tests/evidence/facebook-delivery-2026-10-13.json` from the repository root and `OPERATOR_CHECKPOINT.md`. No new schedule was added, and all three combined weekly slots remain consumed.
+
 Prepared 2.53 adds a separate [platform performance log](MARKETING_PERFORMANCE.md). After deployment, the daily routine can retain observed post metrics and corrections without changing delivery receipts. Unknown figures, reporting windows and untagged historical posts stay explicit. There is no new provider connection or posting permission.
 
 Updated 11 October 2026. See [the dated operating receipt](OPERATIONS-2026-10-11.md): LinkedIn evidence report and Facebook advert-reading guide are now verified Published; only the 12 October Facebook application guide remains queued. Instagram welcome v2 is held after a failed/uncertain review. Older pending statements below are historical.
