@@ -1,5 +1,13 @@
 # King's Lynn Academy source review
 
+## Current original reviews — 13 October 11:18 UTC
+
+Authenticated owner access is restored. English discovery revision **5**, saved **11:01:09.594 UTC**, explicitly reconciles the one-time 2.61 cleanup. Read-only comparison found only the known navigation text removed; every other pinned field and remaining description character matched. Fresh DfE inspection retained the visa wording, permanent/full-time MPR/UPR, 19 October 23:59 deadline and QTS/degree requirement. The queue now has three current links and zero changed links. This is not another public job. Observe the next genuine collection for continued proof stability; do not force it.
+
+Fresh paired original-page checks retained all three advert holds. Drama still says 21 October on DfE versus 16 October on exact MHR reference 3600-R0174. Science Technician and Senior Exam Invigilator application links again return “No suitable matches”; that does not establish formal closure or allow substituting similarly named roles. New held revisions are Drama **3** (follow-up 15 October 10:00 BST), Science **2** (14 October 12:30 BST) and Senior **2** (15 October 10:30 BST). No release, source refresh, application or outreach occurred. Whole employer catalogue and attachments were not rechecked in this pass.
+
+The first Drama save was rejected because an edited date remained stale in component state. Release **2.66** repairs both date inputs; the three subsequent saves were read back through the UI and read-only database queries, with old revisions retained. Current evidence: `cloudflare/tests/evidence/source-reviews-2026-10-13.json` and `cloudflare/RELEASE-2.66.md`. Earlier sections below remain dated history.
+
 ## Navigation extraction repair — 11 October 19:02 UTC
 
 Release 2.61 is deployed. Only the known official early-career navigation phrase inside the Job role row is normalised, retaining the suitability label. Unknown text and exact discovery comparison remain unchanged. Existing seven school rows and four lead revisions have identical before/after hashes. At the genuine 00:30 UTC 12 October collection, separately verify the initial clean-up transition, all three holds and the complete batch; append a review if the old linked proof changes. A later real navigation-count change is needed to establish production stability. Do not force a source run or silently rewrite proof. See `cloudflare/RELEASE-2.61.md`.
