@@ -14,7 +14,7 @@ import { startInvestigation,researchSnapshot,approveObservation,RESEARCH_POLICY 
 export async function agentOperationsAPI(request, env, owner) {
   const path = new URL(request.url).pathname;
   if (request.method === "GET" && path === "/api/admin/agents")
-    return reply(await operationsSnapshot(env));
+    return reply(await operationsSnapshot(env, { ownerControls: true }));
   if (request.method === 'GET' && path === '/api/admin/agents/research')
     return reply(await researchSnapshot(env));
   if (

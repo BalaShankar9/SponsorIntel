@@ -460,6 +460,31 @@ test("unconfirmed dispatch remains explicit and retry uses its original ID", asy
   assert.equal(query(env, "SELECT COUNT(*) n FROM agent_runs").n, 1);
 });
 
+test("saved source reasons reach the owner desk only, without exposing actors or entering coordinator inputs", async (t) => {
+  const env = database(t);
+  const reason = 'PRIVATE_OWNER_REASON <script>fictional</script>';
+  await setSourcePause(env.DB, board.id, true, 'PRIVATE_ACTOR', reason);
+  const snapshot = await operationsSnapshot(env);
+  assert.ok(!JSON.stringify(snapshot).includes(reason));
+  assert.equal(Object.hasOwn(snapshot.sources.find(s => s.id === board.id), 'control'), false);
+  const response = await agentOperationsAPI(new Request('https://sponsorintel.london/api/admin/agents'), env, {user:{id:'owner-id'}});
+  assert.equal(response.status, 200);
+  const owner = await response.json();
+  const control = owner.sources.find(s => s.id === board.id).control;
+  assert.equal(control.reason, reason);
+  assert.equal(control.updated_at, query(env, 'SELECT updated_at FROM agent_source_controls').updated_at);
+  assert.deepEqual(Object.keys(control).sort(), ['reason', 'updated_at']);
+  assert.ok(!JSON.stringify(owner).includes('PRIVATE_ACTOR'));
+  assert.equal(owner.sources.find(s => s.id !== board.id).control, null);
+  env.AI_MODEL = 'fictional-model';
+  env.AI = {async run(_model, input) {
+    assert.ok(!JSON.stringify(input).includes('PRIVATE_OWNER_REASON'));
+    return {response:JSON.stringify({priorities:[operationFindings(snapshot)[0].id]})};
+  }};
+  await generateOperationsBrief(env, snapshot, 'owner-id');
+  assert.equal(query(env, 'SELECT paused FROM agent_source_controls').paused, 1);
+});
+
 test("AI coordinator accepts only existing findings and has no action execution path", async (t) => {
   const env = database(t),
     snapshot = await operationsSnapshot(env),

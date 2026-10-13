@@ -521,7 +521,7 @@ export async function setSourcePause(DB, sourceId, paused, actor, reason) {
   }
 }
 
-export async function operationsSnapshot(env) {
+export async function operationsSnapshot(env, { ownerControls = false } = {}) {
   const DB = env.DB,
     now = Date.now(),
     day = iso(now).slice(0, 10);
@@ -573,6 +573,12 @@ export async function operationsSnapshot(env) {
       ...health.find((h) => h.id === b.id),
       collection: progress.find(p=>p.source_id===b.id) || null,
       paused: !!controls.find((c) => c.source_id === b.id)?.paused,
+      // Free-form owner reasons belong only in the authenticated control desk,
+      // never in coordinator inputs or the default operational snapshot.
+      ...(ownerControls ? { control: (() => {
+        const control = controls.find((c) => c.source_id === b.id);
+        return control ? { reason: control.reason, updated_at: control.updated_at } : null;
+      })() } : {}),
       cooldown_until:
         controls.find((c) => c.source_id === b.id)?.cooldown_until || 0,
       licence_linked: licences.matches.has(b.id),

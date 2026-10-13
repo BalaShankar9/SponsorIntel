@@ -35,6 +35,7 @@ type Source = {
   cooldown_until: number;
   licence_linked: boolean;
   collection?: {total:number;ready:number;fetched:number;state:string;checked_at:string} | null;
+  control?: {reason:string|null;updated_at:string|null} | null;
 };
 type Snapshot = {
   measured_at: string;
@@ -103,6 +104,8 @@ export function AgentOperations() {
   const [change, setChange] = useState<Source | null>(null),
     [reason, setReason] = useState(""),
     [consent, setConsent] = useState(false);
+  const [sourceSearch, setSourceSearch] = useState("");
+  const [sourceFilter, setSourceFilter] = useState("all");
   async function load() {
     try {
       setData(await api(""));
@@ -157,6 +160,10 @@ export function AgentOperations() {
   }
   const latest = data?.runs[0],
     published = data?.tasks.filter((t) => t.state === "published").length || 0;
+  const visibleSources = data?.sources.filter(s =>
+    (sourceFilter === "all" || (sourceFilter === "paused" ? s.paused : !s.paused)) &&
+    (s.company + " " + s.id).toLocaleLowerCase().includes(sourceSearch.trim().toLocaleLowerCase())
+  ) || [];
   return (
     <section className="agent-operations" aria-labelledby="agent-title">
       <div className="agent-heading">
@@ -264,8 +271,8 @@ export function AgentOperations() {
             ))}
           </div>
           <div className="agent-columns">
-            <div className="agent-panel">
-              <h3>Coordinator priorities</h3>
+            <details className="agent-panel">
+              <summary>Coordinator priorities{data.latest_brief ? " · " + date(data.latest_brief.created_at) : " · no saved brief"}</summary>
               <p>
                 Send source-health findings to Cloudflare AI to decide what
                 deserves attention first. No CVs, account details or feedback
@@ -316,7 +323,7 @@ export function AgentOperations() {
                   No AI brief has been generated yet.
                 </p>
               )}
-            </div>
+            </details>
             <div className="agent-panel">
               <h3>Quality review</h3>
               <p>
@@ -353,9 +360,9 @@ export function AgentOperations() {
               </div>
             </div>
           </div>
-          <details className="agent-panel" open>
+          <details className="agent-panel">
             <summary>
-              Latest run {latest ? "· " + label(latest.state) : "· no run yet"}
+              Latest run {latest ? "· " + label(latest.state) + " · " + published + "/" + data.tasks.length + " sources published" : "· no run yet"}
             </summary>
             {latest && (
               <>
@@ -433,6 +440,11 @@ export function AgentOperations() {
               successful refresh to bring them back. Three failed fetches
               trigger a six-hour cooldown.
             </p>
+            <div className="agent-source-filters">
+              <label>Find an employer<input type="search" value={sourceSearch} onChange={e => setSourceSearch(e.target.value)} placeholder="Employer name" /></label>
+              <label>Source status<select value={sourceFilter} onChange={e => setSourceFilter(e.target.value)}><option value="all">All sources</option><option value="paused">Paused sources</option><option value="enabled">Unpaused sources</option></select></label>
+            </div>
+            <p className="fine-print" role="status">Showing {visibleSources.length} of {data.sources.length} sources. Filtering does not change source controls.</p>
             {change && (
               <form
                 className="agent-source-form"
@@ -448,6 +460,7 @@ export function AgentOperations() {
                 <strong>
                   {change.paused ? "Resume" : "Pause"} {change.company}
                 </strong>
+                {change.control?.reason && <p>Saved reason: {change.control.reason}</p>}
                 <label>
                   Reason
                   <input
@@ -468,13 +481,14 @@ export function AgentOperations() {
                 </div>
               </form>
             )}
-            {data.sources.map((s) => (
+            {visibleSources.length === 0 && <p>No matching sources. Change the name or status filter.</p>}
+            {visibleSources.map((s) => (
               <div className="agent-source" key={s.id}>
                 <div>
                   <a href={s.careers} target="_blank" rel="noreferrer">
                     {s.company}
                   </a>
-                  {s.collection?.state==='collecting'&&<small>Gathering descriptions: {s.collection.ready} / {s.collection.total}. {s.paused ? 'Collection is paused.' : 'Continuation requires an eligible scheduled pass and available request allowance.'}</small>}
+                  {s.collection?.state==='collecting'&&<small>Last completed collection pass: {s.collection.ready} / {s.collection.total} descriptions ready · {date(s.collection.checked_at)}. Partial descriptions stay private. {s.paused ? 'Collection is paused.' : 'Continuation requires an eligible scheduled pass and available request allowance.'}</small>}
                   <small>
                     {s.paused
                       ? "Paused"
@@ -487,6 +501,7 @@ export function AgentOperations() {
                       ? "Reviewed licence link"
                       : "Licence link unconfirmed"}
                   </small>
+                  {s.control && <details className="agent-source-reason"><summary>Saved control reason · {date(s.control.updated_at || undefined)}</summary><p>{s.control.reason || 'No reason was retained for this control.'}</p></details>}
                 </div>
                 <div className="agent-actions">
                   <button

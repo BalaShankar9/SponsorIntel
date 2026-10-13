@@ -233,6 +233,12 @@
   color: #315735;
   font-weight: 650;
 }
+.agent-source-filters { display:flex;flex-wrap:wrap;gap:12px;margin-top:16px; }
+.agent-source-filters label { display:grid;gap:6px;flex:1 1 180px;min-width:0;font-size:12px; }
+.agent-source-filters input,.agent-source-filters select { width:100%;min-width:0;padding:10px;border:1px solid #bbcbb2;border-radius:7px;background:white;color:#29432b; }
+.agent-source-reason { margin-top:10px;max-width:640px;overflow-wrap:anywhere; }
+.agent-panel .agent-source-reason summary { font-size:12px;font-weight:500; }
+.agent-source-reason p { white-space:pre-wrap; }
 .agent-source-form {
   background: #f5f7f0;
   border: 1px solid #ccd7c4;
