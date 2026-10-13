@@ -13,3 +13,11 @@ The current collection is 935 roles/36 employers/54 sponsorship-worded adverts (
 No migration or dependency graph change. Reuse the successful 13 October recovery-point/schema inspection and official dependency-advisory review. Rollback reference: 2.67 Worker `6c78d9d4-2857-44b4-ae3c-e2726fed0581`. Preserve all review history, paused comparisons, source/marketing holds, budgets and uncertain outcomes. A rollback would remove the new phrase guard; it cannot clear the Loughborough hold or permit source admission. Inspect exact-head hosted checks and live deployment evidence separately.
 
 Next gate: observe the next genuine eligible discovery/source run, without forcing execution or presenting unchanged stored rows as new scheduled proof. Existing candidates are not retroactively relabelled or erased.
+
+## Live verification
+
+Worker `444062e9-7bed-43a6-a501-4eab6fe13548` serves **2.68.0** from `a4a1ef57876c8a005592d34271a1e1c796b9ccaf`. Excluded checks at 14:54:09 UTC verify health/jobs 200, correct release and 935 current jobs; anonymous dashboard and advert-review reads remain 403. Eight protected control/history/budget hashes match, with one shared AI start/zero calls. The refreshed authenticated overview shows 935/54; the held Loughborough revision and two-decision history were browser-verified. Temporary source tabs were closed.
+
+Original business-497750 completed successfully in Cloudflare at 15:46:11 London (14:46:11 UTC); its D1 completion is 14:46:11.256 UTC and application state attention. It incorporates the prior Whitchurch/Lift reviews with zero overdue discovery records, zero changed links, three current links, three advert holds/zero overdue and four published/zero overdue or uncertain social records. Seven findings/one high remain. Its snapshot predates Loughborough's 14:46:25 revision; that later monitoring observation stays pending.
+
+Both hosted Linux checks 115364850057/115364878270 and GitGuardian 115364899769 passed at code head `a4a1ef57876c8a005592d34271a1e1c796b9ccaf`, completed by 14:55:32 UTC. Later documentation heads require their own check; no merge.
