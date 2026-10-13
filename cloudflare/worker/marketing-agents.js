@@ -285,8 +285,27 @@ export async function marketingAgentSnapshot(env){
  const control=await env.DB.prepare('SELECT enabled FROM marketing_agent_controls WHERE singleton=1').first();
  return {enabled:!!control?.enabled,business_enabled:!!(await env.DB.prepare('SELECT enabled FROM business_controls WHERE singleton=1').first())?.enabled,models:modelConfig(env),opportunities:{ready:opportunities.sources.length,held:opportunities.held.length,scope:opportunities.scope,items:opportunities.sources.map(s=>({title:s.title,url:s.url,expires_at:s.expires_at,wording:s.facts[1]}))},budget:{runs:budget?.runs||0,calls:budget?.calls||0,run_limit:4,call_limit:32},runs:rows.results.map(r=>({...r,models:JSON.parse(r.models),context:r.context?JSON.parse(r.context):null,result:r.result?JSON.parse(r.result):null})),steps:steps.map(s=>({...s,output:s.output?JSON.parse(s.output):null,usage:s.usage?JSON.parse(s.usage):null}))};
 }
+const validHistoryId=id=>/^marketing-\d{4}-\d{2}-\d{2}$/.test(id)&&Number.isFinite(Date.parse(id.slice(10)+'T00:00:00Z'))&&iso(Date.parse(id.slice(10)+'T00:00:00Z')).slice(0,10)===id.slice(10);
+// Historical inspection is read-only: no opportunity/source refresh, provider
+// request, workflow status inference, allowance reservation or control mutation.
+export async function marketingAgentHistory(request,env){
+ const url=new URL(request.url),id=url.searchParams.get('id'),before=url.searchParams.get('before');
+ if([...url.searchParams.keys()].some(k=>!['id','before'].includes(k))||url.searchParams.getAll('id').length>1||url.searchParams.getAll('before').length>1||id!==null&&before!==null||id!==null&&!validHistoryId(id)||before!==null&&!validHistoryId(before))return reply({error:'Invalid history selection.'},400);
+ if(id!==null){
+  const row=await env.DB.prepare('SELECT * FROM marketing_agent_runs WHERE id=?').bind(id).first();
+  if(!row)return reply({error:'Recorded marketing run not found.'},404);
+  const steps=(await env.DB.prepare('SELECT name,role,state,created_at,output,usage FROM marketing_agent_steps WHERE run_id=? ORDER BY created_at,name').bind(id).all()).results;
+  return reply({run:{...row,models:JSON.parse(row.models),context:row.context?JSON.parse(row.context):null,result:row.result?JSON.parse(row.result):null},steps:steps.map(s=>({...s,output:s.output?JSON.parse(s.output):null,usage:boundedResearchUsage(s.usage?JSON.parse(s.usage):null)}))});
+ }
+ let cursor=null;
+ if(before!==null){cursor=await env.DB.prepare('SELECT id,created_at FROM marketing_agent_runs WHERE id=?').bind(before).first();if(!cursor)return reply({error:'History cursor no longer exists. Refresh the newest page.'},404);}
+ const fields='id,day,state,created_at,finished_at,calls,policy';
+ const rows=(await (cursor?env.DB.prepare(`SELECT ${fields} FROM marketing_agent_runs WHERE created_at<? OR (created_at=? AND id<?) ORDER BY created_at DESC,id DESC LIMIT 11`).bind(cursor.created_at,cursor.created_at,cursor.id):env.DB.prepare(`SELECT ${fields} FROM marketing_agent_runs ORDER BY created_at DESC,id DESC LIMIT 11`)).all()).results;
+ return reply({runs:rows.slice(0,10),next_before:rows.length>10?rows[9].id:null});
+}
 export async function marketingAgentsAPI(request,env,owner){
  const path=new URL(request.url).pathname;
+ if(request.method==='GET'&&path==='/api/admin/marketing/agents/history')return marketingAgentHistory(request,env);
  if(request.method==='GET'&&path==='/api/admin/marketing/agents')return reply(await marketingAgentSnapshot(env));
  if(request.method!=='POST')return reply({error:'Not found'},404);
  if(!sameOrigin(request))return reply({error:'Use the owner dashboard.'},403);
