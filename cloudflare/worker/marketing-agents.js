@@ -1,7 +1,8 @@
 import {bodyJSON,digest,limit,reply,sameOrigin} from './auth.js';
 import {boundedText} from './data.js';
 import {plainText} from './jobs.js';
-import {callResearchModel} from './research-model.js';
+import {callResearchModel,researchResponseFailure} from './research-model.js';
+import {boundedResearchUsage,researchCompletion} from '../shared/research-completion.js';
 import {createBrief,decideBrief} from './marketing.js';
 import {campaignById} from '../shared/campaigns.js';
 import {publicMeasurement} from './analytics.js';
@@ -157,10 +158,28 @@ export async function marketingModelStep(env,id,name,role,prompt,input,validate,
   env.DB.prepare('UPDATE marketing_agent_runs SET calls=calls+1 WHERE id=?').bind(id),
   env.DB.prepare("INSERT INTO marketing_agent_steps(run_id,name,role,state,created_at) VALUES(?,?,?,'calling',?)").bind(id,name,role,iso(now)),
  ]);
- try{const response=await caller(env,models[role],prompt,input),output=validate(response.value);
-  await env.DB.prepare("UPDATE marketing_agent_steps SET state='completed',output=?,usage=? WHERE run_id=? AND name=?").bind(JSON.stringify(output),JSON.stringify(response.usage||null),id,name).run();return output;
- }catch{
-  await env.DB.prepare("UPDATE marketing_agent_steps SET state='failed',output=? WHERE run_id=? AND name=?").bind(JSON.stringify({failure:'Model service or structured evidence validation failed. No automatic retry.'}),id,name).run();throw Error('Model call or evidence validation failed.');
+ let response,output,encoded,usage,phase='call';
+ const retained=async()=>{
+  const row=await env.DB.prepare('SELECT state,output,usage FROM marketing_agent_steps WHERE run_id=? AND name=?').bind(id,name).first();
+  return row?.state==='completed'&&row.output===encoded&&row.usage===usage;
+ };
+ try{
+  response=await caller(env,models[role],prompt,input);phase='validation';output=validate(response.value);
+  encoded=JSON.stringify(output);usage=JSON.stringify(boundedResearchUsage(response.usage));phase='retention';
+  await env.DB.prepare("UPDATE marketing_agent_steps SET state='completed',output=?,usage=? WHERE run_id=? AND name=? AND state='calling'").bind(encoded,usage,id,name).run();
+  if(!await retained())throw Error('Result retention is unconfirmed.');
+  return output;
+ }catch(error){
+  // A committed write can lose its acknowledgement. Reconcile the exact result,
+  // never overwrite a completed receipt or repeat its charged provider call.
+  if(phase==='retention')try{if(await retained())return output;}catch{}
+  const completion=response?researchCompletion({...response.completion,failure_stage:phase==='validation'?'contract_validation':'retention_unconfirmed'}):researchResponseFailure(error);
+  const failure_stage=completion?.failure_stage||(phase==='call'?'provider_unconfirmed':phase==='validation'?'contract_validation':'retention_unconfirmed');
+  const messages={provider_unconfirmed:'The model service outcome is unconfirmed.',incomplete_response:'The provider reported an incomplete response.',invalid_json:'The received response was not valid JSON.',invalid_response:'The provider response was missing or invalid.',contract_validation:'The received result failed the required evidence structure.',retention_unconfirmed:'The validated result could not be confirmed as saved.'};
+  // No raw provider error, rejected text or reasoning enters these diagnostics.
+  const failure={failure:messages[failure_stage]+' No automatic retry.',failure_stage,...(completion?{completion}:{})};
+  try{await env.DB.prepare("UPDATE marketing_agent_steps SET state='failed',output=?,usage=? WHERE run_id=? AND name=? AND state='calling'").bind(JSON.stringify(failure),JSON.stringify(boundedResearchUsage(response?.usage||completion?.usage)),id,name).run();}catch{/* Retain calling/unknown state and its reservation when storage is unavailable. */}
+  throw Error('Model call or evidence validation failed.');
  }
 }
 export async function planMarketing(env,id,caller,now=Date.now()){
