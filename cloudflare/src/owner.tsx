@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ShieldCheck,
@@ -21,6 +21,9 @@ import {BrowserEvidenceAnalytics} from './browser-evidence-analytics';
 import {MarketingDesk} from './marketing-desk';
 import {SupportDesk} from './support-desk';
 import {ApplicationEvaluation} from './application-evaluation';
+import {AgentResearch} from './agent-research';
+import {ADMIN_SECTIONS,adminSectionFromHash} from '../shared/admin-navigation.js';
+import './owner-navigation.css';
 type Go = (view: string) => void;
 async function api(path: string, body?: unknown) {
   const r = await fetch(
@@ -47,6 +50,25 @@ const date = (value: string | number | null) =>
 const number = (value: number = 0) => value.toLocaleString("en-GB");
 export function OwnerDashboard({ go }: { go: Go }) {
   const { user, ready } = useCareer();
+  const [section, setSection] = useState(() => adminSectionFromHash(location.hash));
+  const [visited, setVisited] = useState(() => new Set([adminSectionFromHash(location.hash)]));
+  const sectionHeading = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    const change = () => {
+      const next = adminSectionFromHash(location.hash);
+      setSection(next);
+      setVisited(previous => new Set([...previous, next]));
+      requestAnimationFrame(() => {
+        sectionHeading.current?.focus({preventScroll:true});
+        sectionHeading.current?.scrollIntoView({block:'start'});
+      });
+    };
+    window.addEventListener('hashchange',change);
+    return () => window.removeEventListener('hashchange',change);
+  }, []);
+  const currentSection = ADMIN_SECTIONS.find(item => item.id === section)!;
+  const panel = (id:string, children:React.ReactNode) => visited.has(id) ?
+    <div key={id} className="owner-section" hidden={section!==id}>{children}</div> : null;
   const [data, setData] = useState<any>(null),
     [days, setDays] = useState(30),
     [page, setPage] = useState(1),
@@ -150,28 +172,8 @@ export function OwnerDashboard({ go }: { go: Go }) {
         <span className="eyebrow">OWNER DASHBOARD</span>
         <h1>Know what’s working.</h1>
         <p>
-          Real usage, people and source checks. Private to your owner account.
+          Your daily overview, with a dedicated space for every task.
         </p>
-        <div className="platform-actions">
-          <label>
-            Period{" "}
-            <select
-              value={days}
-              onChange={(e) => setDays(Number(e.target.value))}
-            >
-              <option value={7}>7 days</option>
-              <option value={30}>30 days</option>
-              <option value={90}>90 days</option>
-            </select>
-          </label>
-          <button
-            className="secondary-button"
-            onClick={() => void load()}
-            disabled={busy}
-          >
-            <RefreshCw size={16} /> Refresh
-          </button>
-        </div>
       </section>
       {error && (
         <p className="career-error" role="alert">
@@ -181,21 +183,39 @@ export function OwnerDashboard({ go }: { go: Go }) {
       {busy && !data && <p role="status">Loading your dashboard…</p>}
       {data && (
         <>
-          <BusinessOperations />
-          <SearchPerformance />
-          <MarketingDesk />
-          <AgentOperations />
-          <DiscoveryDesk />
-          <JobReviews />
-          <CampaignAnalytics data={data.campaigns} />
-          <BrowserEvidenceAnalytics data={data.measurement?.browser_evidence} />
-          <p className="fine-print">
-            Checked {date(data.measured_at)} · New measurement baseline enabled {date(data.measurement?.enabled_at)}.
-            Signed-in owners and declared test requests are excluded. Earlier dates have no comparable data; today is partial.
-            Daily totals use UTC; timestamps use your local time. Earliest retained eligible activity:{" "}
-            {data.tracking_started || "none yet"} (90-day retention).
-          </p>
-          <details className="career-panel"><summary>Earlier mixed activity — historical only</summary><p>These older totals for the selected period include owner testing. They have been preserved separately and are excluded from new growth decisions. They cannot be retroactively separated into customers and operators.</p><p>{data.legacy_metrics?.filter((m:any)=>!m.event.startsWith('campaign_')).map((m:any)=>`${m.event.replaceAll('_',' ')}: ${number(m.count)}`).join(' · ') || 'No earlier activity retained in this period.'}</p></details>
+          <nav className="owner-nav" aria-label="Admin sections">
+            {ADMIN_SECTIONS.map(item=><a key={item.id} href={'#admin-'+item.id} aria-current={section===item.id?'page':undefined}>{item.label}</a>)}
+          </nav>
+          <label className="owner-mobile-nav">Admin section
+            <select value={section} onChange={e=>{location.hash='admin-'+e.target.value;}}>
+              {ADMIN_SECTIONS.map(item=><option key={item.id} value={item.id}>{item.label}</option>)}
+            </select>
+          </label>
+          <header className="owner-section-heading">
+            <div><h2 ref={sectionHeading} tabIndex={-1}>{currentSection.label}</h2><p>{currentSection.description}</p></div>
+            <div className="owner-period"><div className="platform-actions">
+          {['overview','analytics','people'].includes(section) && <label>
+            Period{" "}
+            <select
+              value={days}
+              onChange={(e) => setDays(Number(e.target.value))}
+            >
+              <option value={7}>7 days</option>
+              <option value={30}>30 days</option>
+              <option value={90}>90 days</option>
+            </select>
+          </label>}
+          <button
+            className="secondary-button"
+            onClick={() => void load()}
+            disabled={busy}
+          >
+            <RefreshCw size={16} /> Refresh
+          </button>
+        </div>
+</div>
+          </header>
+          <div hidden={section!=='overview'}>
           <div className="platform-stats">
             {[
               [Users, "Non-owner accounts", data.users.members],
@@ -214,140 +234,19 @@ export function OwnerDashboard({ go }: { go: Go }) {
               </article>
             ))}
           </div>
-          <div className="platform-grid">
-            <section className="career-panel">
-              <h2>Page activity</h2>
-              <p className="fine-print">
-                Aggregated page opens, including repeat visits, signed-out operators and possible bots.
-                No visitor IDs, analytics cookies, search terms or CV content are stored.
-                Prepared documents count successful responses, not saved files, submitted applications or outcomes.
-              </p>
-              <div
-                className="usage-bars"
-                role="img"
-                aria-label={`${sum("page_view")} page views in ${days} days`}
-              >
-                {daily.map((d) => (
-                  <div key={d.day} title={data.measurement?.enabled_at && d.day < data.measurement.enabled_at.slice(0,10) ? `${d.day}: before the new baseline` : `${d.day}: ${d.count}${d.day===data.measurement?.enabled_at?.slice(0,10)?" (partial starting day)":""}`}>
-                    <i
-                      style={{
-                        height: `${Math.max(2, (d.count / peak) * 100)}%`,
-                      }}
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="bar-dates">
-                <span>{daily[0].day}</span>
-                <span>Today</span>
-              </div>
-              <div className="metric-list">
-                {Object.entries(routes)
-                  .sort((a, b) => b[1] - a[1])
-                  .slice(0, 8)
-                  .map(([route, count]) => (
-                    <p key={route}>
-                      <span>{route}</span>
-                      <strong>{number(count)}</strong>
-                    </p>
-                  ))}
-                {!views.length && <p>No page activity recorded yet.</p>}
-              </div>
-            </section>
-            <section className="career-panel">
-              <h2>Your community</h2>
-              <div className="metric-list">
-                <p>
-                  <span>New non-owner accounts in period</span>
-                  <strong>{data.users.new_users}</strong>
-                </p>
-                <p>
-                  <span>Non-owner accounts with a current session used in period</span>
-                  <strong>{data.users.active_sessions}</strong>
-                </p>
-                <p>
-                  <span>Successful sign-ins</span>
-                  <strong>{sum("sign_in")}</strong>
-                </p>
-                <p>
-                  <span>Successful server research & preparation responses</span>
-                  <strong>{sum("preparation_completed")}</strong>
-                </p>
-                <p>
-                  <span>Guidance clarifications or insufficient evidence</span>
-                  <strong>{sum("guidance_followup")}</strong>
-                </p>
-                <p>
-                  <span>Feedback submissions</span>
-                  <strong>{sum("feedback_sent")}</strong>
-                </p>
-                <p>
-                  <span>Current vacancies</span>
-                  <strong>{number(data.jobs.total)}</strong>
-                </p>
-                <p>
-                  <span>Adverts with positive / conditional wording</span>
-                  <strong>{number(data.jobs.sponsorship)}</strong>
-                </p>
-              </div>
-              <p className="fine-print">
-                Session activity is updated at most once a day. Generations count successful responses; they
-                do not measure application quality or job outcomes.
-              </p>
-            </section>
+            <p className="fine-print">Activity for the selected period. Owners and declared tests are excluded; repeat visits and bots may remain. These are event counts, not unique people or outcomes. Today is partial.</p>
+            <div className="owner-shortcuts">
+              <a href="#admin-jobs"><BriefcaseBusiness size={18}/><span><strong>{number(data.jobs.total)} current jobs</strong>{number(data.jobs.sponsorship)} with sponsorship wording</span><ArrowRight size={16}/></a>
+              <a href="#admin-marketing"><MessageSquare size={18}/><span><strong>Marketing desk</strong>Review content and delivery</span><ArrowRight size={16}/></a>
+            </div>
           </div>
-          <section className="career-panel">
-            <h2>Registered users</h2>
-            <p>
-              Account details and activity only. This dashboard does not expose
-              anyone’s CV, application notes or generated documents.
-            </p>
-            <div className="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Joined</th>
-                    <th>Last session update</th>
-                    <th>Workspace saved</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.users.items.map((u: any) => (
-                    <tr key={u.id}>
-                      <td>{u.name}</td>
-                      <td>
-                        {u.email}
-                        <small>{u.emailVerified ? 'Verified email' : 'Email awaiting verification'}</small>
-                      </td>
-                      <td>{date(u.createdAt)}</td>
-                      <td>{date(u.last_session)}</td>
-                      <td>{date(u.workspace_updated)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            {!data.users.items.length && <p>No registered users yet.</p>}
-            <div className="platform-actions">
-              <button
-                disabled={page === 1 || busy}
-                onClick={() => setPage((p) => p - 1)}
-              >
-                Previous
-              </button>
-              <span>Page {page}</span>
-              <button
-                disabled={page * 25 >= data.users.total || busy}
-                onClick={() => setPage((p) => p + 1)}
-              >
-                Next
-              </button>
-            </div>
-          </section>
-          <section className="career-panel">
-            <h2>Data freshness</h2>
+          <div hidden={!['overview','operations'].includes(section)}>
+            <BusinessOperations overview={section!=='operations'}/>
+          </div>
+          {panel('jobs', <><DiscoveryDesk/><JobReviews/></>)}
+          {panel('sources', <>
+          <details className="career-panel owner-fold">
+            <summary>Data freshness <span>Registers and {data.job_sources.length} employer feeds</span></summary>
             <p>
               The sponsor register checks daily; employer boards every six
               hours; selected immigration sources every 15 minutes. Failed
@@ -484,9 +383,9 @@ export function OwnerDashboard({ go }: { go: Go }) {
                 </p>
               )}
             </details>
-          </section>
-          <section className="career-panel">
-            <h2>Add a reliable employer feed</h2>
+          </details>
+          <details className="career-panel owner-fold">
+            <summary>Employer feed reviews <span>Add a feed or inspect {data.boards.length} review records</span></summary>
             <p>
               Find the employer’s official careers page, follow its Greenhouse,
               Lever or Ashby board, or its DfE Teaching Vacancies school page, and match the legal entity in the sponsor
@@ -597,9 +496,158 @@ export function OwnerDashboard({ go }: { go: Go }) {
               board removes its vacancies from discovery. Review sponsorship
               wording on each advert.
             </p>
+          </details>
+            <details className="owner-fold career-panel"><summary>Source agent controls <span>Refresh runs, budgets and source tasks</span></summary><AgentOperations/></details>
+          </>)}
+          {panel('marketing', <MarketingDesk/>)}
+          {panel('analytics', <>
+          <p className="fine-print">
+            Checked {date(data.measured_at)} · New measurement baseline enabled {date(data.measurement?.enabled_at)}.
+            Signed-in owners and declared test requests are excluded. Earlier dates have no comparable data; today is partial.
+            Daily totals use UTC; timestamps use your local time. Earliest retained eligible activity:{" "}
+            {data.tracking_started || "none yet"} (90-day retention).
+          </p>
+          <details className="career-panel"><summary>Earlier mixed activity — historical only</summary><p>These older totals for the selected period include owner testing. They have been preserved separately and are excluded from new growth decisions. They cannot be retroactively separated into customers and operators.</p><p>{data.legacy_metrics?.filter((m:any)=>!m.event.startsWith('campaign_')).map((m:any)=>`${m.event.replaceAll('_',' ')}: ${number(m.count)}`).join(' · ') || 'No earlier activity retained in this period.'}</p></details>
+          <div className="platform-grid">
+            <section className="career-panel">
+              <h2>Page activity</h2>
+              <p className="fine-print">
+                Aggregated page opens, including repeat visits, signed-out operators and possible bots.
+                No visitor IDs, analytics cookies, search terms or CV content are stored.
+                Prepared documents count successful responses, not saved files, submitted applications or outcomes.
+              </p>
+              <div
+                className="usage-bars"
+                role="img"
+                aria-label={`${sum("page_view")} page views in ${days} days`}
+              >
+                {daily.map((d) => (
+                  <div key={d.day} title={data.measurement?.enabled_at && d.day < data.measurement.enabled_at.slice(0,10) ? `${d.day}: before the new baseline` : `${d.day}: ${d.count}${d.day===data.measurement?.enabled_at?.slice(0,10)?" (partial starting day)":""}`}>
+                    <i
+                      style={{
+                        height: `${Math.max(2, (d.count / peak) * 100)}%`,
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="bar-dates">
+                <span>{daily[0].day}</span>
+                <span>Today</span>
+              </div>
+              <div className="metric-list">
+                {Object.entries(routes)
+                  .sort((a, b) => b[1] - a[1])
+                  .slice(0, 8)
+                  .map(([route, count]) => (
+                    <p key={route}>
+                      <span>{route}</span>
+                      <strong>{number(count)}</strong>
+                    </p>
+                  ))}
+                {!views.length && <p>No page activity recorded yet.</p>}
+              </div>
+            </section>
+            <section className="career-panel">
+              <h2>Your community</h2>
+              <div className="metric-list">
+                <p>
+                  <span>New non-owner accounts in period</span>
+                  <strong>{data.users.new_users}</strong>
+                </p>
+                <p>
+                  <span>Non-owner accounts with a current session used in period</span>
+                  <strong>{data.users.active_sessions}</strong>
+                </p>
+                <p>
+                  <span>Successful sign-ins</span>
+                  <strong>{sum("sign_in")}</strong>
+                </p>
+                <p>
+                  <span>Successful server research & preparation responses</span>
+                  <strong>{sum("preparation_completed")}</strong>
+                </p>
+                <p>
+                  <span>Guidance clarifications or insufficient evidence</span>
+                  <strong>{sum("guidance_followup")}</strong>
+                </p>
+                <p>
+                  <span>Feedback submissions</span>
+                  <strong>{sum("feedback_sent")}</strong>
+                </p>
+                <p>
+                  <span>Current vacancies</span>
+                  <strong>{number(data.jobs.total)}</strong>
+                </p>
+                <p>
+                  <span>Adverts with positive / conditional wording</span>
+                  <strong>{number(data.jobs.sponsorship)}</strong>
+                </p>
+              </div>
+              <p className="fine-print">
+                Session activity is updated at most once a day. Generations count successful responses; they
+                do not measure application quality or job outcomes.
+              </p>
+            </section>
+          </div>
+            <SearchPerformance/>
+            <CampaignAnalytics data={data.campaigns}/>
+            <BrowserEvidenceAnalytics data={data.measurement?.browser_evidence}/>
+          </>)}
+          {panel('people', <>
+          <section className="career-panel">
+            <h2>Registered users</h2>
+            <p>
+              Account details and activity only. This dashboard does not expose
+              anyone’s CV, application notes or generated documents.
+            </p>
+            <div className="table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Joined</th>
+                    <th>Last session update</th>
+                    <th>Workspace saved</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.users.items.map((u: any) => (
+                    <tr key={u.id}>
+                      <td>{u.name}</td>
+                      <td>
+                        {u.email}
+                        <small>{u.emailVerified ? 'Verified email' : 'Email awaiting verification'}</small>
+                      </td>
+                      <td>{date(u.createdAt)}</td>
+                      <td>{date(u.last_session)}</td>
+                      <td>{date(u.workspace_updated)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {!data.users.items.length && <p>No registered users yet.</p>}
+            <div className="platform-actions">
+              <button
+                disabled={page === 1 || busy}
+                onClick={() => setPage((p) => p - 1)}
+              >
+                Previous
+              </button>
+              <span>Page {page}</span>
+              <button
+                disabled={page * 25 >= data.users.total || busy}
+                onClick={() => setPage((p) => p + 1)}
+              >
+                Next
+              </button>
+            </div>
           </section>
-          <ApplicationEvaluation />
-          <SupportDesk />
+            <SupportDesk/>
+          </>)}
+          {panel('quality', <><AgentResearch/><ApplicationEvaluation/></>)}
         </>
       )}
     </div>

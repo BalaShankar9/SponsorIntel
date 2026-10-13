@@ -1,0 +1,36 @@
+{
+  "release": "2.67.0",
+  "scope": "owner dashboard navigation only",
+  "baseline": {
+    "observed_page": "authenticated production admin 2.66",
+    "viewport_width": 1384,
+    "viewport_height": 658,
+    "document_height": 24779,
+    "owner_height": 24527
+  },
+  "local_browser": {
+    "fixture": "tests/fixtures/admin-navigation-preview.mjs",
+    "data": "fictional only; unavailable secondary services deliberately return errors",
+    "sections": 8,
+    "phone_width": 390,
+    "horizontal_overflow": false,
+    "draft_retained_across_navigation": true,
+    "child_search_retained_across_navigation": true,
+    "browser_back": true,
+    "keyboard_tab_and_enter": true,
+    "bookmark_reload": true,
+    "legacy_operation_alert_link": true,
+    "write_requests": 0
+  },
+  "checks": {
+    "tests_passed": 627,
+    "tests_failed": 0,
+    "typescript": true,
+    "build": true,
+    "prerenders": 17,
+    "browser_budgets": true,
+    "worker_dry_run": true
+  },
+  "rollback_worker": "32aaec5b-081d-4323-8116-a368061e06c8",
+  "production_verification": "pending deployment"
+}

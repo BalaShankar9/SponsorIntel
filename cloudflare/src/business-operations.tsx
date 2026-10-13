@@ -13,7 +13,7 @@ type Draft={id:string;audience:string;text:string;state:string;expires_at:string
 type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];social_delivery?:SocialDeliveryHealth;job_links?:JobLinkHealth;job_movement?:JobMovementHealth;discovery_scout?:DiscoveryScoutHealth;publications:{slug:string;title:string;state:string;updated_at:string}[]};
 const stamp=(x:string)=>new Date(x).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
 async function api(path='',body?:unknown){const r=await fetch('/api/admin/business'+path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});const v=await r.json();if(!r.ok)throw Error(v.error||'Operations could not load.');return v;}
-export function BusinessOperations(){
+export function BusinessOperations({overview=false}:{overview?:boolean}){
   const[data,setData]=useState<Data|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),[message,setMessage]=useState('');
   async function load(){try{setData(await api());setError('');}catch(e){setError((e as Error).message);}}
   useEffect(()=>{void load();const timer=setInterval(()=>{if(!document.hidden)void load();},20000);return()=>clearInterval(timer);},[]);
@@ -23,7 +23,20 @@ export function BusinessOperations(){
   const measurement=run?.snapshot?.measurement;
   const metrics=measurement?.version===2?run?.snapshot?.metrics||[]:[];
   const totals:Record<string,number>={};for(const m of metrics)totals[m.event]=(totals[m.event]||0)+m.count;
-  return <section className="business-ops" aria-labelledby="business-heading">
+  const priority:Record<string,number>={critical:0,high:1,normal:2,low:3};
+  const urgent=[...(data?.issues||[])].sort((a,b)=>(priority[a.severity]??2)-(priority[b.severity]??2));
+  return <>
+    <section hidden={!overview} className="business-ops owner-overview" aria-labelledby="overview-attention-heading">
+      <div className="business-section-heading"><h3 id="overview-attention-heading">Needs attention</h3><a href="#admin-operations">All operations <ArrowUpRight size={15}/></a></div>
+      {error&&<p className="career-error" role="alert">{error}</p>}
+      {!data?<p>Loading operational findings…</p>:<>
+        <p className="business-fine">{data.issues.length} open findings · {!active?'Operations paused':`Latest hourly check: ${data.heartbeat}`}{run?.finished_at?' · '+stamp(run.finished_at):''}</p>
+        <div className="business-issues">{urgent.slice(0,4).map(x=><details key={x.id}><summary><span className={'business-priority '+x.severity}>{x.severity}</span>{x.title}</summary><p>{x.detail}</p><p><strong>Next action:</strong> {x.next_action}</p></details>)}</div>
+        {!data.issues.length&&<p className="business-fine">No open findings recorded. This does not establish that every requirement is met.</p>}
+        {data.issues.length>4&&<p className="business-fine"><a href="#admin-operations">View all {data.issues.length} findings and receipts</a></p>}
+      </>}
+    </section>
+    <section hidden={overview} className="business-ops" aria-labelledby="business-heading">
     <header className="business-head"><div><p className="business-eyebrow">Your operating desk</p><h2 id="business-heading">Business operations</h2><p>Scheduled work, evidence and the next decisions. Running on Cloudflare.</p></div><div className="business-actions"><button onClick={()=>void load()} disabled={busy} aria-label="Refresh business operations"><RefreshCw size={16}/></button><button onClick={()=>void act('/run',{})} disabled={busy||!active}><Play size={15}/> Run checks</button></div></header>
     {error&&<p className="career-error" role="alert">{error}</p>}{message&&<p role="status">{message}</p>}
     {!data?<p>Loading the operating desk…</p>:<>
@@ -52,9 +65,9 @@ export function BusinessOperations(){
       <p className="business-fine">{!measurement?.completed_days?'Waiting for a complete day of the new baseline. The next scheduled run will update this view. ':''}Signed-in owners and declared test requests are excluded. Earlier mixed counts and the partial starting day are excluded from agent decisions. Repeat visits, signed-out operators and bots may remain. Events do not establish unique visitors, saved files, submitted applications or outcomes. Search rankings, social reach and revenue are not connected.{measurement?.enabled_at?' Collection boundary: '+stamp(measurement.enabled_at)+'.':''}</p>
       <div className="business-section-heading"><h3>Published insights</h3><a href="/insights" target="_blank" rel="noreferrer">Open the publication <ArrowUpRight size={15}/></a></div>
       {data.publications.length?data.publications.map(p=><div className="business-publication" key={p.slug}><div><strong>{p.title}</strong><p>{p.state} · Updated {stamp(p.updated_at)}</p></div>{p.state==='published'&&<button disabled={busy} onClick={()=>void act('/withdraw',{slug:p.slug})}>Withdraw & pause publishing</button>}</div>):<p className="business-fine">The first report appears after its evidence checks pass.</p>}
-      <div className="business-section-heading"><h3>Report drafts</h3><span>See the Marketing desk below</span></div><p className="business-fine">The Marketing desk keeps versioned copy, reviews and schedule receipts. Drafts already recorded there are omitted here to prevent duplicate use. Remaining drafts have not been sent and expire after seven days.</p>
+      <div className="business-section-heading"><h3>Report drafts</h3><span>Open the Marketing section</span></div><p className="business-fine">The Marketing section keeps versioned copy, reviews and schedule receipts. Drafts already recorded there are omitted here to prevent duplicate use. Remaining drafts have not been sent and expire after seven days.</p>
       {data.outbox.map(p=><details className="business-draft" key={p.id}><summary>{p.audience==='personal'?'Personal LinkedIn':'Sponsor Intel company pages'} · {p.state.replaceAll('_',' ')}</summary><p className="business-post">{p.text}</p><p className="business-fine">Expires {stamp(p.expires_at)}</p><button onClick={()=>void navigator.clipboard.writeText(p.text).then(()=>setMessage('Draft copied. It has not been posted.')).catch(()=>setError('Copy was unavailable. Select the draft text instead.'))}>Copy draft</button></details>)}
       <details className="business-history"><summary>Recent execution history</summary>{data.runs.map(r=><p key={r.id}><strong>{r.state}</strong> · {stamp(r.created_at)} · {r.trigger_kind==='scheduled'?'Scheduled':r.trigger_kind==='owner'?'Owner-triggered':'Origin not recorded'} · {r.id}</p>)}</details>
     </>}
-  </section>;
+  </section></>;
 }

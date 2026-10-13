@@ -1,0 +1,42 @@
+.owner-dashboard [hidden]{display:none!important}
+.owner-dashboard{gap:18px;min-width:0}
+.owner-dashboard .platform-hero.compact{padding:24px 28px}
+.owner-dashboard .platform-hero h1{font-size:34px;margin:8px 0}
+.owner-dashboard .platform-hero p{margin:0;font-size:14px}
+.owner-nav{display:flex;flex-wrap:wrap;gap:5px;position:sticky;top:12px;z-index:5;padding:8px;background:#fff;border:1px solid #dce3d7;border-radius:14px;box-shadow:0 4px 18px #25392108}
+.owner-nav a{display:flex;align-items:center;justify-content:center;flex:1 0 auto;padding:12px 13px;border-radius:9px;color:#52614f;text-decoration:none;font-size:12px;font-weight:650;min-height:44px}
+.owner-nav a:hover{background:#f1f5eb;color:#244c32}
+.owner-nav a[aria-current=page]{background:#244c32;color:white}
+.owner-dashboard :focus-visible{outline:3px solid #729356;outline-offset:3px}
+.owner-mobile-nav{display:none}
+.owner-section-heading{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.owner-section-heading h2{font-size:24px;margin:0;scroll-margin-top:100px;min-height:0}
+.owner-section-heading p{font-size:13px;line-height:1.6;color:#63705d;margin:6px 0 0}
+.owner-period .platform-actions{margin:0;flex-wrap:nowrap;font-size:12px}
+.owner-period select{padding:8px}
+.owner-section{display:grid;gap:20px;min-width:0}
+.owner-section>.business-ops,.owner-section>.agent-operations,.owner-dashboard .owner-overview{margin:0}
+.owner-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.owner-shortcuts a{display:flex;gap:14px;align-items:center;background:#f4f7ee;border:1px solid #dce5d2;border-radius:14px;padding:18px;color:#2c4d35;text-decoration:none}
+.owner-shortcuts span{display:grid;gap:5px;flex:1;font-size:12px}
+.owner-shortcuts strong{font-size:15px}
+.owner-fold>summary{font-size:17px;font-weight:650;cursor:pointer;line-height:1.5}
+.owner-fold>summary>span{display:block;font-size:12px;font-weight:400;color:#68775e;margin-top:5px}
+.owner-fold[open]>summary{padding-bottom:20px;border-bottom:1px solid #e2e8dc;margin-bottom:20px}
+.owner-overview .business-section-heading{margin-top:0}
+.owner-overview .business-section-heading a{font-weight:650;color:#2c5437}
+.owner-overview .business-issues{margin-top:12px}
+.owner-overview .business-issues details:last-child{border:0}
+.owner-overview .business-fine{margin-bottom:0}
+@media(max-width:760px){
+ .owner-nav{display:none}
+ .owner-mobile-nav{display:grid;gap:6px;position:sticky;top:8px;z-index:5;background:#fff;padding:10px 14px;border:1px solid #dce3d7;border-radius:12px;font-size:11px;font-weight:700;color:#52614f}
+ .owner-mobile-nav select{width:100%;font-size:14px;padding:10px;min-height:44px;color:#244c32}
+ .owner-section-heading{align-items:flex-start;flex-direction:column}
+ .owner-section-heading h2{scroll-margin-top:128px}
+ .owner-shortcuts{grid-template-columns:1fr}
+ .owner-dashboard .platform-hero.compact{padding:22px}
+ .owner-dashboard .platform-hero h1{font-size:29px}
+ .owner-period .platform-actions{flex-wrap:wrap}
+ .owner-overview .business-section-heading{align-items:flex-start}
+}
