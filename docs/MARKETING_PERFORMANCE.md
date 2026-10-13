@@ -39,3 +39,9 @@ Use the visible company analytics URL: `https://app.metricool.com/evolution/face
 ## First production observation, 11 October
 
 The owner desk retained `b25098d4-c062-4677-9258-f68ee55d9a75`, read at 15:14 UTC and saved at 15:16:06 UTC. Native LinkedIn shows 103 impressions, 70 reached, two general clicks and zero reactions/comments/reposts for the company welcome. Views, external clicks and saves are unknown. Matching account/post copy and the existing tagged destination were inspected; exact publication and provider freshness timestamps remain unavailable. The note records those limitations. UI reload and independent read-only D1 inspection agree. This closes real retention only. Next genuine planner use and improved growth remain unobserved; do not force a call or backfill a context. Earlier preparation/deployment gates above are historical and superseded by the production release receipt.
+
+## 13 October collection and date repair
+
+Three real Facebook observations are now retained with exact campaign identities; see [the dated review](MARKETING_REVIEW-2026-10-13.md). The connector now returns the previously missing advert guide. Do not confuse its publication-date filter with an activity interval: official provider guidance describes cumulative post data through the previous day. Keep the provider calendar boundary separate from unknown synchronization time. Current connector “impressions” versus documentation “views” naming is unresolved; neither field was inferred. The next genuine context must establish planner inclusion separately.
+
+Release 2.70 fixes native date edits being lost when another field changes. Observation, period start/end and optional publication now synchronize on input and change and retain supplied seconds. Fictional browser/API tests verify exact UTC storage, cleared unknown dates, reload and identical-request replay. Existing server bounds and append-only history are unchanged.
