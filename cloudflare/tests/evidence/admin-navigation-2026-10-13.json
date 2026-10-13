@@ -32,5 +32,76 @@
     "worker_dry_run": true
   },
   "rollback_worker": "32aaec5b-081d-4323-8116-a368061e06c8",
-  "production_verification": "pending deployment"
+  "production_verification": {
+    "worker": "6c78d9d4-2857-44b4-ae3c-e2726fed0581",
+    "code": "ac808919ca0558719c9828b99466d4034e67b71b",
+    "observed_at": "2026-10-13T11:49:23.601Z",
+    "results": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "version": "2.67.0"
+      },
+      {
+        "path": "/api/jobs",
+        "status": 200
+      },
+      {
+        "path": "/api/admin/job-reviews",
+        "status": 403
+      },
+      {
+        "path": "/api/admin/dashboard",
+        "status": 403
+      }
+    ],
+    "owner_asset": "assets/owner-BZ_LkTVL.js",
+    "owner_asset_matches": true,
+    "owner_sha256": "7a34f4bbc7b1ba81a7e762f88ccb32d09da354e85e868d541af6a4f7c5697f34",
+    "owner_browser": {
+      "all_eight_sections": true,
+      "phone_width": 390,
+      "final_horizontal_overflow": false,
+      "desktop_width": 1384,
+      "document_height": 1280,
+      "owner_height": 1028,
+      "visible_alerts": 0
+    },
+    "protected_state": {
+      "before": "2026-10-13T11:38:52.909Z",
+      "after": "2026-10-13T11:49:24.716Z",
+      "all_eight_hashes_equal": true,
+      "sha256": {
+        "research": "360e4f87e5a90e635d28f23ac63771e0427f5efcaeeb0e4ea84c55b01a3484c0",
+        "application": "7bf46ede07c48d909623c3a9f2f3300cd018166821c798d5c1a2cc97bcd354bd",
+        "application_campaign": "bfc0e8d2d2da800b2349c86b962877e6eb50e8fe80d15bb10e314d91af4b1f5a",
+        "source": "7a7d1bf85a5b52df1b0e2a6c0c726135baf172f1c7be0455df68ef29ca6c20a7",
+        "marketing": "f72f71f25548b3d63b906398a71709daef0e1210b189bb92723b042d4509eba9",
+        "briefs": "7a2f949a8f5404177e3f46eb6c101f170813d08c62277fcf471447c0972e3d54",
+        "steps": "68f591064dd3458bfe5604ba0c3ab6bf860196bcb74a99cfc56f561907039207",
+        "ai": "c1c45061e5d4a067ecb56e0e24384a5f30ca1fa45a9c233634a08435f149293b"
+      },
+      "shared_ai": [
+        {
+          "day": "2026-10-13",
+          "runs": 1,
+          "calls": 0
+        }
+      ]
+    },
+    "hosted_checks": {
+      "code_head": "ac808919ca0558719c9828b99466d4034e67b71b",
+      "billing_blocked": [
+        115280507872,
+        115280484408
+      ],
+      "annotations_inspected": true,
+      "gitguardian_pass": 115280648267
+    }
+  },
+  "corrections_during_verification": [
+    "Initial release health still reported 2.66.0; corrected APP_VERSION and independently verified 2.67.0 after deployment.",
+    "Real mobile analytics initially stretched to 496 pixels. Constrained the grid track; a fictional 936-pixel table now scrolls within a 302-pixel card and final live document width is 390.",
+    "An unrelated initial public-summary read showed a retry banner above the dashboard. Its read-only retry cleared it; final owner verification has no visible alert."
+  ]
 }
