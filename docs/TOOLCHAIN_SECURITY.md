@@ -1,6 +1,10 @@
 # Development-tool security and local recovery
 
-Status: 8 October 2026. **The dependency repair and local validation are complete.** This is a development-tool change, not a new production release. Cloudflare remains on 2.35.0. Hosted Linux validation remains unobserved while GitHub jobs are blocked by the account's billing lock.
+Current toolchain update: **13 October 2026**. GitHub checks now execute; the earlier billing block no longer explains the latest run. At commit `e6f34665b5526c00e7f3506ff660c06fac140d4b`, both hosted checks failed at `npm ci`, reporting missing sharp 0.35.4 and its native packages. CI still selected Node 22 while the supported local toolchain is Node 24.19.0/npm 11.8.0. The workflow now reads the exact `cloudflare/.nvmrc` pin and installs/asserts npm 11.8.0 before the existing checks. No dependency downgrade, override removal, lockfile regeneration or Worker deployment is involved. A hosted rerun on the updated head must establish Linux acceptance.
+
+A clean isolated install with the unchanged package/lock files passed on Node 24.19.0/npm 11.8.0 after a 6.4 GiB disk preflight. It resolves Wrangler 4.147.0 → Miniflare 5.20261001.0-alpha → overridden sharp 0.35.5; actual native librsvg is 2.63.2. Both manifest hashes remained unchanged. This local install is distinct from hosted Linux results. See the 13 October operations receipt and the exact-head PR checks.
+
+The sections below retain the **8 October 2026** security repair and storage recovery as historical evidence. Production was 2.35.0 then; use `OPERATOR_CHECKPOINT.md` for the current release.
 
 ## Verified fix
 
