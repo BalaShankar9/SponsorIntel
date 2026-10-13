@@ -14,7 +14,8 @@
 .owner-section-heading p{font-size:13px;line-height:1.6;color:#63705d;margin:6px 0 0}
 .owner-period .platform-actions{margin:0;flex-wrap:nowrap;font-size:12px}
 .owner-period select{padding:8px}
-.owner-section{display:grid;gap:20px;min-width:0}
+.owner-section{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;min-width:0}
+.owner-section>*{min-width:0}
 .owner-section>.business-ops,.owner-section>.agent-operations,.owner-dashboard .owner-overview{margin:0}
 .owner-shortcuts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
 .owner-shortcuts a{display:flex;gap:14px;align-items:center;background:#f4f7ee;border:1px solid #dce5d2;border-radius:14px;padding:18px;color:#2c4d35;text-decoration:none}
