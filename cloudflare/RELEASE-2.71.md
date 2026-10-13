@@ -11,3 +11,11 @@ Validation: 639 tests pass on pinned Node 24.19.0/npm 11.8.0; TypeScript/build, 
 Preferred compatible rollback is 2.70.0 Worker `256f87ad-e530-4ea2-8c63-07f781df96b9`. It preserves data but reintroduces the ordinary approval-accounting gap: avoid ordinary feed approvals after a rollback until the repair is reapplied. Never reset or deduct reservations. Existing comparison, source, social and review decisions remain authoritative.
 
 Danu's live careers catalogue and exact Biotech Automation Engineer original were inspected again during this work. The vacancy remains conditional on the employer considering sponsorship later in the role. Source reuse and a validated custom collection route are still unresolved; no source was configured, role published, recruiter contacted, application submitted or discovery allowance bypassed.
+
+## Live verification
+
+Live Worker `047bb4a8-0305-414d-b75c-1eac953514d3`, code `53ce9ddcde341326902d909394450e5aae0f44b8`, reports 2.71.0 at 16:47:33 UTC. Excluded health/jobs reads return 200, anonymous owner board/dashboard reads return 403, and the unchanged owner bundle matches byte-for-byte. The job response has 935 roles. No real approval was triggered for QA.
+
+Eleven protected control/history groups match across deployment. Runs, model steps and shared AI budget changed during the genuine scheduled comparison `application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-13`, independently confirmed complete by Cloudflare at 16:47:08 UTC. It retained six completed stages for two fictional cases, using six calls; today's shared allowance is two starts/six calls. The owner lab shows 2/20 selected-comparison cases and six newly unassessed outputs. This closes the first scheduled execution gate after the reviewed resume, not independent writing-quality acceptance. No forced invocation or operator model request occurred.
+
+Exact code-head Linux checks 115420451967/115420418949 were blocked before execution by GitHub's billing lock; both annotations inspected. GitGuardian 115420463117 passed. Evidence: `tests/evidence/approval-budget-2026-10-13.json` and `application-scheduled-2026-10-13.json`.
