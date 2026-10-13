@@ -17,11 +17,14 @@ The owner dashboard now retains individual LinkedIn job adverts, ordinary Linked
 - **Awaiting review / overdue reviews** describe unresolved decisions and their explicit follow-up times.
 - **Current linked jobs** counts distinct matching published job IDs. Multiple posts about one role do not inflate it.
 - **Changed job links** identifies a previously linked record whose captured job or recorded deadline is no longer current.
+- **New leads today** shares the existing five-new-identities UTC-day ceiling across every owner and automatic school candidate. Rejected records and duplicate decisions still count on the first-recorded day; edits and identical request replays do not use another slot. The server checks inside the write transaction, including when owners and a scout race for the last slot. A refused insert creates no empty record and leaves the form available. Queue filters do not change the allowance. Recheck evidence before retaining a draft on a later day; midnight never clears a hold.
 - The hourly business snapshot retains these aggregates. Overdue reviews and changed links create normal-priority findings under the existing operating controls; the queue makes no model or external network calls.
 
 Only the signed-in owner can access the endpoints or record decisions. Mutations require the same origin and a bounded request. Reviewer attribution comes from the session, not the submitted content. Retried requests retain one decision and one audit event; overlapping edits must refresh the latest revision. An uncertain save retries the identical request. Source identity and earlier revisions are immutable. History is paginated rather than discarded. Review source text is escaped in the interface and never treated as executable instructions.
 
 The new tables are `discovery_leads` and `discovery_revisions` in migration 0030. The API is `/api/admin/discovery`, with authenticated detail/history and current-job search. This feature adds no public-write endpoint, new credential, new subscription, higher model allowance or unattended publishing authority.
+
+Release 2.73 enforces the shared allowance on owner saves as well as the scout, without a schema change. Earlier owner reviews were bounded by the operator procedure. The change does not rewrite their receipts or claim that an excess occurred in production.
 
 ## Initial real records and verification boundary
 

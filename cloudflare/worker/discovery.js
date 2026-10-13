@@ -1,7 +1,7 @@
 import {bodyJSON,digest,limit,reply,sameOrigin} from './auth.js';
 import {currentJobs} from './current-jobs.js';
 import {BOARDS} from './job-sources.js';
-import {DISCOVERY_KINDS,DISCOVERY_STATES,DISCOVERY_LIMITATION} from '../shared/discovery.js';
+import {DISCOVERY_KINDS,DISCOVERY_STATES,DISCOVERY_LIMITATION,DISCOVERY_DAILY_LIMIT} from '../shared/discovery.js';
 const iso=t=>new Date(t).toISOString();
 const fail=(message,status=400,extra={})=>{throw Object.assign(Error(message),{status,...extra});};
 const fields=(v,keys)=>{if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!keys.includes(k)))fail('Unexpected discovery fields.');};
@@ -91,7 +91,12 @@ export async function saveDiscovery(env,input,actor,now=Date.now()){
  const jobGuard=job?` AND EXISTS(SELECT 1 FROM jobs j WHERE ${snapshotFields.map(k=>`j.${k} IS ?`).join(' AND ')} AND ${current.sql} AND ${sourceAllowed})`:'';
  const duplicateGuard=content.duplicate_of?` AND EXISTS(SELECT 1 FROM (${latest}) d WHERE d.lead_id=? AND d.first_recorded_at<? AND json_extract(d.content,'$.state')<>'duplicate')`:'';
  const statements=[
-  ...(!input.id?[env.DB.prepare('INSERT INTO discovery_leads(id,source_key,source_url,source_kind,recorded_at) VALUES(?,?,?,?,?) ON CONFLICT(source_key) DO NOTHING').bind(id,key,sourceUrl,input.source_kind,at)]:[]),
+  // Count every first identity, including automatic candidates and rejected
+  // leads. Check inside the write transaction so owners and the scout cannot
+  // race past the shared allowance. Revisions and exact replays add no identity.
+  ...(!input.id?[env.DB.prepare(`INSERT INTO discovery_leads(id,source_key,source_url,source_kind,recorded_at)
+   SELECT ?,?,?,?,? WHERE (SELECT COUNT(*) FROM discovery_leads WHERE substr(recorded_at,1,10)=?)<?
+   ON CONFLICT(source_key) DO NOTHING`).bind(id,key,sourceUrl,input.source_kind,at,at.slice(0,10),DISCOVERY_DAILY_LIMIT)]:[]),
   env.DB.prepare(`INSERT INTO discovery_revisions(id,lead_id,revision,content,job_proof,actor,recorded_at,request_key,request_hash)
    SELECT ?,l.id,?,?,?,?,?,?,? FROM discovery_leads l WHERE l.id=? AND l.source_key=?
    AND COALESCE((SELECT MAX(r.revision) FROM discovery_revisions r WHERE r.lead_id=l.id),0)=?${jobGuard}${duplicateGuard} RETURNING id`)
@@ -106,7 +111,15 @@ export async function saveDiscovery(env,input,actor,now=Date.now()){
  let result;
  try{result=await env.DB.batch(statements);}catch(error){const saved=await replay(env,input.request_key,hash);if(saved)return saved;if(String(error.message).includes('CHECK constraint'))fail('The source or duplicate target changed. Refresh before saving.',409);throw error;}
  const inserted=result[input.id?0:1];
- if(!inserted.results?.length){const saved=await replay(env,input.request_key,hash);if(saved)return saved;const duplicate=await env.DB.prepare('SELECT id FROM discovery_leads WHERE source_key=?').bind(key).first();fail('This lead or its linked evidence changed in another session. Refresh before saving.',409,duplicate&&duplicate.id!==id?{existing_id:duplicate.id}:{});}
+ if(!inserted.results?.length){
+  const saved=await replay(env,input.request_key,hash);if(saved)return saved;
+  const duplicate=await env.DB.prepare('SELECT id FROM discovery_leads WHERE source_key=?').bind(key).first();
+  if(!input.id&&!duplicate){
+   const count=await env.DB.prepare('SELECT COUNT(*) n FROM discovery_leads WHERE substr(recorded_at,1,10)=?').bind(at.slice(0,10)).first();
+   if(count.n>=DISCOVERY_DAILY_LIMIT)fail('The five new sourcing leads for this UTC day have been retained, including automatic candidates. You can still review existing leads or retry the identical unconfirmed save. Keep this draft for a later day and recheck its evidence before saving.',429);
+  }
+  fail('This lead or its linked evidence changed in another session. Refresh before saving.',409,duplicate&&duplicate.id!==id?{existing_id:duplicate.id}:{});
+ }
  return {lead:parse(await env.DB.prepare(`SELECT * FROM (${latest}) WHERE lead_id=?`).bind(id).first()),replayed:false};
 }
 
@@ -120,8 +133,11 @@ export async function discoverySummary(env,now=Date.now()){
    COUNT(DISTINCT CASE WHEN linked_current=1 THEN json_extract(content,'$.job_id') END) current_linked_jobs,
    MAX(recorded_at) last_recorded_at FROM (${q.sql})`).bind(iso(now),...q.values),
   env.DB.prepare(`SELECT source_kind,json_extract(content,'$.state') state,COUNT(*) total FROM (${latest}) GROUP BY source_kind,state`),
+  env.DB.prepare('SELECT COUNT(*) used FROM discovery_leads WHERE substr(recorded_at,1,10)=?').bind(iso(now).slice(0,10)),
  ]);
- return {checked_at:iso(now),...rows[0].results[0],counts:rows[1].results,limitation:DISCOVERY_LIMITATION};
+ const used=rows[2].results[0].used,day=iso(now).slice(0,10);
+ return {checked_at:iso(now),...rows[0].results[0],counts:rows[1].results,
+  allowance:{day,limit:DISCOVERY_DAILY_LIMIT,used,remaining:Math.max(0,DISCOVERY_DAILY_LIMIT-used),next_day:iso(Date.parse(day+'T00:00:00.000Z')+86400000)},limitation:DISCOVERY_LIMITATION};
 }
 export function discoveryFindings(summary){
  const findings=[];

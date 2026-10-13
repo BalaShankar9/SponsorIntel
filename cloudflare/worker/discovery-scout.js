@@ -1,5 +1,6 @@
 import {digest} from './auth.js';
 import {validateDiscovery} from './discovery.js';
+import {DISCOVERY_DAILY_LIMIT} from '../shared/discovery.js';
 import {parseTeachingSearch,parseTeachingCandidate,teachingSearchURL,TEACHING_TERMS,TEACHING_ATTRIBUTION} from './teaching-discovery.js';
 
 const iso=t=>new Date(t).toISOString();
@@ -31,7 +32,7 @@ async function retain(env,run,url,content,evidence,now){
  const proof=JSON.stringify(evidence),actor='system:teaching-vacancies-scout';
  const result=await env.DB.batch([
   env.DB.prepare(`INSERT INTO discovery_leads(id,source_key,source_url,source_kind,recorded_at)
-   SELECT ?,?,?,'teaching_vacancy',? WHERE ${controlsSQL}=1 AND ${dailyCountSQL}<5
+   SELECT ?,?,?,'teaching_vacancy',? WHERE ${controlsSQL}=1 AND ${dailyCountSQL}<${DISCOVERY_DAILY_LIMIT}
    AND EXISTS(SELECT 1 FROM discovery_scout_runs WHERE day=? AND claim=? AND state='running' AND retained<capacity)
    AND NOT EXISTS(SELECT 1 FROM employer_boards WHERE provider='teaching-vacancies' AND substr(board,1,8)=?)
    AND NOT EXISTS(SELECT 1 FROM discovery_scout_items WHERE state='retained' AND json_extract(evidence,'$.school_urn')=?)
@@ -57,8 +58,8 @@ export async function scoutTeachingVacancies(env,runId,fetcher=fetch,clock=Date.
  // slots go to this source, leaving room for ordinary posts and other sectors.
  const reservation=await env.DB.batch([
   env.DB.prepare(`INSERT INTO discovery_scout_runs(day,run_id,claim,state,reason,started_at,capacity,reserved_requests)
-   SELECT ?,?,?,'running','searching',?,MIN(2,5-${dailyCountSQL}),2+MIN(2,5-${dailyCountSQL})
-   WHERE ${controlsSQL}=1 AND ${dailyCountSQL}<5 AND (SELECT requests FROM agent_daily_budget WHERE day=?)<=500-(2+MIN(2,5-${dailyCountSQL}))
+   SELECT ?,?,?,'running','searching',?,MIN(2,${DISCOVERY_DAILY_LIMIT}-${dailyCountSQL}),2+MIN(2,${DISCOVERY_DAILY_LIMIT}-${dailyCountSQL})
+   WHERE ${controlsSQL}=1 AND ${dailyCountSQL}<${DISCOVERY_DAILY_LIMIT} AND (SELECT requests FROM agent_daily_budget WHERE day=?)<=500-(2+MIN(2,${DISCOVERY_DAILY_LIMIT}-${dailyCountSQL}))
    ON CONFLICT(day) DO NOTHING RETURNING day`).bind(day,runId,claim,iso(now),day,day,day,day,day),
   env.DB.prepare("UPDATE agent_daily_budget SET requests=requests+(SELECT reserved_requests FROM discovery_scout_runs WHERE day=? AND claim=?) WHERE day=? AND changes()=1").bind(day,claim,day),
  ]);
@@ -66,7 +67,7 @@ export async function scoutTeachingVacancies(env,runId,fetcher=fetch,clock=Date.
   const saved=await runRow(env,day);if(saved)return {...saved,replayed:true,state:saved.state==='running'?'uncertain':saved.state};
   if(!await enabled(env))return {state:'paused',reason:'owner_control'};
   const count=await env.DB.prepare('SELECT COUNT(*) n FROM discovery_leads WHERE substr(recorded_at,1,10)=?').bind(day).first();
-  await env.DB.prepare("INSERT INTO discovery_scout_runs(day,run_id,claim,state,reason,started_at,finished_at,capacity) VALUES(?,?,?,'held',?,?,?,0) ON CONFLICT(day) DO NOTHING").bind(day,runId,claim,count.n>=5?'daily_lead_allowance_used':'daily_request_allowance_used',iso(now),iso(now)).run();
+  await env.DB.prepare("INSERT INTO discovery_scout_runs(day,run_id,claim,state,reason,started_at,finished_at,capacity) VALUES(?,?,?,'held',?,?,?,0) ON CONFLICT(day) DO NOTHING").bind(day,runId,claim,count.n>=DISCOVERY_DAILY_LIMIT?'daily_lead_allowance_used':'daily_request_allowance_used',iso(now),iso(now)).run();
   return runRow(env,day);
  }
  const run=await runRow(env,day);
@@ -131,7 +132,7 @@ export async function discoveryScoutHealth(env,now=Date.now()){
  const latest=runs[0]||null;
  const items=latest?(await env.DB.prepare('SELECT source_url,state,reason,lead_id,evidence,observed_at FROM discovery_scout_items WHERE day=? ORDER BY observed_at,source_url').bind(latest.day).all()).results.map(r=>({...r,evidence:JSON.parse(r.evidence)})):[];
  return {enabled:await enabled(env),checked_at:iso(now),latest:latest?{...latest,...(latest.state==='running'&&now-Date.parse(latest.started_at)>5*60000?{state:'uncertain'}:{})}:null,runs,items,
-  limits:{new_source_leads_daily:2,total_new_leads_daily:5,requests_daily:4,search_pages_daily:2},attribution:TEACHING_ATTRIBUTION,terms:TEACHING_TERMS};
+  limits:{new_source_leads_daily:2,total_new_leads_daily:DISCOVERY_DAILY_LIMIT,requests_daily:4,search_pages_daily:2},attribution:TEACHING_ATTRIBUTION,terms:TEACHING_TERMS};
 }
 export function discoveryScoutFindings(health){
  const run=health?.latest;if(!health?.enabled||!run||!['uncertain','failed'].includes(run.state)&&!(run.state==='held'&&!['daily_lead_allowance_used','daily_request_allowance_used'].includes(run.reason)))return [];
