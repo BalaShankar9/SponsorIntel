@@ -1,0 +1,9 @@
+# 2.70 — Keep edited performance dates
+
+13 October 2026. While collecting actual Facebook results, the owner performance form displayed edited timestamps but cleared them when another field changed. Browser validation blocked the incomplete save; no new production observation was retained. This is the same native date-input event gap previously repaired in the advert-review desk.
+
+All four performance date fields now synchronize native input and change events. Second-level input is supported, so a supplied reporting-day boundary is retained exactly. The existing UTC conversion, unknown publication dates, owner access, server validation, immutable history and exact-request replay are unchanged. No provider, model, publishing, budget or delivery-control change is included.
+
+The real component and API in the isolated `tests/fixtures/marketing-performance-preview.mjs` saved a fictional four-date period after unrelated edits: observation `2026-10-13T15:11:12.000Z`, start `2026-10-09T23:00:00.000Z`, end `2026-10-12T22:59:59.000Z`, publication `2026-10-09T09:01:02.000Z`. Read-only HTTP independently checked persistence. Repeating the identical browser request retained the same reference. Switching to lifetime, clearing the optional publication date and saving another fictional post retained null start/publication fields. Reload shows exactly two observations. No fictional records enter production.
+
+All 638 tests pass on pinned Node 24.19.0. Build, Worker dry-run and live verification are recorded in the dated receipt. No schema or dependency graph change; the successful same-day recovery and official advisory checks apply. Compatible rollback is 2.69.1 Worker `6c841d96-b09f-4cae-9d3e-80f61523c4c7`; preserve all decisions and later real observations. Hosted checks remain subject to the account billing lock and must be inspected on the exact pushed head.

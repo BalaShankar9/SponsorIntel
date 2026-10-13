@@ -11,7 +11,13 @@ export function MarketingPerformance(){
  const lastRequest=useRef<{body:string;key:string}|null>(null);
  async function load(){try{setData(await api());setError('');}catch(e){setError((e as Error).message);}}
  useEffect(()=>{void load();},[]);
- function field(key:keyof typeof empty,label:string,type='text',required=true){return <label>{label}<input type={type} required={required} value={form[key]} maxLength={key==='note'?1000:1000} onChange={e=>setForm(f=>({...f,[key]:e.target.value}))}/></label>;}
+ function field(key:keyof typeof empty,label:string,type='text',required=true){
+  const update=(value:string)=>setForm(f=>({...f,[key]:value}));
+  return <label>{label}<input type={type} required={required} value={form[key]} maxLength={1000}
+   step={type==='datetime-local'?1:undefined}
+   onInput={type==='datetime-local'?e=>update(e.currentTarget.value):undefined}
+   onChange={e=>update(e.target.value)}/></label>;
+ }
  async function save(e:React.FormEvent){
   e.preventDefault();if(!data)return;setBusy(true);setError('');setMessage('');
   try{

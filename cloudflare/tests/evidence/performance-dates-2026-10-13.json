@@ -1,0 +1,56 @@
+{
+  "release": "2.70.0",
+  "local_only": true,
+  "before_fix": "Visible native date edits cleared after unrelated text edit; browser validation prevented incomplete production save.",
+  "fixture": "tests/fixtures/marketing-performance-preview.mjs",
+  "four_date_retention": true,
+  "exact_request_replay_same_reference": true,
+  "reload_count": 2,
+  "records": [
+    {
+      "id": "fc16f33c-38ec-4d1b-85fa-b829822de9af",
+      "title": "Fictional lifetime with unknown publication",
+      "observed_at": "2026-10-13T15:11:12.000Z",
+      "window_type": "lifetime",
+      "window_start": null,
+      "window_end": "2026-10-12T22:59:59.000Z",
+      "published_at": null,
+      "metrics": {
+        "impressions": null,
+        "views": null,
+        "reach": 7,
+        "clicks": null,
+        "link_clicks": null,
+        "reactions": null,
+        "comments": null,
+        "shares": null,
+        "saves": null
+      }
+    },
+    {
+      "id": "b075b5da-d082-4ad7-80d7-d7afbd4db5ae",
+      "title": "Fictional four-date retention check",
+      "observed_at": "2026-10-13T15:11:12.000Z",
+      "window_type": "period",
+      "window_start": "2026-10-09T23:00:00.000Z",
+      "window_end": "2026-10-12T22:59:59.000Z",
+      "published_at": "2026-10-09T09:01:02.000Z",
+      "metrics": {
+        "impressions": null,
+        "views": null,
+        "reach": 7,
+        "clicks": null,
+        "link_clicks": null,
+        "reactions": null,
+        "comments": null,
+        "shares": null,
+        "saves": null
+      }
+    }
+  ],
+  "tests": {
+    "passed": 638,
+    "failed": 0
+  },
+  "rollback_worker": "6c841d96-b09f-4cae-9d3e-80f61523c4c7"
+}
