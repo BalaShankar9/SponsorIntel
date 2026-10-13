@@ -82,7 +82,10 @@ test('failed and uncertain model calls remain charged and do not get retried',as
 });
 test('model reservations are atomic across concurrent attempts and honour the shared call cap',async t=>{
  const {env,id}=await setup(t);let calls=0;const caller=async()=>{calls++;return {value:plan};};
- const results=await Promise.allSettled([planMarketing(env,id,caller,now),planMarketing(env,id,caller,now)]);assert.equal(results.filter(r=>r.status==='fulfilled').length,1);assert.equal(calls,1);assert.equal(env.sql.prepare('SELECT calls FROM agent_research_budget').get().calls,1);
+ const results=await Promise.allSettled([planMarketing(env,id,caller,now),planMarketing(env,id,caller,now)]);
+ // A concurrent reader may arrive after completion and legitimately replay the
+ // retained result. The invariant is one provider call and one reservation.
+ assert.ok(results.some(r=>r.status==='fulfilled'));for(const r of results.filter(r=>r.status==='fulfilled'))assert.deepEqual(r.value,plan);assert.equal(calls,1);assert.equal(env.sql.prepare('SELECT calls FROM agent_research_budget').get().calls,1);
  env.sql.prepare('UPDATE agent_research_budget SET calls=32').run();await assert.rejects(writeMarketing(env,id,plan,null,response(copy()),now));assert.equal(env.sql.prepare('SELECT calls FROM marketing_agent_runs').get().calls,1);
 });
 test('source change at final review holds the draft even when both models agree',async t=>{

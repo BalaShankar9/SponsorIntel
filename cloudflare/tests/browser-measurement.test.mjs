@@ -59,7 +59,7 @@ test('marketing captures the separate complete-day browser baseline without a mo
  env.sql.prepare('INSERT INTO analytics_evidence_daily VALUES(?,?,?)').run('2026-10-11','',700);env.sql.prepare('INSERT INTO analytics_evidence_daily VALUES(?,?,?)').run('2026-10-12','',2);
  const now=Date.parse('2026-10-13T12:00:00Z'),run=await dispatchMarketingAgents(env,now);
  const context=await captureMarketingContext(env,run.id,async url=>new Response('<article class="resource-article">'+EDITORIAL_SOURCES.filter(s=>s.path===new URL(url).pathname).flatMap(s=>s.facts).map(f=>'<p>'+f+'</p>').join('')+'</article>',{headers:{'Content-Type':'text/html'}}),now);
- assert.equal(context.measurement.browser_evidence.evidence_checks,2);assert.equal(context.measurement.browser_evidence.completed_days,1);assert.equal(context.metrics.length,0);assert.match(PLANNER_PROMPT,/null count is not zero/);assert.match(MARKETING_POLICY,/v5$/);
+ assert.equal(context.measurement.browser_evidence.evidence_checks,2);assert.equal(context.measurement.browser_evidence.completed_days,1);assert.equal(context.metrics.length,0);assert.match(PLANNER_PROMPT,/null count is not zero/);assert.match(MARKETING_POLICY,/v6$/);
  env.sql.prepare('UPDATE analytics_evidence_daily SET count=999').run();assert.deepEqual(await captureMarketingContext(env,run.id,()=>{throw Error('Must reuse pinned context')},now),context);
  assert.equal(env.sql.prepare('SELECT calls FROM marketing_agent_runs').get().calls,0);
 });

@@ -10,8 +10,9 @@ import {publishedGuideFetcher} from './guide-evidence.js';
 import {captureWelcomeReview,prepareWelcomeReview,currentWelcomeTarget,validateExistingReview,existingAccepted,recheckWelcomeReview,EXISTING_REVIEW_PROMPT} from './marketing-existing.js';
 import {captureOpportunitySources,requireOpportunity} from './marketing-opportunities.js';
 import {performanceContext} from './marketing-performance.js';
+import {COMPACT_MARKETING_POLICY,PLANNER_INPUT_VERSION,compactPlannerContext,legacyPlannerContext} from './marketing-planner-input.js';
 
-export const MARKETING_POLICY='sourced-guides-and-browser-evidence-v5';
+export const MARKETING_POLICY=COMPACT_MARKETING_POLICY;
 const iso=(now=Date.now())=>new Date(now).toISOString();
 const HOUR=3600000,DAY=24*HOUR;
 const normalize=s=>plainText(s).replace(/\s+/g,' ').trim();
@@ -141,6 +142,10 @@ export async function captureMarketingContext(env,id,fetcher=publishedGuideFetch
  const metrics=(await env.DB.prepare("SELECT event,dimension,SUM(count) count FROM analytics_public_daily WHERE day>=? AND day<? AND event IN ('campaign_page_view','campaign_account_created','campaign_document_prepared') GROUP BY event,dimension LIMIT 40").bind(measurement.from,measurement.to).all()).results.filter(r=>campaignById(r.dimension));
  const performance=await performanceContext(env,now);
  const context={observed_at:iso(now),sources,candidates,unavailable,opportunity_scan:{ready:opportunities.sources.length,held:opportunities.held.length,scope:opportunities.scope},slot,existing_review,existing_review_unavailable,queue:queue.map(({text,...q})=>({...q,text:text.slice(0,400)})),metrics,measurement,performance,measurement_limit:measurement.limitation+' Only complete UTC days after the new collection boundary are included. Earlier mixed counts are excluded. Empty data is not proof of a failed campaign. Provider observations are recorded separately; no direct platform analytics feed is connected.'};
+ if(row.policy===COMPACT_MARKETING_POLICY){
+  const input=JSON.stringify(compactPlannerContext(context));
+  context.planner_input={version:PLANNER_INPUT_VERSION,sha256:await digest(input),characters:input.length,legacy_characters:JSON.stringify(legacyPlannerContext(context)).length};
+ }
  await env.DB.prepare("UPDATE marketing_agent_runs SET state='running',context=?,brief_id=? WHERE id=? AND state='queued'").bind(JSON.stringify(context),existing_review?.id||null,id).run();
  return context;
 }
@@ -183,11 +188,15 @@ export async function marketingModelStep(env,id,name,role,prompt,input,validate,
  }
 }
 export async function planMarketing(env,id,caller,now=Date.now()){
- const context=JSON.parse((await runRow(env,id)).context);
+ const run=await runRow(env,id),context=JSON.parse(run.context);
  if(!context.candidates.length||!context.slot)return {decision:'no_post',source_id:'',reason:!context.candidates.length?'No fresh, non-duplicate source has a slot within its evidence expiry.':'No eligible slot: the queue is full, expired or needs delivery reconciliation.',ranked:[],timing_reason:'Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first.'};
- const compact=({advert,opportunity,...source})=>source;
- const plannerContext={...context,sources:context.sources.map(compact),candidates:context.candidates.map(compact)};
- return marketingModelStep(env,id,'plan','writer',PLANNER_PROMPT,plannerContext,x=>validatePlan(x,context),caller,now);
+ const compact=run.policy===COMPACT_MARKETING_POLICY,plannerContext=compact?compactPlannerContext(context):legacyPlannerContext(context);
+ if(compact){
+  const input=JSON.stringify(plannerContext),receipt=context.planner_input;
+  if(receipt?.version!==PLANNER_INPUT_VERSION||receipt.characters!==input.length||receipt.sha256!==await digest(input))throw Error('Recorded planner input changed. No model call was made.');
+ }
+ const prompt=compact?PLANNER_PROMPT+' Eligible facts appear once in candidates. non_candidates are non-selectable summaries, not alternative choices. Preserve all conditions and measurement limitations.':PLANNER_PROMPT;
+ return marketingModelStep(env,id,'plan','writer',prompt,plannerContext,x=>validatePlan(x,context),caller,now);
 }
 export async function prepareExistingMarketing(env,id,now=Date.now()){
  const run=await runRow(env,id);
