@@ -1,4 +1,4 @@
-# PortmanDentex source review — updated 11 October 2026
+# PortmanDentex source review — updated 13 October 2026
 
 **Current: paused, zero public jobs.** Three 9 October scheduled collections repeatedly failed the identity comparison for advert `744000145730189`. The exact historical mismatch is unresolved. Two targeted public API reads at 10:47 UTC on 11 October now agree on every compared identity field, and the original Associate Dentist advert renders. This point check does not reconstruct the earlier failure or validate the full collection. The agent-assisted owner pause prevents further collection until reviewed recovery; do not resume or force a bootstrap from the older continuation instructions below. Existing cache, failure receipts and consumed budgets remain retained. See [the operating receipt](OPERATIONS-2026-10-11.md). The prepared reservation-accounting fix does not resolve this separate identity conflict.
 
@@ -11,6 +11,10 @@ The approved fixed source uses SmartRecruiters’ public Posting API for the Por
 Four manual public requests read the complete three-page catalogue (251 summaries) and the previously conflicting advert detail. The exact original catalogue row now agrees with the detail on every compared field; the detail is active. This closes the limitation that the earlier recheck used a filtered search. It does not reconstruct the 9 October mismatch or validate 251 complete descriptions. Production still has 68 private cached descriptions, while the last *completed* progress receipt remains 51/249 from 8 October; neither is a public job count. Six manual diagnostic API requests in total on 11 October are recorded separately from production reservations (296 after the genuine 16:45 business run). No production collection or source resume occurred. See `cloudflare/tests/evidence/portmandentex-catalogue-review-2026-10-11.json`.
 
 Release 2.56 stops a trusted identity/parser validation rejection within its current run, recording a review and retaining its reservation. Network failures retain their existing bounded retries. The existing source pause remains; this repair does not establish that the historical mismatch is resolved or authorize a forced bootstrap.
+
+## 13 October retained-state inspection
+
+Read-only inspection at 18:09 UTC confirms the same 9 October pause, 68 private cache rows, the 8 October 51/249 completed progress receipt and zero public jobs. No original differing values have been recovered. No diagnostic fetch, source run or resume was made. Release 2.74 makes the current pause reason/date and historical collection date visible in the authenticated source controls; it does not clear the hold or establish source recovery.
 
 ## Evidence and scope
 
