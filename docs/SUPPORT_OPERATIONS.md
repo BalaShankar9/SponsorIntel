@@ -1,5 +1,7 @@
 # Support operations
 
+Release 2.72 adds receipt recovery for new feedback forms after a lost acknowledgement. The opaque request key and payload hash bind an exact retry to the original report; changed content is rejected. New report and quota admission are atomic, so replay does not consume another of the existing five hourly slots. Uncertain submissions stay unchanged in the open form until Check saved report confirms them. This is in-memory recovery, not retention across closing/reloading; older cached clients have no retry identity. No model, customer reply, extra personal context or report-status lookup is added. See `cloudflare/RELEASE-2.72.md` for deployment and its compatible rollback.
+
 Release 2.20 adds a private Support queue to `/admin`. Existing feedback submissions keep their receipt and original text. Migration 0017 routes old and new reports from their chosen category; no model reads or classifies the message.
 
 ## Review process

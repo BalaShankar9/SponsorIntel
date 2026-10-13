@@ -55,6 +55,8 @@ export function FeedbackForm({
   const [error, setError] = useState("");
   const [reference, setReference] = useState("");
   const [copied, setCopied] = useState(false);
+  const [uncertain, setUncertain] = useState(false);
+  const attempt = useRef<{key:string;body:string}|null>(null);
   const pending = useRef(false);
   const receipt = useRef<HTMLHeadingElement>(null);
   const labels = {
@@ -74,33 +76,44 @@ export function FeedbackForm({
     setSending(true);
     setError("");
     const website = new FormData(event.currentTarget).get("website");
+    if (!attempt.current) {
+      const key=crypto.randomUUID();
+      attempt.current={key,body:JSON.stringify({request_key:key,kind,message,website,context:includeContext?{page,item}:null})};
+    }
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 20000);
     try {
       const response = await fetch("/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json", ...campaignHeaders() },
-        body: JSON.stringify({
-          kind,
-          message,
-          website,
-          context: includeContext ? { page, item } : null,
-        }),
+        body: attempt.current.body,
         signal: controller.signal,
       });
       const result = await response.json().catch(() => null);
-      if (!response.ok)
+      if (!response.ok) {
+        // Validation/rate refusals are confirmed non-writes. Server/network
+        // uncertainty keeps the original payload and retry identity intact.
+        if ([400,403,415,429].includes(response.status)) {
+          attempt.current=null;
+          setUncertain(false);
+        } else setUncertain(true);
         throw new Error(
-          result?.error || "Your report could not be sent. Please try again.",
+          result?.error || "We couldn’t confirm delivery. Check the original report below.",
         );
-      if (!result?.ok || typeof result.id !== "string")
+      }
+      if (!result?.ok || typeof result.id !== "string") {
+        setUncertain(true);
         throw new Error(
           "We couldn’t confirm delivery. Your message is still here; please try again.",
         );
+      }
+      attempt.current=null;
+      setUncertain(false);
       setReference(result.id);
       setMessage("");
       window.requestAnimationFrame(() => receipt.current?.focus());
     } catch (e) {
+      if (attempt.current) setUncertain(true);
       setError(
         e instanceof Error && e.name !== "AbortError" && e.name !== "TypeError"
           ? e.message
@@ -168,7 +181,7 @@ export function FeedbackForm({
         Found a problem or have an idea? No account needed.
       </p>
       <form onSubmit={submit} aria-busy={sending}>
-        <fieldset className="feedback-choices" disabled={sending}>
+        <fieldset className="feedback-choices" disabled={sending || uncertain}>
           <legend>What would you like to share?</legend>
           {choices.map(({ kind: value, label, icon: Icon }) => (
             <label key={value} className={kind === value ? "selected" : ""}>
@@ -196,7 +209,7 @@ export function FeedbackForm({
           required
           rows={5}
           placeholder={placeholders[kind]}
-          disabled={sending}
+          disabled={sending || uncertain}
           aria-describedby="feedback-privacy feedback-length"
         />
         <div className="feedback-length" id="feedback-length">
@@ -208,7 +221,7 @@ export function FeedbackForm({
             type="checkbox"
             checked={includeContext}
             onChange={(e) => setIncludeContext(e.target.checked)}
-            disabled={sending}
+            disabled={sending || uncertain}
           />
           <span>
             Include where this happened
@@ -235,13 +248,14 @@ export function FeedbackForm({
             {error}
           </p>
         )}
+        {uncertain && <p className="feedback-privacy">Keep this form open. Check the original report before editing or sending another; a retry uses the same reference and will not create a duplicate.</p>}
         <button
           className="primary-button feedback-submit"
           disabled={sending || message.trim().length < 10}
         >
           {sending
             ? "Sending…"
-            : kind === "feedback"
+            : uncertain ? "Check saved report" : kind === "feedback"
               ? "Send feedback"
               : "Send report"}
           <ArrowRight size={17} />

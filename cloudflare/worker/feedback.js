@@ -1,4 +1,5 @@
 import { boundedText, idFor } from "./data.js";
+import { digest } from "./auth.js";
 import pages from "../shared/pages.json" with { type: "json" };
 const allowedPages = new Set([
   ...Object.values(pages).map((p) => p.path),
@@ -74,10 +75,41 @@ export async function feedbackAPI(request, env) {
       { error: "Please write between 10 and 2,000 characters." },
       400,
     );
+  if (body.request_key !== undefined &&
+      (typeof body.request_key !== 'string' || !/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/.test(body.request_key)))
+    return json({error:'The report reference is invalid. Please reopen the feedback form.'},400);
   const bucket = Math.floor(Date.now() / 3600000);
   const hash = await idFor(
     (request.headers.get("CF-Connecting-IP") || "local") + ":" + bucket,
   );
+  if (body.request_key) {
+    const message=body.message.trim(),context=JSON.stringify(feedbackContext(body.context));
+    const requestHash=await digest(JSON.stringify([body.kind,message,context]));
+    const replay=async()=>{
+      const row=await env.DB.prepare('SELECT id,request_hash FROM feedback WHERE request_key=?').bind(body.request_key).first();
+      if(!row)return null;
+      return row.request_hash===requestHash
+        ? json({ok:true,id:row.id,replayed:true})
+        : json({error:'This report reference belongs to different content. The original report has not changed.'},409);
+    };
+    const prior=await replay();if(prior)return prior;
+    const id=crypto.randomUUID();
+    // One transaction admits a new report and its quota slot. Concurrent retries
+    // cannot create another report or consume capacity before detecting replay.
+    await env.DB.batch([
+      env.DB.prepare(`INSERT INTO feedback(id,kind,message,created_at,context,app_version,request_key,request_hash)
+        SELECT ?,?,?,?,?,?,?,? WHERE COALESCE((SELECT count FROM rate_limits WHERE key=?),0)<5
+        ON CONFLICT DO NOTHING`).bind(id,body.kind,message,new Date().toISOString(),context,env.APP_VERSION||'',body.request_key,requestHash,hash),
+      env.DB.prepare(`INSERT INTO rate_limits(key,count,expires)
+        SELECT ?,1,? WHERE EXISTS(SELECT 1 FROM feedback WHERE id=? AND request_key=?)
+        ON CONFLICT(key) DO UPDATE SET count=count+1`).bind(hash,Date.now()+7200000,id,body.request_key),
+    ]);
+    const saved=await env.DB.prepare('SELECT id FROM feedback WHERE id=? AND request_key=?').bind(id,body.request_key).first();
+    if(saved)return json({ok:true,id},201);
+    const concurrent=await replay();if(concurrent)return concurrent;
+    return json({error:'You’ve sent five reports this hour. Please try again in an hour; your message is still here.'},429,{'Retry-After':'3600'});
+  }
+  // Older cached clients remain compatible. They do not have a retry identity.
   const rate = await env.DB.prepare(
     "INSERT INTO rate_limits(key,count,expires) VALUES(?,1,?) ON CONFLICT(key) DO UPDATE SET count=count+1 RETURNING count",
   )
