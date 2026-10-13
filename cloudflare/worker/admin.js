@@ -27,7 +27,8 @@ export async function ownerFor(request, env) {
   return role ? session : null;
 }
 export async function probeReviewedBoard(DB,board,reader=fetchBoard) {
-  if(board.provider!=='teaching-vacancies')return reader(board);
+  // Approval is source I/O too. Reserve each provider's full bounded cost
+  // atomically before reading; failed or uncertain reads keep their charge.
   const day=new Date().toISOString().slice(0,10),cost=sourceRequestCost(board);
   await DB.prepare('INSERT INTO agent_daily_budget(day) VALUES(?) ON CONFLICT DO NOTHING').bind(day).run();
   const reserved=await DB.prepare('UPDATE agent_daily_budget SET requests=requests+? WHERE day=? AND requests+?<=500 RETURNING day').bind(cost,day,cost).first();
@@ -298,7 +299,7 @@ export async function adminAPI(request, env) {
         throw Error(
           "The sponsor is no longer in the current Skilled Worker snapshot. Re-check it.",
         );
-      // Reserve expensive school probes before I/O; failures remain counted.
+      // Every provider shares the same daily source allowance.
       await probeReviewedBoard(env.DB,b);
     }
     const now = new Date().toISOString();

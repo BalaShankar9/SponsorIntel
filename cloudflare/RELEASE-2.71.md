@@ -1,0 +1,13 @@
+# 2.71 — Count every employer approval check
+
+13 October 2026. Approving a Greenhouse, Lever or Ashby employer feed previously fetched its catalogue without reserving a request in the shared source budget. School approvals already reserved their bounded 24-request cost. This meant ordinary approval checks could run even after the existing 500-request daily source allowance was used.
+
+All supported approval checks now reserve their provider's complete request cost before provider I/O: one for Greenhouse, Lever and Ashby, or 24 for a school. The existing atomic admission rejects a check when the remaining allowance cannot cover it. Failed and uncertain admitted reads keep their reservations; refused checks neither fetch nor increment the counter. Approval still uses the current owner, legal-employer, sponsor, review and complete-feed checks. There is no additional allowance, provider, source admission, automatic retry or historical counter backfill.
+
+The regression failed against 2.70 in a real isolated Worker/D1 because the Greenhouse reader started before any reservation. With the fix it checks all four supported providers, competing requests for the last slot, provider failure, a subsequent refused attempt, and a 24-request school with only 23 slots left. All data is fictional and outbound provider traffic is forbidden in this fixture. Existing school/atomic-publication tests remain unchanged.
+
+Validation: 639 tests pass on pinned Node 24.19.0/npm 11.8.0; TypeScript/build, 17 prerenders and browser budgets pass. Worker dry-run also passes. Live verification will be recorded after deployment. No schema or dependency graph change; the successful same-day recovery check (39 migrations/165 objects) and official dependency audit apply. Hosted CI must be checked at the exact pushed head independently of these local checks.
+
+Preferred compatible rollback is 2.70.0 Worker `256f87ad-e530-4ea2-8c63-07f781df96b9`. It preserves data but reintroduces the ordinary approval-accounting gap: avoid ordinary feed approvals after a rollback until the repair is reapplied. Never reset or deduct reservations. Existing comparison, source, social and review decisions remain authoritative.
+
+Danu's live careers catalogue and exact Biotech Automation Engineer original were inspected again during this work. The vacancy remains conditional on the employer considering sponsorship later in the role. Source reuse and a validated custom collection route are still unresolved; no source was configured, role published, recruiter contacted, application submitted or discovery allowance bypassed.
