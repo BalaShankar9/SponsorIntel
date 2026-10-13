@@ -28,7 +28,18 @@ test('complete Worker builds keep the source profile stable; actual auth/D1 prep
    const post=async(headers={})=>mf.dispatchFetch(origin+path+'/campaign',{method:'POST',headers:{Cookie:cookie,Origin:origin,'Content-Type':'application/json',...headers},body:JSON.stringify(body)});
    assert.equal((await post({Origin:'https://elsewhere.test'})).status,403);const first=await post();assert.equal(first.status,200);assert.equal((await first.json()).paused,true);assert.equal((await (await post()).json()).replayed,true);
    const current=await (await mf.dispatchFetch(origin+path,{headers:{Cookie:cookie}})).json();assert.equal(current.state,'paused');assert.equal(current.progress_state,'ready');assert.equal(current.pause_reason,'evaluation');assert.equal(current.business_enabled,true);assert.equal(current.evaluation_enabled,false);assert.equal(current.campaigns.proposal.can_prepare,false);assert.equal(current.runs[0].campaign_id,'legacy-v1');assert.equal((await db.prepare('SELECT COUNT(*) n FROM admin_audit WHERE action=?').bind('application-campaign-prepared').first()).n,1);
-   assert.equal((await db.prepare('SELECT calls FROM agent_research_budget').first()).calls,6);assert.equal(outbound,0);await db.prepare('UPDATE application_eval_controls SET enabled=1').run();const runResult=await mf.dispatchFetch(origin+'/fictional-reservation');assert.equal(runResult.status,200);assert.equal((await runResult.json()).syntheticCalls,1);assert.equal((await db.prepare('SELECT calls FROM application_eval_runs WHERE campaign_id!=?').bind('legacy-v1').first()).calls,1);assert.equal(outbound,0);
+   assert.equal((await db.prepare('SELECT calls FROM agent_research_budget').first()).calls,6);assert.equal(outbound,0);
+   const review={action:'resume',expected_campaign:current.campaigns.active.id,expected_revision:0,fingerprint:current.campaigns.proposal.fingerprint,reason:'Agent-assisted fictional full Worker review. Exact source profile, terminal earlier outcomes and shared allowance checked; preserve history and do not start any real model call.',request_key:crypto.randomUUID()};
+   const settings=(body,headers={})=>mf.dispatchFetch(origin+path+'/settings',{method:'POST',headers:{Cookie:cookie,Origin:origin,'Content-Type':'application/json',...headers},body:JSON.stringify(body)});
+   assert.equal((await settings(review,{Cookie:''})).status,403);assert.equal((await settings(review,{Origin:'https://elsewhere.test'})).status,403);assert.equal((await settings({enabled:true})).status,400);
+   const saves=await Promise.all([settings(review),settings(review)]);assert.ok(saves.every(r=>r.status===200));assert.equal((await db.prepare('SELECT COUNT(*) n FROM application_eval_control_reviews').first()).n,1);
+   const paused=await settings({...review,action:'pause',fingerprint:null,expected_revision:1,request_key:crypto.randomUUID()});assert.equal(paused.status,200);
+   const oldReplay=await(await settings(review)).json();assert.equal(oldReplay.replayed,true);assert.equal(oldReplay.current_enabled,false);assert.equal(oldReplay.current_revision,2);
+   assert.equal((await settings({...review,expected_revision:0,request_key:crypto.randomUUID()})).status,409);
+   assert.equal((await settings({...review,expected_revision:2,request_key:crypto.randomUUID()})).status,200);
+   assert.equal((await db.prepare('SELECT COUNT(*) n FROM application_eval_control_reviews').first()).n,3);
+   assert.equal((await db.prepare('SELECT calls FROM agent_research_budget').first()).calls,6);assert.equal(outbound,0);
+   const runResult=await mf.dispatchFetch(origin+'/fictional-reservation');assert.equal(runResult.status,200);assert.equal((await runResult.json()).syntheticCalls,1);assert.equal((await db.prepare('SELECT calls FROM application_eval_runs WHERE campaign_id!=?').bind('legacy-v1').first()).calls,1);assert.equal(outbound,0);
   }finally{await mf.dispose();}
  }
  assert.deepEqual(profiles[0],profiles[1]);

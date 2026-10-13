@@ -1,0 +1,30 @@
+{
+  "release": "2.69.0",
+  "tests": 638,
+  "typecheck": true,
+  "build": true,
+  "prerenders": 17,
+  "browser_budgets": true,
+  "dry_run": true,
+  "fictional_browser": {
+    "requests": 3,
+    "unique_reviews": 2,
+    "identical_retry": true,
+    "final_paused": true,
+    "calls": 0,
+    "phone_width": 390,
+    "document_width": 390,
+    "shared_styles_loaded": true
+  },
+  "full_worker_auth_d1": {
+    "normal_and_minified": true,
+    "anonymous_denied": true,
+    "foreign_origin_denied": true,
+    "old_toggle_rejected": true,
+    "concurrent_exact_replay": true,
+    "newer_pause_preserved": true,
+    "outbound_calls": 0
+  },
+  "production_resume": false,
+  "model_quality_verified": false
+}
