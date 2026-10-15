@@ -1,7 +1,8 @@
+import {businessFindings,recordBusinessFindings} from '../worker/business-health.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {database} from './research-db.mjs';
-import {dispatchBusiness,businessRunId,collectBusinessSnapshot,businessFindings,recordBusinessFindings,housekeeping,scheduleBusinessResearch,businessAPI,businessSnapshot} from '../worker/business-operations.js';
+import {dispatchBusiness,businessRunId,collectBusinessSnapshot,housekeeping,scheduleBusinessResearch,businessAPI,businessSnapshot} from '../worker/business-operations.js';
 import {publicationGate,publishInsight,insightsResponse,INSIGHT_SLUG} from '../worker/insights.js';
 import {adminAPI} from '../worker/admin.js';
 import {sitemapResponse,canonicalPath} from '../worker/pages.js';
@@ -142,4 +143,19 @@ test('recent initial collection is normal progress, but never opens publication 
  assert.ok(businessFindings(s,now).some(x=>x.id==='collecting:test'&&x.severity==='normal'));
  assert.ok(!businessFindings(s,now).some(x=>x.id==='source:test'));assert.ok(publicationGate(s,now));
  for(const mutate of [x=>x.error='failed',x=>x.collection.checked_at=new Date(now-9*3600000).toISOString(),x=>x.collection.started_at=new Date(now+600000).toISOString(),x=>x.collection.ready=0]){const copy=structuredClone(s);mutate(copy.sources[0]);assert.ok(businessFindings(copy,now).some(x=>x.id==='source:test'&&x.severity==='high'));}
+});
+
+test('recent register failures open a real finding and clear only on an error-free fresh snapshot',async t=>{
+ const env=database(t),s=snapshot();s.register.refresh_error='PRIVATE raw provider error';
+ const first=businessFindings(s,now).find(x=>x.id==='register-freshness');assert.equal(first.severity,'high');assert.doesNotMatch(JSON.stringify(first),/PRIVATE/);
+ await recordBusinessFindings(env,'register-failed',s);assert.equal(env.sql.prepare("SELECT state FROM business_issues WHERE id='register-freshness'").get().state,'open');
+ s.register.refresh_failure={stage:'snapshot_cleanup',publication:'confirmed'};
+ assert.match(businessFindings(s,now).find(x=>x.id==='register-freshness').detail,/activated before/);
+ delete s.register.refresh_error;
+ assert.ok(businessFindings(s,now).some(x=>x.id==='register-freshness'));
+ s.register.refresh_failure={stage:'activation',publication:'uncertain'};
+ assert.match(businessFindings(s,now).find(x=>x.id==='register-freshness').detail,/acknowledgement is uncertain/);
+ s.register.refresh_failure=null;
+ await recordBusinessFindings(env,'register-healthy',s);assert.equal(env.sql.prepare("SELECT state FROM business_issues WHERE id='register-freshness'").get().state,'resolved');
+ assert.equal(s.register.checked_at,stamp);
 });

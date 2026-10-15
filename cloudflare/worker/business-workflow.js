@@ -1,5 +1,6 @@
+import {recordBusinessFindings} from './business-health.js';
 import { WorkflowEntrypoint } from 'cloudflare:workers';
-import { controls,captureBusiness,recordBusinessFindings,housekeeping,publishInsight,scheduleBusinessResearch,finishBusiness } from './business-operations.js';
+import { controls,captureBusiness,housekeeping,publishInsight,scheduleBusinessResearch,finishBusiness } from './business-operations.js';
 import {syncMarketing,reconcileOpportunities} from './marketing.js';
 import {dispatchMarketingAgents} from './marketing-agents.js';
 import {superviseAgents} from './agent-supervision.js';
