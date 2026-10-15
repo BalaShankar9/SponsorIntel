@@ -1,5 +1,7 @@
 # Marketing delivery audit and next content sequence
 
+**Later continuation:** release 2.75 closed the receipt UI gap, restored current Cloudflare recovery access and independently confirmed the original editorial workflow. The exact Facebook guide below is now queued once for **16 October 10:00 UK**, job **397276739**, and recorded Scheduled v1/revision 3 through the owner desk. Source and provider readback match. This supersedes the earlier zero-upcoming count for Facebook only; publication/outcomes remain pending. See `cloudflare/RELEASE-2.75.md`, the schedule receipt and current checkpoint. The audit observations below retain their original dates.
+
 This review combines provider/browser observations made on 13 October with fresh Metricool and authenticated owner-desk reads on 15 October. Dates below are observation dates, not invented publication timestamps. No new post, message, schedule, model call or review decision was made in this audit.
 
 ## What is actually queued
