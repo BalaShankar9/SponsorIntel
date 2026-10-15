@@ -3,6 +3,7 @@ import socialLinks from "../shared/social-links.json";
 import type { Job } from "./career-data";
 import { jobMetadata, jobStructuredData } from "../shared/job-detail.js";
 import { jobSearchPath, readJobSearch } from "../shared/job-search.js";
+import { cityDirectoryPath, readCityFilters, type CityFilters } from '../shared/sponsor-cities.js';
 export const publicPages: Record<
   string,
   { path: string; title: string; description: string; reviewed?: string }
@@ -106,12 +107,25 @@ export function structuredData(view: string) {
   };
 }
 export function updateMetadata(view: string) {
+  if (view === 'sponsors-by-city') {
+    const meta = cityPageMetadata(readCityFilters(location.search));
+    return applyMetadata(meta, cityPageSchema(readCityFilters(location.search)), meta.indexable);
+  }
   if (view === "jobs") {
     const filters = readJobSearch(location.search);
     return updateJobsMetadata(filters, filters.page);
   }
   const page = pageMeta(view);
   applyMetadata(page, structuredData(view), !!publicPages[view]);
+}
+export function cityPageMetadata(filters:CityFilters) {
+  const base = pageMeta('sponsors-by-city');
+  return {...base,path:cityDirectoryPath(filters),title:filters.city ? `Sponsor Employers in ${filters.city} | Sponsor Intel` : base.title,
+    indexable:!filters.city&&!filters.q&&!filters.route&&filters.sort==='count'&&filters.page===1};
+}
+export function cityPageSchema(filters:CityFilters) {
+  const meta=cityPageMetadata(filters);
+  return {'@context':'https://schema.org','@type':'CollectionPage','@id':ORIGIN+meta.path+'#page',url:ORIGIN+meta.path,name:meta.title,description:meta.description,inLanguage:'en-GB'};
 }
 export function jobsPageMetadata(filters: Record<string, string | number>, page: number) {
   const base = pageMeta("jobs");

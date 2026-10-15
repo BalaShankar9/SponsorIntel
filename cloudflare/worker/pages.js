@@ -104,6 +104,11 @@ export async function pageResponse(request, env) {
   let assetPath;
   let status = 200;
   if (insightPaths.has(url.pathname)) return insightsResponse(request,env);
+  if (url.pathname === '/sponsors-by-city') {
+    const {renderCityPage, cityUnavailable} = await import('./sponsor-city-pages.tsx');
+    try { return await renderCityPage(request,env); }
+    catch { console.error(JSON.stringify({event:'city_directory_unavailable'})); return cityUnavailable(); }
+  }
   if (url.pathname === '/jobs') {
     try {
       const {renderJobSearchPage} = await import('./job-search-pages.tsx');

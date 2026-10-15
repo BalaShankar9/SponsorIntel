@@ -9,6 +9,11 @@
     "title": "UK Jobs with Sponsorship Evidence | Sponsor Intel",
     "description": "Explore UK vacancies from selected employer job boards. Read the actual sponsorship wording, check pay where listed, and save roles to your application tracker."
   },
+  "sponsors-by-city": {
+    "path": "/sponsors-by-city",
+    "title": "UK Sponsor Licence List by City | Sponsor Intel",
+    "description": "Browse UK licensed sponsor employers by town or city. Compare register listing counts, filter by visa route and inspect employer licence details with official source dates."
+  },
   "updates": {
     "path": "/updates",
     "title": "UK Immigration Updates, Explained | Sponsor Intel",

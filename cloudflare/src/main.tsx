@@ -57,6 +57,8 @@ import { PasswordReset } from "./account-email";
 import { GuideLinks, ResourceArticle, AboutPage, articles } from "./resources";
 import { publicPages, updateMetadata } from "./seo";
 import socialLinks from "../shared/social-links.json";
+import { SponsorCities } from './sponsor-cities';
+import './sponsor-cities.css';
 import {
   FeedbackForm,
   type FeedbackKind,
@@ -400,7 +402,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     }
   }
   function go(next: string) {
-    if (next === 'insights') { location.assign('/insights'); return; }
+    if (next === 'insights' || next === 'sponsors-by-city') { location.assign('/'+next); return; }
     setView(next);
     setMenu(false);
     setModal(null);
@@ -420,7 +422,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     history.replaceState({}, "", "/" + (p.size ? "?" + p : "?browse=1"));
   }
   useEffect(() => {
-    if (!explored) return;
+    if (!explored || view !== "discover") return;
     let active = true;
     setLoading(true);
     setSearchError("");
@@ -451,7 +453,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     return () => {
       active = false;
     };
-  }, [searchKey, page, sort, rating, explored]);
+  }, [searchKey, page, sort, rating, explored, view]);
   async function openId(id: string, update = true) {
     setDetailError("");
     setSelected(null);
@@ -722,6 +724,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
   const nav = [
     { id: "jobs", label: "Find a role", icon: Search },
     { id: "discover", label: "Discover sponsors", icon: Compass },
+    { id: "sponsors-by-city", label: "Sponsors by city", icon: MapPin },
     { id: "saved", label: "My shortlist", icon: Bookmark, badge: saved.length },
     { id: "applications", label: "My applications", icon: BriefcaseBusiness },
     { id: "studio", label: "Application studio", icon: Sparkles },
@@ -867,7 +870,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
               </button>
             </div>
           )}
-          {stale && (
+          {stale && view !== "sponsors-by-city" && (
             <div className="notice">
               <Info size={18} />
               <span>
@@ -880,6 +883,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
               </a>
             </div>
           )}
+          {view === 'sponsors-by-city' && <SponsorCities />}
           {view === "discover" && (
             <div className="career-launch">
               <span>
@@ -1078,6 +1082,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                 </datalist>
                 <div className="quick-filters">
                   <span>Explore:</span>
+                  <a className="text-button" href="/sponsors-by-city">Browse all towns & cities <ArrowUpRight size={14}/></a>
                   {[
                     "London",
                     "Manchester",

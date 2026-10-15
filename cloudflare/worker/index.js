@@ -31,6 +31,7 @@ import { advisersAPI, checkAdviserDataset } from "./advisers.js";
 import { chatAPI } from "./chat.js";
 import { analyticsAPI, recordResponseMetrics, responseMetric, PREPARATION_HEADER, GUIDANCE_HEADER } from "./analytics.js";
 import { studyAPI, refreshStudents } from "./study.js";
+import { getSponsorCities } from './sponsor-cities.js';
 const FEATURED = [
   "Google (UK) Limited",
   "Deloitte LLP",
@@ -134,6 +135,10 @@ async function api(request, env) {
       503,
     );
   if (path === "/api/meta") return json(meta);
+  if (path === '/api/sponsor-cities') {
+    try { return json(await getSponsorCities(env, url.search)); }
+    catch { return json({error:'The register could not be loaded. Please try again.'},503); }
+  }
   if (path === "/api/sponsors") {
     const { q, city, route, page, where, values } = querySpec(url.searchParams);
     const bindings = [meta.snapshot, ...values];
