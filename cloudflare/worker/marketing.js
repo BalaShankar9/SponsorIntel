@@ -239,5 +239,5 @@ export async function marketingAPI(request,env,owner){
   if(path==='/api/admin/marketing/create')return reply(await createBrief(env,body,actor),201);
   if(path==='/api/admin/marketing/decide')return reply(await decideBrief(env,body,actor));
   return reply({error:'Not found'},404);
- }catch(e){return reply({error:e.status?e.message:'The record could not be saved. Refresh before retrying.'},e.status||400);}
+ }catch(e){return reply({error:e.status?e.message:'The record could not be saved. Refresh before retrying.'},e.status||500);}
 }

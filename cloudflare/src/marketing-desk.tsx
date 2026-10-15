@@ -3,6 +3,7 @@ import {RefreshCw,ArrowUpRight,FileCheck2} from 'lucide-react';
 import './marketing-desk.css';
 import {MarketingAgents} from './marketing-agents';
 import {MarketingPerformance} from './marketing-performance';
+import {MarketingSchedule} from './marketing-schedule';
 type Source={title:string;url:string;excerpt:string;checked_at?:string;observed_on?:string};
 type Media={id:string;url:string;sha256:string;width:number;height:number;alt:string};
 type Receipt={version:number;provider:string;external_id:string;state:string;scheduled_at:string|null;post_url:string|null;observed_at:string;evidence:string};
@@ -16,8 +17,10 @@ async function api(path='',body?:unknown){const r=await fetch('/api/admin/market
 function BriefCard({brief:b,destination:d,onSaved}:{brief:Brief;destination:Destination;onSaved:()=>Promise<void>}){
  const[note,setNote]=useState(''),[checked,setChecked]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[mediaChecked,setMediaChecked]=useState(false);
  const[outcome,setOutcome]=useState('uncertain'),[postURL,setPostURL]=useState(''),[external,setExternal]=useState(b.receipts[0]?.external_id||'');
+ const[scheduleLocked,setScheduleLocked]=useState(false);
  const receipt=b.receipts[0],editable=['proposed','held','reviewed'].includes(b.state);
  async function decide(kind:string){
+  if(scheduleLocked)return;
   setBusy(true);setError('');
   try{await api('/decide',{id:b.id,revision:b.revision,kind,note,request_key:crypto.randomUUID(),
    checks:kind==='reviewed'?{claims:checked,sources:checked,destination:checked,duplication:checked,media:mediaChecked}:undefined,
@@ -40,9 +43,10 @@ function BriefCard({brief:b,destination:d,onSaved}:{brief:Brief;destination:Dest
    <label>{editable?'Evidence and decision notes':'What did the provider show?'}<textarea value={note} onChange={e=>setNote(e.target.value)} minLength={20} maxLength={1200} rows={3} placeholder="Include the evidence for this decision…"/></label>
    {editable&&b.state!=='reviewed'&&<label className="marketing-check"><input type="checkbox" checked={checked} onChange={e=>setChecked(e.target.checked)}/>I checked the claims, sources, destination and duplication.</label>}
    {!!b.media.length&&(editable?b.state!=='reviewed':outcome==='published')&&<label className="marketing-check"><input type="checkbox" checked={mediaChecked} onChange={e=>setMediaChecked(e.target.checked)}/>{editable?'I checked every image, its claims and accessibility text.':'I verified the exact caption, ordered images and accessibility text on the company post.'}</label>}
-   <div className="business-actions">{editable?<><button disabled={busy||note.trim().length<20} onClick={()=>void decide('held')}>Hold with reason</button>{b.state!=='reviewed'&&<button disabled={busy||!checked||(b.media.length>0&&!mediaChecked)||note.trim().length<20} onClick={()=>void decide('reviewed')}>Record review</button>}</>:<button disabled={busy||note.trim().length<20||(outcome==='published'&&(!postURL||(b.media.length>0&&!mediaChecked)))} onClick={()=>void decide(outcome)}>Save delivery observation</button>}</div>
+   <div className="business-actions">{editable?<><button disabled={busy||scheduleLocked||note.trim().length<20} onClick={()=>void decide('held')}>Hold with reason</button>{b.state!=='reviewed'&&<button disabled={busy||!checked||(b.media.length>0&&!mediaChecked)||note.trim().length<20} onClick={()=>void decide('reviewed')}>Record review</button>}</>:<button disabled={busy||note.trim().length<20||(outcome==='published'&&(!postURL||(b.media.length>0&&!mediaChecked)))} onClick={()=>void decide(outcome)}>Save delivery observation</button>}</div>
    {error&&<p className="career-error" role="alert">{error}</p>}
   </form>}
+  {b.state==='reviewed'&&<MarketingSchedule brief={b} destination={d} onSaved={onSaved} onLockChange={setScheduleLocked} disabled={busy}/>}
   <details className="marketing-history"><summary>Decision history · {b.events.length} recent records</summary>{b.events.map(e=><div key={e.revision}><strong>{e.kind.replaceAll('_',' ')} · v{e.version}</strong><small>{stamp(e.created_at)} · {e.actor.startsWith('owner:')?'Owner review':e.actor}</small><p>{detail(e.detail)}</p></div>)}</details>
  </details>;
 }
