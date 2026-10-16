@@ -1,0 +1,15 @@
+SELECT value FROM metadata WHERE key='recovery_drill';
+SELECT id FROM user ORDER BY id;
+SELECT user_id,data,revision FROM career_workspaces ORDER BY user_id;
+SELECT userId FROM session ORDER BY userId;
+SELECT userId FROM account ORDER BY userId;
+SELECT user_id FROM recovery_codes ORDER BY user_id;
+SELECT id,user_id FROM search_monitors ORDER BY id;
+SELECT day,runs,calls FROM agent_research_budget ORDER BY day;
+SELECT id,state,revision,last_event FROM marketing_briefs ORDER BY id;
+SELECT id,brief_id,state,external_id FROM marketing_receipts ORDER BY id;
+SELECT enabled,publishing,research FROM business_controls;
+SELECT enabled FROM marketing_agent_controls;
+PRAGMA foreign_key_check;
+PRAGMA quick_check;
+SELECT type,name,tbl_name,sql FROM sqlite_master WHERE name NOT LIKE 'sqlite_%' AND name NOT LIKE '_cf_%' AND name NOT LIKE 'd1_%' ORDER BY type,name;

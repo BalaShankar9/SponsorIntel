@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-11",
+  "environment": "Actual built browser UI with fictional local API on 127.0.0.1:5199; not production",
+  "before": {
+    "reproduced": "A pending preparation response overwrote the existing draft after the master CV was corrected on another route.",
+    "local_requests": 1
+  },
+  "after": {
+    "corrected_cv_preserved": true,
+    "existing_draft_preserved_after_stale_response_and_reload": true,
+    "manual_draft_edit_preserved_after_navigation_and_delayed_response": true,
+    "changed_input_notice_visible": true,
+    "unchanged_preparation_accepted": true,
+    "intervening_notes_and_stage_preserved": true,
+    "local_requests": 3,
+    "workspace_revision": 4
+  },
+  "checks": {
+    "full_tests_passed": 537,
+    "full_test_duration_ms": 108215.029875,
+    "new_regression_tests": 5,
+    "typescript_build_prerenders_budgets_dry_run": "passed",
+    "public_prerenders": 17,
+    "initial_javascript_bytes": 367164,
+    "initial_javascript_gzip_bytes": 112328,
+    "initial_css_bytes": 105467,
+    "initial_css_gzip_bytes": 22020,
+    "runtime": "Node 24.19.0"
+  },
+  "production_model_calls": 0,
+  "external_messages_or_posts": 0,
+  "production_deployment": false,
+  "limitation": "Proves local stale-response protection, not model accuracy, successful customer generation, or conversion improvement. Production remains 2.52.0."
+}

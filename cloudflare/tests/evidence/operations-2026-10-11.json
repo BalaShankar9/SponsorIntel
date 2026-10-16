@@ -1,0 +1,85 @@
+{
+  "recorded_at": "2026-10-11T09:49:12.851121+00:00",
+  "scope": "9-11 October desktop operating check; timestamps below are observations, not invented publication times",
+  "production_version": "2.52.0",
+  "prepared_version": "2.52.1",
+  "deployed": false,
+  "source_containment": {
+    "source_id": "portmandentex",
+    "paused": true,
+    "pause_observed_on": "2026-10-09",
+    "public_jobs": 0,
+    "conflict_ref": "744000145730189",
+    "failed_scheduled_runs": [
+      "scheduled-1791505811000",
+      "scheduled-1791527411000",
+      "scheduled-1791549011000"
+    ],
+    "daily_budget_after_pause": 500,
+    "budgets_reset": false,
+    "last_complete_progress": {
+      "ready": 51,
+      "total": 249,
+      "date": "2026-10-08"
+    },
+    "first_fresh_followup_verified": {
+      "run": "scheduled-1791700211000",
+      "platform": "complete",
+      "published": 35,
+      "owner_paused": 1,
+      "reservations": 36,
+      "inspection": "authenticated owner status control"
+    }
+  },
+  "public_jobs": {
+    "observed_at": "2026-10-11T09:26:50.683Z",
+    "jobs": 924,
+    "employers": 35,
+    "sponsorship_worded": 54,
+    "licence_linked": 872
+  },
+  "deliveries": [
+    {
+      "destination": "linkedin_company",
+      "provider_post": "urn:li:share:7513683557614120964",
+      "url": "https://www.linkedin.com/feed/update/urn:li:share:7513683557614120964/",
+      "ledger_observation_display": "9 Oct 2026, 19:51 Europe/London",
+      "version": 1,
+      "original_schedule_retained": true
+    },
+    {
+      "destination": "facebook_company",
+      "provider_schedule": "390623458",
+      "uuid": "3760308173592281444",
+      "provider_post": "1319703417896763_122094988383512994",
+      "url": "https://www.facebook.com/122093616117512994/posts/122094988383512994",
+      "ledger_observation_display": "11 Oct 2026, 10:45 Europe/London",
+      "version": 1,
+      "original_schedule_retained": true
+    }
+  ],
+  "verification_limits": [
+    "No new social send or model/Google retry",
+    "Application receipts and model agreement do not prove output quality",
+    "Recovery check failed access; last successful evidence is 8 October",
+    "School candidates remain private",
+    "Reservation fix has local runtime evidence, no production execution"
+  ],
+  "local_validation": {
+    "node": "24.19.0",
+    "tests_passed": 509,
+    "tests_failed": 0,
+    "final_build": true,
+    "prerenders": 17,
+    "asset_budgets": true,
+    "final_dry_run": true,
+    "schema_change": false,
+    "unit_regression_failed_before_fix": true,
+    "actual_worker_d1_regression_passed": true
+  },
+  "dependency_audit_2026_10_09": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 3
+  }
+}

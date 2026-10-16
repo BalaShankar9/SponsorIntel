@@ -1,0 +1,322 @@
+{
+  "observed_at": "2026-10-11T15:23:47.784541+00:00",
+  "release": "2.53.0",
+  "deployed_commit": "6b57840cd06da3450f11f3ff0d802db2f9fe771e",
+  "worker_version": "389877c3-9b6e-43b3-a117-245c3a176f09",
+  "rollback_worker": "3a133af1-df7d-443c-8ea9-e15e77f2ba5f",
+  "migration": "0035_marketing_performance.sql",
+  "recovery_before": {
+    "observed_at": "2026-10-11T15:07:11.469Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "a9063f1adb2597c4ef8d88294e25f68cc163c67136a141327c94393b64bdaa02",
+    "database_size_bytes": 102977536,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 141,
+      "actual_objects": 141,
+      "migration_files": 34,
+      "expected_sha256": "53dd26f53704385a0f2492387bdd6662022b4097e94fb13e31425cbaab7985b5",
+      "actual_sha256": "53dd26f53704385a0f2492387bdd6662022b4097e94fb13e31425cbaab7985b5",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false,
+    "baseline_commit": "2153dd7bf746d64b7ab4bacab234ec80801337df"
+  },
+  "recovery_after": {
+    "observed_at": "2026-10-11T15:10:51.785Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "8afa54bf5c057aed0869e7913c903a09539d634ab9bbc3f24f4716ae46f13177",
+    "database_size_bytes": 103002112,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 146,
+      "actual_objects": 146,
+      "migration_files": 35,
+      "expected_sha256": "123dbfca28b30746a1f0a5b7ed469df4fd102e1da756b3484bf98188691e0f2b",
+      "actual_sha256": "123dbfca28b30746a1f0a5b7ed469df4fd102e1da756b3484bf98188691e0f2b",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "before_migration": {
+    "observed_at": "2026-10-11T15:09:22.399Z",
+    "phase": "before",
+    "checks": {
+      "jobs": {
+        "rows": 1036,
+        "sha256": "883cacb97739d494804d0808e8324675ae857c012e341bfb2ba354ed61d81bc6"
+      },
+      "source_controls": {
+        "rows": 1,
+        "sha256": "a5f1b1367870ec549ab766966f8b5a6b9c6fc3db2bc6d090904c1791c5a05532"
+      },
+      "business_controls": {
+        "rows": 1,
+        "sha256": "811d3c1e79850938440afc930d981cd277742885cb7177a89431e86f0f824492"
+      },
+      "marketing_controls": {
+        "rows": 1,
+        "sha256": "cd19324b7aedb466a72f6d4a16604a75d45d4c84d4903e9a7262b5d3dd045388"
+      },
+      "application_controls": {
+        "rows": 1,
+        "sha256": "abfa09d64cc4ffe978439f9a376f4e7c47f23ab96aef75eb9d2661d7466dfc3e"
+      },
+      "advert_reviews": {
+        "rows": 4,
+        "sha256": "94a7178c769bc58e0b3cd75c3f62ae0e7354ce801e39e5173b2a8472c1967535"
+      },
+      "source_budget": {
+        "rows": 1,
+        "sha256": "a05735b1fa74b1355dd914089bc19939b5d722e0f68640c846ea84dba117a87e",
+        "values": [
+          {
+            "day": "2026-10-11",
+            "requests": 280,
+            "briefs": 0
+          }
+        ]
+      },
+      "research_budget": {
+        "rows": 1,
+        "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13",
+        "values": [
+          {
+            "day": "2026-10-11",
+            "runs": 2,
+            "calls": 6
+          }
+        ]
+      },
+      "foreign_keys": {
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    "jobs": {
+      "total": 1036,
+      "active": 928,
+      "sponsorship": {
+        "not_stated": 777,
+        "conditional": 34,
+        "unavailable": 96,
+        "offered": 21
+      }
+    }
+  },
+  "after_migration": {
+    "observed_at": "2026-10-11T15:10:51.834Z",
+    "phase": "after",
+    "checks": {
+      "jobs": {
+        "rows": 1036,
+        "sha256": "883cacb97739d494804d0808e8324675ae857c012e341bfb2ba354ed61d81bc6"
+      },
+      "source_controls": {
+        "rows": 1,
+        "sha256": "a5f1b1367870ec549ab766966f8b5a6b9c6fc3db2bc6d090904c1791c5a05532"
+      },
+      "business_controls": {
+        "rows": 1,
+        "sha256": "811d3c1e79850938440afc930d981cd277742885cb7177a89431e86f0f824492"
+      },
+      "marketing_controls": {
+        "rows": 1,
+        "sha256": "cd19324b7aedb466a72f6d4a16604a75d45d4c84d4903e9a7262b5d3dd045388"
+      },
+      "application_controls": {
+        "rows": 1,
+        "sha256": "abfa09d64cc4ffe978439f9a376f4e7c47f23ab96aef75eb9d2661d7466dfc3e"
+      },
+      "advert_reviews": {
+        "rows": 4,
+        "sha256": "94a7178c769bc58e0b3cd75c3f62ae0e7354ce801e39e5173b2a8472c1967535"
+      },
+      "source_budget": {
+        "rows": 1,
+        "sha256": "a05735b1fa74b1355dd914089bc19939b5d722e0f68640c846ea84dba117a87e",
+        "values": [
+          {
+            "day": "2026-10-11",
+            "requests": 280,
+            "briefs": 0
+          }
+        ]
+      },
+      "research_budget": {
+        "rows": 1,
+        "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13",
+        "values": [
+          {
+            "day": "2026-10-11",
+            "runs": 2,
+            "calls": 6
+          }
+        ]
+      },
+      "foreign_keys": {
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    "jobs": {
+      "total": 1036,
+      "active": 928,
+      "sponsorship": {
+        "not_stated": 777,
+        "conditional": 34,
+        "unavailable": 96,
+        "offered": 21
+      }
+    }
+  },
+  "unchanged_comparisons": [
+    "jobs",
+    "source_controls",
+    "business_controls",
+    "marketing_controls",
+    "application_controls",
+    "advert_reviews",
+    "source_budget",
+    "research_budget",
+    "foreign_keys"
+  ],
+  "tests": {
+    "passed": 550,
+    "failed": 0,
+    "duration_ms": 119631.110542,
+    "focused": 13
+  },
+  "build": {
+    "typescript": true,
+    "prerenders": 17,
+    "browser_budgets_unchanged": true,
+    "dry_run": true
+  },
+  "live_health": {
+    "ok": true,
+    "version": "2.53.0"
+  },
+  "public_collection": {
+    "jobs": 928,
+    "employers": 36,
+    "sponsorship_worded": 55,
+    "offered": 21,
+    "conditional": 34,
+    "licence_linked": 887
+  },
+  "anonymous_performance_api_status": 403,
+  "browser_checks": [
+    "separate Views/Impressions fields",
+    "one real LinkedIn observation saved and reloaded",
+    "English advert CV refusal and employer instructions visible",
+    "Callosum group linkage returned by public API"
+  ],
+  "production_observation": {
+    "id": "b25098d4-c062-4677-9258-f68ee55d9a75",
+    "destination": "linkedin-company",
+    "observed_at": "2026-10-11T15:14:00.000Z",
+    "metrics": "{\"impressions\":103,\"views\":null,\"reach\":70,\"clicks\":2,\"link_clicks\":null,\"reactions\":0,\"comments\":0,\"shares\":0,\"saves\":null}",
+    "campaign": "li-welcome",
+    "created_at": "2026-10-11T15:16:06.040Z"
+  },
+  "application_stage_counts": [
+    {
+      "stage": "baseline",
+      "state": "completed",
+      "n": 3
+    },
+    {
+      "stage": "baseline",
+      "state": "rejected",
+      "n": 3
+    },
+    {
+      "stage": "candidate",
+      "state": "rejected",
+      "n": 6
+    },
+    {
+      "stage": "write",
+      "state": "completed",
+      "n": 6
+    }
+  ],
+  "latest_predeployment_business": {
+    "id": "business-497702",
+    "state": "attention",
+    "created_at": "2026-10-11T14:45:36.000Z",
+    "finished_at": "2026-10-11T14:46:11.401Z",
+    "platform_completed": true,
+    "platform_success": true,
+    "platform_end_utc": "2026-10-11T14:46:11Z",
+    "new_release_scheduled_execution_verified": false
+  },
+  "shared_model_allowance_after_observation": {
+    "day": "2026-10-11",
+    "runs": 2,
+    "calls": 6
+  },
+  "github_ci": {
+    "head": "6b57840cd06da3450f11f3ff0d802db2f9fe771e",
+    "checks": [
+      114501840750,
+      114501830528
+    ],
+    "status": "not started: account billing lock",
+    "gitguardian": 114501832410,
+    "gitguardian_conclusion": "success"
+  },
+  "application_runtime_profile": {
+    "profile": {
+      "suite": "application-development-20-v1",
+      "fixture_hash": "5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3",
+      "policy": "paired-application-development-v1",
+      "candidate_policy": "application-linked-paragraphs-v1",
+      "writer": "@cf/zai-org/glm-4.7-flash",
+      "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+      "review_options": {
+        "max_tokens": 2700,
+        "temperature": 0.1,
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "implementation": "db4e4498d8748b28e6f1bbc165be38f2dd760de1d89981da9a382524f32dca38"
+    },
+    "outbound_calls": 0
+  },
+  "limits": [
+    "No model, Google, source-refresh, social-send or email-test triggered by this deployment",
+    "No production restore or customer data export",
+    "Next genuine planner context has not consumed the new observation",
+    "Existing content/source/evaluation holds remain",
+    "No independently accepted AI quality, growth or autonomous company outcome"
+  ],
+  "screenshots": [
+    {
+      "file": "outputs/sponsorintel-cloudflare-access-2026-10-11.png",
+      "sha256": "c292d018f53943cc9408ba0547cfbc8d96c924b455fadd43bcd7d369772b1199"
+    },
+    {
+      "file": "outputs/sponsorintel-live-marketing-results-2026-10-11.png",
+      "sha256": "9cef3b682a66c778f1617ec39c34bef30804f6d1daceac93c340ca90cee12828"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "verification_date": "2026-10-13",
+  "observation_window_utc": {
+    "from": "2026-10-13T09:04:00Z",
+    "to": "2026-10-13T10:00:11Z"
+  },
+  "note": "Inspection occurred within this bounded window; exact original publication time was not returned.",
+  "brand_id": "7294726",
+  "facebook_page_id": "1319703417896763",
+  "public_profile_id": "61595389821505",
+  "schedule_id": 390624032,
+  "provider_post_id": "1319703417896763_122096326947512994",
+  "status": "PUBLISHED",
+  "public_url": "https://www.facebook.com/122093616117512994/posts/122096326947512994",
+  "scheduled_at": "2026-10-12T10:00:00+01:00",
+  "actual_publication_at": null,
+  "browser_verified": {
+    "account": true,
+    "public_audience": true,
+    "complete_copy_matches": true,
+    "campaign_url": "https://sponsorintel.london/studio?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=application_review",
+    "uploaded_media": false
+  },
+  "ledger": {
+    "brief_id": "launch-fb-applications",
+    "state": "scheduled",
+    "version": 1,
+    "revision": 1,
+    "recording_pending": true,
+    "reason": "Sponsor Intel navigation blocked by browser. No authentication bypass or direct database write."
+  },
+  "new_provider_send": false,
+  "performance_claimed": false
+}

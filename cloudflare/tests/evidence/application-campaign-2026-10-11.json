@@ -1,0 +1,165 @@
+{
+  "release": "2.55.0",
+  "status": "live_verified_paused",
+  "source_manifest": {
+    "version": 1,
+    "files": {
+      "tests/fixtures/application-development-20.json": "32264fed4688b48c8ddaf84e53c3f9454886d493b975075f803c8429d0670713",
+      "worker/application-profile.js": "05875a36ce033ce5be2078a6e957af53932b73693d1b8e3702116518476ee5cd",
+      "worker/career-quality.js": "42c202aa6a0012d42cdb9303278e73e28e93a925ffcf562f90dd705ca8dcb4dc",
+      "worker/career-review-candidate.js": "2ac0281f46e79acf9f61cbc68bac35840620b1d9c2194215b058bb7f5549df72",
+      "worker/career-review.js": "17e059015501b7d69d24d6b1a08750f3e2430f227d5bd0de5eabe652a7ab313b",
+      "worker/career-writer.js": "29ce791be9d087d2bea26ab67f5691a90ec4f7658eede6b6ef15bad3f0e84eea"
+    },
+    "sha256": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2"
+  },
+  "local": {
+    "node": "24.19.0",
+    "tests": 565,
+    "failures": 0,
+    "duration_ms": 111453.049083,
+    "complete_worker_build_modes": [
+      "ordinary",
+      "minified"
+    ],
+    "source_profile_equal": true,
+    "customer_writer_bytes_preserved": true,
+    "migration_preservation": true,
+    "same_request_concurrency_one_audit": true,
+    "request_replay_no_extra_model_call": true,
+    "model_calls": "synthetic local only; no external calls",
+    "browser": {
+      "desktop_width": 1280,
+      "desktop_content_width": 1280,
+      "mobile_width": 390,
+      "mobile_content_width": 390,
+      "fictional_save_kept_pause_and_budget": true
+    },
+    "build": true,
+    "prerenders": 17,
+    "dry_run": true
+  },
+  "recovery_before": {
+    "observed_at": "2026-10-11T16:25:18.276Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "e8cadd5f56e78a585437f9bcd337fa3e628d46d08ef2658e710efcaa0a0a7b05",
+    "database_size_bytes": 103075840,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 146,
+      "actual_objects": 146,
+      "migration_files": 35,
+      "expected_sha256": "123dbfca28b30746a1f0a5b7ed469df4fd102e1da756b3484bf98188691e0f2b",
+      "actual_sha256": "123dbfca28b30746a1f0a5b7ed469df4fd102e1da756b3484bf98188691e0f2b",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false,
+    "pending_migration": "0036_application_campaigns.sql"
+  },
+  "production_calls_added": 0,
+  "production_migration_applied": true,
+  "quality_improvement_proven": false,
+  "customer_reviewer_promoted": false,
+  "remaining": [
+    "genuine future eligible scheduled model execution",
+    "all 20 cases and independent writing-quality adjudication",
+    "separately held-out validation"
+  ],
+  "worker": "24d7ac43-84e6-4d81-8263-6f568a0b244a",
+  "code_commit": "810a647b6056a3ad44d2036e6829505d99bab66c",
+  "rollback_worker": "c2eee049-7c16-4eda-84f6-374f7cfb946a",
+  "production": {
+    "observed_at": "2026-10-11T16:33:03.335Z",
+    "phase": "after-release",
+    "recovery": {
+      "observed_at": "2026-10-11T16:33:02.473Z",
+      "database": "sponsorintel-db",
+      "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+      "status": "available",
+      "current_recovery_point_available": true,
+      "bookmark_sha256": "5e0b380e98fa3356e058691caef25aec4bac6d8180928d6183307b1edf939c22",
+      "database_size_bytes": 103108608,
+      "region": "WEUR",
+      "schema": {
+        "expected_objects": 154,
+        "actual_objects": 154,
+        "migration_files": 36,
+        "expected_sha256": "c065e65b90295a8fd476f469320f769e4a3c894d99e5e26d9eb15a1d530878e0",
+        "actual_sha256": "c065e65b90295a8fd476f469320f769e4a3c894d99e5e26d9eb15a1d530878e0",
+        "missing": [],
+        "extra": [],
+        "changed": []
+      },
+      "production_data_exported": false,
+      "production_restore_performed": false,
+      "retention_window_verified": false,
+      "customer_data_restoration_verified": false
+    },
+    "unchanged": [
+      {
+        "table": "runs",
+        "rows": 4,
+        "sha256": "f70739db65b563d1083783179de48a3759f443fbe3fbb8ca75831a643cadda64"
+      },
+      {
+        "table": "steps",
+        "rows": 18,
+        "sha256": "93f190869414d48392ce7ed6ea96f0242b9337ce9c5cdbd21b1da540cf96ef6a"
+      },
+      {
+        "table": "assessments",
+        "rows": 9,
+        "sha256": "d4f2fed6230d0a8e246c22bfc521db323186e8b615a4789eea120bc6c4713ffb"
+      },
+      {
+        "table": "controls",
+        "rows": 1,
+        "sha256": "87ded263de1203b116af8cf50af94350348a26df13a78765c9ec4ddf1004b737"
+      },
+      {
+        "table": "budget",
+        "rows": 1,
+        "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13"
+      }
+    ],
+    "all_original_run_campaigns": [
+      "legacy-v1",
+      "legacy-v1",
+      "legacy-v1",
+      "legacy-v1"
+    ],
+    "foreign_key_errors": 0,
+    "selected": [
+      {
+        "id": "comparison-ab82508c3c1b5ae41fc5add0",
+        "profile": "{\"suite\":\"application-development-20-v1\",\"fixture_hash\":\"5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3\",\"policy\":\"paired-application-schema-v2\",\"candidate_policy\":\"application-linked-paragraphs-v1\",\"writer\":\"@cf/zai-org/glm-4.7-flash\",\"reviewer\":\"@cf/meta/llama-3.3-70b-instruct-fp8-fast\",\"review_options\":{\"max_tokens\":2700,\"temperature\":0.1,\"response_format\":{\"type\":\"json_object\"}},\"candidate_options\":{\"cv\":{\"max_tokens\":2700,\"temperature\":0.1,\"response_format\":{\"type\":\"json_schema\",\"json_schema\":{\"type\":\"object\",\"properties\":{\"sections\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":5,\"items\":{\"type\":\"object\",\"properties\":{\"heading\":{\"type\":\"string\",\"enum\":[\"PROFILE\",\"SKILLS\",\"SELECTED PROJECTS\",\"EXPERIENCE\",\"EDUCATION\"]},\"paragraphs\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":8,\"items\":{\"type\":\"object\",\"properties\":{\"text\":{\"type\":\"string\",\"minLength\":10,\"maxLength\":1400},\"evidence\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":3,\"items\":{\"type\":\"object\",\"properties\":{\"source_id\":{\"type\":\"string\",\"minLength\":2,\"maxLength\":12},\"quote\":{\"type\":\"string\",\"minLength\":10,\"maxLength\":1800}},\"required\":[\"source_id\",\"quote\"],\"additionalProperties\":false}}},\"required\":[\"text\",\"evidence\"],\"additionalProperties\":false}}},\"required\":[\"heading\",\"paragraphs\"],\"additionalProperties\":false}}},\"required\":[\"sections\"],\"additionalProperties\":false}}},\"coverLetter\":{\"max_tokens\":2700,\"temperature\":0.1,\"response_format\":{\"type\":\"json_schema\",\"json_schema\":{\"type\":\"object\",\"properties\":{\"sections\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":1,\"items\":{\"type\":\"object\",\"properties\":{\"heading\":{\"type\":\"string\",\"enum\":[\"BODY\"]},\"paragraphs\":{\"type\":\"array\",\"minItems\":2,\"maxItems\":4,\"items\":{\"type\":\"object\",\"properties\":{\"text\":{\"type\":\"string\",\"minLength\":10,\"maxLength\":1400},\"evidence\":{\"type\":\"array\",\"minItems\":1,\"maxItems\":3,\"items\":{\"type\":\"object\",\"properties\":{\"source_id\":{\"type\":\"string\",\"minLength\":2,\"maxLength\":12},\"quote\":{\"type\":\"string\",\"minLength\":10,\"maxLength\":1800}},\"required\":[\"source_id\",\"quote\"],\"additionalProperties\":false}}},\"required\":[\"text\",\"evidence\"],\"additionalProperties\":false}}},\"required\":[\"heading\",\"paragraphs\"],\"additionalProperties\":false}}},\"required\":[\"sections\"],\"additionalProperties\":false}}}},\"identity_method\":\"source-graph-sha256-v1\",\"implementation\":\"4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2\"}",
+        "reason": "Agent-assisted preparation through the owner account, 11 October 2026. All six retained candidate responses failed the original contract: five structure failures and one invalid JSON result. Version 2.55 requests the existing candidate structure as a bounded provider JSON schema and replaces build-sensitive function text with a verified source manifest. The writer, baseline reviewer, candidate factual checks and all call ceilings are unchanged; all 565 local tests pass. This targets formatting only, not unsupported implications or writing quality. Preserve the original campaign and assessments. Keep evaluation paused with no further AI calls on 11 October. A later eligible scheduled comparison must verify actual provider compliance, all 20 cases and independent quality review before any proposed customer change.",
+        "created_at": "2026-10-11T16:32:49.063Z"
+      }
+    ]
+  },
+  "live_profile_matches_source": true,
+  "anonymous_campaign_status": 403,
+  "public_collection": {
+    "roles": 928,
+    "employers": 36,
+    "sponsorship_worded": 55,
+    "licence_linked": 887
+  },
+  "hosted_checks": {
+    "ids": [
+      114518254789,
+      114518246089
+    ],
+    "state": "did_not_start_account_billing_lock",
+    "gitguardian": "passed"
+  }
+}

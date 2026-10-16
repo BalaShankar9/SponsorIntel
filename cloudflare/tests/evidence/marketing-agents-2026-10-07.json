@@ -1,0 +1,134 @@
+{
+  "release": "2.15.0",
+  "date": "2026-10-07",
+  "worker_version": "aeed4d3c-83bc-4438-9f8d-50d80b67d3e0",
+  "prior_worker": "1bc441fd-a33b-4de1-88be-57bd99b28cfe",
+  "pre_schema_bookmark": "0000025d-00000034-000050fd-f5f8dc1e165152e867bc53c2d18f5aa5",
+  "migration": "0012_marketing_agents.sql",
+  "automated_tests": {
+    "passed": 171,
+    "failed": 0,
+    "model_outputs": "synthetic; not a model-quality score"
+  },
+  "local_workerd": {
+    "workflow_status": "complete",
+    "decision": "no_post",
+    "reason": "No eligible slot: the queue is full, expired or needs delivery reconciliation.",
+    "eligible_sources": 3,
+    "unavailable_sources": [],
+    "model_calls": 0,
+    "queue": "synthetic uncertain brief in isolated local D1; no production publishing or model bindings"
+  },
+  "public_source_checks": [
+    {
+      "id": "shortlist",
+      "url": "https://sponsorintel.london/guides/build-a-shortlist",
+      "checked_at": "2026-10-07T22:02:13.613Z",
+      "content_hash": "50281fa114d00aeda08754fa70e66ee512830e2bba5fd6decb3ab61dba91c39a"
+    },
+    {
+      "id": "application-evidence",
+      "url": "https://sponsorintel.london/guides/build-a-shortlist",
+      "checked_at": "2026-10-07T22:02:13.613Z",
+      "content_hash": "50281fa114d00aeda08754fa70e66ee512830e2bba5fd6decb3ab61dba91c39a"
+    },
+    {
+      "id": "advert-wording",
+      "url": "https://sponsorintel.london/guides/sponsorship-in-job-adverts",
+      "checked_at": "2026-10-07T22:02:13.613Z",
+      "content_hash": "e3381fe8d4dd5cdee4ab8707f44842fa313fff1f005bae5bb2cde382ae85c31c"
+    }
+  ],
+  "live": {
+    "budget": [
+      {
+        "day": "2026-10-07",
+        "runs": 4,
+        "calls": 13
+      }
+    ],
+    "run": [
+      {
+        "id": "marketing-2026-10-07",
+        "state": "held",
+        "calls": 0,
+        "result": {
+          "reason": "Shared daily AI allowance unavailable. No calls made; next opportunity is the next UTC day."
+        }
+      }
+    ],
+    "controls": [
+      {
+        "enabled": 1
+      }
+    ],
+    "brief_states": [
+      {
+        "state": "held",
+        "count": 1
+      },
+      {
+        "state": "scheduled",
+        "count": 4
+      }
+    ],
+    "receipt_states": [
+      {
+        "state": "scheduled",
+        "count": 4
+      }
+    ],
+    "anonymous_http_status": 403,
+    "owner_ui": "daily check held; pause saved; resume saved; allowance unchanged; enabled restored",
+    "mobile": {
+      "viewport_width": 390,
+      "page_scroll_width": 390,
+      "panel_width": 310,
+      "panel_scroll_width": 310
+    },
+    "business_receipt": {
+      "id": "business-497614",
+      "state": "completed",
+      "finished_at": "2026-10-07T22:05:21.207Z",
+      "result": {
+        "health": {
+          "findings": 3,
+          "high": 0
+        },
+        "cleanup": {
+          "state": "completed",
+          "stale_roles": 0,
+          "policy": "Hide records last observed over 72 hours ago; retain the records, feedback and customer workspaces."
+        },
+        "publication": {
+          "state": "not_due",
+          "next_due": "2026-10-14T16:50:43.330Z"
+        },
+        "marketing": {
+          "prepared": 0,
+          "external_posts_sent": 0
+        },
+        "editorial": {
+          "id": "marketing-2026-10-07",
+          "state": "held",
+          "result": {
+            "reason": "Shared daily AI allowance unavailable. No calls made; next opportunity is the next UTC day."
+          },
+          "reused": true
+        },
+        "research": {
+          "state": "held",
+          "research_id": null,
+          "detail": "Research was held by its availability or budget controls. No automatic retry today."
+        }
+      }
+    },
+    "trigger": "owner acceptance checks; not a later cron execution"
+  },
+  "limits": [
+    "No live model call was permitted today because the shared four attempts had already been consumed.",
+    "Synthetic success/rejection/revision tests do not establish semantic accuracy or audience benefit.",
+    "Editorial workflow does not publish to social providers, generate legal-change articles, promote live jobs or learn from performance.",
+    "Unresolved workflow outcomes require operational reconciliation before a replacement run."
+  ]
+}

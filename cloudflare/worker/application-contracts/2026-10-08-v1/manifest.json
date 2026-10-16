@@ -1,0 +1,27 @@
+{
+  "id": "application-document-contract-20261008-v1",
+  "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+  "source_files": {
+    "career-review.js": "17e059015501b7d69d24d6b1a08750f3e2430f227d5bd0de5eabe652a7ab313b",
+    "career-review-candidate.js": "2ac0281f46e79acf9f61cbc68bac35840620b1d9c2194215b058bb7f5549df72",
+    "career-quality.js": "42c202aa6a0012d42cdb9303278e73e28e93a925ffcf562f90dd705ca8dcb4dc"
+  },
+  "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+  "profile": {
+    "suite": "application-development-20-v1",
+    "fixture_hash": "5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3",
+    "policy": "paired-application-development-v1",
+    "candidate_policy": "application-linked-paragraphs-v1",
+    "writer": "@cf/zai-org/glm-4.7-flash",
+    "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "review_options": {
+      "max_tokens": 2700,
+      "temperature": 0.1,
+      "response_format": {
+        "type": "json_object"
+      }
+    },
+    "implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+  },
+  "purpose": "Read-only historical rejection diagnostics; never execution, reclassification or promotion."
+}

@@ -1,0 +1,233 @@
+{
+  "checked_at": "2026-10-07T09:23:18.952Z",
+  "app_version": "2.9.0",
+  "worker_version": "504c8624-ee0d-4056-a933-eb748e4390ae",
+  "licence_acceptance": {
+    "base": "https://sponsorintel.london",
+    "checked_at": "2026-10-07T09:23:08.394Z",
+    "total_jobs": 839,
+    "licensed_company_jobs": 755,
+    "linked_employers": 21,
+    "advert_wording": {
+      "offered": 0,
+      "conditional": 35,
+      "not_stated": 629,
+      "unavailable": 91
+    },
+    "register": {
+      "available": true,
+      "source_date": "2026-10-06",
+      "checked_at": "2026-10-07T07:15:14.478Z"
+    },
+    "sample_role": "/jobs/01fcf2374a4165cca09b4910"
+  },
+  "opportunity_acceptance": {
+    "base": "https://sponsorintel.london",
+    "passed": 12,
+    "boards": 30,
+    "collections": {
+      "total": 839,
+      "employers": 30,
+      "early_career": 49,
+      "sponsorship": 51,
+      "licensed": 755,
+      "salary": 102
+    },
+    "early_career_with_sponsorship_wording": 2,
+    "checked_at": "2026-10-07T09:22:50.479Z"
+  },
+  "new_sources": {
+    "checked_at": "2026-10-07T09:23:18.952Z",
+    "health": {
+      "ok": true,
+      "version": "2.9.0",
+      "register": {
+        "date": "2026-10-06",
+        "count": 127934,
+        "checked_at": "2026-10-07T07:15:14.478Z"
+      }
+    },
+    "boards": [
+      {
+        "id": "numan",
+        "count": 7,
+        "wording": {
+          "not_stated": 7
+        },
+        "sample_role": "/jobs/919e5164911fcddbe6a4fcdd",
+        "source": "https://jobs.eu.lever.co/numan/613e6f66-5a94-42db-9bab-70d4858b0e50",
+        "entity": "Vir Health Limited trading as Numan"
+      },
+      {
+        "id": "eucalyptus",
+        "count": 34,
+        "wording": {
+          "not_stated": 34
+        },
+        "sample_role": "/jobs/be2af277aac715a5729bcab3",
+        "source": "https://job-boards.greenhouse.io/eucalyptus/jobs/4709044005",
+        "entity": null
+      },
+      {
+        "id": "university-bath",
+        "count": 28,
+        "wording": {
+          "not_stated": 28
+        },
+        "sample_role": "/jobs/b4a7d886d81ced92ed6197cc",
+        "source": "https://www.bath.ac.uk/jobs/rss/click.aspx?ref=CC13971",
+        "entity": "University of Bath"
+      },
+      {
+        "id": "university-greater-manchester",
+        "count": 6,
+        "wording": {
+          "not_stated": 6
+        },
+        "sample_role": "/jobs/01fcf2374a4165cca09b4910",
+        "source": "https://jobs.greatermanchester.ac.uk/RSS/click.aspx?ref=0124-26-R",
+        "entity": "University of Bolton"
+      }
+    ]
+  },
+  "refresh": {
+    "sources": [
+      {
+        "board": "monzo",
+        "jobs": 57
+      },
+      {
+        "board": "cloudflare",
+        "jobs": 58
+      },
+      {
+        "board": "gocardless",
+        "jobs": 8
+      },
+      {
+        "board": "deliveroo",
+        "jobs": 132
+      },
+      {
+        "board": "stripe",
+        "jobs": 54
+      },
+      {
+        "board": "figma",
+        "jobs": 19
+      },
+      {
+        "board": "octopus-energy",
+        "jobs": 76
+      },
+      {
+        "board": "funding-circle",
+        "jobs": 18
+      },
+      {
+        "board": "zopa",
+        "jobs": 31
+      },
+      {
+        "board": "zeeco",
+        "jobs": 4
+      },
+      {
+        "board": "invinity",
+        "jobs": 1
+      },
+      {
+        "board": "wep-clinical",
+        "jobs": 4
+      },
+      {
+        "board": "nucleus",
+        "jobs": 14
+      },
+      {
+        "board": "apothecom",
+        "jobs": 2
+      },
+      {
+        "board": "precision-aq",
+        "jobs": 2
+      },
+      {
+        "board": "axon",
+        "jobs": 4
+      },
+      {
+        "board": "graphcore",
+        "jobs": 85
+      },
+      {
+        "board": "bakerhicks",
+        "jobs": 97
+      },
+      {
+        "board": "hr-wallingford",
+        "jobs": 4
+      },
+      {
+        "board": "allica-bank",
+        "jobs": 29
+      },
+      {
+        "board": "voleon",
+        "jobs": 10
+      },
+      {
+        "board": "multiverse",
+        "jobs": 21
+      },
+      {
+        "board": "callosum",
+        "jobs": 10
+      },
+      {
+        "board": "sampura",
+        "jobs": 1
+      },
+      {
+        "board": "seamflow",
+        "jobs": 7
+      },
+      {
+        "board": "maven",
+        "jobs": 16
+      },
+      {
+        "board": "numan",
+        "jobs": 7
+      },
+      {
+        "board": "eucalyptus",
+        "jobs": 34
+      },
+      {
+        "board": "university-bath",
+        "jobs": 28
+      },
+      {
+        "board": "university-greater-manchester",
+        "jobs": 6
+      }
+    ]
+  },
+  "automated_tests": {
+    "node": "24.19.0",
+    "passed": 77,
+    "failed": 0
+  },
+  "mobile": {
+    "viewport_width": 390,
+    "catalogue_scroll_width": 390,
+    "role_scroll_width": 390
+  },
+  "limitations": [
+    "All 75 new roles had sponsorship not stated in fetched text.",
+    "University RSS is partial campus coverage; disappearing from it is not proof of closure.",
+    "Greater Manchester fetch failed in local workerd preview; hosted Cloudflare preview and production both succeeded.",
+    "Hosted GitHub CI for the preceding release was prevented from starting by an account billing lock; this release must be checked separately."
+  ]
+}

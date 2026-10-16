@@ -1,0 +1,804 @@
+{
+  "release": "2.77.0",
+  "worker": "e817b561-301c-4975-9dcd-f0d3a63504fc",
+  "code_commit": "b52db78e75a4a5e6f14c68797147f679e7b9708a",
+  "rollback_worker": "7364aecf-2c42-4548-9ba7-2cf64751e1f7",
+  "observed_at": "2026-10-15T23:43:12Z",
+  "live_checks": {
+    "observed_at": "2026-10-15T23:42:52.047Z",
+    "comparison": [
+      {
+        "key": "business_controls",
+        "unchanged": true
+      },
+      {
+        "key": "marketing_controls",
+        "unchanged": true
+      },
+      {
+        "key": "research_control",
+        "unchanged": true
+      },
+      {
+        "key": "application_controls",
+        "unchanged": true
+      },
+      {
+        "key": "source_controls",
+        "unchanged": true
+      },
+      {
+        "key": "marketing_briefs",
+        "unchanged": true
+      },
+      {
+        "key": "marketing_receipts",
+        "unchanged": true
+      },
+      {
+        "key": "source_budget",
+        "unchanged": true
+      },
+      {
+        "key": "ai_budget",
+        "unchanged": true
+      },
+      {
+        "key": "business_runs",
+        "unchanged": true
+      },
+      {
+        "key": "source_runs",
+        "unchanged": true
+      },
+      {
+        "key": "marketing_runs",
+        "unchanged": true
+      },
+      {
+        "key": "issues",
+        "unchanged": true
+      },
+      {
+        "key": "foreign_keys",
+        "unchanged": true
+      }
+    ],
+    "responses": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "body": {
+          "ok": true,
+          "version": "2.76.0",
+          "register": {
+            "date": "2026-10-14",
+            "count": 128015,
+            "checked_at": "2026-10-15T07:15:53.298Z"
+          }
+        }
+      },
+      {
+        "path": "/api/meta",
+        "status": 200,
+        "body": {
+          "snapshot": "2026-10-14-85942376",
+          "source_date": "2026-10-14",
+          "source_url": "https://assets.publishing.service.gov.uk/media/6acf5ba471dbe79328fd44d4/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-14.csv",
+          "publication_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+          "checked_at": "2026-10-15T07:15:53.298Z",
+          "imported_at": "2026-10-15T07:16:38.873Z",
+          "employers": 128015,
+          "source_rows": 143229,
+          "skilled_worker": 122606,
+          "cities": 6348,
+          "routes": [
+            {
+              "name": "Skilled Worker",
+              "count": 122606
+            },
+            {
+              "name": "Creative Worker",
+              "count": 1579
+            },
+            {
+              "name": "Tier 2 Ministers of Religion",
+              "count": 1960
+            },
+            {
+              "name": "Global Business Mobility: UK Expansion Worker",
+              "count": 431
+            },
+            {
+              "name": "Global Business Mobility: Senior or Specialist Worker",
+              "count": 10384
+            },
+            {
+              "name": "International Agreement",
+              "count": 134
+            },
+            {
+              "name": "Scale-up",
+              "count": 92
+            },
+            {
+              "name": "Global Business Mobility: Graduate Trainee",
+              "count": 621
+            },
+            {
+              "name": "Global Business Mobility: Service Supplier",
+              "count": 56
+            },
+            {
+              "name": "Charity Worker",
+              "count": 1532
+            },
+            {
+              "name": "Religious Worker",
+              "count": 1433
+            },
+            {
+              "name": "International Sportsperson",
+              "count": 1466
+            },
+            {
+              "name": "Government Authorised Exchange",
+              "count": 246
+            },
+            {
+              "name": "Seasonal Worker",
+              "count": 6
+            },
+            {
+              "name": "Global Business Mobility: Secondment Worker",
+              "count": 6
+            },
+            {
+              "name": "Intra-company Routes",
+              "count": 1
+            },
+            {
+              "name": "Intra Company Transfers (ICT)",
+              "count": 1
+            },
+            {
+              "name": "Tier 2 General",
+              "count": 5
+            }
+          ],
+          "refresh_error": "Automatic refresh could not complete. The last verified snapshot remains available.",
+          "last_attempt": "2026-10-15T07:18:26.748Z"
+        }
+      },
+      {
+        "path": "/sponsors-by-city?city=Cardiff",
+        "status": 200,
+        "retainedWarning": true
+      },
+      {
+        "path": "/api/admin/marketing",
+        "status": 403,
+        "body": {
+          "error": "The owner account is required."
+        }
+      }
+    ]
+  },
+  "fresh_health": {
+    "ok": true,
+    "version": "2.77.0",
+    "register": {
+      "date": "2026-10-14",
+      "count": 128015,
+      "checked_at": "2026-10-15T07:15:53.298Z"
+    }
+  },
+  "comparison": {
+    "before": "2026-10-15T23:40:33.926Z",
+    "after": "2026-10-15T23:42:51.045Z",
+    "groups": [
+      {
+        "key": "business_controls",
+        "unchanged": true
+      },
+      {
+        "key": "marketing_controls",
+        "unchanged": true
+      },
+      {
+        "key": "research_control",
+        "unchanged": true
+      },
+      {
+        "key": "application_controls",
+        "unchanged": true
+      },
+      {
+        "key": "source_controls",
+        "unchanged": true
+      },
+      {
+        "key": "marketing_briefs",
+        "unchanged": true
+      },
+      {
+        "key": "marketing_receipts",
+        "unchanged": true
+      },
+      {
+        "key": "source_budget",
+        "unchanged": true
+      },
+      {
+        "key": "ai_budget",
+        "unchanged": true
+      },
+      {
+        "key": "business_runs",
+        "unchanged": true
+      },
+      {
+        "key": "source_runs",
+        "unchanged": true
+      },
+      {
+        "key": "marketing_runs",
+        "unchanged": true
+      },
+      {
+        "key": "issues",
+        "unchanged": true
+      },
+      {
+        "key": "foreign_keys",
+        "unchanged": true
+      }
+    ],
+    "scope": "Selected operational records, not a complete customer-data comparison"
+  },
+  "budgets": {
+    "ai": [
+      {
+        "day": "2026-10-15",
+        "runs": 3,
+        "calls": 8
+      }
+    ],
+    "sources": [
+      {
+        "day": "2026-10-15",
+        "requests": 388,
+        "briefs": 0
+      }
+    ]
+  },
+  "validation": {
+    "focused_tests": 23,
+    "full_tests": 663,
+    "passed": 663,
+    "failed": 0,
+    "build": true,
+    "prerenders": 18,
+    "browser_budgets": true,
+    "dry_run": true,
+    "runtime": "Node 24.19.0",
+    "research_identity_unchanged": true,
+    "application_identity_unchanged": true
+  },
+  "historical_rejected_validation": {
+    "reason": "Version-pinned research contract caught an edit to business-operations.js. Final code restores it exactly and extends health separately. No manifest regenerated.",
+    "tests_passed": 662,
+    "tests_failed": 1
+  },
+  "investigation": {
+    "root_cause": "unknown",
+    "telemetry_api": "403 with existing authorization; no expanded permission",
+    "dashboard": "No retained register failure in sampled original time window; does not prove healthy execution",
+    "snapshot_counts": [
+      {
+        "snapshot": "2026-10-13-7e22f6dc",
+        "listings": 128002
+      },
+      {
+        "snapshot": "2026-10-14-85942376",
+        "listings": 128015
+      },
+      {
+        "snapshot": "2026-10-14-8ead6c38",
+        "listings": 94765
+      }
+    ]
+  },
+  "recovery": {
+    "observed_at": "2026-10-15T22:54:48.625Z",
+    "migrations": 40,
+    "schema_objects": 166,
+    "identity_schema_and_current_bookmark_match": true,
+    "reused_same_day": true,
+    "customer_restore_proven": false
+  },
+  "ci": {
+    "code_head": "b52db78e75a4a5e6f14c68797147f679e7b9708a",
+    "linux_checks": [
+      116730717052,
+      116730699331
+    ],
+    "linux_result": "not started: account locked due to billing issue; original annotations inspected",
+    "gitguardian": 116730702360,
+    "gitguardian_result": "success"
+  },
+  "gates": {
+    "next_genuine_business_finding": "Verified business-497807 opened register-freshness; provider complete 2026-10-15T23:45:34.415Z",
+    "next_genuine_register_attempt": "2026-10-16T07:15:00Z",
+    "register_failure_repaired": false
+  },
+  "boundaries": [
+    "No forced workflow, register import, metadata correction, AI/Google call, social/email send, source control write, permission expansion, migration or restore.",
+    "The first postdeploy health request still returned 2.76.0; a subsequent excluded request returned 2.77.0.",
+    "No diagnostic history backfilled. Retained source date and refresh warning remain."
+  ],
+  "local_retained_snapshot_replay": {
+    "observed_at": "2026-10-15T23:44:49.306Z",
+    "source_run": "business-497806",
+    "snapshot_measured_at": "2026-10-15T22:45:50.862Z",
+    "old": null,
+    "current": {
+      "id": "register-freshness",
+      "category": "quality",
+      "severity": "high",
+      "title": "Restore sponsor register refresh",
+      "detail": "The latest sponsor-register refresh reports a failure, even though its last successful check may still be recent. The retained snapshot remains available.",
+      "next_action": "Inspect the original scheduled refresh, its failure stage and the saved snapshot. Preserve the source date and warning until a genuine successful check; do not force a retry or infer current licence coverage from advert wording."
+    },
+    "production_writes": 0,
+    "scope": "Pure local rule replay of a retained real aggregate snapshot; not a scheduled run"
+  },
+  "first_genuine_monitor": {
+    "database": [
+      {
+        "results": [
+          {
+            "id": "business-497807",
+            "state": "attention",
+            "trigger_kind": "scheduled",
+            "created_at": "2026-10-15T23:45:22.000Z",
+            "finished_at": "2026-10-15T23:45:34.336Z"
+          }
+        ],
+        "success": true,
+        "meta": {
+          "served_by": "v3-prod",
+          "served_by_region": "WEUR",
+          "served_by_colo": "LHR",
+          "served_by_primary": true,
+          "timings": {
+            "sql_duration_ms": 3.4086
+          },
+          "duration": 3.4086,
+          "changes": 0,
+          "last_row_id": 965,
+          "changed_db": false,
+          "size_after": 145129472,
+          "rows_read": 400,
+          "rows_written": 0,
+          "total_attempts": 1
+        }
+      },
+      {
+        "results": [
+          {
+            "id": "register-freshness",
+            "severity": "high",
+            "state": "open",
+            "first_seen": "2026-10-15T23:45:32.914Z",
+            "last_seen": "2026-10-15T23:45:32.914Z",
+            "detail": "The latest sponsor-register refresh reports a failure, even though its last successful check may still be recent. The retained snapshot remains available."
+          }
+        ],
+        "success": true,
+        "meta": {
+          "served_by": "v3-prod",
+          "served_by_region": "WEUR",
+          "served_by_colo": "LHR",
+          "served_by_primary": true,
+          "timings": {
+            "sql_duration_ms": 0.0795
+          },
+          "duration": 0.0795,
+          "changes": 0,
+          "last_row_id": 965,
+          "changed_db": false,
+          "size_after": 145129472,
+          "rows_read": 1,
+          "rows_written": 0,
+          "total_attempts": 1
+        }
+      }
+    ],
+    "provider": {
+      "id": "business-497807",
+      "status": "complete",
+      "success": true,
+      "start": "2026-10-15T23:45:27.413Z",
+      "end": "2026-10-15T23:45:34.415Z",
+      "versionId": "2ccc5944-2c9f-48c6-88c0-4b9a04e8cf75"
+    },
+    "health": {
+      "findings": 11,
+      "high": 3
+    },
+    "issue_step": {
+      "name": "update-issues-1",
+      "start": "2026-10-15T23:45:32.886Z",
+      "end": "2026-10-15T23:45:32.967Z",
+      "attempts": [
+        {
+          "start": "2026-10-15T23:45:32.886Z",
+          "end": "2026-10-15T23:45:32.967Z",
+          "success": true,
+          "error": null
+        }
+      ],
+      "config": {
+        "retries": {
+          "limit": 5,
+          "delay": 10000,
+          "backoff": "exponential"
+        },
+        "timeout": "10 minutes"
+      },
+      "output": "{\"findings\":11,\"high\":3}",
+      "success": true,
+      "type": "step"
+    }
+  },
+  "current_day_recovery": {
+    "observed_at": "2026-10-16T02:48:56.260Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "f4919f1f0720cff387cfea6439f1a35911f53614cc63c0219255d71cd9d5375b",
+    "database_size_bytes": 145481728,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 166,
+      "actual_objects": 166,
+      "migration_files": 40,
+      "expected_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+      "actual_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "later_operational_read": {
+    "observed_at": "2026-10-16T02:48:52.336Z",
+    "groups": {
+      "business_controls": [
+        {
+          "singleton": 1,
+          "enabled": 1,
+          "publishing": 1,
+          "research": 1,
+          "updated_at": "2026-10-07T16:47:50.104Z"
+        }
+      ],
+      "marketing_controls": [
+        {
+          "singleton": 1,
+          "enabled": 1,
+          "updated_at": "2026-10-07T22:04:26.671Z"
+        }
+      ],
+      "research_control": [
+        {
+          "singleton": 1,
+          "campaign": "real-adverts-2026-10-08-compact-v2",
+          "enabled": 1,
+          "revision": 2,
+          "updated_at": "2026-10-13T15:27:34.338Z"
+        }
+      ],
+      "application_controls": [
+        {
+          "singleton": 1,
+          "enabled": 1,
+          "updated_at": "2026-10-13T15:52:21.056Z"
+        }
+      ],
+      "source_controls": [
+        {
+          "source_id": "portmandentex",
+          "paused": 1,
+          "updated_at": "2026-10-09T19:01:15.323Z",
+          "failures": 0,
+          "cooldown_until": 0
+        }
+      ],
+      "marketing_briefs": [
+        {
+          "id": "29066bbc-acb2-4570-b2ee-2bd25719c3a8",
+          "destination": "linkedin-personal",
+          "state": "held",
+          "version": 1,
+          "revision": 2,
+          "updated_at": "2026-10-07T21:31:02.733Z"
+        },
+        {
+          "id": "8c2c0571-7c2a-46d7-80a8-b17e0f32946f",
+          "destination": "linkedin-personal",
+          "state": "proposed",
+          "version": 1,
+          "revision": 1,
+          "updated_at": "2026-10-14T17:46:21.879Z"
+        },
+        {
+          "id": "a19f14be-af7f-45d2-9382-2026162075f3",
+          "destination": "instagram-company",
+          "state": "held",
+          "version": 2,
+          "revision": 3,
+          "updated_at": "2026-10-09T00:46:29.370Z"
+        },
+        {
+          "id": "b0578279-cbb7-40d7-9fd7-cd1135397b7d",
+          "destination": "facebook-company",
+          "state": "scheduled",
+          "version": 1,
+          "revision": 3,
+          "updated_at": "2026-10-15T23:02:23.623Z"
+        },
+        {
+          "id": "dafbf66c-90aa-4773-bc1e-c1470b0a9bb1",
+          "destination": "linkedin-company",
+          "state": "proposed",
+          "version": 1,
+          "revision": 1,
+          "updated_at": "2026-10-14T17:46:21.879Z"
+        },
+        {
+          "id": "launch-fb-adverts",
+          "destination": "facebook-company",
+          "state": "published",
+          "version": 1,
+          "revision": 2,
+          "updated_at": "2026-10-11T09:45:13.224Z"
+        },
+        {
+          "id": "launch-fb-applications",
+          "destination": "facebook-company",
+          "state": "published",
+          "version": 1,
+          "revision": 2,
+          "updated_at": "2026-10-13T10:52:49.126Z"
+        },
+        {
+          "id": "launch-fb-evidence",
+          "destination": "facebook-company",
+          "state": "published",
+          "version": 1,
+          "revision": 2,
+          "updated_at": "2026-10-08T09:09:27.108Z"
+        },
+        {
+          "id": "launch-li-evidence",
+          "destination": "linkedin-company",
+          "state": "published",
+          "version": 1,
+          "revision": 2,
+          "updated_at": "2026-10-09T18:51:41.178Z"
+        }
+      ],
+      "marketing_receipts": [
+        {
+          "id": "092295da-7081-4879-870c-cb5b300c27a7",
+          "brief_id": "launch-fb-applications",
+          "version": 1,
+          "provider": "metricool",
+          "external_id": "1319703417896763_122096326947512994",
+          "state": "published",
+          "scheduled_at": null,
+          "observed_at": "2026-10-13T10:52:48.849Z"
+        },
+        {
+          "id": "0e6cfa28-cb4c-4ac0-bfe6-904acaa3e437",
+          "brief_id": "launch-fb-evidence",
+          "version": 1,
+          "provider": "metricool",
+          "external_id": "1319703417896763_122093924469512994",
+          "state": "published",
+          "scheduled_at": null,
+          "observed_at": "2026-10-08T09:09:26.936Z"
+        },
+        {
+          "id": "43f01d54-0e5b-4b83-bc6b-900b6ea0c579",
+          "brief_id": "b0578279-cbb7-40d7-9fd7-cd1135397b7d",
+          "version": 1,
+          "provider": "metricool",
+          "external_id": "397276739",
+          "state": "scheduled",
+          "scheduled_at": "2026-10-16T09:00:00.000Z",
+          "observed_at": "2026-10-15T23:01:14.000Z"
+        },
+        {
+          "id": "44844901-5d52-4753-881d-ffb0fe5d701d",
+          "brief_id": "launch-fb-adverts",
+          "version": 1,
+          "provider": "metricool",
+          "external_id": "1319703417896763_122094988383512994",
+          "state": "published",
+          "scheduled_at": null,
+          "observed_at": "2026-10-11T09:45:12.962Z"
+        },
+        {
+          "id": "e0bb1985-3f00-4add-8c2e-cc3fe598e3b8",
+          "brief_id": "launch-li-evidence",
+          "version": 1,
+          "provider": "linkedin-native",
+          "external_id": "urn:li:share:7513683557614120964",
+          "state": "published",
+          "scheduled_at": null,
+          "observed_at": "2026-10-09T18:51:40.791Z"
+        },
+        {
+          "id": "launch-fb-adverts:import",
+          "brief_id": "launch-fb-adverts",
+          "version": 1,
+          "provider": "metricool",
+          "external_id": "3760308173592281444",
+          "state": "scheduled",
+          "scheduled_at": "2026-10-10T10:00:00+01:00",
+          "observed_at": "2026-10-07"
+        },
+        {
+          "id": "launch-fb-applications:import",
+          "brief_id": "launch-fb-applications",
+          "version": 1,
+          "provider": "metricool",
+          "external_id": "8669160755592973829",
+          "state": "scheduled",
+          "scheduled_at": "2026-10-12T10:00:00+01:00",
+          "observed_at": "2026-10-07"
+        },
+        {
+          "id": "launch-fb-evidence:import",
+          "brief_id": "launch-fb-evidence",
+          "version": 1,
+          "provider": "metricool",
+          "external_id": "-9208903732162113867",
+          "state": "scheduled",
+          "scheduled_at": "2026-10-08T10:00:00+01:00",
+          "observed_at": "2026-10-07"
+        },
+        {
+          "id": "launch-li-evidence:import",
+          "brief_id": "launch-li-evidence",
+          "version": 1,
+          "provider": "linkedin-native",
+          "external_id": "native-company-146710167-20261009-evidence",
+          "state": "scheduled",
+          "scheduled_at": "2026-10-09T10:00:00+01:00",
+          "observed_at": "2026-10-07"
+        }
+      ],
+      "source_budget": [
+        {
+          "day": "2026-10-16",
+          "requests": 88,
+          "briefs": 0
+        }
+      ],
+      "ai_budget": [
+        {
+          "day": "2026-10-16",
+          "runs": 3,
+          "calls": 8
+        }
+      ],
+      "business_runs": [
+        {
+          "id": "business-497810",
+          "state": "attention",
+          "created_at": "2026-10-16T02:45:22.000Z",
+          "finished_at": "2026-10-16T02:45:35.387Z",
+          "trigger_kind": "scheduled"
+        },
+        {
+          "id": "business-497809",
+          "state": "attention",
+          "created_at": "2026-10-16T01:45:22.000Z",
+          "finished_at": "2026-10-16T01:45:34.838Z",
+          "trigger_kind": "scheduled"
+        }
+      ],
+      "source_runs": [
+        {
+          "id": "scheduled-1792110622000",
+          "state": "attention",
+          "trigger_kind": "scheduled",
+          "created_at": "2026-10-16T00:30:23.240Z",
+          "finished_at": "2026-10-16T00:31:24.744Z",
+          "requests": 60
+        },
+        {
+          "id": "scheduled-1792089037000",
+          "state": "attention",
+          "trigger_kind": "scheduled",
+          "created_at": "2026-10-15T18:30:41.245Z",
+          "finished_at": "2026-10-15T18:33:04.523Z",
+          "requests": 60
+        }
+      ],
+      "marketing_runs": [
+        {
+          "id": "marketing-2026-10-16",
+          "state": "no_post",
+          "day": "2026-10-16",
+          "created_at": "2026-10-16T00:46:05.511Z",
+          "finished_at": "2026-10-16T00:46:11.205Z",
+          "policy": "sourced-guides-eligible-planner-v6",
+          "calls": 0,
+          "brief_id": null
+        },
+        {
+          "id": "marketing-2026-10-15",
+          "state": "no_post",
+          "day": "2026-10-15",
+          "created_at": "2026-10-15T00:46:56.211Z",
+          "finished_at": "2026-10-15T00:47:06.666Z",
+          "policy": "sourced-guides-eligible-planner-v6",
+          "calls": 0,
+          "brief_id": null
+        }
+      ],
+      "issues": [
+        {
+          "category": "business",
+          "severity": "normal",
+          "count": 1
+        },
+        {
+          "category": "distribution",
+          "severity": "normal",
+          "count": 1
+        },
+        {
+          "category": "growth",
+          "severity": "normal",
+          "count": 3
+        },
+        {
+          "category": "quality",
+          "severity": "high",
+          "count": 3
+        },
+        {
+          "category": "quality",
+          "severity": "normal",
+          "count": 3
+        }
+      ],
+      "foreign_keys": []
+    }
+  },
+  "later_provider_check": {
+    "observed_at": "2026-10-16T04:53:24Z",
+    "ids": [
+      "business-497810",
+      "scheduled-1792110622000"
+    ],
+    "result": "Cloudflare authentication error 10000; no successful provider status read. Earlier completed evidence remains historical. No scope expansion or retry."
+  },
+  "browser_verification": {
+    "owner_authenticated": true,
+    "register_failure_visible": true,
+    "detail_expanded": true,
+    "screenshot": "outputs/register-health-2026-10-16/admin-finding.png",
+    "limitations": "Screen observation proves the current displayed finding, not the original cron root cause."
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "checked_at": "2026-10-11T11:14:19.291Z",
+  "review_method": "agent_assisted",
+  "production_version": "2.52.0",
+  "daily_new_leads": {
+    "utc_date": "2026-10-11",
+    "maximum": 5,
+    "automated_school_candidates": 2,
+    "manual_linkedin_reviews": 3,
+    "total": 5,
+    "remaining": 0
+  },
+  "queue": {
+    "retained": 14,
+    "unresolved": 8,
+    "overdue": 0,
+    "changed_links": 0,
+    "current_linked_jobs": 2
+  },
+  "records": [
+    {
+      "id": "113a240e-708a-4d31-b5a7-fa2ca482901b",
+      "revision": 1,
+      "verified_from": "saved owner review form",
+      "fields": [
+        {
+          "label": "Source type",
+          "value": "linkedin_job"
+        },
+        {
+          "label": "Individual source link",
+          "value": "https://www.linkedin.com/jobs/view/4477654390/"
+        },
+        {
+          "label": "Role or lead title",
+          "value": "Biotech Automation Engineer (Wet Lab and AI)"
+        },
+        {
+          "label": "Employer name, if established",
+          "value": "Danu Insights"
+        },
+        {
+          "label": "Location, if established",
+          "value": "Edinburgh and UK partner sites"
+        },
+        {
+          "label": "Source observed at (your local time)",
+          "value": "2026-10-11T12:04"
+        },
+        {
+          "label": "Exact sponsorship wording, if present",
+          "value": "we can consider sponsorship later in the role."
+        },
+        {
+          "label": "Original employer application link",
+          "value": "https://www.danu-insights.com/careers/biotech-automation-engineer"
+        },
+        {
+          "label": "Employer identity evidence link",
+          "value": "https://find-and-update.company-information.service.gov.uk/company/SC788592"
+        },
+        {
+          "label": "Employer identity evidence",
+          "value": "Employer website identifies Danu Insights Limited at Argyle House, 3 Lady Lawson Street, Edinburgh EH3 9DR. Companies House SC788592 is active at the same address. The current 9 October worker-register snapshot contains Danu Insights Limited, Edinburgh, Skilled Worker, A rating, record a6704e71b8e94abb15b5a4db. This supports employer identity, not immediate sponsorship for an individual. The original links to the matching ClickUp form; the empty form was read but no applicant data was entered or submitted."
+        },
+        {
+          "label": "Original posting time, only if known",
+          "value": ""
+        },
+        {
+          "label": "Posting-date source wording",
+          "value": "LinkedIn displays Posted 2 days ago at observation. The employer original supplies no exact original publication time; the timestamp remains unknown."
+        },
+        {
+          "label": "Closing time, only if known",
+          "value": "2026-10-26T23:59"
+        },
+        {
+          "label": "Closing-date source wording",
+          "value": "Employer original and LinkedIn both state Monday 26 October 2026, 23:59 GMT."
+        },
+        {
+          "label": "Decision",
+          "value": "pending"
+        },
+        {
+          "label": "How this review was recorded",
+          "value": "agent_assisted"
+        },
+        {
+          "label": "Review again by (within 30 days)",
+          "value": "2026-10-13T12:00"
+        },
+        {
+          "label": "Decision reason and evidence still needed",
+          "value": "Agent-assisted review through owner account. The LinkedIn advert matches the current employer original, £45k–£65k salary, Edinburgh/UK partner-site role and 26 October 23:59 GMT deadline. Its exact wording welcomes time-limited UK permission such as Graduate visas and says sponsorship may be considered LATER in the role; current UK right to work is strongly preferred. This is a conditional future possibility, not an immediate sponsorship guarantee or an overseas-entry promise. The original application form has the matching role title and asks about right to work. Keep private pending reviewed source support and reuse/attribution review, then verify a complete publication/refresh route. No source has been configured, no job published, and no personal data or application submitted."
+        }
+      ]
+    },
+    {
+      "id": "0e9df84c-085d-42c8-855c-f48eccd96936",
+      "revision": 1,
+      "verified_from": "saved owner review form",
+      "fields": [
+        {
+          "label": "Source type",
+          "value": "linkedin_post"
+        },
+        {
+          "label": "Individual source link",
+          "value": "https://www.linkedin.com/feed/update/urn:li:activity:7514374490861015040/"
+        },
+        {
+          "label": "Role or lead title",
+          "value": "Indian chefs — London opening; sponsorship explicitly unavailable"
+        },
+        {
+          "label": "Employer name, if established",
+          "value": "Unnamed London restaurant; Little Kitchen Help recruiter"
+        },
+        {
+          "label": "Location, if established",
+          "value": "London, UK"
+        },
+        {
+          "label": "Source observed at (your local time)",
+          "value": "2026-10-11T12:08"
+        },
+        {
+          "label": "Exact sponsorship wording, if present",
+          "value": "UK visa sponsorship is not available for these positions."
+        },
+        {
+          "label": "Original employer application link",
+          "value": ""
+        },
+        {
+          "label": "Employer identity evidence link",
+          "value": ""
+        },
+        {
+          "label": "Employer identity evidence",
+          "value": "The ordinary post is by Gauri Shankar and says Little Kitchen Help is recruiting. The restaurant/employing legal entity and an employer-original application link are not named. No employer or licence identity is inferred. The exact activity permalink was opened after obtaining LinkedIn’s copy-link destination."
+        },
+        {
+          "label": "Original posting time, only if known",
+          "value": ""
+        },
+        {
+          "label": "Posting-date source wording",
+          "value": "LinkedIn says Yesterday at the 11 October 2026 observation. An exact original publication time and closing date are not stated, so both remain blank."
+        },
+        {
+          "label": "Closing time, only if known",
+          "value": ""
+        },
+        {
+          "label": "Closing-date source wording",
+          "value": ""
+        },
+        {
+          "label": "Decision",
+          "value": "rejected"
+        },
+        {
+          "label": "How this review was recorded",
+          "value": "agent_assisted"
+        },
+        {
+          "label": "Decision reason and evidence still needed",
+          "value": "Agent-assisted review through owner account. Reject as a sponsorship opportunity: this current ordinary recruiting post expressly says sponsorship is unavailable and asks for ILR or British citizenship. Those are the recruiter’s stated conditions, not our general immigration guidance. It describes tandoor, wok, curry and dosa/South Indian chef positions for an unnamed new London restaurant. The sponsorship keyword is a refusal, not an offer. Employer-original opening, employing entity and precise dates remain unverified. Do not publish or count these as sponsorship jobs. No recruiter contact, reaction, share, application or personal-data submission was made."
+        }
+      ]
+    },
+    {
+      "id": "63a5f100-1eed-4267-8b6e-a4e98e9df34b",
+      "revision": 1,
+      "verified_from": "saved owner review form",
+      "fields": [
+        {
+          "label": "Source type",
+          "value": "linkedin_job"
+        },
+        {
+          "label": "Individual source link",
+          "value": "https://www.linkedin.com/jobs/view/4419308146/"
+        },
+        {
+          "label": "Role or lead title",
+          "value": "Graduate Programme 2027: Strategy & Operations Manager"
+        },
+        {
+          "label": "Employer name, if established",
+          "value": "Revolut; employing legal entity not established"
+        },
+        {
+          "label": "Location, if established",
+          "value": "UK / London included among international locations; hybrid"
+        },
+        {
+          "label": "Source observed at (your local time)",
+          "value": "2026-10-11T12:12"
+        },
+        {
+          "label": "Exact sponsorship wording, if present",
+          "value": "We’ll support you with visa assistance, travel costs, and your first month of accommodation (conditions apply)."
+        },
+        {
+          "label": "Original employer application link",
+          "value": "https://www.revolut.com/careers/position/f95a2dda-30a6-4fef-af87-db97199df832/"
+        },
+        {
+          "label": "Employer identity evidence link",
+          "value": ""
+        },
+        {
+          "label": "Employer identity evidence",
+          "value": "The LinkedIn Apply destination leads to Revolut’s own advert and a matching blank application form at https://www.revolut.com/careers/apply/f95a2dda-30a6-4fef-af87-db97199df832/. Both include London/UK among multiple locations. The site footer lists several Revolut entities; it does not establish which employs this UK graduate role. Legal employer and role-specific sponsor-licence relationship remain unverified."
+        },
+        {
+          "label": "Original posting time, only if known",
+          "value": ""
+        },
+        {
+          "label": "Posting-date source wording",
+          "value": "LinkedIn results say posted 6 days ago at the 11 October 2026 observation. The employer says applications opened from May 2026; neither is an exact original publication timestamp. Leave original posting time blank."
+        },
+        {
+          "label": "Closing time, only if known",
+          "value": ""
+        },
+        {
+          "label": "Closing-date source wording",
+          "value": "Employer: recruitment process July–December 2026 and roles filled on a rolling basis. No precise closing date or time is stated; leave closing time blank."
+        },
+        {
+          "label": "Decision",
+          "value": "held"
+        },
+        {
+          "label": "How this review was recorded",
+          "value": "agent_assisted"
+        },
+        {
+          "label": "Review again by (within 30 days)",
+          "value": "2026-10-14T12:00"
+        },
+        {
+          "label": "Decision reason and evidence still needed",
+          "value": "Agent-assisted review through owner account. Current original advert and matching empty application form confirm a 12-month international graduate programme that includes the UK. Hold privately: visa assistance is conditional and is not an explicit UK Skilled Worker sponsorship promise. Establish the employing UK entity, licence relationship and exact role-specific visa conditions before any sponsorship label or publication. The body requires office attendance at least three days per week despite a Remote location label. Applicants need a predicted/achieved STEM 2:1 equivalent, 2025/2026/2027 graduation, SQL/Python/R experience, English and full-time availability for a 2027 intake. UK compensation and an exact closing date are unstated; recruitment runs July–December 2026 with rolling filling. Source reuse/adapter review and complete refresh support also remain open. No personal data, CV, consent or application was submitted, no recruiter contact and no public job created."
+        }
+      ]
+    }
+  ],
+  "boundaries": {
+    "new_public_jobs": 0,
+    "applications_submitted": 0,
+    "contacts_or_reactions": 0,
+    "forced_source_refreshes": 0,
+    "new_ai_calls": 0,
+    "continuous_linkedin_ingestion": false
+  }
+}

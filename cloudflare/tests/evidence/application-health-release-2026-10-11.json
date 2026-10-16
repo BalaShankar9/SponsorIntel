@@ -1,0 +1,227 @@
+{
+  "release": "2.58.0",
+  "worker_version": "6419c7c8-42d1-43d0-a9db-fc3cebee1aab",
+  "code_commit": "ddded30fbbc22d478ebddb60a7a3aae294f96d9f",
+  "rollback_worker": "4ffdf0c4-cb79-4a5e-9d20-711f7fc36750",
+  "public": {
+    "at": "2026-10-11T17:57:44.949Z",
+    "health": {
+      "ok": true,
+      "version": "2.58.0",
+      "register": {
+        "date": "2026-10-09",
+        "count": 127981,
+        "checked_at": "2026-10-11T07:15:39.995Z"
+      }
+    },
+    "collections": {
+      "total": 928,
+      "employers": 36,
+      "early_career": 51,
+      "sponsorship": 55,
+      "licensed": 887,
+      "salary": 144
+    },
+    "anonymous_application_status": 403,
+    "QA_excluded": true
+  },
+  "preservation": {
+    "before": {
+      "at": "2026-10-11T17:54:56.040Z",
+      "phase": "before",
+      "entries": [
+        {
+          "name": "application_controls",
+          "rows": 1,
+          "sha256": "87ded263de1203b116af8cf50af94350348a26df13a78765c9ec4ddf1004b737"
+        },
+        {
+          "name": "application_selection",
+          "rows": 1,
+          "sha256": "49c3235f79bffe6292c56479d022654494da716602632792431f356790c224f6"
+        },
+        {
+          "name": "application_campaigns",
+          "rows": 2,
+          "sha256": "309698eb2f559d8f554049944a5de4e73c0d85d9028e8943d36c052a42fa939e"
+        },
+        {
+          "name": "application_runs",
+          "rows": 4,
+          "sha256": "b02e208868b899f04a46f731a75e900b1ed8c764597a65741d3d57b0a50e611c"
+        },
+        {
+          "name": "application_steps",
+          "rows": 18,
+          "sha256": "93f190869414d48392ce7ed6ea96f0242b9337ce9c5cdbd21b1da540cf96ef6a"
+        },
+        {
+          "name": "assessments",
+          "rows": 9,
+          "sha256": "d4f2fed6230d0a8e246c22bfc521db323186e8b615a4789eea120bc6c4713ffb"
+        },
+        {
+          "name": "reference_control",
+          "rows": 1,
+          "sha256": "4df30d0b1ce65eaae74216650bb6782a0d09797d941874a82137474eaeb4c7f0"
+        },
+        {
+          "name": "reference_reviews",
+          "rows": 1,
+          "sha256": "f811f65a496beea9bb9a1e2e81cff01a91828cc194747b7e71cdc79081e627ba"
+        },
+        {
+          "name": "research_runs",
+          "rows": 9,
+          "sha256": "c476ee5a5c3cb8e97e6faa22134efb299664a9aa8bc2836b3fd4429075c98851"
+        },
+        {
+          "name": "AI_budget",
+          "rows": 1,
+          "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13"
+        },
+        {
+          "name": "business_controls",
+          "rows": 1,
+          "sha256": "fa4ff3d06c5e455910a634ab41f8217fe07c1b2e4f97cba5b0f202bc59bda0b5"
+        },
+        {
+          "name": "source_pause",
+          "rows": 1,
+          "sha256": "13159c7ff9c606ab374f96f120e1437c8ba23ac39ec8e3fead24fd57097cddbf"
+        },
+        {
+          "name": "foreign_keys",
+          "rows": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "AI_budget": {
+        "day": "2026-10-11",
+        "runs": 2,
+        "calls": 6
+      },
+      "production_writes": false
+    },
+    "after": {
+      "at": "2026-10-11T17:57:45.517Z",
+      "phase": "after",
+      "entries": [
+        {
+          "name": "application_controls",
+          "rows": 1,
+          "sha256": "87ded263de1203b116af8cf50af94350348a26df13a78765c9ec4ddf1004b737"
+        },
+        {
+          "name": "application_selection",
+          "rows": 1,
+          "sha256": "49c3235f79bffe6292c56479d022654494da716602632792431f356790c224f6"
+        },
+        {
+          "name": "application_campaigns",
+          "rows": 2,
+          "sha256": "309698eb2f559d8f554049944a5de4e73c0d85d9028e8943d36c052a42fa939e"
+        },
+        {
+          "name": "application_runs",
+          "rows": 4,
+          "sha256": "b02e208868b899f04a46f731a75e900b1ed8c764597a65741d3d57b0a50e611c"
+        },
+        {
+          "name": "application_steps",
+          "rows": 18,
+          "sha256": "93f190869414d48392ce7ed6ea96f0242b9337ce9c5cdbd21b1da540cf96ef6a"
+        },
+        {
+          "name": "assessments",
+          "rows": 9,
+          "sha256": "d4f2fed6230d0a8e246c22bfc521db323186e8b615a4789eea120bc6c4713ffb"
+        },
+        {
+          "name": "reference_control",
+          "rows": 1,
+          "sha256": "4df30d0b1ce65eaae74216650bb6782a0d09797d941874a82137474eaeb4c7f0"
+        },
+        {
+          "name": "reference_reviews",
+          "rows": 1,
+          "sha256": "f811f65a496beea9bb9a1e2e81cff01a91828cc194747b7e71cdc79081e627ba"
+        },
+        {
+          "name": "research_runs",
+          "rows": 9,
+          "sha256": "c476ee5a5c3cb8e97e6faa22134efb299664a9aa8bc2836b3fd4429075c98851"
+        },
+        {
+          "name": "AI_budget",
+          "rows": 1,
+          "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13"
+        },
+        {
+          "name": "business_controls",
+          "rows": 1,
+          "sha256": "fa4ff3d06c5e455910a634ab41f8217fe07c1b2e4f97cba5b0f202bc59bda0b5"
+        },
+        {
+          "name": "source_pause",
+          "rows": 1,
+          "sha256": "13159c7ff9c606ab374f96f120e1437c8ba23ac39ec8e3fead24fd57097cddbf"
+        },
+        {
+          "name": "foreign_keys",
+          "rows": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "AI_budget": {
+        "day": "2026-10-11",
+        "runs": 2,
+        "calls": 6
+      },
+      "production_writes": false,
+      "changed": []
+    }
+  },
+  "validation": {
+    "tests": 581,
+    "failed": 0,
+    "duration_ms": 56428.383042,
+    "node": "24.19.0",
+    "typescript": true,
+    "build": true,
+    "public_prerenders": 17,
+    "asset_budgets": true,
+    "dry_run": true,
+    "actual_auth_D1_bundles": [
+      "ordinary",
+      "minified"
+    ],
+    "external_calls_in_isolated_test": 0,
+    "mobile_viewport": 390,
+    "mobile_content": 390,
+    "paused_ready_failed_running_distinct": true,
+    "run_button_disabled": true,
+    "live_owner_statement": "Application tests are paused. Selected comparison progress: ready. These statuses do not establish writing quality."
+  },
+  "hosted_CI": {
+    "code_head": "ddded30fbbc22d478ebddb60a7a3aae294f96d9f",
+    "checks": [
+      114535878742,
+      114535867584
+    ],
+    "result": "not_started_account_billing_lock",
+    "annotations_inspected": true,
+    "GitGuardian": "passed"
+  },
+  "schema_change": false,
+  "latest_recovery": "recovery-post-2.57-2026-10-11.json",
+  "production_AI_Google_added": 0,
+  "forced_workflows": 0,
+  "comparisons_resumed": false,
+  "quality_acceptance": false,
+  "remaining": [
+    "First genuine hourly snapshot with corrected application health fields",
+    "Later eligible reviewed resumption and real candidate execution",
+    "Full comparison coverage and independent quality adjudication"
+  ]
+}

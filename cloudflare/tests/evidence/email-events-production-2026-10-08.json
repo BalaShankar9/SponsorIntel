@@ -1,0 +1,218 @@
+{
+  "assembled_at": "2026-10-08T07:55:41.050028+00:00",
+  "database_observed_at": "2026-10-08T07:50:21.099328+00:00",
+  "version": "2.30.0",
+  "worker": "79264854-357a-466e-ad63-d942327168bd",
+  "migration": "0023_email_events.sql",
+  "rollback_worker": "14a6d48e-27bd-447e-ad95-cd0cae9a3e7a",
+  "recovery_bookmark": "000002cc-00000000-000050fe-8f0f72d863b373a6f0d1a9202e2b4389",
+  "subscription": {
+    "id": "a103140735cf4e85be5a3896276a00c0",
+    "created_at": "2026-10-08T07:34:58.715Z",
+    "modified_at": "2026-10-08T07:49:09.600Z",
+    "name": "sponsorintel-email-delivery",
+    "enabled": true,
+    "source": {
+      "name": "Email Service",
+      "type": "email.sending",
+      "zone_id": "3b8b178dc365a000e9a7df52f909e966",
+      "domain": "sponsorintel.london"
+    },
+    "destination": {
+      "type": "queues.queue",
+      "queue_id": "256d6bbc7fbf4510b7fe02b77126ac25"
+    },
+    "events": [
+      "message.delivered",
+      "message.deferred",
+      "message.bounced",
+      "message.failed",
+      "message.rejected",
+      "message.complained"
+    ]
+  },
+  "queues": [
+    {
+      "queue_id": "256d6bbc7fbf4510b7fe02b77126ac25",
+      "queue_name": "sponsorintel-email-events",
+      "settings": {
+        "delivery_delay": 0,
+        "message_retention_period": 86400
+      },
+      "consumers": [
+        {
+          "script": "sponsorintel",
+          "dead_letter_queue": "sponsorintel-email-events-dlq",
+          "settings": {
+            "batch_size": 10,
+            "max_retries": 3,
+            "max_wait_time_ms": 5000,
+            "max_concurrency": 1,
+            "retry_delay": 60
+          },
+          "consumer_id": "78836a33eecb4aac8c6eb9c010b03ddd",
+          "type": "worker"
+        }
+      ],
+      "producers": [
+        {
+          "script": "sponsorintel",
+          "type": "worker"
+        }
+      ]
+    },
+    {
+      "queue_id": "108fd967fa5d4b0196087d317688f8e7",
+      "queue_name": "sponsorintel-email-events-dlq",
+      "settings": {
+        "delivery_delay": 0,
+        "message_retention_period": 86400
+      },
+      "consumers": [],
+      "producers": [
+        {
+          "script": "sponsorintel",
+          "type": "worker"
+        }
+      ]
+    }
+  ],
+  "event_rows": 0,
+  "blocked_recipient_rows": 0,
+  "operation_mail_receipts": [
+    {
+      "id": "a9ca9c79-6d3d-4b08-824d-21d119b82b3e",
+      "kind": "test",
+      "state": "confirmed",
+      "created_at": "2026-10-08T07:12:24.095Z",
+      "received_at": "2026-10-08T07:13:19.768Z"
+    }
+  ],
+  "latest_business_run_before_deployment": {
+    "id": "business-497623",
+    "trigger_kind": "scheduled",
+    "state": "completed",
+    "created_at": "2026-10-08T07:45:38.000Z",
+    "finished_at": "2026-10-08T07:45:49.326Z"
+  },
+  "model_budget": {
+    "day": "2026-10-08",
+    "runs": 4,
+    "calls": 6
+  },
+  "register_refresh": {
+    "snapshot": "2026-10-07-597a2913",
+    "source_date": "2026-10-07",
+    "source_url": "https://assets.publishing.service.gov.uk/media/6ac60ad235adbc27761df954/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-07.csv",
+    "publication_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+    "checked_at": "2026-10-08T07:15:42.693Z",
+    "imported_at": "2026-10-08T07:17:22.124Z",
+    "employers": 127949,
+    "source_rows": 143176,
+    "skilled_worker": 122542,
+    "cities": 6342,
+    "routes": [
+      {
+        "name": "Skilled Worker",
+        "count": 122542
+      },
+      {
+        "name": "Creative Worker",
+        "count": 1580
+      },
+      {
+        "name": "Tier 2 Ministers of Religion",
+        "count": 1960
+      },
+      {
+        "name": "Global Business Mobility: UK Expansion Worker",
+        "count": 430
+      },
+      {
+        "name": "Global Business Mobility: Senior or Specialist Worker",
+        "count": 10383
+      },
+      {
+        "name": "International Agreement",
+        "count": 134
+      },
+      {
+        "name": "Scale-up",
+        "count": 92
+      },
+      {
+        "name": "Global Business Mobility: Graduate Trainee",
+        "count": 621
+      },
+      {
+        "name": "Global Business Mobility: Service Supplier",
+        "count": 56
+      },
+      {
+        "name": "Charity Worker",
+        "count": 1531
+      },
+      {
+        "name": "Religious Worker",
+        "count": 1433
+      },
+      {
+        "name": "International Sportsperson",
+        "count": 1466
+      },
+      {
+        "name": "Government Authorised Exchange",
+        "count": 245
+      },
+      {
+        "name": "Seasonal Worker",
+        "count": 6
+      },
+      {
+        "name": "Global Business Mobility: Secondment Worker",
+        "count": 6
+      },
+      {
+        "name": "Intra-company Routes",
+        "count": 1
+      },
+      {
+        "name": "Intra Company Transfers (ICT)",
+        "count": 1
+      },
+      {
+        "name": "Tier 2 General",
+        "count": 5
+      }
+    ],
+    "refresh_error": null
+  },
+  "browser": {
+    "configured": true,
+    "events_7d": 0,
+    "failures_7d": 0,
+    "blocked_owners": 0,
+    "incoming_backlog": 0,
+    "dead_letter_backlog": 0,
+    "provider_event_observed": false,
+    "historical_test_confirmation_preserved": true
+  },
+  "health": {
+    "status": 200,
+    "version": "2.30.0"
+  },
+  "anonymous_alert_endpoint": {
+    "status": 403,
+    "cache_control": "no-store"
+  },
+  "new_real_email_sends": 0,
+  "new_production_model_calls": 0,
+  "google_retries": 0,
+  "social_sends": 0,
+  "limits": [
+    "No native provider event received; exact service Message-ID matching and live lifecycle handling remain unverified.",
+    "Local dead-letter spy proves dispatch; actual production error retention and recovery were not manufactured.",
+    "SMTP acceptance never establishes Inbox delivery; prior test was received in Gmail Spam.",
+    "Future genuine hourly collection of queue health remains a separate acceptance gate."
+  ]
+}

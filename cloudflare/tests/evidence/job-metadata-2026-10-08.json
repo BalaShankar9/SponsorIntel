@@ -1,0 +1,238 @@
+{
+  "release": "2.42.1",
+  "tests": {
+    "passed": 424,
+    "failed": 0
+  },
+  "production_job_metadata": {
+    "checked_at": "2026-10-08T15:10:35.670115+00:00",
+    "jobs": [
+      {
+        "id": "ac84d1d7500988cb0b7e2da5",
+        "status": 200,
+        "datePosted": "2026-08-20T08:55:04.000Z",
+        "description_matches": true
+      },
+      {
+        "id": "8717d20fce9425a11df5484f",
+        "status": 200,
+        "datePosted": "2026-09-11T08:55:54.000Z",
+        "description_matches": true
+      },
+      {
+        "id": "3fe27e3bfb1f19227d4c8563",
+        "status": 200,
+        "datePosted": "2026-09-11T09:01:52.000Z",
+        "description_matches": true
+      },
+      {
+        "id": "2dd4ea973af4df23269cbbe8",
+        "status": 200,
+        "datePosted": "2026-10-07T15:32:56.000Z",
+        "description_matches": true
+      },
+      {
+        "id": "0587ae81759f331071e503db",
+        "status": 200,
+        "datePosted": "2026-06-09T08:50:55.000Z",
+        "description_matches": true
+      },
+      {
+        "id": "1d76018dfd3c725c664625ec",
+        "status": 200,
+        "datePosted": "2026-09-25T14:15:41.000Z",
+        "description_matches": true
+      },
+      {
+        "id": "d1acb6906d6bb19a13146c79",
+        "status": 200,
+        "datePosted": "2026-01-09T13:58:15.000Z",
+        "description_matches": true
+      },
+      {
+        "id": "0701b4a3932bf2275b56e0a3",
+        "status": 200,
+        "datePosted": "2026-06-11T05:38:12.000Z",
+        "description_matches": true
+      },
+      {
+        "id": "6b20240023f1ed3d0f40eafa",
+        "status": 200,
+        "datePosted": "2026-10-06T11:48:19.000Z",
+        "description_matches": true
+      }
+    ],
+    "listing_without_jobposting": true,
+    "fallback_without_jobposting": true
+  },
+  "http_checks": {
+    "checked_at": "2026-10-08T15:08:38.756414+00:00",
+    "worker": "ed741c64-1f51-42b7-a788-a4f4d8801e13",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "health": {
+          "ok": true,
+          "version": "2.42.0",
+          "register": {
+            "date": "2026-10-07",
+            "count": 127949,
+            "checked_at": "2026-10-08T07:15:42.693Z"
+          }
+        }
+      },
+      {
+        "path": "/jobs",
+        "status": 200
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200
+      },
+      {
+        "path": "/api/admin/business",
+        "status": 403
+      },
+      {
+        "path": "/jobs/0701b4a3932bf2275b56e0a3",
+        "status": 200,
+        "datePosted": "2026-06-11T05:38:12.000Z",
+        "source_first_published_at": "2026-06-11T05:38:12.000Z",
+        "last_seen": "2026-10-08T15:08:07.972Z",
+        "visible_date": true,
+        "canonical": "https://sponsorintel.london/jobs/0701b4a3932bf2275b56e0a3"
+      }
+    ]
+  },
+  "recovery_before": {
+    "observed_at": "2026-10-08T15:00:15.040Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "bbeed215c6a6798251894022c030533d1d8c93256ab2ebb279dd7f369caf7d9b",
+    "database_size_bytes": 96407552,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 116,
+      "actual_objects": 116,
+      "migration_files": 27,
+      "expected_sha256": "3751c153a4cd9549d149c123c9958d84df49dcc0ae5c221a8948f892c7447320",
+      "actual_sha256": "3751c153a4cd9549d149c123c9958d84df49dcc0ae5c221a8948f892c7447320",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "recovery_after": {
+    "observed_at": "2026-10-08T15:07:36.236Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "d597ce1b64b6ae8a5c977900486539c950a96af7cf2bd9d8a53a689625113daa",
+    "database_size_bytes": 96407552,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 116,
+      "actual_objects": 116,
+      "migration_files": 28,
+      "expected_sha256": "714a0df941362cafdd78b5e5e1611af0c023b21c62915c1b13fe07331852d736",
+      "actual_sha256": "714a0df941362cafdd78b5e5e1611af0c023b21c62915c1b13fe07331852d736",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "source_run": {
+    "id": "owner-3c009462-fbf3-45ed-a8cf-a8fcf7d28d97",
+    "trigger_kind": "owner",
+    "state": "completed",
+    "created_at": "2026-10-08T15:08:04.181Z",
+    "finished_at": "2026-10-08T15:08:08.443Z"
+  },
+  "source_tasks": [
+    {
+      "source_id": "gocardless",
+      "state": "published",
+      "attempts": 1,
+      "count": 9
+    }
+  ],
+  "platform_source": {
+    "id": "owner-3c009462-fbf3-45ed-a8cf-a8fcf7d28d97",
+    "status": "complete",
+    "success": true,
+    "end": "2026-10-08T15:08:08.470Z"
+  },
+  "google_acceptance_observed": false,
+  "live_browser": {
+    "date_matches_metadata": true,
+    "preparation_enabled": true,
+    "screenshot": "outputs/sponsorintel-job-dates-live-242.jpg"
+  },
+  "final_production": {
+    "checked_at": "2026-10-08T15:23:52.401203+00:00",
+    "version": "2.42.1",
+    "worker": "5756f570-64bd-490b-afcf-ddc67179500e",
+    "corrected_roles": [
+      {
+        "id": "536dbe194e98b812b77cd933",
+        "title": "Associate Director, Global Dossier and Value Communications",
+        "sponsorship": "unavailable",
+        "evidence": "Candidates must be legally authorized to work in the country of employment without employer sponsorship.",
+        "last_seen": "2026-10-08T15:22:44.782Z"
+      },
+      {
+        "id": "a823535422c371d853834904",
+        "title": "Senior Research Scientist, Health Economic Modelling",
+        "sponsorship": "unavailable",
+        "evidence": "Candidates must be legally authorized to work in the country of employment without employer sponsorship.",
+        "last_seen": "2026-10-08T15:22:44.782Z"
+      }
+    ],
+    "collections": {
+      "total": 904,
+      "employers": 33,
+      "early_career": 51,
+      "sponsorship": 50,
+      "licensed": 851,
+      "salary": 156
+    }
+  },
+  "exclusion_replay": {
+    "reviewed": 84,
+    "changes": [
+      {
+        "id": "536dbe194e98b812b77cd933",
+        "before": "not_stated",
+        "after": {
+          "status": "unavailable",
+          "quote": "Candidates must be legally authorized to work in the country of employment without employer sponsorship."
+        }
+      },
+      {
+        "id": "a823535422c371d853834904",
+        "before": "not_stated",
+        "after": {
+          "status": "unavailable",
+          "quote": "Candidates must be legally authorized to work in the country of employment without employer sponsorship."
+        }
+      }
+    ]
+  },
+  "daily_scouting": {
+    "existing_automation_updated": true,
+    "exact_prompt_readback": true,
+    "linkedin_jobs_and_posts": "bounded public lead review; not automated LinkedIn ingestion"
+  }
+}

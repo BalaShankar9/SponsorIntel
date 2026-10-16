@@ -1,0 +1,49 @@
+ALEX MORGAN
+Fictional applicant — export quality check
+alex.morgan@example.test | Cardiff
+
+PROFILE
+Operations analyst with experience checking records and preparing clear handovers. This entire document is fictional and used only to test Sponsor Intel exports. Café, naïve, José, £32,500 and 25% must remain readable.
+
+EXPERIENCE
+Fictional Harbour Studio | Operations coordinator | 2023–2025
+• Evidence item 01: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 02: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 03: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 04: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 05: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 06: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 07: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 08: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 09: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 10: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 11: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 12: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 13: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 14: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 15: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+• Evidence item 16: checked a fictional reporting workflow, compared source records, documented exceptions and wrote a clear handover. This is test text, not a claim about the owner or any real applicant.
+
+EDUCATION
+Fictional Institute | Example diploma | 2022
+
+SKILLS
+Data quality; spreadsheet checks; clear documentation; collaboration.
+
+END OF FICTIONAL DOCUMENT
+Final marker: SI-EXPORT-234-END.

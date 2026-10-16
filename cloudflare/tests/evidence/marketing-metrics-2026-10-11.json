@@ -1,0 +1,55 @@
+{
+  "observed_at": "2026-10-11T15:08:50.675335+00:00",
+  "release": "2.53.0",
+  "status": "tested_before_deployment",
+  "runtime": "Node 24.19.0",
+  "tests": {
+    "full_passed": 550,
+    "full_failed": 0,
+    "duration_ms": 119631.110542,
+    "focused_passed": 13
+  },
+  "checks": [
+    "typescript",
+    "build",
+    "17 prerenders",
+    "unchanged browser budgets",
+    "worker dry run"
+  ],
+  "browser_link_check": "Actual local form save/reload retained company selector; retained link opened verified Sponsor Intel Facebook analytics. Views UI live verification remains pending.",
+  "views": "Separate optional metric from impressions. Old missing JSON properties stay unknown, without history rewrite.",
+  "production_observations_inserted": 0,
+  "provider_or_model_calls_added": 0,
+  "source_refreshes_forced": 0,
+  "authorised_oauth_scopes_added": [
+    "d1:write",
+    "queues:write"
+  ],
+  "cloudflare_callback": "Successfully logged in",
+  "recovery_before": {
+    "observed_at": "2026-10-11T15:07:11.469Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "a9063f1adb2597c4ef8d88294e25f68cc163c67136a141327c94393b64bdaa02",
+    "database_size_bytes": 102977536,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 141,
+      "actual_objects": 141,
+      "migration_files": 34,
+      "expected_sha256": "53dd26f53704385a0f2492387bdd6662022b4097e94fb13e31425cbaab7985b5",
+      "actual_sha256": "53dd26f53704385a0f2492387bdd6662022b4097e94fb13e31425cbaab7985b5",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false,
+    "baseline_commit": "2153dd7bf746d64b7ab4bacab234ec80801337df"
+  },
+  "migration_applied": false
+}
