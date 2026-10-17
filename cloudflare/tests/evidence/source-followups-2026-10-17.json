@@ -1,0 +1,286 @@
+{
+  "observed_at": "2026-10-17T23:16:53.058Z",
+  "kind": "existing_review_reconciliation",
+  "goal_status": "active",
+  "goal_status_observed_at": "2026-10-17T23:10:31Z",
+  "runtime_unchanged": "2.77.0",
+  "records": {
+    "advert_reviews": [
+      {
+        "id": "2b2b7514-3b0d-41e5-8405-8e676d95d6ff",
+        "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+        "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/science-technician-king-s-lynn-academy",
+        "title": "Science Technician \u2014 King's Lynn Academy",
+        "revision": 3,
+        "state": "held",
+        "reason": "availability_conflict",
+        "observed_at": "2026-10-17T23:11:53.000Z",
+        "follow_up_at": "2026-10-24T09:00:00.000Z",
+        "recorded_at": "2026-10-17T23:11:53.989Z",
+        "history_count": 3,
+        "audit_count": 1
+      },
+      {
+        "id": "bd869e06-6c08-4314-a4e8-bed8bdc6e4c0",
+        "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+        "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/senior-exam-invigilator-king-s-lynn-academy",
+        "title": "Senior Exam Invigilator \u2014 King's Lynn Academy",
+        "revision": 3,
+        "state": "held",
+        "reason": "availability_conflict",
+        "observed_at": "2026-10-17T23:12:17.000Z",
+        "follow_up_at": "2026-10-21T09:00:00.000Z",
+        "recorded_at": "2026-10-17T23:12:17.838Z",
+        "history_count": 3,
+        "audit_count": 1
+      },
+      {
+        "id": "e3925285-959a-40e2-9db0-d5614e95b9e0",
+        "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+        "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+        "title": "Teacher of Drama \u2014 King's Lynn Academy \u2014 3600-R0174",
+        "revision": 4,
+        "state": "held",
+        "reason": "deadline_conflict",
+        "observed_at": "2026-10-17T23:11:24.000Z",
+        "follow_up_at": "2026-10-20T09:00:00.000Z",
+        "recorded_at": "2026-10-17T23:11:25.006Z",
+        "history_count": 4,
+        "audit_count": 1
+      }
+    ],
+    "lead_reviews": [
+      {
+        "id": "ec758817-56e3-4585-89cc-4cf4202799bd",
+        "source_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-6f190dda-8595-415d-bc69-d3a0de3eaf46",
+        "first_recorded_at": "2026-10-09T00:46:04.311Z",
+        "revision": 6,
+        "recorded_at": "2026-10-17T23:14:09.004Z",
+        "title": "Teacher of English",
+        "employer": "King's Lynn Academy",
+        "state": "rejected",
+        "observed_at": "2026-10-17T23:14:00.000Z",
+        "deadline": "2026-10-16T11:48:00.000Z",
+        "follow_up_at": null,
+        "method": "agent_assisted",
+        "history_count": 6,
+        "audit_count": 1
+      },
+      {
+        "id": "615eda6e-601f-4e7e-905b-7c33460794e0",
+        "source_url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-outwood-academy-shafton",
+        "first_recorded_at": "2026-10-09T00:46:04.721Z",
+        "revision": 4,
+        "recorded_at": "2026-10-17T23:14:58.035Z",
+        "title": "Maths Teacher",
+        "employer": "Outwood Academy Shafton",
+        "state": "rejected",
+        "observed_at": "2026-10-17T23:14:00.000Z",
+        "deadline": "2026-10-15T11:00:00.000Z",
+        "follow_up_at": null,
+        "method": "agent_assisted",
+        "history_count": 4,
+        "audit_count": 1
+      },
+      {
+        "id": "5a3587bd-69a9-4238-86f0-33dfd56b6da7",
+        "source_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-maths-ad8c63ce-f43c-4479-b7f6-11146588fc27",
+        "first_recorded_at": "2026-10-10T00:46:05.643Z",
+        "revision": 4,
+        "recorded_at": "2026-10-17T23:15:42.641Z",
+        "title": "Teacher of Maths",
+        "employer": "Hazelwick School",
+        "state": "rejected",
+        "observed_at": "2026-10-17T23:15:00.000Z",
+        "deadline": null,
+        "follow_up_at": null,
+        "method": "agent_assisted",
+        "history_count": 4,
+        "audit_count": 1
+      }
+    ],
+    "discovery_counts": [
+      {
+        "total": 21,
+        "unresolved": 8,
+        "overdue": 8
+      }
+    ],
+    "new_leads": [
+      {
+        "count": 0
+      }
+    ],
+    "school_jobs": [
+      {
+        "id": "1115e92cf16807fc8847ec63",
+        "title": "Lead Science Technician",
+        "active": 1,
+        "last_seen": "2026-10-17T18:32:49.088Z",
+        "closes_at": "2026-10-29T23:59:00.000Z"
+      },
+      {
+        "id": "6b4fbe4aceb0108d216bb744",
+        "title": "Pupil Progress Coordinator",
+        "active": 1,
+        "last_seen": "2026-10-17T18:32:49.088Z",
+        "closes_at": "2026-10-29T23:59:00.000Z"
+      },
+      {
+        "id": "a197301928ab6a783340bd60",
+        "title": "Senior Exam Invigilator",
+        "active": 0,
+        "last_seen": "2026-10-17T18:32:49.088Z",
+        "closes_at": "2026-11-01T23:59:00.000Z"
+      },
+      {
+        "id": "b37865ea372f613bd3480edf",
+        "title": "Science Technician",
+        "active": 0,
+        "last_seen": "2026-10-15T18:32:54.773Z",
+        "closes_at": "2026-10-15T22:59:00.000Z"
+      },
+      {
+        "id": "e2f7bc10bb188fa2488bacc4",
+        "title": "Teacher of English",
+        "active": 0,
+        "last_seen": "2026-10-16T06:31:18.702Z",
+        "closes_at": "2026-10-19T22:59:00.000Z"
+      },
+      {
+        "id": "e67693eef9b036224b5d1c74",
+        "title": "Teacher of Drama",
+        "active": 0,
+        "last_seen": "2026-10-17T18:32:49.088Z",
+        "closes_at": "2026-10-21T22:59:00.000Z"
+      },
+      {
+        "id": "e9e2ae13ace4e1e795f0c0f3",
+        "title": "Exam Invigilator",
+        "active": 1,
+        "last_seen": "2026-10-17T18:32:49.088Z",
+        "closes_at": "2026-12-08T23:59:00.000Z"
+      }
+    ],
+    "job_counts": [
+      {
+        "total": 971,
+        "offered": 21,
+        "conditional": 33
+      }
+    ],
+    "foreign_keys": []
+  },
+  "english_proof_comparison": {
+    "previous_revision": 5,
+    "pinned_fields_compared": [
+      "id",
+      "board_id",
+      "company",
+      "title",
+      "location",
+      "description",
+      "apply_url",
+      "sponsorship",
+      "evidence",
+      "closes_at",
+      "source_first_published_at"
+    ],
+    "all_pinned_fields_equal": true,
+    "job_already_inactive": true,
+    "last_seen": "2026-10-16T06:31:18.702Z",
+    "old_closes_at": "2026-10-19T22:59:00.000Z",
+    "fresh_original_expiry_date": "2026-10-16",
+    "fresh_original_displayed_closing": "16 October 2026 at 12:48pm",
+    "no_public_job_mutation": true
+  },
+  "observations": [
+    {
+      "role": "Drama",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+      "original": "DfE still advertises 21 October 23:59 and positive sponsorship wording; its /apply route now returns No suitable matches after processing.",
+      "decision": "Keep existing deadline-conflict hold; historical employer 16 October deadline is not freshly visible.",
+      "follow_up_uk": "2026-10-20T10:00:00+01:00"
+    },
+    {
+      "role": "Science Technician",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/science-technician-king-s-lynn-academy",
+      "original": "Explicitly EXPIRED on 15 October; no active application link and sponsorship refused.",
+      "decision": "Keep exact advert inactive on hold; do not substitute Lead Science Technician.",
+      "follow_up_uk": "2026-10-24T10:00:00+01:00"
+    },
+    {
+      "role": "Senior Exam Invigilator",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/senior-exam-invigilator-king-s-lynn-academy",
+      "original": "DfE still advertises 1 November deadline, casual part-time, 13.48 GBP hourly and sponsorship refusal; its /apply route returns No suitable matches.",
+      "decision": "Keep availability hold; absence is not proof of formal closure.",
+      "follow_up_uk": "2026-10-21T10:00:00+01:00"
+    },
+    {
+      "role": "English",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-6f190dda-8595-415d-bc69-d3a0de3eaf46",
+      "original": "Explicitly EXPIRED on 16 October with displayed 12:48pm closing, replacing the earlier observed 19 October deadline.",
+      "decision": "Reject retained lead as current; preserve prior linked proof and sponsorship quote."
+    },
+    {
+      "role": "Outwood Maths",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-outwood-academy-shafton",
+      "original": "Explicitly EXPIRED on 15 October at noon; historical sponsorship wording remains.",
+      "decision": "Reject current lead; no resolution inferred for historic employer salary conflict."
+    },
+    {
+      "role": "Hazelwick Maths",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-maths-ad8c63ce-f43c-4479-b7f6-11146588fc27",
+      "original": "Explicit expiry 15 October; structured deadline 15 October 08:23 conflicts with body 16 October 09:00.",
+      "decision": "Reject exact current lead; precise deadline null, separate similar advert untouched."
+    }
+  ],
+  "protected_groups": {
+    "before": "2026-10-17T23:10:41.639Z",
+    "after": "2026-10-17T23:16:07.015Z",
+    "matched": [
+      "business_controls",
+      "marketing_controls",
+      "research_control",
+      "application_controls",
+      "source_controls",
+      "marketing_briefs",
+      "marketing_receipts",
+      "source_budget",
+      "ai_budget",
+      "business_runs",
+      "source_runs",
+      "marketing_runs",
+      "issues",
+      "foreign_keys"
+    ],
+    "sha256": "d30658fd48496f3eaa13e378a3eb821b998f449ba2a81221a79439432f109c38"
+  },
+  "browser_summary": {
+    "retained_leads": 21,
+    "unresolved": 8,
+    "overdue_discovery": 8,
+    "changed_links": 0,
+    "current_linked_jobs": 2,
+    "advert_holds": 3,
+    "overdue_advert_reviews": 0
+  },
+  "same_day_recovery_reused": "2026-10-17T22:53:15.986Z",
+  "same_day_dependency_audit_reused": true,
+  "actions_not_taken": [
+    "new lead or source admission",
+    "public role creation or reactivation",
+    "new model/Google call",
+    "email or social send",
+    "forced source/business workflow",
+    "permission or budget change",
+    "customer-data deletion or database restore"
+  ],
+  "limitations": [
+    "These six reviews are agent-assisted, not independent human certification.",
+    "Expiry of an advert does not prove the position was filled or employer-wide sponsorship policy.",
+    "The historical English public record retains its old deadline but is already inactive; no date backfill.",
+    "Next genuine business snapshot must incorporate the changed review totals; not forced.",
+    "Eight unresolved discovery records remain overdue."
+  ]
+}

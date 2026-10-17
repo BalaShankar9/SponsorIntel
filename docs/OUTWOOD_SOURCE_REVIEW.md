@@ -1,5 +1,7 @@
 # Outwood Academy Shafton review — 11 October 2026
 
+**17 October 2026 update:** The exact original DfE Maths advert now explicitly displays **EXPIRED**, expired 15 October, and closing 15 October at noon. Agent-assisted revision **4** rejects this retained lead as a current opportunity. Original automatic attribution and all three previous reviews remain. The salary conflict and dated identity/attachment evidence below are not newly resolved or recertified. No source, public vacancy or new lead was added; no assertion that the role was filled or the trust stopped sponsoring. See `cloudflare/tests/evidence/source-followups-2026-10-17.json`. The following 11 October account is historical.
+
 The retained automated Maths Teacher candidate remains private and **held**. No source was configured or approved. Discovery lead `615eda6e-601f-4e7e-905b-7c33460794e0` revision 2 records an explicitly agent-assisted review and follow-up on 13 October at 10:00 BST.
 
 The [DfE original](https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-outwood-academy-shafton) identifies URN 139211, says Skilled Worker visas can be sponsored, requires a relevant degree and QTS, and does not accept CV-only applications. Its 15 October noon deadline matches the [employer advert 7581](https://fa-eqvg-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_4001/job/7581/). Proposed start is 1 January 2027. DfE date listed is 7 October; the employer portal shows 09:19 without an explicit timezone, so no precise posting timestamp was entered.

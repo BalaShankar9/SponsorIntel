@@ -1,5 +1,16 @@
 # King's Lynn Academy source review
 
+## Latest original review — 17 October 23:17 UTC (18 October UK)
+
+All three advert holds remain. Fresh exact-page checks now show:
+
+- Drama still advertises 21 October on DfE, but its own employer application route finishes with **No suitable matches**. Historical employer 16 October closing is not freshly visible and is not treated as proof of formal closure. Held revision **4**, next 20 October 10:00 BST.
+- Science Technician explicitly displays **EXPIRED on 15 October** and no active application route. Held revision **3**, next 24 October 10:00 BST. Lead Science Technician is a different role.
+- Senior Exam Invigilator still advertises 1 November but its exact route returns **No suitable matches**. Held revision **3**, next 21 October 10:00 BST. A missing match is not a filled/closed outcome.
+- English explicitly displays **EXPIRED on 16 October**, closing 12:48pm, replacing its formerly advertised 19 October deadline. The public job was already inactive. All eleven old pinned fields still match its historical job row, so this was an availability change, not a silent proof rebase. Discovery revision **6 rejects it as current**, preserving all five earlier decisions and the historic sponsorship quote.
+
+Each decision has one audit receipt. No role was released, created or reactivated, no application/contact/forced source refresh occurred. The three other school roles remain active; public total is 971 with 54 sponsorship-worded adverts. Next genuine hourly monitoring must separately incorporate these decisions. See `cloudflare/tests/evidence/source-followups-2026-10-17.json`. Older sections are dated historical evidence.
+
 ## Current original reviews — 13 October 11:18 UTC
 
 Authenticated owner access is restored. English discovery revision **5**, saved **11:01:09.594 UTC**, explicitly reconciles the one-time 2.61 cleanup. Read-only comparison found only the known navigation text removed; every other pinned field and remaining description character matched. Fresh DfE inspection retained the visa wording, permanent/full-time MPR/UPR, 19 October 23:59 deadline and QTS/degree requirement. The queue now has three current links and zero changed links. This is not another public job. Observe the next genuine collection for continued proof stability; do not force it.
