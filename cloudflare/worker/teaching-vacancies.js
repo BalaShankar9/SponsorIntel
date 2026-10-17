@@ -2,6 +2,7 @@ import {parseDocument} from 'htmlparser2';
 import {boundedText} from './data.js';
 import {SourceCheckError,withSourceContext} from './source-errors.js';
 import {TEACHING_ORIGIN,TEACHING_QUOTE,TEACHING_UNAVAILABLE,teachingJobURL,teachingBoardIdentity} from './teaching-source.js';
+import {teachingAdvertLocation} from './teaching-location.js';
 
 export const TEACHING_REQUEST_COST=24; // two catalogues of <=2 pages and <=20 original adverts
 const maxJobs=20,norm=s=>String(s||'').normalize('NFKC').replace(/\s+/g,' ').trim();
@@ -75,8 +76,8 @@ export function parseTeachingVacancy(html,board,expected,now=Date.now()){
  const description=roleText(sections[0]).replace(/[ \t]+/g,' ').replace(/\n\s*\n/g,'\n').trim();
  if(!description||description.length>80000)fail('oversized_advert');
  if(/\b(?:this (?:job|role|position|vacancy) (?:is no longer available|has (?:now )?closed|has been (?:filled|removed))|applications (?:for this (?:role|position|vacancy) )?are (?:now )?closed|no longer accepting applications)\b/i.test(description)&&Date.parse(closing)>now)fail('posting_changed');
- const location=[address.addressLocality,address.addressRegion,address.postalCode,'United Kingdom'].filter(v=>typeof v==='string'&&v.trim()).map(norm).join(', ');
- if(location.length>300||!address.addressLocality)fail('posting_identity');
+ if(!address.addressLocality)fail('posting_identity');
+ const location=teachingAdvertLocation(doc,heads[0],c.company)+', United Kingdom';
  const employment=typeof j.employmentType==='string'?j.employmentType:Array.isArray(j.employmentType)&&j.employmentType.every(x=>typeof x==='string')?j.employmentType.join(', '):'';
  return {id:ids[0],title,location,country:'GB',visa_wording:quote,descriptionPlain:description,absolute_url:url,application_deadline:closing,publishedAt:publication,employmentType:employment,description_checked_at:new Date(now).toISOString()};
 }

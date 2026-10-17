@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "release": "2.78.0",
+  "status": "validated; deployment pending",
+  "real_candidate_replay": {
+    "observed_at": "2026-10-17T23:31:12.263Z",
+    "source_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry",
+    "dom_sha256": "033a155ff1c1dcaab6650f9292ea6b43e235002fe845aabc82e426b3e1d4d91a",
+    "old_location": "London, London, E14 0AF",
+    "new_location": "New City College Rainham Campus, New Road, Rainham, Essex, RM13 8GP",
+    "only_location_changed": true,
+    "scope": "Real public browser DOM replay of automatic-candidate parsing; no source admission or production write. Full importer replay was not possible because the browser DOM snapshot omits the hidden vacancy-id value."
+  },
+  "current_school_header_checks": [
+    {
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/lead-science-technician-king-s-lynn-academy",
+      "observed_at": "2026-10-17T23:35:17.641Z",
+      "parsed_location": "King's Lynn, Norfolk, PE30 4QG, United Kingdom"
+    },
+    {
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/pupil-progress-coordinator",
+      "observed_at": "2026-10-17T23:35:17.947Z",
+      "parsed_location": "King's Lynn, Norfolk, PE30 4QG, United Kingdom"
+    },
+    {
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/exam-invigilator-9f911711-9994-4683-8ee1-d718bbef04ba",
+      "observed_at": "2026-10-17T23:35:18.208Z",
+      "parsed_location": "King's Lynn, Norfolk, PE30 4QG, United Kingdom"
+    }
+  ],
+  "owner_reviews": [
+    {
+      "id": "4d4489e0-3972-4b70-8501-cd7256494641",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/primary-teacher-in-french-part-time",
+      "first_recorded_at": "2026-10-14T00:46:43.518Z",
+      "revision": 2,
+      "recorded_at": "2026-10-17T23:33:02.315Z",
+      "title": "Primary Teacher in French - Part Time",
+      "employer": "Europa School UK",
+      "state": "rejected",
+      "observed_at": "2026-10-17T23:32:00.000Z",
+      "deadline": "2026-11-01T23:59:00.000Z",
+      "follow_up_at": null,
+      "method": "agent_assisted",
+      "history_count": 2,
+      "audit_count": 1
+    },
+    {
+      "id": "b33c7472-8dc8-490e-a8ca-300cdf67f11d",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry",
+      "first_recorded_at": "2026-10-14T00:46:41.467Z",
+      "revision": 2,
+      "recorded_at": "2026-10-17T23:34:43.515Z",
+      "title": "Lecturer Carpentry",
+      "employer": "New City College",
+      "state": "held",
+      "observed_at": "2026-10-17T23:34:00.000Z",
+      "deadline": "2026-11-01T23:59:00.000Z",
+      "follow_up_at": "2026-10-19T09:00:00.000Z",
+      "method": "agent_assisted",
+      "history_count": 2,
+      "audit_count": 1
+    }
+  ],
+  "discovery": {
+    "total": 21,
+    "unresolved": 7,
+    "overdue": 6
+  },
+  "public_jobs": {
+    "total": 971,
+    "offered": 21,
+    "conditional": 33
+  },
+  "new_leads_today": 0,
+  "validation": {
+    "tests_passed": 671,
+    "tests_failed": 0,
+    "runtime": "Node 24.19.0",
+    "build": true,
+    "prerenders": 18,
+    "browser_budgets": true,
+    "worker_dry_run": true,
+    "source_manifests_unchanged": true
+  },
+  "boundaries": [
+    "No new employer source or public job. New City College remains unconfigured pending legal linkage and complete admission review.",
+    "Real candidate replay uses public browser DOM. Full importer acceptance uses fictional records, not a successful production source probe.",
+    "Existing public school locations remain unchanged until the next genuine complete scheduled collection.",
+    "No schema change; same-UTC-day recovery check reused. No new model, Google, email or social action."
+  ]
+}

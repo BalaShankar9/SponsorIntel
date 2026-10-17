@@ -63,6 +63,19 @@ test('a later Skilled Worker body refusal prevents partial publication and prese
  const task=env.sql.prepare("SELECT error_code,attempts FROM agent_tasks WHERE run_id='school-after-conflict'").get();assert.equal(task.error_code,'posting_changed');assert.equal(task.attempts,1);
  assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget').get().requests,48);
 });
+
+test('an ambiguous campus preserves every job and consumes only the admitted source reservation',async t=>{
+ const env=database(t);await seedSchool(env.DB);const first=provider();
+ await dispatchSources(env,{id:'location-before',sourceId:school.id});await initialiseRun(env,'location-before');
+ await executeSourceTask(env,'location-before',school.id,{readBoard:(b,c)=>fetchBoard(b,{...c,fetcher:first.fetcher})});await completeRun(env.DB,'location-before');
+ const before=env.sql.prepare('SELECT * FROM jobs ORDER BY id').all();
+ const changed=provider(undefined,{alter:(html,url)=>url===vacancy(1).url?html.replace('Fictional School, Cardiff, Wales, CF10 1AA','Fictional School, Cardiff, CF10 1AA or Rainham, RM13 8GP'):html});
+ await dispatchSources(env,{id:'location-after',sourceId:school.id});await initialiseRun(env,'location-after');
+ const result=await executeSourceTask(env,'location-after',school.id,{readBoard:(b,c)=>fetchBoard(b,{...c,fetcher:changed.fetcher})});
+ assert.notEqual(result.state,'published');assert.deepEqual(env.sql.prepare('SELECT * FROM jobs ORDER BY id').all(),before);
+ const task=env.sql.prepare("SELECT error_code,attempts FROM agent_tasks WHERE run_id='location-after'").get();assert.equal(task.error_code,'posting_identity');assert.equal(task.attempts,1);
+ assert.equal(changed.calls.length,2);assert.equal(env.sql.prepare('SELECT requests FROM agent_daily_budget').get().requests,48);
+});
 test('provider migration preserves existing reviews, uniqueness and owner foreign keys',()=>{
  const sql=new DatabaseSync(':memory:');try{sql.exec('PRAGMA foreign_keys=ON');for(const name of readdirSync(new URL('../migrations/',import.meta.url)).filter(n=>n.endsWith('.sql')&&n<'0033').sort())sql.exec(readFileSync(new URL('../migrations/'+name,import.meta.url),'utf8'));
  sql.exec("INSERT INTO user(id,name,email,emailVerified,createdAt,updatedAt) VALUES('owner','Fictional','owner@example.invalid',1,0,0)");sql.exec("INSERT INTO employer_boards VALUES('existing','School','ashby','school','https://example.invalid','education','s','Evidence','paused','2026-10-08','2026-10-08','owner')");const before=sql.prepare('SELECT * FROM employer_boards').all();sql.exec(readFileSync(new URL('../migrations/0033_teaching_employer_provider.sql',import.meta.url),'utf8'));assert.deepEqual(sql.prepare('SELECT * FROM employer_boards').all(),before);assert.deepEqual(sql.prepare('PRAGMA foreign_key_check').all(),[]);assert.throws(()=>sql.exec("UPDATE employer_boards SET provider='unreviewed'"));sql.exec("DELETE FROM user WHERE id='owner'");assert.equal(sql.prepare('SELECT reviewed_by FROM employer_boards').get().reviewed_by,null);

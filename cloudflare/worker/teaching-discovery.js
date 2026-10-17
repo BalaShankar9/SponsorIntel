@@ -1,5 +1,6 @@
 import {parseDocument} from 'htmlparser2';
 import {sponsorshipEvidence} from './jobs.js';
+import {teachingAdvertLocation} from './teaching-location.js';
 
 import {TEACHING_ORIGIN,TEACHING_QUOTE,teachingJobURL} from './teaching-source.js';
 export {TEACHING_ORIGIN,TEACHING_QUOTE,TEACHING_TERMS,TEACHING_ATTRIBUTION,teachingJobURL} from './teaching-source.js';
@@ -64,7 +65,7 @@ export function parseTeachingCandidate(html,candidate,now=Date.now()){
  const body=norm(text(sections[0]));
  if(/\b(?:this (?:job|role|position|vacancy) (?:is no longer available|has (?:now )?closed|has been (?:filled|removed))|applications (?:for this (?:role|position|vacancy) )?are (?:now )?closed|no longer accepting applications)\b/i.test(body))fail('advert_closed_or_deadline_unknown');
  if(sponsorshipEvidence(body).status==='unavailable')fail('contradictory_sponsorship_wording');
- const location=[address.addressLocality,address.addressRegion,address.postalCode].filter(v=>typeof v==='string'&&v.trim()).map(norm).join(', ');
+ let location;try{location=teachingAdvertLocation(doc,heads[0],employer);}catch{fail('advert_identity_changed');}
  if(!location||location.length>160)fail('advert_identity_changed');
  const content={title,employer,location,observed_at:new Date(now).toISOString(),posted_at:null,
   posted_evidence:`Teaching Vacancies datePosted: ${posted}. Publication time is not supplied.`,
