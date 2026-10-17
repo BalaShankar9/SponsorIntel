@@ -1,7 +1,7 @@
 {
   "version": 1,
   "release": "2.78.0",
-  "status": "validated; deployment pending",
+  "status": "deployed; genuine scheduled collection and scout acceptance pending",
   "real_candidate_replay": {
     "observed_at": "2026-10-17T23:31:12.263Z",
     "source_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry",
@@ -88,5 +88,63 @@
     "Real candidate replay uses public browser DOM. Full importer acceptance uses fictional records, not a successful production source probe.",
     "Existing public school locations remain unchanged until the next genuine complete scheduled collection.",
     "No schema change; same-UTC-day recovery check reused. No new model, Google, email or social action."
-  ]
+  ],
+  "deployment": {
+    "version": "2.78.0",
+    "worker": "6e78a4ae-f61a-4299-a86b-97fcefdb8ce9",
+    "runtime_commit": "8d9e95bffc53d6424a0c5c6d4572444945e86b50",
+    "rollback": "e817b561-301c-4975-9dcd-f0d3a63504fc",
+    "live_check_at": "2026-10-17T23:38:42.647Z",
+    "health": {
+      "ok": true,
+      "version": "2.78.0",
+      "register": {
+        "date": "2026-10-16",
+        "count": 128007,
+        "checked_at": "2026-10-17T07:15:25.233Z"
+      }
+    },
+    "job_page_status": 200,
+    "anonymous_discovery_status": 403,
+    "initial_label_probe": {
+      "literal": "Sponsorship not offered",
+      "matched": false,
+      "explanation": "The probe guessed the wrong literal; the unchanged actual public label is Sponsorship unavailable, verified in the owner browser."
+    },
+    "browser_job_label": "Sponsorship unavailable",
+    "pre_refresh_location_still_visible": true
+  },
+  "operational_comparison": {
+    "before": "2026-10-17T23:32:25.839Z",
+    "after": "2026-10-17T23:38:43.666Z",
+    "all_14_selected_groups_equal": true,
+    "ai": [
+      {
+        "day": "2026-10-17",
+        "runs": 3,
+        "calls": 7
+      }
+    ],
+    "source_budget": [
+      {
+        "day": "2026-10-17",
+        "requests": 388,
+        "briefs": 0
+      }
+    ],
+    "foreign_key_errors": [],
+    "no_product_hold_cleared": true
+  },
+  "hosted_code_checks": {
+    "head": "8d9e95bffc53d6424a0c5c6d4572444945e86b50",
+    "linux_jobs": [
+      117534139475,
+      117534129968
+    ],
+    "status": "blocked before execution by existing account billing lock; original annotations inspected",
+    "gitguardian": {
+      "id": 117534134373,
+      "conclusion": "success"
+    }
+  }
 }
