@@ -40,7 +40,7 @@ test('empty, malformed and undated returned documents preserve the existing draf
 });
 
 test('all supported documents protect their own text and only capture the intended generation inputs',()=>{
- for(const kind of ['cv','coverLetter','interview','companyResearch','portfolio','learningPlan']){
+ for(const kind of ['analysis','cv','coverLetter','interview','companyResearch','portfolio','learningPlan']){
   const d=fixture(),ticket=beginPreparedDraft(d,'a',kind,'session-a',1);
   assert.deepEqual(Object.keys(ticket.input.application),['id','jobId','title','company','description','sponsorship','evidence']);
   d.applications[0][kind]='My manual revision';

@@ -1,4 +1,4 @@
-const kinds=new Set(['cv','coverLetter','interview','companyResearch','portfolio','learningPlan']);
+const kinds=new Set(['analysis','cv','coverLetter','interview','companyResearch','portfolio','learningPlan']);
 const inputApplication=a=>Object.fromEntries(['id','jobId','title','company','description','sponsorship','evidence'].map(k=>[k,a[k]]));
 
 export function beginPreparedDraft(data,id,kind,scope,requestId){

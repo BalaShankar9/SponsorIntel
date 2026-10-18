@@ -1,0 +1,18 @@
+# 2.83 — Check saved roles before preparing an application
+
+A role could be held on its public detail page while an application saved earlier still reached AI generation. A local reproduction returned a draft and charged its three allowance counters without reading the linked role. New preparation now reads the same current/held/released-waiting/expired/removed/stale status used by job details. Missing roles and failed status reads also pause new preparation.
+
+The API checks before charging preparation allowance, after the writer and before returning the reviewed document. A hold arriving during writing stops the reviewer; one arriving during review prevents delivery of that result. Already consumed allowance is retained. A final read cannot promise that an employer or owner will never change the role afterward. There is no automatic retry, source refresh, external employer request or recall of previously produced documents.
+
+Studio reads current status on opening a linked application, periodically while visible, when returning to the tab and immediately before preparation. The notice links to the listing status, permits another status read and keeps existing documents editable/exportable. Failed checks do not silently mean current. Local evidence notes use the existing input/revision guard after their asynchronous status check, preserving intervening edits. Follow-up templates remain available. Manually entered applications without a catalogue identity remain explicitly outside this linked-role guard; this does not verify their sources.
+
+The writer, both reviewers, comparison fixtures, model settings and exact application-source identity are unchanged. This repairs the availability boundary; it does not resolve the retained unsupported-claim/writing-quality findings or promote a model.
+
+## Validation
+
+- 691 tests passed on Node 24.19.0. After final notice refinements, seven targeted runtime/private-work tests passed; TypeScript/build, 18 prerenders, existing browser asset limits and Worker dry run passed.
+- An isolated actual Worker/D1 test covers all seven preparation kinds against held, released-waiting, expired, removed, stale and missing roles with zero model calls or allowance writes. It covers holds arriving during writer/reviewer stages, preservation of consumed reservations, current-role success, a release followed by a newer refresh, database failure, invalid identity and manual applications. Fictional private workspace contents/revision remain unchanged. No external service is permitted by the fixture.
+- Actual Studio/CareerProvider browser checks cover held-role notice and editable existing CV, a hold after initial page load blocking the next action, refreshed current status clearing the hold notice, a successful local evidence check, unavailable status and manual applications. Source CV/private notes remain unchanged; generation requests and unexpected requests are zero in the final cases. A 390-pixel browser viewport has a 390-pixel document width. This is fictional local QA, not a customer or real-device test.
+- Initial development type errors and a stale notice were corrected before the final checks. One local fixture initially counted the existing `/api/metrics` event as unexpected; its mock route was corrected, without changing production measurement.
+
+No schema or dependency-graph change. The same-day production identity/recovery-point/schema check and dependency audit remain applicable. Compatible rollback is **2.82 Worker `3b8e7099-3ffd-45b9-b58e-70093065567a`**, retaining all data, holds and model/delivery history. Deployment and live verification are pending at this source commit.

@@ -56,6 +56,8 @@ import { WorkspaceRecovery } from "./workspace-recovery";
 import { recoveryKey } from "../shared/workspace-recovery.js";
 import { DocumentDownloads } from "./document-downloads";
 import { StudioReadiness, studioReadiness } from "./studio-readiness";
+import { PreparationAvailability, usePreparationAvailability } from './preparation-availability';
+import { preparationAllowed } from '../shared/preparation-availability.js';
 import {trackEvidenceCheck} from './metrics';
 import { ApplicationInstructions } from './application-instructions';
 import { applicationSourceURL, cvApplicationRestriction } from '../shared/application-instructions.js';
@@ -618,6 +620,7 @@ function Studio({ go }: { go: Go }) {
   const a =
     c.data.applications.find((x) => x.id === c.selected) ||
     c.data.applications[0];
+  const availability = usePreparationAvailability(a?.jobId);
   const [tab, setTab] = useState<
       | "analysis"
       | "cv"
@@ -668,24 +671,24 @@ function Studio({ go }: { go: Go }) {
   async function generate() {
     if (!a || tab === "followup") return;
     if (!studioReadiness(tab, c.data.profile.cv, a.description, consent).ready) return;
-    if (tab === "analysis") {
-      c.updateApplication(a.id, {
-        analysis: buildEvidenceReview(c.data.profile, a),
-        preparedAt: stamp(),
-        stage: a.stage === "Saved" ? "Preparing" : a.stage,
-      });
-      trackEvidenceCheck();
-      setMessage(
-        "Evidence check ready. Shared terms use source quotes; role conditions still need your review.",
-      );
-      return;
-    }
+    if (busy || !availability.ready) return;
     setBusy(tab);
     setMessage("");
-    if (a.stage === "Saved") c.updateApplication(a.id, { stage: "Preparing" });
     const kind = tab;
     try {
       const ticket=c.beginPreparation(a.id,kind);
+      const state=await availability.refresh();
+      if (!preparationAllowed(state)) {
+        return;
+      }
+      if (a.stage === "Saved") c.updateApplication(a.id, { stage: "Preparing" });
+      if (kind === 'analysis') {
+        if (c.finishPreparation(ticket, {text:buildEvidenceReview(ticket.input.profile, ticket.input.application), generatedAt:stamp()})) {
+          trackEvidenceCheck();
+          setMessage('Evidence check ready. Shared terms use source quotes; role conditions still need your review.');
+        }
+        return;
+      }
       const r = await request("/api/career/generate", "POST", {
         ...ticket.input,
         kind,
@@ -704,6 +707,7 @@ function Studio({ go }: { go: Go }) {
       );
     } catch (e) {
       setMessage((e as Error).message);
+      void availability.refresh();
     } finally {
       setBusy("");
     }
@@ -870,7 +874,8 @@ function Studio({ go }: { go: Go }) {
             ))}
           </div>
           <div className="studio-document">
-            <StudioReadiness kind={tab} cv={c.data.profile.cv} description={a.description} consent={consent} busy={!!busy} onCV={() => go("career-profile")} onAdvert={editDescription} />
+            {tab !== 'followup' && <PreparationAvailability jobId={a.jobId} state={availability.state} busy={!!busy} refresh={async () => { setMessage(''); return availability.refresh(); }} />}
+            {availability.ready && <StudioReadiness kind={tab} cv={c.data.profile.cv} description={a.description} consent={consent} busy={!!busy} onCV={() => go("career-profile")} onAdvert={editDescription} />}
             <div className="document-heading">
               <div>
                 <span className="eyebrow">YOUR EDITABLE WORKING DRAFT</span>
@@ -881,6 +886,7 @@ function Studio({ go }: { go: Go }) {
                   className="primary-button"
                   disabled={
                     !!busy ||
+                    !availability.ready ||
                     !readiness.ready
                   }
                   onClick={() => void generate()}
@@ -901,6 +907,7 @@ function Studio({ go }: { go: Go }) {
               )}
             </div>
             {tab !== "followup" &&
+              availability.ready &&
               tab !== "analysis" &&
               !readiness.cvRestricted &&
               tab !== "companyResearch" && (
@@ -951,7 +958,7 @@ function Studio({ go }: { go: Go }) {
                 {message}
               </p>
             )}
-            {tab === "analysis" && value && (applicationFormat
+            {tab === "analysis" && value && availability.ready && (applicationFormat
               ? originalInstructions
                 ? <a className="text-button studio-next" href={originalInstructions} target="_blank" rel="noopener noreferrer">Next: open employer instructions <ArrowRight size={15} /></a>
                 : <button className="text-button studio-next" onClick={editDescription}>Next: check application instructions <ArrowRight size={15} /></button>

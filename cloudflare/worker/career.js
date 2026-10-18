@@ -22,6 +22,7 @@ import { companyBrief } from "./company-brief.js";
 import { preparationReply } from './analytics.js';
 import { cvApplicationRestriction } from '../shared/application-instructions.js';
 import { configureSearchMonitor, searchInbox, markSearchMatchesRead } from './search-notifications.js';
+import { preparationAvailability, preparationBlock } from './preparation-availability.js';
 export { validateWorkspace } from "./career-validation.js";
 
 import {generationPrompt,writeCareerDraft} from "./career-writer.js";
@@ -44,6 +45,11 @@ export async function careerAPI(request, env) {
         !!env.EMAIL && env.EMAIL_VERIFICATION_ENABLED === "true",
     });
   const user = session?.user;
+  if (url.pathname === '/api/career/availability' && request.method === 'GET') {
+    const jobId = url.searchParams.get('job') || '';
+    const state = await preparationAvailability(jobId, env);
+    return reply({ jobId, state }, state === 'unavailable' ? 503 : 200);
+  }
   if (url.pathname === "/api/career/generate" && request.method === "POST") {
     let body;
     try {
@@ -85,6 +91,9 @@ export async function careerAPI(request, env) {
         },
         400,
       );
+    const linkedJob = workspace.applications[0].jobId;
+    const blocked = await preparationBlock(linkedJob, env);
+    if (blocked) return blocked;
     if (body.kind === 'cv' && cvApplicationRestriction(workspace.applications[0].description))
       return reply({ error: 'This advert says CVs are not accepted for this application. Use your evidence notes with the employer’s requested format. Existing drafts remain editable.' }, 409);
     if (body.kind === "analysis")
@@ -104,8 +113,11 @@ export async function careerAPI(request, env) {
         ))
       )
         return reply({ error: "Please try again later." }, 429);
+      const text = await companyBrief(workspace.applications[0], env);
+      const afterBrief = await preparationBlock(linkedJob, env);
+      if (afterBrief) return afterBrief;
       return preparationReply({
-        text: await companyBrief(workspace.applications[0], env),
+        text,
         kind: body.kind,
         generatedAt: new Date().toISOString(),
         reviewRequired: true,
@@ -144,6 +156,10 @@ export async function careerAPI(request, env) {
       );
     try {
       let value = await writeCareerDraft(env,body.kind,workspace.profile,workspace.applications[0]);
+      // A hold/closure can arrive during generation. Preserve consumed usage,
+      // stop the next model stage and never return the now-non-current draft.
+      const afterWriting = await preparationBlock(linkedJob, env);
+      if (afterWriting) return afterWriting;
       if (["cv", "coverLetter"].includes(body.kind))
         value = await reviewDraft(
           env,
@@ -158,6 +174,8 @@ export async function careerAPI(request, env) {
         value =
           "LEARNING PLAN — SUGGESTED PRACTICE ONLY\nThis plan does not replace required qualifications, professional registration or supervised training. Use fictional examples for practice. Confirm official entry requirements before pursuing a regulated role.\n\n" +
           value;
+      const beforeReturn = await preparationBlock(linkedJob, env);
+      if (beforeReturn) return beforeReturn;
       return preparationReply({
         evidenceReviewed: ["cv", "coverLetter"].includes(body.kind),
         text: value,
