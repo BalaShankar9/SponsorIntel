@@ -19,6 +19,14 @@ The production scout therefore reads the public sponsorship-filtered search and 
 - Preserve the observation timestamp, date-only publication wording, exact closing timestamp, quote, named employer, source URL, page hash, terms and attribution. Leave `posted_at` blank when no publication time is supplied. Leave legal-identity verification blank and explicitly unreviewed.
 - Candidates stay private. Do not count them as public jobs, confirmed employer licences, applicant eligibility, or evidence that an external application is open.
 
+### Known-link selection — 2.84
+
+Before allocating original-advert inspections, the scout checks exact retained URLs and earlier validated URL/title-to-school observations. A prior school observation can be reused for selection only while that school still appears in the feed-review table or the scout's retained history. Changed titles, incomplete proof or removed relationships require a fresh original check; new URLs remain unverified. This does not approve sources, clear holds or replace an overdue review.
+
+Skipped links receive immutable per-day selection receipts with the prior original-observation date or first queue-recording date. They are reported separately from original adverts checked. No old quote/deadline is republished as newly checked, and later skip receipts cannot substitute for original evidence. Duplicate links across the two search pages are recorded once. Existing reservations are retained even when fewer requests are needed.
+
+On 18 October the live official filtered search showed only five matches, all already known; repeated Drama inspections on 15–18 October do not prove missed vacancies. The fix removes a demonstrated future selection bottleneck and makes known-only outcomes explicit. Its first eligible genuine scheduled use, subsequent new-school retention, reviewed publication and repeated refresh require their own receipts. See `cloudflare/RELEASE-2.84.md`.
+
 ## Budgets, replay and controls
 
 Maximum two education candidates per UTC day, within the existing five-new-agent-lead allowance. The daily browser routine must count candidates already retained that day and use the remaining slots for LinkedIn job adverts, ordinary recruiting posts, care/hospitality and other employers. It can review existing candidates without treating them as additional new discoveries. Owner-entered records also reduce the producer's remaining capacity.

@@ -127,3 +127,54 @@ test('a school configured after inspection but before the atomic insert cannot c
  const env=setup(t),c=candidate(1),batch=env.DB.batch;let injected=false;env.DB.batch=async statements=>{if(!injected&&env.sql.prepare("SELECT COUNT(*) n FROM discovery_scout_items WHERE state='checking'").get().n){injected=true;env.sql.prepare("INSERT INTO employer_boards(id,company,provider,board,careers,sector,sponsor_id,evidence,state,created_at) VALUES('known','Fictional school','teaching-vacancies','123451--fictional','https://example.com/','education','s','Prior review','paused',?)").run(at(now));}return batch(statements);};
  const r=await scoutTeachingVacancies(env,'fictional-business',provider(now,{first:[c]}).fetch,()=>now);assert.equal(r.retained,0);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM discovery_revisions').get().n,0);assert.equal((await discoveryScoutHealth(env,now)).items[0].reason,'school_already_configured');
 });
+
+test('previously checked configured adverts do not crowd out new schools on the next day',async t=>{
+ const env=setup(t),first=candidate(1);
+ env.sql.prepare("INSERT INTO employer_boards(id,company,provider,board,careers,sector,sponsor_id,evidence,state,created_at) VALUES('known','Fictional school','teaching-vacancies','123451--fictional','https://example.com/','education','s','Prior review','paused',?)").run(at(now));
+ await scoutTeachingVacancies(env,'fictional-business',provider(now).fetch,()=>now);
+ const previous=env.sql.prepare('SELECT * FROM discovery_scout_items ORDER BY day,source_url').all();
+ const revisions=env.sql.prepare('SELECT * FROM discovery_revisions ORDER BY id').all();
+ const later=now+86400000;
+ env.sql.exec("UPDATE business_runs SET state='completed'");env.sql.prepare("INSERT INTO business_runs(id,state,created_at) VALUES('fictional-next','running',?)").run(at(later));
+ const p=provider(later,{first:[first,candidate(2),candidate(3),candidate(4)]});
+ const r=await scoutTeachingVacancies(env,'fictional-next',p.fetch,()=>later);
+ assert.equal(r.retained,2);assert.equal(r.inspected,2);assert.equal(r.requests,3);assert.equal(r.reserved_requests,4);
+ assert.deepEqual(p.calls.map(x=>x.url),[teachingSearchURL(1),candidate(3).url,candidate(4).url]);
+ const health=await discoveryScoutHealth(env,later),skipped=health.items.filter(x=>x.evidence.selection==='known_advert_skipped');
+ assert.equal(skipped.length,2);assert.equal(skipped.find(x=>x.source_url===first.url).evidence.prior_observed_at,at(now));
+ assert.ok(skipped.every(x=>!x.evidence.deadline&&!x.evidence.sponsorship_quote));
+ assert.deepEqual(env.sql.prepare('SELECT * FROM discovery_scout_items WHERE day=? ORDER BY day,source_url').all(day),previous);
+ for(const old of revisions)assert.deepEqual(env.sql.prepare('SELECT * FROM discovery_revisions WHERE id=?').get(old.id),old);
+ assert.equal(env.sql.prepare('SELECT state FROM employer_boards').get().state,'paused');assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM jobs').get().n,0);
+ const calls=p.calls.length;assert.equal((await scoutTeachingVacancies(env,'fictional-next',p.fetch,()=>later)).replayed,true);assert.equal(p.calls.length,calls);
+});
+
+test('a known-only search uses no original requests, retains reservations and records historical provenance',async t=>{
+ const env=setup(t);await scoutTeachingVacancies(env,'fictional-business',provider(now).fetch,()=>now);
+ const later=now+86400000;env.sql.exec("UPDATE business_runs SET state='completed'");env.sql.prepare("INSERT INTO business_runs(id,state,created_at) VALUES('fictional-next','running',?)").run(at(later));
+ const p=provider(later),r=await scoutTeachingVacancies(env,'fictional-next',p.fetch,()=>later);
+ assert.equal(r.reason,'checked_advert_links_already_known');assert.equal(r.retained,0);assert.equal(r.inspected,0);assert.equal(r.requests,1);assert.equal(r.reserved_requests,4);
+ const h=await discoveryScoutHealth(env,later);assert.equal(h.items.length,2);assert.ok(h.items.every(x=>x.evidence.selection==='known_advert_skipped'&&x.evidence.prior_recorded_at===at(now)&&!x.evidence.prior_observed_at));
+ assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM discovery_leads').get().n,2);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM discovery_revisions').get().n,2);
+});
+
+test('old duplicate evidence is not reused when title or current school relationship changes',async t=>{
+ for(const mode of ['title_changed','source_removed','incomplete_proof']){
+  const env=setup(t),c=candidate(1);env.sql.prepare("INSERT INTO employer_boards(id,company,provider,board,careers,sector,sponsor_id,evidence,state,created_at) VALUES('known','Fictional school','teaching-vacancies','123451--fictional','https://example.com/','education','s','Prior review','pending',?)").run(at(now));
+  await scoutTeachingVacancies(env,'fictional-business',provider(now,{first:[c]}).fetch,()=>now);
+  if(mode==='source_removed')env.sql.exec("DELETE FROM employer_boards WHERE id='known'");
+  if(mode==='incomplete_proof')env.sql.exec("UPDATE discovery_scout_items SET evidence=json_remove(evidence,'$.body_sha256')");
+  const later=now+86400000;env.sql.exec("UPDATE business_runs SET state='completed'");env.sql.prepare("INSERT INTO business_runs(id,state,created_at) VALUES('fictional-next','running',?)").run(at(later));
+  const changed={...c,title:mode==='title_changed'?'Different fictional title':c.title},p=provider(later,{first:[changed]});
+  const r=await scoutTeachingVacancies(env,'fictional-next',p.fetch,()=>later);assert.equal(r.inspected,1,mode);assert.equal(r.requests,2,mode);
+  assert.equal((await discoveryScoutHealth(env,later)).items.filter(x=>x.evidence.selection==='known_advert_skipped').length,0);
+ }
+});
+
+test('a pause during skip recording prevents selection writes and original requests',async t=>{
+ const env=setup(t);await scoutTeachingVacancies(env,'fictional-business',provider(now).fetch,()=>now);
+ const later=now+86400000;env.sql.exec("UPDATE business_runs SET state='completed'");env.sql.prepare("INSERT INTO business_runs(id,state,created_at) VALUES('fictional-next','running',?)").run(at(later));
+ const prepare=env.DB.prepare;env.DB.prepare=sql=>{if(sql.startsWith('INSERT INTO discovery_scout_items'))env.sql.exec('UPDATE business_controls SET discovery=0');return prepare(sql);};
+ const p=provider(later),r=await scoutTeachingVacancies(env,'fictional-next',p.fetch,()=>later);
+ assert.equal(r.state,'held');assert.equal(r.requests,1);assert.equal(r.reserved_requests,4);assert.equal(env.sql.prepare('SELECT COUNT(*) n FROM discovery_scout_items WHERE day=?').get(at(later).slice(0,10)).n,0);
+});

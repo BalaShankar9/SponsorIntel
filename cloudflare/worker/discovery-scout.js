@@ -18,6 +18,19 @@ async function knownSchool(env,urn){
  return prior?{reason:'school_already_retained',lead_id:prior.lead_id}:null;
 }
 
+async function knownAdvert(env,candidate){
+ const lead=await env.DB.prepare('SELECT id,recorded_at FROM discovery_leads WHERE source_key=?').bind(await digest(candidate.url)).first();
+ if(lead)return {reason:'advert_already_in_queue',lead_id:lead.id,prior_recorded_at:lead.recorded_at};
+ // Reuse only an exact URL/title's original school observation, never a later
+ // selection skip. Recheck that the school is still configured or retained.
+ const prior=await env.DB.prepare("SELECT day,observed_at,evidence FROM discovery_scout_items WHERE source_url=? AND state IN ('duplicate','retained') AND json_extract(evidence,'$.selection') IS NULL AND json_type(evidence,'$.school_urn')='text' ORDER BY day DESC LIMIT 1").bind(candidate.url).first();
+ if(!prior)return null;
+ const proof=JSON.parse(prior.evidence);
+ if(proof.title!==candidate.title||!/^\d{6}$/.test(proof.school_urn)||!/^[a-f0-9]{64}$/.test(proof.body_sha256||''))return null;
+ const known=await knownSchool(env,proof.school_urn);
+ return known?{...known,school_urn:proof.school_urn,prior_day:prior.day,prior_observed_at:prior.observed_at}:null;
+}
+
 async function readHTML(response){
  if(response.status!==200||!/^text\/html(?:;|$)/i.test(response.headers.get('Content-Type')||'')||!response.body){await response.body?.cancel();stop('unexpected_response');}
  const reader=response.body.getReader(),decoder=new TextDecoder();let bytes=0,body='';
@@ -80,14 +93,22 @@ export async function scoutTeachingVacancies(env,runId,fetcher=fetch,clock=Date.
   const html=await readHTML(response);if(!await permitted())stop('controls_or_day_changed');return html;
  };
  const done=async(state,reason)=>{await env.DB.prepare("UPDATE discovery_scout_runs SET state=?,reason=?,finished_at=? WHERE day=? AND claim=? AND state='running'").bind(state,reason,iso(clock()),day,claim).run();return runRow(env,day);};
- const candidates=[];
+ const candidates=[],seen=new Set();let knownSkipped=0;
  try{
   for(let page=1;page<=2&&candidates.length<run.capacity;page++){
    const html=await request(teachingSearchURL(page)),parsed=parseTeachingSearch(html);
    await env.DB.prepare('UPDATE discovery_scout_runs SET search_pages=search_pages+1 WHERE day=? AND claim=?').bind(day,claim).run();
    for(const candidate of parsed.candidates){
-    if(candidates.some(c=>c.url===candidate.url))continue;
-    if(!await env.DB.prepare('SELECT id FROM discovery_leads WHERE source_key=?').bind(await digest(candidate.url)).first())candidates.push(candidate);
+    if(seen.has(candidate.url))continue;seen.add(candidate.url);
+    const known=await knownAdvert(env,candidate);
+    if(known){
+     if(!await permitted())stop('controls_or_day_changed');
+     const evidence={source_url:candidate.url,title:candidate.title,selection:'known_advert_skipped',school_urn:known.school_urn||null,known_source_id:known.source_id||null,prior_day:known.prior_day||null,prior_observed_at:known.prior_observed_at||null,prior_recorded_at:known.prior_recorded_at||null};
+     const saved=await env.DB.prepare(`INSERT INTO discovery_scout_items(day,source_url,state,reason,lead_id,evidence,observed_at)
+      SELECT ?,?,'duplicate',?,?,?,? WHERE ${controlsSQL}=1 AND EXISTS(SELECT 1 FROM discovery_scout_runs WHERE day=? AND claim=? AND state='running') RETURNING day`).bind(day,candidate.url,known.reason,known.lead_id||null,JSON.stringify(evidence),iso(clock()),day,claim).first();
+     if(!saved)stop('controls_or_day_changed');knownSkipped++;continue;
+    }
+    candidates.push(candidate);
     if(candidates.length===run.capacity)break;
    }
    if(!parsed.next)break;
@@ -123,7 +144,7 @@ export async function scoutTeachingVacancies(env,runId,fetcher=fetch,clock=Date.
    }
   }
   const final=await runRow(env,day);
-  return done('completed',final.retained?'bounded_search_finished':candidates.length?'no_new_schools_in_checked_adverts':'no_new_candidates_in_checked_pages');
+  return done('completed',final.retained?'bounded_search_finished':candidates.length?'no_new_schools_in_checked_adverts':knownSkipped?'checked_advert_links_already_known':'no_new_candidates_in_checked_pages');
  }catch(error){return done('held',safeReason(error));}
 }
 
