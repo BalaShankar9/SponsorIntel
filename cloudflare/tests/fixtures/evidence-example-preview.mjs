@@ -8,7 +8,7 @@ import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const dir=await mkdtemp(join(tmpdir(),'si-example-ui-'));
 await build({stdin:{contents:`import React,{useEffect,useRef,useState} from 'react';import {createRoot} from 'react-dom/client';import {CareerProvider,useCareer,emptyData} from './src/career-data';import {CareerTools} from './src/career';import './src/styles.css';
-const saved={...emptyData(),profile:{...emptyData().profile,cv:'PRIVATE FICTIONAL EXISTING CV — must remain unchanged.',name:'Fictional Existing Applicant'}};
+const saved=new URLSearchParams(location.search).has('empty')?emptyData():{...emptyData(),profile:{...emptyData().profile,cv:'PRIVATE FICTIONAL EXISTING CV — must remain unchanged.',name:'Fictional Existing Applicant'}};
 const key='si.career.guest.v2';localStorage.setItem(key,JSON.stringify({data:saved,revision:0,dirty:false}));
 let calls=0,writes=0;const set=Storage.prototype.setItem;
 Storage.prototype.setItem=function(k,v){writes++;return set.call(this,k,v);};
