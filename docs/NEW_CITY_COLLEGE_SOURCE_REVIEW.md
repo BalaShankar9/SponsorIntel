@@ -1,6 +1,15 @@
-# New City College — approved source, first collection pending
+# New City College — first scheduled publication verified
 
-Latest verified **17 October 2026, 23:58 UTC**. The owner workflow approved source `reviewed-teaching-vacancies-130418--new-city-college` at **23:54:58.457 UTC**, after a complete read-only probe and the exact Plumbing hold below. **Zero college roles are public at this observation.** The existing 18 October 00:30 UTC collection must establish first publication separately. Receipt: `cloudflare/tests/evidence/new-city-college-admission-2026-10-17.json`.
+Latest verified **18 October 2026, 00:37 UTC**. Original scheduled source instance `scheduled-1792283453000` completed in D1 at **00:33:36.933 UTC**, independently confirmed by Cloudflare at **00:33:37.193**. Its complete 13-advert college collection made **17 actual feed requests inside the unchanged 24-request reservation**. **Twelve roles are active; Plumbing remains held/inactive**. Carpentry is the single conditional-sponsorship role and uses the correct Rainham campus. No forced import. Receipt: `cloudflare/tests/evidence/college-first-publication-2026-10-18.json`.
+
+[Published Carpentry](https://sponsorintel.london/jobs/6e7ca74036beafcb0431c567) and the fresh DfE original were browser-checked. The register link, sponsorship words, Rainham postcode, 1 November deadline and no-CV instruction remain visible. The retained automatic lead now has agent-assisted **revision 4 linked**, saved **00:36:36.310 UTC**, with one audit event and all prior revisions preserved. All eleven saved job-proof fields independently match current production. Linking did not publish another role or prove causal discovery. The DfE original replaces the previous onward-portal value only as the exact published-job link; prior portal/reference and distinct posting-date evidence remain in history. Original posting time stays unknown.
+
+Plumbing's hold now has its first stable job identity, `60a4199207ee8422ffe35c80`, and its public historical detail remains under review/noindex. No hold was released. Full source admission was previously approved at **17 October 23:54:58.457 UTC**, after the preceding **23:54:27.654** hold and complete probe; that immutable earlier receipt remains `cloudflare/tests/evidence/new-city-college-admission-2026-10-17.json`. The next normal 06:30 collection is the separate repeated-refresh gate.
+
+A display gap remains: the original and stored body contain the clear pay range, while `salary_excerpt` and the separate public pay panel omit it. No salary was inferred or rewritten during this verification. The pending-source refresh UI defect is fixed and deployed in 2.79.
+
+## Admission evidence reviewed 17 October
+
 
 The [college governance page](https://www.ncclondon.ac.uk/governance/) identifies New City College Corporation and its college mergers, closing the former identity gap. The [official careers page](https://www.ncclondon.ac.uk/working-for-us/) links to the same college iTrent portal, WVID 6189473dpc, reached by all 13 DfE application links. Current register record `a14b6db81975f5a3899b5751` is the exact corporation, London, Skilled Worker. This is a reviewed employer connection, not personal eligibility.
 
@@ -8,9 +17,9 @@ Both catalogue pages, all 13 original adverts and all 13 designated employer pag
 
 **Plumbing R003642 is held.** Its [exact DfE application route](https://teaching-vacancies.service.gov.uk/jobs/lecturer-plumbing-new-city-college-london/apply) reaches the employer's matching role with closing date 04/10/2026, an explicit closed notice and no Apply online button. DfE instead says 1 November. Hold `a633e5a7-df5a-4078-b71e-b460fbe4c665`, revision 1, saved **23:54:27.654 UTC**, precedes source approval. Follow-up 20 October 10:00 BST; elapsed time cannot release it. The clean iTrent query link was refused by the hold evidence validator, so the actual DfE redirect link was retained without changing the allowlist. Session parameters were excluded throughout.
 
-Approval reserved **24 requests**, taking the existing daily source allowance from **388 to 412/500**. Its endpoint does not retain a separate actual-request count; do not invent one. No import was forced. Carpentry discovery revision **3**, saved **23:56:36.768 UTC**, remains held for the first published-job check, due **18 October 10:00 BST**. The original automated revision and prior correction remain. No duplicate lead, application, recruiter contact, model call or external send.
+Approval reserved **24 requests**, taking the existing daily source allowance from **388 to 412/500**. Its endpoint does not retain a separate actual-request count; do not invent one. No import was forced. Carpentry discovery revision **3**, saved **23:56:36.768 UTC**, was held for the first published-job check, due **18 October 10:00 BST**; revision 4 above completes that check. The original automated revision and prior correction remain. No duplicate lead, application, recruiter contact, model call or external send.
 
-DfE's 9 July terms were re-read: OGL listing reuse with attribution, free original links and no respondent recruitment/hiring commission. Employer attachments, logos and applicant information are not imported. The pending-source selector needed a full dashboard reload; the ordinary Refresh button did not refresh that child list. This is a small owner-UI follow-up, not a reason to bypass the hold.
+DfE's 9 July terms were re-read: OGL listing reuse with attribution, free original links and no respondent recruitment/hiring commission. Employer attachments, logos and applicant information are not imported. The pending-source selector needed a full dashboard reload; the ordinary Refresh button did not refresh that child list. This historical UI issue was repaired in 2.79; no hold was bypassed.
 
 ## Earlier candidate review (superseded admission status)
 

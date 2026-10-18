@@ -316,5 +316,61 @@
     "browser_budget": true,
     "worker_dry_run": true
   },
-  "rollback_worker": "6e78a4ae-f61a-4299-a86b-97fcefdb8ce9"
+  "rollback_worker": "6e78a4ae-f61a-4299-a86b-97fcefdb8ce9",
+  "live": {
+    "version": "2.79.0",
+    "worker": "7989d0f7-9125-4624-9b8f-7c30a6de57eb",
+    "commit": "50ca195098256f2c30943a0ba1bb4499a8b4a1b5",
+    "verified_at": "2026-10-18T00:32:25.199Z",
+    "health": {
+      "ok": true,
+      "version": "2.79.0",
+      "register": {
+        "date": "2026-10-16",
+        "count": 128007,
+        "checked_at": "2026-10-17T07:15:25.233Z"
+      }
+    },
+    "anonymous_reviews_http": 403,
+    "owner_browser": {
+      "new_refresh_button": true,
+      "configured_college_available": true,
+      "unsaved_title_source_and_date_survive_refresh": true,
+      "qa_draft_cancelled_without_save": true,
+      "advert_holds": 4
+    },
+    "unchanged_groups": [
+      "business_controls",
+      "marketing_controls",
+      "research_control",
+      "application_controls",
+      "source_controls",
+      "marketing_briefs",
+      "marketing_receipts",
+      "ai_budget",
+      "business_runs",
+      "marketing_runs",
+      "issues",
+      "foreign_keys"
+    ],
+    "naturally_changed_groups": [
+      "source_budget",
+      "source_runs"
+    ],
+    "source_instance": "scheduled-1792283453000",
+    "source_instance_running_at_observation": true,
+    "foreign_key_errors": []
+  },
+  "hosted_ci": {
+    "head": "50ca195098256f2c30943a0ba1bb4499a8b4a1b5",
+    "linux": [
+      117543630652,
+      117543620465
+    ],
+    "linux_result": "Not started: account locked due to billing issue; both original annotations checked.",
+    "gitguardian": {
+      "id": 117543623414,
+      "result": "success"
+    }
+  }
 }
