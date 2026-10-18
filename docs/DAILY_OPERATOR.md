@@ -30,7 +30,7 @@ A schema/bookmark check and the fictional isolated restore/undo exercise do not 
 
 ## Sourcing and discovery
 
-Read `docs/SOURCING_DISCOVERY.md`, `docs/DISCOVERY_QUEUE.md`, `docs/SOURCE_COVERAGE.md`, `docs/EDUCATION_DISCOVERY.md` and the exact employer review before changing a source. Inspect live limits; these are ceilings, not permission to consume them or to clear a pause:
+Read `docs/SOURCE_CONTROL_REVIEWS.md` before a source pause/resume. Read `docs/SOURCING_DISCOVERY.md`, `docs/DISCOVERY_QUEUE.md`, `docs/SOURCE_COVERAGE.md`, `docs/EDUCATION_DISCOVERY.md` and the exact employer review before changing a source. Inspect live limits; these are ceilings, not permission to consume them or to clear a pause:
 
 | Control | Existing ceiling and rule |
 | --- | --- |
