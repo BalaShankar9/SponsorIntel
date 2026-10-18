@@ -1,0 +1,210 @@
+{
+  "observed_at": "2026-10-18T02:07:33.871Z",
+  "scope": "One real Facebook opportunity scheduled; delivery and audience outcomes remain pending.",
+  "brief": {
+    "id": "eb9fb808-be7a-4507-9e81-d5b9181e612b",
+    "topic_key": "opportunity:6e7ca74036beafcb0431c567",
+    "destination": "facebook-company",
+    "title": "New City College: Lecturer Carpentry",
+    "state": "scheduled",
+    "version": 1,
+    "revision": 3,
+    "last_event": "a6f441f0-af3c-4e3e-a7f8-834170006939",
+    "created_at": "2026-10-18T00:47:57.892Z",
+    "updated_at": "2026-10-18T02:06:32.446Z"
+  },
+  "caption": "Lecturer Carpentry — New City College. Location: New City College Rainham Campus, New Road, Rainham, Essex, RM13 8GP, United Kingdom.\n\nThe employer advert says: “Skilled Worker visas can be sponsored”\n\nThe employer has a reviewed link to New City College Corporation in the current Skilled Worker sponsor register. This is employer-level evidence, separate from the vacancy wording.\n\nThis is a dated advert observation, not a visa or job offer. A sponsor licence does not guarantee sponsorship for this vacancy or eligibility for any applicant. Read the original advert and confirm the details with the employer.\n\nRead the dated vacancy and original advert: https://sponsorintel.london/jobs/6e7ca74036beafcb0431c567?utm_source=facebook&utm_medium=organic_social&utm_campaign=current_opportunities&utm_content=dated_vacancy",
+  "caption_sha256": "c95d0c8a2e5d3adb48b33b180c084e33705a3c7f10b1b9f5c5b5d9d6950e7c60",
+  "evidence_expiry": "2026-10-19T00:33:16.386Z",
+  "opportunity_proof": {
+    "brief_id": "eb9fb808-be7a-4507-9e81-d5b9181e612b",
+    "version": 1,
+    "job_id": "6e7ca74036beafcb0431c567",
+    "fingerprint": "757dd8f0a4bd4933d0a24f0bdf3a20bd864713890bf3ff46a8d16d66e9ff9e83",
+    "link_check_id": "cf09e18bd37f82eff130feb5",
+    "checked_at": "2026-10-18T00:47:05.055Z",
+    "expires_at": "2026-10-19T00:33:16.386Z"
+  },
+  "review": {
+    "run_id": "marketing-2026-10-18",
+    "models": {
+      "writer": {
+        "provider": "cloudflare",
+        "model": "@cf/zai-org/glm-4.7-flash"
+      },
+      "reviewer": {
+        "provider": "cloudflare",
+        "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+      }
+    },
+    "steps": [
+      {
+        "name": "plan",
+        "role": "writer",
+        "state": "completed",
+        "created_at": "2026-10-18T00:47:11.227Z"
+      },
+      {
+        "name": "review",
+        "role": "reviewer",
+        "state": "completed",
+        "created_at": "2026-10-18T00:47:59.609Z"
+      }
+    ],
+    "decision": {
+      "checks": [
+        {
+          "index": 0,
+          "supported": true,
+          "reason": "The job title and location are accurately stated as Lecturer Carpentry at New City College Rainham Campus."
+        },
+        {
+          "index": 1,
+          "supported": true,
+          "reason": "The employer advert indeed mentions that Skilled Worker visas can be sponsored."
+        },
+        {
+          "index": 2,
+          "supported": true,
+          "reason": "There is evidence of the employer having a reviewed link to New City College Corporation in the current Skilled Worker sponsor register."
+        },
+        {
+          "index": 3,
+          "supported": true,
+          "reason": "The statement correctly clarifies that the observation is dated and does not guarantee sponsorship or eligibility for any applicant."
+        }
+      ],
+      "publishable": true,
+      "reason": "The post provides clear and accurate information about the job opportunity, including the potential for Skilled Worker visa sponsorship, and appropriately advises readers to confirm details with the employer."
+    },
+    "limitation": "Different-model critique and agent-assisted preflight, not independent human adjudication or measured business value."
+  },
+  "browser_preflight": {
+    "window_utc": "18 October approximately 01:57–02:04 UTC",
+    "original": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry",
+    "onward_original": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=585142Bxvd&WVID=6189473dpc",
+    "role": "Lecturer Carpentry",
+    "employer_reference": "R002978",
+    "location": "Rainham Construction & Engineering Campus",
+    "dfe_deadline": "1 November 2026 at 11:59pm",
+    "employer_deadline": "01/11/2026; time not supplied",
+    "employer_posted_date": "03/10/2025",
+    "dfe_listed_date": "5 October 2026",
+    "sponsorship_excerpt": "Skilled Worker visas can be sponsored",
+    "apply_button_visible": true,
+    "application_submitted": false,
+    "source_posting_dates_remain_separate": true,
+    "first_party_destination": "Owner-authenticated browser verified exact campaign link, licence relationship, conditional evidence, pay and no-CV instruction."
+  },
+  "provider": {
+    "brand_id": "7294726",
+    "facebook_page": "1319703417896763",
+    "instagram": "sponsorintellondon",
+    "timezone": "Europe/London",
+    "create_input": {
+      "date": "2026-10-18T10:15:00+01:00",
+      "networks": [
+        "facebook"
+      ]
+    },
+    "rejected_inputs": [
+      {
+        "date_format": "JSON object string",
+        "code": "INVALID_ARGUMENT",
+        "queue_after": []
+      },
+      {
+        "date_format": "ISO without offset",
+        "code": "INVALID_ARGUMENT",
+        "queue_after": []
+      }
+    ],
+    "best_time_observation": {
+      "date": "2026-10-18",
+      "timezone": "Europe/London",
+      "hour": 10,
+      "value": 7653,
+      "scope": "Provider recommendation, not demonstrated Sponsor Intel audience performance."
+    },
+    "planner_url": "https://app.metricool.com/planner/calendar?blogId=7294726&openWithPostUuid=-6642277219320184356"
+  },
+  "provider_post": {
+    "id": "398874739",
+    "uuid": "-6642277219320184356",
+    "publication_date": {
+      "dateTime": "2026-10-18T10:15:00",
+      "timezone": "Europe/London"
+    },
+    "text": "Lecturer Carpentry — New City College. Location: New City College Rainham Campus, New Road, Rainham, Essex, RM13 8GP, United Kingdom.\n\nThe employer advert says: “Skilled Worker visas can be sponsored”\n\nThe employer has a reviewed link to New City College Corporation in the current Skilled Worker sponsor register. This is employer-level evidence, separate from the vacancy wording.\n\nThis is a dated advert observation, not a visa or job offer. A sponsor licence does not guarantee sponsorship for this vacancy or eligibility for any applicant. Read the original advert and confirm the details with the employer.\n\nRead the dated vacancy and original advert: https://sponsorintel.london/jobs/6e7ca74036beafcb0431c567?utm_source=facebook&utm_medium=organic_social&utm_campaign=current_opportunities&utm_content=dated_vacancy",
+    "providers": [
+      {
+        "network": "facebook",
+        "status": "PENDING",
+        "detailedStatus": "Pending"
+      }
+    ],
+    "auto_publish": true,
+    "draft": false,
+    "shortener": false
+  },
+  "queue_summary": {
+    "observed_at": "2026-10-18T02:05:24.000Z",
+    "rolling_seven_day_facebook_published": [
+      "390624032",
+      "397276739"
+    ],
+    "facebook_pending": [
+      "398874739"
+    ],
+    "instagram_pending": [],
+    "combined_capacity_used": 3,
+    "new_schedules_this_daily_run": 1,
+    "no_duplicate": true
+  },
+  "ledger_receipt": {
+    "id": "a6f441f0-af3c-4e3e-a7f8-834170006939",
+    "brief_id": "eb9fb808-be7a-4507-9e81-d5b9181e612b",
+    "version": 1,
+    "destination": "facebook-company",
+    "provider": "metricool",
+    "external_id": "398874739",
+    "state": "scheduled",
+    "scheduled_at": "2026-10-18T09:15:00.000Z",
+    "post_url": null,
+    "observed_at": "2026-10-18T02:05:24.000Z"
+  },
+  "preservation": {
+    "changed_selected_groups": [
+      "marketing_briefs",
+      "marketing_receipts"
+    ],
+    "unchanged_selected_groups": 12,
+    "other_briefs_unchanged": true,
+    "all_previous_receipts_unchanged": true,
+    "original_caption_review_and_proof_unchanged": true,
+    "job_source_and_link_receipt_unchanged": true,
+    "shared_ai": {
+      "day": "2026-10-18",
+      "runs": 2,
+      "calls": 8
+    },
+    "source_budget": {
+      "day": "2026-10-18",
+      "requests": 104,
+      "briefs": 0
+    },
+    "foreign_key_errors": 0,
+    "new_model_calls": 0,
+    "new_google_reads": 0,
+    "new_source_refreshes": 0,
+    "new_email_sends": 0,
+    "new_runtime_deployment": false
+  },
+  "next_action": {
+    "due_utc": "2026-10-18T09:15:00.000Z",
+    "existing_daily_routine_local": "10:00 Europe/London unchanged",
+    "priority": "At the 10:00 routine inspect this original job first, recheck the original and pinned evidence before 10:15 and immediately before delivery. If evidence is changed or cannot be verified in time, stop automatic publication at the provider, verify the resulting provider state, and record the outcome. A local hold does not cancel a provider post. Do not resend or make a second schedule.",
+    "provider_ui": "Authorised Metricool sign-in renewed with unchanged scopes. Exact item shows Pending, 10:15 and matching copy/preview. Save as draft and Delete controls were inspected only; no draft/cancel/delete mutation was made.",
+    "delivery_acceptance": "Follow the same job if Pending/Publishing with >=60-second observations, up to 15 minutes while provider confirms activity; verify exact public author, complete copy and destination before recording Published."
+  }
+}
