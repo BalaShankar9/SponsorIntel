@@ -68,12 +68,8 @@ export function JobDetail({
       }
       const application = c.saveJob(current);
       if (!application) return;
-      // Refresh source evidence, preserving the person's notes and documents.
-      c.updateApplication(application, {
-        title: current.title, location: current.location, description: current.description || "",
-        url: current.apply_url, sponsorship: current.sponsorship,
-        evidence: current.evidence, checkedAt: current.last_seen,
-      });
+      // Existing working text is private work. Studio compares the source and
+      // asks before changing it; saving/opening the role must not overwrite it.
       if (prepare) go("studio");
       else setMessage("Saved to My applications. You can come back to prepare it.");
     } catch (e) {

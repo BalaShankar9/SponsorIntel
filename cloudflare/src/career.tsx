@@ -620,7 +620,7 @@ function Studio({ go }: { go: Go }) {
   const a =
     c.data.applications.find((x) => x.id === c.selected) ||
     c.data.applications[0];
-  const availability = usePreparationAvailability(a?.jobId);
+  const availability = usePreparationAvailability(a);
   const [tab, setTab] = useState<
       | "analysis"
       | "cv"
@@ -671,6 +671,7 @@ function Studio({ go }: { go: Go }) {
   async function generate() {
     if (!a || tab === "followup") return;
     if (!studioReadiness(tab, c.data.profile.cv, a.description, consent).ready) return;
+    if (tab==='cv' && cvApplicationRestriction(availability.advert?.description)) return;
     if (busy || !availability.ready) return;
     setBusy(tab);
     setMessage("");
@@ -713,7 +714,7 @@ function Studio({ go }: { go: Go }) {
     }
   }
   const readiness = studioReadiness(tab, c.data.profile.cv, a.description, consent);
-  const applicationFormat = cvApplicationRestriction(a.description);
+  const applicationFormat = cvApplicationRestriction(availability.advert?.description) || cvApplicationRestriction(a.description);
   const originalInstructions = applicationSourceURL(a.url);
   function editDescription() {
     if (sourceDetails.current) sourceDetails.current.open = true;
@@ -755,7 +756,7 @@ function Studio({ go }: { go: Go }) {
           ))}
         </select>
       </div>
-      <ApplicationInstructions description={a.description} url={a.url} />
+      <ApplicationInstructions description={availability.advert?.description || a.description} url={availability.advert?.url || a.url} />
       {draftWarnings(value, c.data.profile.cv, tab).map((warning: string) => (
         <p className="career-notice" key={warning}>
           {warning}
@@ -874,7 +875,9 @@ function Studio({ go }: { go: Go }) {
             ))}
           </div>
           <div className="studio-document">
-            {tab !== 'followup' && <PreparationAvailability jobId={a.jobId} state={availability.state} busy={!!busy} refresh={async () => { setMessage(''); return availability.refresh(); }} />}
+            {tab !== 'followup' && <PreparationAvailability application={a} advert={availability.advert} state={availability.state} busy={!!busy} refresh={async () => { setMessage(''); return availability.refresh(); }} review={(advert,keepText)=>{
+              if(c.reviewAdvert(a,advert,keepText)){setConsent(false);setMessage('Advert reviewed. Your notes and existing drafts were kept; review those drafts before using them.');}
+            }} />}
             {availability.ready && <StudioReadiness kind={tab} cv={c.data.profile.cv} description={a.description} consent={consent} busy={!!busy} onCV={() => go("career-profile")} onAdvert={editDescription} />}
             <div className="document-heading">
               <div>
@@ -887,6 +890,7 @@ function Studio({ go }: { go: Go }) {
                   disabled={
                     !!busy ||
                     !availability.ready ||
+                    (tab==='cv' && !!applicationFormat) ||
                     !readiness.ready
                   }
                   onClick={() => void generate()}

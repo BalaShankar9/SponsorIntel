@@ -13,6 +13,7 @@ import {collectSmartRecruiters,fetchSmartRecruitersVacancy} from './smartrecruit
 import {collectTeachingVacancies,fetchTeachingVacancy} from './teaching-vacancies.js';
 import {TEACHING_QUOTE,TEACHING_UNAVAILABLE} from './teaching-source.js';
 import {SourceCheckError} from './source-errors.js';
+import {advertSnapshot} from './advert-version.js';
 export { BOARDS } from "./job-sources.js";
 
 export function plainText(value) {
@@ -662,7 +663,7 @@ export async function getJobDetail(id, env) {
       ).results;
   const licences = await employerLicences(env.DB, extra);
   const review = await env.DB.prepare("SELECT h.state FROM job_review_holds h JOIN job_review_targets t ON t.source_id=h.source_id AND t.apply_url=h.apply_url WHERE t.job_id=? AND h.source_id=? AND (h.state='held' OR h.recorded_at>=?) ORDER BY h.state ASC LIMIT 1").bind(item.id,item.board_id,item.last_seen).first();
-  return { ...withSector(item, extra), source: source || null, review_hold: review?.state || null,
+  return { ...withSector(item, extra), preparation_version:(await advertSnapshot(item)).version, source: source || null, review_hold: review?.state || null,
     employer_licence: licences.matches.get(item.board_id) || null };
 }
 

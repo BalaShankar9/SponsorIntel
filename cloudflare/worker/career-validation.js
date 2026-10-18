@@ -38,6 +38,7 @@ export function validateWorkspace(input) {
     return {
       id: a.id,
       jobId: text(a.jobId, 80),
+      ...(/^[a-f0-9]{64}$/.test(a.sourceVersion || '') ? {sourceVersion:a.sourceVersion} : {}),
       company: text(a.company, 200),
       title: text(a.title, 240),
       location: text(a.location, 300),

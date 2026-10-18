@@ -20,7 +20,7 @@ test('an unchanged preparation saves only its target document and retains interv
 });
 
 test('a response from earlier CV, advert, sponsorship evidence or target text cannot overwrite current work',()=>{
- const edits=[d=>d.profile.cv='Corrected fictional source',d=>d.profile.skills='Corrected skill',...['jobId','title','company','description','sponsorship','evidence','url','cv'].map(key=>d=>d.applications[0][key]='Changed value'),d=>d.applications=[]];
+ const edits=[d=>d.profile.cv='Corrected fictional source',d=>d.profile.skills='Corrected skill',...['jobId','title','company','description','sponsorship','evidence','url','sourceVersion','location','cv'].map(key=>d=>d.applications[0][key]='Changed value'),d=>d.applications=[]];
  for(const edit of edits){const d=fixture(),ticket=begin(d);edit(d);const before=structuredClone(d);const accepted=finish(d,ticket);assert.equal(accepted.status,'changed');assert.strictEqual(accepted.data,d);assert.deepEqual(d,before);}
 });
 
@@ -42,7 +42,7 @@ test('empty, malformed and undated returned documents preserve the existing draf
 test('all supported documents protect their own text and only capture the intended generation inputs',()=>{
  for(const kind of ['analysis','cv','coverLetter','interview','companyResearch','portfolio','learningPlan']){
   const d=fixture(),ticket=beginPreparedDraft(d,'a',kind,'session-a',1);
-  assert.deepEqual(Object.keys(ticket.input.application),['id','jobId','title','company','description','sponsorship','evidence']);
+  assert.deepEqual(Object.keys(ticket.input.application),['id','jobId','title','company','location','url','description','sponsorship','evidence','sourceVersion']);
   d.applications[0][kind]='My manual revision';
   assert.equal(finish(d,ticket).status,'changed');
  }

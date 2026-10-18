@@ -1,4 +1,6 @@
 export const preparationMessages = {
+  changed: 'The employer advert has changed since your saved version. Review the latest advert before preparing again. Your notes and existing documents remain editable.',
+  review_required: 'Your working advert differs from the latest listing, and this saved copy has no recorded source version. Review it before preparing again. Your notes and existing documents remain editable.',
   held: 'This advert is under review. New preparation is paused; your existing documents remain editable.',
   awaiting_refresh: 'This advert is waiting for a fresh employer check. New preparation is paused; your existing documents remain editable.',
   expired: 'The advertised deadline has passed. New preparation is paused; your existing documents remain editable.',

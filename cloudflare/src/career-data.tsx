@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { campaignHeaders } from './metrics';
 import {beginPreparedDraft,acceptPreparedDraft,type PreparationTicket} from '../shared/prepared-draft.js';
+import {acceptAdvertReview, type AdvertSnapshot} from '../shared/advert-version.js';
 
 import {readRecoveryCopy,discardRecoveryCopy,switchCloudWorkspace,type RecoveryCopy} from '../shared/workspace-recovery.js';
 
@@ -24,6 +25,7 @@ export type CareerProfile = {
 export type CareerApplication = {
   id: string;
   jobId: string;
+  sourceVersion?: string;
   company: string;
   title: string;
   location: string;
@@ -52,6 +54,7 @@ export type Job = {
   title: string;
   location: string;
   description?: string;
+  preparation_version?: string;
   apply_url: string;
   provider: string;
   sponsorship: string;
@@ -208,6 +211,7 @@ type CareerContextValue = {
   removeRecovery: () => void;
   saveJob: (job: Job) => string;
   updateApplication: (id: string, patch: Partial<CareerApplication>) => void;
+  reviewAdvert: (expected:CareerApplication,advert:AdvertSnapshot,keepText:boolean) => boolean;
   beginPreparation: (id: string, kind: string) => PreparationTicket;
   finishPreparation: (ticket: PreparationTicket, result: {text:string;generatedAt:string}) => boolean;
   selected: string;
@@ -448,6 +452,12 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
       ),
     }));
   }
+  function reviewAdvert(expected:CareerApplication,advert:AdvertSnapshot,keepText:boolean) {
+    if (!ready || replacing.current) return false;
+    const result=acceptAdvertReview(latest.current,expected,advert,keepText);
+    if(result.status!=='saved') {setError('Your working advert changed. Review the latest comparison before updating it.');return false;}
+    setData(result.data);return true;
+  }
   function saveJob(job: Job) {
     if (!ready) {
       setError("Wait for your workspace to finish loading.");
@@ -470,10 +480,11 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
     const a: CareerApplication = {
       id,
       jobId: job.id,
+      ...(job.preparation_version && (job.description || '').length <= 26000 ? {sourceVersion:job.preparation_version} : {}),
       company: job.company,
       title: job.title,
       location: job.location,
-      description: job.description || "",
+      description: (job.description || "").slice(0,26000),
       url: job.apply_url,
       sponsorship: job.sponsorship,
       evidence: job.evidence,
@@ -521,6 +532,7 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
         removeRecovery,
         saveJob,
         updateApplication,
+        reviewAdvert,
         beginPreparation,
         finishPreparation,
         selected,
