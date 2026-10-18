@@ -1,4 +1,4 @@
-# PortmanDentex source review — updated 13 October 2026
+# PortmanDentex source review — updated 18 October 2026
 
 **Current: paused, zero public jobs.** Three 9 October scheduled collections repeatedly failed the identity comparison for advert `744000145730189`. The exact historical mismatch is unresolved. Two targeted public API reads at 10:47 UTC on 11 October now agree on every compared identity field, and the original Associate Dentist advert renders. This point check does not reconstruct the earlier failure or validate the full collection. The agent-assisted owner pause prevents further collection until reviewed recovery; do not resume or force a bootstrap from the older continuation instructions below. Existing cache, failure receipts and consumed budgets remain retained. See [the operating receipt](OPERATIONS-2026-10-11.md). The prepared reservation-accounting fix does not resolve this separate identity conflict.
 
@@ -16,7 +16,15 @@ Release 2.56 stops a trusted identity/parser validation rejection within its cur
 
 Read-only inspection at 18:09 UTC confirms the same 9 October pause, 68 private cache rows, the 8 October 51/249 completed progress receipt and zero public jobs. No original differing values have been recovered. No diagnostic fetch, source run or resume was made. Release 2.74 makes the current pause reason/date and historical collection date visible in the authenticated source controls; it does not clear the hold or establish source recovery.
 
+## 18 October retained-state inspection
+
+The original pause at **9 October 19:01:15.323 UTC** remains the latest control decision. Read-only production inspection confirms zero public roles, no active source workflow and 68 private cached descriptions. The newest description was fetched **9 October 00:31:08.103 UTC**: every retained description is now older than the seven-day reuse limit. The completed **51/249** receipt from 8 October is historical progress, not a current publication-ready count. Any separately reviewed future recovery must recollect stale descriptions within the unchanged 40-description/50-reservation pass and shared daily limits; no recovery or completion date is promised.
+
+Original 9 October failures remain present inside task receipts whose final state is skipped: the 00:30 run retained two `posting_changed` failures for `744000145730189` before its request-budget hold, and the 06:30/12:30 runs each retained one before cooldown. Filtering only non-skipped tasks would hide these nested failures. Their original differing values are still unknown; later diagnostic code cannot reconstruct them. This inspection made no public source request, probe, resume or forced refresh and changed no control, cache, failure receipt or reservation. Evidence: `cloudflare/tests/evidence/application-quality-followup-2026-10-18.json`.
+
 ## Evidence and scope
+
+The following source observations are dated historical evidence, not a fresh 18 October advert or licence verification.
 
 - [Official careers page](https://www.portmandentex.com/careers) links its [vacancies](https://www.portmandentex.com/careers/vacancies). Its legal footer identifies the PortmanDentex group, including Portman Healthcare Limited 06740579 and the Rosehill, New Barn Lane, Cheltenham address. The exact current register record used is `e9beba5d4cd6f744164738b6`, Portman Healthcare Limited, Cheltenham, Gloucestershire, A-rated Skilled Worker. The register also contains another same-name Cheltenham variant and a separate Dentex Healthcare Group Limited entry. The reviewed link is group/brand evidence, not proof of the employing legal entity of every practice or vacancy.
 - [Overseas Dentists Welcome to Apply](https://jobs.smartrecruiters.com/PortmanDentex/744000133910039-overseas-dentists-welcome-to-apply) is a current public, active Belfast advert. It explicitly states “Visa sponsorship available” and requires GDC and Northern Ireland Dental List registration. Released date is 24 June 2026; it is not relabelled as a newly published October vacancy. Original publication and closing dates are unknown. No salary amount is inferred.
