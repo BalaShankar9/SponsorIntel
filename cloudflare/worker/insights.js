@@ -9,6 +9,12 @@ const date=(v)=>new Date(v).toLocaleDateString('en-GB',{day:'numeric',month:'lon
 const n=(v)=>Number(v).toLocaleString('en-GB');
 const safeURL=(value)=>{try {const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password&&!u.port?u.href:null;}catch{return null;}};
 
+// Shared with the narrow editorial review path: preserve the exact dated copy.
+export function insightSocialCopy(data,audience='company') {
+  const base=`${data.jobs.offered+data.jobs.conditional} adverts in our selected UK catalogue contain positive or conditional sponsorship wording, out of ${data.jobs.total} roles checked as of ${date(data.measured_at)}. These are advert signals, not sponsorship guarantees. Our new report shows the evidence, coverage and limits.`;
+  return (audience==='personal'?'I’m building Sponsor Intel to make the UK job search easier to navigate.\n\n':'')+base+'\n\n'+JOB_ORIGIN+'/insights/'+INSIGHT_SLUG+'?utm_source=linkedin&utm_medium=organic_social&utm_campaign=evidence-report';
+}
+
 export function publicationGate(snapshot,now=Date.now()) {
   const age=now-Date.parse(snapshot.measured_at);
   if (!Number.isFinite(age)||age< -300000||age>1800000) return 'Evidence snapshot is not current.';
@@ -37,7 +43,6 @@ export async function publishInsight(env,id,snapshot,now=Date.now()) {
     previous:previous?{measured_at:previous.measured_at,total:previous.jobs.total}:null,
     method_version:'selected-boards-v1'};
   const stamp=snapshot.measured_at,encoded=JSON.stringify(data);
-  const base=`${snapshot.jobs.offered+snapshot.jobs.conditional} adverts in our selected UK catalogue contain positive or conditional sponsorship wording, out of ${snapshot.jobs.total} roles checked as of ${date(stamp)}. These are advert signals, not sponsorship guarantees. Our new report shows the evidence, coverage and limits.`;
   const expires=new Date(now+7*86400000).toISOString();
   await env.DB.batch([
     env.DB.prepare(`INSERT INTO insight_publications(slug,title,description,published_at,updated_at,state,data)
@@ -50,7 +55,7 @@ export async function publishInsight(env,id,snapshot,now=Date.now()) {
     ...['company','personal'].map(audience=>env.DB.prepare(`INSERT INTO social_outbox(id,publication_id,audience,text,state,created_at,expires_at)
       SELECT ?,?,?,?,'needs_connection',?,? WHERE EXISTS(SELECT 1 FROM insight_versions WHERE id=?)`)
       .bind(id+':'+audience,id,audience,
-        (audience==='personal'?'I’m building Sponsor Intel to make the UK job search easier to navigate.\n\n':'')+base+'\n\n'+JOB_ORIGIN+'/insights/'+INSIGHT_SLUG+'?utm_source=linkedin&utm_medium=organic_social&utm_campaign=evidence-report',stamp,expires,id)),
+        insightSocialCopy(data,audience),stamp,expires,id)),
   ]);
   const saved=await env.DB.prepare('SELECT id FROM insight_versions WHERE id=?').bind(id).first();
   return saved?{state:'published',path:'/insights/'+INSIGHT_SLUG}:{state:'paused'};

@@ -107,7 +107,7 @@ function validateReceipt(input,brief,kind,now){
  }
  return {external_id,observed_at,evidence,scheduled_at,post_url,provider:destination.provider};
 }
-export async function decideBrief(env,input,actor,now=Date.now()){
+export async function decideBrief(env,input,actor,now=Date.now(),writeGuard=null){
  const key=clean(input.request_key,100),hash=await digest(JSON.stringify({actor,input}));
  const replay=await existingEvent(env,key,hash);if(replay)return replay;
  const brief=await env.DB.prepare('SELECT b.*,v.writer,v.expires_at,v.text,v.sources FROM marketing_briefs b JOIN marketing_versions v ON v.brief_id=b.id AND v.version=b.version WHERE b.id=?').bind(input.id).first();
@@ -149,6 +149,9 @@ export async function decideBrief(env,input,actor,now=Date.now()){
   opportunity=await opportunityVersion(env,{opportunity:stored},brief.topic_key,brief.destination,{text:brief.text,sources:JSON.parse(brief.sources),expires_at:brief.expires_at,media:brief.media},now);
  }
  const guard=opportunityWriteGuard(opportunity,now);
+ // Internal callers may pin additional evidence/controls at the same atomic
+ // update. This argument is never accepted from an HTTP request body.
+ if(writeGuard){guard.sql+=' AND ('+writeGuard.sql+')';guard.values.push(...writeGuard.values);}
  if(actor==='opportunity-monitor')guard.sql+=' AND (SELECT enabled FROM business_controls WHERE singleton=1)=1 AND (SELECT enabled FROM marketing_agent_controls WHERE singleton=1)=1';
  const sql=[env.DB.prepare('UPDATE marketing_briefs SET state=?,version=?,revision=revision+1,last_event=?,updated_at=? WHERE id=? AND revision=? AND '+guard.sql+' RETURNING id').bind(next,version,event,stamp(now),brief.id,brief.revision,...guard.values)];
  if(draft)sql.push(env.DB.prepare('INSERT INTO marketing_versions SELECT id,?,?,?,?,?,?,? FROM marketing_briefs WHERE id=? AND last_event=?').bind(version,draft.purpose,draft.text,JSON.stringify(draft.sources),draft.expires_at,actor,stamp(now),brief.id,event));

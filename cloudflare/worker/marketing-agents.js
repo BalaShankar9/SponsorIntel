@@ -11,8 +11,10 @@ import {captureWelcomeReview,prepareWelcomeReview,currentWelcomeTarget,validateE
 import {captureOpportunitySources,requireOpportunity} from './marketing-opportunities.js';
 import {performanceContext} from './marketing-performance.js';
 import {COMPACT_MARKETING_POLICY,PLANNER_INPUT_VERSION,compactPlannerContext,legacyPlannerContext} from './marketing-planner-input.js';
+import {REPORT_REVIEW_POLICY,REPORT_REVIEW_PROMPT,captureReportReview,prepareReportReview,currentReportTarget,recheckReportReview,reportWriteGuard,validateReportReview} from './marketing-report.js';
 
-export const MARKETING_POLICY=COMPACT_MARKETING_POLICY;
+export const MARKETING_POLICY=REPORT_REVIEW_POLICY;
+const compactPolicy=policy=>[COMPACT_MARKETING_POLICY,REPORT_REVIEW_POLICY].includes(policy);
 const iso=(now=Date.now())=>new Date(now).toISOString();
 const HOUR=3600000,DAY=24*HOUR;
 const normalize=s=>plainText(s).replace(/\s+/g,' ').trim();
@@ -138,15 +140,18 @@ export async function captureMarketingContext(env,id,fetcher=publishedGuideFetch
  const slot=editorialSlot(queue,now,now+7*DAY);
  let existing_review=null,existing_review_unavailable=null;
  try{existing_review=await captureWelcomeReview(env,slot,fetcher,now);}catch{existing_review_unavailable='The welcome source or registered artwork could not be verified. No welcome review was started.';}
+ let report_review=null,report_review_unavailable=null;
+ if(!existing_review&&row.policy===REPORT_REVIEW_POLICY)try{report_review=await captureReportReview(env,now);}catch{report_review_unavailable='The dated company report could not be verified. No report review was started.';}
  const measurement=await publicMeasurement(env,now,7);
  const metrics=(await env.DB.prepare("SELECT event,dimension,SUM(count) count FROM analytics_public_daily WHERE day>=? AND day<? AND event IN ('campaign_page_view','campaign_account_created','campaign_document_prepared') GROUP BY event,dimension LIMIT 40").bind(measurement.from,measurement.to).all()).results.filter(r=>campaignById(r.dimension));
  const performance=await performanceContext(env,now);
  const context={observed_at:iso(now),sources,candidates,unavailable,opportunity_scan:{ready:opportunities.sources.length,held:opportunities.held.length,scope:opportunities.scope},slot,existing_review,existing_review_unavailable,queue:queue.map(({text,...q})=>({...q,text:text.slice(0,400)})),metrics,measurement,performance,measurement_limit:measurement.limitation+' Only complete UTC days after the new collection boundary are included. Earlier mixed counts are excluded. Empty data is not proof of a failed campaign. Provider observations are recorded separately; no direct platform analytics feed is connected.'};
- if(row.policy===COMPACT_MARKETING_POLICY){
+ if(row.policy===REPORT_REVIEW_POLICY)Object.assign(context,{report_review,report_review_unavailable});
+ if(compactPolicy(row.policy)){
   const input=JSON.stringify(compactPlannerContext(context));
   context.planner_input={version:PLANNER_INPUT_VERSION,sha256:await digest(input),characters:input.length,legacy_characters:JSON.stringify(legacyPlannerContext(context)).length};
  }
- await env.DB.prepare("UPDATE marketing_agent_runs SET state='running',context=?,brief_id=? WHERE id=? AND state='queued'").bind(JSON.stringify(context),existing_review?.id||null,id).run();
+ await env.DB.prepare("UPDATE marketing_agent_runs SET state='running',context=?,brief_id=? WHERE id=? AND state='queued'").bind(JSON.stringify(context),existing_review?.id||report_review?.id||null,id).run();
  return context;
 }
 export async function marketingModelStep(env,id,name,role,prompt,input,validate,caller=callResearchModel,now=Date.now()){
@@ -156,7 +161,7 @@ export async function marketingModelStep(env,id,name,role,prompt,input,validate,
  const run=await runRow(env,id);
  if(run.state!=='running'||now-Date.parse(run.created_at)>HOUR||!await enabled(env))throw Error('Run expired or paused.');
  const models=JSON.parse(run.models),day=iso(now).slice(0,10);
- if(!models[role]||!['plan','write','review','revise','review-revision','review-existing'].includes(name))throw Error('Unknown model stage.');
+ if(!models[role]||!['plan','write','review','revise','review-revision','review-existing','review-report'].includes(name))throw Error('Unknown model stage.');
  await env.DB.batch([
   env.DB.prepare('INSERT INTO agent_research_budget(day) VALUES(?) ON CONFLICT DO NOTHING').bind(day),
   env.DB.prepare('UPDATE agent_research_budget SET calls=calls+1 WHERE day=?').bind(day),
@@ -190,7 +195,7 @@ export async function marketingModelStep(env,id,name,role,prompt,input,validate,
 export async function planMarketing(env,id,caller,now=Date.now()){
  const run=await runRow(env,id),context=JSON.parse(run.context);
  if(!context.candidates.length||!context.slot)return {decision:'no_post',source_id:'',reason:!context.candidates.length?'No fresh, non-duplicate source has a slot within its evidence expiry.':'No eligible slot: the queue is full, expired or needs delivery reconciliation.',ranked:[],timing_reason:'Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first.'};
- const compact=run.policy===COMPACT_MARKETING_POLICY,plannerContext=compact?compactPlannerContext(context):legacyPlannerContext(context);
+ const compact=compactPolicy(run.policy),plannerContext=compact?compactPlannerContext(context):legacyPlannerContext(context);
  if(compact){
   const input=JSON.stringify(plannerContext),receipt=context.planner_input;
   if(receipt?.version!==PLANNER_INPUT_VERSION||receipt.characters!==input.length||receipt.sha256!==await digest(input))throw Error('Recorded planner input changed. No model call was made.');
@@ -202,6 +207,33 @@ export async function prepareExistingMarketing(env,id,now=Date.now()){
  const run=await runRow(env,id);
  if(run.state!=='running'||!await enabled(env))throw Error('Marketing review paused or no longer active.');
  return prepareWelcomeReview(env,run,now);
+}
+export async function prepareReportMarketing(env,id,now=Date.now()){
+ const run=await runRow(env,id);
+ if(run.state!=='running'||run.policy!==REPORT_REVIEW_POLICY||!await enabled(env))throw Error('Report review paused or no longer active.');
+ return prepareReportReview(env,run,now);
+}
+export async function critiqueReportMarketing(env,id,caller,now=Date.now()){
+ const run=await runRow(env,id),models=JSON.parse(run.models),target=JSON.parse(run.context).report_review;
+ if(!target||run.policy!==REPORT_REVIEW_POLICY||models.writer.model===models.reviewer.model)throw Error('Report target missing or reviewer is not independent.');
+ await recheckReportReview(env,run,now);
+ const input={destination:'LinkedIn · Sponsor Intel (146710167)',scope:target.scope,units:target.units,sources:target.evidence.sources,report_url:'https://sponsorintel.london/insights/uk-sponsorship-jobs-report'};
+ return marketingModelStep(env,id,'review-report','reviewer',REPORT_REVIEW_PROMPT,input,x=>validateReportReview(x,target),caller,now);
+}
+export async function concludeReportMarketing(env,id,review,now=Date.now()){
+ const run=await runRow(env,id);if(!['running','queued'].includes(run.state))return {state:run.state};
+ const target=JSON.parse(run.context).report_review;
+ const receipt=await env.DB.prepare("SELECT output FROM marketing_agent_steps WHERE run_id=? AND name='review-report' AND role='reviewer' AND state='completed'").bind(id).first();
+ if(!receipt||JSON.stringify(JSON.parse(receipt.output))!==JSON.stringify(review))throw Error('The exact independent report review receipt is required.');
+ const saved=await env.DB.prepare('SELECT e.kind,e.detail,e.id,b.last_event FROM marketing_events e JOIN marketing_briefs b ON b.id=e.brief_id WHERE e.request_key=?').bind(id+':report-final').first();
+ if(saved)return finishMarketingAgent(env,id,saved.last_event===saved.id&&saved.kind==='reviewed'?'reviewed':'held',{reason:saved.last_event===saved.id?JSON.parse(saved.detail).note:'A later owner decision is preserved.',brief_id:target.id,independent_review:review,review_scope:target.scope,publication:'none'},now);
+ const brief=await currentReportTarget(env,run);
+ if(!brief)return finishMarketingAgent(env,id,'held',{reason:'The company report was edited or held outside this run. No automatic decision was applied.',brief_id:target.id,publication:'none'},now);
+ let passed=accepted(review),reason=review.reason;
+ if(!await enabled(env)){passed=false;reason='Marketing agents paused before the report decision.';}
+ try{await recheckReportReview(env,run,now);}catch{passed=false;reason='The report, queue or captured evidence changed or expired before the decision.';}
+ await decideBrief(env,{id:target.id,revision:brief.revision,kind:passed?'reviewed':'held',note:reason+' Exact company caption only; native queue, duplicate and source checks are still required before any publishing. No post sent.',checks:passed?{claims:true,sources:true,destination:true,duplication:true}:undefined,request_key:id+':report-final'},'marketing-reviewer:'+JSON.parse(run.models).reviewer.model,now,passed?reportWriteGuard(target):null);
+ return finishMarketingAgent(env,id,passed?'reviewed':'held',{reason,brief_id:target.id,independent_review:review,review_scope:target.scope,publication:'none',quality_limit:'Model review can be wrong. The native provider queue and exact dated report still require checking before a schedule. No publishing slot is reserved.'},now);
 }
 export async function critiqueExistingMarketing(env,id,caller,now=Date.now()){
  const run=await runRow(env,id),models=JSON.parse(run.models),target=JSON.parse(run.context).existing_review;
@@ -281,8 +313,8 @@ export async function concludeMarketing(env,id,plan,copy,review,fetcher=publishe
 }
 export async function failMarketingAgent(env,id){
  const run=await runRow(env,id);
- if(run.brief_id){const existing=JSON.parse(run.context||'{}').existing_review;
-  const b=existing?await currentWelcomeTarget(env,run):await env.DB.prepare('SELECT revision,state FROM marketing_briefs WHERE id=?').bind(run.brief_id).first();
+ if(run.brief_id){const context=JSON.parse(run.context||'{}'),existing=context.existing_review;
+  const b=context.report_review?await currentReportTarget(env,run):existing?await currentWelcomeTarget(env,run):await env.DB.prepare('SELECT revision,state FROM marketing_briefs WHERE id=?').bind(run.brief_id).first();
   if(b&&b.state==='proposed')try{await decideBrief(env,{id:run.brief_id,revision:b.revision,kind:'held',note:'Agent execution stopped before a complete, current independent review. Inspect the run before further action.',request_key:id+':failure'},'marketing-controller');}catch{/* A concurrent owner decision wins. */}}
  return finishMarketingAgent(env,id,'held',{reason:'Agent execution stopped or a model outcome was uncertain. No automatic retry; inspect the step records.',brief_id:run.brief_id});
 }

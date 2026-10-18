@@ -1,5 +1,6 @@
 import {WorkflowEntrypoint} from 'cloudflare:workers';
 import {captureMarketingContext,planMarketing,writeMarketing,critiqueMarketing,storeMarketingDraft,concludeMarketing,finishMarketingAgent,failMarketingAgent,accepted,prepareExistingMarketing,critiqueExistingMarketing,concludeExistingMarketing} from './marketing-agents.js';
+import {prepareReportMarketing,critiqueReportMarketing,concludeReportMarketing} from './marketing-agents.js';
 
 export class MarketingWorkflow extends WorkflowEntrypoint {
  async run(event,step){
@@ -11,6 +12,11 @@ export class MarketingWorkflow extends WorkflowEntrypoint {
     await step.do('refresh-existing-welcome-evidence',()=>prepareExistingMarketing(this.env,id));
     const review=await step.do('review-existing-caption-and-artwork',modelOptions,()=>critiqueExistingMarketing(this.env,id));
     return await step.do('recheck-existing-review',{retries:{limit:1,delay:'10 seconds'},timeout:'1 minute'},()=>concludeExistingMarketing(this.env,id,review));
+   }
+   if(context.report_review){
+    await step.do('retain-dated-company-report-evidence',()=>prepareReportMarketing(this.env,id));
+    const review=await step.do('review-unchanged-company-report',modelOptions,()=>critiqueReportMarketing(this.env,id));
+    return await step.do('recheck-company-report-review',{retries:{limit:1,delay:'10 seconds'},timeout:'1 minute'},()=>concludeReportMarketing(this.env,id,review));
    }
    const plan=await step.do('editorial-plan',modelOptions,()=>planMarketing(this.env,id));
    if(plan.decision==='no_post')return await step.do('record-no-post',()=>finishMarketingAgent(this.env,id,'no_post',plan));
