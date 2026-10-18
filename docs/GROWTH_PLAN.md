@@ -1,5 +1,7 @@
 # Sponsor Intel search growth and brand plan
 
+18 October first-use experiment (2.82): Application Studio offers two clearly fictional examples using the actual local evidence checker, without requiring a CV upload or adding an application. Demo checks make no AI call and do not count as real evidence-check usage. Desktop/390-pixel isolation checks pass; actual customer adoption and the next-step effect remain unproven. See `../cloudflare/RELEASE-2.82.md`.
+
 11 October 2.60 measurement correction: local “Evidence & gaps” use was absent from server counters. Earlier zero preparation counts do not establish zero local usage. [Separate browser reports](BROWSER_EVIDENCE_MEASUREMENT.md) now have their own activation boundary and unknown/waiting state; they do not prove unique users, saved files, AI quality or conversions. First complete day: 12 October, available 13 October UTC. Never backfill earlier use or merge these reports with server success.
 
 11 October follow-up: [current marketing results and the two-week experiment](MARKETING_REVIEW-2026-10-11.md) are recorded. The live [performance log](MARKETING_PERFORMANCE.md) retains platform windows and unknowns for eligible planner context. One real observation is retained; next genuine planner use, causal conversion and improved decisions remain unproven. Spending and posting limits are unchanged.

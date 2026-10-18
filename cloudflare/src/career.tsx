@@ -62,6 +62,7 @@ import { applicationSourceURL, cvApplicationRestriction } from '../shared/applic
 import {type CVImportResult} from './cv-import';
 import {profileSignature,applyCVPreview} from '../shared/cv-import.js';
 import { buildEvidenceReview } from "../worker/career-evidence.js";
+import { EvidenceExample } from './evidence-example';
 import { draftWarnings, sourceWarnings } from "../worker/career-quality.js";
 const external = { target: "_blank", rel: "noopener noreferrer" };
 type Go = (view: string) => void;
@@ -649,6 +650,7 @@ function Studio({ go }: { go: Go }) {
           title="Put your best evidence forward."
           description="A practical workspace for a thoughtful application. Start with a real role and your own experience."
         />
+        <EvidenceExample onChooseRole={() => go('jobs')} />
         <Empty
           title="Choose your next opportunity."
           text="Save a role, add your CV and let Hire Stack help you prepare."
@@ -721,6 +723,7 @@ function Studio({ go }: { go: Go }) {
         title="Make this application yours."
         description="Use the evidence you have. See what needs work. Keep the final say."
       />
+      {tab === 'analysis' && <EvidenceExample onChooseRole={() => go('jobs')} />}
       <div className="studio-job">
         <span className="company-initial">
           {a.company.slice(0, 2).toUpperCase()}
