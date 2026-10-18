@@ -113,16 +113,18 @@ export async function agentOperationsAPI(request, env, owner) {
       );
     }
     if (path.endsWith("/source")) {
-      await setSourcePause(
+      const result=await setSourcePause(
         env.DB,
         body.source_id,
         body.paused,
         owner.user.id,
         body.reason,
+        {expected_revision:body.expected_revision,request_key:body.request_key},
       );
       return reply({
         ok: true,
-        message: body.paused
+        ...result,
+        message: result.replayed ? `This decision was already saved. The source is currently ${result.current_paused?'paused':'unpaused'}. No new change was made.` : body.paused
           ? "Source paused and its vacancies hidden."
           : "Source resumed. A successful refresh is required before its vacancies return.",
       });

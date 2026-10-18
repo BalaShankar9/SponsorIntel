@@ -35,8 +35,10 @@ type Source = {
   cooldown_until: number;
   licence_linked: boolean;
   collection?: {total:number;ready:number;fetched:number;state:string;checked_at:string} | null;
-  control?: {reason:string|null;updated_at:string|null} | null;
+  control?: {reason:string|null;updated_at:string|null;revision:number;reviewed_at:string|null;history_total:number;
+    history:{revision:number;paused:boolean;reason:string;prior_paused:boolean;prior_reason:string;prior_record_updated_at:string|null;created_at:string}[]} | null;
 };
+type SourceDecision = {source_id:string;paused:boolean;reason:string;expected_revision:number;request_key:string};
 type Snapshot = {
   measured_at: string;
   enabled: boolean;
@@ -92,7 +94,7 @@ async function api(path: string, body?: unknown) {
   );
   const data = await response.json();
   if (!response.ok)
-    throw Error(data.error || "Agent operations could not load.");
+    throw Object.assign(Error(data.error || "Agent operations could not load."), {status:response.status});
   return data;
 }
 
@@ -104,6 +106,8 @@ export function AgentOperations() {
   const [change, setChange] = useState<Source | null>(null),
     [reason, setReason] = useState(""),
     [consent, setConsent] = useState(false);
+  const [pendingSource, setPendingSource] = useState<SourceDecision|null>(null);
+  const [sourceConflict, setSourceConflict] = useState(false);
   const [sourceSearch, setSourceSearch] = useState("");
   const [sourceFilter, setSourceFilter] = useState("all");
   async function load() {
@@ -144,11 +148,13 @@ export function AgentOperations() {
     try {
       const result = await api(path, body);
       setMessage(result.message);
+      if(path === "/source") { setPendingSource(null); setSourceConflict(false); }
       setChange(null);
       setReason("");
       await load();
     } catch (e) {
       setError((e as Error).message);
+      if(path === "/source" && (e as Error & {status?:number}).status === 409) setSourceConflict(true);
       try {
         setData(await api(""));
       } catch {
@@ -450,11 +456,10 @@ export function AgentOperations() {
                 className="agent-source-form"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  void act("/source", {
-                    source_id: change.id,
-                    paused: !change.paused,
-                    reason,
-                  });
+                  const decision=pendingSource || {source_id:change.id,paused:!change.paused,reason,
+                    expected_revision:change.control?.revision??0,request_key:crypto.randomUUID()};
+                  setPendingSource(decision);
+                  void act("/source", decision);
                 }}
               >
                 <strong>
@@ -468,14 +473,21 @@ export function AgentOperations() {
                     minLength={8}
                     maxLength={500}
                     value={reason}
+                    disabled={busy || !!pendingSource}
                     onChange={(e) => setReason(e.target.value)}
                   />
                 </label>
+                {pendingSource && !sourceConflict && <p>The last outcome may be uncertain. Retry this exact change to retrieve its receipt before making another decision.</p>}
+                {sourceConflict && <p>A source decision or operation needs review. Your typed reason is retained. Review the latest saved state before making a new decision.</p>}
                 <div className="agent-actions">
-                  <button className="primary-button" disabled={busy}>
-                    Save change
+                  <button className="primary-button" disabled={busy || sourceConflict}>
+                    {pendingSource ? "Retry same change" : "Save change"}
                   </button>
-                  <button type="button" onClick={() => setChange(null)}>
+                  {sourceConflict && <button type="button" disabled={busy} onClick={()=>{
+                    const latest=data.sources.find(s=>s.id===change.id);
+                    if(latest) { setChange(latest); setPendingSource(null); setSourceConflict(false); setError(""); }
+                  }}>Review latest source decision</button>}
+                  <button type="button" disabled={busy} onClick={() => {setChange(null);setPendingSource(null);setSourceConflict(false);}}>
                     Cancel
                   </button>
                 </div>
@@ -501,7 +513,13 @@ export function AgentOperations() {
                       ? "Reviewed licence link"
                       : "Licence link unconfirmed"}
                   </small>
-                  {s.control && <details className="agent-source-reason"><summary>Saved control reason · {date(s.control.updated_at || undefined)}</summary><p>{s.control.reason || 'No reason was retained for this control.'}</p></details>}
+                  {s.control && <details className="agent-source-reason"><summary>{s.control.reviewed_at ? 'Last reviewed decision' : 'Earlier saved control record'} · {date(s.control.reviewed_at || s.control.updated_at || undefined)}</summary>
+                    <p>{s.control.reason || 'No reason was retained for this control.'}</p>
+                    {s.control.history.length ? <><p>Showing the latest {s.control.history.length} of {s.control.history_total} recorded decisions.</p>
+                      <ol className="agent-control-history">{s.control.history.map(h=><li key={h.revision}><strong>{h.paused?'Paused':'Resumed'} · {date(h.created_at)} · Decision {h.revision}</strong><p>{h.reason}</p>
+                        {h.revision===1&&h.prior_reason&&<p>Previously saved reason: {h.prior_reason}. Its original review history was not recorded.</p>}
+                      </li>)}</ol></> : <p>Earlier decision history was not recorded. This saved state is preserved; future changes retain their reasons and decision history.</p>}
+                  </details>}
                 </div>
                 <div className="agent-actions">
                   <button
@@ -515,6 +533,8 @@ export function AgentOperations() {
                     onClick={() => {
                       setChange(s);
                       setReason("");
+                      setPendingSource(null);
+                      setSourceConflict(false);
                     }}
                   >
                     <CirclePause size={14} />

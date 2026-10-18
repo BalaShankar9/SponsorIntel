@@ -8,7 +8,7 @@ import {
   initialiseRun,
   executeSourceTask,
   completeRun,
-  setSourcePause,
+  setSourcePause as applySourcePause,
   operationsSnapshot,
   SourceBusy,
   SourceRetry,
@@ -20,6 +20,11 @@ import {
 } from "../worker/agent-brief.js";
 import { agentOperationsAPI } from "../worker/agent-api.js";
 import { adminAPI } from "../worker/admin.js";
+
+async function setSourcePause(DB,sourceId,paused,actor,reason) {
+  const row=await DB.prepare('SELECT control_revision FROM agent_source_controls WHERE source_id=?').bind(sourceId).first();
+  return applySourcePause(DB,sourceId,paused,actor,reason,{expected_revision:row?.control_revision??0,request_key:crypto.randomUUID()});
+}
 
 const board = BOARDS[0];
 function database(t) {
@@ -473,7 +478,7 @@ test("saved source reasons reach the owner desk only, without exposing actors or
   const control = owner.sources.find(s => s.id === board.id).control;
   assert.equal(control.reason, reason);
   assert.equal(control.updated_at, query(env, 'SELECT updated_at FROM agent_source_controls').updated_at);
-  assert.deepEqual(Object.keys(control).sort(), ['reason', 'updated_at']);
+  assert.deepEqual(Object.keys(control).sort(), ['history', 'history_total', 'reason', 'reviewed_at', 'revision', 'updated_at']);
   assert.ok(!JSON.stringify(owner).includes('PRIVATE_ACTOR'));
   assert.equal(owner.sources.find(s => s.id !== board.id).control, null);
   env.AI_MODEL = 'fictional-model';

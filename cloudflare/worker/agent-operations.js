@@ -469,55 +469,69 @@ export async function completeRun(DB, runId) {
   return { state, counts };
 }
 
-export async function setSourcePause(DB, sourceId, paused, actor, reason) {
-  if (!(await approvedSources(DB)).some((b) => b.id === sourceId))
-    throw Error("Choose an approved source.");
-  if (
-    typeof paused !== "boolean" ||
-    typeof reason !== "string" ||
-    reason.trim().length < 8 ||
-    reason.length > 500
-  )
-    throw Error("Add a short reason for this change.");
-  const owner = crypto.randomUUID(),
-    now = Date.now();
-  const lease = await DB.prepare(
-    "INSERT INTO feed_locks(name,owner,expires) VALUES('jobs',?,?) ON CONFLICT(name) DO UPDATE SET owner=excluded.owner,expires=excluded.expires WHERE feed_locks.expires<? RETURNING owner",
-  )
-    .bind(owner, now + 30000, now)
-    .first();
-  if (lease?.owner !== owner)
-    throw new SourceBusy(
-      "A source refresh is running. Try again when it completes.",
-    );
+export async function setSourcePause(DB, sourceId, paused, actor, reason, review) {
+  const conflict=message=>{throw new SourceBusy(message);};
+  if (typeof sourceId!=='string'||!sourceId||sourceId.length>100||
+      typeof actor!=='string'||!actor||typeof paused!=='boolean'||
+      typeof reason!=='string'||reason.trim().length<8||reason.length>500||
+      !review||!Number.isSafeInteger(review.expected_revision)||review.expected_revision<0||
+      typeof review.request_key!=='string'||!/^[-a-f0-9]{36}$/i.test(review.request_key))
+    throw Error('Refresh the source controls and include the current decision version and a reason.');
+  const requestHash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(
+    JSON.stringify({sourceId,paused,actor,reason,expected_revision:review.expected_revision})
+  )))].map(x=>x.toString(16).padStart(2,'0')).join('');
+  const current=async()=>await DB.prepare('SELECT paused,reason,control_revision,updated_at FROM agent_source_controls WHERE source_id=?').bind(sourceId).first();
+  const replay=async()=>{
+    const row=await DB.prepare('SELECT request_hash,revision,paused FROM source_control_reviews WHERE request_key=?').bind(review.request_key).first();
+    if(!row)return null;
+    if(row.request_hash!==requestHash)conflict('This request already records a different source decision. Review the current control.');
+    const state=await current();
+    return {revision:row.revision,replayed:true,applied_paused:!!row.paused,current_revision:state?.control_revision??0,current_paused:!!state?.paused};
+  };
+  const prior=await replay();if(prior)return prior;
+  if (!(await approvedSources(DB)).some(b=>b.id===sourceId))throw Error('Choose an approved source.');
+  const leaseOwner=crypto.randomUUID(),now=Date.now(),stamp=iso(now);
+  const lease=await DB.prepare("INSERT INTO feed_locks(name,owner,expires) VALUES('jobs',?,?) ON CONFLICT(name) DO UPDATE SET owner=excluded.owner,expires=excluded.expires WHERE feed_locks.expires<? RETURNING owner")
+    .bind(leaseOwner,now+30000,now).first();
+  if(lease?.owner!==leaseOwner)conflict('A source refresh is running. Check its status before trying the same request.');
   try {
-    await DB.batch([
-      DB.prepare(
-        "INSERT INTO agent_source_controls(source_id,paused,reason,updated_at,actor) VALUES(?,?,?,?,?) ON CONFLICT(source_id) DO UPDATE SET paused=excluded.paused,reason=excluded.reason,updated_at=excluded.updated_at,actor=excluded.actor,failures=0,cooldown_until=0",
-      ).bind(sourceId, paused ? 1 : 0, reason.trim(), iso(now), actor),
-      ...(paused
-        ? [
-            DB.prepare("UPDATE jobs SET active=0 WHERE board_id=?").bind(
-              sourceId,
-            ),
-            DB.prepare(
-              "UPDATE job_sources SET count=0,error='Paused by owner. Vacancies hidden.' WHERE id=?",
-            ).bind(sourceId),
-          ]
-        : []),
-      DB.prepare(
-        "INSERT INTO admin_audit(actor,action,target,created_at) VALUES(?,?,?,?)",
-      ).bind(
-        actor,
-        paused ? "agent_source_paused" : "agent_source_resumed",
-        sourceId,
-        iso(now),
-      ),
+    const existing=await replay();if(existing)return existing;
+    const before=await current(),expected=review.expected_revision;
+    if((before?.control_revision??0)!==expected)conflict('The source decision changed. Review the latest reason before saving a new decision.');
+    const revision=expected+1;
+    // Admission, immutable history, control and job hiding commit together.
+    // Source runs may update failure metadata, but never this owner revision.
+    const reserved=await DB.batch([
+      DB.prepare(`INSERT INTO source_control_reviews(request_key,request_hash,source_id,revision,paused,reason,prior_paused,prior_reason,prior_record_updated_at,actor,created_at)
+        SELECT ?,?,?,?,?,?,COALESCE((SELECT paused FROM agent_source_controls WHERE source_id=?),0),
+        COALESCE((SELECT reason FROM agent_source_controls WHERE source_id=?),''),(SELECT updated_at FROM agent_source_controls WHERE source_id=?),?,?
+        WHERE COALESCE((SELECT control_revision FROM agent_source_controls WHERE source_id=?),0)=?
+        AND EXISTS(SELECT 1 FROM feed_locks WHERE name='jobs' AND owner=? AND expires>?)
+        AND (?=1 OR EXISTS(SELECT 1 FROM employer_boards b JOIN sponsors s ON s.id=b.sponsor_id WHERE b.id=? AND b.state='approved' AND s.skilled=1
+          AND s.snapshot=json_extract((SELECT value FROM metadata WHERE key='register'),'$.snapshot'))) RETURNING revision`)
+       .bind(review.request_key,requestHash,sourceId,revision,paused?1:0,reason.trim(),sourceId,sourceId,sourceId,actor,stamp,sourceId,expected,leaseOwner,Date.now()+1000,BOARDS.some(b=>b.id===sourceId)?1:0,sourceId),
+      DB.prepare(`INSERT INTO agent_source_controls(source_id,paused,reason,updated_at,actor,control_revision)
+        SELECT ?,?,?,?,?,? WHERE changes()=1
+        ON CONFLICT(source_id) DO UPDATE SET paused=excluded.paused,reason=excluded.reason,updated_at=excluded.updated_at,
+        actor=excluded.actor,control_revision=excluded.control_revision,failures=0,cooldown_until=0 WHERE control_revision=?`)
+       .bind(sourceId,paused?1:0,reason.trim(),stamp,actor,revision,expected),
+      ...(paused?[
+        DB.prepare(`UPDATE jobs SET active=0 WHERE board_id=? AND EXISTS(SELECT 1 FROM source_control_reviews WHERE request_key=? AND request_hash=?
+          AND source_id=? AND revision=?) AND (SELECT control_revision FROM agent_source_controls WHERE source_id=?)=? AND EXISTS(SELECT 1 FROM feed_locks WHERE name='jobs' AND owner=? AND expires>?)`).bind(sourceId,review.request_key,requestHash,sourceId,revision,sourceId,revision,leaseOwner,Date.now()+1000),
+        DB.prepare(`UPDATE job_sources SET count=0,error='Paused by owner. Vacancies hidden.' WHERE id=? AND EXISTS(SELECT 1 FROM source_control_reviews
+          WHERE request_key=? AND request_hash=? AND source_id=? AND revision=?) AND (SELECT control_revision FROM agent_source_controls WHERE source_id=?)=? AND EXISTS(SELECT 1 FROM feed_locks WHERE name='jobs' AND owner=? AND expires>?)`).bind(sourceId,review.request_key,requestHash,sourceId,revision,sourceId,revision,leaseOwner,Date.now()+1000)
+      ]:[]),
+      DB.prepare(`INSERT INTO admin_audit(actor,action,target,created_at) SELECT ?,?,?,? WHERE EXISTS(SELECT 1 FROM source_control_reviews
+        WHERE request_key=? AND request_hash=? AND source_id=? AND revision=?) AND (SELECT control_revision FROM agent_source_controls WHERE source_id=?)=? AND EXISTS(SELECT 1 FROM feed_locks WHERE name='jobs' AND owner=? AND expires>?)`)
+       .bind(actor,paused?'agent_source_paused':'agent_source_resumed',sourceId,stamp,review.request_key,requestHash,sourceId,revision,sourceId,revision,leaseOwner,Date.now()+1000)
     ]);
+    if(!reserved[0].results?.length){const saved=await replay();if(saved)return saved;conflict('The source decision or source approval changed before saving. Review the current control.');}
+    return {revision,replayed:false,applied_paused:paused,current_revision:revision,current_paused:paused};
+  } catch(error) {
+    const saved=await replay();if(saved)return saved;
+    throw error;
   } finally {
-    await DB.prepare("DELETE FROM feed_locks WHERE name='jobs' AND owner=?")
-      .bind(owner)
-      .run();
+    await DB.prepare("DELETE FROM feed_locks WHERE name='jobs' AND owner=?").bind(leaseOwner).run();
   }
 }
 
@@ -549,6 +563,10 @@ export async function operationsSnapshot(env, { ownerControls = false } = {}) {
   const [runs, tasks, controls, reviews, budget, health, briefs, progress, diagnostics] = results.map(
     (r) => r.results || [],
   );
+  const controlReviews = ownerControls ? (await DB.prepare(`SELECT source_id,revision,paused,reason,prior_paused,prior_reason,prior_record_updated_at,created_at,total FROM (
+    SELECT source_id,revision,paused,reason,prior_paused,prior_reason,prior_record_updated_at,created_at,
+      COUNT(*) OVER(PARTITION BY source_id) total,ROW_NUMBER() OVER(PARTITION BY source_id ORDER BY revision DESC) position
+    FROM source_control_reviews) WHERE position<=5 ORDER BY source_id,revision DESC`).all()).results : [];
   const licences = await employerLicences(
     DB,
     sources.filter((b) => b.state),
@@ -577,7 +595,10 @@ export async function operationsSnapshot(env, { ownerControls = false } = {}) {
       // never in coordinator inputs or the default operational snapshot.
       ...(ownerControls ? { control: (() => {
         const control = controls.find((c) => c.source_id === b.id);
-        return control ? { reason: control.reason, updated_at: control.updated_at } : null;
+        const history=controlReviews.filter(r=>r.source_id===b.id);
+        return control ? { reason: control.reason, updated_at: control.updated_at, revision:control.control_revision,
+          reviewed_at:history[0]?.created_at??null,history_total:history[0]?.total??0,
+          history:history.map(({source_id,total,...review})=>({...review,paused:!!review.paused,prior_paused:!!review.prior_paused})) } : null;
       })() } : {}),
       cooldown_until:
         controls.find((c) => c.source_id === b.id)?.cooldown_until || 0,

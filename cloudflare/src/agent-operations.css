@@ -334,3 +334,8 @@
 }
 
 .research-claim-review article {border-top:1px solid #d8e0d3;padding:12px 0;overflow-wrap:anywhere}.research-claim-review blockquote {margin:12px 0;padding:12px;border-left:3px solid #648852;background:#f2f6ee}.research-claim-review blockquote small {display:block;margin-top:8px;color:#62735a;font-size:12px}
+
+.agent-control-history { margin:10px 0;padding-left:22px; }
+.agent-control-history li { margin:12px 0;overflow-wrap:anywhere; }
+.agent-control-history strong { font-size:12px; }
+.agent-control-history p { margin:5px 0; }
