@@ -6,7 +6,7 @@ Latest verified **18 October 2026, 00:37 UTC**. Original scheduled source instan
 
 Plumbing's hold now has its first stable job identity, `60a4199207ee8422ffe35c80`, and its public historical detail remains under review/noindex. No hold was released. Full source admission was previously approved at **17 October 23:54:58.457 UTC**, after the preceding **23:54:27.654** hold and complete probe; that immutable earlier receipt remains `cloudflare/tests/evidence/new-city-college-admission-2026-10-17.json`. The next normal 06:30 collection is the separate repeated-refresh gate.
 
-A display gap remains: the original and stored body contain the clear pay range, while `salary_excerpt` and the separate public pay panel omit it. No salary was inferred or rewritten during this verification. The pending-source refresh UI defect is fixed and deployed in 2.79.
+The pay-panel gap was fixed in 2.80 and browser-verified on 18 October: the full-time-equivalent heading, £33,400–£52,100 range and qualification conditions are retained. Stored `salary_excerpt` awaits the next normal successful collection; no source refresh or database backfill was forced. No salary was inferred or rewritten. The pending-source refresh UI defect is fixed and deployed in 2.79.
 
 ## Admission evidence reviewed 17 October
 

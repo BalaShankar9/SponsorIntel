@@ -14,3 +14,7 @@ The ingestion list marker and shared client/server detail renderer use the same 
 - Same-day exact database/recovery-point/schema check remains applicable: 40 migrations/166 objects. Dependency graph is unchanged; the 18 October audit remains zero high/critical and three known moderate Mammoth-chain findings.
 
 Compatible rollback: **2.79 Worker `7989d0f7-9125-4624-9b8f-7c30a6de57eb`**. No migration, data restore, approval, hold, workflow, budget, model or external publishing change. Local checks do not establish hosted Linux execution or independent model quality.
+
+Live **2.80.0**, Worker **7840cbd7-0c53-443e-b116-69082e1567a2**, runtime commit **4aa3cb14608e3dcd4fc3a01984b0dc608d23a208**, excluded health verified **18 October 00:51 UTC**. Owner-authenticated browser checks confirm the Carpentry range/conditions/FTE explanation, separate Maths FTE/actual figures and all three Sampura salary bands. The temporary check tab was closed. All fourteen selected operational groups match immediately before/after deployment, with no foreign-key errors. No source timestamps, reviews, schedules or budgets changed because of the deployment.
+
+Runtime-head Linux checks **117547463767/117547456712** were blocked before execution by account billing; original annotations inspected. GitGuardian **117547458594** passed. Final documentation-head checks remain separately recorded in PR 1. Next genuine source refresh must prove stored list-marker updates; this release does not force it.

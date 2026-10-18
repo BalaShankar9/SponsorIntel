@@ -1,6 +1,20 @@
 {
   "release": "2.80.0",
-  "runtime": "pending deployment",
+  "runtime": {
+    "version": "2.80.0",
+    "worker": "7840cbd7-0c53-443e-b116-69082e1567a2",
+    "commit": "4aa3cb14608e3dcd4fc3a01984b0dc608d23a208",
+    "health": {
+      "ok": true,
+      "version": "2.80.0",
+      "register": {
+        "date": "2026-10-16",
+        "count": 128007,
+        "checked_at": "2026-10-17T07:15:25.233Z"
+      }
+    },
+    "verified_at": "2026-10-18T00:51:29.369Z"
+  },
   "observed_at": "2026-10-18T00:50:29.943Z",
   "problem": "A distinct salary heading was discarded before the monetary line was evaluated.",
   "replay": {
@@ -206,5 +220,65 @@
     "Quotes preserve original terms; no annualisation, actual-pay calculation or visa salary assessment.",
     "Existing recovery and dependency receipts from 18 October remain applicable."
   ],
-  "rollback": "7989d0f7-9125-4624-9b8f-7c30a6de57eb"
+  "rollback": "7989d0f7-9125-4624-9b8f-7c30a6de57eb",
+  "live_browser": {
+    "owner_authenticated": true,
+    "carpentry": {
+      "id": "6e7ca74036beafcb0431c567",
+      "amount": "£33,400-£52,100",
+      "heading": "Full time equivalent salary",
+      "qualification_conditions_retained": true,
+      "explanation_visible": true
+    },
+    "maths": {
+      "id": "1be535c49b9bfd7078e0465f",
+      "fte": "£33,400 - £52,100",
+      "actual": "£26,700- £41,700",
+      "separate_labels": true
+    },
+    "bands": {
+      "id": "3cc5f95f3040d983352ebd23",
+      "labels": [
+        "Junior hires",
+        "Senior hires",
+        "Staff hires"
+      ],
+      "all_visible": true
+    },
+    "production_writes": 0,
+    "temporary_tab_closed": true
+  },
+  "operational_comparison": {
+    "before": "2026-10-18T00:50:55.669Z",
+    "after": "2026-10-18T00:51:29.369Z",
+    "unchanged_groups": [
+      "business_controls",
+      "marketing_controls",
+      "research_control",
+      "application_controls",
+      "source_controls",
+      "marketing_briefs",
+      "marketing_receipts",
+      "source_budget",
+      "ai_budget",
+      "business_runs",
+      "source_runs",
+      "marketing_runs",
+      "issues",
+      "foreign_keys"
+    ],
+    "changed_groups": []
+  },
+  "runtime_ci": {
+    "head": "4aa3cb14608e3dcd4fc3a01984b0dc608d23a208",
+    "linux": [
+      117547463767,
+      117547456712
+    ],
+    "state": "blocked before execution by account billing; original annotations inspected",
+    "gitguardian": {
+      "id": 117547458594,
+      "state": "success"
+    }
+  }
 }

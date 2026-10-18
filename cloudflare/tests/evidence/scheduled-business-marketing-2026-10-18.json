@@ -1,0 +1,291 @@
+{
+  "observed_at": "2026-10-18T00:55:22.007Z",
+  "business": {
+    "id": "business-497856",
+    "state": "attention",
+    "finished_at": "2026-10-18T00:47:05.952Z",
+    "platform": {
+      "id": "business-497856",
+      "success": true,
+      "end": "2026-10-18T00:47:06.148Z",
+      "error": null
+    },
+    "jobs": {
+      "total": 979,
+      "employers": 37,
+      "offered": 21,
+      "conditional": 34,
+      "unavailable": 106,
+      "not_stated": 818,
+      "early_career": 49,
+      "salary": 169
+    },
+    "discovery": {
+      "total": 21,
+      "unresolved": 4,
+      "overdue": 0,
+      "changed_links": 0,
+      "current_linked_jobs": 3,
+      "allowance": {
+        "day": "2026-10-18",
+        "limit": 5,
+        "used": 0,
+        "remaining": 5,
+        "next_day": "2026-10-19T00:00:00.000Z"
+      }
+    },
+    "job_reviews": {
+      "total": 4,
+      "held": 4,
+      "overdue": 0
+    },
+    "scout": {
+      "day": "2026-10-18",
+      "run_id": "business-497856",
+      "claim": "67026010-b42b-456f-b589-8f7c7063e4cc",
+      "state": "completed",
+      "reason": "no_new_schools_in_checked_adverts",
+      "started_at": "2026-10-18T00:46:41.454Z",
+      "finished_at": "2026-10-18T00:46:46.028Z",
+      "capacity": 2,
+      "reserved_requests": 4,
+      "requests": 2,
+      "retained": 0,
+      "inspected": 1,
+      "search_pages": 1
+    },
+    "measurement": {
+      "version": 2,
+      "enabled_at": "2026-10-08T11:57:33.807Z",
+      "first_full_day": "2026-10-09",
+      "completed_days": 9,
+      "from": "2026-10-09",
+      "to": "2026-10-18",
+      "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+      "browser_evidence": {
+        "version": 1,
+        "kind": "browser_reported",
+        "state": "collecting",
+        "enabled_at": "2026-10-11T18:44:54.941Z",
+        "first_full_day": "2026-10-12",
+        "from": "2026-10-12",
+        "to": "2026-10-18",
+        "completed_days": 6,
+        "evidence_checks": 0,
+        "campaigns": [],
+        "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+      }
+    },
+    "metrics": [
+      {
+        "day": "2026-10-09",
+        "event": "campaign_page_view",
+        "count": 1
+      },
+      {
+        "day": "2026-10-09",
+        "event": "page_view",
+        "count": 24
+      },
+      {
+        "day": "2026-10-10",
+        "event": "campaign_page_view",
+        "count": 9
+      },
+      {
+        "day": "2026-10-10",
+        "event": "page_view",
+        "count": 35
+      },
+      {
+        "day": "2026-10-11",
+        "event": "page_view",
+        "count": 7
+      },
+      {
+        "day": "2026-10-12",
+        "event": "campaign_page_view",
+        "count": 10
+      },
+      {
+        "day": "2026-10-12",
+        "event": "page_view",
+        "count": 26
+      },
+      {
+        "day": "2026-10-13",
+        "event": "page_view",
+        "count": 10
+      },
+      {
+        "day": "2026-10-14",
+        "event": "page_view",
+        "count": 1
+      },
+      {
+        "day": "2026-10-15",
+        "event": "page_view",
+        "count": 9
+      },
+      {
+        "day": "2026-10-16",
+        "event": "campaign_page_view",
+        "count": 2
+      },
+      {
+        "day": "2026-10-16",
+        "event": "page_view",
+        "count": 20
+      }
+    ]
+  },
+  "marketing": {
+    "id": "marketing-2026-10-18",
+    "state": "reviewed",
+    "calls": 2,
+    "finished_at": "2026-10-18T00:48:06.536Z",
+    "platform": {
+      "id": "marketing-2026-10-18",
+      "success": true,
+      "end": "2026-10-18T00:48:10.328Z",
+      "error": null
+    },
+    "brief": {
+      "id": "eb9fb808-be7a-4507-9e81-d5b9181e612b",
+      "title": "New City College: Lecturer Carpentry",
+      "destination": "facebook-company",
+      "state": "reviewed",
+      "version": 1,
+      "revision": 2
+    },
+    "proposed_slot": "2026-10-18T09:00:00.000Z",
+    "publication": "none",
+    "model_review_publishable": true,
+    "measurement": {
+      "version": 2,
+      "enabled_at": "2026-10-08T11:57:33.807Z",
+      "first_full_day": "2026-10-09",
+      "completed_days": 7,
+      "from": "2026-10-11",
+      "to": "2026-10-18",
+      "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+      "browser_evidence": {
+        "version": 1,
+        "kind": "browser_reported",
+        "state": "collecting",
+        "enabled_at": "2026-10-11T18:44:54.941Z",
+        "first_full_day": "2026-10-12",
+        "from": "2026-10-12",
+        "to": "2026-10-18",
+        "completed_days": 6,
+        "evidence_checks": 0,
+        "campaigns": [],
+        "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+      }
+    },
+    "performance_observation_ids": [
+      "7c1cf7e3-6f85-4ab5-be31-8a9c4855f28f",
+      "13e347cc-e9bf-4f58-ad60-d433c4708317",
+      "99a0d541-bc4b-44c8-bace-7c518acee6a3",
+      "9cb0b58d-9435-42d7-9694-99d6390184e3",
+      "b25098d4-c062-4677-9258-f68ee55d9a75"
+    ],
+    "limits": "A reviewed draft and proposed time are not an external schedule, delivery or independent quality acceptance. Recheck original evidence, source state, exact copy, cadence and provider queue before any schedule."
+  },
+  "application": {
+    "id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-18",
+    "state": "completed",
+    "day": "2026-10-18",
+    "created_at": "2026-10-18T00:47:03.367Z",
+    "finished_at": "2026-10-18T00:47:53.279Z",
+    "case_ids": "[\"part-time-overlap\",\"project-scope\"]",
+    "calls": 6,
+    "platform": {
+      "id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-18",
+      "success": true,
+      "end": "2026-10-18T00:47:53.406Z",
+      "error": null
+    },
+    "completed_cases": 12,
+    "total_cases": 20,
+    "quality": "Finished fictional model execution; new outputs unassessed here, no independent acceptance or model promotion."
+  },
+  "ledger_counts": [
+    {
+      "state": "held",
+      "count": 2
+    },
+    {
+      "state": "proposed",
+      "count": 2
+    },
+    {
+      "state": "published",
+      "count": 5
+    },
+    {
+      "state": "reviewed",
+      "count": 1
+    }
+  ],
+  "search": {
+    "day": "2026-10-18",
+    "state": "completed",
+    "requests": 10,
+    "window": {
+      "startDate": "2026-09-17",
+      "endDate": "2026-10-14",
+      "timeZone": "America/Los_Angeles",
+      "dataState": "final"
+    },
+    "total": [
+      {
+        "clicks": 0,
+        "impressions": 51,
+        "ctr": 0,
+        "position": 11.176470588235293
+      }
+    ],
+    "sitemap": [
+      {
+        "url": "https://sponsorintel.london/sitemap.xml",
+        "last_downloaded": "2026-10-17T17:56:34.009Z",
+        "last_submitted": "2026-10-05T13:08:53.188Z",
+        "pending": false,
+        "errors": 0,
+        "warnings": 0,
+        "submitted_pages": 991
+      }
+    ],
+    "inspections": [
+      {
+        "url": "https://sponsorintel.london/",
+        "verdict": "PASS",
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "url": "https://sponsorintel.london/jobs",
+        "verdict": "PASS",
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "url": "https://sponsorintel.london/updates",
+        "verdict": "PASS",
+        "coverage": "Submitted and indexed"
+      },
+      {
+        "url": "https://sponsorintel.london/guides/check-uk-sponsor",
+        "verdict": "PASS",
+        "coverage": "Submitted and indexed"
+      }
+    ]
+  },
+  "operator_external_actions": {
+    "model_calls": 0,
+    "google_reads": 0,
+    "source_fetches": 0,
+    "emails": 0,
+    "social_sends": 0,
+    "forced_workflows": 0
+  }
+}
