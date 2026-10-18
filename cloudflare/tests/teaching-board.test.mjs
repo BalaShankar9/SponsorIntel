@@ -17,6 +17,14 @@ const stamp=()=>new Date().toISOString();
 test('one-school catalogue preserves complete role wording, negative roles and exact publication dates',async()=>{
  const f=provider(),jobs=await fetchBoard(school,{readOnlyProbe:true,fetcher:f.fetcher});assert.equal(jobs.length,2);assert.equal(jobs[0].sponsorship,'conditional');assert.equal(jobs[1].sponsorship,'unavailable');assert.match(jobs[0].description,/Qualified teacher status/);assert.doesNotMatch(jobs[0].description,/Unrelated jobs/);assert.equal(jobs[0].source_updated_at,stamp().slice(0,10));assert.equal(jobs[0].source_first_published_at,null);assert.equal(f.calls.length,4);assert.equal(jobs.feed_review.full_catalogue_checked,true);assert.equal(sourceRequestCost(school),24);
 });
+test('complete DfE salary rows retain their heading in the imported list marker',async()=>{
+ const row=vacancy(1),quote='£33,400-£52,100 dependent upon experience and qualifications';
+ const f=provider([row],{alter:html=>html.includes('id="job-details"')?html.replace('</dl>',`<div class="govuk-summary-list__row"><dt>Full time equivalent salary</dt><dd>${quote}</dd></div></dl>`):html});
+ const [job]=await fetchBoard(school,{readOnlyProbe:true,fetcher:f.fetcher});
+ assert.equal(job.salary_excerpt,'Full time equivalent salary\n'+quote);
+ assert.ok(job.description.includes(job.salary_excerpt));
+ assert.equal(job.sponsorship,'conditional');assert.equal(f.calls.length,3);
+});
 test('two catalogue pages and all 20 details fit the fixed 24-request reservation',async()=>{
  const rows=Array.from({length:20},(_,i)=>vacancy(i+1)),f=provider(rows);const r=await collectTeachingVacancies(school,{readOnlyProbe:true,fetcher:f.fetcher});assert.equal(r.raw.length,20);assert.equal(f.calls.length,24);assert.equal(f.calls.filter(u=>u.endsWith('page=2')).length,2);
 });

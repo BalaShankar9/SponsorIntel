@@ -1,0 +1,210 @@
+{
+  "release": "2.80.0",
+  "runtime": "pending deployment",
+  "observed_at": "2026-10-18T00:50:29.943Z",
+  "problem": "A distinct salary heading was discarded before the monetary line was evaluated.",
+  "replay": {
+    "observed_at": "2026-10-18T00:49:41.274Z",
+    "scope": "Read-only replay of current public advert text; no production update or source fetch.",
+    "jobs": 979,
+    "old_with_pay": 169,
+    "new_with_pay": 174,
+    "new_fte_note": 14,
+    "removed_pay": 0,
+    "changed": [
+      {
+        "id": "0979810354c1f4af179f89c5",
+        "company": "New City College",
+        "title": "Project Manager - Inclusive Mainstream 3 Year Fixed-Term",
+        "before": [
+          "Between £58,400 - £67,600 per annum"
+        ],
+        "after": [
+          "Full time equivalent salary\nBetween £58,400 - £67,600 per annum"
+        ]
+      },
+      {
+        "id": "1be535c49b9bfd7078e0465f",
+        "company": "New City College",
+        "title": "Lecturer Maths (0.8 FTE)",
+        "before": [],
+        "after": [
+          "Full time equivalent salary\nBetween £33,400 - £52,100",
+          "Actual salary\nBetween £26,700- £41,700"
+        ]
+      },
+      {
+        "id": "1d9570bebbf050a5ca3dc2bb",
+        "company": "New City College",
+        "title": "Deputy Group Curriculum Director - Leadership & Management",
+        "before": [
+          "£70,500 - £79,200 per annum (dependent on experience and qualifications)"
+        ],
+        "after": [
+          "Full time equivalent salary\n£70,500 - £79,200 per annum (dependent on experience and qualifications)"
+        ]
+      },
+      {
+        "id": "1f0b34d4d182f2642430293f",
+        "company": "New City College",
+        "title": "Business Analyst",
+        "before": [],
+        "after": [
+          "Full time equivalent salary\n£58,500-£67,600 dependent upon experience"
+        ]
+      },
+      {
+        "id": "3cc5f95f3040d983352ebd23",
+        "company": "Sampura Research",
+        "title": "Founding Member of Technical Staff",
+        "before": [],
+        "after": [
+          "SALARY RANGE:\nJunior hires: £100,000-£150,000 (~$136,000-$205,000)\nSenior hires: £150,000-£200,000 (~$205,000-$273,000)\nStaff hires: £200,000-£290,000 (~$273,000-$395,000)"
+        ]
+      },
+      {
+        "id": "61b97914a0d8077cef9d2b13",
+        "company": "New City College",
+        "title": "CTEC Administrator",
+        "before": [
+          "£33,700-£35,500 per annum"
+        ],
+        "after": [
+          "Full time equivalent salary\n£33,700-£35,500 per annum"
+        ]
+      },
+      {
+        "id": "68e8809c370c41b4779b5a33",
+        "company": "New City College",
+        "title": "Human Resources Business Partner",
+        "before": [
+          "£47,900-£49,900 per annum dependent upon experience"
+        ],
+        "after": [
+          "Full time equivalent salary\n£47,900-£49,900 per annum dependent upon experience"
+        ]
+      },
+      {
+        "id": "6b4fbe4aceb0108d216bb744",
+        "company": "King's Lynn Academy",
+        "title": "Pupil Progress Coordinator",
+        "before": [
+          "£31,537 to £33,699"
+        ],
+        "after": [
+          "Full time equivalent salary\n£31,537 to £33,699"
+        ]
+      },
+      {
+        "id": "6e7ca74036beafcb0431c567",
+        "company": "New City College",
+        "title": "Lecturer Carpentry",
+        "before": [],
+        "after": [
+          "Full time equivalent salary\n£33,400-£52,100 dependent upon experience and qualifcation dependent upon qualification and experience"
+        ]
+      },
+      {
+        "id": "7ba3cb02d9b55752230d206e",
+        "company": "New City College",
+        "title": "Project Manager - Higher Education Advisory Service 3 years Fixed Term",
+        "before": [
+          "£29,800 - £34,400 per annum (pro-rata, inclusive of Central London Allowance)"
+        ],
+        "after": [
+          "Full time equivalent salary\n£29,800 - £34,400 per annum (pro-rata, inclusive of Central London Allowance)"
+        ]
+      },
+      {
+        "id": "b0cfceaef80d1cf61de83d20",
+        "company": "New City College",
+        "title": "Lecturer Engineering",
+        "before": [
+          "£33,400 - £52,100 per annum."
+        ],
+        "after": [
+          "Full time equivalent salary\n£33,400 - £52,100 per annum. Placement on scale dependent on qualifications and experience."
+        ]
+      },
+      {
+        "id": "c40dd4caa7f5fdf41ada0e0c",
+        "company": "New City College",
+        "title": "Technician Construction 0.88 FTE",
+        "before": [
+          "£28,600-£32,800 per annum (0.88 FTE Term Time Only 40 weeks)"
+        ],
+        "after": [
+          "Full time equivalent salary\n£28,600-£32,800 per annum (0.88 FTE Term Time Only 40 weeks)"
+        ]
+      },
+      {
+        "id": "dead5827f1f36f579f5ec6ed",
+        "company": "New City College",
+        "title": "Pastoral Tutor (ESOL) 0.7 FTE",
+        "before": [
+          "£35100 - £37300",
+          "£24,600 - £26,100"
+        ],
+        "after": [
+          "Full time equivalent salary\n£35100 - £37300",
+          "Actual salary\n£24,600 - £26,100"
+        ]
+      },
+      {
+        "id": "e9e2ae13ace4e1e795f0c0f3",
+        "company": "King's Lynn Academy",
+        "title": "Exam Invigilator",
+        "before": [],
+        "after": [
+          "Hourly rate\n£13.28"
+        ]
+      },
+      {
+        "id": "eca976abcffc6e9f449e5a42",
+        "company": "University of Southampton",
+        "title": "Financial Accounts Apprentice (3506026RR)",
+        "before": [
+          "In year one of the apprenticeship, pay will be 60% of this lowest spine point value, £16,719, before increasing to 70% in year two and to 80% in year three.",
+          "On successful completion of the apprenticeship, pay will be the lowest spine point of Level 2b, which is Spine Point 17, £27,865 full-time equivalent.",
+          "Salary: £27,865 to £30,986 per annum"
+        ],
+        "after": [
+          "Salary:\nIn year one of the apprenticeship, pay will be 60% of this lowest spine point value, £16,719, before increasing to 70% in year two and to 80% in year three.",
+          "On successful completion of the apprenticeship, pay will be the lowest spine point of Level 2b, which is Spine Point 17, £27,865 full-time equivalent.",
+          "Salary: £27,865 to £30,986 per annum"
+        ]
+      },
+      {
+        "id": "ef21e332d43bb04803e64e5b",
+        "company": "New City College",
+        "title": "Assistive Technology Coordinator 3 Year Fixed-Term",
+        "before": [
+          "£29,800 - £34,400 per annum (pro-rata, inclusive of Central London Allowance)"
+        ],
+        "after": [
+          "Full time equivalent salary\n£29,800 - £34,400 per annum (pro-rata, inclusive of Central London Allowance)"
+        ]
+      }
+    ]
+  },
+  "validation": {
+    "node": "24.19.0",
+    "targeted_tests": 29,
+    "full_tests": 676,
+    "full_failures": 0,
+    "typescript": true,
+    "production_build": true,
+    "prerenders": 18,
+    "browser_budgets": true,
+    "previous_quotes_retained": true,
+    "worker_dry_run": true
+  },
+  "boundaries": [
+    "No schema or dependency graph change.",
+    "No database backfill, source refresh, source approval, review edit or external send.",
+    "Detail pages read the existing complete description; stored list salary markers wait for the next normal successful source refresh.",
+    "Quotes preserve original terms; no annualisation, actual-pay calculation or visa salary assessment.",
+    "Existing recovery and dependency receipts from 18 October remain applicable."
+  ],
+  "rollback": "7989d0f7-9125-4624-9b8f-7c30a6de57eb"
+}

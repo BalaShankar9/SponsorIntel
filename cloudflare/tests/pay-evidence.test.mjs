@@ -56,3 +56,38 @@ test("repeated exact statements collapse, and bounded output discloses shortenin
   assert.equal(long.quotes[0].length, 801);
   assert.deepEqual(payEvidence(null).quotes, []);
 });
+
+test("a separate salary heading retains the amount, qualification conditions and FTE context", () => {
+  // Observed public DfE Carpentry wording, 18 October 2026. Spelling is original.
+  const amount = "£33,400-£52,100 dependent upon experience and qualifcation dependent upon qualification and experience";
+  const quote = "Full time equivalent salary\n" + amount;
+  const pay = payEvidence("Contract type\nPermanent\n\n" + quote + "\nWhat skills and experience we're looking for\nIndustry experience required.");
+  assert.deepEqual(pay.quotes, [quote]);
+  assert.equal(pay.fullTimeEquivalent, true);
+  assert.equal(pay.proRata, false);
+  assert.equal(salaryExcerpt(quote), quote);
+  assert.doesNotMatch(pay.quotes.join(" "), /per annum|per year|take.home/);
+});
+
+test("FTE and actual salaries remain separate; fractions and hourly rates are not annualised", () => {
+  const pay = payEvidence("Full-time equivalent salary\n£30,000 dependent on qualifications\nActual salary:\n£18,000 pro rata for 0.6 FTE\nHourly rate\nGBP 15.50 dependent on experience");
+  assert.deepEqual(pay.quotes, ["Full-time equivalent salary\n£30,000 dependent on qualifications", "Actual salary:\n£18,000 pro rata for 0.6 FTE", "Hourly rate\nGBP 15.50 dependent on experience"]);
+  assert.equal(pay.multiple, true);assert.equal(pay.fullTimeEquivalent, true);assert.equal(pay.proRata, true);
+});
+
+test("salary context stops at the next statement and never labels benefits, foreign pay or bare FTE fractions", () => {
+  for (const text of ["Salary\n0.88 FTE", "Salary\nBenefits\n£1,000 dependent on training needs",
+    "Salary\nNot disclosed\n£500 dependent on equipment needs", "Salary\n£1,000 learning budget each year",
+    "Full time equivalent salary\n$33,400-$52,100 dependent on experience", "Full time equivalent salary\nCompetitive",
+    "Salary\n\n£500 equipment budget", "Salary sacrifice\n£500 dependent on contributions"]) {
+    assert.deepEqual(payEvidence(text).quotes, [], text);
+    assert.equal(salaryExcerpt(text), "", text);
+  }
+  assert.deepEqual(payEvidence("Salary:\r\n\r\n£33,400 dependent on experience").quotes, ["Salary:\n£33,400 dependent on experience"]);
+});
+
+test("adjacent salary bands retain every role label and currency without selecting a range", () => {
+  const block = "SALARY RANGE:\nJunior hires: £100,000-£150,000 (~$136,000-$205,000)\nSenior hires: £150,000-£200,000 (~$205,000-$273,000)\nStaff hires: £200,000-£290,000 (~$273,000-$395,000)";
+  assert.deepEqual(payEvidence(block.replaceAll('\n','\n\n') + "\nBenefits\n£500 dependent on training needs").quotes, [block]);
+  assert.deepEqual(payEvidence("Salary\n£35,000 dependent on experience\n£500 equipment budget\n£1,000 dependent on learning needs").quotes, ["Salary\n£35,000 dependent on experience"]);
+});

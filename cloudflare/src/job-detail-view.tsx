@@ -122,6 +122,7 @@ export function JobDetailView({
               {pay.quotes.map((quote, index) => <blockquote key={index}>“{quote}”</blockquote>)}
               {pay.variablePay && <p className="role-caption">OTE means on-target earnings and can include commission. It is not a guaranteed base salary.</p>}
               {pay.proRata && <p className="role-caption">Pro rata means pay is adjusted for the working time or contract period. Confirm the amount you would actually receive.</p>}
+              {pay.fullTimeEquivalent && <p className="role-caption">Full-time equivalent describes pay for a full-time role. Your actual pay may differ with your hours or contract period; confirm it with the employer.</p>}
               {pay.shortened && <p className="role-caption">These excerpts are shortened. Read the full advert for all pay terms.</p>}
               <p className="role-caption">Quoted from the advert; amounts have not been reconciled or assessed against visa salary requirements.</p>
             </> : <p>A clear UK pay statement was not found in the text we checked. Confirm pay with the employer.</p>}

@@ -171,4 +171,11 @@ test("server-rendered role pages have readable evidence, safe metadata and corre
   assert.match(facts, /adjusted for the working time/);
   assert.doesNotMatch(facts, /Obsolete single quote|<img src=x/);
   assert.match(facts, /&lt;img src=x/);
+  const headingPayPage = await renderJobPage(request, assets, { ...current, salary_excerpt: "",
+    description: "Full time equivalent salary\n£33,400-£52,100 dependent upon experience and qualifications\nActual salary\n£20,040-£31,260 pro rata for 0.6 FTE" });
+  const headingFacts = (await headingPayPage.text()).match(/<section class="role-panel role-facts">([\s\S]*?)<\/section>/)[1];
+  assert.match(headingFacts, /Full time equivalent salary\n£33,400-£52,100/);
+  assert.match(headingFacts, /Actual salary\n£20,040-£31,260 pro rata for 0.6 FTE/);
+  assert.match(headingFacts, /Your actual pay may differ/);
+  assert.doesNotMatch(headingFacts, /A clear UK pay statement was not found/);
 });
