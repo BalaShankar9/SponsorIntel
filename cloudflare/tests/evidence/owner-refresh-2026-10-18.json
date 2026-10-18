@@ -1,0 +1,320 @@
+{
+  "observed_at": "2026-10-18T00:29:10.232Z",
+  "fictional": true,
+  "checks": [
+    {
+      "scenario": "normal",
+      "parent_refresh_updates_advert_sources": true,
+      "advert_draft_preserved": true,
+      "discovery_draft_preserved": true,
+      "observation_time_preserved": true,
+      "search_draft_preserved": true
+    },
+    {
+      "scenario": "section-navigation",
+      "hidden_jobs_list_refreshed": true,
+      "advert_draft_preserved": true
+    },
+    {
+      "scenario": "dashboard-error",
+      "error_visible": true,
+      "draft_preserved": true
+    },
+    {
+      "scenario": "review-error",
+      "error_visible": true,
+      "draft_preserved": true
+    },
+    {
+      "scenario": "denied",
+      "private_desk_removed": true,
+      "access_error": "Fictional owner access denied."
+    },
+    {
+      "scenario": "race",
+      "newest_result_retained": true,
+      "draft_preserved": true
+    },
+    {
+      "scenario": "denied-html",
+      "private_desk_removed": true
+    }
+  ],
+  "requests_before_fixture_rebuild": {
+    "normal": {
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/agents",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        }
+      ],
+      "dashboard": 3,
+      "reviews": 3,
+      "discovery": 3
+    },
+    "dashboard-error": {
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        }
+      ],
+      "dashboard": 3,
+      "reviews": 2,
+      "discovery": 2
+    },
+    "review-error": {
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        }
+      ],
+      "dashboard": 1,
+      "reviews": 3,
+      "discovery": 1
+    },
+    "denied": {
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        }
+      ],
+      "dashboard": 2,
+      "reviews": 1,
+      "discovery": 1
+    },
+    "race": {
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/dashboard",
+          "query": "?days=30&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/discovery",
+          "query": "?state=&q=&page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/job-reviews",
+          "query": "?page=1"
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        },
+        {
+          "method": "GET",
+          "path": "/api/admin/business",
+          "query": ""
+        }
+      ],
+      "dashboard": 3,
+      "reviews": 3,
+      "discovery": 3
+    }
+  },
+  "scope": "Actual owner components with fictional local responses; no production writes, provider calls or semantic/model-quality claim.",
+  "tests": {
+    "passed": 671,
+    "failed": 0,
+    "runtime": "Node 24.19.0",
+    "duration_ms": 54046.994791
+  },
+  "validation": {
+    "typescript": true,
+    "build": true,
+    "prerender_count": 18,
+    "browser_budget": true,
+    "worker_dry_run": true
+  },
+  "rollback_worker": "6e78a4ae-f61a-4299-a86b-97fcefdb8ce9"
+}

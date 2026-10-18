@@ -15,11 +15,11 @@ function DateInput({label:valueLabel,value,onChange,required=false}:{label:strin
  const local=value?new Date(Date.parse(value)-new Date(value).getTimezoneOffset()*60000).toISOString().slice(0,16):'';
  return <label>{valueLabel}<input type="datetime-local" required={required} value={local} onInput={e=>onChange(e.currentTarget.value?new Date(e.currentTarget.value).toISOString():null)} onChange={e=>onChange(e.target.value?new Date(e.target.value).toISOString():null)}/></label>;
 }
-export function DiscoveryDesk(){
+export function DiscoveryDesk({refreshToken=0}:{refreshToken?:number}){
  const [data,setData]=useState<List|null>(null),[state,setState]=useState(''),[query,setQuery]=useState(''),[search,setSearch]=useState(''),[page,setPage]=useState(1),[detail,setDetail]=useState<Detail|null>(null),[editing,setEditing]=useState(false),[loading,setLoading]=useState(false),[error,setError]=useState('');
  const generation=useRef(0);
  async function load(){const n=++generation.current;setLoading(true);try{const r=await api(`?state=${encodeURIComponent(state)}&q=${encodeURIComponent(search)}&page=${page}`);if(n===generation.current){setData(r);setError('');}}catch(e){if(n===generation.current)setError((e as Error).message);}finally{if(n===generation.current)setLoading(false);}}
- useEffect(()=>{void load();return()=>{generation.current++;};},[state,search,page]);
+ useEffect(()=>{void load();return()=>{generation.current++;};},[state,search,page,refreshToken]);
  async function open(id:string){setLoading(true);setError('');try{setDetail(await api('/'+id));setEditing(true);}catch(e){setError((e as Error).message);}finally{setLoading(false);}}
  async function older(){if(!detail?.next_before)return;setLoading(true);try{const r:Detail=await api(`/${detail.lead.id}?before=${detail.next_before}`);setDetail({...detail,history:[...detail.history,...r.history],next_before:r.next_before});}catch(e){setError((e as Error).message);}finally{setLoading(false);}}
  return <details id="discovery-queue" className="career-panel discovery-desk"><summary><span>Discovery queue</span><small>{data?`${data.summary.unresolved} to review · ${data.summary.current_linked_jobs} current linked jobs`:'Private sourcing leads'}</small></summary>

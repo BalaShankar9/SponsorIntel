@@ -36,8 +36,10 @@ async function api(path: string, body?: unknown) {
         }
       : {},
   );
-  const data = await r.json();
-  if (!r.ok) throw Error(data.error || "Please try again.");
+  let data;
+  try { data = await r.json(); }
+  catch { throw Object.assign(Error("The response could not be read. Refresh to check the current state."), {status:r.status}); }
+  if (!r.ok) throw Object.assign(Error(data.error || "Please try again."), {status:r.status});
   return data;
 }
 const date = (value: string | number | null) =>
@@ -70,11 +72,13 @@ export function OwnerDashboard({ go }: { go: Go }) {
   const panel = (id:string, children:React.ReactNode) => visited.has(id) ?
     <div key={id} className="owner-section" hidden={section!==id}>{children}</div> : null;
   const [data, setData] = useState<any>(null),
+    [reviewRefresh, setReviewRefresh] = useState(0),
     [days, setDays] = useState(30),
     [page, setPage] = useState(1),
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false),
     [message, setMessage] = useState("");
+  const loadGeneration = useRef(0);
   const [form, setForm] = useState({
     company: "",
     provider: "greenhouse",
@@ -87,19 +91,27 @@ export function OwnerDashboard({ go }: { go: Go }) {
     school_slug: "",
   });
   async function load() {
+    const generation = ++loadGeneration.current;
     setBusy(true);
     setError("");
     try {
-      setData(await api(`/api/admin/dashboard?days=${days}&page=${page}`));
+      const next = await api(`/api/admin/dashboard?days=${days}&page=${page}`);
+      if (generation !== loadGeneration.current) return;
+      setData(next);
+      setReviewRefresh(value => value + 1);
     } catch (e) {
+      if (generation !== loadGeneration.current) return;
       setError((e as Error).message);
-      setData(null);
+      // Keep visited desks and unsaved drafts on transient failures, but never
+      // retain the private dashboard after an authentication/access refusal.
+      if ([401,403].includes((e as Error & {status?:number}).status || 0)) setData(null);
     } finally {
-      setBusy(false);
+      if (generation === loadGeneration.current) setBusy(false);
     }
   }
   useEffect(() => {
     if (user) void load();
+    return () => {loadGeneration.current++;};
   }, [user?.id, days, page]);
   async function act(body: unknown) {
     setBusy(true);
@@ -178,6 +190,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
       {error && (
         <p className="career-error" role="alert">
           {error}
+          {data && " Last loaded data is still shown; your unsaved work remains open."}
         </p>
       )}
       {busy && !data && <p role="status">Loading your dashboard…</p>}
@@ -243,7 +256,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
           <div hidden={!['overview','operations'].includes(section)}>
             <BusinessOperations overview={section!=='operations'}/>
           </div>
-          {panel('jobs', <><DiscoveryDesk/><JobReviews/></>)}
+          {panel('jobs', <><DiscoveryDesk refreshToken={reviewRefresh}/><JobReviews refreshToken={reviewRefresh}/></>)}
           {panel('sources', <>
           <details className="career-panel owner-fold">
             <summary>Data freshness <span>Registers and {data.job_sources.length} employer feeds</span></summary>

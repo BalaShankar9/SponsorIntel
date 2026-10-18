@@ -6,11 +6,13 @@ const local=(s:string)=>{const d=new Date(s);return new Date(d.getTime()-d.getTi
 const display=(s:string)=>new Date(s).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
 const empty=()=>({source_id:'',apply_url:'',revision:0,state:'held',title:'',reason:'deadline_conflict',evidence_url:'',note:'',observed_at:local(new Date().toISOString()),follow_up_at:local(new Date(Date.now()+86400000).toISOString())});
 async function api(query='',body?:unknown){const r=await fetch('/api/admin/job-reviews'+query,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});const data=await r.json();if(!r.ok)throw Error(data.error||'The review could not be loaded.');return data;}
-export function JobReviews(){
+export function JobReviews({refreshToken=0}:{refreshToken?:number}){
  const [data,setData]=useState<Data|null>(null),[page,setPage]=useState(1),[form,setForm]=useState(empty),[selected,setSelected]=useState<Review|null>(null),[history,setHistory]=useState<Review[]>([]),[before,setBefore]=useState<number|null>(null),[message,setMessage]=useState(''),[busy,setBusy]=useState(false),[editing,setEditing]=useState(false);
  const key=useRef(crypto.randomUUID());
- const load=async()=>setData(await api('?page='+page));
- useEffect(()=>{void load().catch(e=>setMessage(e.message));},[page]);
+ const generation=useRef(0);
+ const [loading,setLoading]=useState(false),[loadError,setLoadError]=useState('');
+ async function load(){const n=++generation.current;setLoading(true);try{const next=await api('?page='+page);if(n===generation.current){setData(next);setLoadError('');}}catch(e){if(n===generation.current)setLoadError((e as Error).message);}finally{if(n===generation.current)setLoading(false);}}
+ useEffect(()=>{void load();return()=>{generation.current++;};},[page,refreshToken]);
  function change(k:string,v:string){key.current=crypto.randomUUID();setForm(f=>({...f,[k]:v}));}
  async function open(r:Review){setBusy(true);setMessage('');try{const d=await api('?id='+r.id);setSelected(d.review);setHistory(d.history);setBefore(d.next_before);setForm({...d.review,observed_at:local(d.review.observed_at),follow_up_at:d.review.follow_up_at?local(d.review.follow_up_at):local(new Date(Date.now()+86400000).toISOString())});key.current=crypto.randomUUID();setEditing(true);}catch(e){setMessage((e as Error).message);}finally{setBusy(false);}}
  async function save(e:React.FormEvent){e.preventDefault();setBusy(true);setMessage('');try{
@@ -21,6 +23,8 @@ export function JobReviews(){
  return <section className="career-panel" aria-labelledby="job-reviews-heading">
  <h2 id="job-reviews-heading">Advert reviews</h2>
  <p>Hold an individual advert when its dates, sponsorship wording or availability conflict. Complete employer-feed checks still apply. Holds never expire automatically; releasing one requires fresh evidence and a later successful feed refresh.</p>
+ <button className="secondary-button" disabled={busy||loading} onClick={()=>void load()}>{loading?'Refreshing advert reviews…':'Refresh advert reviews'}</button>
+ {loadError&&<p className="career-error" role="alert">{loadError}{data?' Last loaded adverts and employer sources are still shown; your draft is unchanged.':''}</p>}
  {message&&<p className="career-notice" role="status">{message}</p>}
  {data&&<><p><strong>{data.summary.held} adverts held</strong> · {data.summary.overdue} follow-ups due · {data.summary.total} reviewed adverts</p>
  <button className="secondary-button" disabled={busy} onClick={()=>{setSelected(null);setHistory([]);setBefore(null);setForm(empty());key.current=crypto.randomUUID();setEditing(true);setMessage('');}}>Hold an advert</button>
