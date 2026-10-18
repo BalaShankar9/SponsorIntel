@@ -64,8 +64,15 @@ test('actual Worker guards saved roles, retains reservations during races and ke
     await db.exec('DROP TABLE jobs;');
     const before=await usage();const unavailable=await send();assert.equal(unavailable.status,503);assert.equal((await unavailable.json()).availability,'unavailable');assert.deepEqual(await usage(),before);
     // A genuinely manual application has no catalogue identity to check.
-    const manual=await send({...body,kind:'analysis',application:{...body.application,jobId:''}});assert.equal(manual.status,200);assert.equal(manual.headers.get('X-Fictional-Model-Calls'),'0');
-    const invalid=await send({...body,application:{...body.application,jobId:'invalid'}});assert.equal(invalid.status,409);assert.equal((await invalid.json()).availability,'missing');
+    for (const jobId of ['', 'manual-59f8222b-1900-4c36-b562-b21e67eb1f8c']) {
+      const manual=await send({...body,kind:'analysis',application:{...body.application,jobId}});assert.equal(manual.status,200,jobId);assert.equal(manual.headers.get('X-Fictional-Model-Calls'),'0');
+      const status=await mf.dispatchFetch('http://localhost/api/career/availability?job='+jobId);assert.deepEqual(await status.json(),{jobId,state:'manual'});
+    }
+    const manualDraft=await send({...body,application:{...body.application,jobId:'manual-59f8222b-1900-4c36-b562-b21e67eb1f8c'}});
+    assert.equal(manualDraft.status,200);assert.equal(manualDraft.headers.get('X-Fictional-Model-Calls'),'2');assert.match((await manualDraft.json()).text,/Prepared classroom lessons/);
+    for (const jobId of ['invalid', 'manual-', 'manual-aaaaaaaaaaaaaaaaaaaaaaaa', 'manual-not-a-uuid']) {
+      const invalid=await send({...body,application:{...body.application,jobId}});assert.equal(invalid.status,409);assert.equal((await invalid.json()).availability,'missing');
+    }
     assert.deepEqual((await db.prepare('SELECT * FROM career_workspaces').all()).results,privateBefore);
   } finally { await mf.dispose(); }
 });

@@ -8,3 +8,8 @@ export const preparationMessages = {
   unavailable: 'We could not check this role right now. Try checking again before preparing a new draft. Your existing documents remain editable.',
 };
 export function preparationAllowed(state) { return state === 'current' || state === 'manual'; }
+// Applications added through the manual form retain its UUID-prefixed identity.
+// This distinguishes their declared, unverified source from a missing catalogue role.
+export function manualApplicationId(jobId) {
+  return !jobId || typeof jobId === 'string' && /^manual-[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(jobId);
+}

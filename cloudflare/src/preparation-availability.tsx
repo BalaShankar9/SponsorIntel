@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { preparationAllowed, preparationMessages, type PreparationState } from '../shared/preparation-availability.js';
+import { preparationAllowed, preparationMessages, manualApplicationId, type PreparationState } from '../shared/preparation-availability.js';
 type State = PreparationState | 'checking';
 
 export function usePreparationAvailability(jobId = '') {
-  const [snapshot, setSnapshot] = useState<{jobId: string; state: State}>({jobId, state: jobId ? 'checking' : 'manual'});
+  const [snapshot, setSnapshot] = useState<{jobId: string; state: State}>({jobId, state: manualApplicationId(jobId) ? 'manual' : 'checking'});
   const active = useRef(jobId), serial = useRef(0);
   active.current = jobId;
   const refresh = useCallback(async (): Promise<PreparationState> => {
     const attempt = ++serial.current;
-    if (!jobId) { setSnapshot({jobId, state: 'manual'}); return 'manual'; }
+    if (manualApplicationId(jobId)) { setSnapshot({jobId, state: 'manual'}); return 'manual'; }
     setSnapshot({jobId, state: 'checking'});
     let state: PreparationState = 'unavailable';
     const controller = new AbortController();
@@ -25,13 +25,13 @@ export function usePreparationAvailability(jobId = '') {
   }, [jobId]);
   useEffect(() => {
     void refresh();
-    if (!jobId) return;
+    if (manualApplicationId(jobId)) return;
     const visible = () => { if (!document.hidden) void refresh(); };
     const timer = window.setInterval(visible, 5 * 60000);
     document.addEventListener('visibilitychange', visible);
     return () => { ++serial.current; clearInterval(timer); document.removeEventListener('visibilitychange', visible); };
   }, [jobId, refresh]);
-  const state = snapshot.jobId === jobId ? snapshot.state : jobId ? 'checking' : 'manual';
+  const state = snapshot.jobId === jobId ? snapshot.state : manualApplicationId(jobId) ? 'manual' : 'checking';
   return {state, ready:preparationAllowed(state), refresh};
 }
 

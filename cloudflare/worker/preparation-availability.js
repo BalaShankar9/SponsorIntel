@@ -1,11 +1,11 @@
 import { jobAvailability } from '../shared/job-detail.js';
-import { preparationAllowed, preparationMessages } from '../shared/preparation-availability.js';
+import { preparationAllowed, preparationMessages, manualApplicationId } from '../shared/preparation-availability.js';
 import { reply } from './auth.js';
 
 // Read the same public availability facts as the detail page. Never read CVs,
 // private review notes or an external employer page from this guard.
 export async function preparationAvailability(jobId, env, now = Date.now()) {
-  if (!jobId) return 'manual';
+  if (manualApplicationId(jobId)) return 'manual';
   if (!/^[a-f0-9]{24}$/.test(jobId)) return 'missing';
   try {
     const job = await env.DB.prepare(`SELECT j.id,j.active,j.last_seen,j.closes_at,
