@@ -9,9 +9,9 @@ import { ApplicationInstructions } from './application-instructions';
 
 const external = { target: "_blank", rel: "noopener noreferrer" };
 export function JobDetailView({
-  job, actions, report, now = Date.now(),
+  job, actions, report, learning, now = Date.now(),
 }: {
-  job: Job; actions?: React.ReactNode; report?: React.ReactNode; now?: number;
+  job: Job; actions?: React.ReactNode; report?: React.ReactNode; learning?: React.ReactNode; now?: number;
 }) {
   const availability = jobAvailability(job, now);
   const pay = payEvidence(job.description);
@@ -91,6 +91,7 @@ export function JobDetailView({
               <a className="text-button" href={`/?q=${encodeURIComponent(job.company)}`}>Check the sponsor directory <ArrowUpRight size={14} /></a>
             </>}
           </section>
+          {availability === 'current' && learning}
           <section className="role-panel role-description" aria-labelledby="role-description-heading">
             <p className="role-section-label"><FileText size={17} /> FROM THE EMPLOYER</p>
             <h2 id="role-description-heading">The role, in their words</h2>

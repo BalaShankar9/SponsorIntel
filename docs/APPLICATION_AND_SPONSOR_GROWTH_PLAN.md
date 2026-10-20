@@ -53,6 +53,12 @@ Build sequence:
 
 Measure prepared, awaiting input, authorised, attempted, provider-confirmed, uncertain, duplicate-prevented, withdrawn and user-reported interview outcomes separately. Preparation or a model's judgment is not a submitted application, interview or hiring result. Public copy must name supported routes and limitations accurately.
 
+## 4. Learn skills evidenced in sponsorship adverts
+
+The owner's further 20 October addition is a job-to-learning pathway: match courses/tutorials to exact advert skills and show recurring skills across current sponsorship-worded roles. First deliver source excerpts and reviewed learning links on role pages, transparent current-catalogue counts across employers, and a small actionable learning plan with practice projects. Use free-to-read primary-provider resources first, with explicit prerequisites and separate certificate/software costs. Do not infer a person's skills, promise sponsorship or substitute short courses for professional registration. See `SKILLS_AND_LEARNING.md` for matching, sample bias, freshness and resource-review acceptance.
+
+Then add applicant-chosen saved learning goals, broader sector/regulated-role pathways and measured feedback. Learning progress, completed qualifications, application submissions and hiring outcomes stay separate. This extends the active goal without altering other projects or increasing any external-service budget.
+
 ## Priority and continuing ownership
 
 **20 October selected-batch foundation (2.89, acceptance in release receipt):** explicit saved-role selection, deterministic private evidence notes, missing-information/current-advert checks, version-change warnings, retained pause/end history and exact-request replay are implemented. No AI generation or employer submission is connected. This is the preparation portion of step 2, not applicant dispatch approval or an application pilot. Next work is the approved fact/answer pack and pinned destination/document approval contract, followed by one permitted provider. See `APPLICATION_BATCHES.md`.

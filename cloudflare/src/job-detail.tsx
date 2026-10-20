@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { JobLearning } from './learning-entry';
 import { Bookmark, Check, Copy, Loader2, Sparkles } from "lucide-react";
 import { useCareer, request, type Job } from "./career-data";
 import type { ReportFeedback } from "./feedback";
@@ -98,7 +99,7 @@ export function JobDetail({
   const saved = c.data.applications.some((a) => a.jobId === id);
   return <>
     {error && <p className="career-error" role="alert">{error}<button onClick={() => setRetry((v) => v + 1)}>Try again</button></p>}
-    <JobDetailView job={job} now={Date.now()} actions={<>
+    <JobDetailView job={job} now={Date.now()} learning={<JobLearning description={job.description || ''} />} actions={<>
       <button className="primary-button" disabled={!current || !c.ready || busy} onClick={() => void save(true)}>
         {busy ? <Loader2 className="spin" size={17} /> : <Sparkles size={17} />} Prepare application
       </button>

@@ -27,6 +27,7 @@ import { chatAPI } from "./chat.js";
 import { analyticsAPI, recordResponseMetrics, responseMetric, PREPARATION_HEADER, GUIDANCE_HEADER } from "./analytics.js";
 import { studyAPI, refreshStudents } from "./study.js";
 import { getSponsorCities } from './sponsor-cities.js';
+import { learningAPI } from './learning.js';
 const FEATURED = [
   "Google (UK) Limited",
   "Deloitte LLP",
@@ -60,6 +61,7 @@ async function getMeta(env) {
 async function api(request, env) {
   const url = new URL(request.url);
   const path = url.pathname;
+  if (path === '/api/learning-skills') return learningAPI(request,env);
 
   if (path.startsWith("/api/auth/")) return authAPI(request, env);
   if (path === "/api/recover" && request.method === "POST")

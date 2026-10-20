@@ -6,6 +6,8 @@ The objective remains reliable autonomous sourcing, evidence quality, website ma
 
 **Owner scope addition, 20 October:** build an opt-in application agent supporting all jobs in an applicant-approved selection, evidence-backed operating-business/trading-name relationships to exact sponsor licences, and substantially wider genuine sponsorship coverage. Follow `APPLICATION_AND_SPONSOR_GROWTH_PLAN.md` for build order and acceptance. This authorises product development; actual submissions still need the specific applicant's authorised batch, truthful answers, permitted provider route and required handoffs. Existing budgets, holds and restrictions remain. This does not resume other projects.
 
+**Learning addition, 20 October:** add role-matched, source-linked courses/resources and a transparent view of skill mentions across current sponsorship adverts. Follow `SKILLS_AND_LEARNING.md` and the growth plan. Preserve sample denominators/concentration, source freshness, resource-review dates and the distinction between learning, qualifications and sponsorship eligibility. No automatic enrolment, purchases, applicant fact changes or new AI allowance.
+
 ## Run order
 
 1. Read the checkpoint and relevant latest release, inspect the worktree, current UTC time and available disk. Preserve unrelated changes. Prefer a small number of background tabs; close temporary research/QA tabs. Preserve personal tabs and unfinished forms.

@@ -59,6 +59,7 @@ import { GuideLinks, ResourceArticle, AboutPage, articles } from "./resources";
 import { publicPages, updateMetadata } from "./seo";
 import socialLinks from "../shared/social-links.json";
 import { SponsorCities } from './sponsor-cities';
+import { LearningPage } from './learning-entry';
 import './sponsor-cities.css';
 import {
   FeedbackForm,
@@ -734,6 +735,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     { id: "routes", label: "Explore visa routes", icon: Compass },
     { id: "study", label: "Study in the UK", icon: GraduationCap },
     { id: "guides", label: "UK career guides", icon: BookOpen },
+    { id: "skills", label: "Skills & learning", icon: GraduationCap },
     { id: "insights", label: "Insights & reports", icon: FileText },
     { id: "advisers", label: "Find immigration advice", icon: Scale },
     { id: "ask", label: "Ask immigration questions", icon: MessageSquare },
@@ -885,6 +887,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             </div>
           )}
           {view === 'sponsors-by-city' && <SponsorCities />}
+          {view === 'skills' && <LearningPage />}
           {view === "discover" && (
             <div className="career-launch">
               <span>

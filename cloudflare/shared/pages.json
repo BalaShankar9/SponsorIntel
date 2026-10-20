@@ -14,6 +14,11 @@
     "title": "UK Sponsor Licence List by City | Sponsor Intel",
     "description": "Browse UK licensed sponsor employers by town or city. Compare register listing counts, filter by visa route and inspect employer licence details with official source dates."
   },
+  "skills": {
+    "path": "/skills",
+    "title": "Skills in Sponsorship Adverts & Free Learning Resources | Sponsor Intel",
+    "description": "Explore skill mentions in current sponsorship adverts, check the employer evidence and build a learning plan with courses, tutorials and practical project ideas."
+  },
   "updates": {
     "path": "/updates",
     "title": "UK Immigration Updates, Explained | Sponsor Intel",
