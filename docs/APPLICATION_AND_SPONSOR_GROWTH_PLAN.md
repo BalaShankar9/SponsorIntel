@@ -30,6 +30,8 @@ Report weekly: new positive roles gained/lost, newly admitted employers, sector/
 
 Acceptance: added roles have exact quotations and original links; refusal/qualification-funding noise stays excluded; expired/held duplicates cannot enter the count; at least one newly admitted employer passes repeated unattended refresh. Expired originals and changed visa wording found during today's private reviews illustrate why count growth must retain these controls.
 
+**20 October discovery continuation:** the genuine 15:45 snapshot still has 54 positive-worded roles; two new held leads add no public jobs. Nu Quantum has explicit sponsorship for an early-career FPGA role and an exact current licence match. Its documented Workable syndication route needs complete-feed feasibility/membership validation; a bounded GET exceeded 2 MiB. Animal Trust adds a veterinary lead with ambiguous visa-support wording and an evidenced trading/legal name. Prioritise a permitted complete-source path over more unchanged holds; retain role-level wording and source approval gates. See `NU_QUANTUM_SOURCE_REVIEW.md`, `ANIMAL_TRUST_SOURCE_REVIEW.md` and the dated sourcing receipt.
+
 ## 3. Opt-in application agent and “apply to all selected”
 
 Extend the existing account, Career Profile, Application Studio and tracker. Start with a batch preparation/review queue, then add provider-specific submission adapters where the provider permits automation. Do not advertise a universal submitter before actual coverage is verified. LinkedIn sign-in or a public jobs feed is not permission for bulk submission.

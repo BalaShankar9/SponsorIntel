@@ -1,0 +1,221 @@
+{
+  "date": "2026-10-20",
+  "kind": "bounded employer discovery and source feasibility review",
+  "runtime_unchanged": "2.88.0",
+  "initial_scout": {
+    "day": "2026-10-20",
+    "run_id": "business-497904",
+    "state": "completed",
+    "reason": "checked_advert_links_already_known",
+    "started_at": "2026-10-20T00:46:04.075Z",
+    "finished_at": "2026-10-20T00:46:04.543Z",
+    "reserved_requests": 4,
+    "requests": 1,
+    "retained": 0,
+    "inspected": 0,
+    "search_pages": 1
+  },
+  "discovery": {
+    "before": {
+      "retained": 25,
+      "unresolved": 5,
+      "new_today": 0
+    },
+    "after": {
+      "checked_at": "2026-10-20T15:45:57.453Z",
+      "total": 27,
+      "unresolved": 7,
+      "overdue": 0,
+      "changed_links": 0,
+      "current_linked_jobs": 3,
+      "allowance": {
+        "day": "2026-10-20",
+        "limit": 5,
+        "used": 2,
+        "remaining": 3,
+        "next_day": "2026-10-21T00:00:00.000Z"
+      }
+    },
+    "revisions": [
+      {
+        "lead_id": "6740596e-9b48-4897-860b-ccffea275a3a",
+        "revision": 1,
+        "recorded_at": "2026-10-20T15:43:14.127Z",
+        "title": "FPGA Engineer - Quantum Networking (Early Career)",
+        "employer": "Nu Quantum Ltd",
+        "state": "held",
+        "method": "agent_assisted",
+        "observed_at": "2026-10-20T15:42:03.285Z",
+        "posted_at": null,
+        "deadline": null,
+        "follow_up_at": "2026-10-22T11:00:00.000Z",
+        "quote": "Visa Sponsorship available",
+        "source_url": "https://apply.workable.com/nu-quantum/j/834B821BDB/"
+      },
+      {
+        "lead_id": "6740596e-9b48-4897-860b-ccffea275a3a",
+        "revision": 2,
+        "recorded_at": "2026-10-20T15:44:04.535Z",
+        "title": "FPGA Engineer - Quantum Networking (Early Career)",
+        "employer": "Nu Quantum Ltd",
+        "state": "held",
+        "method": "agent_assisted",
+        "observed_at": "2026-10-20T15:42:00.000Z",
+        "posted_at": null,
+        "deadline": null,
+        "follow_up_at": "2026-10-22T11:00:00.000Z",
+        "quote": "Visa Sponsorship available",
+        "source_url": "https://apply.workable.com/nu-quantum/j/834B821BDB/"
+      },
+      {
+        "lead_id": "d5d34bda-a972-456d-90a7-5bf2fea2a880",
+        "revision": 1,
+        "recorded_at": "2026-10-20T15:45:06.427Z",
+        "title": "Veterinary Surgeon — Dewsbury",
+        "employer": "Animal Trust Vets CIC (Animal Trust)",
+        "state": "held",
+        "method": "agent_assisted",
+        "observed_at": "2026-10-20T15:44:00.000Z",
+        "posted_at": null,
+        "deadline": null,
+        "follow_up_at": "2026-10-22T11:00:00.000Z",
+        "quote": "Visa support available",
+        "source_url": "https://animaltrust.bamboohr.com/careers/1183"
+      }
+    ],
+    "audit_counts": [
+      {
+        "target": "6740596e-9b48-4897-860b-ccffea275a3a",
+        "count": 2
+      },
+      {
+        "target": "d5d34bda-a972-456d-90a7-5bf2fea2a880",
+        "count": 1
+      }
+    ],
+    "prior_25_lead_identities_and_first_recorded_times_unchanged": true,
+    "configured_employer_reviews_unchanged": true
+  },
+  "scheduled_observation": {
+    "id": "business-497919",
+    "trigger": "scheduled",
+    "state": "attention",
+    "measured_at": "2026-10-20T15:45:57.453Z",
+    "finished_at": "2026-10-20T15:46:19.283Z",
+    "platform": {
+      "status": "Completed",
+      "success": true,
+      "last_successful_step": "record-completion-1"
+    },
+    "findings": {
+      "findings": 8,
+      "high": 2
+    },
+    "links": [
+      {
+        "id": "6ea82a77c10365bc07be1410",
+        "state": "checked",
+        "reason": "title_observed",
+        "requests": 1
+      },
+      {
+        "id": "531b5339df3dc754dfbe0264",
+        "state": "uncertain",
+        "reason": "response_body_limit",
+        "requests": 1
+      }
+    ],
+    "jobs": {
+      "total": 1021,
+      "employers": 37,
+      "offered": 20,
+      "conditional": 34,
+      "unavailable": 139,
+      "not_stated": 828,
+      "early_career": 76,
+      "salary": 187
+    },
+    "model_calls_by_supervisor": 0,
+    "external_posts_by_supervisor": 0
+  },
+  "workable_feasibility": {
+    "official_documentation": "https://help.workable.com/hc/en-us/articles/4420464031767-Utilizing-the-XML-Job-Feed",
+    "documented_feed": "https://www.workable.com/boards/workable.xml",
+    "manual_requests": 2,
+    "head": {
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "content_length": 0,
+      "observed_header_date": "Tue, 20 Oct 2026 15:47:33 GMT",
+      "limitation": "Not a reliable catalogue-size observation."
+    },
+    "get": {
+      "status": 200,
+      "content_type": "application/xml; charset=utf-8",
+      "maximum_bytes": 2097152,
+      "received_bytes": 0,
+      "exit_code": 56,
+      "outcome": "Maximum file size exceeded"
+    },
+    "full_size": null,
+    "complete_catalogue": false,
+    "exact_nu_quantum_job_membership_verified": false,
+    "cloud_source_configured": false,
+    "limitation": "Two desktop public-feed reads, not cloud source reservations or a complete import; no larger retry, alternate route or retained cookies."
+  },
+  "linkedin": {
+    "method": "signed-in browser ordinary-post search",
+    "new_records": 0,
+    "limitation": "The inspected sample contained generic leads, jobseeker material and role-specific refusals; no new current positive employer-original vacancy was established from that sample. This is not a market-wide feed or false-post rate."
+  },
+  "preserved": {
+    "operational_groups": [
+      "business_controls",
+      "marketing_controls",
+      "research_control",
+      "application_controls",
+      "source_controls",
+      "marketing_briefs",
+      "marketing_receipts",
+      "ai_budget",
+      "source_runs",
+      "marketing_runs"
+    ],
+    "foreign_key_errors": 0,
+    "portmandentex_pause_unchanged": true,
+    "source_reservations_before": 376,
+    "source_reservations_after": 384,
+    "source_reservation_delta_explanation": "Genuine hourly business run reserved two link samples; no owner refresh or budget write. Manual feed reads are reported separately.",
+    "ai_starts": 2,
+    "ai_calls": 8
+  },
+  "operator_actions": {
+    "new_public_jobs": 0,
+    "source_approvals": 0,
+    "source_resumes": 0,
+    "production_ai_calls": 0,
+    "google_requests": 0,
+    "external_messages": 0,
+    "applications": 0,
+    "new_permissions": 0,
+    "worker_deployments": 0
+  },
+  "validation": {
+    "authenticated_saved_ui_verified": true,
+    "d1_readback_verified": true,
+    "new_revisions": 3,
+    "new_leads": 2,
+    "same_day_recovery_reused": "2026-10-20T15:17:16.694Z",
+    "same_day_dependency_audit_reused": true,
+    "runtime_or_lockfile_changed": false,
+    "runtime_tests_rerun": false
+  },
+  "limitations": [
+    "Private held leads are not public opportunities.",
+    "Agent-assisted judgments are not independent review.",
+    "Nu Quantum exact feed membership and bounded complete-source admission remain open.",
+    "Animal Trust wording does not establish role-specific Skilled Worker sponsorship.",
+    "No user applications were submitted.",
+    "No independent business growth or full-autonomy acceptance."
+  ]
+}
