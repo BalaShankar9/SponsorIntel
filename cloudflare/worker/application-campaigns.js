@@ -15,7 +15,7 @@ export async function prepareApplicationCampaign(env,input,actor,now=Date.now())
  const replay=async()=>{const row=await env.DB.prepare('SELECT id,request_hash FROM application_eval_campaigns WHERE request_key=?').bind(input.request_key).first();if(!row)return null;if(row.request_hash!==requestHash)fail('This request already records a different review.');return {id:row.id,paused:!(await env.DB.prepare('SELECT enabled FROM application_eval_controls WHERE singleton=1').first())?.enabled,prepared_paused:true,replayed:true};};
  const prior=await replay();if(prior)return prior;
  const proposal=await applicationCampaignProposal(env);
- if(proposal.active.id!==input.expected_campaign||proposal.proposal.fingerprint!==input.fingerprint||!proposal.proposal.can_prepare)fail('The comparison or control changed. Refresh and review it before preparing another version.');
+ if(proposal.active.id!==input.expected_campaign||proposal.proposal.fingerprint!==input.fingerprint||!proposal.proposal.can_prepare){const retained=await replay();if(retained)return retained;fail('The comparison or control changed. Refresh and review it before preparing another version.');}
  const profile=JSON.stringify(proposal.proposal.profile),id='comparison-'+input.fingerprint.slice(0,24),stamp=new Date(now).toISOString();
  let saved;try{saved=await env.DB.batch([
   env.DB.prepare(`INSERT INTO application_eval_campaigns(id,profile,created_at,actor,reason,request_key,request_hash)

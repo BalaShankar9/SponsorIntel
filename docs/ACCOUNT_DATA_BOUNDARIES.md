@@ -1,5 +1,7 @@
 # Private account data boundaries
 
+Release 2.89 adds separate private application batches; see [application batches](APPLICATION_BATCHES.md). They inherit authenticated account isolation and cascade on account removal. Their transaction checks prevent a delayed create from surviving deletion or attaching to a changed workspace. Snapshot/history updates are blocked. Private batch archives are separate from workspace backups/browser recovery copies; no import or employer dispatch is implemented. These additive tables do not change the older workspace/recovery behaviour below.
+
 ## Device recovery and account changes in 2.62
 
 A cloud switch now preserves a private browser recovery copy before replacing current work. Exact-copy checks protect concurrent changes; the account screen keeps export, restore and removal distinct. Authenticated workspace reads report their account ID, and new clients send that expected identity on saves. A mismatch is rejected without changing either account. This is an additional stale-session guard, not authority to choose a user from a request. Older clients retain session-based isolation. See [workspace recovery](WORKSPACE_RECOVERY.md) for local retention, sign-out and deletion boundaries.

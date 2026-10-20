@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Title, Empty } from "./career-ui";
 import { AccountEmailHelp } from "./account-email";
 import { SavedSearches } from "./search-notifications";
+import { ApplicationBatches } from './application-batches';
 import {
   ArrowRight,
   ArrowUpRight,
@@ -225,6 +226,7 @@ function Applications({ go }: { go: Go }) {
           </div>
         ))}
       </div>
+      <ApplicationBatches go={go} />
       <SavedSearches />
       <div className="career-tabs" role="group" aria-label="Application stage">
         {["All", ...stages].map((s) => (

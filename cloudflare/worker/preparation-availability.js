@@ -23,6 +23,30 @@ export async function preparationSnapshot(jobId, env, now = Date.now()) {
   } catch { return {state:'unavailable'}; }
 }
 
+// One bounded catalogue read for an explicitly selected workspace batch. No
+// external source fetch and no per-role D1 query multiplication.
+export async function preparationSnapshots(jobIds, env, now = Date.now()) {
+  const ids=[...new Set(jobIds)];
+  if(ids.length>100)throw Error('Too many selected roles.');
+  const valid=ids.filter(id=>/^[a-f0-9]{24}$/.test(id));
+  let rows;
+  try {
+    rows=valid.length?(await env.DB.prepare(`SELECT j.*,
+      (SELECT h.state FROM job_review_holds h JOIN job_review_targets t
+       ON t.source_id=h.source_id AND t.apply_url=h.apply_url
+       WHERE t.job_id=j.id AND h.source_id=j.board_id
+       AND (h.state='held' OR h.recorded_at>=j.last_seen)
+       ORDER BY h.state ASC LIMIT 1) AS review_hold
+      FROM jobs j WHERE j.id IN (${valid.map(()=>'?').join(',')})`).bind(...valid).all()).results:[];
+  } catch { return new Map(ids.map(id=>[id,{state:'unavailable'}])); }
+  const byId=new Map(rows.map(j=>[j.id,j]));
+  return new Map(await Promise.all(ids.map(async id=>{
+    if(manualApplicationId(id))return [id,{state:'manual'}];
+    const job=byId.get(id),state=job?jobAvailability(job,now):'missing';
+    return [id,state==='current'?{state,advert:await advertSnapshot(job)}:{state}];
+  })));
+}
+
 export async function preparationBlock(application, env, kind = '') {
   const snapshot = await preparationSnapshot(application.jobId, env);
   const state = savedAdvertState(application, snapshot);

@@ -23,6 +23,7 @@ import { preparationReply } from './analytics.js';
 import { cvApplicationRestriction } from '../shared/application-instructions.js';
 import { configureSearchMonitor, searchInbox, markSearchMatchesRead } from './search-notifications.js';
 import { preparationSnapshot, preparationBlock } from './preparation-availability.js';
+import {applicationBatchesAPI} from './application-batches.js';
 export { validateWorkspace } from "./career-validation.js";
 
 import {generationPrompt,writeCareerDraft} from "./career-writer.js";
@@ -212,6 +213,7 @@ export async function careerAPI(request, env) {
     }
   }
   if (!user) return reply({ error: "Sign in to sync your workspace." }, 401);
+  if(url.pathname==='/api/career/batches'||url.pathname.startsWith('/api/career/batches/'))return applicationBatchesAPI(request,env,user);
   if (url.pathname === '/api/career/search-notifications') {
     if (!await limit(env,'search-inbox:'+user.id,120,60)) return reply({error:'Please wait a moment before trying again.'},429);
     if (request.method === 'GET') return reply(await searchInbox(env,user.id));

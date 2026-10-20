@@ -45,6 +45,12 @@ test('stale, forged and injected version requests cannot change the selection',a
  const request=new Request('https://sponsorintel.london/api/admin/application-evaluation/campaign',{method:'POST',headers:{Origin:'https://elsewhere.test','Content-Type':'application/json'},body:JSON.stringify(body)});
  assert.equal((await applicationEvaluationAPI(request,e,{user:{id:'owner'}})).status,403);assert.equal((await activeApplicationCampaign(e)).id,'legacy-v1');
 });
+test('an identical request committed between replay lookup and proposal is reconciled without another version',async t=>{
+ const e=setup(t),body=await input(e),prepare=e.DB.prepare.bind(e.DB);let intercept=true;
+ e.DB.prepare=q=>{const statement=prepare(q);if(intercept&&q.startsWith('SELECT c.* FROM application_eval_campaigns'))return {first:async()=>{intercept=false;await prepareApplicationCampaign(e,body,'owner',now);return statement.first();}};return statement;};
+ const result=await prepareApplicationCampaign(e,body,'owner',now);assert.equal(result.replayed,true);assert.equal(result.paused,true);
+ assert.equal(e.sql.prepare('SELECT COUNT(*) n FROM application_eval_campaigns').get().n,2);assert.equal(e.sql.prepare('SELECT COUNT(*) n FROM admin_audit').get().n,1);assert.equal(e.sql.prepare('SELECT COUNT(*) n FROM agent_research_budget').get().n,0);
+});
 test('a reviewed version stays paused; a later fictional scheduled run uses one shared start and pins its schema',async t=>{
  const e=setup(t);seed(e);const out=await prepareApplicationCampaign(e,await input(e),'owner',now);let creates=0,calls=0;e.APPLICATION_EVAL_WORKFLOW.create=async()=>{creates++;};
  assert.equal((await dispatchApplicationEvaluation(e,'scheduled',now+86400000)).state,'paused');assert.equal(creates,0);
