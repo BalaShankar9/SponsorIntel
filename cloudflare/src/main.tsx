@@ -1,3 +1,4 @@
+import {BusinessIdentityCards} from './business-identities';
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -1968,6 +1969,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                     </span>
                   </div>
                 </div>
+                <BusinessIdentityCards sponsorId={selected.id}/>
                 <h3>Licensed sponsorship routes</h3>
                 <div className="route-list">
                   {selected.routes.map((r) => (

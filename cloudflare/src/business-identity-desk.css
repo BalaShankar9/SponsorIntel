@@ -1,0 +1,8 @@
+.business-review-fields {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;border:1px solid #d7e1df;border-radius:12px;padding:20px;margin-top:20px;min-width:0}
+.business-review-fields legend {font-weight:700;padding-inline:6px}
+.business-review-fields label {display:grid;gap:8px;font-weight:600;min-width:0}
+.business-review-fields input,.business-review-fields select,.business-review-fields textarea {width:100%;min-width:0;box-sizing:border-box;border:1px solid #a6bbb5;border-radius:8px;background:#fff;color:#18352e;padding:11px;font:inherit}
+.business-review-fields textarea {min-height:100px;resize:vertical}
+.business-review-fields .wide {grid-column:1/-1;overflow-wrap:anywhere}
+.business-sponsor-option {display:block;text-align:left;width:100%;padding:12px;margin-block:6px;background:#f1f7f4;color:#18352e;border:1px solid #a6bbb5;border-radius:8px}
+@media(max-width:620px){.business-review-fields{grid-template-columns:minmax(0,1fr);padding:14px}.business-identity-card{padding:14px}}

@@ -1,3 +1,4 @@
+import {BusinessIdentityCards} from './business-identities';
 import React from "react";
 import { ArrowLeft, ArrowUpRight, MapPin, ShieldCheck, Clock3, FileText } from "lucide-react";
 import type { Job } from "./career-data";
@@ -80,10 +81,11 @@ export function JobDetailView({
               <p className="role-caption">We reviewed a link between this employer’s brand or group and that register entry. Ask which legal entity would employ and sponsor you. This does not change the advert’s sponsorship wording above or confirm eligibility for this role.</p>
               <p className="role-caption">Register last checked {jobTimestamp(job.employer_licence.checked_at)}. Employer link reviewed {jobTimestamp(job.employer_licence.reviewed_at)}.</p>
               <div className="role-licence-links">
-                <a className="text-button" href={`/?q=${encodeURIComponent(job.employer_licence.name)}`}>View sponsor record <ArrowUpRight size={14} /></a>
+                <a className="text-button" href={`/?employer=${encodeURIComponent(job.employer_licence.id)}`}>View sponsor record <ArrowUpRight size={14} /></a>
                 <a className="text-button" href="https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers" {...external}>Official register <ArrowUpRight size={14} /></a>
                 {job.employer_licence.evidence_url && <a className="text-button" href={job.employer_licence.evidence_url} {...external}>Employer identity source <ArrowUpRight size={14} /></a>}
               </div>
+              <BusinessIdentityCards sponsorId={job.employer_licence.id}/>
             </> : <>
               <p>We do not currently have a verified licence link for this employer. It may still be licensed; this is not a finding that it cannot sponsor.</p>
               <a className="text-button" href={`/?q=${encodeURIComponent(job.company)}`}>Check the sponsor directory <ArrowUpRight size={14} /></a>

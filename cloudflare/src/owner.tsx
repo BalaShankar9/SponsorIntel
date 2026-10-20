@@ -1,3 +1,4 @@
+import {BusinessIdentityDesk} from './business-identity-desk';
 import React, { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -258,6 +259,7 @@ export function OwnerDashboard({ go }: { go: Go }) {
           </div>
           {panel('jobs', <><DiscoveryDesk refreshToken={reviewRefresh}/><JobReviews refreshToken={reviewRefresh}/></>)}
           {panel('sources', <>
+          <BusinessIdentityDesk/>
           <details className="career-panel owner-fold">
             <summary>Data freshness <span>Registers and {data.job_sources.length} employer feeds</span></summary>
             <p>

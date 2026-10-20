@@ -53,6 +53,8 @@ Read `docs/ADVERT_REVIEWS.md` before a hold/release. Record exact advert holds b
 
 Classified identity/destination/catalogue/parser failures stop that source task after its first failure in the run, preserving cache, jobs, reviews and reservations. Other errors retain their existing bounded retries. A future scheduled run still requires all approval, pause, cooldown and complete-validation checks. Do not force failures or refreshes. Link-check failure alone cannot change public labels, observation timestamps or withdraw jobs. Inspect rotation coverage and overdue/uncertain samples instead of calling every role independently verified.
 
+Review **Sources → Business identities** alongside existing source reviews; follow `docs/BUSINESS_IDENTITIES.md`. Its due-review count is currently in the owner desk, not hourly business findings. Business-profile approval is separate from feed admission, a job’s legal employer and sponsorship wording.
+
 ## Research, application quality and models
 
 Read `docs/REFERENCE_EVALUATION.md`, `docs/APPLICATION_EVALUATION.md` and the selected reviewed version before considering a resume. Preserve exact source/model/configuration identity, old failures/unknown outcomes, all immutable records and original assessments. A code/model change requires a separately reviewed version; never replace stored hashes, disable compatibility guards, merge campaigns or reclassify old rejected output to make a check pass.

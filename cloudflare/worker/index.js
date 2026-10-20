@@ -1,7 +1,8 @@
+import {publicBusinessIdentities,businessQuerySpec} from './business-identities.js';
+import {identityRegisterFresh} from '../shared/business-identities.js';
 import {runRegisterRefresh} from './register-refresh.js';
 import {
   clean,
-  querySpec,
 } from "./data.js";
 import { jobsAPI } from "./jobs.js";
 import { dispatchSources } from "./agent-operations.js";
@@ -133,8 +134,12 @@ async function api(request, env) {
     try { return json(await getSponsorCities(env, url.search)); }
     catch { return json({error:'The register could not be loaded. Please try again.'},503); }
   }
+  if (path === '/api/business-identities') {
+    try {return json(await publicBusinessIdentities(env,url.searchParams.get('sponsor_id')));}
+    catch(e){return json({error:e.status?e.message:'Business records could not be loaded.'},e.status||503);}
+  }
   if (path === "/api/sponsors") {
-    const { q, city, route, page, where, values } = querySpec(url.searchParams);
+    const { q, city, route, page, where, values } = businessQuerySpec(url.searchParams,identityRegisterFresh(meta)?new Date().toISOString():null);
     const bindings = [meta.snapshot, ...values];
     const sort = url.searchParams.get("sort") === "za" ? "DESC" : "ASC";
     const limit = 12;
