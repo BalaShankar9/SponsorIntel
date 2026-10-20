@@ -4,13 +4,13 @@ import {database} from './research-db.mjs';
 import {publishInsight,insightSocialCopy} from '../worker/insights.js';
 import {syncMarketing,decideBrief} from '../worker/marketing.js';
 import {dispatchMarketingAgents,captureMarketingContext,prepareReportMarketing,critiqueReportMarketing,concludeReportMarketing,failMarketingAgent,EDITORIAL_SOURCES} from '../worker/marketing-agents.js';
-import {captureReportReview,validateReportReview,reportWriteGuard} from '../worker/marketing-report.js';
+import {captureReportReview,validateReportReview,reportWriteGuard,reportReviewFailure,REPORT_REVIEW_POLICY,SCHEMA_REPORT_REVIEW_POLICY} from '../worker/marketing-report.js';
 import {superviseAgents} from '../worker/agent-supervision.js';
 const now=Date.parse('2026-10-18T01:00:00Z'),DAY=86400000,iso=n=>new Date(n).toISOString();
 const snapshot=at=>({measured_at:iso(at),jobs:{total:20,employers:1,offered:2,conditional:3,unavailable:4,not_stated:11,early_career:6,salary:8},sources:[{id:'fictional',company:'Fictional employer',careers_url:'https://example.com/careers',last_success:iso(at),error:null,paused:0,roles:20}],held_batches:0,checks:Array.from({length:5},()=>({ok:true,security:true}))});
 const fetcher=async url=>new Response('<article class="resource-article">'+EDITORIAL_SOURCES.filter(s=>s.path===new URL(url).pathname).flatMap(s=>s.facts).join(' ')+'</article>',{headers:{'content-type':'text/html'}});
 async function setup(t,{prepare=true}={}){
- const env=database(t);env.AI_MODEL='synthetic-writer';env.AI_REVIEW_MODEL='different-synthetic-reviewer';env.MARKETING_WORKFLOW={create:async()=>{}};
+ const env=database(t);env.AI_MODEL='@cf/zai-org/glm-4.7-flash';env.AI_REVIEW_MODEL='@cf/meta/llama-3.3-70b-instruct-fp8-fast';env.MARKETING_WORKFLOW={create:async()=>{}};
  await publishInsight(env,'fictional-old-report',snapshot(now-12*DAY),now-12*DAY);await syncMarketing(env,now-12*DAY);
  await publishInsight(env,'fictional-report',snapshot(now-4*DAY),now-4*DAY);await syncMarketing(env,now);
  env.sql.prepare("UPDATE marketing_briefs SET state='published' WHERE id LIKE 'launch-%'").run();
@@ -26,7 +26,7 @@ test('unchanged company report receives one charged critic call, exact copy and 
  const before=env.sql.prepare('SELECT text,expires_at FROM marketing_versions WHERE brief_id=? AND version=1').get(b.id);
  assert.match(before.text,/5 adverts.*20 roles checked as of 14 October 2026/);
  await prepareReportMarketing(env,id,now+1000);
- let calls=0;const r=await critiqueReportMarketing(env,id,async(e,m,prompt,input)=>{calls++;assert.equal(m.model,'different-synthetic-reviewer');assert.equal(input.units[0].text,before.text.split('\n\n')[0]);assert.doesNotMatch(JSON.stringify(input),/PRIVATE_CUSTOMER_CV|purpose|fictional-report/);return caller(review(context.report_review))();},now);
+ let calls=0;const r=await critiqueReportMarketing(env,id,async(e,m,prompt,input)=>{calls++;assert.equal(m.model,'@cf/meta/llama-3.3-70b-instruct-fp8-fast');assert.equal(input.units[0].text,before.text.split('\n\n')[0]);assert.doesNotMatch(JSON.stringify(input),/PRIVATE_CUSTOMER_CV|purpose|fictional-report/);return caller(review(context.report_review))();},now);
  await critiqueReportMarketing(env,id,caller(r),now+1000);assert.equal(calls,1);
  const result=await concludeReportMarketing(env,id,r,now+2000);assert.equal(result.state,'reviewed');assert.equal(result.publication,'none');assert.equal(result.proposed_slot,undefined);
  const after=env.sql.prepare('SELECT text,expires_at FROM marketing_versions WHERE brief_id=? AND version=2').get(b.id);assert.deepEqual(after,before);
@@ -119,4 +119,69 @@ test('an existing v6 attempt cannot acquire the new report route or reserve anot
  const old=await captureMarketingContext(env,id,fetcher,now);assert.equal(old.report_review,undefined);
  assert.equal((await dispatchMarketingAgents(env,now)).reused,true);
  assert.equal(env.sql.prepare('SELECT runs FROM agent_research_budget').get().runs,1);
+});
+
+test('new report reviews pin and send the complete schema through the actual model adapter',async t=>{
+ const {env,id,context}=await setup(t);const target=context.report_review;let calls=0;
+ env.AI={run:async(model,request)=>{
+  calls++;assert.equal(model,env.AI_REVIEW_MODEL);assert.equal(request.max_tokens,8192);assert.equal(request.temperature,0.1);
+  assert.equal(request.response_format.type,'json_schema');
+  assert.deepEqual(request.response_format,target.request.response_format);
+  const schema=request.response_format.json_schema;
+  assert.deepEqual(schema.required,['checks','publishable','reason']);
+  assert.equal(schema.additionalProperties,false);assert.equal(schema.properties.checks.minItems,2);assert.equal(schema.properties.checks.maxItems,2);
+  assert.deepEqual(schema.properties.checks.items.properties.index.enum,[0,1]);
+  assert.deepEqual(schema.properties.checks.items.properties.evidence.items.properties.source_id.enum,target.evidence.sources.map(s=>s.id));
+  return {response:review(target),usage:{total_tokens:1}};
+ }};
+ const r=await critiqueReportMarketing(env,id,undefined,now);
+ assert.equal((await concludeReportMarketing(env,id,r,now)).state,'reviewed');assert.equal(calls,1);
+});
+test('incomplete report JSON is held with a bounded cause and no second paid attempt',async t=>{
+ const {env,id,b}=await setup(t);let calls=0;
+ env.AI={run:async()=>{calls++;return {response:{publishable:true},choices:[{finish_reason:'stop'}]};}};
+ await assert.rejects(critiqueReportMarketing(env,id,undefined,now));
+ const row=env.sql.prepare('SELECT output FROM marketing_agent_steps').get();
+ assert.deepEqual(JSON.parse(row.output).contract,{version:1,code:'report_shape'});
+ await failMarketingAgent(env,id);await assert.rejects(critiqueReportMarketing(env,id,undefined,now));
+ assert.equal(calls,1);assert.equal(env.sql.prepare('SELECT calls FROM agent_research_budget').get().calls,1);
+ assert.equal(env.sql.prepare('SELECT state FROM marketing_briefs WHERE id=?').get(b.id).state,'held');
+});
+test('existing v7 attempts retain their object request and cannot acquire a second daily attempt',async t=>{
+ const {env,id}=await setup(t,{prepare:false});
+ env.sql.prepare("UPDATE marketing_agent_runs SET policy=?,context=NULL,state='queued',brief_id=NULL").run(REPORT_REVIEW_POLICY);
+ const c=await captureMarketingContext(env,id,fetcher,now);assert.ok(c.report_review);assert.equal(c.report_review.request,undefined);
+ await prepareReportMarketing(env,id,now);let calls=0;
+ env.AI={run:async(model,request)=>{calls++;assert.deepEqual(request.response_format,{type:'json_object'});return {response:review(c.report_review)};}};
+ const result=await critiqueReportMarketing(env,id,undefined,now);
+ await concludeReportMarketing(env,id,result,now);const before=env.sql.prepare('SELECT * FROM marketing_agent_runs').get();
+ assert.equal((await dispatchMarketingAgents(env,now)).reused,true);assert.equal(calls,1);
+ assert.deepEqual(env.sql.prepare('SELECT * FROM marketing_agent_runs').get(),before);
+ assert.equal(before.policy,REPORT_REVIEW_POLICY);assert.notEqual(before.policy,SCHEMA_REPORT_REVIEW_POLICY);
+});
+test('changed request identity stops before reservation and unsupported configured critics cannot select the schema path',async t=>{
+ for(const mutate of [c=>delete c.report_review.request,c=>c.report_review.request.prompt_sha256='changed',c=>c.report_review.units[0].text+=' changed',c=>c.report_review.request.response_format.json_schema.required=[],c=>c.report_review.request.reviewer.model='unreviewed']){
+  const {env,id,context}=await setup(t);mutate(context);env.sql.prepare('UPDATE marketing_agent_runs SET context=?').run(JSON.stringify(context));
+  await assert.rejects(critiqueReportMarketing(env,id,async()=>assert.fail('No call for changed request'),now),/Pinned report/);
+  assert.equal(env.sql.prepare('SELECT calls FROM agent_research_budget').get().calls,0);
+ }
+ const {env,id}=await setup(t,{prepare:false});
+ env.sql.prepare("UPDATE marketing_agent_runs SET context=NULL,state='queued',models=?").run(JSON.stringify({writer:{provider:'cloudflare',model:'writer'},reviewer:{provider:'cloudflare',model:'unreviewed'}}));
+ const c=await captureMarketingContext(env,id,fetcher,now);assert.equal(c.report_review,null);assert.match(c.report_review_unavailable,/configuration/);
+ assert.equal(env.sql.prepare('SELECT calls FROM agent_research_budget').get().calls,0);
+});
+test('schema-shaped dishonest or incomplete reviews still fail local evidence guards with privacy-safe codes',async t=>{
+ const {context}=await setup(t),target=context.report_review;
+ const cases=[
+  [r=>r.reason='x','report_reason'],[r=>r.checks.pop(),'report_coverage'],
+  [r=>delete r.checks[0].supported,'unit_shape'],[r=>r.checks[0].reason='x','unit_reason'],
+  [r=>r.checks[1].index=0,'unit_coverage'],[r=>r.checks[0].evidence=[],'claim_evidence'],
+  [r=>r.checks[0].evidence[0].extra='PRIVATE_OUTPUT','evidence_shape'],
+  [r=>r.checks[0].evidence[0].quote='PRIVATE_INVENTED_QUOTATION','evidence_quote'],
+  [r=>r.checks[0].evidence[0].source_id='PRIVATE_UNLISTED_SOURCE','evidence_quote'],
+ ];
+ for(const [mutate,code] of cases){const r=review(target);mutate(r);try{validateReportReview(r,target);assert.fail('Expected validation failure');}catch(e){assert.deepEqual(reportReviewFailure(e),{version:1,code});assert.doesNotMatch(JSON.stringify(reportReviewFailure(e)),/PRIVATE/);}}
+ const rejected=review(target);rejected.publishable=false;rejected.checks[0].supported=false;rejected.checks[0].evidence=[];
+ assert.deepEqual(validateReportReview(rejected,target),rejected);
+ assert.equal(reportReviewFailure(Object.assign(Error('PRIVATE_ERROR'),{contract:{version:1,code:'evidence_quote'}})),null);
 });

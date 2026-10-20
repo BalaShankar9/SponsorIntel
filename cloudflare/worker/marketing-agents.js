@@ -11,10 +11,10 @@ import {captureWelcomeReview,prepareWelcomeReview,currentWelcomeTarget,validateE
 import {captureOpportunitySources,requireOpportunity} from './marketing-opportunities.js';
 import {performanceContext} from './marketing-performance.js';
 import {COMPACT_MARKETING_POLICY,PLANNER_INPUT_VERSION,compactPlannerContext,legacyPlannerContext} from './marketing-planner-input.js';
-import {REPORT_REVIEW_POLICY,REPORT_REVIEW_PROMPT,captureReportReview,prepareReportReview,currentReportTarget,recheckReportReview,reportWriteGuard,validateReportReview} from './marketing-report.js';
+import {SCHEMA_REPORT_REVIEW_POLICY,reportReviewPolicy,REPORT_REVIEW_PROMPT,captureReportReview,prepareReportReview,currentReportTarget,recheckReportReview,reportWriteGuard,validateReportReview,reportReviewInput,reportReviewRequest,checkedReportReviewRequest,reportReviewFailure} from './marketing-report.js';
 
-export const MARKETING_POLICY=REPORT_REVIEW_POLICY;
-const compactPolicy=policy=>[COMPACT_MARKETING_POLICY,REPORT_REVIEW_POLICY].includes(policy);
+export const MARKETING_POLICY=SCHEMA_REPORT_REVIEW_POLICY;
+const compactPolicy=policy=>policy===COMPACT_MARKETING_POLICY||reportReviewPolicy(policy);
 const iso=(now=Date.now())=>new Date(now).toISOString();
 const HOUR=3600000,DAY=24*HOUR;
 const normalize=s=>plainText(s).replace(/\s+/g,' ').trim();
@@ -141,12 +141,16 @@ export async function captureMarketingContext(env,id,fetcher=publishedGuideFetch
  let existing_review=null,existing_review_unavailable=null;
  try{existing_review=await captureWelcomeReview(env,slot,fetcher,now);}catch{existing_review_unavailable='The welcome source or registered artwork could not be verified. No welcome review was started.';}
  let report_review=null,report_review_unavailable=null;
- if(!existing_review&&row.policy===REPORT_REVIEW_POLICY)try{report_review=await captureReportReview(env,now);}catch{report_review_unavailable='The dated company report could not be verified. No report review was started.';}
+ if(!existing_review&&reportReviewPolicy(row.policy))try{
+  const target=await captureReportReview(env,now);
+  if(target&&row.policy===SCHEMA_REPORT_REVIEW_POLICY)target.request=await reportReviewRequest(target,JSON.parse(row.models));
+  report_review=target;
+ }catch{report_review_unavailable='The dated company report or its review configuration could not be verified. No report review was started.';}
  const measurement=await publicMeasurement(env,now,7);
  const metrics=(await env.DB.prepare("SELECT event,dimension,SUM(count) count FROM analytics_public_daily WHERE day>=? AND day<? AND event IN ('campaign_page_view','campaign_account_created','campaign_document_prepared') GROUP BY event,dimension LIMIT 40").bind(measurement.from,measurement.to).all()).results.filter(r=>campaignById(r.dimension));
  const performance=await performanceContext(env,now);
  const context={observed_at:iso(now),sources,candidates,unavailable,opportunity_scan:{ready:opportunities.sources.length,held:opportunities.held.length,scope:opportunities.scope},slot,existing_review,existing_review_unavailable,queue:queue.map(({text,...q})=>({...q,text:text.slice(0,400)})),metrics,measurement,performance,measurement_limit:measurement.limitation+' Only complete UTC days after the new collection boundary are included. Earlier mixed counts are excluded. Empty data is not proof of a failed campaign. Provider observations are recorded separately; no direct platform analytics feed is connected.'};
- if(row.policy===REPORT_REVIEW_POLICY)Object.assign(context,{report_review,report_review_unavailable});
+ if(reportReviewPolicy(row.policy))Object.assign(context,{report_review,report_review_unavailable});
  if(compactPolicy(row.policy)){
   const input=JSON.stringify(compactPlannerContext(context));
   context.planner_input={version:PLANNER_INPUT_VERSION,sha256:await digest(input),characters:input.length,legacy_characters:JSON.stringify(legacyPlannerContext(context)).length};
@@ -154,7 +158,7 @@ export async function captureMarketingContext(env,id,fetcher=publishedGuideFetch
  await env.DB.prepare("UPDATE marketing_agent_runs SET state='running',context=?,brief_id=? WHERE id=? AND state='queued'").bind(JSON.stringify(context),existing_review?.id||report_review?.id||null,id).run();
  return context;
 }
-export async function marketingModelStep(env,id,name,role,prompt,input,validate,caller=callResearchModel,now=Date.now()){
+export async function marketingModelStep(env,id,name,role,prompt,input,validate,caller=callResearchModel,now=Date.now(),responseFormat=null){
  const previous=await env.DB.prepare('SELECT state,output FROM marketing_agent_steps WHERE run_id=? AND name=?').bind(id,name).first();
  if(previous?.state==='completed')return JSON.parse(previous.output);
  if(previous)throw Error('Prior model call has an unresolved or failed outcome. No automatic retry.');
@@ -174,7 +178,7 @@ export async function marketingModelStep(env,id,name,role,prompt,input,validate,
   return row?.state==='completed'&&row.output===encoded&&row.usage===usage;
  };
  try{
-  response=await caller(env,models[role],prompt,input);phase='validation';output=validate(response.value);
+  response=await caller(env,models[role],prompt,input,responseFormat);phase='validation';output=validate(response.value);
   encoded=JSON.stringify(output);usage=JSON.stringify(boundedResearchUsage(response.usage));phase='retention';
   await env.DB.prepare("UPDATE marketing_agent_steps SET state='completed',output=?,usage=? WHERE run_id=? AND name=? AND state='calling'").bind(encoded,usage,id,name).run();
   if(!await retained())throw Error('Result retention is unconfirmed.');
@@ -187,7 +191,8 @@ export async function marketingModelStep(env,id,name,role,prompt,input,validate,
   const failure_stage=completion?.failure_stage||(phase==='call'?'provider_unconfirmed':phase==='validation'?'contract_validation':'retention_unconfirmed');
   const messages={provider_unconfirmed:'The model service outcome is unconfirmed.',incomplete_response:'The provider reported an incomplete response.',invalid_json:'The received response was not valid JSON.',invalid_response:'The provider response was missing or invalid.',contract_validation:'The received result failed the required evidence structure.',retention_unconfirmed:'The validated result could not be confirmed as saved.'};
   // No raw provider error, rejected text or reasoning enters these diagnostics.
-  const failure={failure:messages[failure_stage]+' No automatic retry.',failure_stage,...(completion?{completion}:{})};
+  const contract=phase==='validation'&&name==='review-report'?reportReviewFailure(error):null;
+  const failure={failure:messages[failure_stage]+' No automatic retry.',failure_stage,...(completion?{completion}:{}),...(contract?{contract}:{})};
   try{await env.DB.prepare("UPDATE marketing_agent_steps SET state='failed',output=?,usage=? WHERE run_id=? AND name=? AND state='calling'").bind(JSON.stringify(failure),JSON.stringify(boundedResearchUsage(response?.usage||completion?.usage)),id,name).run();}catch{/* Retain calling/unknown state and its reservation when storage is unavailable. */}
   throw Error('Model call or evidence validation failed.');
  }
@@ -210,15 +215,15 @@ export async function prepareExistingMarketing(env,id,now=Date.now()){
 }
 export async function prepareReportMarketing(env,id,now=Date.now()){
  const run=await runRow(env,id);
- if(run.state!=='running'||run.policy!==REPORT_REVIEW_POLICY||!await enabled(env))throw Error('Report review paused or no longer active.');
+ if(run.state!=='running'||!reportReviewPolicy(run.policy)||!await enabled(env))throw Error('Report review paused or no longer active.');
  return prepareReportReview(env,run,now);
 }
 export async function critiqueReportMarketing(env,id,caller,now=Date.now()){
  const run=await runRow(env,id),models=JSON.parse(run.models),target=JSON.parse(run.context).report_review;
- if(!target||run.policy!==REPORT_REVIEW_POLICY||models.writer.model===models.reviewer.model)throw Error('Report target missing or reviewer is not independent.');
+ if(!target||!reportReviewPolicy(run.policy)||models.writer.model===models.reviewer.model)throw Error('Report target missing or reviewer is not independent.');
+ const request=run.policy===SCHEMA_REPORT_REVIEW_POLICY?await checkedReportReviewRequest(target,models):null;
  await recheckReportReview(env,run,now);
- const input={destination:'LinkedIn · Sponsor Intel (146710167)',scope:target.scope,units:target.units,sources:target.evidence.sources,report_url:'https://sponsorintel.london/insights/uk-sponsorship-jobs-report'};
- return marketingModelStep(env,id,'review-report','reviewer',REPORT_REVIEW_PROMPT,input,x=>validateReportReview(x,target),caller,now);
+ return marketingModelStep(env,id,'review-report','reviewer',REPORT_REVIEW_PROMPT,reportReviewInput(target),x=>validateReportReview(x,target),caller,now,request?.response_format||null);
 }
 export async function concludeReportMarketing(env,id,review,now=Date.now()){
  const run=await runRow(env,id);if(!['running','queued'].includes(run.state))return {state:run.state};

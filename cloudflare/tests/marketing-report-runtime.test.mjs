@@ -11,7 +11,7 @@ test('actual MarketingWorkflow/D1 reviews a fictional unchanged company report o
  import {publishInsight,insightSocialCopy} from './worker/insights.js';
  import {createBrief} from './worker/marketing.js';
  export class ReportFixture extends MarketingWorkflow {constructor(ctx,env){super(ctx,{...env,AI:{run:async(model,request)=>{
-  const input=JSON.parse(request.messages[1].content);await env.DB.prepare('INSERT INTO fictional_calls(model,input) VALUES(?,?)').bind(model,JSON.stringify(input)).run();
+  const input=JSON.parse(request.messages[1].content);await env.DB.prepare('INSERT INTO fictional_calls(model,input,format) VALUES(?,?,?)').bind(model,JSON.stringify(input),JSON.stringify(request.response_format)).run();
   return {response:{checks:input.units.map(u=>({index:u.index,supported:true,reason:'Fictional runtime response tests execution, not model judgement.',evidence:u.claim?input.sources.map(s=>({source_id:s.id,quote:s.excerpt})):[]})),publishable:true,reason:'Fictional acceptance tests retained receipts and does not authorise a real post.'},usage:{total_tokens:1}};
  }}});}}
  export default {async fetch(r,env){const path=new URL(r.url).pathname,now=Date.now();
@@ -29,7 +29,7 @@ test('actual MarketingWorkflow/D1 reviews a fictional unchanged company report o
  try{
   const db=await mf.getD1Database('DB'),schema=migrationSchema();
   for(const type of ['table','index','view','trigger']){const statements=schema.objects.filter(x=>x.type===type).map(x=>db.prepare(x.sql));if(statements.length)await db.batch(statements);}
-  await db.batch([db.prepare("INSERT INTO business_controls(singleton,updated_at) VALUES(1,'2026-10-18')"),db.prepare("INSERT INTO marketing_agent_controls(singleton,updated_at) VALUES(1,'2026-10-18')"),db.prepare('CREATE TABLE fictional_calls(model TEXT,input TEXT)')]);
+  await db.batch([db.prepare("INSERT INTO business_controls(singleton,updated_at) VALUES(1,'2026-10-18')"),db.prepare("INSERT INTO marketing_agent_controls(singleton,updated_at) VALUES(1,'2026-10-18')"),db.prepare('CREATE TABLE fictional_calls(model TEXT,input TEXT,format TEXT)')]);
   const start=await mf.dispatchFetch('http://localhost/start');assert.equal(start.status,200,await start.clone().text());
   let state;for(let i=0;i<200;i++){state=await(await mf.dispatchFetch('http://localhost/status')).json();if(['complete','errored','terminated'].includes(state.status))break;await new Promise(r=>setTimeout(r,100));}
   assert.equal(state?.status,'complete',JSON.stringify(state));
@@ -39,6 +39,8 @@ test('actual MarketingWorkflow/D1 reviews a fictional unchanged company report o
   assert.equal((await db.prepare("SELECT state FROM marketing_briefs WHERE destination='linkedin-personal'").first()).state,'proposed');
   assert.equal((await db.prepare('SELECT COUNT(*) n FROM marketing_receipts').first()).n,0);assert.equal((await db.prepare('SELECT runs,calls FROM agent_research_budget').first()).calls,1);
   const calls=(await db.prepare('SELECT * FROM fictional_calls').all()).results;assert.equal(calls.length,1);assert.match(calls[0].model,/llama/);assert.equal(JSON.parse(calls[0].input).units.length,2);assert.equal(outbound,0);
+  const captured=JSON.parse((await db.prepare('SELECT context FROM marketing_agent_runs').first()).context).report_review;
+  assert.equal(JSON.parse(calls[0].format).type,'json_schema');assert.deepEqual(JSON.parse(calls[0].format),captured.request.response_format);
   const replay=await(await mf.dispatchFetch('http://localhost/start')).json();assert.equal(replay.reused,true);assert.equal((await db.prepare('SELECT COUNT(*) n FROM fictional_calls').first()).n,1);
  }finally{await mf.dispose();}
 });

@@ -5,6 +5,8 @@ import {INSIGHT_SLUG,insightsResponse,insightSocialCopy} from './insights.js';
 import {decideBrief} from './marketing.js';
 
 export const REPORT_REVIEW_POLICY='sourced-guides-company-report-v7';
+export const SCHEMA_REPORT_REVIEW_POLICY='sourced-guides-report-schema-v8';
+export const reportReviewPolicy=policy=>[REPORT_REVIEW_POLICY,SCHEMA_REPORT_REVIEW_POLICY].includes(policy);
 const URL='https://sponsorintel.london/insights/'+INSIGHT_SLUG,HOUR=3600000,DAY=24*HOUR;
 const iso=now=>new Date(now).toISOString();
 const normalize=text=>plainText(text).replace(/\s+/g,' ').trim();
@@ -68,18 +70,45 @@ export async function recheckReportReview(env,run,now){
  if(!current||Date.parse(current.expires_at)<=now||now-Date.parse(target.content.sources[0].checked_at)>6*HOUR||!await env.DB.prepare('SELECT 1 ok WHERE '+guard.sql).bind(...guard.values).first()||!sameEvidence(target.evidence,await reportEvidence(env,target.evidence.id,now)))throw Error('Report, queue or review target changed or expired.');
  return current;
 }
-const object=(v,keys)=>{if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!keys.includes(k)))throw Error('Invalid report review.');};
-const reason=(v,max)=>{if(typeof v!=='string'||v.trim().length<10||v.length>max)throw Error('Specific review reasons required.');};
+// Pin only this review's request; legacy v7 runs retain JSON-object behavior.
+// Schema constrains structure, not factual support. Server checks still apply.
+export const reportReviewInput=target=>({destination:'LinkedIn · Sponsor Intel (146710167)',scope:target.scope,units:target.units,sources:target.evidence.sources,report_url:URL});
+export function reportReviewFormat(target){
+ const text=max=>({type:'string',minLength:10,maxLength:max});
+ return {type:'json_schema',json_schema:{type:'object',additionalProperties:false,properties:{
+  checks:{type:'array',minItems:target.units.length,maxItems:target.units.length,items:{type:'object',additionalProperties:false,properties:{
+   index:{type:'integer',enum:target.units.map(u=>u.index)},supported:{type:'boolean'},reason:text(600),
+   evidence:{type:'array',maxItems:8,items:{type:'object',additionalProperties:false,properties:{source_id:{type:'string',enum:target.evidence.sources.map(s=>s.id)},quote:text(1600)},required:['source_id','quote']}},
+  },required:['index','supported','reason','evidence']}},
+  publishable:{type:'boolean'},reason:text(700),
+ },required:['checks','publishable','reason']}};
+}
+export async function reportReviewRequest(target,models){
+ if(models.reviewer?.provider!=='cloudflare'||models.reviewer.model!=='@cf/meta/llama-3.3-70b-instruct-fp8-fast')throw Error('Report schema requires the reviewed Cloudflare critic.');
+ const response_format=reportReviewFormat(target);
+ return {version:1,reviewer:models.reviewer,max_tokens:8192,temperature:0.1,
+  prompt_sha256:await digest(REPORT_REVIEW_PROMPT),input_sha256:await digest(JSON.stringify(reportReviewInput(target))),
+  format_sha256:await digest(JSON.stringify(response_format)),response_format};
+}
+export async function checkedReportReviewRequest(target,models){
+ if(JSON.stringify(target.request)!==JSON.stringify(await reportReviewRequest(target,models)))throw Error('Pinned report request changed. No model call was made.');
+ return target.request;
+}
+const failures=new WeakMap();
+export const reportReviewFailure=error=>failures.get(error)||null;
+const invalid=code=>{const error=Error('Invalid report review.');failures.set(error,{version:1,code});throw error;};
+const object=(v,keys,code)=>{if(!v||typeof v!=='object'||Array.isArray(v)||Object.keys(v).some(k=>!keys.includes(k))||keys.some(k=>!Object.hasOwn(v,k)))invalid(code);};
+const reason=(v,max,code)=>{if(typeof v!=='string'||v.trim().length<10||v.length>max)invalid(code);};
 export function validateReportReview(value,target){
- object(value,['checks','publishable','reason']);reason(value.reason,700);
- if(typeof value.publishable!=='boolean'||!Array.isArray(value.checks)||value.checks.length!==target.units.length)throw Error('Review every report unit.');
+ object(value,['checks','publishable','reason'],'report_shape');reason(value.reason,700,'report_reason');
+ if(typeof value.publishable!=='boolean'||!Array.isArray(value.checks)||value.checks.length!==target.units.length)invalid('report_coverage');
  const seen=new Set();
  for(const c of value.checks){
-  object(c,['index','supported','reason','evidence']);reason(c.reason,600);
-  if(!Number.isInteger(c.index)||!target.units[c.index]||seen.has(c.index)||typeof c.supported!=='boolean'||!Array.isArray(c.evidence)||c.evidence.length>8)throw Error('Invalid report unit.');
+  object(c,['index','supported','reason','evidence'],'unit_shape');reason(c.reason,600,'unit_reason');
+  if(!Number.isInteger(c.index)||!target.units[c.index]||seen.has(c.index)||typeof c.supported!=='boolean'||!Array.isArray(c.evidence)||c.evidence.length>8)invalid('unit_coverage');
   seen.add(c.index);
-  if(c.supported&&target.units[c.index].claim&&!c.evidence.length)throw Error('Accepted claims need quoted evidence.');
-  for(const e of c.evidence){object(e,['source_id','quote']);if(typeof e.quote!=='string'||e.quote.length<10||e.quote.length>1600||!target.evidence.sources.find(s=>s.id===e.source_id)?.excerpt.includes(e.quote))throw Error('Report quote is not in the captured source.');}
+  if(c.supported&&target.units[c.index].claim&&!c.evidence.length)invalid('claim_evidence');
+  for(const e of c.evidence){object(e,['source_id','quote'],'evidence_shape');if(typeof e.quote!=='string'||e.quote.length<10||e.quote.length>1600||!target.evidence.sources.find(s=>s.id===e.source_id)?.excerpt.includes(e.quote))invalid('evidence_quote');}
  }
  return value;
 }
