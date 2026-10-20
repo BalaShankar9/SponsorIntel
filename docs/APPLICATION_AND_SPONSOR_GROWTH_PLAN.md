@@ -1,6 +1,6 @@
 # Applications, real businesses and sponsorship coverage
 
-Owner-requested additions to the active Sponsor Intel objective, **20 October 2026**. These are implementation requirements, not delivered features. Codex leads implementation within the existing services, owner controls and budgets. Read `DAILY_OPERATOR.md` and the current checkpoint before execution.
+Owner-requested additions to the active Sponsor Intel objective, **20 October 2026**. These are implementation requirements; dated acceptance below identifies the first delivered slice. Codex leads implementation within the existing services, owner controls and budgets. Read `DAILY_OPERATOR.md` and the current checkpoint before execution.
 
 The owner wants an autonomous tool that applies to all jobs a user chooses, real businesses behind sponsor-licence names, and substantially more genuine sponsorship opportunities. This request authorises building these capabilities. It does not supply any customer's answers, documents, consent to particular destinations, or authority to submit an application today. Existing restrictions on operator application submission remain until a specific applicant authorises a supported batch.
 
@@ -15,6 +15,8 @@ Each relationship needs its primary evidence URL, supporting passage or identifi
 First vertical slice: review one current employer with an ambiguous trading/legal name, implement the relationship and correction model, and display its evidence on sponsor and job pages. Then extend to held opportunities such as Bangor where a plausible brand/group match currently fails to establish the employing sponsor. Do not resolve these by similarity just to grow counts.
 
 Acceptance: same-name companies remain distinct; one brand can map to several employers; one legal entity can have several brands/locations; conflicting evidence holds a link; removed/stale register records stop appearing current. Verify the public page and the next genuine refresh, not just fixture tests.
+
+**20 October first slice delivered (2.88):** the append-only business identity desk, public sponsor/job cards, freshness/expiry/withdrawal rules and business-name search are live. One Numan relationship is recorded through the owner form with CQC evidence and agent-assisted attribution. This is not comprehensive mapping or proof of a specific vacancy's legal employer. The current register name already contains Numan, so unique-alias lookup is proven in isolated tests rather than by that pilot. Next genuine register-refresh acceptance and broader ambiguous-brand reviews remain open. See `BUSINESS_IDENTITIES.md` and `cloudflare/tests/evidence/business-identities-2026-10-20.json`.
 
 ## 2. More genuine sponsorship opportunities
 
@@ -51,4 +53,4 @@ Measure prepared, awaiting input, authorised, attempted, provider-confirmed, unc
 
 ## Priority and continuing ownership
 
-Reliability, private-work protection and current evidence failures retain priority. The next product slice is the business-identity relationship/approval model; sponsorship discovery continues alongside it within existing limits. The application batch foundation follows with submission disabled until its applicant-consent and provider gates pass. Maintain a dated acceptance receipt for every slice and update `OPERATOR_CHECKPOINT.md`; do not create overlapping schedules or quietly widen budgets. These additions extend the active objective and remain open until the stated outcomes are verified.
+Reliability, private-work protection and current evidence failures retain priority. The first business-identity relationship/approval slice is live. Next, observe its genuine register refresh, expand supported relationships and continue balanced sponsorship discovery within existing limits. Build the application batch foundation with submission disabled until its applicant-consent and provider gates pass. Maintain a dated acceptance receipt for every slice and update `OPERATOR_CHECKPOINT.md`; do not create overlapping schedules or quietly widen budgets. These additions extend the active objective and remain open until the stated outcomes are verified.
