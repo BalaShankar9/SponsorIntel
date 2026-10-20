@@ -2,7 +2,7 @@
 
 Owner-requested scope, 20 October 2026: turn current sponsorship adverts into practical learning directions, with relevant courses/resources on each role and a view of recurring skills across the selected catalogue. Build on Application Studio's existing learning-plan notes. This is a preparation tool, not an eligibility assessment or course marketplace.
 
-## First slice (2.90)
+## First slice (2.90, live)
 
 `/skills` reads current offered/conditional adverts with a nonempty sponsorship excerpt. It excludes expired/stale/inactive roles, held or released-before-refresh reviews, unapproved sources and paused sources. Filters describe employer sectors, not occupation or immigration eligibility. A single read-time snapshot uses the common job freshness rule and a defensive review guard. It is bounded to 1,000 rows and four million description characters, with database-side suppression of oversized descriptions. Oversized selections return unavailable, never a partial ranking. No source fetch, AI call, CV read, new schedule or database migration is added.
 
@@ -24,4 +24,4 @@ Users choose topics and copy a plain-text plan containing prerequisites, links, 
 - Add applicant-chosen saved goals and evidence of completed practice; keep inferred skill gaps separate from applicant facts. Existing AI learning plans remain a separate consented tool.
 - Measure resource usefulness and applicant-reported outcomes separately from page views, course clicks, plan copies or course completion. No invented outcome/ranking/placement claim.
 
-Validation and live acceptance belong in `cloudflare/RELEASE-2.90.md` and its dated receipt. Respect existing budgets, source approval and owner holds. The initial resource-review deadline is a documented operator action; an automatic course-review agent is not connected.
+Live publication was verified on 20 October 2026; the next genuine scheduled observations remain separate. Validation and live acceptance are recorded in `cloudflare/RELEASE-2.90.md` and its dated receipt. Respect existing budgets, source approval and owner holds. The initial resource-review deadline is a documented operator action; an automatic course-review agent is not connected.
