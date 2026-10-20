@@ -1,5 +1,9 @@
 # King's Lynn Academy source review
 
+## Original review — 20 October 2026
+
+The exact Drama DfE page now explicitly displays **EXPIRED on 20 October 2026**, with closing time **13:03 local time**, and no application link. This supersedes the formerly displayed 21 October deadline; it does not establish why the employer closed the role. The existing hold remains revision 4, overdue since 20 October 10:00 BST. Owner sign-in expired, so **no new decision was saved or hold released**. Recheck the current original/revision before appending the review after sign-in. Science Technician and Senior Exam Invigilator were not rechecked today. See `cloudflare/tests/evidence/operations-resume-2026-10-20.json` and `OPERATOR_CHECKPOINT.md`.
+
 ## Latest original review — 17 October 23:17 UTC (18 October UK)
 
 All three advert holds remain. Fresh exact-page checks now show:
