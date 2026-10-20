@@ -1,5 +1,10 @@
 # Vets for Pets — Bangor nursing candidate
 
+## 20 October 2026 — current nurse original rechecked, admission still held
+
+Employer requisition 41178 was rechecked at 14:27:04 UTC: permanent part-time nursing, 26 hours, one in four Saturdays, up to £30,000 pro rata, same positive sponsorship quotation and Apply link. No original posting/closing time is provided. The LinkedIn post, form questions and 18 October corporate records were not freshly recertified. Agent-assisted **held r3** saved 14:35:26.191 UTC; next review 23 October noon BST targets exact employing-entity/licence scope, source rights and a bounded complete-source adapter. The group/brand does not prove coverage. No public role, admission, contact or application. Receipt: `cloudflare/tests/evidence/source-reviews-2026-10-20.json`. Earlier sections remain dated history.
+
+
 Reviewed 18 October 2026, 01:28–01:33 UTC. **Private discovery only; source not configured or approved.**
 
 ## Provenance and current evidence

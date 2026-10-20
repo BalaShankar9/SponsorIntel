@@ -1,7 +1,11 @@
 # Sponsor Intel: build and launch roadmap
 
 
-## Current checkpoint — 8 October 2026
+## Active priorities — 20 October 2026
+
+The owner added an opt-in batch application agent, real-business identity behind legal sponsor names, and broader genuine sponsorship coverage. The implementation stages, applicant authorisation, evidence relationships, sourcing targets and acceptance gates are maintained in [Applications, real businesses and sponsorship coverage](APPLICATION_AND_SPONSOR_GROWTH_PLAN.md). They extend the active objective; none is claimed delivered by this roadmap update. Current live state belongs in [the operator checkpoint](OPERATOR_CHECKPOINT.md). Prior release observations below are historical.
+
+## Historical checkpoint — 8 October 2026
 
 Release 2.23 enforces known source deadlines on current search/counts, sitemap, employer briefs, business snapshots and live research selection between feed refreshes. Seventy-five stored university adverts gained verified deadlines without changing observation timestamps; expired links retain a reference page, noindex and paused preparation. The collection remains 32 sources and 887 observed current roles. The two newest campus feeds added 41 roles without explicit sponsorship offers; licence context stays separate. Genuine scheduled business/source runs have been observed, but scheduled execution of the two new campuses, successful Google reporting and real application-model comparisons remain unverified. Use AUTONOMY_ACCEPTANCE.md and SOURCE_COVERAGE.md for current acceptance; older release checkpoints below are historical.
 

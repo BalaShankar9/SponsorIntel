@@ -1,5 +1,10 @@
 # New City College — first scheduled publication verified
 
+## 20 October 2026 — Plumbing hold updated through owner UI
+
+Fresh DfE and its designated employer route checked at 14:38–14:39 UTC still disagree: DfE closes 1 November 23:59 GMT, whereas exact R003642 explicitly says closed and retains 4 October. DfE also refuses sponsorship and CVs. Agent-assisted **held r2** saved 14:39:37.963 UTC, follow-up 23 October 10:00 BST. Stable job 60a4199207ee8422ffe35c80 remains inactive; old review and source state are unchanged. No release, source refresh or application. Receipt: `cloudflare/tests/evidence/source-reviews-2026-10-20.json`. Earlier sections below retain historical counts/dates.
+
+
 Latest verified **18 October 2026, 00:37 UTC**. Original scheduled source instance `scheduled-1792283453000` completed in D1 at **00:33:36.933 UTC**, independently confirmed by Cloudflare at **00:33:37.193**. Its complete 13-advert college collection made **17 actual feed requests inside the unchanged 24-request reservation**. **Twelve roles are active; Plumbing remains held/inactive**. Carpentry is the single conditional-sponsorship role and uses the correct Rainham campus. No forced import. Receipt: `cloudflare/tests/evidence/college-first-publication-2026-10-18.json`.
 
 [Published Carpentry](https://sponsorintel.london/jobs/6e7ca74036beafcb0431c567) and the fresh DfE original were browser-checked. The register link, sponsorship words, Rainham postcode, 1 November deadline and no-CV instruction remain visible. The retained automatic lead now has agent-assisted **revision 4 linked**, saved **00:36:36.310 UTC**, with one audit event and all prior revisions preserved. All eleven saved job-proof fields independently match current production. Linking did not publish another role or prove causal discovery. The DfE original replaces the previous onward-portal value only as the exact published-job link; prior portal/reference and distinct posting-date evidence remain in history. Original posting time stays unknown.

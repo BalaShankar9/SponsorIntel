@@ -1,5 +1,10 @@
 # Sussex Road school source review
 
+## 20 October 2026 — current advert explicitly refuses sponsorship
+
+Fresh exact DfE original at 14:26:06 UTC now states **Visas cannot be sponsored** in the visa field and body; it remains open until 21 October 09:00 BST. This supersedes the earlier positive wording for the current decision, without inventing the edit time or an employer-wide refusal. Authenticated agent-assisted **rejected r4** saved 14:34:13.678 UTC. Earlier three revisions and dated licence ambiguity remain. No source/public role/application was added. See `cloudflare/tests/evidence/source-reviews-2026-10-20.json`. The earlier sections below are historical.
+
+
 Agent-assisted review, 13 October 2026. Existing automatic lead `f2e0f2b1-d4cc-40f4-9bf7-35f037e7b329` is **held**, revision 2, saved through the authenticated owner desk at **15:14:26.573 UTC**. Its original automatic revision remains unchanged. There is no configured source or public Sussex Road job. Recheck by **15 October 14:00 BST**, before the advert's closing date.
 
 ## Current original and application route

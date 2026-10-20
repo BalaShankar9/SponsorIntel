@@ -1,5 +1,10 @@
 # King's Lynn Academy source review
 
+## 20 October 2026 14:40 UTC — Drama expiry decision saved
+
+After owner sign-in, the exact DfE original was rechecked at 14:39:39 UTC: explicitly expired on 20 October, closing 13:03 BST, no Apply link. Agent-assisted **held r5** saved at 14:40:34.330 UTC, follow-up 24 October 10:00 BST. The earlier 21 October deadline and employer-route observations remain historical; no reason for closure is inferred. Four earlier Drama decisions remain unchanged, and all four school/college review targets remain inactive. No hold release or refresh. Receipt: `cloudflare/tests/evidence/source-reviews-2026-10-20.json`. The earlier sign-in-blocked paragraph below describes the prior observation, not current access.
+
+
 ## Original review — 20 October 2026
 
 The exact Drama DfE page now explicitly displays **EXPIRED on 20 October 2026**, with closing time **13:03 local time**, and no application link. This supersedes the formerly displayed 21 October deadline; it does not establish why the employer closed the role. The existing hold remains revision 4, overdue since 20 October 10:00 BST. Owner sign-in expired, so **no new decision was saved or hold released**. Recheck the current original/revision before appending the review after sign-in. Science Technician and Senior Exam Invigilator were not rechecked today. See `cloudflare/tests/evidence/operations-resume-2026-10-20.json` and `OPERATOR_CHECKPOINT.md`.

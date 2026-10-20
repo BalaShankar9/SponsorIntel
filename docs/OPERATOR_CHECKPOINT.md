@@ -2,15 +2,15 @@
 
 Updated **20 October 2026** after the owner's explicit Sponsor Intel go-ahead and confirmation that they clicked Goal Resume. The Goal is **active** and `sponsor-intel-daily-improvement` is **ACTIVE** at the unchanged 10:00 Europe/London schedule. The four other project automations remain **PAUSED**. This resumes Sponsor Intel only; it does not clear source, model, evidence or publishing holds.
 
-Read `DAILY_OPERATOR.md` in full first. Current receipts: `cloudflare/tests/evidence/operations-resume-2026-10-20.json` and `cloudflare/tests/evidence/marketing-report-schema-2026-10-20.json`; narrative: `OPERATIONS-2026-10-20.md`. Full prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-18.md`, for targeted history only. Historical states are not current permission.
+Read `DAILY_OPERATOR.md` in full first. Current receipts: `cloudflare/tests/evidence/operations-resume-2026-10-20.json`, `cloudflare/tests/evidence/marketing-report-schema-2026-10-20.json` and `cloudflare/tests/evidence/source-reviews-2026-10-20.json`; narrative: `OPERATIONS-2026-10-20.md`. Full prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-18.md`, for targeted history only. Historical states are not current permission.
 
 ## Access and next actions
 
-The website owner session expired. Admin refresh returned **The owner account is required** while the header retained cached account information; reload confirmed signed-out state. The existing Chrome tab is at `https://sponsorintel.london/signin`, awaiting owner sign-in. No reset, direct database write or authentication bypass was attempted. No new review/assessment was saved this turn.
+Owner sign-in is restored and the protected Admin dashboard works. Five agent-assisted decisions were saved through the UI and independently read back: three discovery reviews and two advert holds. Earlier revisions remain unchanged; no direct database-write bypass. Both review queues now have zero overdue items at 14:41 UTC; five discovery leads still need evidence and four adverts remain held.
 
-1. After sign-in, reread current revisions/controls and reconcile the two overdue advert reviews below. Recheck originals if observations are no longer fresh; do not simply move dates.
-2. Finish retained fictional application assessments without extra model calls. Four saved before the pause are now reconciled.
-3. Prioritise Whitchurch, Sussex Road and Bangor's overdue discovery blockers before new leads. The 12:46 snapshot had zero of five new slots used; recheck first.
+1. **Owner scope addition:** build opt-in applicant-authorised application batches, verified operating-business/trading-name relationships to exact sponsor records, and broader genuine sponsorship coverage. Follow `APPLICATION_AND_SPONSOR_GROWTH_PLAN.md`, now linked from the standing contract/roadmap and saved in the existing daily automation. Its identity, active status, schedule, target and other controls were preserved and read back. The Goal remains active; its displayed objective text was not changed. These are open build requirements, not live submission capability or permission to send applications today.
+2. Complete retained fictional application assessments without extra model calls. Four saved before the pause are reconciled; today's work added no assessment.
+3. Prioritise one evidence-backed business-identity vertical slice and further balanced sourcing. The live queue has zero new leads of five used at 14:40 UTC; recheck before scouting. Resolve precise admission blockers rather than matching a brand to a licence by similar names.
 4. Observe a genuine future eligible **v8** company-report attempt after 2.87; structure/execution, review quality and native delivery remain separate gates. Do not retry the held v7 report. Today's Monzo brief is also held; its earlier reviewed run result cannot clear that hold.
 
 ## Runtime, recovery and security
@@ -19,7 +19,7 @@ The website owner session expired. Admin refresh returned **The owner account is
 - Read-only recovery **13:36:16.644 UTC** passes: exact production D1, current recovery point, **41 migrations / 172 objects**, matching hashes, no missing/extra/changed objects. No customer export/restore or retention-window proof. Do not repeat a successful same-day check for documentation edits.
 - Read `cloudflare/RELEASE-2.86.md` and `SOURCE_CONTROL_REVIEWS.md` before source decisions. The inherited PortmanDentex pause remains. Rollback reference **2.86 Worker 587948e1-3b0e-4a3a-bb64-ee6fe5a9ac0a** retains source controls, but cannot complete the new v8 report path. Inspect original active workflow state and prefer forward repair; no automatic rollback/history removal or retry of consumed attempts.
 - Current validation: **713 tests**, TypeScript/build/18 prerenders, browser budgets and dry run pass on pinned Node 24.19.0. Fourteen operational groups and four report-history groups match across deployment. Current dependency audit: zero high/critical, three known moderate Mammoth/argparse/sprintf-js findings. Official GHSA-hp3w-g68c-fv3c still has no inspected patched version. Npm's suggested old Mammoth downgrade is not accepted. No install/dependency-graph change.
-- **5.2 GiB** free before validation; recheck before runtime/build/install. Preserve private local-state archive and unrelated `outputs/`.
+- **3.0 GiB** free at 14:24 UTC (5.2 GiB before earlier validation); recheck before runtime/build/install. Preserve private local-state archive and unrelated `outputs/`.
 - Runtime-head Linux checks **118678547592 / 118678504934** billing-blocked before execution; original annotations inspected. GitGuardian **118678536045** passed on that exact head. Final documentation-head results belong in open PR 1; no merge, rerun, purchase or limit increase.
 
 ## Actual cloud execution and live catalogue
@@ -34,20 +34,26 @@ The website owner session expired. Admin refresh returned **The owner account is
 
 Release 2.84's known-link selection path is now observed on **two genuine days**. Original **business-497880** (19 October) and **business-497904** (20 October) independently report Cloudflare completion/success. Original scout receipts record `checked_advert_links_already_known`: one search request inside four reservations, **zero original inspections and zero retained leads**. Separate skip receipts retain prior observed/recorded dates. This closes the known-link skip-path observation, not broader discovery/new-school admission. See `cloudflare/RELEASE-2.84.md` and today's receipt.
 
-Private queue: **25 retained / seven unresolved / three overdue / zero changed links / three current linked jobs**. No new lead/public job this continuation.
+Private queue at **14:40 UTC**: **25 retained / five unresolved / zero overdue / zero changed links / three current linked jobs**. Exactly three new review revisions, zero new leads. All nine prior revisions for the three reviewed leads remain unchanged; configured employer-source states and review timestamps match before/after.
 
-All four advert holds remain unchanged. Fresh browser findings during 20 October 13:35–13:45 UTC:
+Authenticated saved discovery decisions:
 
-| Advert | Original evidence now | Retained owner state |
+- **Whitchurch r5, rejected**, saved **14:32:41.506 UTC**. Exact DfE original now explicitly expired on 19 October and gives 11:43 BST, replacing its former noon deadline. The old positive quote remains as historical evidence, not a current opening. Prior identity/pack findings remain dated; no completed application route is inferred.
+- **Sussex Road r4, rejected as a sponsorship lead**, saved **14:34:13.678 UTC**. Both current visa field and body now say visas cannot be sponsored, contrary to the earlier positive quote. The advert is still open until 21 October 09:00 BST; actual wording-change time is unknown. No school-wide refusal or absence of a licence is inferred.
+- **Bangor r3, held**, saved **14:35:26.191 UTC**, follow-up **23 October noon BST**. Exact nursing original 41178 still has positive wording and an Apply link; exact legal employer/licence coverage, reuse and complete-source adapter remain unresolved. LinkedIn post, application questions and dated corporate evidence were not freshly recertified. The new reminder follows a real original-advert review and does not clear the hold.
+
+Four advert holds remain. Two evidence-backed decisions saved after renewed original checks:
+
+| Advert | Current original evidence | Saved owner state |
 | --- | --- | --- |
-| New City College Plumbing R003642 | DfE still says 1 November 23:59; exact onward employer page explicitly closed, deadline 4 October. DfE refuses sponsorship and CVs. | Held r1, overdue 20 October 10:00 BST; no new save. |
-| King's Lynn Teacher of Drama | DfE explicitly **EXPIRED on 20 October**, closing **13:03 local time**, no application link. Former 21 October date is historical. | Held r4, overdue 20 October 10:00 BST; no release/new save. |
-| Science Technician | Last original check 17 October: expired on 15 October. Not rechecked today. | Held r3, due 24 October 10:00 BST. |
-| Senior Exam Invigilator | Last original check 17 October: no exact employer match, not formal closure. Not rechecked today. | Held r3, due 21 October 10:00 BST. |
+| New City College Plumbing R003642 | DfE 1 November 23:59 conflicts with its exact employer route explicitly closed, 4 October deadline. DfE refuses sponsorship and CVs. Paired recheck 14:38–14:39 UTC. | Held **r2**, saved **14:39:37.963 UTC**, next **23 October 10:00 BST**. |
+| King's Lynn Teacher of Drama | DfE explicitly **expired on 20 October**, closing **13:03 BST**, no Apply link, freshly checked 14:39 UTC. Former 21 October date and employer-route findings remain historical. | Held **r5**, saved **14:40:34.330 UTC**, next **24 October 10:00 BST**. |
+| Science Technician | Last original check 17 October: expired on 15 October. Not rechecked today. | Unchanged held r3, due 24 October 10:00 BST. |
+| Senior Exam Invigilator | Last original check 17 October: no exact employer match, not formal closure. Not rechecked today. | Unchanged held r3, due 21 October 10:00 BST. |
 
-Use `ADVERT_REVIEWS.md`, `NEW_CITY_COLLEGE_SOURCE_REVIEW.md`, `KINGS_LYNN_SOURCE_REVIEW.md`. Fresh evidence does not itself release a hold; release requires reconciled evidence and a complete collection started afterward. No owner decision is recorded by this document.
+All eleven earlier advert revisions, four stable job targets and four inactive job flags match exactly before/after. No hold release or public reactivation. Use `ADVERT_REVIEWS.md`, `NEW_CITY_COLLEGE_SOURCE_REVIEW.md`, `KINGS_LYNN_SOURCE_REVIEW.md`. Expiry/reminders cannot release a hold.
 
-Discovery follow-ups retained: Whitchurch r4 overdue 18 October noon BST (blank-form download/remaining pack); Sussex Road r3 overdue 19 October noon BST (Kent employer/licence scope); Bangor veterinary r2 overdue 20 October noon BST (exact employer/licence, reuse and adapter). Neudata r2 and Danu r5 due 21 October noon BST; NHS Children in Care r2 due 22 October noon BST (original date-only deadline 25 October, interview 30 October, commercial reuse unresolved); Revolut r3 due 25 October noon GMT. Read the named employer review before dependent work. No contact/application/reuse permission is implied.
+Other discovery follow-ups: Neudata r2 and Danu r5 due 21 October noon BST; NHS Children in Care r2 due 22 October noon BST (date-only deadline 25 October, interview 30 October, commercial reuse unresolved); Revolut r3 due 25 October noon GMT. Read named employer reviews before dependent work. No contact, application or reuse permission is implied.
 
 PortmanDentex remains paused under unchanged **9 October** decision, zero public jobs, 68 old private descriptions. Historic collection progress is not current ready coverage. Read `PORTMANDENTEX_SOURCE_REVIEW.md` and `SOURCE_CONTROL_REVIEWS.md` before reasoned recovery/resume. No source resume or public diagnostic fetch today.
 
@@ -70,4 +76,4 @@ Five paired assessed cases: three both acceptable, one candidate-only acceptable
 - Complete-day server measurement **9–19 October**: **143 page-view events, 23 campaign-page views** (subset), **one account-created event**, no CV/letter response events returned. Eight complete browser-measurement days **12–19 October**: zero received evidence checks. No unique-user, conversion, attribution or unmeasured non-use claim. Signed-out operator views may remain; never reset counters.
 - Genuine Google 20 October: final window **19 September–16 October, America/Los_Angeles**, **zero clicks / 83 impressions / average position 23.20**. Four inspected URLs indexed; sitemap zero errors/warnings, 993 submitted pages. Not whole-site coverage, rank improvement or a ranking guarantee.
 
-Independent model quality, sustained acquisition/retention, direct cloud social delivery, broader source admission, premium/payment/sales, sustained alert response and full autonomy remain unproven. Keep the goal active and existing holds/limits intact. The owner action now needed is website sign-in, not another Goal Resume.
+Independent model quality, sustained acquisition/retention, direct cloud social delivery, broader source admission, premium/payment/sales, sustained alert response and full autonomy remain unproven. Keep the goal active and existing holds/limits intact. Owner website access is restored; no additional Goal Resume or sign-in action is currently needed.
