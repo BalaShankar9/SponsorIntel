@@ -19,3 +19,13 @@ New actual Worker/auth/D1 tests cover private access, request replay, concurrent
 Final **729/729 tests** pass on pinned Node 24.19.0, including the deterministic campaign race. TypeScript/build, 18 public prerenders, existing browser budgets and Worker deployment dry run pass. Initial public JavaScript/CSS remain within the unchanged ceilings; application tools stay deferred. The dependency graph is unchanged apart from package version metadata; the same-day audit retains zero high/critical and three known moderate Mammoth/argparse/sprintf-js entries, with no applicable patch found in the reviewed official advisory.
 
 Production deployment and live acceptance are recorded below after completion. Local tests are not hosted Linux CI, independent writing-quality evidence or actual employer submission.
+
+## Production acceptance, 20 October
+
+Runtime commit `4368dd0c8c5079cd62a62cf37fee8f5dbb436710` deployed as Worker **4fa5281d-0b39-43e7-b025-a528259a67a8**. Only migration 0043 was pending and applied. At **16:19:46.010 UTC** the exact live database, current recovery point and all **182 objects / 43 migrations** matched. No foreign-key errors or production restore.
+
+Excluded public health returned **2.89.0 / 200**, applications **200 / private no-store**, and anonymous batch list/detail **401 / no-store**. The signed-in owner browser displayed the new preparation section with **zero saved batches**. Aggregate D1 reads independently confirm **zero batches / zero events**. No owner or customer batch was created and no real workspace document was changed for QA. Fictional mutations were confined to the isolated test server; temporary tabs were closed.
+
+Fourteen existing operational groups match exactly between **16:18:24.685** and **16:20:49.693 UTC**, including source/model/social controls, receipts, paused source and budgets. AI remains **two starts/eight calls**, source reservations **384/500**. No AI, Google, forced refresh, email, social post or employer application was made by this release.
+
+Runtime-head Linux checks **118744286164 / 118744261723** did not start because of GitHub's existing billing lock; original annotations inspected. GitGuardian **118744263945** passed. Exact later documentation-head checks are recorded on the existing unmerged PR. Receipt: `tests/evidence/application-batches-2026-10-20.json`.
