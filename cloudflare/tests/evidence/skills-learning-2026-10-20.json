@@ -1,0 +1,165 @@
+{
+  "version": "2.90.0",
+  "date": "2026-10-20",
+  "state": "tested_awaiting_cloudflare_agreement",
+  "runtime_commit": "311ebedc921ca125f54907833ce3827a92a424e1",
+  "live_version": "2.89.0",
+  "live_worker": "4fa5281d-0b39-43e7-b025-a528259a67a8",
+  "migration": null,
+  "schema": {
+    "migrations": 43,
+    "objects": 182,
+    "same_day_recovery_at": "2026-10-20T16:19:46.010Z"
+  },
+  "catalogue": {
+    "skills": 17,
+    "resources": 15,
+    "provider_review_date": "2026-10-20",
+    "review_due": "2026-11-20",
+    "automatic_course_monitor": false
+  },
+  "validation": {
+    "tests": 734,
+    "passed": 734,
+    "initial_suite": {
+      "passed": 723,
+      "failed": 11,
+      "cause": "Browser-only lazy CSS entered the server renderer; fixed through a client view slot."
+    },
+    "build": true,
+    "public_prerenders": 19,
+    "worker_dry_run": true,
+    "initial_js_bytes": 390965,
+    "initial_css_bytes": 109950,
+    "protected_source_identities_unchanged": true,
+    "browser": {
+      "fictional_selection": true,
+      "sector_filter": true,
+      "source_excerpt_and_link": true,
+      "clipboard_success": true,
+      "unavailable_snapshot_unknown_not_zero": true,
+      "mobile_viewport": 390,
+      "mobile_document_width": 390,
+      "mobile_card_width": 358,
+      "temporary_preview_closed": true
+    }
+  },
+  "sample": {
+    "generated_at": "2026-10-20T16:37:54.067Z",
+    "jobs": 54,
+    "employers": 9,
+    "matched_jobs": 38,
+    "unmatched_jobs": 16,
+    "largest_employer_jobs": 31
+  },
+  "skill_counts": [
+    {
+      "id": "python",
+      "jobs": 21,
+      "employers": 6
+    },
+    {
+      "id": "react",
+      "jobs": 10,
+      "employers": 4
+    },
+    {
+      "id": "typescript",
+      "jobs": 9,
+      "employers": 4
+    },
+    {
+      "id": "communication",
+      "jobs": 7,
+      "employers": 3
+    },
+    {
+      "id": "ml",
+      "jobs": 15,
+      "employers": 2
+    },
+    {
+      "id": "sql",
+      "jobs": 12,
+      "employers": 1
+    },
+    {
+      "id": "aws",
+      "jobs": 5,
+      "employers": 1
+    },
+    {
+      "id": "docker",
+      "jobs": 4,
+      "employers": 1
+    },
+    {
+      "id": "kubernetes",
+      "jobs": 4,
+      "employers": 1
+    },
+    {
+      "id": "javascript",
+      "jobs": 1,
+      "employers": 1
+    }
+  ],
+  "deployment": {
+    "attempted": true,
+    "published": false,
+    "failure_stage": "assets-upload-session",
+    "provider_error_code": 10000,
+    "same_scopes_login_prepared": true,
+    "agreement_confirmation_pending": true,
+    "callback_and_credentials_retained_in_public_receipt": false
+  },
+  "controls": {
+    "before": "2026-10-20T16:43:05.067Z",
+    "after": "2026-10-20T16:48:43.214Z",
+    "unchanged_groups": [
+      "business_controls",
+      "marketing_controls",
+      "research_control",
+      "application_controls",
+      "source_controls",
+      "marketing_briefs",
+      "marketing_receipts",
+      "ai_budget",
+      "source_runs",
+      "marketing_runs",
+      "issues",
+      "foreign_keys"
+    ],
+    "changed_groups": [
+      "source_budget",
+      "business_runs"
+    ],
+    "ai_starts": 2,
+    "ai_calls": 8,
+    "source_reservations": 392,
+    "latest_genuine_business": "business-497920",
+    "provider_business_status": "Completed / Success",
+    "production_actions_from_feature": []
+  },
+  "runtime_hosted_checks": {
+    "billing_blocked": [
+      118757755167,
+      118757715696
+    ],
+    "annotations_verified": true,
+    "gitguardian_success": 118757772954
+  },
+  "automation": {
+    "updated_existing": true,
+    "prompt_and_unchanged_fields_readback": true,
+    "new_schedule": false,
+    "other_projects_resumed": false
+  },
+  "limitations": [
+    "Mentions may describe optional skills or team tools; no personal skills assessment.",
+    "Selected catalogue is concentrated and does not represent the UK market.",
+    "Learning plan is unsaved until copied by the applicant; no account progress history.",
+    "No course enrolment, professional qualification equivalence or sponsorship guarantee.",
+    "Live learning API/page acceptance remains pending publication."
+  ]
+}
