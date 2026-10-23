@@ -1,5 +1,11 @@
 # King's Lynn Academy source review
 
+## 23 October 2026 01:37 UTC — Senior Exam Invigilator hold reviewed
+
+The exact [DfE Senior Exam Invigilator advert](https://teaching-vacancies.service.gov.uk/jobs/senior-exam-invigilator-king-s-lynn-academy), inspected **01:36:04 UTC**, still supplies a **1 November 23:59 GMT** deadline, 2 November start and explicit **Visas cannot be sponsored** wording. Following its own application route to the employer's MHR page again returns **No suitable matches**, rechecked **01:37:25 UTC**. This is uncertain availability, not a formal closed/filled outcome and not the similarly named Exam Invigilator vacancy. No form entry or application occurred; whole-catalogue, attachments and legal identity were not recertified in this pass. Session identifiers are omitted from receipts.
+
+The owner desk saved agent-assisted **Held r4 at 01:37:43.208 UTC**, with a reasoned **27 October 10:00 UTC/GMT** follow-up before the deadline and after the announced DfE 26 October maintenance window. Thirteen prior advert revisions and thirteen prior audit rows remain exact; one revision/audit was appended. All four review targets and their inactive job flags are unchanged. No release, public reactivation, source change or forced refresh. There are now zero overdue advert reviews at this observation; other three holds remain in place. Receipt: `../cloudflare/tests/evidence/marketing-source-reconciliation-2026-10-23.json`.
+
 ## 20 October 2026 14:40 UTC — Drama expiry decision saved
 
 After owner sign-in, the exact DfE original was rechecked at 14:39:39 UTC: explicitly expired on 20 October, closing 13:03 BST, no Apply link. Agent-assisted **held r5** saved at 14:40:34.330 UTC, follow-up 24 October 10:00 BST. The earlier 21 October deadline and employer-route observations remain historical; no reason for closure is inferred. Four earlier Drama decisions remain unchanged, and all four school/college review targets remain inactive. No hold release or refresh. Receipt: `cloudflare/tests/evidence/source-reviews-2026-10-20.json`. The earlier sign-in-blocked paragraph below describes the prior observation, not current access.
