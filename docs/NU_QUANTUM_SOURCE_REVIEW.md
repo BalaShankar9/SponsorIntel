@@ -1,6 +1,6 @@
 # Nu Quantum source review — 20 October 2026
 
-**Held, unconfigured.** One strong early-career sponsorship lead is retained privately; no Nu Quantum job has been published. Lead `6740596e-9b48-4897-860b-ccffea275a3a`, agent-assisted revision 2, is due for review **22 October noon BST**. This is the first of two new identities retained today, inside the shared five-lead allowance.
+**Held, unconfigured.** One strong early-career sponsorship lead is retained privately; no Nu Quantum job has been published. Latest review is **agent-assisted revision 3, 23 October**, due **26 October 12:00 UTC**. The original 20 October admission evidence below remains dated history.
 
 ## Exact opening and identity
 
@@ -27,3 +27,11 @@ Revision 1 saved **15:43:14.127 UTC**. The minute-only form retained initial sec
 The genuine hourly `business-497919` snapshot observed this and the Animal Trust lead, with **27 retained / seven unresolved / zero overdue / three current linked jobs**. Its original Cloudflare instance completed successfully, while the application result remains attention for existing findings. This proves monitoring of saved reviews, not automatic discovery, source admission, new public coverage or independent judgment.
 
 Evidence: `../cloudflare/tests/evidence/sourcing-expansion-2026-10-20.json`. Next review must first inspect current controls, remaining capacity, exact originals and this retained hold.
+
+## 23 October follow-up
+
+The exact original was rechecked **03:57:51.664 UTC**, still displaying the Cambridge early-career FPGA role, the same sponsorship wording and an Apply route. Graduate project/placement experience remains relevant; salary and precise posting/deadline remain unknown. No application form was entered or submitted. The 20 October employer/register evidence above was not recertified as current.
+
+Workable's linked official documentation was re-read: the public XML route remains a whole-file download with local filtering, supplied URLs preserved and inclusion limited to approved Workable-board adverts. This does not establish this exact role's membership or solve the previous bounded-read failure. No larger download, alternate feed, limit increase or source admission was attempted.
+
+The owner form appended **Held r3 at 03:58:51.270 UTC**, follow-up **26 October 12:00 UTC/GMT**, retaining the specific permission/complete-source blocker. Existing lead review uses no new daily slot. Earlier revisions remain exact; aggregate evidence is `../cloudflare/tests/evidence/sourcing-reviews-2026-10-23.json`. A later genuine business observation is separate from this owner save.

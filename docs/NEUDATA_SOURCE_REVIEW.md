@@ -1,6 +1,6 @@
 # Neudata source review — 18 October 2026
 
-**Held, unconfigured.** This is a follow-up to an existing private lead, not a new employer feed or public sponsorship listing. Original lead `b843497d-904f-4b2d-a48d-4004d7ce9695` now retains agent-assisted revision 2. Follow-up remains **21 October noon BST**.
+**Held, unconfigured.** This is an existing private lead, not an admitted employer feed or public sponsorship listing. Lead `b843497d-904f-4b2d-a48d-4004d7ce9695` now retains **agent-assisted revision 3, 23 October**, due **26 October 12:00 UTC**. The original 18 October evidence below remains dated history.
 
 ## Identity and opening
 
@@ -23,3 +23,11 @@ The owner form saved revision **2**, ID `ac38b9de-b897-4947-a490-c1d3f61cff3c`, 
 All fourteen selected operational groups, employer boards, scout receipts and job aggregates match before/after. Sources remain **360/500**, shared AI **two starts/eight calls**, with no foreign-key errors. No customer data, model/Google request, source probe, external message, applicant information, application or permission expansion was added. Same-day recovery and dependency evidence remain applicable because runtime/schema/lockfile are unchanged; no Worker deployment is needed.
 
 Aggregate evidence: `../cloudflare/tests/evidence/neudata-review-2026-10-18.json`. Private screenshot stays in untracked outputs. The next genuine business run may observe the appended review; it was not forced. This review narrows the admission blocker but does not expand public coverage or prove autonomous new-employer discovery.
+
+## 23 October follow-up
+
+The exact Ashby original was rechecked **03:58:15.140 UTC**: London hybrid full-time, an early sales move after one to two years of office experience, ASAP start, rolling review and the same conditional invitation to discuss sponsorship during interview. Apply remains visible; salary and precise posting/closing dates remain unknown. No application form or submission was tested. The identity/register evidence above remains dated 18 October, not a new certification.
+
+The employer terms were also re-read. Sections 3.2/3.5 retain restrictions, 3.3 qualifies extract use and 3.6 gives the permission route `info@neudata.co`. No recruitment-specific exception or permission was established. A concrete [permission request](SOURCE_PERMISSION_REQUESTS-2026-10-23.md) is prepared **but unsent**, pending owner approval. Approval to contact is separate from permission to collect/publish or acceptance of terms.
+
+The owner form appended **Held r3 at 04:05:05.419 UTC**, follow-up **26 October 12:00 UTC/GMT**. This is a real availability/terms review, not automatic expiry of the hold. No feed probe, source configuration, public job, employer contact, applicant data, new model call or new discovery slot. Earlier rows remain exact; aggregate evidence is `../cloudflare/tests/evidence/sourcing-reviews-2026-10-23.json`.

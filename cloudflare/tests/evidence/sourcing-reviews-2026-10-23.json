@@ -1,0 +1,242 @@
+{
+  "schema": 1,
+  "kind": "source-review-and-discovery",
+  "date": "2026-10-23",
+  "runtime_version": "2.94.0",
+  "runtime_unchanged": true,
+  "preservation": {
+    "before": "2026-10-23T03:54:51.884Z",
+    "after": "2026-10-23T04:06:36.939Z",
+    "groups": {
+      "leads": {
+        "prior_rows": 28,
+        "current_rows": 29,
+        "prior_rows_exact": true,
+        "added_ids": [
+          "2d756717-6371-4aad-bce4-81bb2bfb26c2"
+        ]
+      },
+      "revisions": {
+        "prior_rows": 76,
+        "current_rows": 80,
+        "prior_rows_exact": true,
+        "added_ids": [
+          "26c2c0b0-5f98-4706-900c-8d9f9c97be05",
+          "489a6132-4816-4c2d-918f-8d91c1f2b191",
+          "53c078fe-4a1c-47df-84c6-db6553902338",
+          "620d31f2-cbc4-490d-97fb-49951f562fa1"
+        ]
+      },
+      "audits": {
+        "prior_rows": 76,
+        "current_rows": 80,
+        "prior_rows_exact": true,
+        "added_ids": [
+          175,
+          176,
+          177,
+          178
+        ]
+      },
+      "register": {
+        "prior_rows": 2,
+        "current_rows": 2,
+        "prior_rows_exact": true,
+        "added_ids": []
+      },
+      "boards": {
+        "prior_rows": 4,
+        "current_rows": 4,
+        "prior_rows_exact": true,
+        "added_ids": []
+      }
+    },
+    "new_reviews": [
+      {
+        "id": "26c2c0b0-5f98-4706-900c-8d9f9c97be05",
+        "lead_id": "b843497d-904f-4b2d-a48d-4004d7ce9695",
+        "revision": 3,
+        "recorded_at": "2026-10-23T04:05:05.419Z",
+        "state": "held",
+        "observed_at": "2026-10-23T03:58:15.140Z",
+        "follow_up_at": "2026-10-26T12:00:00.000Z",
+        "method": "agent_assisted",
+        "original_url": "https://jobs.ashbyhq.com/neudata/cea38772-7d77-4342-a8f3-ff0d1c2f9224",
+        "posted_at": null,
+        "deadline": null
+      },
+      {
+        "id": "489a6132-4816-4c2d-918f-8d91c1f2b191",
+        "lead_id": "6740596e-9b48-4897-860b-ccffea275a3a",
+        "revision": 3,
+        "recorded_at": "2026-10-23T03:58:51.270Z",
+        "state": "held",
+        "observed_at": "2026-10-23T03:57:51.664Z",
+        "follow_up_at": "2026-10-26T12:00:00.000Z",
+        "method": "agent_assisted",
+        "original_url": "https://apply.workable.com/nu-quantum/j/834B821BDB/apply/",
+        "posted_at": null,
+        "deadline": null
+      },
+      {
+        "id": "53c078fe-4a1c-47df-84c6-db6553902338",
+        "lead_id": "1f0b6a71-5460-4408-aa8b-8982b211ff18",
+        "revision": 3,
+        "recorded_at": "2026-10-23T04:06:14.896Z",
+        "state": "held",
+        "observed_at": "2026-10-18T03:03:00.000Z",
+        "follow_up_at": "2026-10-24T12:00:00.000Z",
+        "method": "agent_assisted",
+        "original_url": "https://www.jobs.nhs.uk/candidate/jobadvert/C9835-HC26-131b",
+        "posted_at": null,
+        "deadline": null
+      },
+      {
+        "id": "620d31f2-cbc4-490d-97fb-49951f562fa1",
+        "lead_id": "2d756717-6371-4aad-bce4-81bb2bfb26c2",
+        "revision": 1,
+        "recorded_at": "2026-10-23T03:57:04.227Z",
+        "state": "held",
+        "observed_at": "2026-10-23T03:53:26.316Z",
+        "follow_up_at": "2026-10-26T12:00:00.000Z",
+        "method": "agent_assisted",
+        "original_url": "https://arcticlake.com/careers/graduate-software-engineer",
+        "posted_at": null,
+        "deadline": null
+      }
+    ]
+  },
+  "queue_after": {
+    "leads": 29,
+    "unresolved": 8,
+    "overdue": 0,
+    "current_linked_jobs": 3,
+    "changed_links": 0,
+    "new_leads_today": 1,
+    "daily_limit": 5
+  },
+  "operations": {
+    "before": "2026-10-23T03:50:13.963Z",
+    "after": "2026-10-23T04:08:26.672Z",
+    "groups_exact": {
+      "business_controls": true,
+      "marketing_controls": true,
+      "research_control": true,
+      "application_controls": true,
+      "source_controls": true,
+      "marketing_briefs": true,
+      "marketing_receipts": true,
+      "source_budget": true,
+      "ai_budget": true,
+      "business_runs": true,
+      "source_runs": true,
+      "marketing_runs": true,
+      "issues": true,
+      "foreign_keys": true
+    },
+    "source_requests": 120,
+    "shared_ai_starts": 1,
+    "shared_ai_calls": 2,
+    "foreign_key_errors": 0
+  },
+  "public_catalogue": {
+    "observed_at": "2026-10-23T04:08:50.567Z",
+    "collections": {
+      "total": 1025,
+      "employers": 37,
+      "early_career": 75,
+      "sponsorship": 52,
+      "licensed": 983,
+      "salary": 186
+    },
+    "sources_with_current_success": 37,
+    "paused_sources": 1,
+    "register": {
+      "available": true,
+      "source_date": "2026-10-21",
+      "checked_at": "2026-10-22T07:15:39.699Z"
+    }
+  },
+  "business": {
+    "id": "business-497979",
+    "platform_status": "complete",
+    "platform_success": true,
+    "platform_finished_at": "2026-10-23T03:46:00.667Z",
+    "d1_finished_at": "2026-10-23T03:46:00.538Z",
+    "state": "attention",
+    "findings": 9,
+    "high": 2,
+    "model_calls": 0,
+    "external_posts": 0,
+    "google_reused": true,
+    "predates_reviews": true
+  },
+  "source_notes": {
+    "arctic_lake": {
+      "source": "https://arcticlake.com/careers/graduate-software-engineer",
+      "start_year": 2027,
+      "role_sponsorship_stated": true,
+      "current_legal_company": "09659202",
+      "register_id": "30b6f880f0a50268b3b2b740",
+      "register_snapshot": "2026-10-21-28e1d924",
+      "blocker": "No express collection/redistribution permission or complete supported adapter; terms sections 3.5/4.1 reviewed."
+    },
+    "nu_quantum": {
+      "opening_rechecked": true,
+      "whole_workable_feed_membership_verified": false,
+      "feed_refetched": false,
+      "identity_recertified": false
+    },
+    "neudata": {
+      "opening_and_terms_rechecked": true,
+      "recruitment_permission_verified": false,
+      "identity_recertified": false
+    },
+    "nhs_children_in_care": {
+      "original_observed_at": "2026-10-23T04:00:18.743Z",
+      "linkedin_rechecked": false,
+      "linkedin_observed_at_preserved": "2026-10-18T03:03:00.000Z",
+      "posted_date_only": "2026-10-13",
+      "closing_date_only": "2026-10-25",
+      "interview_date_only": "2026-10-30",
+      "permission_and_legal_employer_unresolved": true
+    }
+  },
+  "permission_requests": {
+    "prepared": 2,
+    "owner_send_approval": "pending",
+    "sent": 0,
+    "employer_responses": 0,
+    "draft": "docs/SOURCE_PERMISSION_REQUESTS-2026-10-23.md"
+  },
+  "scope": {
+    "new_public_jobs": 0,
+    "new_sources": 0,
+    "source_holds_cleared": 0,
+    "operator_model_calls": 0,
+    "operator_google_calls": 0,
+    "operator_social_sends": 0,
+    "operator_email_sends": 0,
+    "applications": 0,
+    "schema_changes": 0,
+    "deployments": 0
+  },
+  "validation": {
+    "owner_ui_saved_revisions": true,
+    "read_only_d1_preservation": true,
+    "excluded_health_version": "2.94.0",
+    "same_day_recovery_reused": "2026-10-23T03:39:18.202Z",
+    "recovery_migrations": 45,
+    "recovery_schema_objects": 190,
+    "unchanged_lockfile_security_audit_reused": true,
+    "disk_gib_before_work": 1.2,
+    "build_install_runtime_started": false
+  },
+  "limits": [
+    "Private retained leads are not public vacancies or personal eligibility.",
+    "Agent-assisted evidence is not independent human review.",
+    "No new unattended source admission or refresh demonstrated.",
+    "Later genuine business capture of these four decisions remains unobserved.",
+    "Full autonomous quality, acquisition and delivery remain unproven."
+  ]
+}
