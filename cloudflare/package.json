@@ -1,6 +1,6 @@
 {
   "name": "sponsorintel-cloudflare",
-  "version": "2.91.0",
+  "version": "2.92.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -31,7 +31,7 @@
     "@types/react-dom": "18.3.5",
     "@vitejs/plugin-react": "4.7.0",
     "typescript": "5.7.2",
-    "vite": "6.4.3",
+    "vite": "6.4.5",
     "wrangler": "4.147.0"
   },
   "overrides": {
