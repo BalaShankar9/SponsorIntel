@@ -1,5 +1,15 @@
 # Development-tool security and local recovery
 
+## Current patch — 23 October 2026
+
+Release **2.92.0** patches DOMPurify **3.4.16 → 3.4.17** beneath jsPDF and pinned Vite **6.4.3 → 6.4.5**. Only those two package versions change. Incremental installation, 737 tests, TypeScript/build, 19 prerenders, browser budgets and Worker dry run pass on Node 24.19.0. Fresh npm audit reports **zero known vulnerabilities**; earlier moderate findings below are historical, not the current audit result. No claim that unknown vulnerabilities are absent.
+
+Read `cloudflare/RELEASE-2.92.md` for primary maintainer advisories and exposure scope. The application uses text/font PDF APIs, not the affected optional HTML modes; Vite is a local development tool. The optional PDF dependency chunk was rebuilt and its actual production bytes match. No exploitation or production breach was established. The npm severity labels differ from the DOMPurify maintainer labels.
+
+Read-only D1 recovery succeeded after same-scope login renewal; 43 migrations/182 objects match. Runtime source `d3967508780b35c4f4a596d1c7270acb1135cb36` has two billing-blocked Linux checks and a **skipped**, neutral GitGuardian scan because of PR size. Neither is passing hosted evidence. See `cloudflare/tests/evidence/dependency-security-2026-10-23.json`; inspect each later head separately.
+
+## Historical toolchain and storage evidence
+
 Toolchain repair, **13 October 2026**: GitHub checks temporarily executed again. At commit `e6f34665b5526c00e7f3506ff660c06fac140d4b`, both hosted checks failed at `npm ci`, reporting missing sharp 0.35.4 and its native packages. CI still selected Node 22 while the supported local toolchain is Node 24.19.0/npm 11.8.0. The workflow now reads the exact `cloudflare/.nvmrc` pin and installs/asserts npm 11.8.0 before the existing checks. No dependency downgrade, override removal, lockfile regeneration or Worker deployment is involved. The repaired head `a5e6a8caca6b2d6875281a04770ded738674c6bc` passes both hosted Linux jobs 115353765345/115353798089 and GitGuardian 115353799583. The original push log confirms all 627 tests, TypeScript/build, 17 prerenders, browser budgets and Worker dry-run. See `docs/ci-toolchain-2026-10-13.json`.
 
 The billing block subsequently recurred. At 2.73 code head `19139ea`, both Linux checks 115453562105/115453535218 were prevented from starting by the account billing lock; both annotations were inspected. Its 642 passing local tests are distinct from the earlier 627-test hosted run. Check the exact current head and its annotations; do not infer current execution from either historical success or a historical block.
