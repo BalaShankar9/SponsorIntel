@@ -1,0 +1,842 @@
+{
+  "observed_at": "2026-10-23T05:12:30.477845+00:00",
+  "scope": "Offline unimported research proposal and read-only diagnosis; no runtime release.",
+  "live_runtime": {
+    "version": "2.95.0",
+    "worker": "1be819c0-f2b9-4852-8dd3-cc0b5815b675",
+    "runtime_commit": "88c47c10822f1de3a4902adcf4435f6d231a491e",
+    "health_read_this_turn": {
+      "ok": true,
+      "version": "2.95.0"
+    }
+  },
+  "original_failure": {
+    "run_id": "research-d6cd13ed-bec0-43f1-9011-4414381fcbaf",
+    "batch": "real-adverts-2026-10-08-compact-v2-04",
+    "provider_status": "complete",
+    "provider_success": true,
+    "provider_output": {
+      "state": "failed"
+    },
+    "provider_finished_at": "2026-10-17T00:49:10.976Z",
+    "analysis_attempts": 1,
+    "analysis_timeout": "3 minutes",
+    "analysis_error": {
+      "name": "WorkflowTimeoutError",
+      "message": "Execution timed out after 180000ms"
+    },
+    "retained_step_state": "failed",
+    "retained_step_completion": {
+      "version": 1,
+      "provider": "cloudflare",
+      "failure_stage": "incomplete_response",
+      "finish_reason": "length",
+      "response_kind": "missing",
+      "usage": {
+        "prompt_tokens": 4989,
+        "completion_tokens": 8192,
+        "total_tokens": 13181
+      }
+    },
+    "retained_step_duration_ms": 184467,
+    "limitation": "Provider completion and D1 step counters are separate observations; exact late-response/persistence ordering is not established. Failure-handler completion is not successful analysis."
+  },
+  "scope_error": {
+    "run_id": "research-2adae554-05a0-4f38-88be-9421d1130901",
+    "case_id": "01a7eebe6044426d5eb4ff5e",
+    "method": "Agent-assisted inspection of complete frozen advert, retained analyst and different-model critic.",
+    "finding": "Export-licence authorisation was classified as a work-visa refusal; critic accepted.",
+    "independently_adjudicated": false,
+    "current_public_job": {
+      "id": "01a7eebe6044426d5eb4ff5e",
+      "active": 1,
+      "sponsorship": "not_stated"
+    },
+    "public_label_changed": false
+  },
+  "preflight": {
+    "observed_at": "2026-10-23T05:13:33.134Z",
+    "proposal": "research-scope-v3-proposal",
+    "stage": "offline_contract_preflight_only",
+    "contract_sha256": "91f33e8a0f818ec1938dc6af64bf2b86ca0f20259c4d7b03528c3efc1a49d571",
+    "cohort": "real-adverts-2026-10-08-v1",
+    "snapshot_at": "2026-10-08T00:16:21.067542+00:00",
+    "cases": [
+      {
+        "id": "0016bafc89a4dacf63aeedde",
+        "record_sha256": "04a39bcc0f0ae223d07646f7feb9193580acbb4a3c4685bfb6849e9419555593",
+        "description_sha256": "92c4d76acaddc2a4544a0aa21d8099ee5f13e6beee65538647fa2cc4227b3571",
+        "description_characters": 7302,
+        "blocks": 13,
+        "request_characters": 10201,
+        "critic_max_shape_request_characters": 17401
+      },
+      {
+        "id": "005c6f3c82136410266a6d6e",
+        "record_sha256": "44fb1b80dac5ef6742a69f7f6f9921ae443bcf259fa536cea02cbfc2727d9322",
+        "description_sha256": "36794bde358b1f0064aff91f947d364282aa0442638300c86f4f209b21cf99a6",
+        "description_characters": 4717,
+        "blocks": 8,
+        "request_characters": 7423,
+        "critic_max_shape_request_characters": 14719
+      },
+      {
+        "id": "00cbf7b3b07794f782413306",
+        "record_sha256": "fd8d2bb9b75ba6ebf744d3e2ca747829f8675acce87787fbbaf2b1e93590ad52",
+        "description_sha256": "43fa682d9948ec160ddf7595d8bc751686d5c21e524fbd1eb30472b6080dffe2",
+        "description_characters": 5078,
+        "blocks": 9,
+        "request_characters": 7698,
+        "critic_max_shape_request_characters": 14922
+      },
+      {
+        "id": "01a7eebe6044426d5eb4ff5e",
+        "record_sha256": "35cddbbf6b451255a7a119a2f601d436d9d5db5d5c2afa7d9255ba016da47dd2",
+        "description_sha256": "28b0572604453b2daa42ad71a793ec0b558b8d3246bcfa539cb23102ee0ad5b4",
+        "description_characters": 11912,
+        "blocks": 20,
+        "request_characters": 15125,
+        "critic_max_shape_request_characters": 22317
+      },
+      {
+        "id": "024ac38fe9b635d1e1be2b47",
+        "record_sha256": "dda03e167341e081efb09d168dcc475458c5adfa8e57615f166d5ac761123743",
+        "description_sha256": "803cca2b0b8249c8bbcd359e11a0513374eb2fbd66e4ad83dadfdbd59cbf5a2b",
+        "description_characters": 8131,
+        "blocks": 14,
+        "request_characters": 11236,
+        "critic_max_shape_request_characters": 18612
+      },
+      {
+        "id": "042cd46377025e215a7ecb16",
+        "record_sha256": "7edb0385c18eb0b089f5a2e9d168937341069428ce04bd433bc308e12558aed1",
+        "description_sha256": "9bfd1c36a243a60ffbe631b7e3eae31a11a94378798cbac7f93a84f55c5d08e6",
+        "description_characters": 6621,
+        "blocks": 12,
+        "request_characters": 9476,
+        "critic_max_shape_request_characters": 16740
+      },
+      {
+        "id": "04bccfe86b32ab77df56d82b",
+        "record_sha256": "e3cff311e798b028ae972e71660cf062ca413409dc499f24cd5803f2c11cce7e",
+        "description_sha256": "29878cfcb2ce149e15fc21625ff3433d9c9a485b36518277c43c314dab581b18",
+        "description_characters": 5770,
+        "blocks": 10,
+        "request_characters": 8509,
+        "critic_max_shape_request_characters": 15677
+      },
+      {
+        "id": "050b200128e730f82ac87693",
+        "record_sha256": "03a17016f14e66a6bbd29ee0cd8a5527381d7452ff5bfdd9bb234537afbe704e",
+        "description_sha256": "784d57bb443f13efe81911fa8b8ee773e1b0cec92f7c385046770413742235e1",
+        "description_characters": 6206,
+        "blocks": 11,
+        "request_characters": 8986,
+        "critic_max_shape_request_characters": 16234
+      },
+      {
+        "id": "0587ae81759f331071e503db",
+        "record_sha256": "26ee486e9d45c74a63b9f647fc4d9c3b5101e8a836fa5293a6fdd692aac88ddb",
+        "description_sha256": "da86dda06b536d50a017c8cfc1ccca0dde1f9bc6486f594a2049a62434d1fe76",
+        "description_characters": 5812,
+        "blocks": 10,
+        "request_characters": 8596,
+        "critic_max_shape_request_characters": 15828
+      },
+      {
+        "id": "05ca9a7667a82da221576c33",
+        "record_sha256": "e94dad472e992bda76d0d2ca813928fc38afdc6e914284a67f1e4ab412982762",
+        "description_sha256": "094462fabc33e7b4977962bc7b7688d8316cfa49f9b41df491833258473ec545",
+        "description_characters": 5262,
+        "blocks": 9,
+        "request_characters": 7970,
+        "critic_max_shape_request_characters": 15154
+      },
+      {
+        "id": "062d993721bba9afde384b45",
+        "record_sha256": "621a02f61768dde341de67917a16f6618d8c7d5c8dad2f0e9acaf14e7bcc35ed",
+        "description_sha256": "bfc3718f7bf68e89166fa359a7dfe1c72673270c99df6696ee4155cdecb00131",
+        "description_characters": 6905,
+        "blocks": 12,
+        "request_characters": 9742,
+        "critic_max_shape_request_characters": 16974
+      },
+      {
+        "id": "0717d5b5b23dbf0e670c28e0",
+        "record_sha256": "2ca5c7eb5c3aea117b50cf0e15c325a1c175fe74e34ce81c30c180c07793dffb",
+        "description_sha256": "57f942687de64bd3d9cb7dcd2bf6071c94f0ee9cee54728891fb276d9185fee5",
+        "description_characters": 6923,
+        "blocks": 12,
+        "request_characters": 9749,
+        "critic_max_shape_request_characters": 16997
+      },
+      {
+        "id": "09584f0bcb940d0ba475cb02",
+        "record_sha256": "ecc6f2932f47a7cccb4d0a14b8efe4e8ba8efdfe459b2eb7d5ae63e2e12d5650",
+        "description_sha256": "45324d5c2d22fbdd857683da8a76f6c0aa0068ccfe556e1ec1c58d1161eafc8c",
+        "description_characters": 6909,
+        "blocks": 12,
+        "request_characters": 9740,
+        "critic_max_shape_request_characters": 16972
+      },
+      {
+        "id": "0c9fb11fbd46aac1df9bc808",
+        "record_sha256": "a08e327af396139bbef77afac6651e501a779354a9f9b80ff180b736b768afa1",
+        "description_sha256": "bc77cec38a3e431b920e15530143b5fc1c31c271899f9191c74d505fab60c47e",
+        "description_characters": 9641,
+        "blocks": 17,
+        "request_characters": 12680,
+        "critic_max_shape_request_characters": 19912
+      },
+      {
+        "id": "0ccc45f0d688a0d550f454ba",
+        "record_sha256": "dcc8a5bab2deb3aea8f5b5095c86fafa95fc4eab480d99f1a009f9864d92187b",
+        "description_sha256": "ec3809bab61cc14e07375290adb0ce1e5cc1d75102be8cbdb528f3fa8f4bbac7",
+        "description_characters": 7332,
+        "blocks": 13,
+        "request_characters": 10170,
+        "critic_max_shape_request_characters": 17418
+      },
+      {
+        "id": "0d779e21ef2990aab81ceb4d",
+        "record_sha256": "986fa37d795ee6d93be9a62186d7f97ea440e639dda71d58989825f56219b2b0",
+        "description_sha256": "a9f6bb10c1baf6ec53009fe646ea09ec203cf645ab769c1b8a550a1805903340",
+        "description_characters": 4614,
+        "blocks": 8,
+        "request_characters": 7309,
+        "critic_max_shape_request_characters": 14589
+      },
+      {
+        "id": "0ec5a9702be7e8a0f5b756da",
+        "record_sha256": "eec89775ed719600168fea963296165003cff1689725730f1fec80ad222cd581",
+        "description_sha256": "d2eaa6d071d4c97d3bf2089e93bb1491c45851f08b31f9c2c864a853a297e857",
+        "description_characters": 5411,
+        "blocks": 10,
+        "request_characters": 8142,
+        "critic_max_shape_request_characters": 15374
+      },
+      {
+        "id": "109898d49597eef800bbb1a1",
+        "record_sha256": "c061f421020bc94ddf00fd56b9bdc8e93ca5ce822dab8e1ccf3fc6b2317cc490",
+        "description_sha256": "29dc238503fa3760724b4755b46ed839a3e91941a4b5c862bf85d13b55474d06",
+        "description_characters": 4603,
+        "blocks": 8,
+        "request_characters": 7218,
+        "critic_max_shape_request_characters": 14482
+      },
+      {
+        "id": "110cdfc6b753626ae2218b56",
+        "record_sha256": "98063717cc7bd95c6ba18137925af74abc1434168dc7d6c2612a9b83fe84923d",
+        "description_sha256": "bb91cb9a20136d7ee9d5df6a201e41c0827fb27e7754cb1705dae135f42088b1",
+        "description_characters": 4447,
+        "blocks": 8,
+        "request_characters": 7065,
+        "critic_max_shape_request_characters": 14329
+      },
+      {
+        "id": "12e2ffa6760ac658a8367004",
+        "record_sha256": "ea9410a1f04c108b9d624f2a1339e2544ace0faa3d1ffaccca8e23202d2069aa",
+        "description_sha256": "2343d8cf48754da1d44a1008d3a4591b790b85f992cc699f3c4f5bc4ba355316",
+        "description_characters": 6796,
+        "blocks": 12,
+        "request_characters": 9612,
+        "critic_max_shape_request_characters": 16812
+      },
+      {
+        "id": "156dcad0d5442365f1ed1ecf",
+        "record_sha256": "da41c57a6f3c28beb74e5be555c898c9f36a13dc919584183590f368558fb837",
+        "description_sha256": "39303126cc6871fc238f077e2a1914186bf6c895fda01e5f56eeb121b629ad80",
+        "description_characters": 4259,
+        "blocks": 8,
+        "request_characters": 6897,
+        "critic_max_shape_request_characters": 14145
+      },
+      {
+        "id": "1790aff47afd2e22da1e4b5e",
+        "record_sha256": "3641631ee4e871d3f2d9ef93aeb117c716a520d459eda92f8f8699b1e382a958",
+        "description_sha256": "0286ef17d4e01982f036dd442a74f9c9282e849f9970c4e09e9cafd47287a4ef",
+        "description_characters": 791,
+        "blocks": 2,
+        "request_characters": 3179,
+        "critic_max_shape_request_characters": 8855
+      },
+      {
+        "id": "184f8e329f825b8e6571339c",
+        "record_sha256": "21616b50186f329b7f9ea7018b05ae4daf33b0ce156ef0e1c1ca86d15c3d9dad",
+        "description_sha256": "63fc9c346dc6c0828b3904996b80c1324bc2d8dc7a3745aa4eda0036cb639a5f",
+        "description_characters": 8964,
+        "blocks": 15,
+        "request_characters": 11859,
+        "critic_max_shape_request_characters": 19123
+      },
+      {
+        "id": "1e0c10fb3681278fb9fc91fc",
+        "record_sha256": "e3fb23c94bce1051fae74bb8e226d6b5e5d0d48efcba4d8a876c119de85f3df0",
+        "description_sha256": "06a95a18ff6bf0130872b5b265032350811c8833c09fad629e4706e331dde9e9",
+        "description_characters": 7827,
+        "blocks": 14,
+        "request_characters": 10727,
+        "critic_max_shape_request_characters": 17991
+      },
+      {
+        "id": "23d215831195e0c8770ccb36",
+        "record_sha256": "b3525dd1c1bcf26afb9f1ae92c88de40d11d5d5283ccff6a2a3376e2c2b61348",
+        "description_sha256": "63d452c337a085de060c31b87aab84c34f36dea29de2285b862ba09612a126c1",
+        "description_characters": 6107,
+        "blocks": 11,
+        "request_characters": 8934,
+        "critic_max_shape_request_characters": 16214
+      },
+      {
+        "id": "25da6534b2441fb263580bc8",
+        "record_sha256": "d0ee767e2a29b41c241ebc3584b18761e5f2176ac66b5cf34627b1f50e5e3e03",
+        "description_sha256": "dd9cf04f9686c8f1a74785a35cb15c89fc9b8e3b16d26944f8997ad78d9d238d",
+        "description_characters": 8057,
+        "blocks": 14,
+        "request_characters": 10966,
+        "critic_max_shape_request_characters": 18214
+      },
+      {
+        "id": "2cfec2252fc45b133784e2b0",
+        "record_sha256": "bbcf757a74779809569a81f44110d4c2825bcd39581e1dcb16f37eb3f6eb6cdb",
+        "description_sha256": "a0392ce3be7aea6f5365bec454bae297da3fe2f26e3e59c1ef121c920e91cc63",
+        "description_characters": 8151,
+        "blocks": 14,
+        "request_characters": 11047,
+        "critic_max_shape_request_characters": 18279
+      },
+      {
+        "id": "2e78f64d126b026487a9c603",
+        "record_sha256": "928c5938b6081006757f5e9195cfd442cd80110faed2bb4b9f70b6c95bb397be",
+        "description_sha256": "3310d357dfd2473914a9e88e29c534fc6ca0728b2c528998b2c536b5de078248",
+        "description_characters": 8532,
+        "blocks": 15,
+        "request_characters": 11498,
+        "critic_max_shape_request_characters": 18746
+      },
+      {
+        "id": "3089af8a7e18d21e9fd5d959",
+        "record_sha256": "bfa151cf13dbad44d5ccf577ef513d1a29dae501c6cd5a9966ad1934d2756e74",
+        "description_sha256": "b51b987540ae552a5c971f88733967b7cc64f803a1ec599e6b5d96662fd72aac",
+        "description_characters": 6379,
+        "blocks": 11,
+        "request_characters": 9312,
+        "critic_max_shape_request_characters": 16560
+      },
+      {
+        "id": "3582475326b5ae9b4adc1e62",
+        "record_sha256": "237023ed17c6078b2fc6d0a43618cf939e244ad552cc57b4e2523c3e6915429c",
+        "description_sha256": "5e83267bc039304e532f3aa193813ce61afa92839da01833747d69be2bcc3547",
+        "description_characters": 5656,
+        "blocks": 10,
+        "request_characters": 8357,
+        "critic_max_shape_request_characters": 15525
+      },
+      {
+        "id": "3cc5f95f3040d983352ebd23",
+        "record_sha256": "6eea77c6939b6bd2933dfaa99fb65ac3d692c35bac5d904c6c4b5d174d49cc0c",
+        "description_sha256": "58bda4bed25ba76ead23d32cfd2edb247345d2644f3005abacce5a686210fb90",
+        "description_characters": 6139,
+        "blocks": 11,
+        "request_characters": 8917,
+        "critic_max_shape_request_characters": 16117
+      },
+      {
+        "id": "3cd5be21a640483e3b0b6412",
+        "record_sha256": "61404900822710b483bd097d771385d775b95609291fea97993b944f01b8f28f",
+        "description_sha256": "9738b781523dd76a23037cc3373c761e524f14438599d590fe8858f97ff085a6",
+        "description_characters": 6327,
+        "blocks": 11,
+        "request_characters": 9115,
+        "critic_max_shape_request_characters": 16315
+      },
+      {
+        "id": "3f0d1372eed8619f43e34c82",
+        "record_sha256": "cdea1310697297093ffc84c3de371ad747a1aa25685c2a16412a034922d7e9bc",
+        "description_sha256": "68a22d98a6a2e0db2b68f0c0f2039ad366c1e177a97b9f5618603df5b32e74c7",
+        "description_characters": 5020,
+        "blocks": 9,
+        "request_characters": 7711,
+        "critic_max_shape_request_characters": 14911
+      },
+      {
+        "id": "3f1d96f15657c37b0551f7a8",
+        "record_sha256": "e8438079b3107ef1cb7e08275558c49dc8d4fd02560072dcebc96c02ce8618b0",
+        "description_sha256": "fe6031d268c45c659e62c3eeb8c9e1e251c1e15ca1fd671a2e49c73803e0152b",
+        "description_characters": 7292,
+        "blocks": 13,
+        "request_characters": 10187,
+        "critic_max_shape_request_characters": 17435
+      },
+      {
+        "id": "434323de53f50613c74fb438",
+        "record_sha256": "5024f5841354bf897e0f3db8e6369ef4baf8e54b01dc8634926fbd8946f63a82",
+        "description_sha256": "5fa1f30fd21570e46f16c6f74660bc9684ebfe9deca09495acf12848c59a25cc",
+        "description_characters": 4694,
+        "blocks": 8,
+        "request_characters": 7332,
+        "critic_max_shape_request_characters": 14580
+      },
+      {
+        "id": "47a756674e464ccc8d26b6e5",
+        "record_sha256": "992f3245d25861063c8dcdd4aa5334b0e36a5c0927dc412e66114fcc2a94f9bc",
+        "description_sha256": "56ae5a422f30be4f23290b3845481395484ba711d145a4cea5ee250ed0cc37fb",
+        "description_characters": 2877,
+        "blocks": 5,
+        "request_characters": 5428,
+        "critic_max_shape_request_characters": 12612
+      },
+      {
+        "id": "4a8dda1883232aac291eec5d",
+        "record_sha256": "acb3d13431982eef70458418e45fc8df55815b0bdd1cba1ff6e13069f8566d5e",
+        "description_sha256": "b391c06f353ee5594f7d7fb4298c69503e2dcfc68ffd2959f10f8b9b9acbcd4d",
+        "description_characters": 9531,
+        "blocks": 16,
+        "request_characters": 12529,
+        "critic_max_shape_request_characters": 19745
+      },
+      {
+        "id": "601d3af714d0630c47ee0e37",
+        "record_sha256": "d830cc58cf41caf37f44579d726b60543f29059bceee440a81343fc2dd1b100e",
+        "description_sha256": "4edc9a11500b60e53e75d09f6a1dd20ce7d4c10f5fbced2380f8c4c4876afdd4",
+        "description_characters": 6904,
+        "blocks": 12,
+        "request_characters": 9720,
+        "critic_max_shape_request_characters": 16920
+      },
+      {
+        "id": "608b05f07ba04735379b2ef1",
+        "record_sha256": "30524fb8b230f308a7b028238ea4fd17cfeac3b61c267c05ec34b4ea0482cb88",
+        "description_sha256": "5b7db1fe7226cac4a382c00ea29b36e04bd09cfa7054a267f8ab3d3f16c9fcce",
+        "description_characters": 6092,
+        "blocks": 11,
+        "request_characters": 8872,
+        "critic_max_shape_request_characters": 16072
+      },
+      {
+        "id": "782bb8ca0d085e20be75e063",
+        "record_sha256": "92dee669fa99f77d0c9aed7fbbfc32d4cdfa40300ed5895e03bdb6ba08cd3d6b",
+        "description_sha256": "df8c453e24136d0a443fb0dd4a52d124ffecb007b4f1ecd72ff212f4600eed2f",
+        "description_characters": 5436,
+        "blocks": 10,
+        "request_characters": 8159,
+        "critic_max_shape_request_characters": 15359
+      },
+      {
+        "id": "8a62791b9787f4d814b75e45",
+        "record_sha256": "0f9ace27c6a5a017eb53ab45e75bf36923b1d59f60f6dc7c01dca4226bcafcb4",
+        "description_sha256": "7282503b54523c4b070417335b59edb15917e1d096b076b3ecf148c5282d7cfc",
+        "description_characters": 5397,
+        "blocks": 9,
+        "request_characters": 8102,
+        "critic_max_shape_request_characters": 15302
+      },
+      {
+        "id": "a39862e98aa46524446f7cee",
+        "record_sha256": "9b0d00e37ca43a74303cb91eff7d10f7e4b083b7712e67091a31ff15fa367fdb",
+        "description_sha256": "a9e0365b12e2209623a98a4949226ee4d7e539dcfcfe2c5db251d26900c30d66",
+        "description_characters": 8486,
+        "blocks": 15,
+        "request_characters": 11449,
+        "critic_max_shape_request_characters": 18713
+      },
+      {
+        "id": "b0e3909344abbf27568dc7da",
+        "record_sha256": "3f5451b9b8c8da6b6ed69cde9b49a72ce62fecd3c9f3425dd501adfa840b73d6",
+        "description_sha256": "3d53ecd7e91ae5d2fbd5dfa74c8ab6b8d16bcb6a286ccb4f4d6bbdd8b5ed7e80",
+        "description_characters": 4799,
+        "blocks": 8,
+        "request_characters": 7437,
+        "critic_max_shape_request_characters": 14637
+      },
+      {
+        "id": "ba13722887e956bd8978bc4f",
+        "record_sha256": "5e636da5921d051fed983e9f1c6a8a5d9986f6e1d49dcfcc63437782f15ef678",
+        "description_sha256": "4156cd0bb4e8f1fbbcb31a7dfa85bee85f3da8cc72f50109a98da5dba2a705ed",
+        "description_characters": 4690,
+        "blocks": 8,
+        "request_characters": 7311,
+        "critic_max_shape_request_characters": 14487
+      },
+      {
+        "id": "c42ca85272bbbadb123b1037",
+        "record_sha256": "fc8187aa28700f95519391032ae67d74a8472ca373bdbf6bb9cdc1acecf27718",
+        "description_sha256": "8ebbad6ea0b9fd67290862887193c8d33c0c86814b9789b802c337900a01f019",
+        "description_characters": 4853,
+        "blocks": 9,
+        "request_characters": 7548,
+        "critic_max_shape_request_characters": 14748
+      },
+      {
+        "id": "c55a0e9bdbd32d788e6844c8",
+        "record_sha256": "46c12f1c887e355c86627389e1e84c070048efecb3ce6fd67574c9352bf43e31",
+        "description_sha256": "c186d97e7b202e0cd2159aa76dd3de809c48fc3d937ce6a8ef451e601b823172",
+        "description_characters": 5094,
+        "blocks": 9,
+        "request_characters": 7778,
+        "critic_max_shape_request_characters": 14978
+      },
+      {
+        "id": "cec1ff2eb9fb5f197d25342d",
+        "record_sha256": "71c59d14935b2603465950878ffb2e870208d8c4c6285c4b46c14bdb97b4c722",
+        "description_sha256": "e9f8bded7db9187e75bcc423a95e62d919266b14324ec3f789c38cda877c77b2",
+        "description_characters": 5634,
+        "blocks": 10,
+        "request_characters": 8395,
+        "critic_max_shape_request_characters": 15675
+      },
+      {
+        "id": "d47adc90f4ed65ccb43e59c1",
+        "record_sha256": "b542e21c51a5c65bc891443a3e5297f7e413072321e0d5ac212b697fb1584dcb",
+        "description_sha256": "1dab862d6e3f6ca202e96fbdd7f807525078a4eed1edce1b0fcdfb419f87c4a1",
+        "description_characters": 4120,
+        "blocks": 7,
+        "request_characters": 6728,
+        "critic_max_shape_request_characters": 13976
+      },
+      {
+        "id": "e0257f251f4a44fe7449d5f7",
+        "record_sha256": "ce8a022690ea44ab1da2e7d58ff5b94b3b4a1d455b84f37e60a8c57a41e324e1",
+        "description_sha256": "9b786953b5975cd46a4d71e1bc60460f64861c42f9f87ccc8847f6c2d752746e",
+        "description_characters": 4248,
+        "blocks": 8,
+        "request_characters": 6880,
+        "critic_max_shape_request_characters": 14128
+      },
+      {
+        "id": "f36f10f7c57b96741aee4812",
+        "record_sha256": "e51d7e9e2ad68c891330cfafad06d8d774fcfd1b2c0c8af828d8529a7af0bd73",
+        "description_sha256": "1dab862d6e3f6ca202e96fbdd7f807525078a4eed1edce1b0fcdfb419f87c4a1",
+        "description_characters": 4120,
+        "blocks": 7,
+        "request_characters": 6719,
+        "critic_max_shape_request_characters": 13967
+      }
+    ],
+    "batches": [
+      {
+        "id": "research-scope-v3-proposal-01",
+        "cases": [
+          "0016bafc89a4dacf63aeedde",
+          "005c6f3c82136410266a6d6e"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-02",
+        "cases": [
+          "00cbf7b3b07794f782413306",
+          "01a7eebe6044426d5eb4ff5e"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-03",
+        "cases": [
+          "024ac38fe9b635d1e1be2b47",
+          "042cd46377025e215a7ecb16"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-04",
+        "cases": [
+          "04bccfe86b32ab77df56d82b",
+          "050b200128e730f82ac87693"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-05",
+        "cases": [
+          "0587ae81759f331071e503db",
+          "05ca9a7667a82da221576c33"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-06",
+        "cases": [
+          "062d993721bba9afde384b45",
+          "0717d5b5b23dbf0e670c28e0"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-07",
+        "cases": [
+          "09584f0bcb940d0ba475cb02",
+          "0c9fb11fbd46aac1df9bc808"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-08",
+        "cases": [
+          "0ccc45f0d688a0d550f454ba",
+          "0d779e21ef2990aab81ceb4d"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-09",
+        "cases": [
+          "0ec5a9702be7e8a0f5b756da",
+          "109898d49597eef800bbb1a1"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-10",
+        "cases": [
+          "110cdfc6b753626ae2218b56",
+          "12e2ffa6760ac658a8367004"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-11",
+        "cases": [
+          "156dcad0d5442365f1ed1ecf",
+          "1790aff47afd2e22da1e4b5e"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-12",
+        "cases": [
+          "184f8e329f825b8e6571339c",
+          "1e0c10fb3681278fb9fc91fc"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-13",
+        "cases": [
+          "23d215831195e0c8770ccb36",
+          "25da6534b2441fb263580bc8"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-14",
+        "cases": [
+          "2cfec2252fc45b133784e2b0",
+          "2e78f64d126b026487a9c603"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-15",
+        "cases": [
+          "3089af8a7e18d21e9fd5d959",
+          "3582475326b5ae9b4adc1e62"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-16",
+        "cases": [
+          "3cc5f95f3040d983352ebd23",
+          "3cd5be21a640483e3b0b6412"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-17",
+        "cases": [
+          "3f0d1372eed8619f43e34c82",
+          "3f1d96f15657c37b0551f7a8"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-18",
+        "cases": [
+          "434323de53f50613c74fb438",
+          "47a756674e464ccc8d26b6e5"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-19",
+        "cases": [
+          "4a8dda1883232aac291eec5d",
+          "601d3af714d0630c47ee0e37"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-20",
+        "cases": [
+          "608b05f07ba04735379b2ef1",
+          "782bb8ca0d085e20be75e063"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-21",
+        "cases": [
+          "8a62791b9787f4d814b75e45",
+          "a39862e98aa46524446f7cee"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-22",
+        "cases": [
+          "b0e3909344abbf27568dc7da",
+          "ba13722887e956bd8978bc4f"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-23",
+        "cases": [
+          "c42ca85272bbbadb123b1037",
+          "c55a0e9bdbd32d788e6844c8"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-24",
+        "cases": [
+          "cec1ff2eb9fb5f197d25342d",
+          "d47adc90f4ed65ccb43e59c1"
+        ],
+        "planned_max_calls": 4
+      },
+      {
+        "id": "research-scope-v3-proposal-25",
+        "cases": [
+          "e0257f251f4a44fe7449d5f7",
+          "f36f10f7c57b96741aee4812"
+        ],
+        "planned_max_calls": 4
+      }
+    ],
+    "source_records_verified": 50,
+    "description_characters_preserved": true,
+    "maximum_request_characters": 15125,
+    "maximum_critic_shape_request_characters": 22317,
+    "existing_input_ceiling": 90000,
+    "existing_output_ceiling_per_call": 8192,
+    "proposal_calls_per_case": 2,
+    "proposal_max_calls_per_batch": 4,
+    "existing_max_calls_per_investigation": 8,
+    "proposed_batch_count": 25,
+    "existing_batch_count": 16,
+    "existing_starts_per_day": 4,
+    "existing_calls_per_day": 32,
+    "model_calls": 0,
+    "source_requests": 0,
+    "production_writes": 0,
+    "scheduled": false,
+    "quality_verified": false,
+    "limitations": [
+      "No model has executed this proposal. A complete preflight is not semantic or provider validation.",
+      "The previous token-limit failure can recur; full records remain untruncated and the output limit is unchanged.",
+      "New 25 two-case batches differ from the old 16. Scores and receipts cannot be mixed or old failed attempts replaced.",
+      "Subject assertions and quotations may still be wrong. Independent adjudication and a separately held-out evaluation remain required.",
+      "Scheduling, immutable controls, budget admission, provider execution and owner UI integration are not implemented for this proposal."
+    ]
+  },
+  "old_comparison_preflight": {
+    "source_sha256": "6c9715f2b0479435c528f77fc44613a0147caeb7558af716447db0fd5d8ab49a",
+    "verified_records": 50,
+    "maximum_original_characters": 49955,
+    "maximum_candidate_characters": 26131,
+    "model_calls": 0
+  },
+  "preservation": {
+    "frozen_reference_rows": {
+      "count": 50,
+      "exact": true,
+      "rows_sha256": "b34c0eae6633487a4827a808c4c5d614e9a756105cd9dc9aa19fdca397a366c7"
+    },
+    "inspected_model_step_rows": {
+      "count": 3,
+      "exact": true,
+      "rows_sha256": "81c75ff03f5b12c22a27d44fbad25b1c46fd628a7151568e03aef0e28cc21f8a"
+    },
+    "reference_summary_fields_exact": true,
+    "research_control_exact": true,
+    "control_revision": 2,
+    "selected_campaign": "real-adverts-2026-10-08-compact-v2",
+    "shared_ai_counters": {
+      "day": "2026-10-23",
+      "runs": 1,
+      "calls": 2
+    },
+    "marketing_counts": [
+      {
+        "state": "held",
+        "n": 5
+      },
+      {
+        "state": "proposed",
+        "n": 2
+      },
+      {
+        "state": "published",
+        "n": 6
+      },
+      {
+        "state": "reviewed",
+        "n": 1
+      },
+      {
+        "state": "scheduled",
+        "n": 1
+      }
+    ],
+    "portmandentex": {
+      "source_id": "portmandentex",
+      "paused": 1,
+      "updated_at": "2026-10-09T19:01:15.323Z"
+    },
+    "latest_business": {
+      "id": "business-497980",
+      "state": "attention",
+      "finished_at": "2026-10-23T04:46:40.495Z"
+    }
+  },
+  "validation": {
+    "runtime": "Node 24.19.0",
+    "new_contract_tests": 7,
+    "targeted_tests_passed": 30,
+    "targeted_tests_failed": 0,
+    "whole_suite_repeated": false,
+    "first_command_issue": "Wrong working directory; test file not found. Corrected command passed.",
+    "current_research_source": "6c9715f2b0479435c528f77fc44613a0147caeb7558af716447db0fd5d8ab49a",
+    "current_application_source": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2",
+    "source_manifests_verified": true,
+    "live_entrypoints_import_experiment": false,
+    "dependencies_match_same_day_audit_except_release_metadata": true,
+    "build_or_deployment_required": false,
+    "recovery_reused": "2026-10-23T03:39:18.202Z; exact identity,45 migrations/190 objects,current bookmark; no schema change or restore.",
+    "final_targeted_recheck_at": "2026-10-23T05:13:33.170538+00:00"
+  },
+  "external_actions": {
+    "model_calls": 0,
+    "source_requests": 0,
+    "forced_workflows": 0,
+    "production_writes": 0,
+    "new_google_attempts": 0,
+    "social_or_email_sends": 0,
+    "new_schedules": 0,
+    "new_permissions": 0,
+    "production_deployment": false
+  },
+  "official_references": [
+    "https://developers.cloudflare.com/workers-ai/models/glm-4.7-flash/",
+    "https://developers.cloudflare.com/workers-ai/features/json-mode/"
+  ],
+  "open_gates": [
+    "Distinct versioned campaign and paused preparation controls",
+    "Existing budget/one-attempt daily admission and durable per-case Workflow integration",
+    "Actual isolated Worker/D1 race,pause,replay,timeout/lost-acknowledgement validation",
+    "Reasoned exact-profile preparation/resume and genuine provider execution",
+    "Complete cohort,independent adjudication,separate held-out evaluation; no customer/public policy promotion"
+  ]
+}
