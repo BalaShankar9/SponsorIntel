@@ -1,0 +1,857 @@
+{
+  "checked_at": "2026-10-08T06:39:50.984393+00:00",
+  "worker_version": "c60219cb-a52b-4e10-80ce-894f22fa52d1",
+  "app_version": "2.28.0",
+  "source_run": {
+    "id": "scheduled-1791441034000",
+    "state": "completed",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-08T06:30:35.851Z",
+    "finished_at": "2026-10-08T06:31:06.749Z",
+    "summary": {
+      "published": 32
+    }
+  },
+  "source_tasks": [
+    {
+      "source_id": "allica-bank",
+      "state": "published",
+      "attempts": 1,
+      "count": 30,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:57.464Z",
+        "received": 30,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "c35e7085232c95e3d50e2d99",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:57.464Z",
+      "finished_at": "2026-10-08T06:30:57.464Z"
+    },
+    {
+      "source_id": "apothecom",
+      "state": "published",
+      "attempts": 1,
+      "count": 3,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:53.605Z",
+        "received": 3,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:53.605Z",
+      "finished_at": "2026-10-08T06:30:53.605Z"
+    },
+    {
+      "source_id": "axon",
+      "state": "published",
+      "attempts": 1,
+      "count": 4,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:54.760Z",
+        "received": 4,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "9df83e5777ab2d551ba89677",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:54.760Z",
+      "finished_at": "2026-10-08T06:30:54.760Z"
+    },
+    {
+      "source_id": "bakerhicks",
+      "state": "published",
+      "attempts": 1,
+      "count": 97,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:56.043Z",
+        "received": 97,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "15f4e702e4bf277db585f025",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:56.043Z",
+      "finished_at": "2026-10-08T06:30:56.043Z"
+    },
+    {
+      "source_id": "callosum",
+      "state": "published",
+      "attempts": 1,
+      "count": 10,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:59.128Z",
+        "received": 10,
+        "sponsorship_worded": 10,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:59.128Z",
+      "finished_at": "2026-10-08T06:30:59.128Z"
+    },
+    {
+      "source_id": "cloudflare",
+      "state": "published",
+      "attempts": 1,
+      "count": 60,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:39.914Z",
+        "received": 60,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "f836d0c9dd3bae29019003a4",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:39.914Z",
+      "finished_at": "2026-10-08T06:30:39.914Z"
+    },
+    {
+      "source_id": "deliveroo",
+      "state": "published",
+      "attempts": 1,
+      "count": 130,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:41.422Z",
+        "received": 130,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "ef82b77104d718b9c266786a",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:41.422Z",
+      "finished_at": "2026-10-08T06:30:41.422Z"
+    },
+    {
+      "source_id": "eucalyptus",
+      "state": "published",
+      "attempts": 1,
+      "count": 32,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:31:01.994Z",
+        "received": 32,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:31:01.994Z",
+      "finished_at": "2026-10-08T06:31:01.994Z"
+    },
+    {
+      "source_id": "figma",
+      "state": "published",
+      "attempts": 1,
+      "count": 19,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:43.290Z",
+        "received": 19,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "dc5e5b0f2185b97f8f8e48c6",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:43.290Z",
+      "finished_at": "2026-10-08T06:30:43.290Z"
+    },
+    {
+      "source_id": "funding-circle",
+      "state": "published",
+      "attempts": 1,
+      "count": 19,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:46.701Z",
+        "received": 19,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "4ac667c52c9a0a4dbc3c6604",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:46.701Z",
+      "finished_at": "2026-10-08T06:30:46.701Z"
+    },
+    {
+      "source_id": "gocardless",
+      "state": "published",
+      "attempts": 1,
+      "count": 9,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:40.788Z",
+        "received": 9,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "bd18e6ef03cf6d98416ecb59",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:40.788Z",
+      "finished_at": "2026-10-08T06:30:40.788Z"
+    },
+    {
+      "source_id": "graphcore",
+      "state": "published",
+      "attempts": 1,
+      "count": 85,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:55.334Z",
+        "received": 85,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "f2ff8516c38862d935974912",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:55.334Z",
+      "finished_at": "2026-10-08T06:30:55.334Z"
+    },
+    {
+      "source_id": "hr-wallingford",
+      "state": "published",
+      "attempts": 1,
+      "count": 4,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:56.804Z",
+        "received": 4,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "2b50a3b31eb0a6cb8348780d",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:56.804Z",
+      "finished_at": "2026-10-08T06:30:56.804Z"
+    },
+    {
+      "source_id": "invinity",
+      "state": "published",
+      "attempts": 1,
+      "count": 1,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:50.822Z",
+        "received": 1,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "89325f0cfb4d4758510a45aa",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:50.822Z",
+      "finished_at": "2026-10-08T06:30:50.822Z"
+    },
+    {
+      "source_id": "maven",
+      "state": "published",
+      "attempts": 1,
+      "count": 16,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:31:00.671Z",
+        "received": 16,
+        "sponsorship_worded": 2,
+        "register_available": true,
+        "licence_id": "17b565a57b9527eeb262e8cb",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:31:00.671Z",
+      "finished_at": "2026-10-08T06:31:00.671Z"
+    },
+    {
+      "source_id": "monzo",
+      "state": "published",
+      "attempts": 1,
+      "count": 56,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:39.216Z",
+        "received": 56,
+        "sponsorship_worded": 32,
+        "register_available": true,
+        "licence_id": "fffc1b73b4b4d6d0acebbab8",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:39.216Z",
+      "finished_at": "2026-10-08T06:30:39.216Z"
+    },
+    {
+      "source_id": "multiverse",
+      "state": "published",
+      "attempts": 1,
+      "count": 22,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:58.488Z",
+        "received": 22,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "a59d4845eaf070b6d5b23bf1",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:58.488Z",
+      "finished_at": "2026-10-08T06:30:58.488Z"
+    },
+    {
+      "source_id": "nucleus",
+      "state": "published",
+      "attempts": 1,
+      "count": 16,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:53.021Z",
+        "received": 16,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:53.021Z",
+      "finished_at": "2026-10-08T06:30:53.021Z"
+    },
+    {
+      "source_id": "numan",
+      "state": "published",
+      "attempts": 1,
+      "count": 8,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:31:01.459Z",
+        "received": 8,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "251f88c057cdf37907a9c838",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:31:01.459Z",
+      "finished_at": "2026-10-08T06:31:01.459Z"
+    },
+    {
+      "source_id": "octopus-energy",
+      "state": "published",
+      "attempts": 1,
+      "count": 78,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:44.051Z",
+        "received": 78,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "1b963b6bb4838b96938a96f4",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:44.051Z",
+      "finished_at": "2026-10-08T06:30:44.051Z"
+    },
+    {
+      "source_id": "precision-aq",
+      "state": "published",
+      "attempts": 1,
+      "count": 2,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:54.177Z",
+        "received": 2,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:54.177Z",
+      "finished_at": "2026-10-08T06:30:54.177Z"
+    },
+    {
+      "source_id": "sampura",
+      "state": "published",
+      "attempts": 1,
+      "count": 1,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:59.612Z",
+        "received": 1,
+        "sponsorship_worded": 1,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:59.612Z",
+      "finished_at": "2026-10-08T06:30:59.612Z"
+    },
+    {
+      "source_id": "seamflow",
+      "state": "published",
+      "attempts": 1,
+      "count": 7,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:31:00.209Z",
+        "received": 7,
+        "sponsorship_worded": 5,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:31:00.209Z",
+      "finished_at": "2026-10-08T06:31:00.209Z"
+    },
+    {
+      "source_id": "stripe",
+      "state": "published",
+      "attempts": 1,
+      "count": 52,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:42.392Z",
+        "received": 52,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "a4c1ffd864c2e3e38a892774",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:42.392Z",
+      "finished_at": "2026-10-08T06:30:42.392Z"
+    },
+    {
+      "source_id": "university-bath",
+      "state": "published",
+      "attempts": 1,
+      "count": 26,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:31:02.644Z",
+        "received": 26,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "172ea1ba3df39d083228ae40",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0,
+        "feed_review": {
+          "policy": "university-campus-v2",
+          "url": "https://www.bath.ac.uk/jobs/rss/rss.aspx?cat=418&type=9",
+          "channel": "Jobs at Bath | Bath",
+          "received": 26,
+          "accepted": 26,
+          "excluded": [],
+          "normalised": 26
+        }
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:31:02.644Z",
+      "finished_at": "2026-10-08T06:31:02.644Z"
+    },
+    {
+      "source_id": "university-greater-manchester",
+      "state": "published",
+      "attempts": 1,
+      "count": 5,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:31:03.731Z",
+        "received": 5,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "f30b3f2408fe12130a3c4b24",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0,
+        "feed_review": {
+          "policy": "university-campus-v2",
+          "url": "https://jobs.greatermanchester.ac.uk/RSS/rss.aspx?cat=927&type=9",
+          "channel": "Jobs at University of Greater Manchester | Bolton Campus (inc. Queens and Greater Manchester Business School)",
+          "received": 5,
+          "accepted": 5,
+          "excluded": [],
+          "normalised": 5
+        }
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:31:03.731Z",
+      "finished_at": "2026-10-08T06:31:03.731Z"
+    },
+    {
+      "source_id": "university-nottingham",
+      "state": "published",
+      "attempts": 1,
+      "count": 14,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:31:05.482Z",
+        "received": 14,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "6ef3de9d8fb9c471146bd4fc",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0,
+        "feed_review": {
+          "policy": "university-campus-v2",
+          "url": "https://jobs.nottingham.ac.uk/RSS/rss.aspx?cat=220&type=9",
+          "channel": "Jobs at the University of Nottingham | University Park",
+          "received": 35,
+          "accepted": 14,
+          "excluded": [
+            {
+              "ref": "SCI2145426",
+              "reason": "unreviewed_distribution_marker"
+            },
+            {
+              "ref": "REG235526",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "ARTS6527026",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "REG2502726",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "REG2503126",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "MED2134326",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "MED943026",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "NHE8668026",
+              "reason": "closing_date_passed",
+              "closing_date": "2026-09-28"
+            },
+            {
+              "ref": "NHE4664026",
+              "reason": "closing_date_passed",
+              "closing_date": "2026-09-28"
+            },
+            {
+              "ref": "REG2118526X1",
+              "reason": "closing_date_passed",
+              "closing_date": "2026-09-25"
+            },
+            {
+              "ref": "MED1896526",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "RAA416626",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "ENG2241326",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "REG4546526X1",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "REG2374326",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "REG976726",
+              "reason": "internal_only"
+            },
+            {
+              "ref": "NHE164526X2",
+              "reason": "closing_date_passed",
+              "closing_date": "2026-09-01"
+            },
+            {
+              "ref": "NHE722126",
+              "reason": "closing_date_passed",
+              "closing_date": "2026-07-29"
+            },
+            {
+              "ref": "NHE271426",
+              "reason": "closing_date_passed",
+              "closing_date": "2026-07-22"
+            },
+            {
+              "ref": "NHE893426",
+              "reason": "closing_date_passed",
+              "closing_date": "2026-07-02"
+            },
+            {
+              "ref": "REG6312526X2",
+              "reason": "closing_date_passed",
+              "closing_date": "2026-06-17"
+            }
+          ],
+          "normalised": 14
+        }
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:31:05.482Z",
+      "finished_at": "2026-10-08T06:31:05.482Z"
+    },
+    {
+      "source_id": "university-southampton",
+      "state": "published",
+      "attempts": 1,
+      "count": 27,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:31:04.550Z",
+        "received": 27,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "2a75ac7e351da13cba8ddb10",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0,
+        "feed_review": {
+          "policy": "university-campus-v2",
+          "url": "https://jobs.soton.ac.uk/RSS/rss.aspx?cat=282&type=9",
+          "channel": "Recruitment at the University of Southampton | Highfield Campus",
+          "received": 27,
+          "accepted": 27,
+          "excluded": [],
+          "normalised": 27
+        }
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:31:04.550Z",
+      "finished_at": "2026-10-08T06:31:04.550Z"
+    },
+    {
+      "source_id": "voleon",
+      "state": "published",
+      "attempts": 1,
+      "count": 10,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:57.992Z",
+        "received": 10,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:57.992Z",
+      "finished_at": "2026-10-08T06:30:57.992Z"
+    },
+    {
+      "source_id": "wep-clinical",
+      "state": "published",
+      "attempts": 1,
+      "count": 3,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:52.348Z",
+        "received": 3,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:52.348Z",
+      "finished_at": "2026-10-08T06:30:52.348Z"
+    },
+    {
+      "source_id": "zeeco",
+      "state": "published",
+      "attempts": 1,
+      "count": 5,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:47.890Z",
+        "received": 5,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "d4272f5f1029b6c7acec8818",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:47.890Z",
+      "finished_at": "2026-10-08T06:30:47.890Z"
+    },
+    {
+      "source_id": "zopa",
+      "state": "published",
+      "attempts": 1,
+      "count": 34,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-08T06:30:47.176Z",
+        "received": 34,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "8032bd0aad08e26ea0b49eaf",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null,
+      "started_at": "2026-10-08T06:30:47.176Z",
+      "finished_at": "2026-10-08T06:30:47.176Z"
+    }
+  ],
+  "source_controls_needing_attention": [],
+  "inactive_eucalyptus_jobs": [
+    {
+      "id": "f111371996dd72e548cf604f",
+      "title": "Paid Search Lead, UK",
+      "active": 0,
+      "first_seen": "2026-10-07T09:22:22.363Z",
+      "last_seen": "2026-10-08T00:31:04.774Z"
+    },
+    {
+      "id": "d88b749f3c5b70d30fca92d3",
+      "title": "Clinical Lead - New Products",
+      "active": 0,
+      "first_seen": "2026-10-07T09:22:22.363Z",
+      "last_seen": "2026-10-08T00:31:04.774Z"
+    }
+  ],
+  "search_notification_receipt": {
+    "checked_at": "2026-10-08T06:30:35.741Z",
+    "checked": 0,
+    "failed": 0
+  },
+  "opportunities": {
+    "base": "https://sponsorintel.london",
+    "passed": 12,
+    "boards": 32,
+    "collections": {
+      "total": 885,
+      "employers": 32,
+      "early_career": 51,
+      "sponsorship": 50,
+      "licensed": 801,
+      "salary": 141
+    },
+    "early_career_with_sponsorship_wording": 2,
+    "checked_at": "2026-10-08T06:36:28.481Z"
+  },
+  "guidance_pages": {
+    "origin": "https://sponsorintel.london",
+    "checked_at": "2026-10-08T06:36:26.944Z",
+    "checks": "Initial HTML, topic links, canonical, freshness headers and public bootstrap only; not indexing or rankings.",
+    "results": [
+      {
+        "path": "/updates",
+        "status": 200,
+        "guidance_cards": 19,
+        "source_snapshot": "2026-10-08T06:36:26.406Z",
+        "html_bytes": 155157
+      },
+      {
+        "path": "/updates?topic=student",
+        "status": 200,
+        "guidance_cards": 3,
+        "source_snapshot": "2026-10-08T06:36:26.733Z",
+        "html_bytes": 101246
+      },
+      {
+        "path": "/updates?topic=business",
+        "status": 200,
+        "guidance_cards": 6,
+        "source_snapshot": "2026-10-08T06:36:26.887Z",
+        "html_bytes": 110237
+      }
+    ]
+  },
+  "shared_ai_budget": {
+    "day": "2026-10-08",
+    "runs": 4,
+    "calls": 6
+  },
+  "scope": "Read-only observation of real scheduled production receipts. No synthetic customers or jobs; zero followed searches means actual new-match arrival is unverified."
+}

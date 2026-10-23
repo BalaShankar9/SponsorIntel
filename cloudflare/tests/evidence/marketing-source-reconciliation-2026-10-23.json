@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "operation_date_utc": "2026-10-23",
+  "kind": "native_schedule_and_existing_review_reconciliation",
+  "runtime_unchanged": "2.92.0",
+  "linkedin": {
+    "destination": "linkedin-company",
+    "company_id": "146710167",
+    "native_admin_url": "https://www.linkedin.com/company/146710167/admin/page-posts/published/",
+    "brief_id": "bbbfd315-3bd4-4d64-b992-9af9d8d8a695",
+    "version": 2,
+    "revision_after": 4,
+    "state": "scheduled",
+    "content_sha256": "79eee1666a5d82466687e0a6658b9758a058d331f1562fbd00e496c62d2b8b04",
+    "caption": "51 adverts in our selected UK catalogue contain positive or conditional sponsorship wording, out of 1018 roles checked as of 21 October 2026. These are advert signals, not sponsorship guarantees. Our new report shows the evidence, coverage and limits.\n\nhttps://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=linkedin&utm_medium=organic_social&utm_campaign=evidence-report",
+    "report_source_date": "2026-10-21T18:45:54.392Z",
+    "report_counts": {
+      "roles": 1018,
+      "employers": 37,
+      "offered": 20,
+      "conditional": 31,
+      "unavailable": 141,
+      "not_stated": 826
+    },
+    "evidence_expires_at": "2026-10-28T18:45:54.392Z",
+    "independent_model_review_workflow": "marketing-2026-10-22",
+    "model_review_is_not_human_review": true,
+    "native_queue_before": 0,
+    "native_queue_after": 1,
+    "schedule_clicked_once": true,
+    "native_success_notice": "Post scheduled",
+    "scheduled_at": "2026-10-23T09:00:00.000Z",
+    "scheduled_local": "23 October 2026, 10:00 BST",
+    "queue_observed_at": "2026-10-23T01:33:57.502Z",
+    "ledger_observed_at": "2026-10-23T01:33:57.000Z",
+    "ledger_saved_at": "2026-10-23T01:34:41.847Z",
+    "ledger_receipt_id": "146965f7-bd53-4a4e-b743-c0905f3727c6",
+    "native_observation_reference": "linkedin-native-observed-20261023-0900-company",
+    "observation_reference_is_provider_id": false,
+    "provider_post_id": null,
+    "public_post_url": null,
+    "delivery_verified": false,
+    "campaign_url": "https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=linkedin&utm_medium=organic_social&utm_campaign=evidence-report",
+    "native_short_link": "https://lnkd.in/eWArjjpf",
+    "complete_copy_and_preview_checked": true,
+    "duplicate_check": "Native published list had the previous welcome/report, no matching 21 October report; scheduled list was empty before the single action.",
+    "screenshot_local": "outputs/linkedin-report-scheduled-2026-10-23.png",
+    "database_comparison": {
+      "before_at": "2026-10-23T01:31:17.469Z",
+      "after_at": "2026-10-23T01:35:29.320Z",
+      "groups": {
+        "briefs": {
+          "before_count": 15,
+          "after_count": 15,
+          "old_rows_missing_or_changed": 1,
+          "new_or_changed_rows": 1
+        },
+        "versions": {
+          "before_count": 18,
+          "after_count": 18,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 0
+        },
+        "events": {
+          "before_count": 37,
+          "after_count": 38,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 1
+        },
+        "receipts": {
+          "before_count": 12,
+          "after_count": 13,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 1
+        }
+      }
+    },
+    "later_acceptance": "Inspect this original native item after 09:00 UTC; retain exact public URL/account/copy/link before recording Published. Missing queue row alone is not delivery proof. Do not resend on uncertainty."
+  },
+  "senior_invigilator": {
+    "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+    "original_url": "https://teaching-vacancies.service.gov.uk/jobs/senior-exam-invigilator-king-s-lynn-academy",
+    "original_observed_at": "2026-10-23T01:36:04.125Z",
+    "application_route": "https://ce0218li.webitrent.com/ce0218li_webrecruitment/wrd/run/ETREC179GF.open?WVID=916573b6AO",
+    "application_route_observed_at": "2026-10-23T01:37:25.389Z",
+    "route_result": "No suitable matches",
+    "dfe_stated_deadline": "2026-11-01T23:59:00.000Z",
+    "sponsorship_wording": "Visas cannot be sponsored",
+    "formal_closure_or_filled_not_established": true,
+    "saved_revision": 4,
+    "state": "held",
+    "recorded_at": "2026-10-23T01:37:43.208Z",
+    "observed_at": "2026-10-23T01:37:25.000Z",
+    "follow_up_at": "2026-10-27T10:00:00.000Z",
+    "method": "agent_assisted",
+    "four_review_targets_stayed_inactive": true,
+    "database_comparison": {
+      "before_at": "2026-10-23T01:37:04.052Z",
+      "after_at": "2026-10-23T01:42:27.085Z",
+      "groups": {
+        "revisions": {
+          "before_count": 13,
+          "after_count": 14,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 1
+        },
+        "targets": {
+          "before_count": 4,
+          "after_count": 4,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 0
+        },
+        "jobs": {
+          "before_count": 4,
+          "after_count": 4,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 0
+        },
+        "audits": {
+          "before_count": 13,
+          "after_count": 14,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 1
+        }
+      }
+    }
+  },
+  "danu": {
+    "lead_id": "113a240e-708a-4d31-b5a7-fa2ca482901b",
+    "original_url": "https://www.danu-insights.com/careers/biotech-automation-engineer",
+    "source_url": "https://www.linkedin.com/jobs/view/4477654390/",
+    "employer_observed_at": "2026-10-23T01:38:20.633Z",
+    "linkedin_observed_at": "2026-10-23T01:41:35.509Z",
+    "availability_conflict": {
+      "linkedin_status": "No longer accepting applications",
+      "employer_and_linkedin_body_deadline": "2026-10-26T23:59:00.000Z"
+    },
+    "sponsorship_context": "Possible sponsorship later in the role for applicants already permitted to work in the UK; not an immediate overseas sponsorship offer.",
+    "state": "held",
+    "revision": 6,
+    "recorded_at": "2026-10-23T01:42:02.724Z",
+    "observed_at": "2026-10-23T01:41:35.000Z",
+    "follow_up_at": "2026-10-25T12:00:00.000Z",
+    "posted_at": null,
+    "method": "agent_assisted",
+    "historical_identity_not_recertified": true,
+    "source_adapter_and_reuse_still_unapproved": true,
+    "database_comparison": {
+      "before_at": "2026-10-23T01:35:30.760Z",
+      "after_at": "2026-10-23T01:42:27.229Z",
+      "groups": {
+        "leads": {
+          "before_count": 28,
+          "after_count": 28,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 0
+        },
+        "revisions": {
+          "before_count": 74,
+          "after_count": 75,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 1
+        },
+        "audits": {
+          "before_count": 63,
+          "after_count": 64,
+          "old_rows_missing_or_changed": 0,
+          "new_or_changed_rows": 1
+        }
+      }
+    }
+  },
+  "queue_after": {
+    "retained_leads": 28,
+    "unresolved": 7,
+    "overdue": 4,
+    "new_leads_this_pass": 0
+  },
+  "controls": {
+    "new_social_schedules": 1,
+    "new_production_ai_calls": 0,
+    "new_google_attempts": 0,
+    "new_emails": 0,
+    "new_applications": 0,
+    "new_source_approvals": 0,
+    "forced_refreshes": 0,
+    "runtime_deployments_this_pass": 0,
+    "held_vacancies_reactivated": 0
+  },
+  "limits": "This verifies a native schedule and appended owner-assisted reviews, not publication, audience growth, automatic LinkedIn ingestion or full autonomous operations. Private raw reads, actor identifiers, session URLs and request keys are omitted.",
+  "operational_readback": {
+    "observed_at": "2026-10-23T01:44:24.150Z",
+    "unchanged_groups": [
+      "business_controls",
+      "marketing_controls",
+      "research_control",
+      "application_controls",
+      "source_controls",
+      "ai_budget",
+      "source_budget"
+    ],
+    "comparison_baseline_at": "2026-10-23T01:11:10.098Z",
+    "ai_starts": 1,
+    "ai_calls": 2,
+    "source_reservations": 96,
+    "source_daily_limit": 500,
+    "portmandentex_paused": true,
+    "foreign_key_errors": 0
+  },
+  "next_genuine_business_run": {
+    "id": "business-497977",
+    "trigger_kind": "scheduled",
+    "application_state": "attention",
+    "d1_finished_at": "2026-10-23T01:45:45.765Z",
+    "platform_status": "complete",
+    "platform_success": true,
+    "platform_end": "2026-10-23T01:45:45.847Z",
+    "findings": {
+      "findings": 9,
+      "high": 2
+    },
+    "social_delivery": {
+      "available": true,
+      "checked_at": "2026-10-23T01:45:40.935Z",
+      "records_checked": 7,
+      "limited": false,
+      "scheduled": 1,
+      "awaiting_check": 0,
+      "overdue": 0,
+      "uncertain": 0,
+      "failed_30d": 0,
+      "published_30d": 6,
+      "invalid_records": 0,
+      "last_published_observation": "2026-10-18T12:49:50.715Z",
+      "next_scheduled_at": "2026-10-23T09:00:00.000Z"
+    },
+    "job_reviews": {
+      "total": 4,
+      "held": 4,
+      "overdue": 0
+    },
+    "discovery": {
+      "total": 28,
+      "unresolved": 7,
+      "overdue": 4,
+      "changed_links": 0,
+      "current_linked_jobs": 3,
+      "last_recorded_at": "2026-10-23T01:42:02.724Z",
+      "allowance": {
+        "day": "2026-10-23",
+        "limit": 5,
+        "used": 0,
+        "remaining": 5,
+        "next_day": "2026-10-24T00:00:00.000Z"
+      }
+    },
+    "jobs": {
+      "total": 1025,
+      "employers": 37,
+      "offered": 20,
+      "conditional": 32,
+      "unavailable": 143,
+      "not_stated": 830,
+      "early_career": 75,
+      "salary": 186
+    },
+    "model_calls": 0,
+    "external_posts": 0,
+    "source_reservations_after": 104,
+    "ai_starts_after": 1,
+    "ai_calls_after": 2,
+    "google_reused_existing_completed_attempt": true
+  }
+}

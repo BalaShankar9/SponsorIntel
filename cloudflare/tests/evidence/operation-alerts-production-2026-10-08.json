@@ -1,0 +1,101 @@
+{
+  "checked_at": "2026-10-08T07:18:55.504127+00:00",
+  "version": "2.29.0",
+  "worker": "14a6d48e-27bd-447e-ad95-cd0cae9a3e7a",
+  "migration": "0022_operation_alerts.sql",
+  "rollback_worker": "7bbdc1c9-5a15-4de7-99d9-2ccb214a1417",
+  "recovery_bookmark": "000002c8-00000000-000050fe-94eef85ab29345ce1be2cfc0a51d24ad",
+  "owner_preference": [
+    {
+      "enabled": 1,
+      "revision": 1,
+      "updated_at": "2026-10-08T07:12:10.241Z",
+      "last_count": 0
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "a9ca9c79-6d3d-4b08-824d-21d119b82b3e",
+      "kind": "test",
+      "state": "confirmed",
+      "critical_count": 0,
+      "high_count": 0,
+      "created_at": "2026-10-08T07:12:24.095Z",
+      "finished_at": "2026-10-08T07:12:26.166Z",
+      "message_id": "<GrvC5QTuFxLgk2q0V921tFbGMc2ZOFNWF0az@sponsorintel.london>",
+      "received_at": "2026-10-08T07:13:19.768Z"
+    }
+  ],
+  "scheduled_receipts": {
+    "operation_alerts": {
+      "checked_at": "2026-10-08T07:15:38.506Z",
+      "owners": 1,
+      "attempted": 0,
+      "accepted": 0,
+      "held": 0
+    },
+    "search_notifications": {
+      "checked_at": "2026-10-08T07:15:38.506Z",
+      "checked": 0,
+      "failed": 0
+    }
+  },
+  "model_budget": [
+    {
+      "day": "2026-10-08",
+      "runs": 4,
+      "calls": 6
+    }
+  ],
+  "latest_business_run": [
+    {
+      "id": "business-497622",
+      "trigger_kind": "scheduled",
+      "state": "completed",
+      "created_at": "2026-10-08T06:45:38.000Z",
+      "finished_at": "2026-10-08T06:45:50.225Z"
+    }
+  ],
+  "http": {
+    "health": {
+      "status": 200,
+      "cache_control": "no-store",
+      "body": {
+        "ok": true,
+        "version": "2.29.0",
+        "register": {
+          "date": "2026-10-06",
+          "count": 127934,
+          "checked_at": "2026-10-07T07:15:14.478Z"
+        }
+      }
+    },
+    "anonymous_alerts": {
+      "status": 403,
+      "cache_control": "no-store",
+      "body": {
+        "error": "The owner account is required."
+      }
+    }
+  },
+  "mailbox": {
+    "receipt_id": "a9ca9c79-6d3d-4b08-824d-21d119b82b3e",
+    "observed_folder": "SPAM",
+    "delivered_at": "2026-10-08T07:12:30Z",
+    "spf": "pass",
+    "dkim_domain": "sponsorintel.london",
+    "dkim": "pass",
+    "dmarc": "pass",
+    "body_and_message_id_match": true,
+    "new_test_sends": 1,
+    "inbox_placement_verified": false,
+    "labels_changed": false,
+    "recipient": "Verified owner; email omitted from repository"
+  },
+  "limitations": [
+    "Real test proves mailbox delivery, not inbox placement.",
+    "Scheduled scan is an idle production run, not a manufactured incident/recovery.",
+    "No production AI call, Google retry or social send performed.",
+    "Checks share Cloudflare with the site; complete provider outage detection remains separate."
+  ]
+}

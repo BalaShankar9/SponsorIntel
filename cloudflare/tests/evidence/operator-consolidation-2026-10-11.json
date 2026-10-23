@@ -1,0 +1,48 @@
+{
+  "observed_at": "2026-10-11T19:43:09.613646+00:00",
+  "kind": "existing_heartbeat_instruction_update",
+  "automation_id": "sponsor-intel-daily-improvement",
+  "old_prompt": {
+    "characters": 126169,
+    "sha256": "b813ac7ef90ebbf702037c825df43cd497e20150915b61af84857ea9743902be",
+    "archived_paragraphs": 114
+  },
+  "new_prompt": {
+    "characters": 6449,
+    "sha256": "293f155367552a12bc18d40987937f427a30697f25397d3e5c44b8d326f5753a",
+    "reduction_percent": 94.89,
+    "exact_saved_readback": true,
+    "provider_normalization": "The tool removed the submitted final newline; the versioned replacement now matches saved text exactly. No second update was made."
+  },
+  "changed_fields": [
+    "prompt",
+    "updated_at"
+  ],
+  "unchanged_fields": [
+    "version",
+    "id",
+    "kind",
+    "name",
+    "status",
+    "rrule",
+    "target_thread_id",
+    "created_at"
+  ],
+  "notification_field_added": false,
+  "schedule_status_target_preserved": true,
+  "archive_paragraph_hashes_verified": 114,
+  "existing_document_references_checked": 38,
+  "mechanical_tripwire_strings_checked": 44,
+  "documents": {
+    "docs/DAILY_OPERATOR_PROMPT.md": "293f155367552a12bc18d40987937f427a30697f25397d3e5c44b8d326f5753a",
+    "docs/DAILY_OPERATOR.md": "5a1489099688049b01fdccbf49b653fe40103f7b4ce09ac01dd25a8313530e8b",
+    "docs/OPERATOR_CHECKPOINT.md": "38c5da48bd9a9ed475cbfeaba4c765e0bfa5913ea01e178debae9fa3f4f245a7",
+    "docs/OPERATOR_CONSOLIDATION-2026-10-11.md": "ca28514afb75c46063d6a0e8116db3ee7e103008a4dbd13b0ee78be86f72e550"
+  },
+  "limitations": [
+    "Agent-assisted preservation review, not independent semantic assurance.",
+    "Next genuine daily automation execution remains unobserved.",
+    "Unchanged production code was not redeployed or retested on account of this documentation change.",
+    "No source, model, Google, social, email, database-write or spending action."
+  ]
+}

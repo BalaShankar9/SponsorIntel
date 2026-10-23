@@ -1,0 +1,179 @@
+{
+  "kind": "application-evidence-example-release",
+  "date": "2026-10-18",
+  "runtime": {
+    "version": "2.82.0",
+    "commit": "8f900e3de64479d06494a2a6aebc55933782a85c",
+    "worker": "3b8e7099-3ffd-45b9-b58e-70093065567a",
+    "rollback_worker": "c308c706-ec9a-40ce-ba45-26a8c721d0ac",
+    "rollback_version": "2.81.0",
+    "schema_changed": false,
+    "dependency_graph_changed": false
+  },
+  "purpose": "Let visitors inspect a limited local CV/advert evidence check before providing a CV or saving a real application.",
+  "features": [
+    "Collapsed example in empty Studio and existing application Evidence & gaps view",
+    "Two explicitly fictional project/volunteering scenarios using the actual local checker",
+    "Changing scenario clears the previous result",
+    "No workspace/storage/analytics/network integration; no generated AI document or saved fictional application"
+  ],
+  "validation": {
+    "node": "24.19.0",
+    "tests": {
+      "passed": 690,
+      "failed": 0,
+      "duration_ms": 57854.359125
+    },
+    "typescript": true,
+    "build": true,
+    "prerenders": 18,
+    "browser_budgets": "unchanged and passed",
+    "initial_js_bytes": 383739,
+    "initial_js_gzip_bytes": 116864,
+    "initial_css_bytes": 109950,
+    "initial_css_gzip_bytes": 22776,
+    "career_chunk_deferred": true,
+    "worker_dry_run": true,
+    "development_corrections": [
+      "State inference was widened for the select value before final typecheck.",
+      "The example assertion was corrected to match the checker quotation while keeping full provenance visible."
+    ],
+    "wrapper_observation": "The test/build shell wrappers reported a reserved-variable assignment error after their commands completed. Their complete logs independently show the passing test, build, prerender and budget results."
+  },
+  "local_browser": {
+    "surface": "Actual CareerTools/Studio and CareerProvider with fictional data and isolated providers",
+    "existing_fictional_cv": {
+      "both_examples": true,
+      "result_reset": true,
+      "full_notes": true,
+      "navigation_to_jobs": true,
+      "workspace_serialization_unchanged": true,
+      "additional_storage_writes": 0,
+      "external_attempts": 0
+    },
+    "empty_guest": {
+      "cv_empty": true,
+      "example_available": true,
+      "result_rendered": true,
+      "workspace_serialization_unchanged": true,
+      "additional_storage_writes": 0,
+      "external_attempts": 0
+    },
+    "narrow_layout": {
+      "viewport_width_px": 390,
+      "document_width_px": 390,
+      "viewport_height_px": 844,
+      "horizontal_overflow": false,
+      "kind": "Actual browser iframe viewport; not a real device test"
+    },
+    "temporary_tab_and_preview_closed": true
+  },
+  "live_browser": {
+    "url": "https://sponsorintel.london/studio",
+    "owner_authenticated": true,
+    "both_fictional_examples_verified": true,
+    "changing_example_cleared_result": true,
+    "real_cv_generation_or_application_submission": false,
+    "screenshot_retained_privately": true
+  },
+  "live_http": {
+    "metrics_exclusion": "X-SI-Metrics: exclude",
+    "health_ok": true,
+    "version": "2.82.0"
+  },
+  "preservation": {
+    "before_at": "2026-10-18T02:31:46.834Z",
+    "after_at": "2026-10-18T02:35:25.857Z",
+    "selected_groups": {
+      "business_controls": true,
+      "marketing_controls": true,
+      "research_control": true,
+      "application_controls": true,
+      "source_controls": true,
+      "marketing_briefs": true,
+      "marketing_receipts": true,
+      "source_budget": true,
+      "ai_budget": true,
+      "business_runs": true,
+      "source_runs": true,
+      "marketing_runs": true,
+      "issues": true,
+      "foreign_keys": true
+    },
+    "foreign_key_errors": 0,
+    "career_workspace_revision_time_size_metadata_unchanged": true,
+    "career_workspace_limitation": "Metadata comparison only; no production CV content was exported or hashed. Complete serialized-content equality was verified in the fictional local fixture only.",
+    "ai_starts": 2,
+    "ai_calls": 8,
+    "source_reservations": 104,
+    "no_forced_workflow_or_provider_send": true
+  },
+  "recovery": {
+    "reuse_same_day_check_at": "2026-10-18T00:05:57.335Z",
+    "exact_database_identity": true,
+    "recovery_point_available": true,
+    "migrations": 40,
+    "schema_objects": 166,
+    "no_restore_export_or_retention_acceptance": true
+  },
+  "dependencies": {
+    "same_day_audit_reused": true,
+    "high": 0,
+    "critical": 0,
+    "moderate": 3,
+    "known_chain": "Mammoth / argparse / sprintf-js",
+    "official_advisory": "GHSA-hp3w-g68c-fv3c",
+    "no_inspected_upstream_patch": true
+  },
+  "hosted_runtime_checks": {
+    "head": "8f900e3de64479d06494a2a6aebc55933782a85c",
+    "checks": [
+      {
+        "id": 117566030901,
+        "name": "GitGuardian Security Checks",
+        "status": "completed",
+        "conclusion": "success",
+        "annotations": []
+      },
+      {
+        "id": 117566025967,
+        "name": "check",
+        "status": "completed",
+        "conclusion": "failure",
+        "annotations": [
+          {
+            "level": "failure",
+            "message": "The job was not started because your account is locked due to a billing issue."
+          },
+          {
+            "level": "notice",
+            "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+          }
+        ]
+      },
+      {
+        "id": 117566019160,
+        "name": "check",
+        "status": "completed",
+        "conclusion": "failure",
+        "annotations": [
+          {
+            "level": "failure",
+            "message": "The job was not started because your account is locked due to a billing issue."
+          },
+          {
+            "level": "notice",
+            "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+          }
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "This is a first-use experiment, not proof of adoption, accuracy or improved customer applications.",
+    "Demo use is excluded from real evidence-check metrics.",
+    "Existing source, model, Instagram and personal-report holds remain.",
+    "Facebook 398874739 remains Pending for 18 October 10:15 Europe/London; source recheck and actual delivery remain separate.",
+    "Sponsor Intel goal and daily heartbeat stay active; unrelated project automations stay paused."
+  ]
+}

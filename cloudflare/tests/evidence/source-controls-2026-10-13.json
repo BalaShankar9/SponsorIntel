@@ -1,0 +1,109 @@
+{
+  "release": "2.74.0",
+  "worker": "3bce99a0-2531-48fe-9a3f-5a8f9026c4c0",
+  "code_commit": "62fb889b8bc34702b986e2696803db1ba63eb512",
+  "rollback_worker": "048f4316-de47-43e2-a508-cc641324001b",
+  "live": {
+    "at": "2026-10-13T18:21:23.354Z",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "health": {
+          "ok": true,
+          "version": "2.74.0",
+          "register": {
+            "date": "2026-10-12",
+            "count": 127982,
+            "checked_at": "2026-10-13T07:15:42.984Z"
+          }
+        }
+      },
+      {
+        "path": "/jobs",
+        "status": 200
+      },
+      {
+        "path": "/api/admin/agents",
+        "status": 403
+      }
+    ],
+    "owner_bundle": {
+      "path": "assets/owner-DXi1toUY.js",
+      "status": 200,
+      "sha256": "4a6e9b6523447c4270b0152a1eccb67b6d490fd6977a055144f853544bcbdf3d",
+      "exact_match": true
+    }
+  },
+  "validation": {
+    "tests": 643,
+    "failed": 0,
+    "milliseconds": 67666.372625,
+    "node": "24.19.0",
+    "build_typescript_prerenders_budgets_dry_run": "passed",
+    "schema_change": false,
+    "dependency_graph_change": false
+  },
+  "preservation": {
+    "controls_and_application": {
+      "before": "2026-10-13T18:19:53.131Z",
+      "after": "2026-10-13T18:21:19.597Z",
+      "groups": 14,
+      "equal": true
+    },
+    "discovery_and_jobs": {
+      "before": "2026-10-13T18:19:55.456Z",
+      "after": "2026-10-13T18:21:21.782Z",
+      "groups": 6,
+      "equal": true
+    }
+  },
+  "fictional_browser": {
+    "sources": 37,
+    "paused_filter": 2,
+    "combined_search": 1,
+    "no_match": 0,
+    "unsaved_draft_survived_filter_and_refresh": true,
+    "notes_escaped": true,
+    "mutation_requests": 0,
+    "external_calls": 0,
+    "mobile": {
+      "viewport": 390,
+      "document": 390,
+      "filter_width": 292
+    }
+  },
+  "live_owner_browser": {
+    "authenticated": true,
+    "sources": 37,
+    "paused_filter": 1,
+    "paused_source": "PortmanDentex",
+    "saved_reason_and_date_visible": true,
+    "historical_collection": {
+      "ready": 51,
+      "total": 249,
+      "at": "2026-10-08T18:36:42.306Z",
+      "private": true
+    },
+    "source_check_disabled_while_paused": true,
+    "latest_run_and_coordinator_collapsed": true,
+    "mobile": {
+      "viewport": 390,
+      "document": 390,
+      "filter_width": 246
+    },
+    "new_control_writes": 0,
+    "final_view": "Overview",
+    "temporary_tabs_closed": true,
+    "viewport_reset": true
+  },
+  "hosted_code_checks": {
+    "billing_blocked": [
+      115464484074,
+      115464439072
+    ],
+    "annotations_inspected": true,
+    "gitguardian_pass": 115464449676
+  },
+  "limits": "No source resume, source fetch, production model/Google call, social/email send, new lead, forced workflow, migration or allowance reset. Historical PortmanDentex mismatch remains unresolved."
+}

@@ -1,0 +1,176 @@
+{
+  "checked_at": "2026-10-08T18:42:07.443266+00:00",
+  "release": "2.47.1",
+  "source": "portmandentex",
+  "provider": "smartrecruiters",
+  "review": "Official careers footer, public Posting API documentation, current sponsor-register identity and two original adverts. Full advert descriptions not yet collected or published.",
+  "captures": [
+    {
+      "kind": "first_catalogue_page",
+      "captured_file_at": "2026-10-08T17:54:56.028962+00:00",
+      "sha256": "1fea2a339e94d291762dad1071fd7691da5b0623f93483309c88e3728858d1c9",
+      "title": null,
+      "posting_id": null,
+      "total_found": 249,
+      "page_count": 100
+    },
+    {
+      "kind": "belfast_original",
+      "captured_file_at": "2026-10-08T18:01:20.190218+00:00",
+      "sha256": "c60d37c704dc3be1b04f4ca12a3b8add68dbc3e2da80a5b45d8e30765956094e",
+      "title": "Overseas Dentists Welcome to Apply",
+      "posting_id": "744000133910039",
+      "total_found": null,
+      "page_count": null
+    },
+    {
+      "kind": "first_listed_original",
+      "captured_file_at": "2026-10-08T18:15:51.987977+00:00",
+      "sha256": "c7f70def34dd19ecbb6ce289b1963e244a6ba5929e7f062b6dceb4c3054b36dc",
+      "title": "Surgical Dental Nurse ",
+      "posting_id": "744000154494289",
+      "total_found": null,
+      "page_count": null
+    }
+  ],
+  "sample_offer": {
+    "url": "https://jobs.smartrecruiters.com/PortmanDentex/744000133910039-overseas-dentists-welcome-to-apply",
+    "title": "Overseas Dentists Welcome to Apply",
+    "location": "Belfast",
+    "quote": "Visa sponsorship available",
+    "requirements": [
+      "GDC registration",
+      "Northern Ireland Dental List registration"
+    ],
+    "released_date": "2026-06-24T10:12:54.182Z",
+    "original_publication_date": null,
+    "closing_date": null,
+    "pay_amount": null
+  },
+  "sample_nonclaim": {
+    "id": "744000154494289",
+    "title": "Surgical Dental Nurse",
+    "classification": "not_stated"
+  },
+  "licence_link": {
+    "type": "reviewed_group_brand",
+    "id": "e9beba5d4cd6f744164738b6",
+    "name": "Portman Healthcare Limited",
+    "city": "Cheltenham",
+    "county": "Gloucestershire",
+    "evidence_url": "https://www.portmandentex.com/careers",
+    "vacancy_employing_entity_confirmed": false
+  },
+  "bounds": {
+    "max_catalogue": 500,
+    "page_size": 100,
+    "detail_batch": 40,
+    "reserved_requests_per_attempt": 50,
+    "cache_days": 7,
+    "max_run_requests": 150,
+    "max_daily_requests": 500,
+    "max_wall_seconds": 75,
+    "minimum_request_spacing_ms": 200
+  },
+  "local_validation": {
+    "tests": 461,
+    "pass": 461,
+    "runtime": "Actual SourceWorkflow and D1 in isolated Workerd with fictional postings; 40 of 41 privately cached, then one fetched, 41 published in one transaction; replay made no new requests. Not an unattended production receipt.",
+    "first_fixture_calls": 42,
+    "total_fixture_calls": 45,
+    "fixture_reservations": 100
+  },
+  "unattended_production_progress_verified": false,
+  "initial_live_attempt": {
+    "run_id": "owner-4cf6d466-fc88-4aca-a32e-277184cf9288",
+    "trigger": "owner",
+    "state": "attention",
+    "attempts": 3,
+    "reservations": 150,
+    "finished_at": "2026-10-08T18:23:09.656Z",
+    "public_jobs": 0,
+    "private_cached_descriptions": 11,
+    "cause": "Posting 744000130382975 contains its role description in companyDescription; jobDescription is empty. Initial parser rejected this otherwise complete public section layout.",
+    "repair": "2.47.1 accepts role content in either published companyDescription or jobDescription while requiring all four sections, preserving all text and rejecting an empty pair of role/company text sections. Regression and real captured detail pass. Requests paced at 200 ms minimum. Recent partial progress is distinguished from publication and failed/stalled sources."
+  },
+  "deployment": {
+    "initial_version": "3187dc9f-5ac9-4434-8cc0-60268479daad",
+    "current_version": "f6193a11-3be4-4870-8e60-195bfbe6d00c",
+    "migration": "0031_paged_sources.sql",
+    "schema_objects": 129,
+    "schema_exact_match": true,
+    "recovery_point_available": true,
+    "data_restore_performed": false
+  },
+  "scheduled_source_run": {
+    "id": "scheduled-1791484247000",
+    "trigger": "scheduled",
+    "finished_at": "2026-10-08T18:33:14.595Z",
+    "state": "attention",
+    "platform_completed": true,
+    "platform_version": "1271628f-b1b7-46d0-9de9-15e4623afafe",
+    "published_sources": 35,
+    "skipped_sources": 1,
+    "request_reservations": 36,
+    "sequence": {
+      "count": 4,
+      "state": "published",
+      "finished_at": "2026-10-08T18:33:08.704Z"
+    },
+    "wintermute": {
+      "count": 16,
+      "state": "published",
+      "finished_at": "2026-10-08T18:33:11.450Z"
+    },
+    "portmandentex": {
+      "count": 0,
+      "state": "skipped",
+      "reason": "source_cooldown"
+    }
+  },
+  "repaired_collection": {
+    "id": "owner-66b517c5-e3df-4aac-840f-42abc1849eb5",
+    "trigger": "owner",
+    "finished_at": "2026-10-08T18:36:51.709Z",
+    "state": "completed",
+    "platform_completed": true,
+    "platform_version": "72b2b278-fed5-41a8-bed5-19a3256a13da",
+    "attempts": 1,
+    "reserved_requests": 50,
+    "actual_requests": 46,
+    "ready": 51,
+    "total": 249,
+    "fetched_this_pass": 40,
+    "public_jobs": 0,
+    "error": null,
+    "last_success": null,
+    "paused": false,
+    "cooldown_until": 0,
+    "daily_reservations_after": 388,
+    "owner_controls_reviewed_repair": true,
+    "budgets_reset": false,
+    "next_natural_source_slot_utc": "2026-10-09T00:30:00Z"
+  },
+  "public_after_scheduled_refresh": {
+    "verified_in_browser": true,
+    "jobs": 926,
+    "employers": 35,
+    "offered": 21,
+    "conditional": 34,
+    "sponsorship_mentioned": 55,
+    "licence_linked": 873,
+    "new_offered_advert": {
+      "id": "8cec3fe7af41e51a3344df76",
+      "title": "Applied AI - Member of Technical Staff",
+      "company": "Callosum",
+      "location": "London",
+      "first_seen": "2026-10-08T18:32:19.338Z",
+      "original": "https://jobs.ashbyhq.com/callosum/e33ede97-fee9-4c0a-8063-9944923fa36b",
+      "original_browser_verified": true,
+      "quote": "We offer Visa sponsorship and relocation benefits to hire the best in the world",
+      "licence_link_confirmed": false
+    }
+  },
+  "complete_live_advert_set_verified": false,
+  "complete_summary_scan_verified": true
+}

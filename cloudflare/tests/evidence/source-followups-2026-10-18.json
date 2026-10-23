@@ -1,0 +1,375 @@
+{
+  "observed_at": "2026-10-18T00:17:02.186Z",
+  "scope": "Agent-assisted existing lead review, not independent human adjudication or publication",
+  "reviews": [
+    {
+      "lead_id": "113a240e-708a-4d31-b5a7-fa2ca482901b",
+      "revision": 5,
+      "recorded_at": "2026-10-18T00:16:19.756Z",
+      "employer": "Danu Insights",
+      "state": "held",
+      "observed_at": "2026-10-18T00:12:00.000Z",
+      "follow_up_at": "2026-10-21T11:00:00.000Z",
+      "posted_at": null,
+      "deadline": "2026-10-26T23:59:00.000Z",
+      "original_url": "https://www.danu-insights.com/careers/biotech-automation-engineer",
+      "method": "agent_assisted",
+      "content_sha256": "202f011224b7fb391e7dea40e258b0f899827f5ec7e3efdf325a49dd3854b24e",
+      "preserved_revision_count": 5
+    },
+    {
+      "lead_id": "150311d7-86c7-48dc-9132-691482dc924b",
+      "revision": 4,
+      "recorded_at": "2026-10-18T00:07:38.509Z",
+      "employer": "Lift Kingswood",
+      "state": "rejected",
+      "observed_at": "2026-10-18T00:07:00.000Z",
+      "follow_up_at": null,
+      "posted_at": null,
+      "deadline": null,
+      "original_url": "https://careers.liftschools.org/jobs/teacher-of-english-hull-england-united-kingdom",
+      "method": "agent_assisted",
+      "content_sha256": "b975b4a185435eeb733a49d79eaacbdd10d692c26f1b96fc79dcf7cc857b0c31",
+      "preserved_revision_count": 4
+    },
+    {
+      "lead_id": "22eb0cdf-824c-4d53-bddc-0d916f88feda",
+      "revision": 4,
+      "recorded_at": "2026-10-18T00:10:56.074Z",
+      "employer": "Whitchurch Church of England Primary School",
+      "state": "held",
+      "observed_at": "2026-10-18T00:07:00.000Z",
+      "follow_up_at": "2026-10-18T11:00:00.000Z",
+      "posted_at": null,
+      "deadline": "2026-10-19T11:00:00.000Z",
+      "original_url": "https://south.education-jobs.org.uk/jobs/job/KS1-Class-Teacher-part-time-3-days-a-week/13679",
+      "method": "agent_assisted",
+      "content_sha256": "503e93ba07a41a8935d85febaad02ae63500759d414b995ee7aa3bc40c0a63f9",
+      "preserved_revision_count": 4
+    },
+    {
+      "lead_id": "63a5f100-1eed-4267-8b6e-a4e98e9df34b",
+      "revision": 3,
+      "recorded_at": "2026-10-18T00:15:35.012Z",
+      "employer": "Revolut; employing legal entity not established",
+      "state": "held",
+      "observed_at": "2026-10-18T00:12:00.000Z",
+      "follow_up_at": "2026-10-25T12:00:00.000Z",
+      "posted_at": null,
+      "deadline": null,
+      "original_url": "https://www.revolut.com/careers/position/f95a2dda-30a6-4fef-af87-db97199df832/",
+      "method": "agent_assisted",
+      "content_sha256": "c576802cf4af6742d5ecb6154ec013544a2ec0c2bbaa4d2a861415d9f1eb5e57",
+      "preserved_revision_count": 3
+    },
+    {
+      "lead_id": "78a799ba-15b3-48c9-abb9-5bd25ff9c491",
+      "revision": 4,
+      "recorded_at": "2026-10-18T00:08:25.799Z",
+      "employer": "Loughborough College",
+      "state": "rejected",
+      "observed_at": "2026-10-18T00:06:00.000Z",
+      "follow_up_at": null,
+      "posted_at": null,
+      "deadline": "2026-10-18T22:59:00.000Z",
+      "original_url": "https://candidate.loucollcareers.co.uk/325014TEVA",
+      "method": "agent_assisted",
+      "content_sha256": "ff0177d22feaeee164ca877055b7563bb2d6ed1ce1ba072ceced0394e98f9664",
+      "preserved_revision_count": 4
+    },
+    {
+      "lead_id": "f2e0f2b1-d4cc-40f4-9bf7-35f037e7b329",
+      "revision": 3,
+      "recorded_at": "2026-10-18T00:14:10.101Z",
+      "employer": "Sussex Road Community Primary School",
+      "state": "held",
+      "observed_at": "2026-10-18T00:13:00.000Z",
+      "follow_up_at": "2026-10-19T11:00:00.000Z",
+      "posted_at": null,
+      "deadline": "2026-10-21T08:00:00.000Z",
+      "original_url": "https://teaching-vacancies.service.gov.uk/jobseekers/23b9e9c5-dd78-486a-8fda-5bac8878a083/job_application/new",
+      "method": "agent_assisted",
+      "content_sha256": "3b645074d0725599703673d0d06766e3f462539c97db00671fd769ad001a2c32",
+      "preserved_revision_count": 3
+    }
+  ],
+  "audit": [
+    {
+      "action": "discovery-review",
+      "target": "78a799ba-15b3-48c9-abb9-5bd25ff9c491",
+      "created_at": "2026-10-18T00:06:54.119Z"
+    },
+    {
+      "action": "discovery-review",
+      "target": "150311d7-86c7-48dc-9132-691482dc924b",
+      "created_at": "2026-10-18T00:07:38.509Z"
+    },
+    {
+      "action": "discovery-review",
+      "target": "78a799ba-15b3-48c9-abb9-5bd25ff9c491",
+      "created_at": "2026-10-18T00:08:25.799Z"
+    },
+    {
+      "action": "discovery-review",
+      "target": "22eb0cdf-824c-4d53-bddc-0d916f88feda",
+      "created_at": "2026-10-18T00:10:56.074Z"
+    },
+    {
+      "action": "discovery-review",
+      "target": "63a5f100-1eed-4267-8b6e-a4e98e9df34b",
+      "created_at": "2026-10-18T00:12:04.130Z"
+    },
+    {
+      "action": "discovery-review",
+      "target": "113a240e-708a-4d31-b5a7-fa2ca482901b",
+      "created_at": "2026-10-18T00:12:51.000Z"
+    },
+    {
+      "action": "discovery-review",
+      "target": "f2e0f2b1-d4cc-40f4-9bf7-35f037e7b329",
+      "created_at": "2026-10-18T00:14:10.101Z"
+    },
+    {
+      "action": "discovery-review",
+      "target": "63a5f100-1eed-4267-8b6e-a4e98e9df34b",
+      "created_at": "2026-10-18T00:15:35.012Z"
+    },
+    {
+      "action": "discovery-review",
+      "target": "113a240e-708a-4d31-b5a7-fa2ca482901b",
+      "created_at": "2026-10-18T00:16:19.756Z"
+    }
+  ],
+  "queue": [
+    {
+      "state": "held",
+      "count": 5,
+      "overdue": 0
+    },
+    {
+      "state": "linked",
+      "count": 2,
+      "overdue": 0
+    },
+    {
+      "state": "rejected",
+      "count": 14,
+      "overdue": 0
+    }
+  ],
+  "jobs": [
+    {
+      "sponsorship": "conditional",
+      "count": 33
+    },
+    {
+      "sponsorship": "not_stated",
+      "count": 822
+    },
+    {
+      "sponsorship": "offered",
+      "count": 21
+    },
+    {
+      "sponsorship": "unavailable",
+      "count": 95
+    }
+  ],
+  "active_employers": 36,
+  "new_discovery_identities_today": 0,
+  "new_city_college_public_jobs": 0,
+  "sources": [
+    {
+      "kind": "loughborough-dfe",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-in-brickwork",
+      "observed_at": "2026-10-18T00:06:35.347Z",
+      "visible_text_sha256": "95688df37c4eeeb0b9a264e6cda55b0801315a1974490941dd5e0cd8108d3764"
+    },
+    {
+      "kind": "loughborough-application",
+      "url": "https://candidate.loucollcareers.co.uk/325014TEVA",
+      "observed_at": "2026-10-18T00:06:42.172Z",
+      "visible_text_sha256": "594d238d0acc3fe8501397a64f9e58dfbc7f83d373b28d41eef535075285cfd9"
+    },
+    {
+      "kind": "lift-dfe",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-60c8518e-bccf-49cb-aeec-1f52c3ab24c0",
+      "observed_at": "2026-10-18T00:07:04.768Z",
+      "visible_text_sha256": "78a07ffae00c33da77450683ed6d8647983568146056ef63d221f4f60832d042"
+    },
+    {
+      "kind": "lift-employer",
+      "url": "https://careers.liftschools.org/jobs/teacher-of-english-hull-england-united-kingdom",
+      "observed_at": "2026-10-18T00:07:24.624Z",
+      "visible_text_sha256": "fcd96676db701aa3837b86bcbf81dad41e189d0b055cbe11c5fe1bacb69ebd28"
+    },
+    {
+      "kind": "whitchurch-dfe",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/key-stage-1-class-teacher-permanent-part-time",
+      "observed_at": "2026-10-18T00:07:46.522Z",
+      "visible_text_sha256": "dd363810de3985a753d5a0ba276fa0827b0b82ed78e1ca1087fb8de5e6c279ef"
+    },
+    {
+      "kind": "whitchurch-original",
+      "url": "https://south.education-jobs.org.uk/jobs/job/KS1-Class-Teacher-part-time-3-days-a-week/13679",
+      "observed_at": "2026-10-18T00:08:17.325Z",
+      "visible_text_sha256": "1db24316ad04bcba7a6dc3f2f3babcc0bc5fdbae4ce0f8d56171ffb7541f47b9"
+    },
+    {
+      "kind": "whitchurch-gias",
+      "url": "https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/116324",
+      "observed_at": "2026-10-18T00:09:01.126Z",
+      "visible_text_sha256": "6387d6d3d80a892f38220eaf9ca1ebd1e79d55600f72f8143b5d390f1c699a2b"
+    },
+    {
+      "kind": "whitchurch-catalogue",
+      "url": "https://teaching-vacancies.service.gov.uk/organisations/whitchurch-church-of-england-primary-school",
+      "observed_at": "2026-10-18T00:09:27.228Z",
+      "visible_text_sha256": "cd27c822762ff373e25ad831a748a007cf115032abde36280050717b581fa319"
+    },
+    {
+      "kind": "whitchurch-careers",
+      "url": "https://www.whitchurchprimary.com/page/?title=Vacancies&pid=16",
+      "observed_at": "2026-10-18T00:09:37.385Z",
+      "visible_text_sha256": "b185579fb0f07053e1579930b15b5fcf30899dae5ebec51b7e906a135eb69035"
+    },
+    {
+      "kind": "hampshire-careers",
+      "url": "https://www.hants.gov.uk/jobs/education-jobs",
+      "observed_at": "2026-10-18T00:09:59.428Z",
+      "visible_text_sha256": "997157115b476c934a8b87ed91653df3dd03feaa39cbae5abca3fe6d60ad4f05"
+    },
+    {
+      "kind": "revolut-original",
+      "url": "https://www.revolut.com/careers/position/f95a2dda-30a6-4fef-af87-db97199df832/",
+      "observed_at": "2026-10-18T00:11:39.767Z",
+      "visible_text_sha256": "9cf8c650baf19ef81950d779fba2ed34373fb7c27deff3d5c071706b5d304d28"
+    },
+    {
+      "kind": "revolut-linkedin",
+      "url": "https://www.linkedin.com/jobs/view/4419308146/",
+      "observed_at": "2026-10-18T00:12:03.768Z",
+      "visible_text_sha256": "7a40356b8a916eb8eb014a829c2d1f5235e68c8deb02d73482104f2cacabbd87"
+    },
+    {
+      "kind": "danu-original",
+      "url": "https://www.danu-insights.com/careers/biotech-automation-engineer",
+      "observed_at": "2026-10-18T00:12:21.758Z",
+      "visible_text_sha256": "a3515ad3f47fe7b787965d54daf1393ba1e9630befc439088181dcf09473c360"
+    },
+    {
+      "kind": "danu-catalogue",
+      "url": "https://www.danu-insights.com/careers",
+      "observed_at": "2026-10-18T00:12:30.463Z",
+      "visible_text_sha256": "746917427eca4579be72afa7ccf03d80272d0d1e73936f11302665bf32798f04"
+    },
+    {
+      "kind": "danu-linkedin",
+      "url": "https://www.linkedin.com/jobs/view/4477654390/",
+      "observed_at": "2026-10-18T00:12:37.607Z",
+      "visible_text_sha256": "2abb25040ff88ed216c01943f355350e136c4b488a830a7406c24841c8710b62"
+    },
+    {
+      "kind": "sussex-dfe",
+      "url": "https://teaching-vacancies.service.gov.uk/jobs/part-time-class-teacher-sussex-road-community-primary-school",
+      "observed_at": "2026-10-18T00:13:20.062Z",
+      "visible_text_sha256": "b928ff7b128403d4caa1300d85c99d99143c9262d33270f7669373a38b5a6118"
+    },
+    {
+      "kind": "sussex-gias",
+      "url": "https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/118286",
+      "observed_at": "2026-10-18T00:13:35.553Z",
+      "visible_text_sha256": "1f707501a5f0daf3aa124745e4a7e638c8939650bae75795b2f2f5f5254e6bc7"
+    }
+  ],
+  "additional_official_source": {
+    "url": "https://www.gov.uk/government/publications/maintained-schools-governance-guide/maintained-schools-governance-guide",
+    "updated": "2026-07-15",
+    "section": "7.4",
+    "finding": "Local authority is the employer for community and voluntary controlled schools; combined with exact GIAS identity, not a blanket licence-scope or eligibility determination."
+  },
+  "whitchurch_form_download": {
+    "completed": false,
+    "browser_timeout_ms": 10000,
+    "artifact_available": false,
+    "prior_http_403_is_historical": true
+  },
+  "corrections": {
+    "loughborough": "Revision 4 corrects the source-observation minute entered in revision 3 to the retained 00:06:35.347 UTC capture. Earlier record preserved.",
+    "revolut": "Revision 3 corrects the 25 October prose timezone from BST to GMT; saved 12:00 UTC instant unchanged, relative repost wording dated.",
+    "danu": "Revision 5 explicitly dates inherited identity/posting evidence and separates fresh employer closing evidence from older LinkedIn-body evidence; hold/deadline/follow-up unchanged."
+  },
+  "unchanged_operational_groups": [
+    "business_controls",
+    "marketing_controls",
+    "research_control",
+    "application_controls",
+    "source_controls",
+    "marketing_briefs",
+    "marketing_receipts",
+    "source_budget",
+    "ai_budget",
+    "business_runs",
+    "source_runs",
+    "marketing_runs",
+    "issues",
+    "foreign_keys"
+  ],
+  "current_controls_observed_at": "2026-10-18T00:17:02.186Z",
+  "foreign_key_errors": [],
+  "recovery": {
+    "observed_at": "2026-10-18T00:05:57.335Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "ebb47515448542f225ef894a8fc6a056288c409d4db39186b58a9ca28d1147d6",
+    "database_size_bytes": 117039104,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 166,
+      "actual_objects": 166,
+      "migration_files": 40,
+      "expected_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+      "actual_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "health": {
+    "ok": true,
+    "version": "2.78.0",
+    "register": {
+      "date": "2026-10-16",
+      "count": 128007,
+      "checked_at": "2026-10-17T07:15:25.233Z"
+    }
+  },
+  "dependency_audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 3,
+    "high": 0,
+    "critical": 0,
+    "total": 3
+  },
+  "advisory": {
+    "url": "https://github.com/advisories/GHSA-hp3w-g68c-fv3c",
+    "patched_versions": "None",
+    "checked_date": "2026-10-18"
+  },
+  "new_runtime_deployment": false,
+  "new_source_or_public_job": false,
+  "forced_workflow": false,
+  "new_model_google_email_social_action": false,
+  "pending_observations": [
+    "Natural 18 October 00:30 UTC source collection: college first publication and location correction",
+    "Next genuine business snapshot consumes these review decisions",
+    "Next eligible marketing context consumes earlier real post-performance receipt"
+  ]
+}

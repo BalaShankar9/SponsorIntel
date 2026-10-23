@@ -1,0 +1,699 @@
+{
+  "release": "2.75.0",
+  "worker": "acf4dc86-be65-4d54-a471-e13698ad06b9",
+  "code_commit": "b2d003304af23402c338a1a33f6548fbd9872be0",
+  "rollback_worker": "3bce99a0-2531-48fe-9a3f-5a8f9026c4c0",
+  "validation": {
+    "tests": 648,
+    "failed": 0,
+    "duration_ms": 69084.114708,
+    "node": "24.19.0",
+    "build_typescript_prerenders_budgets_dry_run": "passed",
+    "schema_change": false,
+    "dependency_graph_change": false
+  },
+  "recovery": {
+    "observed_at": "2026-10-15T22:54:48.625Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "2a6de3c61584345e36eff5e68564e0c84555d61b9206757f3b9719b1c2f8954f",
+    "database_size_bytes": 145055744,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 166,
+      "actual_objects": 166,
+      "migration_files": 40,
+      "expected_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+      "actual_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "live": {
+    "observed_at": "2026-10-15T22:58:07.541Z",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "health": {
+          "ok": true,
+          "version": "2.75.0",
+          "register": {
+            "date": "2026-10-14",
+            "count": 128015,
+            "checked_at": "2026-10-15T07:15:53.298Z"
+          }
+        }
+      },
+      {
+        "path": "/jobs",
+        "status": 200
+      },
+      {
+        "path": "/api/admin/marketing",
+        "status": 403
+      },
+      {
+        "path": "/guides/build-a-shortlist",
+        "status": 200
+      }
+    ],
+    "owner_bundle": {
+      "file": "owner-pJVITddA.js",
+      "status": 200,
+      "exact_match": true,
+      "sha256": "0621d97f4d9b3b6f75ba535103f9256c3e01c85a58ff4855684a2b295696bb6d"
+    },
+    "preservation": [
+      {
+        "group": "business_controls",
+        "equal": true
+      },
+      {
+        "group": "marketing_controls",
+        "equal": true
+      },
+      {
+        "group": "research_control",
+        "equal": true
+      },
+      {
+        "group": "application_controls",
+        "equal": true
+      },
+      {
+        "group": "source_controls",
+        "equal": true
+      },
+      {
+        "group": "marketing_briefs",
+        "equal": true
+      },
+      {
+        "group": "marketing_receipts",
+        "equal": true
+      },
+      {
+        "group": "source_budget",
+        "equal": true
+      },
+      {
+        "group": "ai_budget",
+        "equal": true
+      },
+      {
+        "group": "business_runs",
+        "equal": true
+      },
+      {
+        "group": "source_runs",
+        "equal": true
+      },
+      {
+        "group": "marketing_runs",
+        "equal": true
+      },
+      {
+        "group": "issues",
+        "equal": true
+      },
+      {
+        "group": "foreign_keys",
+        "equal": true
+      }
+    ]
+  },
+  "platform": [
+    {
+      "name": "sponsorintel-business",
+      "id": "business-497806",
+      "status": "complete",
+      "success": true,
+      "keys": [
+        "id",
+        "params",
+        "trigger",
+        "versionId",
+        "queued",
+        "start",
+        "end",
+        "success",
+        "error",
+        "output",
+        "rollback",
+        "status",
+        "step_count",
+        "steps"
+      ],
+      "start": "2026-10-15T22:45:43.925Z",
+      "end": "2026-10-15T22:46:05.728Z",
+      "steps": [
+        {
+          "name": "check-operations-switch-1",
+          "start": "2026-10-15T22:45:44.137Z",
+          "end": "2026-10-15T22:45:44.312Z",
+          "success": true
+        },
+        {
+          "name": "supervise-interrupted-agents-1",
+          "start": "2026-10-15T22:45:44.314Z",
+          "end": "2026-10-15T22:45:48.248Z",
+          "success": true
+        },
+        {
+          "name": "read-daily-google-search-1",
+          "start": "2026-10-15T22:45:48.250Z",
+          "end": "2026-10-15T22:45:48.927Z",
+          "success": true
+        },
+        {
+          "name": "plan-employer-link-checks-1",
+          "start": "2026-10-15T22:45:48.928Z",
+          "end": "2026-10-15T22:45:49.785Z",
+          "success": true
+        },
+        {
+          "name": "discover-daily-education-leads-1",
+          "start": "2026-10-15T22:45:49.787Z",
+          "end": "2026-10-15T22:45:49.964Z",
+          "success": true
+        },
+        {
+          "name": "recheck-vacancy-promotions-1",
+          "start": "2026-10-15T22:45:49.966Z",
+          "end": "2026-10-15T22:45:50.300Z",
+          "success": true
+        },
+        {
+          "name": "check-site-and-sources-1",
+          "start": "2026-10-15T22:45:50.302Z",
+          "end": "2026-10-15T22:46:00.844Z",
+          "success": true
+        },
+        {
+          "name": "update-issues-1",
+          "start": "2026-10-15T22:46:00.847Z",
+          "end": "2026-10-15T22:46:01.038Z",
+          "success": true
+        },
+        {
+          "name": "retire-stale-records-1",
+          "start": "2026-10-15T22:46:01.039Z",
+          "end": "2026-10-15T22:46:01.898Z",
+          "success": true
+        },
+        {
+          "name": "publish-evidence-report-1",
+          "start": "2026-10-15T22:46:01.900Z",
+          "end": "2026-10-15T22:46:02.429Z",
+          "success": true
+        },
+        {
+          "name": "reconcile-marketing-records-1",
+          "start": "2026-10-15T22:46:02.431Z",
+          "end": "2026-10-15T22:46:03.983Z",
+          "success": true
+        },
+        {
+          "name": "dispatch-daily-marketing-agents-1",
+          "start": "2026-10-15T22:46:03.985Z",
+          "end": "2026-10-15T22:46:04.320Z",
+          "success": true
+        },
+        {
+          "name": "dispatch-daily-research-1",
+          "start": "2026-10-15T22:46:04.322Z",
+          "end": "2026-10-15T22:46:04.831Z",
+          "success": true
+        },
+        {
+          "name": "dispatch-application-evaluation-1",
+          "start": "2026-10-15T22:46:04.857Z",
+          "end": "2026-10-15T22:46:05.531Z",
+          "success": true
+        },
+        {
+          "name": "record-completion-1",
+          "start": "2026-10-15T22:46:05.534Z",
+          "end": "2026-10-15T22:46:05.725Z",
+          "success": true
+        }
+      ]
+    },
+    {
+      "name": "sponsorintel-sources",
+      "id": "scheduled-1792089037000",
+      "status": "complete",
+      "success": true,
+      "keys": [
+        "id",
+        "params",
+        "trigger",
+        "versionId",
+        "queued",
+        "start",
+        "end",
+        "success",
+        "error",
+        "output",
+        "rollback",
+        "status",
+        "step_count",
+        "steps"
+      ],
+      "start": "2026-10-15T18:30:44.939Z",
+      "end": "2026-10-15T18:33:04.706Z",
+      "steps": [
+        {
+          "name": "load-approved-sources-1",
+          "start": "2026-10-15T18:30:45.187Z",
+          "end": "2026-10-15T18:30:45.898Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-monzo-1",
+          "start": "2026-10-15T18:30:45.900Z",
+          "end": "2026-10-15T18:30:49.340Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-cloudflare-1",
+          "start": "2026-10-15T18:30:49.342Z",
+          "end": "2026-10-15T18:30:52.755Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-gocardless-1",
+          "start": "2026-10-15T18:30:52.760Z",
+          "end": "2026-10-15T18:30:55.792Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-deliveroo-1",
+          "start": "2026-10-15T18:30:55.794Z",
+          "end": "2026-10-15T18:31:00.377Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-stripe-1",
+          "start": "2026-10-15T18:31:00.424Z",
+          "end": "2026-10-15T18:31:04.124Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-figma-1",
+          "start": "2026-10-15T18:31:04.128Z",
+          "end": "2026-10-15T18:31:07.282Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-octopus-energy-1",
+          "start": "2026-10-15T18:31:07.490Z",
+          "end": "2026-10-15T18:31:12.808Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-funding-circle-1",
+          "start": "2026-10-15T18:31:12.810Z",
+          "end": "2026-10-15T18:31:15.726Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-zopa-1",
+          "start": "2026-10-15T18:31:15.738Z",
+          "end": "2026-10-15T18:31:20.200Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-zeeco-1",
+          "start": "2026-10-15T18:31:20.232Z",
+          "end": "2026-10-15T18:31:23.599Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-invinity-1",
+          "start": "2026-10-15T18:31:23.603Z",
+          "end": "2026-10-15T18:31:27.309Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-wep-clinical-1",
+          "start": "2026-10-15T18:31:27.620Z",
+          "end": "2026-10-15T18:31:30.817Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-nucleus-1",
+          "start": "2026-10-15T18:31:30.819Z",
+          "end": "2026-10-15T18:31:33.384Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-apothecom-1",
+          "start": "2026-10-15T18:31:33.387Z",
+          "end": "2026-10-15T18:31:36.191Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-precision-aq-1",
+          "start": "2026-10-15T18:31:36.194Z",
+          "end": "2026-10-15T18:31:38.732Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-axon-1",
+          "start": "2026-10-15T18:31:38.734Z",
+          "end": "2026-10-15T18:31:41.318Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-graphcore-1",
+          "start": "2026-10-15T18:31:41.328Z",
+          "end": "2026-10-15T18:31:44.713Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-bakerhicks-1",
+          "start": "2026-10-15T18:31:45.892Z",
+          "end": "2026-10-15T18:31:48.995Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-hr-wallingford-1",
+          "start": "2026-10-15T18:31:48.997Z",
+          "end": "2026-10-15T18:31:51.618Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-allica-bank-1",
+          "start": "2026-10-15T18:31:51.622Z",
+          "end": "2026-10-15T18:31:54.502Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-voleon-1",
+          "start": "2026-10-15T18:31:54.504Z",
+          "end": "2026-10-15T18:31:57.099Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-multiverse-1",
+          "start": "2026-10-15T18:31:57.102Z",
+          "end": "2026-10-15T18:32:00.193Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-callosum-1",
+          "start": "2026-10-15T18:32:00.196Z",
+          "end": "2026-10-15T18:32:02.953Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-sampura-1",
+          "start": "2026-10-15T18:32:03.095Z",
+          "end": "2026-10-15T18:32:05.752Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-seamflow-1",
+          "start": "2026-10-15T18:32:05.754Z",
+          "end": "2026-10-15T18:32:08.408Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-maven-1",
+          "start": "2026-10-15T18:32:08.412Z",
+          "end": "2026-10-15T18:32:11.685Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-numan-1",
+          "start": "2026-10-15T18:32:11.687Z",
+          "end": "2026-10-15T18:32:15.657Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-eucalyptus-1",
+          "start": "2026-10-15T18:32:15.659Z",
+          "end": "2026-10-15T18:32:18.685Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-university-bath-1",
+          "start": "2026-10-15T18:32:18.688Z",
+          "end": "2026-10-15T18:32:24.573Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-university-greater-manchester-1",
+          "start": "2026-10-15T18:32:24.576Z",
+          "end": "2026-10-15T18:32:29.481Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-university-southampton-1",
+          "start": "2026-10-15T18:32:29.489Z",
+          "end": "2026-10-15T18:32:34.377Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-university-nottingham-1",
+          "start": "2026-10-15T18:32:34.380Z",
+          "end": "2026-10-15T18:32:40.955Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-university-cardiff-met-1",
+          "start": "2026-10-15T18:32:40.957Z",
+          "end": "2026-10-15T18:32:46.112Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-portmandentex-1",
+          "start": "2026-10-15T18:32:46.118Z",
+          "end": "2026-10-15T18:32:47.203Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-reviewed-ashby-sequence-1",
+          "start": "2026-10-15T18:32:47.569Z",
+          "end": "2026-10-15T18:32:50.675Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-reviewed-lever-wintermute-trading-1",
+          "start": "2026-10-15T18:32:50.677Z",
+          "end": "2026-10-15T18:32:54.770Z",
+          "success": true
+        },
+        {
+          "name": "collect-check-publish-reviewed-teaching-vacancies-136202--king-s-lynn-academy-1",
+          "start": "2026-10-15T18:32:54.772Z",
+          "end": "2026-10-15T18:33:04.162Z",
+          "success": true
+        },
+        {
+          "name": "finish-run-1",
+          "start": "2026-10-15T18:33:04.166Z",
+          "end": "2026-10-15T18:33:04.703Z",
+          "success": true
+        }
+      ]
+    },
+    {
+      "name": "sponsorintel-marketing",
+      "id": "marketing-2026-10-14",
+      "status": "complete",
+      "success": true,
+      "keys": [
+        "id",
+        "params",
+        "trigger",
+        "versionId",
+        "queued",
+        "start",
+        "end",
+        "success",
+        "error",
+        "output",
+        "rollback",
+        "status",
+        "step_count",
+        "steps"
+      ],
+      "start": "2026-10-14T00:47:03.920Z",
+      "end": "2026-10-14T00:48:06.065Z",
+      "steps": [
+        {
+          "name": "capture-fresh-guide-evidence-1",
+          "start": "2026-10-14T00:47:04.013Z",
+          "end": "2026-10-14T00:47:12.235Z",
+          "success": true
+        },
+        {
+          "name": "editorial-plan-1",
+          "start": "2026-10-14T00:47:12.238Z",
+          "end": "2026-10-14T00:47:41.642Z",
+          "success": true
+        },
+        {
+          "name": "write-evidenced-copy-1",
+          "start": "2026-10-14T00:47:41.718Z",
+          "end": "2026-10-14T00:47:56.682Z",
+          "success": true
+        },
+        {
+          "name": "save-first-version-1",
+          "start": "2026-10-14T00:47:56.759Z",
+          "end": "2026-10-14T00:47:57.676Z",
+          "success": true
+        },
+        {
+          "name": "independent-paragraph-review-1",
+          "start": "2026-10-14T00:47:57.678Z",
+          "end": "2026-10-14T00:48:03.930Z",
+          "success": true
+        },
+        {
+          "name": "recheck-and-record-decision-1",
+          "start": "2026-10-14T00:48:03.931Z",
+          "end": "2026-10-14T00:48:06.063Z",
+          "success": true
+        }
+      ]
+    }
+  ],
+  "fictional_browser": {
+    "gateway_failure_after_commit": true,
+    "requests": 2,
+    "requests_identical": true,
+    "receipts": 1,
+    "schedule_events": 1,
+    "competing_hold_disabled": true,
+    "timestamp_seconds_retained": true,
+    "expired_slot_rejected": true,
+    "mobile": {
+      "viewport": 390,
+      "document": 390,
+      "form": 290
+    },
+    "external_calls": 0
+  },
+  "real_schedule_receipt": "shortlist-schedule-2026-10-15.json",
+  "operating_snapshot": {
+    "id": "business-497806",
+    "measurement": {
+      "version": 2,
+      "enabled_at": "2026-10-08T11:57:33.807Z",
+      "first_full_day": "2026-10-09",
+      "completed_days": 6,
+      "from": "2026-10-09",
+      "to": "2026-10-15",
+      "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+      "browser_evidence": {
+        "version": 1,
+        "kind": "browser_reported",
+        "state": "collecting",
+        "enabled_at": "2026-10-11T18:44:54.941Z",
+        "first_full_day": "2026-10-12",
+        "from": "2026-10-12",
+        "to": "2026-10-15",
+        "completed_days": 3,
+        "evidence_checks": 0,
+        "campaigns": [],
+        "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+      }
+    },
+    "metrics": [
+      {
+        "day": "2026-10-09",
+        "event": "campaign_page_view",
+        "count": 1
+      },
+      {
+        "day": "2026-10-09",
+        "event": "page_view",
+        "count": 24
+      },
+      {
+        "day": "2026-10-10",
+        "event": "campaign_page_view",
+        "count": 9
+      },
+      {
+        "day": "2026-10-10",
+        "event": "page_view",
+        "count": 35
+      },
+      {
+        "day": "2026-10-11",
+        "event": "page_view",
+        "count": 7
+      },
+      {
+        "day": "2026-10-12",
+        "event": "campaign_page_view",
+        "count": 10
+      },
+      {
+        "day": "2026-10-12",
+        "event": "page_view",
+        "count": 26
+      },
+      {
+        "day": "2026-10-13",
+        "event": "page_view",
+        "count": 10
+      },
+      {
+        "day": "2026-10-14",
+        "event": "page_view",
+        "count": 1
+      }
+    ],
+    "jobs": {
+      "total": 967,
+      "employers": 36,
+      "offered": 21,
+      "conditional": 34,
+      "unavailable": 96,
+      "not_stated": 816,
+      "early_career": 50,
+      "salary": 159
+    }
+  },
+  "source_task_outcomes": [
+    {
+      "state": "published",
+      "sources": 36,
+      "roles": 970
+    },
+    {
+      "state": "skipped",
+      "sources": 1,
+      "roles": 0
+    }
+  ],
+  "ci": {
+    "head": "b2d003304af23402c338a1a33f6548fbd9872be0",
+    "billing_blocked_before_start": [
+      116715733543,
+      116715717268
+    ],
+    "annotations_inspected": true,
+    "gitguardian_passed": 116715722317
+  },
+  "limitations": [
+    "Recovery point and schema check only, not customer restore or retention acceptance.",
+    "Agent-assisted schedule observation, not independently audited delivery.",
+    "First real new-form receipt saved; publication and outcome remain pending.",
+    "Existing research, source and social holds are not cleared."
+  ]
+}

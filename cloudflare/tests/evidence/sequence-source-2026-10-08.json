@@ -1,0 +1,138 @@
+{
+  "checked_at": "2026-10-08T16:07:08.858804+00:00",
+  "app_version": "2.43.0",
+  "source_id": "reviewed-ashby-sequence",
+  "change_type": "reviewed source configuration; no code deployment",
+  "raw_listed": 11,
+  "uk_accepted": 4,
+  "overseas_excluded": 7,
+  "offered": 3,
+  "conditional": 0,
+  "not_stated": 1,
+  "all_stored_fields_match_reviewed_feed": true,
+  "matched_fields_per_role": 18,
+  "feed_sha256": "b5574242ab3d4b408881f8d75819beb86b0eac1d85559e554c574b9b5e2e7bd5",
+  "source": {
+    "id": "reviewed-ashby-sequence",
+    "company": "Sequence",
+    "state": "approved",
+    "provider": "ashby",
+    "board": "sequence",
+    "sector": "finance",
+    "sponsor_id": "76496ae7f3f326456b3703de",
+    "reviewed_at": "2026-10-08T15:56:33.223Z"
+  },
+  "run": {
+    "id": "owner-a7d161dd-44c8-45ca-9d44-6b938d801daa",
+    "state": "completed",
+    "created_at": "2026-10-08T15:58:17.505Z",
+    "finished_at": "2026-10-08T15:58:22.284Z",
+    "trigger_kind": "owner"
+  },
+  "platform": {
+    "id": "owner-a7d161dd-44c8-45ca-9d44-6b938d801daa",
+    "status": "complete",
+    "success": true,
+    "start": "2026-10-08T15:58:20.480Z",
+    "end": "2026-10-08T15:58:22.325Z",
+    "step_count": 3
+  },
+  "task": {
+    "source_id": "reviewed-ashby-sequence",
+    "state": "published",
+    "attempts": 1,
+    "count": 4,
+    "evidence": {
+      "policy": "sources-v1",
+      "checked_at": "2026-10-08T15:58:21.377Z",
+      "received": 4,
+      "sponsorship_worded": 3,
+      "register_available": true,
+      "licence_id": "76496ae7f3f326456b3703de",
+      "licence_is_not_vacancy_sponsorship": true,
+      "duplicate_ids": 0,
+      "duplicate_links": 0
+    }
+  },
+  "roles": [
+    {
+      "id": "1cbc004ee3191d8ee1189088",
+      "title": "Senior Product Engineer (Backend) - London",
+      "location": "London",
+      "apply_url": "https://jobs.ashbyhq.com/sequence/bcb44650-b5f6-4477-b33e-0aab9446e764",
+      "sponsorship": "offered",
+      "evidence": "- Visa sponsorship available",
+      "salary_excerpt": "- Salary: £115,000 - £130,000",
+      "first_seen": "2026-10-08T15:58:21.377Z",
+      "last_seen": "2026-10-08T15:58:21.377Z"
+    },
+    {
+      "id": "536242bffe0bdef9f8319c08",
+      "title": "Product Engineer - London",
+      "location": "London",
+      "apply_url": "https://jobs.ashbyhq.com/sequence/2451747b-8e57-47a8-be71-9e7b80e9906e",
+      "sponsorship": "offered",
+      "evidence": "- Visa sponsorship available",
+      "salary_excerpt": "- Salary: £90,000 to £100,000",
+      "first_seen": "2026-10-08T15:58:21.377Z",
+      "last_seen": "2026-10-08T15:58:21.377Z"
+    },
+    {
+      "id": "e9d29fbcc11ce1f853c94429",
+      "title": "Senior Product Designer - London",
+      "location": "London",
+      "apply_url": "https://jobs.ashbyhq.com/sequence/399b4d28-a076-4675-a9ac-1bb14c09b965",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "salary_excerpt": "£80K - £95K",
+      "first_seen": "2026-10-08T15:58:21.377Z",
+      "last_seen": "2026-10-08T15:58:21.377Z"
+    },
+    {
+      "id": "3b19d70febf062dcd9110013",
+      "title": "AI Engineer - London",
+      "location": "London",
+      "apply_url": "https://jobs.ashbyhq.com/sequence/2b03f289-263b-4f2d-92b2-bed646e0bc25",
+      "sponsorship": "offered",
+      "evidence": "- Visa sponsorship available",
+      "salary_excerpt": "- Salary: £115,000 - £130,000",
+      "first_seen": "2026-10-08T15:58:21.377Z",
+      "last_seen": "2026-10-08T15:58:21.377Z"
+    }
+  ],
+  "public_browser": {
+    "total": 908,
+    "employers": 34,
+    "sponsorship": 53,
+    "licensed": 855,
+    "all_four_cards_present": true,
+    "ai_role_wording_and_original_link_match": true,
+    "preparation_control_enabled": true
+  },
+  "employer_application_form": {
+    "role": "AI Engineer - London",
+    "empty_form_accessible": true,
+    "submitted": false,
+    "cv_uploaded": false
+  },
+  "scheduled_refresh_verified": false,
+  "next_scheduled_collection": "2026-10-08T18:30:00Z",
+  "linkedin_ingestion_connected": false,
+  "sources": {
+    "careers": "https://www.sequencehq.com/about",
+    "legal_identity": "https://docs.sequencehq.com/compliance/privacy-policy",
+    "terms": "https://docs.sequencehq.com/compliance/terms-of-service",
+    "feed": "https://api.ashbyhq.com/posting-api/job-board/sequence?includeCompensation=true",
+    "feed_documentation": "https://developers.ashbyhq.com/docs/public-job-posting-api",
+    "linkedin_lead": "https://uk.linkedin.com/jobs/view/senior-product-engineer-backend-london-at-sequence-4372208758"
+  },
+  "limits": [
+    "Owner-triggered first import is not an unattended scheduled refresh receipt.",
+    "An older London sales lead is absent from the current feed and was not published; seven US vacancies were excluded.",
+    "Ashby publishedAt is a last-publication date, not an established original publication date; original dates remain null.",
+    "The research feed and stored advert text were compared in full, but full third-party text is omitted from this repository evidence.",
+    "A command-line public API diagnostic was blocked with HTTP 403 error 1010; no security setting or user agent was changed to bypass it. Public verification used the normal Chrome browser.",
+    "Sponsor-register identity and advert sponsorship wording are separate from individual visa eligibility.",
+    "Public feed availability and documentation do not establish a bespoke redistribution agreement or employer partnership."
+  ]
+}

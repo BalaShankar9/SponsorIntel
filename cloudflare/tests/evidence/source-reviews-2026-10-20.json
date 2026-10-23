@@ -1,0 +1,190 @@
+{
+  "date": "2026-10-20",
+  "kind": "authenticated evidence review and owner-requested objective expansion",
+  "runtime_unchanged": "2.87.0",
+  "owner_access": "restored and verified through protected admin UI",
+  "discovery": {
+    "before": {
+      "retained": 25,
+      "unresolved": 7,
+      "overdue": 3,
+      "new_today": 0
+    },
+    "after": {
+      "retained": 25,
+      "unresolved": 5,
+      "overdue": 0,
+      "new_today": 0,
+      "current_linked_jobs": 3
+    },
+    "readback_at": "2026-10-20T14:40:00.828Z",
+    "decisions": [
+      {
+        "lead_id": "22eb0cdf-824c-4d53-bddc-0d916f88feda",
+        "revision": 5,
+        "title": "Key Stage 1 Class Teacher (Permanent, Part-time)",
+        "state": "rejected",
+        "observed_at": "2026-10-20T14:31:00.000Z",
+        "recorded_at": "2026-10-20T14:32:41.506Z",
+        "deadline": "2026-10-19T10:43:00.000Z",
+        "follow_up_at": null,
+        "source_url": "https://teaching-vacancies.service.gov.uk/jobs/key-stage-1-class-teacher-permanent-part-time",
+        "method": "agent_assisted"
+      },
+      {
+        "lead_id": "95029621-3186-46a6-9d6f-1d4e4ef104cf",
+        "revision": 3,
+        "title": "Registered Veterinary Nurse — Bangor North Wales — reference 41178",
+        "state": "held",
+        "observed_at": "2026-10-20T14:27:00.000Z",
+        "recorded_at": "2026-10-20T14:35:26.191Z",
+        "deadline": null,
+        "follow_up_at": "2026-10-23T11:00:00.000Z",
+        "source_url": "https://www.linkedin.com/feed/update/urn:li:activity:7517335153204154368/",
+        "method": "agent_assisted"
+      },
+      {
+        "lead_id": "f2e0f2b1-d4cc-40f4-9bf7-35f037e7b329",
+        "revision": 4,
+        "title": "Part-time Class Teacher",
+        "state": "rejected",
+        "observed_at": "2026-10-20T14:26:00.000Z",
+        "recorded_at": "2026-10-20T14:34:13.678Z",
+        "deadline": "2026-10-21T08:00:00.000Z",
+        "follow_up_at": null,
+        "source_url": "https://teaching-vacancies.service.gov.uk/jobs/part-time-class-teacher-sussex-road-community-primary-school",
+        "method": "agent_assisted"
+      }
+    ],
+    "old_selected_revisions_preserved": 9,
+    "configured_sources_unchanged": true
+  },
+  "adverts": {
+    "before": {
+      "held": 4,
+      "overdue": 2
+    },
+    "after": {
+      "held": 4,
+      "overdue": 0
+    },
+    "readback_at": "2026-10-20T14:40:49.237Z",
+    "decisions": [
+      {
+        "id": "3c3c073c-79da-4fb4-b773-79a0081c4d88",
+        "source_id": "reviewed-teaching-vacancies-130418--new-city-college",
+        "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-plumbing-new-city-college-london",
+        "revision": 2,
+        "state": "held",
+        "title": "Lecturer Plumbing — New City College — R003642",
+        "evidence_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-plumbing-new-city-college-london/apply",
+        "observed_at": "2026-10-20T14:39:00.000Z",
+        "follow_up_at": "2026-10-23T09:00:00.000Z",
+        "recorded_at": "2026-10-20T14:39:37.963Z"
+      },
+      {
+        "id": "6262109e-c4fc-4108-ac4e-23d6dc194592",
+        "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+        "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+        "revision": 5,
+        "state": "held",
+        "title": "Teacher of Drama — King's Lynn Academy — 3600-R0174",
+        "evidence_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+        "observed_at": "2026-10-20T14:39:00.000Z",
+        "follow_up_at": "2026-10-24T09:00:00.000Z",
+        "recorded_at": "2026-10-20T14:40:34.330Z"
+      }
+    ],
+    "old_revisions_preserved": 11,
+    "stable_targets_unchanged": true,
+    "four_target_jobs_remain_inactive": true
+  },
+  "source_observations": [
+    {
+      "source": "Whitchurch exact DfE",
+      "at": "2026-10-20T14:31:49.267Z",
+      "finding": "Explicitly expired on 19 October; current displayed closing 11:43 BST; positive wording is historical opening evidence."
+    },
+    {
+      "source": "Sussex Road exact DfE",
+      "at": "2026-10-20T14:26:06.848Z",
+      "finding": "Visa row and body now explicitly refuse sponsorship; advert still open until 21 October 09:00 BST."
+    },
+    {
+      "source": "Bangor employer requisition 41178",
+      "at": "2026-10-20T14:27:04.635Z",
+      "finding": "Same role-specific positive wording and Apply link; legal employer/licence, rights and adapter unresolved."
+    },
+    {
+      "source": "Plumbing DfE and exact designated employer route",
+      "at": "2026-10-20T14:39:01.990Z",
+      "finding": "DfE 1 November conflicts with exact employer reference R003642 explicitly closed with 4 October date."
+    },
+    {
+      "source": "Drama exact DfE",
+      "at": "2026-10-20T14:39:39.324Z",
+      "finding": "Expired 20 October, closing 13:03 BST, no Apply link."
+    }
+  ],
+  "scope_additions": {
+    "requested_by_owner": "2026-10-20",
+    "plan": "docs/APPLICATION_AND_SPONSOR_GROWTH_PLAN.md",
+    "requirements": [
+      "opt-in applicant-authorised batches",
+      "operating business and exact sponsor identity",
+      "broader genuine sponsorship coverage"
+    ],
+    "implemented_product_features": false,
+    "automation_id": "sponsor-intel-daily-improvement",
+    "prompt_sha256": "1a95231fa900639ce20d41b96222221799242789a57e93189dabfded36e341f0",
+    "status": "ACTIVE",
+    "schedule_preserved": "FREQ=DAILY;BYHOUR=10;BYMINUTE=00",
+    "target_preserved": "01a105e6-52a6-7c42-8f1a-ca02438cd8f8",
+    "permissions_budgets_and_holds_unchanged": true,
+    "goal": "active; implementation requirements persisted in standing contract and roadmap; Goal card text was not changed"
+  },
+  "validation": {
+    "immutable_readback_assertions": "pass",
+    "new_reviews": 5,
+    "new_discovery_leads": 0,
+    "public_reactivations": 0,
+    "runtime_change": false,
+    "migration": false,
+    "new_model_call_by_operator": false,
+    "new_google_call_by_operator": false,
+    "forced_source_run": false,
+    "applications_submitted": 0,
+    "outreach_or_social_sends": 0,
+    "private_notes_and_session_parameters": "excluded from this receipt",
+    "foreign_key_errors": 0
+  },
+  "unchanged_operational_groups": [
+    "business_controls",
+    "marketing_controls",
+    "research_control",
+    "application_controls",
+    "source_controls",
+    "marketing_briefs",
+    "marketing_receipts",
+    "source_budget",
+    "ai_budget",
+    "marketing_runs"
+  ],
+  "operations_readback_at": "2026-10-20T14:41:39.395Z",
+  "usage": {
+    "ai": [
+      {
+        "day": "2026-10-20",
+        "runs": 2,
+        "calls": 8
+      }
+    ],
+    "sources": [
+      {
+        "day": "2026-10-20",
+        "requests": 368,
+        "briefs": 0
+      }
+    ]
+  }
+}

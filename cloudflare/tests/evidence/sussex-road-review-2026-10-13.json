@@ -1,0 +1,94 @@
+{
+  "observed_at": "2026-10-13T15:15:59.969Z",
+  "review_history": [
+    {
+      "id": "f2e0f2b1-d4cc-40f4-9bf7-35f037e7b329",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/part-time-class-teacher-sussex-road-community-primary-school",
+      "first_recorded_at": "2026-10-13T00:46:34.905Z",
+      "revision": 1,
+      "recorded_at": "2026-10-13T00:46:34.905Z",
+      "state": "pending",
+      "method": "automated_source",
+      "observed_at": "2026-10-13T00:46:34.379Z",
+      "follow_up_at": "2026-10-16T00:46:34.379Z",
+      "deadline": "2026-10-21T08:00:00.000Z",
+      "posted_at": null,
+      "original_url": "https://teaching-vacancies.service.gov.uk/jobs/part-time-class-teacher-sussex-road-community-primary-school",
+      "identity_url": ""
+    },
+    {
+      "id": "f2e0f2b1-d4cc-40f4-9bf7-35f037e7b329",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/part-time-class-teacher-sussex-road-community-primary-school",
+      "first_recorded_at": "2026-10-13T00:46:34.905Z",
+      "revision": 2,
+      "recorded_at": "2026-10-13T15:14:26.573Z",
+      "state": "held",
+      "method": "agent_assisted",
+      "observed_at": "2026-10-13T15:11:00.000Z",
+      "follow_up_at": "2026-10-15T13:00:00.000Z",
+      "deadline": "2026-10-21T08:00:00.000Z",
+      "posted_at": null,
+      "original_url": "https://teaching-vacancies.service.gov.uk/jobseekers/23b9e9c5-dd78-486a-8fda-5bac8878a083/job_application/new",
+      "identity_url": "https://webapps.kent.gov.uk/KCC.SchoolSearch.Web.Sites.Public/SchoolDetails.aspx?SchoolID=499"
+    }
+  ],
+  "public_jobs": {
+    "total": 935,
+    "employers": 36,
+    "offered": 21,
+    "conditional": 33
+  },
+  "school_source": {
+    "configured_sources": 0
+  },
+  "discovery_today": {
+    "retained_today": 1
+  },
+  "queue_decisions": [
+    {
+      "state": "held",
+      "total": 8
+    },
+    {
+      "state": "linked",
+      "total": 3
+    },
+    {
+      "state": "rejected",
+      "total": 5
+    }
+  ],
+  "scope": "Agent-assisted review of one existing automatic lead; authenticated owner write and independent read-only persistence check. No public source admission or independent human certification.",
+  "source_evidence": {
+    "school_urn": "118286",
+    "school_type": "Community",
+    "authority_number": "886",
+    "school_number": "2156",
+    "official_directory": "https://webapps.kent.gov.uk/KCC.SchoolSearch.Web.Sites.Public/SchoolDetails.aspx?SchoolID=499",
+    "employment_guidance": "https://assets.publishing.service.gov.uk/media/68b836c9cc8356c3c882aa13/Staffing_and_employment_guidance_for_schools_-_Sept_2025.pdf",
+    "employment_guidance_location": "Printed page 8, footnote 2",
+    "licence_relationship": "Unresolved exact coverage between Kent County Council and Kent County Council Schools; no record selected.",
+    "register_source_date": "2026-10-12",
+    "specification": {
+      "pages_read": 4,
+      "sha256": "c28097bb1c15b736935a41be1a1011d0ef6fa9e6732ed6c9200b496a537218bf",
+      "qualification": "QTS",
+      "no_visa_refusal_found": true,
+      "monetary_salary_supplied": false
+    },
+    "application_check": "Original Quick Apply destination reaches DfE sign-in; no account or submission; session parameters omitted."
+  },
+  "operator_actions": {
+    "new_leads": 0,
+    "new_sources": 0,
+    "public_jobs_added": 0,
+    "source_probes": 0,
+    "forced_workflows": 0,
+    "ai_calls": 0,
+    "google_calls": 0,
+    "social_sends": 0,
+    "email_sends": 0,
+    "runtime_deployment": false
+  },
+  "next_gate": "Next genuine hourly business snapshot must independently incorporate the Loughborough and Sussex Road reviews; the 14:46 snapshot predates both."
+}

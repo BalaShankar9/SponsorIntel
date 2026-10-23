@@ -1,0 +1,124 @@
+{
+  "checked_at": "2026-10-11T13:06:30.598Z",
+  "lead_id": "113a240e-708a-4d31-b5a7-fa2ca482901b",
+  "revision": 2,
+  "verified_from": "saved owner review form",
+  "fields": [
+    {
+      "label": "Source type",
+      "type": "select-one",
+      "value": "linkedin_job"
+    },
+    {
+      "label": "Individual source link",
+      "type": "url",
+      "value": "https://www.linkedin.com/jobs/view/4477654390/"
+    },
+    {
+      "label": "Role or lead title",
+      "type": "text",
+      "value": "Biotech Automation Engineer (Wet Lab and AI)"
+    },
+    {
+      "label": "Employer name, if established",
+      "type": "text",
+      "value": "Danu Insights"
+    },
+    {
+      "label": "Location, if established",
+      "type": "text",
+      "value": "Edinburgh and UK partner sites"
+    },
+    {
+      "label": "Source observed at (your local time)",
+      "type": "datetime-local",
+      "value": "2026-10-11T12:04"
+    },
+    {
+      "label": "Exact sponsorship wording, if present",
+      "type": "textarea",
+      "value": "We strongly prefer applicants who currently have the right to work in the UK, such that we can get projects underway quickly. Your right to work does not need to be permanent. Holders of time-limited permission (e.g. a Graduate visa) are welcome to apply and we can consider sponsorship later in the role."
+    },
+    {
+      "label": "Original employer application link",
+      "type": "url",
+      "value": "https://www.danu-insights.com/careers/biotech-automation-engineer"
+    },
+    {
+      "label": "Employer identity evidence link",
+      "type": "url",
+      "value": "https://find-and-update.company-information.service.gov.uk/company/SC788592"
+    },
+    {
+      "label": "Employer identity evidence",
+      "type": "textarea",
+      "value": "Employer website identifies Danu Insights Limited at Argyle House, 3 Lady Lawson Street, Edinburgh EH3 9DR. Companies House SC788592 is active at the same address. The current 9 October worker-register snapshot contains Danu Insights Limited, Edinburgh, Skilled Worker, A rating, record a6704e71b8e94abb15b5a4db. This supports employer identity, not immediate sponsorship for an individual. The original links to the matching ClickUp form; the empty form was read but no applicant data was entered or submitted."
+    },
+    {
+      "label": "Original posting time, only if known",
+      "type": "datetime-local",
+      "value": ""
+    },
+    {
+      "label": "Posting-date source wording",
+      "type": "textarea",
+      "value": "LinkedIn displays Posted 2 days ago at observation. The employer original supplies no exact original publication time; the timestamp remains unknown."
+    },
+    {
+      "label": "Closing time, only if known",
+      "type": "datetime-local",
+      "value": "2026-10-26T23:59"
+    },
+    {
+      "label": "Closing-date source wording",
+      "type": "textarea",
+      "value": "Employer original and LinkedIn both state Monday 26 October 2026, 23:59 GMT."
+    },
+    {
+      "label": "Decision",
+      "type": "select-one",
+      "value": "held"
+    },
+    {
+      "label": "How this review was recorded",
+      "type": "select-one",
+      "value": "agent_assisted"
+    },
+    {
+      "label": "Review again by (within 30 days)",
+      "type": "datetime-local",
+      "value": "2026-10-13T12:00"
+    },
+    {
+      "label": "Decision reason and evidence still needed",
+      "type": "textarea",
+      "value": "Agent-assisted review through owner account on 11 October 2026 at 13:05 UTC. The employer original and careers catalogue were rechecked: one listed open role, £45k–£65k, permanent, Edinburgh plus UK partner visits, flexible late-2026/early-2027 start and 26 October 23:59 GMT deadline. Current UK right to work is strongly preferred; Graduate permission is welcome and sponsorship may be considered later, not promised on entry. Hold source admission: the custom employer page and ClickUp application route do not match the current supported owner-feed providers. No supported public feed or reuse licence was established from the pages inspected; this is an unresolved admission review, not a claim that linking is prohibited. Next review should establish a reviewed bounded collection/closure route and applicable attribution/reuse terms, then verify complete publication and scheduled refresh. The original requires CV, cover letter and one example of work; this is wet-lab/automation work, explicitly not an AI engineer role. Keep the existing 13 October follow-up. No source/job was created, no application form was filled, and no contact or forced refresh occurred. LinkedIn observation time and unknown original posting timestamp remain unchanged."
+    }
+  ],
+  "queue": {
+    "retained": 14,
+    "unresolved": 7,
+    "overdue": 0,
+    "changed_links": 0,
+    "current_linked_jobs": 3
+  },
+  "new_leads_added": 0,
+  "new_jobs_added": 0,
+  "production_version": "2.52.0",
+  "daily_new_lead_allowance": {
+    "maximum": 5,
+    "already_retained": 5,
+    "remaining": 0
+  },
+  "primary_pages_checked": [
+    "https://www.danu-insights.com/careers/biotech-automation-engineer",
+    "https://www.danu-insights.com/careers"
+  ],
+  "source_admission": {
+    "configured": false,
+    "supported_owner_provider_established": false,
+    "reuse_licence_established": false,
+    "copyright_footer_is_not_a_linking_prohibition": true,
+    "linking_prohibition_established": false
+  }
+}

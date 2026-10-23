@@ -1,0 +1,60 @@
+{
+  "release": "2.27.0",
+  "checked_at": "2026-10-08T05:47:06.532680+00:00",
+  "environment": "Isolated Workerd and local D1; no AI/email/cron/workflow or remote database bindings",
+  "http_checks": {
+    "origin": "http://127.0.0.1:8797",
+    "checked_at": "2026-10-08T05:45:00.351Z",
+    "checks": "Initial HTML, topic links, canonical, freshness headers and public bootstrap only; not indexing or rankings.",
+    "results": [
+      {
+        "path": "/updates",
+        "status": 200,
+        "guidance_cards": 19,
+        "source_snapshot": "2026-10-08T05:45:00.226Z",
+        "html_bytes": 145858
+      },
+      {
+        "path": "/updates?topic=student",
+        "status": 200,
+        "guidance_cards": 3,
+        "source_snapshot": "2026-10-08T05:45:00.324Z",
+        "html_bytes": 95309
+      },
+      {
+        "path": "/updates?topic=business",
+        "status": 200,
+        "guidance_cards": 6,
+        "source_snapshot": "2026-10-08T05:45:00.341Z",
+        "html_bytes": 104300
+      }
+    ]
+  },
+  "source_change_test": "Only local student-money hash changed, rendered quote and bootstrap disappeared immediately; original hash restored.",
+  "database_failure": {
+    "status": 503,
+    "retry_after": "60",
+    "cache_control": "no-store",
+    "stale_guidance_absent": true
+  },
+  "database_table_restored": true,
+  "browser_and_bot_visible_markup_identical": true,
+  "browser": {
+    "script_disabled_guidance_readable": true,
+    "native_source_disclosure_works_without_scripts": true,
+    "topic_route_business_has_six_guides": true,
+    "normal_scripting_restored": true,
+    "bootstrap_consumed": true,
+    "mobile_width": 390,
+    "mobile_scroll_width": 390,
+    "interactive_student_filter_has_three_guides": true,
+    "viewport_reset": true
+  },
+  "tests": 303,
+  "build": true,
+  "public_shells": 17,
+  "dry_run": true,
+  "production_model_calls": 0,
+  "google_api_calls": 0,
+  "limitations": "HTTP rendering and source-validation acceptance only. Not Google indexing, rankings, traffic or business outcomes."
+}

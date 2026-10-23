@@ -1,0 +1,73 @@
+{
+  "release": "2.11.0",
+  "worker_version": "33d3db34-fa7e-424e-88ed-e0f2bcd1c52d",
+  "local_tests": {
+    "passed": 122,
+    "failed": 0
+  },
+  "live_runs": [
+    {
+      "id": "research-b9987341-9e22-479d-9c18-3a268a891822",
+      "kind": "research",
+      "state": "review",
+      "calls": 6,
+      "created_at": "2026-10-07T16:07:54.122Z",
+      "finished_at": "2026-10-07T16:15:34.782Z",
+      "synthetic_correct": null,
+      "false_positives": null,
+      "evidence_count": 1
+    },
+    {
+      "id": "research-27b27f19-b743-4780-a628-1edc1b29b051",
+      "kind": "research",
+      "state": "failed",
+      "calls": 3,
+      "created_at": "2026-10-07T16:03:04.555Z",
+      "finished_at": "2026-10-07T16:04:12.600Z",
+      "synthetic_correct": null,
+      "false_positives": null,
+      "evidence_count": null
+    },
+    {
+      "id": "research-53667f9c-3c2e-4f28-9815-16d24e68a657",
+      "kind": "evaluation",
+      "state": "review",
+      "calls": 2,
+      "created_at": "2026-10-07T15:46:07.433Z",
+      "finished_at": "2026-10-07T15:47:14.946Z",
+      "synthetic_correct": 12,
+      "false_positives": 0,
+      "evidence_count": 12
+    },
+    {
+      "id": "research-319b1c8e-3395-4d4e-b265-ddcdb72a75b2",
+      "kind": "evaluation",
+      "state": "failed",
+      "calls": 2,
+      "created_at": "2026-10-07T15:39:53.428Z",
+      "finished_at": "2026-10-07T15:40:36.092Z",
+      "synthetic_correct": null,
+      "false_positives": null,
+      "evidence_count": null
+    }
+  ],
+  "memory_save_verified": true,
+  "memory_reuse_live_verified": false,
+  "mobile": {
+    "width": 390,
+    "document_width": 390
+  },
+  "anonymous_research_status": 403,
+  "premium_connected": false,
+  "research_schedule": "owner_triggered",
+  "scheduled_source_run": {
+    "created_at": "2026-10-07T12:30:45.232Z",
+    "published_sources": 30
+  },
+  "limitations": [
+    "Twelve synthetic cases are not representative real-advert accuracy.",
+    "One real advert was assessed; recovered report explicitly discloses early stop.",
+    "Free-form narrative over-inferred unavailability from right-to-work wording; presented only as an unverified draft.",
+    "Premium providers have offline contract tests only."
+  ]
+}

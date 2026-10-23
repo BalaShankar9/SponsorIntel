@@ -1,0 +1,806 @@
+{
+  "recorded_at": "2026-10-20T13:51:15.200989+00:00",
+  "scope": "Sponsor Intel-only owner-authorized resume and read-only reconciliation; no runtime release",
+  "runtime": {
+    "version": "2.86.0",
+    "worker": "587948e1-3b0e-4a3a-bb64-ee6fe5a9ac0a",
+    "commit": "52aff50d447742b8a037b64cd945b39103d3ff20"
+  },
+  "automation_statuses": {
+    "betting-ai-daily-progress": "PAUSED",
+    "opportunity-scouting-team": "PAUSED",
+    "sheffield-job-search-10-interviews": "PAUSED",
+    "sponsor-intel-daily-improvement": "ACTIVE",
+    "carpool-network-operating-team": "PAUSED"
+  },
+  "goal_status": "active after user clicked Resume",
+  "recovery": {
+    "observed_at": "2026-10-20T13:36:16.644Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "d3b2ad76e339dd5c6bd1ba0a8d36a644d0bc96fc3068e2b5697e65ec36b1ca46",
+    "database_size_bytes": 123195392,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 172,
+      "actual_objects": 172,
+      "migration_files": 41,
+      "expected_sha256": "e9d4fc341ea91960f3378ab0f81164ff3db86ffce5542e75aa56041dd2ce6d6f",
+      "actual_sha256": "e9d4fc341ea91960f3378ab0f81164ff3db86ffce5542e75aa56041dd2ce6d6f",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "public_catalogue": {
+    "generated_at": "2026-10-20T13:45:46.783Z",
+    "collections": {
+      "total": 1021,
+      "employers": 37,
+      "early_career": 76,
+      "sponsorship": 54,
+      "licensed": 980,
+      "salary": 187
+    },
+    "licence_register": {
+      "available": true,
+      "source_date": "2026-10-19",
+      "checked_at": "2026-10-20T07:15:36.345Z"
+    }
+  },
+  "business": {
+    "id": "business-497916",
+    "state": "attention",
+    "finished_at": "2026-10-20T12:46:39.335Z",
+    "measured_at": "2026-10-20T12:46:14.862Z",
+    "jobs": {
+      "total": 1021,
+      "employers": 37,
+      "offered": 20,
+      "conditional": 34,
+      "unavailable": 139,
+      "not_stated": 828,
+      "early_career": 76,
+      "salary": 187
+    },
+    "issues": [
+      {
+        "id": "reference-evaluation-held",
+        "severity": "high",
+        "title": "Resolve the real-advert test hold",
+        "detail": "A failed, incomplete or mixed-version reference attempt needs attention.",
+        "next_action": "Inspect its retained report and workflow outcome. Do not remove the attempt or reset its model-call reservations to retry."
+      },
+      {
+        "id": "reference-label-errors",
+        "severity": "high",
+        "title": "Review unsupported reference interpretations",
+        "detail": "0 unsupported positives and 1 unsupported refusals were found against provisional archived-advert expectations.",
+        "next_action": "Review original wording and disputed expectations with an independent reviewer. Public labels were not changed; do not promote model authority from this test."
+      },
+      {
+        "id": "activation",
+        "severity": "normal",
+        "title": "Improve the first useful application journey",
+        "detail": "No CV or cover-letter response was recorded in 11 completed UTC days of the owner-filtered baseline.",
+        "next_action": "Verify the job-to-studio-to-export journey and use willing users’ feedback to find friction. These events do not establish saved files, submitted applications or outcomes."
+      },
+      {
+        "id": "application-assessment-findings",
+        "severity": "normal",
+        "title": "Inspect recorded application quality findings",
+        "detail": "21 retained outputs have owner-recorded issues; 0 assessments refer to changed output. These are development judgments, not a customer accuracy score.",
+        "next_action": "Inspect the exact fictional input, output and assessment evidence. Preserve history and independently validate any proposed improvement before changing customer generation."
+      },
+      {
+        "id": "discovery-overdue",
+        "severity": "normal",
+        "title": "Review overdue sourcing leads",
+        "detail": "3 unresolved leads have reached their recorded follow-up time.",
+        "next_action": "Open the private Discovery queue, inspect the original evidence and append a decision. Do not republish stale posts or move dates forward without a real review."
+      },
+      {
+        "id": "employer-application-links",
+        "severity": "normal",
+        "title": "Review employer application links",
+        "detail": "7 employer samples need review, including 0 overdue checks. A feed observation alone does not verify the candidate application page.",
+        "next_action": "Inspect the exact check and employer page. Distinguish closure from access blocks, redirects and temporary failure; use the existing source/quality controls only after checking the evidence. Do not alter observation timestamps to hide a failed check."
+      },
+      {
+        "id": "job-review-overdue",
+        "severity": "normal",
+        "title": "Review disputed adverts",
+        "detail": "2 advert holds have reached their follow-up date. They remain outside current opportunities.",
+        "next_action": "Compare the original evidence in Advert reviews. Record a new decision; a due date or a successful feed refresh never clears the hold."
+      },
+      {
+        "id": "premium-validation",
+        "severity": "normal",
+        "title": "Validate a premium offer with users",
+        "detail": "Payments, paid subscriptions and revenue measurement are not implemented.",
+        "next_action": "Prioritise trustworthy job alerts, saved research and stronger application review. Validate willingness to pay before setting a price or opening checkout."
+      },
+      {
+        "id": "social-publisher-bridge",
+        "severity": "normal",
+        "title": "Complete the cloud publishing connection",
+        "detail": "Provider scheduling and delivery reconciliation use the connected Codex routine and native social schedulers. This cloud workflow does not directly send or verify social posts.",
+        "next_action": "Preserve existing queues and exact-account receipts. A supported cloud publishing adapter is still required; do not infer a connection from a recorded schedule or purchase a plan without approval."
+      },
+      {
+        "id": "source-concentration",
+        "severity": "normal",
+        "title": "Broaden verified sponsorship sources",
+        "detail": "Monzo accounts for 31 of 54 offered or conditional adverts in the last observation.",
+        "next_action": "Review new employer-original leads, including LinkedIn jobs and recruiting posts. Verify identity, current opening and exact sponsorship wording before expanding approved sources. More successful refreshes alone do not improve coverage."
+      }
+    ],
+    "source_summary": {
+      "enabled_successful": 37,
+      "owner_paused": 1
+    },
+    "discovery": {
+      "checked_at": "2026-10-20T12:46:14.862Z",
+      "total": 25,
+      "unresolved": 7,
+      "overdue": 3,
+      "changed_links": 0,
+      "current_linked_jobs": 3,
+      "last_recorded_at": "2026-10-18T13:09:05.989Z",
+      "counts": [
+        {
+          "source_kind": "employer",
+          "state": "held",
+          "total": 1
+        },
+        {
+          "source_kind": "employer",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "employer",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "held",
+          "total": 2
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "rejected",
+          "total": 3
+        },
+        {
+          "source_kind": "linkedin_post",
+          "state": "held",
+          "total": 2
+        },
+        {
+          "source_kind": "linkedin_post",
+          "state": "rejected",
+          "total": 3
+        },
+        {
+          "source_kind": "recruiter",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "held",
+          "total": 2
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "rejected",
+          "total": 7
+        }
+      ],
+      "allowance": {
+        "day": "2026-10-20",
+        "limit": 5,
+        "used": 0,
+        "remaining": 5,
+        "next_day": "2026-10-21T00:00:00.000Z"
+      },
+      "limitation": "Private sourcing records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Automated source candidates are identified separately from agent-assisted and owner reviews."
+    },
+    "job_reviews": {
+      "total": 4,
+      "held": 4,
+      "overdue": 2
+    },
+    "reference": {
+      "state": "needs_attention",
+      "dataset": "real-adverts-2026-10-08-compact-v2",
+      "original_state": "needs_attention",
+      "evaluated_adverts": 8,
+      "total_adverts": 50,
+      "dangerous_false_positives": 0,
+      "unsupported_refusals": 1,
+      "disputed_items": 0
+    },
+    "application_evaluation": {
+      "state": "ready",
+      "operation_state": "enabled",
+      "progress_state": "ready",
+      "enabled": true,
+      "business_enabled": true,
+      "evaluation_enabled": true,
+      "pause_reason": null,
+      "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+      "completed": 16,
+      "total": 20,
+      "assessments": {
+        "assessable_outputs": 49,
+        "assessed_outputs": 32,
+        "unassessed_outputs": 17,
+        "needs_work": 21,
+        "incomplete": 0,
+        "stale": 0,
+        "groups": [
+          {
+            "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+            "writer": "@cf/zai-org/glm-4.7-flash",
+            "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "policy": "paired-application-schema-v2",
+            "paired_cases": 5,
+            "both_acceptable": 3,
+            "candidate_only_acceptable": 1,
+            "baseline_only_acceptable": 0,
+            "both_need_work": 1
+          }
+        ],
+        "limited": false,
+        "automatic_promotion": false,
+        "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+      }
+    },
+    "social_delivery": {
+      "available": true,
+      "checked_at": "2026-10-20T12:46:14.862Z",
+      "records_checked": 6,
+      "limited": false,
+      "scheduled": 0,
+      "awaiting_check": 0,
+      "overdue": 0,
+      "uncertain": 0,
+      "failed_30d": 0,
+      "published_30d": 6,
+      "invalid_records": 0,
+      "last_published_observation": "2026-10-18T12:49:50.715Z",
+      "next_scheduled_at": null
+    },
+    "measurement": {
+      "version": 2,
+      "enabled_at": "2026-10-08T11:57:33.807Z",
+      "first_full_day": "2026-10-09",
+      "completed_days": 11,
+      "from": "2026-10-09",
+      "to": "2026-10-20",
+      "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+      "browser_evidence": {
+        "version": 1,
+        "kind": "browser_reported",
+        "state": "collecting",
+        "enabled_at": "2026-10-11T18:44:54.941Z",
+        "first_full_day": "2026-10-12",
+        "from": "2026-10-12",
+        "to": "2026-10-20",
+        "completed_days": 8,
+        "evidence_checks": 0,
+        "campaigns": [],
+        "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+      }
+    },
+    "complete_day_totals": {
+      "campaign_page_view": 23,
+      "page_view": 143,
+      "account_created": 1
+    },
+    "search": {
+      "property": "https://sponsorintel.london/",
+      "enabled": true,
+      "reading_enabled": true,
+      "business_enabled": true,
+      "configured": true,
+      "status": "completed",
+      "latest": {
+        "day": "2026-10-20",
+        "state": "completed",
+        "trigger_kind": "scheduled",
+        "created_at": "2026-10-20T00:45:34.232Z",
+        "finished_at": "2026-10-20T00:46:02.655Z",
+        "requests": 10,
+        "result": {
+          "property": "https://sponsorintel.london/",
+          "observed_at": "2026-10-20T00:45:34.232Z",
+          "window": {
+            "startDate": "2026-09-19",
+            "endDate": "2026-10-16",
+            "timeZone": "America/Los_Angeles",
+            "dataState": "final"
+          },
+          "permission": "siteRestrictedUser",
+          "parts": {
+            "total": {
+              "state": "available",
+              "rows": [
+                {
+                  "clicks": 0,
+                  "impressions": 83,
+                  "ctr": 0,
+                  "position": 23.204819277108435
+                }
+              ],
+              "returned_rows": 1,
+              "excluded_rows": 0,
+              "row_limit_reached": false,
+              "coverage": "Missing dates are not filled with zero."
+            },
+            "sitemaps": {
+              "state": "available",
+              "rows": [
+                {
+                  "url": "https://sponsorintel.london/sitemap.xml",
+                  "last_downloaded": "2026-10-19T12:00:22.698Z",
+                  "last_submitted": "2026-10-05T13:08:53.188Z",
+                  "pending": false,
+                  "errors": 0,
+                  "warnings": 0,
+                  "submitted_pages": 993
+                }
+              ]
+            }
+          },
+          "inspections": [
+            {
+              "url": "https://sponsorintel.london/",
+              "state": "available",
+              "verdict": "PASS",
+              "coverage": "Submitted and indexed",
+              "indexing_state": "INDEXING_ALLOWED",
+              "fetch_state": "SUCCESSFUL",
+              "robots_state": "ALLOWED",
+              "last_crawl": "2026-10-15T21:24:37Z",
+              "google_canonical": "https://sponsorintel.london/",
+              "user_canonical": "https://sponsorintel.london/"
+            },
+            {
+              "url": "https://sponsorintel.london/jobs",
+              "state": "available",
+              "verdict": "PASS",
+              "coverage": "Submitted and indexed",
+              "indexing_state": "INDEXING_ALLOWED",
+              "fetch_state": "SUCCESSFUL",
+              "robots_state": "ALLOWED",
+              "last_crawl": "2026-10-17T00:18:54Z",
+              "google_canonical": "https://sponsorintel.london/jobs",
+              "user_canonical": "https://sponsorintel.london/jobs"
+            },
+            {
+              "url": "https://sponsorintel.london/updates",
+              "state": "available",
+              "verdict": "PASS",
+              "coverage": "Submitted and indexed",
+              "indexing_state": "INDEXING_ALLOWED",
+              "fetch_state": "SUCCESSFUL",
+              "robots_state": "ALLOWED",
+              "last_crawl": "2026-10-16T06:48:54Z",
+              "google_canonical": "https://sponsorintel.london/updates",
+              "user_canonical": "https://sponsorintel.london/updates"
+            },
+            {
+              "url": "https://sponsorintel.london/guides/check-uk-sponsor",
+              "state": "available",
+              "verdict": "PASS",
+              "coverage": "Submitted and indexed",
+              "indexing_state": "INDEXING_ALLOWED",
+              "fetch_state": "SUCCESSFUL",
+              "robots_state": "ALLOWED",
+              "last_crawl": "2026-10-16T19:18:53Z",
+              "google_canonical": "https://sponsorintel.london/guides/check-uk-sponsor",
+              "user_canonical": "https://sponsorintel.london/guides/check-uk-sponsor"
+            }
+          ]
+        }
+      },
+      "runs": [],
+      "schedule": "Once per UTC day through the hourly business workflow.",
+      "scope": "Read-only Google search data for this property; no raw search queries or customer records.",
+      "limits": {
+        "requests_daily": 10,
+        "inspection_urls": 4,
+        "page_rows": 100
+      },
+      "connected": true
+    }
+  },
+  "source_run": {
+    "id": "scheduled-1792499455003",
+    "state": "attention",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-20T12:30:58.378Z",
+    "finished_at": "2026-10-20T12:35:20.486Z",
+    "requests": 84
+  },
+  "platform": {
+    "business-497916": {
+      "status": "completed",
+      "success": true,
+      "header": [
+        "Workflow Name:         sponsorintel-business",
+        "Instance Id:           business-497916",
+        "Version Id:            6d53d70b-cc30-446d-9d11-aacdb8dd005d",
+        "End:                   10/20/2026, 1:46:39 PM",
+        "Last Successful Step:  record-completion-1"
+      ],
+      "display_timezone": "Europe/London",
+      "timestamp_precision": "seconds",
+      "receipt_sha256": "594e1dfe5fb76ecb6c283e49fcbae9e391e3d22971a490550207bb1fe88c9b3d"
+    },
+    "source-1792499455003": {
+      "status": "completed",
+      "success": true,
+      "header": [
+        "Workflow Name:         sponsorintel-sources",
+        "Instance Id:           scheduled-1792499455003",
+        "Version Id:            bc04d363-003c-4778-94d5-96ddd4980bfb",
+        "End:                   10/20/2026, 1:35:20 PM",
+        "Last Successful Step:  finish-run-1"
+      ],
+      "display_timezone": "Europe/London",
+      "timestamp_precision": "seconds",
+      "receipt_sha256": "849bae784b5cafa992978d3a7421d4752431e73993eabd8332b7795f2b4bff80"
+    },
+    "business-497880": {
+      "status": "completed",
+      "success": true,
+      "header": [
+        "Workflow Name:         sponsorintel-business",
+        "Instance Id:           business-497880",
+        "Version Id:            6d53d70b-cc30-446d-9d11-aacdb8dd005d",
+        "End:                   10/19/2026, 1:46:08 AM",
+        "Last Successful Step:  record-completion-1"
+      ],
+      "display_timezone": "Europe/London",
+      "timestamp_precision": "seconds",
+      "receipt_sha256": "3d26f743b1158c6683cd8e69a9aedc0cc1e5e2b72b0cec831afbc050ccffdb98"
+    },
+    "business-497904": {
+      "status": "completed",
+      "success": true,
+      "header": [
+        "Workflow Name:         sponsorintel-business",
+        "Instance Id:           business-497904",
+        "Version Id:            6d53d70b-cc30-446d-9d11-aacdb8dd005d",
+        "End:                   10/20/2026, 1:46:08 AM",
+        "Last Successful Step:  record-completion-1"
+      ],
+      "display_timezone": "Europe/London",
+      "timestamp_precision": "seconds",
+      "receipt_sha256": "1a79ab08e07f4ba96ccd6a78bb8af5e300afaecd91052110ce9500f2e2f45719"
+    },
+    "marketing-2026-10-19": {
+      "status": "completed",
+      "success": true,
+      "header": [
+        "Workflow Name:         sponsorintel-marketing",
+        "Instance Id:           marketing-2026-10-19",
+        "Version Id:            9a54bbc8-c335-48e5-bc19-e52954d39f20",
+        "End:                   10/19/2026, 1:46:12 AM",
+        "Last Successful Step:  hold-stopped-run-1"
+      ],
+      "display_timezone": "Europe/London",
+      "timestamp_precision": "seconds",
+      "receipt_sha256": "90fb3cfc3fa4268adf10b608569751a97e643533a5c1a38dbfc637b081a1460a"
+    },
+    "marketing-2026-10-20": {
+      "status": "completed",
+      "success": true,
+      "header": [
+        "Workflow Name:         sponsorintel-marketing",
+        "Instance Id:           marketing-2026-10-20",
+        "Version Id:            9a54bbc8-c335-48e5-bc19-e52954d39f20",
+        "End:                   10/20/2026, 1:46:47 AM",
+        "Last Successful Step:  recheck-and-record-decision-1"
+      ],
+      "display_timezone": "Europe/London",
+      "timestamp_precision": "seconds",
+      "receipt_sha256": "fed2c064c5cedf4a500319fba1663bd63bd3a8fa9016595f3ef94f78c3952eb1"
+    }
+  },
+  "scout_runs": [
+    {
+      "day": "2026-10-19",
+      "run_id": "business-497880",
+      "state": "completed",
+      "reason": "checked_advert_links_already_known",
+      "started_at": "2026-10-19T00:46:03.483Z",
+      "finished_at": "2026-10-19T00:46:04.079Z",
+      "capacity": 2,
+      "reserved_requests": 4,
+      "requests": 1,
+      "retained": 0,
+      "inspected": 0,
+      "search_pages": 1
+    },
+    {
+      "day": "2026-10-20",
+      "run_id": "business-497904",
+      "state": "completed",
+      "reason": "checked_advert_links_already_known",
+      "started_at": "2026-10-20T00:46:04.075Z",
+      "finished_at": "2026-10-20T00:46:04.543Z",
+      "capacity": 2,
+      "reserved_requests": 4,
+      "requests": 1,
+      "retained": 0,
+      "inspected": 0,
+      "search_pages": 1
+    }
+  ],
+  "scout_skip_items": [
+    {
+      "day": "2026-10-19",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/key-stage-1-class-teacher-permanent-part-time",
+      "state": "duplicate",
+      "reason": "advert_already_in_queue",
+      "lead_id": "22eb0cdf-824c-4d53-bddc-0d916f88feda",
+      "evidence": "{\"source_url\":\"https://teaching-vacancies.service.gov.uk/jobs/key-stage-1-class-teacher-permanent-part-time\",\"title\":\"Key Stage 1 Class Teacher (Permanent, Part-time)\",\"selection\":\"known_advert_skipped\",\"school_urn\":null,\"known_source_id\":null,\"prior_day\":null,\"prior_observed_at\":null,\"prior_recorded_at\":\"2026-10-10T00:46:05.892Z\"}",
+      "observed_at": "2026-10-19T00:46:03.895Z"
+    },
+    {
+      "day": "2026-10-19",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry",
+      "state": "duplicate",
+      "reason": "advert_already_in_queue",
+      "lead_id": "b33c7472-8dc8-490e-a8ca-300cdf67f11d",
+      "evidence": "{\"source_url\":\"https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry\",\"title\":\"Lecturer Carpentry\",\"selection\":\"known_advert_skipped\",\"school_urn\":null,\"known_source_id\":null,\"prior_day\":null,\"prior_observed_at\":null,\"prior_recorded_at\":\"2026-10-14T00:46:41.467Z\"}",
+      "observed_at": "2026-10-19T00:46:03.952Z"
+    },
+    {
+      "day": "2026-10-19",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/part-time-class-teacher-sussex-road-community-primary-school",
+      "state": "duplicate",
+      "reason": "advert_already_in_queue",
+      "lead_id": "f2e0f2b1-d4cc-40f4-9bf7-35f037e7b329",
+      "evidence": "{\"source_url\":\"https://teaching-vacancies.service.gov.uk/jobs/part-time-class-teacher-sussex-road-community-primary-school\",\"title\":\"Part-time Class Teacher\",\"selection\":\"known_advert_skipped\",\"school_urn\":null,\"known_source_id\":null,\"prior_day\":null,\"prior_observed_at\":null,\"prior_recorded_at\":\"2026-10-13T00:46:34.905Z\"}",
+      "observed_at": "2026-10-19T00:46:03.841Z"
+    },
+    {
+      "day": "2026-10-19",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+      "state": "duplicate",
+      "reason": "school_already_configured",
+      "lead_id": null,
+      "evidence": "{\"source_url\":\"https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy\",\"title\":\"Teacher of Drama\",\"selection\":\"known_advert_skipped\",\"school_urn\":\"136202\",\"known_source_id\":\"reviewed-teaching-vacancies-136202--king-s-lynn-academy\",\"prior_day\":\"2026-10-18\",\"prior_observed_at\":\"2026-10-18T00:46:44.415Z\",\"prior_recorded_at\":null}",
+      "observed_at": "2026-10-19T00:46:04.037Z"
+    },
+    {
+      "day": "2026-10-20",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry",
+      "state": "duplicate",
+      "reason": "advert_already_in_queue",
+      "lead_id": "b33c7472-8dc8-490e-a8ca-300cdf67f11d",
+      "evidence": "{\"source_url\":\"https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry\",\"title\":\"Lecturer Carpentry\",\"selection\":\"known_advert_skipped\",\"school_urn\":null,\"known_source_id\":null,\"prior_day\":null,\"prior_observed_at\":null,\"prior_recorded_at\":\"2026-10-14T00:46:41.467Z\"}",
+      "observed_at": "2026-10-20T00:46:04.420Z"
+    },
+    {
+      "day": "2026-10-20",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+      "state": "duplicate",
+      "reason": "school_already_configured",
+      "lead_id": null,
+      "evidence": "{\"source_url\":\"https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy\",\"title\":\"Teacher of Drama\",\"selection\":\"known_advert_skipped\",\"school_urn\":\"136202\",\"known_source_id\":\"reviewed-teaching-vacancies-136202--king-s-lynn-academy\",\"prior_day\":\"2026-10-18\",\"prior_observed_at\":\"2026-10-18T00:46:44.415Z\",\"prior_recorded_at\":null}",
+      "observed_at": "2026-10-20T00:46:04.505Z"
+    }
+  ],
+  "scout_acceptance": {
+    "known_link_skip_path_observed": true,
+    "new_lead_retention_proven": false,
+    "broader_autonomous_discovery_proven": false
+  },
+  "marketing_runs": [
+    {
+      "id": "marketing-2026-10-19",
+      "state": "held",
+      "created_at": "2026-10-19T00:46:06.268Z",
+      "finished_at": "2026-10-19T00:46:12.896Z",
+      "policy": "sourced-guides-company-report-v7",
+      "models": "{\"writer\":{\"provider\":\"cloudflare\",\"model\":\"@cf/zai-org/glm-4.7-flash\"},\"reviewer\":{\"provider\":\"cloudflare\",\"model\":\"@cf/meta/llama-3.3-70b-instruct-fp8-fast\"}}",
+      "result": "{\"reason\":\"Agent execution stopped or a model outcome was uncertain. No automatic retry; inspect the step records.\",\"brief_id\":\"dafbf66c-90aa-4773-bc1e-c1470b0a9bb1\"}",
+      "brief_id": "dafbf66c-90aa-4773-bc1e-c1470b0a9bb1",
+      "calls": 1
+    },
+    {
+      "id": "marketing-2026-10-20",
+      "state": "reviewed",
+      "created_at": "2026-10-20T00:46:07.005Z",
+      "finished_at": "2026-10-20T00:46:46.725Z",
+      "policy": "sourced-guides-company-report-v7",
+      "models": "{\"writer\":{\"provider\":\"cloudflare\",\"model\":\"@cf/zai-org/glm-4.7-flash\"},\"reviewer\":{\"provider\":\"cloudflare\",\"model\":\"@cf/meta/llama-3.3-70b-instruct-fp8-fast\"}}",
+      "result": "{\"reason\":\"The post provides clear and accurate information about the job opportunity, including the job title, location, and potential for visa sponsorship, along with appropriate caveats regarding the sponsorship and eligibility.\",\"brief_id\":\"8a13ca40-710e-4b61-badd-3e509efe9a59\",\"proposed_slot\":\"2026-10-20T09:00:00.000Z\",\"independent_review\":{\"checks\":[{\"index\":0,\"supported\":true,\"reason\":\"The job title and location are clearly stated as Lead Machine Learning Scientist, Search — Monzo, with locations in Cardiff, London, or Remote (UK).\"},{\"index\":1,\"supported\":true,\"reason\":\"The employer advert explicitly mentions that they can sponsor visas, as indicated by the statement '✅ We can sponsor visas'.\"},{\"index\":2,\"supported\":true,\"reason\":\"There is evidence of the employer having a reviewed link to Monzo Bank Ltd in the current Skilled Worker sponsor register, which is separate from the vacancy wording.\"},{\"index\":3,\"supported\":true,\"reason\":\"The statement clearly indicates that the observation is dated and does not constitute a visa or job offer, and that a sponsor licence does not guarantee sponsorship or eligibility for any applicant.\"}],\"publishable\":true,\"reason\":\"The post provides clear and accurate information about the job opportunity, including the job title, location, and potential for visa sponsorship, along with appropriate caveats regarding the sponsorship and eligibility.\"},\"publication\":\"none\",\"quality_limit\":\"Model critique can be wrong. Provider queue, source and exact content still require rechecking before publication.\"}",
+      "brief_id": "8a13ca40-710e-4b61-badd-3e509efe9a59",
+      "calls": 2
+    }
+  ],
+  "marketing_steps": [
+    {
+      "run_id": "marketing-2026-10-19",
+      "name": "review-report",
+      "role": "reviewer",
+      "state": "failed",
+      "created_at": "2026-10-19T00:46:11.868Z",
+      "output": "{\"failure\":\"The received result failed the required evidence structure. No automatic retry.\",\"failure_stage\":\"contract_validation\",\"completion\":{\"version\":1,\"provider\":\"cloudflare\",\"failure_stage\":\"contract_validation\",\"finish_reason\":\"stop\",\"response_kind\":\"object\",\"usage\":{\"prompt_tokens\":955,\"completion_tokens\":10,\"total_tokens\":965}}}"
+    },
+    {
+      "run_id": "marketing-2026-10-20",
+      "name": "plan",
+      "role": "writer",
+      "state": "completed",
+      "created_at": "2026-10-20T00:46:11.857Z",
+      "output": "{\"decision\":\"draft\",\"source_id\":\"job-6e8bc18bcf95634053a49eb4\",\"reason\":\"Monzo advert explicitly states visa sponsorship and the employer holds a valid sponsor licence. The role is a high-skill Machine Learning Scientist position suitable for skilled migrants.\",\"ranked\":[{\"source_id\":\"job-6e8bc18bcf95634053a49eb4\",\"reason\":\"Monzo advert explicitly states visa sponsorship and the employer holds a valid sponsor licence. The role is a high-skill Machine Learning Scientist position suitable for skilled migrants.\"}],\"timing_reason\":\"The proposed slot is 2026-10-20T09:00:00.000Z, which falls within the vacancy's short expiry window (expires 2026-10-20T14:45:52.848Z). Sparse metrics and browser evidence checks (0) suggest limited current engagement, so the vacancy's own proposed timing is used as a starting hypothesis.\"}"
+    },
+    {
+      "run_id": "marketing-2026-10-20",
+      "name": "review",
+      "role": "reviewer",
+      "state": "completed",
+      "created_at": "2026-10-20T00:46:39.343Z",
+      "output": "{\"checks\":[{\"index\":0,\"supported\":true,\"reason\":\"The job title and location are clearly stated as Lead Machine Learning Scientist, Search — Monzo, with locations in Cardiff, London, or Remote (UK).\"},{\"index\":1,\"supported\":true,\"reason\":\"The employer advert explicitly mentions that they can sponsor visas, as indicated by the statement '✅ We can sponsor visas'.\"},{\"index\":2,\"supported\":true,\"reason\":\"There is evidence of the employer having a reviewed link to Monzo Bank Ltd in the current Skilled Worker sponsor register, which is separate from the vacancy wording.\"},{\"index\":3,\"supported\":true,\"reason\":\"The statement clearly indicates that the observation is dated and does not constitute a visa or job offer, and that a sponsor licence does not guarantee sponsorship or eligibility for any applicant.\"}],\"publishable\":true,\"reason\":\"The post provides clear and accurate information about the job opportunity, including the job title, location, and potential for visa sponsorship, along with appropriate caveats regarding the sponsorship and eligibility.\"}"
+    }
+  ],
+  "provider_observation": {
+    "observed_on": "2026-10-20",
+    "brand": 7294726,
+    "timezone": "Europe/London",
+    "facebook_page": "1319703417896763",
+    "instagram": "sponsorintellondon",
+    "requested_range": [
+      "2026-10-13T00:00:00+01:00",
+      "2026-10-27T23:59:59+00:00"
+    ],
+    "returned_published_facebook": [
+      "397276739",
+      "398874739"
+    ],
+    "returned_pending": 0,
+    "returned_instagram": 0,
+    "native_linkedin_whatsapp_rechecked": false,
+    "public_post_pages_rechecked": false,
+    "new_schedule_or_send": false
+  },
+  "pre_pause_assessment_reconciliation": {
+    "immutable_rows": 35,
+    "four_saved_rows": [
+      {
+        "case_id": "career-change",
+        "stage": "candidate",
+        "revision": 1,
+        "created_at": "2026-10-18T15:15:47.887Z"
+      },
+      {
+        "case_id": "career-change",
+        "stage": "write",
+        "revision": 1,
+        "created_at": "2026-10-18T15:16:28.671Z"
+      },
+      {
+        "case_id": "advert-injection",
+        "stage": "candidate",
+        "revision": 1,
+        "created_at": "2026-10-18T15:18:22.386Z"
+      },
+      {
+        "case_id": "advert-injection",
+        "stage": "write",
+        "revision": 1,
+        "created_at": "2026-10-18T15:20:04.630Z"
+      }
+    ],
+    "new_assessments_this_turn": 0,
+    "agent_assisted_not_independent": true
+  },
+  "original_adverts": [
+    {
+      "id": "a633e5a7-df5a-4078-b71e-b460fbe4c665",
+      "title": "Lecturer Plumbing",
+      "employer_reference": "R003642",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-plumbing-new-city-college-london",
+      "original_route": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-plumbing-new-city-college-london/apply",
+      "checked_interval_utc": [
+        "2026-10-20T13:35:00Z",
+        "2026-10-20T13:45:00Z"
+      ],
+      "dfe_deadline_local": "2026-11-01 23:59",
+      "employer_deadline_date": "2026-10-04",
+      "employer_explicitly_closed": true,
+      "owner_revision_unchanged": 1,
+      "new_decision_saved": false
+    },
+    {
+      "id": "e3925285-959a-40e2-9db0-d5614e95b9e0",
+      "title": "Teacher of Drama",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+      "checked_interval_utc": [
+        "2026-10-20T13:35:00Z",
+        "2026-10-20T13:45:00Z"
+      ],
+      "dfe_explicitly_expired_on": "2026-10-20",
+      "dfe_closing_local": "2026-10-20 13:03",
+      "application_link_present": false,
+      "owner_revision_unchanged": 4,
+      "new_decision_saved": false
+    }
+  ],
+  "owner_access": {
+    "state": "signed_out_after_reload",
+    "admin_response": "The owner account is required.",
+    "sign_in_requested": true,
+    "authentication_bypassed": false
+  },
+  "allowance_observation": {
+    "observed_at": "2026-10-20T13:36:13.102Z",
+    "ai": [
+      {
+        "day": "2026-10-20",
+        "runs": 2,
+        "calls": 8
+      }
+    ],
+    "sources": [
+      {
+        "day": "2026-10-20",
+        "requests": 360,
+        "briefs": 0
+      }
+    ]
+  },
+  "dependency_audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 3,
+    "high": 0,
+    "critical": 0,
+    "total": 3
+  },
+  "official_advisory": {
+    "url": "https://github.com/advisories/GHSA-hp3w-g68c-fv3c",
+    "checked_on": "2026-10-20",
+    "patched_version": null,
+    "dependency_changed": false
+  },
+  "checkpoint_archive_sha256": "5029b4de374adb00f38225d5407e2a448ad27bce037c55205194323275e664be",
+  "operator_actions": {
+    "production_mutations": false,
+    "forced_workflows": false,
+    "model_google_calls": 0,
+    "source_refreshes": 0,
+    "new_leads": 0,
+    "external_sends": 0,
+    "customer_data_exports": false,
+    "runtime_deployments": 0,
+    "source_hold_releases": 0
+  },
+  "limits": "Original failed/uncertain outcomes and all existing limits remain; platform completion is not independent quality or business-outcome acceptance."
+}

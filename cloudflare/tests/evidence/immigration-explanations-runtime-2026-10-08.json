@@ -1,0 +1,37 @@
+{
+  "release": "2.26.0",
+  "checked_at": "2026-10-08T05:29:24.840330+00:00",
+  "environment": "Isolated local Workerd and D1, no AI/email/cron/workflow or remote database bindings",
+  "guidance_sources": 19,
+  "explained": 19,
+  "points_with_quotes": 53,
+  "reviewed_transitions": 2,
+  "failure_test": {
+    "source_id": "student",
+    "synthetic_hash_changed_only_locally": true,
+    "explanation_hidden": true,
+    "comparison_hidden": true,
+    "unrelated_comparison_retained": true,
+    "original_hash_restored": true
+  },
+  "source_observations": "Public GOV.UK snapshots with original read times; real retained history copied into local fixture only",
+  "api_excludes_full_bodies": true,
+  "browser": {
+    "desktop_guides_visible": true,
+    "phone_width": 390,
+    "phone_scroll_width": 390,
+    "two_change_notes_visible": true,
+    "expanded_quotes_readable": true,
+    "viewport_reset": true
+  },
+  "tests": 297,
+  "build": {
+    "success": true,
+    "public_prerenders": 17,
+    "dry_run": true,
+    "initial_failure": "ENOSPC; cleared only npm download cache, rebuilt successfully"
+  },
+  "production_model_calls": 0,
+  "outbound_messages": 0,
+  "limitation": "Literal source provenance and deterministic controls; not independent legal review or semantic accuracy."
+}

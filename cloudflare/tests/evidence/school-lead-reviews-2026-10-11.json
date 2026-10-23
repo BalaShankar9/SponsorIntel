@@ -1,0 +1,195 @@
+{
+  "checked_at": "2026-10-11T11:26:26.995Z",
+  "review_method": "agent_assisted",
+  "new_leads": 0,
+  "daily_new_leads_used": 5,
+  "daily_limit": 5,
+  "new_public_jobs": 0,
+  "new_sources": 0,
+  "records": [
+    {
+      "id": "5a3587bd-69a9-4238-86f0-33dfd56b6da7",
+      "revision": 2,
+      "verified_from": "saved owner review form",
+      "fields": [
+        {
+          "label": "Source type",
+          "value": "teaching_vacancy"
+        },
+        {
+          "label": "Individual source link",
+          "value": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-maths-ad8c63ce-f43c-4479-b7f6-11146588fc27"
+        },
+        {
+          "label": "Role or lead title",
+          "value": "Teacher of Maths"
+        },
+        {
+          "label": "Employer name, if established",
+          "value": "Hazelwick School"
+        },
+        {
+          "label": "Location, if established",
+          "value": "Crawley, South East, RH10 1SX"
+        },
+        {
+          "label": "Source observed at (your local time)",
+          "value": "2026-10-11T12:20"
+        },
+        {
+          "label": "Exact sponsorship wording, if present",
+          "value": "Skilled Worker visas can be sponsored"
+        },
+        {
+          "label": "Original employer application link",
+          "value": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-maths-ad8c63ce-f43c-4479-b7f6-11146588fc27"
+        },
+        {
+          "label": "Employer identity evidence link",
+          "value": "https://find-and-update.company-information.service.gov.uk/company/07686578"
+        },
+        {
+          "label": "Employer identity evidence",
+          "value": "Agent-assisted identity check: Companies House 07686578 is active as Hazelwick School at Hazelwick School Close, Three Bridges, Crawley RH10 1SX, matching the school website and DfE original. Current 9 October worker-register snapshot matches Hazelwick School, Crawley, West Sussex, Skilled Worker / Worker (A rating), sponsor ID e526064779eac60e94f44951. URN 137263 is linked from the DfE school section. This is employer identity evidence, not individual sponsorship eligibility. The school points to its Tes employer page for vacancies and provides a generic teaching application form; no matching current Tes role was verified."
+        },
+        {
+          "label": "Original posting time, only if known",
+          "value": ""
+        },
+        {
+          "label": "Posting-date source wording",
+          "value": "Teaching Vacancies datePosted: 2026-10-09. Publication time is not supplied."
+        },
+        {
+          "label": "Closing time, only if known",
+          "value": "2026-10-16T09:00"
+        },
+        {
+          "label": "Closing-date source wording",
+          "value": "Teaching Vacancies validThrough: 2026-10-16T09:00:00+01:00"
+        },
+        {
+          "label": "Decision",
+          "value": "held"
+        },
+        {
+          "label": "How this review was recorded",
+          "value": "agent_assisted"
+        },
+        {
+          "label": "Review again by (within 30 days)",
+          "value": "2026-10-13T12:30"
+        },
+        {
+          "label": "Decision reason and evidence still needed",
+          "value": "Agent-assisted review through owner account. Hold privately: the current DfE contract row combines Permanent with 1 Year (to be confirmed) and Maternity or parental leave cover, so the contract duration/type is unresolved. Do not silently choose permanent or temporary. The role still explicitly permits Skilled Worker sponsorship, welcomes ECTs, names KS3/KS4 Maths with KS5 desirable, gives £34,398–£52,490 including Fringe allowance, January or September 2027 start, and closes 16 October 2026 at 09:00 BST. Its DfE Apply button reaches GOV.UK One Login; no login/account/application was attempted. The school links to a generic teaching application form and Tes employer page, but no current matching Tes advert was verified; the search result for a March 2026 vacancy is not substituted. Recheck the same original and school-designated vacancy evidence before the deadline for consistent contract and current application information. CV-only submissions are not accepted. No new lead/source/job, personal data, contact, upload or application was created."
+        }
+      ]
+    },
+    {
+      "id": "22eb0cdf-824c-4d53-bddc-0d916f88feda",
+      "revision": 2,
+      "verified_from": "saved owner review form",
+      "fields": [
+        {
+          "label": "Source type",
+          "value": "teaching_vacancy"
+        },
+        {
+          "label": "Individual source link",
+          "value": "https://teaching-vacancies.service.gov.uk/jobs/key-stage-1-class-teacher-permanent-part-time"
+        },
+        {
+          "label": "Role or lead title",
+          "value": "Key Stage 1 Class Teacher (Permanent, Part-time)"
+        },
+        {
+          "label": "Employer name, if established",
+          "value": "Whitchurch Church of England Primary School"
+        },
+        {
+          "label": "Location, if established",
+          "value": "Whitchurch, South East, RG28 7LS"
+        },
+        {
+          "label": "Source observed at (your local time)",
+          "value": "2026-10-11T12:25"
+        },
+        {
+          "label": "Exact sponsorship wording, if present",
+          "value": "Skilled Worker visas can be sponsored"
+        },
+        {
+          "label": "Original employer application link",
+          "value": "https://south.education-jobs.org.uk/jobs/job/KS1-Class-Teacher-part-time-3-days-a-week/13679"
+        },
+        {
+          "label": "Employer identity evidence link",
+          "value": "https://www.whitchurchprimary.com/page/?pid=16&title=Vacancies"
+        },
+        {
+          "label": "Employer identity evidence",
+          "value": "The DfE original identifies school URN 116324, Daniel Road, Whitchurch, Hampshire RG28 7LS and a local-authority-maintained Church of England school. Its own Vacancies page links to Hampshire County Council education jobs, which links to Education Jobs South. The exact matching role is EPSEDJOBS/3177/13679. The 9 October worker-register snapshot returns zero exact full-school-name results. That does not prove no sponsorship licence: the employing legal entity and whether a council or other sponsor covers this exact school remain unverified. Do not assign another organisation’s licence merely because it hosts the advert."
+        },
+        {
+          "label": "Original posting time, only if known",
+          "value": ""
+        },
+        {
+          "label": "Posting-date source wording",
+          "value": "Teaching Vacancies datePosted: 2026-10-09. Publication time is not supplied."
+        },
+        {
+          "label": "Closing time, only if known",
+          "value": "2026-10-19T12:00"
+        },
+        {
+          "label": "Closing-date source wording",
+          "value": "Teaching Vacancies validThrough: 2026-10-19T12:00:00+01:00"
+        },
+        {
+          "label": "Decision",
+          "value": "held"
+        },
+        {
+          "label": "How this review was recorded",
+          "value": "agent_assisted"
+        },
+        {
+          "label": "Review again by (within 30 days)",
+          "value": "2026-10-13T13:00"
+        },
+        {
+          "label": "Decision reason and evidence still needed",
+          "value": "Agent-assisted review through owner account. Current DfE and school-designated council original agree on permanent KS1 teaching, three days weekly, January 2027 start, £19,749–£27,211 actual pro-rata annual pay and 19 October closing date (DfE specifies noon BST). DfE explicitly permits Skilled Worker sponsorship; the council original does not independently state visa support. Hold source admission until the exact legal-employer/sponsor relationship is evidenced; no licence match or individual visa eligibility is inferred. The downloaded employer Person Specification requires qualified-teacher status (PGCE/B.Ed; QTS) and recent successful KS1/KS2 teaching, important qualifications absent from the short advert summary. The school-information PDF corroborates school/address and was reviewed 8 September 2026. Original accepts emailed school application forms and supplies documents; DfE rejects CV-only applications. Some additional attachments and final submission remain unchecked. Recheck identity/role-specific sponsorship evidence before the deadline. No application, personal data, email/contact, source configuration or public job was created; the original automated revision remains preserved."
+        }
+      ]
+    }
+  ],
+  "boundaries": {
+    "automatic_initial_reviews_preserved": true,
+    "source_refreshes": 0,
+    "ai_calls": 0,
+    "applications": 0,
+    "contacts": 0,
+    "licence_nonmatch_is_not_refusal": true
+  },
+  "public_attachments": [
+    {
+      "local_filename": "person-specification.pdf",
+      "url": "https://recruitmenthub.education-jobs.org.uk/members/modules/jobV2/fdownload.php?j=c75450c38854fb6c&f=08b1fdff66d472bb&mode=job_s2",
+      "bytes": 645333,
+      "sha256": "b20842ae4659cc358c1e5725c32f9944bb47a39833ed646e3646995b02be5468",
+      "http_status": 200,
+      "inspection": "pdftotext full text read; public employer attachment; no applicant data"
+    },
+    {
+      "local_filename": "school-information.pdf",
+      "url": "https://recruitmenthub.education-jobs.org.uk/members/modules/jobV2/fdownload.php?j=c75450c38854fb6c&f=86845c5a43a29bd0&mode=job_s2",
+      "bytes": 223100,
+      "sha256": "2c0769efda981656c7a455deba5db8f42b05ad6b73188b32b62ef095f1b7639d",
+      "http_status": 200,
+      "inspection": "pdftotext full text read; public employer attachment; no applicant data"
+    }
+  ]
+}

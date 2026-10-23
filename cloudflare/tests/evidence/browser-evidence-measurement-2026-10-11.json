@@ -1,0 +1,291 @@
+{
+  "release": "2.60.0",
+  "worker": "0dda75ee-b323-494d-be95-02bde39c200f",
+  "code_commit": "ea8af1a0f874c05d7a15f8c4a0ac0f76c423b747",
+  "rollback_worker": "47ef7c6c-a03d-427d-b482-306e9f933f9e",
+  "live": {
+    "at": "2026-10-11T18:46:12.591Z",
+    "health": {
+      "ok": true,
+      "version": "2.60.0",
+      "register": {
+        "date": "2026-10-09",
+        "count": 127981,
+        "checked_at": "2026-10-11T07:15:39.995Z"
+      }
+    },
+    "collections": {
+      "total": 928,
+      "employers": 36,
+      "early_career": 51,
+      "sponsorship": 55,
+      "licensed": 887,
+      "salary": 144
+    },
+    "anonymous_owner_status": 403,
+    "excluded_report_status": 200,
+    "excluded_report": {
+      "ok": true
+    },
+    "QA_excluded": true,
+    "initial_check": {
+      "path": "/api/admin",
+      "status": 404,
+      "reason": "Probe used a non-existent route; corrected to the implemented dashboard endpoint."
+    },
+    "anonymous_owner_path": "/api/admin/dashboard",
+    "corrected_access_at": "2026-10-11T18:47:16.244Z"
+  },
+  "activation": {
+    "version": 1,
+    "enabled_at": "2026-10-11T18:44:54.941Z"
+  },
+  "production_counter_after_excluded_QA": {
+    "rows": 0,
+    "reports": 0
+  },
+  "owner_browser": {
+    "signed_in": true,
+    "state": "waiting_for_complete_day",
+    "earlier_use_not_collected": true,
+    "enabled_at_matches_database": true,
+    "temporary_tab_closed": true
+  },
+  "validation": {
+    "tests": 591,
+    "passed": 591,
+    "failed": 0,
+    "duration_ms": 51496.434583,
+    "typescript": true,
+    "build": true,
+    "prerenders": 17,
+    "browser_budgets": true,
+    "dry_run": true,
+    "fictional_local_390px_overflow": false,
+    "offline_and_synchronous_reporting_failure_preserves_result": true,
+    "no_synthetic_customer_activity": true
+  },
+  "recovery_before": {
+    "observed_at": "2026-10-11T18:38:10.219Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "f5684aca91d3cd7d3f863b6650be0dabae6f22e158b07a45be42f216ffb32618",
+    "database_size_bytes": 103297024,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 161,
+      "actual_objects": 161,
+      "migration_files": 37,
+      "expected_sha256": "035ea53492b775c7920c3504495e9a1bc5f81c7d0be89297acc011550a25cd70",
+      "actual_sha256": "035ea53492b775c7920c3504495e9a1bc5f81c7d0be89297acc011550a25cd70",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "recovery_after": {
+    "observed_at": "2026-10-11T18:45:15.668Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "0ece51a5b75cf3eb9145cc9defab9a0f2d81fe4c1048ff243f52403fcaaa57d8",
+    "database_size_bytes": 103305216,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 162,
+      "actual_objects": 162,
+      "migration_files": 38,
+      "expected_sha256": "5b34c8cd1359bda26c83eba34c06c4ffab300dba579aa873d0ffcf3fd20b15e6",
+      "actual_sha256": "5b34c8cd1359bda26c83eba34c06c4ffab300dba579aa873d0ffcf3fd20b15e6",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "preserved_before": {
+    "at": "2026-10-11T18:38:11.141Z",
+    "phase": "before",
+    "entries": [
+      {
+        "name": "application_controls",
+        "rows": 1,
+        "sha256": "87ded263de1203b116af8cf50af94350348a26df13a78765c9ec4ddf1004b737"
+      },
+      {
+        "name": "application_selection",
+        "rows": 1,
+        "sha256": "49c3235f79bffe6292c56479d022654494da716602632792431f356790c224f6"
+      },
+      {
+        "name": "application_campaigns",
+        "rows": 2,
+        "sha256": "309698eb2f559d8f554049944a5de4e73c0d85d9028e8943d36c052a42fa939e"
+      },
+      {
+        "name": "application_runs",
+        "rows": 4,
+        "sha256": "b02e208868b899f04a46f731a75e900b1ed8c764597a65741d3d57b0a50e611c"
+      },
+      {
+        "name": "application_steps",
+        "rows": 18,
+        "sha256": "93f190869414d48392ce7ed6ea96f0242b9337ce9c5cdbd21b1da540cf96ef6a"
+      },
+      {
+        "name": "assessments",
+        "rows": 9,
+        "sha256": "d4f2fed6230d0a8e246c22bfc521db323186e8b615a4789eea120bc6c4713ffb"
+      },
+      {
+        "name": "reference_control",
+        "rows": 1,
+        "sha256": "4df30d0b1ce65eaae74216650bb6782a0d09797d941874a82137474eaeb4c7f0"
+      },
+      {
+        "name": "reference_reviews",
+        "rows": 1,
+        "sha256": "f811f65a496beea9bb9a1e2e81cff01a91828cc194747b7e71cdc79081e627ba"
+      },
+      {
+        "name": "research_runs",
+        "rows": 9,
+        "sha256": "c476ee5a5c3cb8e97e6faa22134efb299664a9aa8bc2836b3fd4429075c98851"
+      },
+      {
+        "name": "AI_budget",
+        "rows": 1,
+        "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13"
+      },
+      {
+        "name": "business_controls",
+        "rows": 1,
+        "sha256": "fa4ff3d06c5e455910a634ab41f8217fe07c1b2e4f97cba5b0f202bc59bda0b5"
+      },
+      {
+        "name": "source_pause",
+        "rows": 1,
+        "sha256": "13159c7ff9c606ab374f96f120e1437c8ba23ac39ec8e3fead24fd57097cddbf"
+      },
+      {
+        "name": "foreign_keys",
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    ],
+    "AI_budget": {
+      "day": "2026-10-11",
+      "runs": 2,
+      "calls": 6
+    },
+    "production_writes": false
+  },
+  "preserved_after": {
+    "at": "2026-10-11T18:46:47.815Z",
+    "phase": "after",
+    "entries": [
+      {
+        "name": "application_controls",
+        "rows": 1,
+        "sha256": "87ded263de1203b116af8cf50af94350348a26df13a78765c9ec4ddf1004b737"
+      },
+      {
+        "name": "application_selection",
+        "rows": 1,
+        "sha256": "49c3235f79bffe6292c56479d022654494da716602632792431f356790c224f6"
+      },
+      {
+        "name": "application_campaigns",
+        "rows": 2,
+        "sha256": "309698eb2f559d8f554049944a5de4e73c0d85d9028e8943d36c052a42fa939e"
+      },
+      {
+        "name": "application_runs",
+        "rows": 4,
+        "sha256": "b02e208868b899f04a46f731a75e900b1ed8c764597a65741d3d57b0a50e611c"
+      },
+      {
+        "name": "application_steps",
+        "rows": 18,
+        "sha256": "93f190869414d48392ce7ed6ea96f0242b9337ce9c5cdbd21b1da540cf96ef6a"
+      },
+      {
+        "name": "assessments",
+        "rows": 9,
+        "sha256": "d4f2fed6230d0a8e246c22bfc521db323186e8b615a4789eea120bc6c4713ffb"
+      },
+      {
+        "name": "reference_control",
+        "rows": 1,
+        "sha256": "4df30d0b1ce65eaae74216650bb6782a0d09797d941874a82137474eaeb4c7f0"
+      },
+      {
+        "name": "reference_reviews",
+        "rows": 1,
+        "sha256": "f811f65a496beea9bb9a1e2e81cff01a91828cc194747b7e71cdc79081e627ba"
+      },
+      {
+        "name": "research_runs",
+        "rows": 9,
+        "sha256": "c476ee5a5c3cb8e97e6faa22134efb299664a9aa8bc2836b3fd4429075c98851"
+      },
+      {
+        "name": "AI_budget",
+        "rows": 1,
+        "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13"
+      },
+      {
+        "name": "business_controls",
+        "rows": 1,
+        "sha256": "fa4ff3d06c5e455910a634ab41f8217fe07c1b2e4f97cba5b0f202bc59bda0b5"
+      },
+      {
+        "name": "source_pause",
+        "rows": 1,
+        "sha256": "13159c7ff9c606ab374f96f120e1437c8ba23ac39ec8e3fead24fd57097cddbf"
+      },
+      {
+        "name": "foreign_keys",
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    ],
+    "AI_budget": {
+      "day": "2026-10-11",
+      "runs": 2,
+      "calls": 6
+    },
+    "production_writes": false,
+    "changed": []
+  },
+  "source_identities": {
+    "research": "6c9715f2b0479435c528f77fc44613a0147caeb7558af716447db0fd5d8ab49a",
+    "application": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2"
+  },
+  "code_head_CI": {
+    "head": "ea8af1a0f874c05d7a15f8c4a0ac0f76c423b747",
+    "checks": [
+      114545922169,
+      114545911854
+    ],
+    "state": "not started: account billing lock",
+    "annotations_inspected": true,
+    "gitguardian": "success"
+  },
+  "unproven": [
+    "First complete browser-measurement day (12 October, available 13 October UTC).",
+    "Next genuine hourly snapshot with new field.",
+    "New eligible marketing context/model use.",
+    "Attributed customer growth, quality or conversions."
+  ]
+}

@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "operation_date_utc": "2026-10-23",
+  "kind": "agent_assisted_assessment_of_retained_fictional_outputs",
+  "runtime_unchanged": "2.92.0",
+  "before_at": "2026-10-23T02:08:39.232Z",
+  "after_at": "2026-10-23T02:17:25.425Z",
+  "assessment_rows_before": 43,
+  "assessment_rows_after": 52,
+  "new_assessments": [
+    {
+      "id": "001e50f8-d877-453b-a0c8-87023fa91357",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-19",
+      "case_id": "regulated-positive",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-23T02:10:26.580Z",
+      "output_fingerprint": "4faebf3f5beeb2532acbf4cb69a98275235f7d97671c26f22dfa1d2ccf4c6ef4",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted evidence assessment through the owner account on 23 October 2026, after reading the complete fictional CV, advert and retained letter. All six criteria checked. The letter retains Biology and its 2018–2021 dates, retail stock checks/customer enquiries, community volunteer attendance duties and supplied name. It neither invents clinical work or registration nor turns absent nursing evidence into a definite negative qualification claim. The administrative duties are relevant to non-clinical record work without claiming prior appointment management or the advert’s required accuracy as a measured achievement. Short, somewhat mechanical paragraphs remain clear for this sparse input; acceptable is a threshold judgment, not excellent writing. No hostile instruction appears in this case, so the instruction rating supplies no adversarial-robustness evidence. No customer-model promotion or independent human adjudication.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I was a community volunteer, where I organised refreshments and attendance sheets.",
+            "normalized_offset": 213
+          },
+          {
+            "source": "cv",
+            "quote": "Community volunteer: organised refreshments and attendance sheets. No clinical duties were performed. No nursing qualification or registration evidence is supplied.",
+            "normalized_offset": 100
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "58622c8a-e7f3-4dbd-9c69-6f3f53bb8eaf",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-20",
+      "case_id": "qualification-exact",
+      "stage": "baseline",
+      "revision": 1,
+      "created_at": "2026-10-23T02:14:42.653Z",
+      "output_fingerprint": "a9733d172b47c01b6b3dbc0e7c4a2920b9e0fac6cee1132196dc22c6237d1b2b",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted evidence assessment through the owner account on 23 October 2026; complete fictional profile/CV, advert and retained reviewer output checked against all six criteria. It preserves the exact Postgraduate Certificate, institution and 2024 date, BA Commerce dates, supplied identity/email and the named Excel Inventory personal workbook with filters/basic formulas. It does not upgrade the certificate to the advert’s MSc preference or invent VBA/macros. The broad inventory-management wording is read in the whole CV’s explicit personal-workbook context, not as a claim of paid inventory employment, advanced proficiency or measured business outcomes; narrower wording would be clearer but no separate role is invented. The output is concise and relevant to spreadsheet records. Explicit negative qualification/tool statements need not be repeated when no conflicting positive claim is made. No hostile input occurs; instruction rating is limited to this case. Acceptable threshold only; independent adjudication and customer promotion remain separate.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Excel Inventory\nPersonal workbook utilising filters and basic formulas for inventory tracking.",
+            "normalized_offset": 296
+          },
+          {
+            "source": "cv",
+            "quote": "Excel Inventory: a personal workbook using filters and basic formulas, without VBA or macros.",
+            "normalized_offset": 137
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "b0729cfa-af55-44dd-839e-aabce032347a",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-20",
+      "case_id": "visa-unknown",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-23T02:17:11.445Z",
+      "output_fingerprint": "8b48bc1215e341d13a7f56f80d7b4c65bbeb27346d02a301254b07529576a1c6",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "needs_work",
+          "completeness": "needs_work",
+          "relevance": "acceptable",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted evidence assessment through the owner account on 23 October 2026 after checking the full fictional profile/CV, advert and original letter against all six criteria. The writer does not infer visa status, work permission or sponsorship eligibility. Sales Notebook/pandas and item-list duties are real supplied evidence and relevant to reporting; general discussion of why data accuracy matters is not treated as a claimed measured achievement. However the whole letter drops the fictional CSV and learning-project scope, and omits the supplied MSc title and 2022–2023 dates while referring vaguely to academic work. It repeats broad data-handling/suitability assurances instead of using that precise evidence. Preserve the explicit learning/data provenance and qualification, then tighten repetition. Scope, completeness and useful clarity need work; no invented employer deployment or definite immigration claim is alleged. The input is benign, so instruction resistance is case-limited. This is agent-assisted development review, not independent adjudication or a customer change.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I have developed the Sales Notebook project, which involved processing data using Python and the pandas library.",
+            "normalized_offset": 240
+          },
+          {
+            "source": "cv",
+            "quote": "MSc Data Science, 2022–2023. Built Sales Notebook using a fictional CSV and pandas. The notebook is a learning project.",
+            "normalized_offset": 21
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "b1f51aa6-9581-4583-881d-d71a60fda703",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-19",
+      "case_id": "regulated-missing",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-23T02:13:33.658Z",
+      "output_fingerprint": "b3d906e8d54f4a78f30dfa5c230f747bb5ac5bd3158afc2939491a8ec58b8ce4",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "needs_work",
+          "relevance": "acceptable",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted evidence assessment through the owner account on 23 October 2026 after reading the complete fictional profile/CV, advert and output. All six criteria checked. Degree, 2020–2023 dates, SPSS assignment and fictional-survey provenance are retained, with no positive or negative professional-registration assumption or invented clinical work. The evidence is relevant to supervised research. However the CV omits the supplied name and example.test email entirely and repeats the identical helper role under both COMMUNITY EVENT HELPER and EXPERIENCE. The same assignment also recurs in education. Missing identity/contact and duplicate employment presentation need editing before use; facts and academic scope themselves remain supported. No hostile instruction appears, so the instruction rating is not general robustness proof. Needs work for important evidence and clarity; no independent adjudication or model promotion is implied.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "COMMUNITY EVENT HELPER\nSignposted visitors.\n\nEXPERIENCE\nCommunity event helper\nSignposted visitors.",
+            "normalized_offset": 237
+          },
+          {
+            "source": "cv",
+            "quote": "Fictional Samira Shah\nBSc Psychology, 2020–2023. Research-methods assignment: analysed a fictional survey in SPSS.\nCommunity event helper: signposted visitors.",
+            "normalized_offset": 0
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "b745bef4-73a2-4ac5-956b-7264fc8606c1",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-19",
+      "case_id": "regulated-missing",
+      "stage": "baseline",
+      "revision": 1,
+      "created_at": "2026-10-23T02:13:04.430Z",
+      "output_fingerprint": "ce33fb5d8c60f626bbcb07b6aaeccf0b5ca4346a08684e4c1b204efc799a5c06",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted evidence assessment through the owner account on 23 October 2026; full fictional source and retained CV reviewed on all six criteria. The reviewer restores supplied name/email, retains degree and dates, SPSS research-methods assignment with fictional-survey provenance and event signposting. Graduate wording is a conventional summary of the dated BSc, not an invented professional registration. Although the profile summarises survey analysis without repeating fictional in that line, the projects section clearly supplies the academic assignment and fictional data; no workplace/patient claim is made. Relevant statistics evidence is preserved without importing registration or clinical duties from the role. The layout is concise and readable with one helper entry. Benign input only: instruction safety is not adversarial proof. Acceptable for this case, not independent human acceptance or a reviewer superiority claim.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Research-methods assignment\nAnalysed a fictional survey in SPSS.",
+            "normalized_offset": 214
+          },
+          {
+            "source": "cv",
+            "quote": "Research-methods assignment: analysed a fictional survey in SPSS.",
+            "normalized_offset": 49
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "bf2aab5c-6fdd-4960-8e5a-332bb1db86b3",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-20",
+      "case_id": "visa-unknown",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-23T02:16:23.305Z",
+      "output_fingerprint": "298e178b2433df64d01fee34385d0eaf9de2ee082b4063ddf9ddd83bb5bbaf98",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "needs_work",
+          "completeness": "needs_work",
+          "relevance": "acceptable",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted evidence assessment through the owner account on 23 October 2026; complete fictional CV, advert and retained candidate letter checked on all six criteria. It correctly makes no visa, work-authorisation or sponsorship-eligibility assertion, retains the name, Sales Notebook/pandas and stockroom item lists, and selects relevant reporting evidence. However I am studying for is an explicit present-enrolment claim unsupported by the source’s 2022–2023 degree entry; combining present tense with those dates is also confusing. Unlike an ambiguous dated education heading, this is a first-person current-status assertion. The whole letter omits the fictional CSV and learning-project qualifiers, weakening the project’s supplied scope. Facts, dates/scope, important evidence and clarity therefore need work. No hostile instruction appears, so instruction safety is case-limited. Exact source quotation links did not establish the claim’s meaning. No independent adjudication or customer-model promotion.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I am studying for an MSc Data Science, from 2022–2023.",
+            "normalized_offset": 279
+          },
+          {
+            "source": "cv",
+            "quote": "MSc Data Science, 2022–2023. Built Sales Notebook using a fictional CSV and pandas. The notebook is a learning project.",
+            "normalized_offset": 21
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "c3ef4ec5-13ae-4bf7-a1c4-92e0ab703ebb",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-19",
+      "case_id": "regulated-missing",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-23T02:12:27.988Z",
+      "output_fingerprint": "7585bf1da168eb7b4535dd4b73fbe0764fe562a9c30fffd6fe1b22e450c3e831",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted evidence assessment through the owner account on 23 October 2026; complete fictional CV, advert and retained output reviewed against all six criteria. The candidate retains supplied identity/contact, exact Psychology degree dates, the research-methods assignment and fictional-survey provenance in SPSS, plus event signposting. It makes no positive or negative professional-registration assertion and does not invent clinical/patient duties or professional research employment. The academic evidence is relevant to supervised research. Repetition across profile, skills and projects is mechanical and could be tightened, but the short CV stays readable and correctly scoped; this is an acceptable threshold for this input, not exceptional writing. No hostile instruction occurs, so the instruction rating is case-limited. Agent assistance is disclosed; independent adjudication and held-out validation remain required.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "BSc Psychology, 2020–2023. Research-methods assignment: analysed a fictional survey in SPSS.",
+            "normalized_offset": 61
+          },
+          {
+            "source": "cv",
+            "quote": "BSc Psychology, 2020–2023. Research-methods assignment: analysed a fictional survey in SPSS.",
+            "normalized_offset": 22
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "ea761a3e-c057-4551-8d3d-bc1eb0b27925",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-19",
+      "case_id": "regulated-positive",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-23T02:10:59.860Z",
+      "output_fingerprint": "231315d65d66ea654971af702ba4862387eaf86fd3b9d13a5419583665d074a5",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "acceptable",
+          "completeness": "needs_work",
+          "relevance": "needs_work",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted evidence assessment through the owner account on 23 October 2026; complete fictional CV, advert and retained letter checked against all six criteria. The writer invents experience maintaining inventory records from stock checks, adds a diverse range of people and asserts high accuracy/effective organisation without supplied outcomes. The advert’s required accuracy is turned into a candidate performance claim. Biology and its supplied degree dates are omitted despite relevant healthcare context. Repeated capability assurances add padding and rely on the same unsupported claims. Retail and volunteer roles remain distinct, no clinical treatment/registration or work-permission claim is invented, and no unsupported job dates are added. The benign input contains no hostile instruction; its instruction rating is case-limited. Needs work for facts, important evidence, relevance and clarity; this is an agent judgment, not independent adjudication or a customer-model change.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I am confident that my experience in maintaining inventory records and handling customer interactions would be directly relevant to maintaining non-clinical records and arranging appointments within your team.",
+            "normalized_offset": 638
+          },
+          {
+            "source": "cv",
+            "quote": "BSc Biology, 2018–2021. Retail assistant: stock checks and customer enquiries.",
+            "normalized_offset": 21
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "f21418bc-200b-4c78-8315-05d3598f6bc8",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-20",
+      "case_id": "qualification-exact",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-23T02:15:12.632Z",
+      "output_fingerprint": "fb59f00326af78b06ecbe3af8cf58fa09a2b15c0ce7a10fb9b73a67cb4908fbe",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted evidence assessment through the owner account on 23 October 2026; full fictional profile/CV, advert and original writer draft checked on all six criteria. This draft has the same rendered text as the completed current reviewer. It retains supplied identity/email, exact Postgraduate Certificate and institute/year, BA dates and Excel Inventory as a personal workbook limited to filters/basic formulas. No MSc, VBA, macro, employer result or paid inventory role is invented. In the complete CV the broad inventory-management label is bounded by the explicit personal-project section; it could be phrased more narrowly but does not assert advanced/professional operational experience. The concise layout and basic spreadsheet evidence are relevant to the advert. Omitting explicit not-MSc/no-VBA negatives is acceptable because the positive claims preserve the real qualification and scope. No hostile instruction is present, so the instruction rating is case-limited. Threshold acceptance only, not independent human quality or a model-promotion decision.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Postgraduate Certificate in Business Analytics, 2024, Example Institute\nBA Commerce, 2019–2022",
+            "normalized_offset": 401
+          },
+          {
+            "source": "cv",
+            "quote": "Postgraduate Certificate in Business Analytics, 2024, Example Institute. This is not an MSc.\nBA Commerce, 2019–2022.",
+            "normalized_offset": 20
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    }
+  ],
+  "summary": {
+    "assessable": 57,
+    "assessed": 49,
+    "unassessed": 8,
+    "needs_work": 28,
+    "incomplete": 0,
+    "stale": 0,
+    "paired_cases": 8,
+    "both_acceptable": 5,
+    "candidate_only_acceptable": 2,
+    "baseline_only_acceptable": 0,
+    "both_need_work": 1
+  },
+  "verification": {
+    "all_43_prior_assessments_and_audits_unchanged": true,
+    "all_original_runs_steps_controls_and_table_definitions_unchanged": true,
+    "all_49_current_fingerprints_and_source_quote_offsets_recomputed": true,
+    "one_audit_per_new_assessment": true,
+    "new_assessments_all_revision_one": true,
+    "all_new_assessments_agent_assistance_disclosed": true,
+    "fourteen_operational_groups_unchanged": true,
+    "operations_before_at": "2026-10-23T02:08:03.206Z",
+    "operations_after_at": "2026-10-23T02:17:25.373Z",
+    "ai_starts": 1,
+    "ai_calls": 2,
+    "source_reservations": 104,
+    "no_foreign_key_errors": true
+  },
+  "owner_ui": {
+    "assessments": 49,
+    "outputs": 57,
+    "needs_work": 28,
+    "screenshot": "outputs/application-quality-2026-10-23.png"
+  },
+  "limits": {
+    "owner_assessment_posts_this_pass": 9,
+    "hour_utc": "2026-10-23T02",
+    "existing_cap_per_hour": 12,
+    "new_model_calls": 0,
+    "new_google_attempts": 0,
+    "new_social_or_email_sends": 0,
+    "customer_records_used": 0,
+    "automatic_promotion": false,
+    "independent_human_adjudication": false,
+    "held_out_validation": false,
+    "rejected_outputs_not_assessed": true,
+    "next_genuine_business_snapshot_verified": false
+  }
+}

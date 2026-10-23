@@ -1,0 +1,31 @@
+{
+  "runtime": "local Workerd; no production resource or real AI binding",
+  "synthetic_model_adapter": true,
+  "quality_score_is_not_model_evidence": true,
+  "run_id": "research-3bf34b87-9499-47b2-a078-6e500bb94a94",
+  "platform": {
+    "status": "complete",
+    "__LOCAL_DEV_STEP_OUTPUTS": [
+      {
+        "evaluation": true,
+        "critic": false
+      },
+      {
+        "count": 3
+      },
+      {
+        "revise": false
+      },
+      {
+        "state": "review"
+      }
+    ],
+    "output": {
+      "state": "review"
+    }
+  },
+  "retained_calls": 2,
+  "completed_batches": 1,
+  "next_batch": "real-adverts-2026-10-08-v1-02",
+  "real_model_calls": 0
+}

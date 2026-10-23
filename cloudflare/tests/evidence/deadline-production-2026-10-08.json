@@ -1,0 +1,785 @@
+{
+  "observed_at": "2026-10-08T03:45:49.043Z",
+  "version": "2.23.0",
+  "worker_version": "fa395fd1-141d-4afe-a593-3b487b711617",
+  "deadline_backfill": 75,
+  "observation_timestamps_preserved": true,
+  "nottingham_roles": 14,
+  "catalog_total": 887,
+  "next_deadline": "2026-10-08T23:00:00.000Z",
+  "expired_public_role": {
+    "id": "4616bf8782845cddac493042",
+    "noindex": true,
+    "sitemap_removed": true,
+    "deadline_notice": true
+  },
+  "current_deadline_visible": true,
+  "initial_worker_version": "c5c1f4f9-8ec2-4962-b8b7-2487ccecac11",
+  "scheduled_business": {
+    "id": "business-497619",
+    "state": "completed",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-08T03:45:34.000Z",
+    "finished_at": "2026-10-08T03:45:39.549Z"
+  },
+  "shared_ai_budget": {
+    "day": "2026-10-08",
+    "runs": 4,
+    "calls": 6
+  },
+  "records": [
+    {
+      "id": "669abd827ba8f54f25d88348",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-31",
+      "closes_at": "2026-11-01T00:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "b4a7d886d81ced92ed6197cc",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-19",
+      "closes_at": "2026-10-19T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "e1d159224a08cd292ef0dc37",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-26",
+      "closes_at": "2026-11-27T00:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "06a82d1298a1413a8cafd9c2",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-19",
+      "closes_at": "2026-10-19T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "e35874bef6edc03912d4b1d0",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-19",
+      "closes_at": "2026-10-19T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "cb57c342decc50b0d534b391",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-16",
+      "closes_at": "2026-11-17T00:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "b151f919340d970290b9d5f2",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-19",
+      "closes_at": "2026-10-19T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "f7b556f1f877dfe1a3cc6105",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-01",
+      "closes_at": "2026-11-02T00:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "9f1c11a81c156f864aadca89",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-18",
+      "closes_at": "2026-10-18T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "22e65e9464ee9db113c6ecee",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-18",
+      "closes_at": "2026-10-18T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "cdb5ba60a9c8bf98b5f6eca3",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-01",
+      "closes_at": "2026-11-02T00:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "2fb84905e610a6aa128418be",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-15",
+      "closes_at": "2026-10-15T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "5af80fef59af37029f635135",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-14",
+      "closes_at": "2026-10-14T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "b18ecdc58c083852b1c2c5b5",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-14",
+      "closes_at": "2026-10-14T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "63bd10a0545ec20db61a8dbe",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-27",
+      "closes_at": "2026-10-28T00:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "dbb3332b33aecf0b64e15782",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-20",
+      "closes_at": "2026-10-20T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "eb678f6c560218b76094b8c4",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-13",
+      "closes_at": "2026-10-13T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "2024ff878a41dc5a19879e31",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-12",
+      "closes_at": "2026-10-12T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "6075411329f805ca7e7374e1",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-12",
+      "closes_at": "2026-10-12T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "50d56152aac4c7d6acfdb004",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-26",
+      "closes_at": "2026-10-27T00:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "9f33f6ce6af13dd15321d6af",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-08",
+      "closes_at": "2026-10-08T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "fec94beff3da07a9baaaafaa",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-11",
+      "closes_at": "2026-10-11T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "4616bf8782845cddac493042",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-07",
+      "closes_at": "2026-10-07T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-07T18:32:05.496Z",
+      "active": 0
+    },
+    {
+      "id": "be209ab26578ebd09d676f84",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-13",
+      "closes_at": "2026-10-13T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "479436cfd4b7c90711f5451c",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-08",
+      "closes_at": "2026-10-08T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "47539a1d494f0bd3632f0e73",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-19",
+      "closes_at": "2026-10-19T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "cc920d807b481dd63f4be6d3",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-07",
+      "closes_at": "2026-10-07T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-07T18:32:05.496Z",
+      "active": 0
+    },
+    {
+      "id": "ca0509d73172e909be8890ab",
+      "board_id": "university-bath",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-09",
+      "closes_at": "2026-10-09T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:22.628Z",
+      "last_seen": "2026-10-08T00:31:05.791Z",
+      "active": 1
+    },
+    {
+      "id": "36c39d7ff1ca107e9792beb4",
+      "board_id": "university-greater-manchester",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-12",
+      "closes_at": "2026-10-12T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:23.154Z",
+      "last_seen": "2026-10-08T00:31:06.875Z",
+      "active": 1
+    },
+    {
+      "id": "a182e8acf263d9a184532208",
+      "board_id": "university-greater-manchester",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-23",
+      "closes_at": "2026-10-23T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:23.154Z",
+      "last_seen": "2026-10-08T00:31:06.875Z",
+      "active": 1
+    },
+    {
+      "id": "bdff3dc3c6f13a55b393e436",
+      "board_id": "university-greater-manchester",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-23",
+      "closes_at": "2026-10-23T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:23.154Z",
+      "last_seen": "2026-10-08T00:31:06.875Z",
+      "active": 1
+    },
+    {
+      "id": "50b7c56629477782d104640d",
+      "board_id": "university-greater-manchester",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-12",
+      "closes_at": "2026-10-12T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:23.154Z",
+      "last_seen": "2026-10-08T00:31:06.875Z",
+      "active": 1
+    },
+    {
+      "id": "b52d0852462014b2ff0a8c3b",
+      "board_id": "university-greater-manchester",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-07",
+      "closes_at": "2026-10-07T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:23.154Z",
+      "last_seen": "2026-10-07T18:32:11.165Z",
+      "active": 0
+    },
+    {
+      "id": "01fcf2374a4165cca09b4910",
+      "board_id": "university-greater-manchester",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-14",
+      "closes_at": "2026-10-14T23:00:00.000Z",
+      "first_seen": "2026-10-07T09:22:23.154Z",
+      "last_seen": "2026-10-08T00:31:06.875Z",
+      "active": 1
+    },
+    {
+      "id": "eca976abcffc6e9f449e5a42",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-21",
+      "closes_at": "2026-10-21T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "51fac62fdbf94169f00231d1",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-04",
+      "closes_at": "2026-11-05T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "1c596bcf517b23c40ff4b745",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-04",
+      "closes_at": "2026-11-05T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "ed6e28378245bd051bd137e4",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-21",
+      "closes_at": "2026-10-21T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "01d6dc93ed3932aec09227c0",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-03",
+      "closes_at": "2026-11-04T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "6695d69330ef9d9ea6fb8381",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-13",
+      "closes_at": "2026-10-13T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "caa9eec96fff6a1a53bae7cb",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-10",
+      "closes_at": "2026-11-11T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "6db13764c80a23724764f5c3",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-02",
+      "closes_at": "2026-11-03T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "c0916ad35e8a3c633b200e4d",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-12",
+      "closes_at": "2026-10-12T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "cbad0b51d458d504b27a041b",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-30",
+      "closes_at": "2026-10-31T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "4a3f43cbde639000a282757a",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-28",
+      "closes_at": "2026-10-29T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "7b414ec825cc1b35dbf5e62b",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-12",
+      "closes_at": "2026-10-12T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "028d73ab405ab180b9de12ec",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-26",
+      "closes_at": "2026-10-27T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "33e634e956b830a8381dc832",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-26",
+      "closes_at": "2026-10-27T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "9782d3b866b754946c852231",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-12",
+      "closes_at": "2026-10-12T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "76f1505e074c1a9657de370f",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-22",
+      "closes_at": "2026-10-22T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "8aa977c7f4240ff32e1641c5",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-14",
+      "closes_at": "2026-10-14T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "137cf2b47cdf6b1eec2a3382",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-06",
+      "closes_at": "2026-11-07T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "c3a5828ca1937c588251c191",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-19",
+      "closes_at": "2026-10-19T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "7eaf2e3323c4ba05eacc3698",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-12",
+      "closes_at": "2026-10-12T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "2e85a581304d077139a2a0ef",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-12",
+      "closes_at": "2026-10-12T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "f09601f242970af4c380ab0b",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-16",
+      "closes_at": "2026-10-16T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "85e8573afe79e23ddec9dda7",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-23",
+      "closes_at": "2026-10-23T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "e720e1c833d93f75460b1df4",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-09",
+      "closes_at": "2026-10-09T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "9e3554406bf30436588c808e",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-18",
+      "closes_at": "2026-10-18T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "2b38cc6e7ac30471cb67e955",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-31",
+      "closes_at": "2026-11-01T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "2ee32bb498954a06cfc02b99",
+      "board_id": "university-southampton",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-09",
+      "closes_at": "2026-10-09T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:24:52.945Z",
+      "last_seen": "2026-10-08T03:24:52.945Z",
+      "active": 1
+    },
+    {
+      "id": "413e9219af5df15b324e9293",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-25",
+      "closes_at": "2026-10-26T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "b75ca5f3804c916b4efb4dbf",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-11-01",
+      "closes_at": "2026-11-02T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "8d6a8f63032c4fcb4d0d0712",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-28",
+      "closes_at": "2026-10-29T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "374c7a0bfd6f43d13abd7661",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-28",
+      "closes_at": "2026-10-29T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "251a0ceea7e1bda4a2e04cef",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-13",
+      "closes_at": "2026-10-13T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "791910ff208f0d043a30ec1f",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-18",
+      "closes_at": "2026-10-18T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "54153248197fd8f86a8dc101",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-15",
+      "closes_at": "2026-10-15T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "1a6493eb11ea5edc1ecb91f5",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-26",
+      "closes_at": "2026-10-27T00:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "621408498e78c5bd54a58122",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-11",
+      "closes_at": "2026-10-11T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "6f6e7b77842ae629eaaba86b",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-14",
+      "closes_at": "2026-10-14T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "b92be8e940adefede20fab7d",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-08",
+      "closes_at": "2026-10-08T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "0ba7e250afa1ed106ab2890f",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-11",
+      "closes_at": "2026-10-11T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "b299da2a711774eaa44179ec",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-11",
+      "closes_at": "2026-10-11T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    },
+    {
+      "id": "7fc28040522a971c2f586a2d",
+      "board_id": "university-nottingham",
+      "provider": "university-rss",
+      "application_deadline": "2026-10-16",
+      "closes_at": "2026-10-16T23:00:00.000Z",
+      "first_seen": "2026-10-08T03:25:28.307Z",
+      "last_seen": "2026-10-08T03:25:28.307Z",
+      "active": 1
+    }
+  ],
+  "final_verification_at": "2026-10-08T03:50:01.688Z",
+  "local_tests": 271,
+  "public_opportunity_checks": 12
+}
