@@ -8,7 +8,7 @@ const refusal='CVs will not be accepted for this application.';
 const description='Fictional school seeks a teacher with a degree and QTS. Complete the employer application form. '+refusal;
 
 test('application format retains explicit role-scoped CV refusal without guessing an unknown format',()=>{
-  for(const quote of [refusal,'Please note that CVs will not be accepted for this application.','We do not accept CVs for this role.','CVs cannot be accepted for the vacancy.','CVs won’t be accepted for this post!'])
+  for(const quote of [refusal,'CVs will not be accepted.','We do not accept CVs.','Please note that CVs will not be accepted for this application.','We do not accept CVs for this role.','CVs cannot be accepted for the vacancy.','CVs won’t be accepted for this post!'])
     assert.deepEqual(cvApplicationRestriction('About the job.\n'+quote+'\nFurther information.'),{quote});
   for(const quote of [
     'CVs are accepted for this application.', 'A CV is not required for this application.',

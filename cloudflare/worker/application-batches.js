@@ -6,6 +6,7 @@ import {savedAdvertState} from '../shared/advert-version.js';
 import {preparationMessages} from '../shared/preparation-availability.js';
 import {cvApplicationRestriction,applicationSourceURL} from '../shared/application-instructions.js';
 import {factPacks,changeFacts} from './application-facts.js';
+import {packReviews,packPreview,changePackReview} from './application-pack-reviews.js';
 import {buildEvidenceReview} from './career-evidence.js';
 
 const fail=(message,status=400)=>{throw Object.assign(Error(message),{status});};
@@ -46,7 +47,8 @@ async function detail(env,userId,row) {
     return {...item,...live,url:safeURL(item.url),in_workspace:!!a};
   }));
   const history=(await env.DB.prepare('SELECT revision,state,recorded_at FROM application_batch_events WHERE batch_id=? ORDER BY revision').bind(row.id).all()).results;
-  return {accountId:userId,workspace_hash:w?await batchHash(w.data):null,batch:{...summary(row),items,history,facts:await factPacks(env,row,profileHash,items)},submission_available:false};
+  const facts=await factPacks(env,row,profileHash,items);
+  return {accountId:userId,workspace_hash:w?await batchHash(w.data):null,batch:{...summary(row),items,history,facts,pack_reviews:await packReviews(env,row,items,facts)},submission_available:false};
 }
 async function create(env,userId,body) {
   if(!key(body.request_key)||!/^[a-f0-9]{64}$/.test(body.input_hash||''))fail('Choose your roles again before creating a batch.');
@@ -107,10 +109,12 @@ async function change(env,userId,row,body) {
 }
 export async function applicationBatchesAPI(request,env,user) {
   if(!await limit(env,'application-batches:'+user.id,60,3600))return reply({error:'Please wait before checking more batches.'},429);
-  const id=new URL(request.url).pathname.slice('/api/career/batches'.length).replace(/^\//,'');
+  const url=new URL(request.url),id=url.pathname.slice('/api/career/batches'.length).replace(/^\//,'');
   try {
     if(request.method==='GET'){
-      if(id){const row=await rowFor(env,user.id,id);if(!row)fail('Batch not found.',404);return reply(await detail(env,user.id,row));}
+      if(id){const row=await rowFor(env,user.id,id);if(!row)fail('Batch not found.',404);const d=await detail(env,user.id,row);
+        if(url.searchParams.has('pack_role'))return reply({accountId:user.id,workspace_hash:d.workspace_hash,submission_available:false,...await packPreview(env,row,await workspace(env,user.id),d.batch,url.searchParams.get('pack_role'),url.searchParams.has('pack_version')?Number(url.searchParams.get('pack_version')):null)});
+        return reply(d);}
       const rows=(await env.DB.prepare('SELECT id,state,revision,created_at,updated_at,json_array_length(items) count FROM application_batches WHERE user_id=? ORDER BY created_at DESC LIMIT 20').bind(user.id).all()).results;
       return reply({accountId:user.id,batches:rows.map(summary),submission_available:false});
     }
@@ -119,6 +123,7 @@ export async function applicationBatchesAPI(request,env,user) {
     if(body.accountId!==user.id)fail('Your signed-in account changed. Reload before continuing.',409);
     if(!id)return reply(await create(env,user.id,body));
     const row=await rowFor(env,user.id,id);if(!row)fail('Batch not found.',404);
+    if(['review_pack','revoke_pack'].includes(body.action)){const d=await detail(env,user.id,row);await changePackReview(env,user.id,row,await workspace(env,user.id),d.batch,body);const saved=await rowFor(env,user.id,id);if(!saved)fail('This batch is no longer available.',409);return reply(await detail(env,user.id,saved));}
     if(['approve_facts','revoke_facts'].includes(body.action)){await changeFacts(env,user.id,row,await workspace(env,user.id),body);const saved=await rowFor(env,user.id,id);if(!saved)fail('This batch is no longer available.',409);return reply(await detail(env,user.id,saved));}
     return reply(await change(env,user.id,row,body));
   } catch(error) {

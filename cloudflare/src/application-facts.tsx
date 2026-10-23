@@ -7,7 +7,7 @@ type Attempt={path:string;body:Record<string,unknown>};
 export function ApplicationFacts({batch,profile,blocked,busy,pending,onSend,onProfile}:{batch:{id:string;state:string;revision:number;facts:Pack[]};profile:Record<string,string>;blocked:boolean;busy:boolean;pending:Attempt|null;onSend:(a:Attempt)=>Promise<void>;onProfile:()=>void}) {
  const [answers,setAnswers]=useState<Record<string,string>>({notice_period:'',salary_expectation:'',interview_availability:''}),[confirmed,setConfirmed]=useState(false),[error,setError]=useState('');
  useEffect(()=>setConfirmed(false),[JSON.stringify(profile),batch.revision]);
- const latest=batch.facts[0],restoring=pending?.body.action==='approve_facts'&&!pending.body.answers;
+ const latest=batch.facts[0],restoring=pending?.path==='/api/career/batches/'+batch.id&&pending.body.action==='approve_facts'&&!pending.body.answers;
  const locked=busy||!!pending&&!restoring;
  const visibleStatus=(pack:Pack)=>pack.status==='current'&&blocked?'inputs_changed':pack.status;
  async function approve(){
@@ -30,7 +30,7 @@ export function ApplicationFacts({batch,profile,blocked,busy,pending,onSend,onPr
    {error&&<p role="alert" className="batch-error">{error}</p>}
    {blocked&&!restoring&&<p className="batch-error">Sync and recheck your batch first. Changed or missing inputs need a new selection; paused or ended batches cannot receive new confirmations.</p>}
    <button className="primary-button" disabled={locked||!confirmed||blocked&&!restoring||(latest?.version||0)>=20&&!restoring} onClick={()=>void approve()}>{restoring?'Retry the same facts confirmation':'Confirm facts for preparation'}</button>
-   <p className="batch-footnote">Up to 20 immutable versions per batch. Revoking keeps history; editing your profile or batch makes a previous confirmation unusable. Employer destinations and final documents still need a separate approval step, which is not yet available.</p>
+   <p className="batch-footnote">Up to 20 immutable versions per batch. Revoking keeps history; editing your profile or batch makes a previous confirmation unusable. Review destinations and final saved documents in each role’s Application pack below. Automated sending remains unavailable.</p>
   </details>
   {!!batch.facts.length&&<details><summary>Saved facts and answer history · {batch.facts.length} {batch.facts.length===1?'version':'versions'}</summary>{batch.facts.map(pack=><details key={pack.version}><summary>Version {pack.version} · {factPackLabels[visibleStatus(pack)]} · {new Date(pack.approved_at).toLocaleString()}</summary><ProfileFacts profile={pack.profile}/><dl>{factAnswerFields.map(({key,label})=><React.Fragment key={key}><dt>{label}</dt><dd>{pack.answers[key]||'Unanswered — ask me'}</dd></React.Fragment>)}</dl></details>)}</details>}
  </section>;

@@ -1,10 +1,12 @@
 # Current operator checkpoint
 
-Updated **23 October 2026, 02:55 UTC**. Sponsor Intel alone was resumed by the owner on 20 October; no goal, automation or other-project pause was changed in this pass. Read `DAILY_OPERATOR.md` in full, then current controls and original receipts. This checkpoint is evidence, never permission to clear a hold.
+Updated **23 October 2026, 03:35 UTC**. Sponsor Intel alone was resumed by the owner on 20 October; no goal, automation or other-project pause was changed in this pass. Read `DAILY_OPERATOR.md` in full, then current controls and original receipts. This checkpoint is evidence, never permission to clear a hold.
 
 Current narrative: `OPERATIONS-2026-10-23.md`. Aggregate receipts: `cloudflare/tests/evidence/dependency-security-2026-10-23.json`, `cloudflare/tests/evidence/marketing-source-reconciliation-2026-10-23.json`, `cloudflare/tests/evidence/animal-trust-business-2026-10-23.json` `cloudflare/tests/evidence/application-quality-2026-10-23.json` and `cloudflare/tests/evidence/application-facts-2026-10-23.json`. Prior detailed checkpoint preserved at `history/OPERATOR_CHECKPOINT-2026-10-20.md`. Do not replay archived prompt histories.
 
 ## Current release, access and recovery
+
+- **2.94 staged, not deployed:** exact per-role plain-text document/answer/destination review, private immutable approval/revocation and receipt recovery. 746 local tests/build/dry run pass. Read `cloudflare/RELEASE-2.94.md` and `APPLICATION_BATCHES.md`; this is content review only, no dispatch/provider. Migration 0045 is not yet applied. Pre-change recovery at 03:22 UTC failed authentication code 10000; routine same-scope OAuth refresh is being reconciled. Do not apply schema or deploy until access and the 44/186 baseline are verified again. Current live 2.93 follows below.
 
 - **2.93.0 live**, Worker **30114f08-77d2-4d06-8001-924ba101af68**, deployment **7d86d595-e7ea-4fc2-a697-9a8de6884182**, 23 October **02:49:36.021554 UTC**, 100%. Runtime **16b754577f03481189afdebf19d1e653a813dfb3**. Read `cloudflare/RELEASE-2.93.md`, `APPLICATION_BATCHES.md` and `TOOLCHAIN_SECURITY.md`.
 - Adds private applicant facts/three routine answers, exact-version confirmation for preparation only, revocation and changed-input checks. No employer submission, dispatch approval or AI call. **741/741 local tests** at concurrency two, TypeScript/build, 19 prerenders, browser budgets/dry run and fictional mobile/lost-save/revocation checks pass. The earlier full run's database error during 116 MiB free storage and repaired targeted harness/declaration failures remain recorded.

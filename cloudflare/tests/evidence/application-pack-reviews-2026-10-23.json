@@ -1,0 +1,59 @@
+{
+  "version": "2.94.0",
+  "observed_at": "2026-10-23T03:35:18.771151+00:00",
+  "scope": "Private per-role content review only; no dispatch approval or employer submission",
+  "tests": {
+    "passed": 746,
+    "failed": 0,
+    "runtime": "Node 24.19.0",
+    "concurrency": 2,
+    "build": true,
+    "prerenders": 19,
+    "browser_budgets": true,
+    "dry_run": true,
+    "final_ui_fact_reset_rebuilt": true
+  },
+  "fictional_browser": {
+    "preview": true,
+    "complete_documents": true,
+    "routine_unknown_answers_preserved": true,
+    "lost_reply_reconciled_original_version": true,
+    "revocation_visible": true,
+    "mobile_viewport": 390,
+    "mobile_scroll_width": 390,
+    "download_saved_bytes_verified": false,
+    "download_observation": "Timed out; browser reconnected. No saved-file claim."
+  },
+  "production": {
+    "status": "Not deployed yet",
+    "live_version": "2.93.0",
+    "migration_0045_applied": false,
+    "recovery_attempt": "Authentication error 10000 before schema read",
+    "same_day_previous_verified_schema": {
+      "migrations": 44,
+      "objects": 186
+    },
+    "new_model_calls": 0,
+    "new_social_schedules": 0,
+    "new_employer_applications": 0
+  },
+  "early_failures": [
+    "Bare unconditional CV-refusal sentence was unrecognized; parser and regression coverage repaired.",
+    "Response-clone and fictional signup-IP test harness faults repaired.",
+    "Incorrect working-directory commands corrected without production mutation."
+  ],
+  "constraints": {
+    "roles_in_selection": 100,
+    "per_role_versions": 10,
+    "pack_bytes": 300000,
+    "retained_bytes_per_batch": 5000000,
+    "batch_api_requests_per_hour": 60,
+    "permitted_submission_providers": 0
+  },
+  "rollback": {
+    "worker": "30114f08-77d2-4d06-8001-924ba101af68",
+    "version": "2.93.0",
+    "preserve_new_tables": true
+  },
+  "unchanged_dependency_resolutions": true
+}

@@ -21,3 +21,6 @@ The suite also verifies two-account isolation, origin checks, conflicting edits,
 ## Recovery and deployment boundary
 
 No database migration or existing-data rewrite is required. Keep the prepared research/application comparisons and their identities unchanged. The fix does not alter generation, workflow reservations or social delivery. Do not test account deletion on the owner's or a customer's account. Follow `RECOVERY_RUNBOOK.md` before any recovery action; restoring a database can reintroduce previously deleted data and credentials.
+
+
+2.94 adds private application pack content and revocations under the existing account-deletion cascade. These contain role CV/cover-letter text, routine answers, employer URL and approval history; never include them in public receipts, analytics or marketing/model inputs. Workspace-only backups do not include these records. Individual private pack downloads include complete content; batch copies include summaries. Local downloaded copies are not removed by deleting an account. No external transmission or dispatch consent is added.

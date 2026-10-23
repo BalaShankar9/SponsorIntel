@@ -5,7 +5,7 @@
 const cv = String.raw`(?:CVs?|curriculum vitae)`;
 const scope = String.raw`for (?:this|the) (?:application|role|post|vacancy)`;
 const prefix = String.raw`(?:please note(?: that)?[,:]?\s+)?`;
-const refusal = new RegExp(String.raw`^${prefix}(?:${cv}\s+(?:will not be|won['’]t be|cannot be|are not|is not)\s+accepted\s+${scope}|we\s+(?:do not|don't|don’t|cannot)\s+accept\s+${cv}\s+${scope})[.!]?$`, 'iu');
+const refusal = new RegExp(String.raw`^${prefix}(?:${cv}\s+(?:will not be|won['’]t be|cannot be|are not|is not)\s+accepted(?:\s+${scope})?|we\s+(?:do not|don't|don’t|cannot)\s+accept\s+${cv}(?:\s+${scope})?)[.!]?$`, 'iu');
 
 export function cvApplicationRestriction(description) {
   if (typeof description !== 'string' || description.length > 100000) return null;
