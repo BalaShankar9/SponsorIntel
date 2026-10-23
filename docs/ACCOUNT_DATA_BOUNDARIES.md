@@ -1,5 +1,7 @@
 # Private account data boundaries
 
+Release 2.93 adds immutable applicant fact/answer confirmations and revocations beneath each private batch. Full profile snapshots and routine answers remain account-only, private/no-store, excluded from analytics and model inputs. Cascade removal and late-write checks extend to these records. Browser request recovery stores references/hashes without answer text; batch downloads include the snapshots and remain on the device after account removal. See `APPLICATION_BATCHES.md`.
+
 Release 2.89 adds separate private application batches; see [application batches](APPLICATION_BATCHES.md). They inherit authenticated account isolation and cascade on account removal. Their transaction checks prevent a delayed create from surviving deletion or attaching to a changed workspace. Snapshot/history updates are blocked. Private batch archives are separate from workspace backups/browser recovery copies; no import or employer dispatch is implemented. These additive tables do not change the older workspace/recovery behaviour below.
 
 ## Device recovery and account changes in 2.62

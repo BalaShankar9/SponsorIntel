@@ -5,6 +5,7 @@ import {preparationSnapshots} from './preparation-availability.js';
 import {savedAdvertState} from '../shared/advert-version.js';
 import {preparationMessages} from '../shared/preparation-availability.js';
 import {cvApplicationRestriction,applicationSourceURL} from '../shared/application-instructions.js';
+import {factPacks,changeFacts} from './application-facts.js';
 import {buildEvidenceReview} from './career-evidence.js';
 
 const fail=(message,status=400)=>{throw Object.assign(Error(message),{status});};
@@ -45,7 +46,7 @@ async function detail(env,userId,row) {
     return {...item,...live,url:safeURL(item.url),in_workspace:!!a};
   }));
   const history=(await env.DB.prepare('SELECT revision,state,recorded_at FROM application_batch_events WHERE batch_id=? ORDER BY revision').bind(row.id).all()).results;
-  return {accountId:userId,workspace_hash:w?await batchHash(w.data):null,batch:{...summary(row),items,history},submission_available:false};
+  return {accountId:userId,workspace_hash:w?await batchHash(w.data):null,batch:{...summary(row),items,history,facts:await factPacks(env,row,profileHash,items)},submission_available:false};
 }
 async function create(env,userId,body) {
   if(!key(body.request_key)||!/^[a-f0-9]{64}$/.test(body.input_hash||''))fail('Choose your roles again before creating a batch.');
@@ -118,6 +119,7 @@ export async function applicationBatchesAPI(request,env,user) {
     if(body.accountId!==user.id)fail('Your signed-in account changed. Reload before continuing.',409);
     if(!id)return reply(await create(env,user.id,body));
     const row=await rowFor(env,user.id,id);if(!row)fail('Batch not found.',404);
+    if(['approve_facts','revoke_facts'].includes(body.action)){await changeFacts(env,user.id,row,await workspace(env,user.id),body);const saved=await rowFor(env,user.id,id);if(!saved)fail('This batch is no longer available.',409);return reply(await detail(env,user.id,saved));}
     return reply(await change(env,user.id,row,body));
   } catch(error) {
     if(error.status)return reply({error:error.message},error.status);
