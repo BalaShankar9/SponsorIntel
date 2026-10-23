@@ -1,4 +1,16 @@
-# Animal Trust source review — 20 October 2026
+# Animal Trust source review
+
+## Current review — 23 October 2026
+
+**Vacancy held, feed unconfigured; trading-name profile now published.** Fresh [primary business terms](https://www.animaltrust.org.uk/terms), observed **01:55:17.534 UTC**, explicitly identify Animal Trust Vets CIC trading as Animal Trust, company **07938025**, Cedab Road, Ellesmere Port. [Companies House](https://find-and-update.company-information.service.gov.uk/company/07938025), observed **01:54:42.134 UTC**, corroborates the active CIC, address and SIC 75000 veterinary activity. The [careers page](https://www.animaltrust.org.uk/careers/vacancies), observed **01:54:00.317 UTC**, supplies the board link and example practice locations; those examples do not establish licence coverage for every workplace.
+
+The current register snapshot **2026-10-21-28e1d924**, checked **22 October 07:15:39.699 UTC**, still contains exact entry **34adf03d7603a83c07482d99**, Animal Trust Vets CIC, Ellesmere Port, Cheshire, Worker (A rating), Skilled Worker. Through the authenticated owner desk, agent-assisted business identity **eabb37d1-1772-4980-b771-f1551583d8c5** was saved **approved r1 at 01:56:21.270 UTC**, observation **01:55:17 UTC**, review due **30 October 12:00 UTC**. Its [public sponsor profile](https://sponsorintel.london/?employer=34adf03d7603a83c07482d99) and excluded public API show the factual relationship and sources without private fields. The one earlier Numan revision/audit and register records remain exact; one identity revision/audit was added. This is an original factual summary with links, not copied recruitment descriptions or feed reuse approval. Neither reviewed brand proves incremental alias-only discovery because both already occur in their legal register names.
+
+The exact [Dewsbury Veterinary Surgeon advert](https://animaltrust.bamboohr.com/careers/1183), observed **01:56:20.734 UTC**, remains visible with an Apply button and **“Visa support available”**. Posting and deadline remain unknown. No application was started. The same ambiguity, recruitment redistribution rights and complete-source BambooHR adapter gaps keep the vacancy **Held r2**, saved **02:00:54.837 UTC**, observation recorded to seconds, next review **26 October 12:00 UTC/GMT**. Review those specific gaps and current availability; the new business relationship does not establish this role's employing/sponsoring entity or an explicit offer.
+
+Read-only verification preserves all **28 lead rows, 75 prior discovery revisions and 64 prior audits**, with one appended revision/audit. Seven unresolved leads remain, overdue count falls four to three, and zero new daily discovery slots are consumed. All fourteen operational groups are unchanged through **02:02:12.183 UTC**, including AI one start/two calls, sources 104/500, existing pauses and social receipts. No public Animal Trust role, sponsorship label, source approval, model call, send or runtime change. See `../cloudflare/tests/evidence/animal-trust-business-2026-10-23.json` and `BUSINESS_IDENTITIES.md`. A later genuine register refresh remains a separate acceptance check.
+
+## Historical discovery — 20 October 2026
 
 **Held, unconfigured.** Lead `d5d34bda-a972-456d-90a7-5bf2fea2a880`, agent-assisted revision 1, is retained for review **22 October noon BST**. No Animal Trust job or sponsorship label has been published.
 
