@@ -14,13 +14,19 @@ export async function packReviews(env,row,items,facts) {
   return {...p,status:p.revoked_at?'revoked':old?'superseded':row.state!=='active'||p.batch_revision!==row.revision?'batch_changed':!item||!['prepared','needs_review'].includes(item.status)?'inputs_changed':!facts[0]||facts[0].status!=='current'||facts[0].version!==p.facts_version||facts[0].payload_hash!==p.facts_hash?'facts_changed':'approved_content'};
  });
 }
+// Return only the immutable fact snapshot named by this pack, never a current-CV fallback.
+function comparisonSource(batch,facts){
+ const source=facts&&batch.facts.find(f=>f.version===facts.version&&f.payload_hash===facts.hash);
+ return source?{profile:source.profile,version:source.version,hash:source.payload_hash,status:source.status}:null;
+}
 export async function packPreview(env,row,w,batch,roleId,version=null) {
  const item=batch.items.find(i=>i.id===roleId);if(!item)fail('This role is not in the selected batch.',404);
  if(version!==null){
   if(!Number.isInteger(version)||version<1)fail('Choose a saved pack version.',400);
   const record=await env.DB.prepare('SELECT payload,payload_hash FROM application_pack_reviews WHERE batch_id=? AND role_id=? AND version=?').bind(row.id,roleId,version).first();
   if(!record)fail('Saved pack not found.',404);
-  return {payload:JSON.parse(record.payload),payload_hash:record.payload_hash,record:batch.pack_reviews.find(p=>p.role_id===roleId&&p.version===version),can_approve:false,issues:[]};
+  const payload=JSON.parse(record.payload);
+  return {payload,comparison_source:comparisonSource(batch,payload.facts),payload_hash:record.payload_hash,record:batch.pack_reviews.find(p=>p.role_id===roleId&&p.version===version),can_approve:false,issues:[]};
  }
  const a=w?.data.applications.find(a=>a.id===roleId),fact=batch.facts[0],issues=[];
  if(row.state!=='active')issues.push('Reopen the batch or prepare a new selection.');
@@ -39,7 +45,7 @@ export async function packPreview(env,row,w,batch,roleId,version=null) {
   documents:[...(a.cv?[await packDocument(a.cv,'application-cv.txt')]:[]),...(a.coverLetter?[await packDocument(a.coverLetter,'application-cover-letter.txt')]:[])],screening_answers:[],delivery:{automated_submission:false,permitted_provider:null,requires_new_dispatch_approval:true}};
  const bytes=new TextEncoder().encode(JSON.stringify(payload)).length;
  if(bytes>300000)issues.push('This pack exceeds the 300,000-byte limit. Nothing was truncated or saved.');
- return {payload,payload_hash:await batchHash(payload),can_approve:issues.length===0,issues,previous_version:batch.pack_reviews.find(p=>p.role_id===roleId)?.version||0};
+ return {payload,comparison_source:comparisonSource(batch,payload.facts),payload_hash:await batchHash(payload),can_approve:issues.length===0,issues,previous_version:batch.pack_reviews.find(p=>p.role_id===roleId)?.version||0};
 }
 export async function changePackReview(env,userId,row,w,batch,body) {
  if(!key(body.request_key)||typeof body.role_id!=='string'||!batch.items.some(i=>i.id===body.role_id))fail('Choose a role in this batch before continuing.',400);

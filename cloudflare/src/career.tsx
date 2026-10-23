@@ -66,6 +66,7 @@ import {type CVImportResult} from './cv-import';
 import {profileSignature,applyCVPreview} from '../shared/cv-import.js';
 import { buildEvidenceReview } from "../worker/career-evidence.js";
 import { EvidenceExample } from './evidence-example';
+import {DraftSourceComparison} from './draft-source-comparison';
 import { draftWarnings, sourceWarnings } from "../worker/career-quality.js";
 const external = { target: "_blank", rel: "noopener noreferrer" };
 type Go = (view: string) => void;
@@ -997,6 +998,7 @@ function Studio({ go }: { go: Go }) {
                   : `Your ${tabs.find((t) => t.id === tab)?.label.toLowerCase()} will appear here. Edit every line to make it yours.`
               }
             />
+            {['cv','coverLetter'].includes(tab)&&<DraftSourceComparison text={value} kind={tab} profile={c.data.profile} sourceLabel="Compare with my current master CV" onLocate={(offset,length)=>{const editor=document.getElementById('application-document') as HTMLTextAreaElement|null;if(editor){editor.focus();editor.setSelectionRange(offset,offset+length);editor.scrollIntoView({block:'center',behavior:'auto'});}}} />}
             <DocumentDownloads
               key={`${a.id}:${tab}`}
               text={value}

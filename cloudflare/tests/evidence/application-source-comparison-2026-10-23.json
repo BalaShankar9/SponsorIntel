@@ -1,0 +1,73 @@
+{
+  "release": "2.95.0",
+  "observed_on": "2026-10-23",
+  "scope": "Applicant reading aid and exact historical source projection; no generation change or accuracy claim.",
+  "validation": {
+    "tests_passed": 751,
+    "tests_failed": 0,
+    "node": "24.19.0",
+    "test_concurrency": 2,
+    "typescript_build": true,
+    "prerenders": 19,
+    "browser_budgets": true,
+    "dry_run": true,
+    "actual_isolated_worker_auth_d1": true,
+    "historical_hash_and_version_required": true,
+    "current_profile_not_substituted": true,
+    "cross_account_access_rejected": true,
+    "original_payload_hash_unchanged": true
+  },
+  "browser": {
+    "fixture": "tests/fixtures/application-batches-preview.mjs",
+    "fictional_only": true,
+    "studio_three_prompts": true,
+    "exact_selected_text": "available to start",
+    "selection_start": 128,
+    "selection_end": 146,
+    "edits_update_prompts": true,
+    "zero_match_does_not_certify": true,
+    "full_source_in_studio_and_pack": true,
+    "pack_source_version": 1,
+    "mobile_viewport": 390,
+    "mobile_document_width": 390,
+    "viewport_restored": true,
+    "screenshots": [
+      "outputs/source-comparison-2026-10-23.png",
+      "outputs/source-comparison-mobile-2026-10-23.png"
+    ],
+    "final_copy_only_ellipsis_and_short_letter_note_rebuilt": true
+  },
+  "source_identity": {
+    "application": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2",
+    "research": "6c9715f2b0479435c528f77fc44613a0147caeb7558af716447db0fd5d8ab49a",
+    "unchanged": true
+  },
+  "dependencies": "Exact same resolution as audited d396750; release metadata only changed.",
+  "schema_changes": 0,
+  "daily_recovery_reused": "2026-10-23T03:39:18.202Z",
+  "recovery_objects": 190,
+  "recovery_migrations": 45,
+  "new_model_calls": 0,
+  "new_source_refreshes": 0,
+  "new_google_attempts": 0,
+  "new_external_sends": 0,
+  "new_real_applications": 0,
+  "model_promotion": false,
+  "independent_quality_verified": false,
+  "deployment": {
+    "state": "pending",
+    "rollback_worker": "e7aec3d4-15c2-4a73-820f-95bb3107f169"
+  },
+  "limits": {
+    "characters_checked": 40000,
+    "displayed_prompts": 24,
+    "scope": "Only finite phrase prompts; not a semantic or complete evidence check.",
+    "existing_approvals_and_spending_limits_unchanged": true
+  },
+  "cleanup": {
+    "regenerable_http_and_code_cache_logical_bytes": 1114023148,
+    "personal_files_cookies_history_storage_archive_untouched": true,
+    "free_after_gib": 1.5,
+    "no_dependency_install": true
+  }
+}

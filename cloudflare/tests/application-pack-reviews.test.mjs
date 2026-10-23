@@ -6,6 +6,7 @@ import {build} from 'esbuild';
 import {Miniflare,convertV4MiniflareOptions} from 'miniflare';
 import {migrationSchema} from '../scripts/recovery-status.mjs';
 import {batchHash,batchSelectionHash} from '../shared/application-batch.js';
+import {packPreview} from '../worker/application-pack-reviews.js';
 import {packDocument,PACK_SCOPE} from '../shared/application-pack.js';
 import {validateFactAnswers} from '../shared/application-facts.js';
 import {validateWorkspace} from '../worker/career-validation.js';
@@ -41,16 +42,18 @@ test('plain-text document digest covers exact UTF-8 bytes without normalizing li
 });
 
 test('actual Worker pack review preserves exact private content, revocation and request replay without dispatch',{timeout:60000},()=>fixture(async({db,call,setup,signup,outbound})=>{
- const x=await setup(),{u,w,path,preview,body}=x,other=await signup();assert.equal(preview.can_approve,true);assert.equal(preview.submission_available,false);assert.equal(preview.payload.scope,PACK_SCOPE);assert.equal(preview.payload.role.url,w.applications[0].url);assert.equal(preview.payload.facts.answers.salary_expectation,null);assert.deepEqual(preview.payload.screening_answers,[]);
+ const x=await setup(),{u,w,path,preview,body}=x,other=await signup();assert.equal(preview.can_approve,true);assert.equal(preview.submission_available,false);assert.equal(preview.payload.scope,PACK_SCOPE);assert.equal(preview.payload.role.url,w.applications[0].url);assert.equal(preview.payload.facts.answers.salary_expectation,null);assert.deepEqual(preview.payload.screening_answers,[]);assert.deepEqual(preview.comparison_source.profile,w.profile);assert.equal(preview.comparison_source.version,1);assert.equal(preview.comparison_source.hash,preview.payload.facts.hash);assert.equal(preview.comparison_source.status,'current');
  assert.equal((await call(null,path+'?pack_role=saved-0')).status,401);assert.equal((await call(other,path+'?pack_role=saved-0')).status,404);assert.equal((await call(u,path+'?pack_role=outside')).status,404);
  assert.equal((await call(u,path,'POST',body,{Origin:'https://hostile.invalid'})).status,403);assert.equal((await call(u,path,'POST',{...body,accountId:other.id})).status,409);assert.equal((await call(u,path,'POST',{...body,confirmed:false})).status,400);assert.equal((await call(u,path,'POST',{...body,payload_hash:'0'.repeat(64)})).status,409);
  const approved=await call(u,path,'POST',{...body,payload:{documents:['FORGED']},status:'submitted'});assert.equal(approved.status,200,await approved.clone().text());assert.match(approved.headers.get('cache-control'),/no-store/);const d=await approved.json();assert.equal(d.batch.pack_reviews[0].status,'approved_content');assert.equal(d.submission_available,false);
- const saved=await(await call(u,path+'?pack_role=saved-0&pack_version=1')).json();assert.deepEqual(saved.payload,preview.payload);assert.equal(saved.payload_hash,await batchHash(saved.payload));assert.equal(saved.payload.documents[0].sha256,createHash('sha256').update(w.applications[0].cv).digest('hex'));assert.equal(saved.can_approve,false);assert.doesNotMatch(JSON.stringify(saved),/FORGED|submitted/);
+ const saved=await(await call(u,path+'?pack_role=saved-0&pack_version=1')).json();assert.deepEqual(saved.payload,preview.payload);assert.equal(saved.payload_hash,await batchHash(saved.payload));assert.equal(saved.payload.documents[0].sha256,createHash('sha256').update(w.applications[0].cv).digest('hex'));assert.equal(saved.can_approve,false);assert.deepEqual(saved.comparison_source,preview.comparison_source);assert.doesNotMatch(JSON.stringify(saved),/FORGED|submitted/);
  assert.equal((await call(u,path,'POST',body)).status,200);assert.equal((await call(u,path,'POST',{...body,payload_hash:'f'.repeat(64)})).status,409);
  const race=await Promise.all([1,2].map(()=>call(u,path,'POST',{...body,previous_version:1,request_key:crypto.randomUUID()})));assert.deepEqual(race.map(r=>r.status).sort(),[200,409]);
  const revoke={accountId:u.id,action:'revoke_pack',role_id:'saved-0',version:2,request_key:crypto.randomUUID()};assert.equal((await call(u,path,'POST',revoke)).status,200);assert.equal((await call(u,path,'POST',revoke)).status,200);assert.equal((await call(u,path,'POST',{...revoke,version:1})).status,409);
  const state=await(await call(u,path)).json();assert.deepEqual(state.batch.pack_reviews.map(r=>r.status),['revoked','superseded']);
- await x.save({...w,applications:w.applications.map(a=>({...a,cv:a.cv+' Changed saved document.'}))});assert.equal((await(await call(u,path+'?pack_role=saved-0')).json()).can_approve,false);const old=await(await call(u,path+'?pack_role=saved-0&pack_version=1')).json();assert.equal(old.payload.documents[0].text,w.applications[0].cv);
+ await x.save({...w,applications:w.applications.map(a=>({...a,cv:a.cv+' Changed saved document.'}))});assert.equal((await(await call(u,path+'?pack_role=saved-0')).json()).can_approve,false);const old=await(await call(u,path+'?pack_role=saved-0&pack_version=1')).json();assert.equal(old.payload.documents[0].text,w.applications[0].cv);assert.deepEqual(old.comparison_source.profile,w.profile);
+ await x.save({...w,profile:{...w.profile,cv:'A changed current source CV that must never replace the retained source. '+w.profile.cv}});
+ const historical=await(await call(u,path+'?pack_role=saved-0&pack_version=1')).json();assert.deepEqual(historical.comparison_source.profile,w.profile);assert.equal(historical.comparison_source.status,'inputs_changed');assert.equal(historical.payload_hash,saved.payload_hash);
  for(const sql of ["UPDATE application_pack_reviews SET payload='{}'","UPDATE application_pack_revocations SET revoked_at='changed'"])await assert.rejects(db.prepare(sql).run(),/immutable/);
  assert.equal((await call(u,path,'POST',{...body,previous_version:10,request_key:crypto.randomUUID()})).status,400);assert.equal(outbound(),0);
  assert.equal((await call(u,'/api/career/account','DELETE',{})).status,200);for(const table of ['application_pack_reviews','application_pack_revocations'])assert.equal((await db.prepare('SELECT COUNT(*) n FROM '+table).first()).n,0);assert.deepEqual((await db.prepare('PRAGMA foreign_key_check').all()).results,[]);
@@ -83,3 +86,11 @@ test('pack history capacity is checked atomically without truncating or clearing
  const before=(await db.prepare('SELECT role_id,payload,payload_bytes FROM application_pack_reviews ORDER BY role_id').all()).results;
  const r=await call(x.u,x.path,'POST',x.body);assert.equal(r.status,409);assert.match(await r.text(),/5 MB retained-pack limit/);assert.deepEqual((await db.prepare('SELECT role_id,payload,payload_bytes FROM application_pack_reviews ORDER BY role_id').all()).results,before);
 }));
+
+// Pure read projection: missing or mismatched historical evidence must not use today's CV.
+test('historical pack source requires both exact fact version and hash without current-profile fallback',async()=>{
+ const payload={facts:{version:1,hash:'old-hash'},documents:[]},env={DB:{prepare:()=>({bind:()=>({first:async()=>({payload:JSON.stringify(payload),payload_hash:'saved-pack-hash'})})})}},row={id:'fictional-batch'},w={data:{profile:{cv:'CURRENT PROFILE MUST NOT APPEAR'}}};
+ for(const facts of [[],[{version:2,payload_hash:'old-hash',profile:{cv:'wrong version'}}],[{version:1,payload_hash:'different-hash',profile:{cv:'wrong hash'}}]]){
+  const r=await packPreview(env,row,w,{items:[{id:'role'}],facts,pack_reviews:[]},'role',1);assert.equal(r.comparison_source,null);assert.equal(r.payload_hash,'saved-pack-hash');assert.equal(r.can_approve,false);assert.doesNotMatch(JSON.stringify(r),/CURRENT PROFILE|wrong version|wrong hash/);
+ }
+});
