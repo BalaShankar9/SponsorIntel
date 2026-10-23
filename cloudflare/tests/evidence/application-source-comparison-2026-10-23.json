@@ -35,7 +35,9 @@
       "outputs/source-comparison-2026-10-23.png",
       "outputs/source-comparison-mobile-2026-10-23.png"
     ],
-    "final_copy_only_ellipsis_and_short_letter_note_rebuilt": true
+    "final_copy_only_ellipsis_and_short_letter_note_rebuilt": true,
+    "temporary_tabs_closed": true,
+    "local_server_stopped": true
   },
   "source_identity": {
     "application": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2",
@@ -55,8 +57,36 @@
   "model_promotion": false,
   "independent_quality_verified": false,
   "deployment": {
-    "state": "pending",
-    "rollback_worker": "e7aec3d4-15c2-4a73-820f-95bb3107f169"
+    "state": "live",
+    "runtime_commit": "88c47c10822f1de3a4902adcf4435f6d231a491e",
+    "worker_version": "1be819c0-f2b9-4852-8dd3-cc0b5815b675",
+    "deployment_id": "7bfabb5c-bf65-4047-a5fd-d553549b4445",
+    "created_at": "2026-10-23T04:46:16.698999Z",
+    "percentage": 100,
+    "rollback_worker": "e7aec3d4-15c2-4a73-820f-95bb3107f169",
+    "live_verification": {
+      "observed_at": "2026-10-23T04:46:46.573208+00:00",
+      "health": {
+        "ok": true,
+        "version": "2.95.0",
+        "register": {
+          "date": "2026-10-21",
+          "count": 128000,
+          "checked_at": "2026-10-22T07:15:39.699Z"
+        }
+      },
+      "asset": "assets/career-BHLg_T4g.js",
+      "asset_sha256": "d74c35fa0450b167cde2fa9ab8ad9e489b17098f04ad4abcdb7dafd31598b354",
+      "bytes_match": true
+    },
+    "owner_application_entry_loaded": true,
+    "anonymous_batch_status": 401,
+    "production_private_product_counts": {
+      "batches": 0,
+      "facts": 0,
+      "pack_reviews": 0,
+      "pack_revocations": 0
+    }
   },
   "limits": {
     "characters_checked": 40000,
@@ -69,5 +99,173 @@
     "personal_files_cookies_history_storage_archive_untouched": true,
     "free_after_gib": 1.5,
     "no_dependency_install": true
+  },
+  "operational_verification": {
+    "before_at": "2026-10-23T04:32:24.325Z",
+    "after_at": "2026-10-23T04:46:34.934Z",
+    "unchanged_groups": [
+      "business_controls",
+      "marketing_controls",
+      "research_control",
+      "application_controls",
+      "source_controls",
+      "marketing_briefs",
+      "marketing_receipts",
+      "ai_budget",
+      "source_runs",
+      "marketing_runs",
+      "foreign_keys"
+    ],
+    "changed_groups": [
+      "source_budget",
+      "business_runs",
+      "issues"
+    ],
+    "reason": "The next genuine hourly workflow advanced naturally, including two link checks and completed queue/assessment observations. Deployment did not force it.",
+    "source_reservations_before": 120,
+    "source_reservations_after": 128,
+    "ai_starts": 1,
+    "ai_calls": 2,
+    "business": {
+      "id": "business-497980",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "d1_finished_at": "2026-10-23T04:46:40.495Z",
+      "provider_status": "complete",
+      "provider_success": true,
+      "provider_finished_at": "2026-10-23T04:46:40.619Z",
+      "measured_at": "2026-10-23T04:45:41.729Z",
+      "health": {
+        "findings": 8,
+        "high": 2
+      },
+      "application_evaluation": {
+        "state": "awaiting_independent_review",
+        "operation_state": "enabled",
+        "progress_state": "awaiting_independent_review",
+        "enabled": true,
+        "business_enabled": true,
+        "evaluation_enabled": true,
+        "pause_reason": null,
+        "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+        "completed": 20,
+        "total": 20,
+        "assessments": {
+          "assessable_outputs": 57,
+          "assessed_outputs": 57,
+          "unassessed_outputs": 0,
+          "needs_work": 33,
+          "incomplete": 0,
+          "stale": 0,
+          "groups": [
+            {
+              "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+              "writer": "@cf/zai-org/glm-4.7-flash",
+              "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+              "policy": "paired-application-schema-v2",
+              "paired_cases": 8,
+              "both_acceptable": 5,
+              "candidate_only_acceptable": 2,
+              "baseline_only_acceptable": 0,
+              "both_need_work": 1
+            }
+          ],
+          "limited": false,
+          "automatic_promotion": false,
+          "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+        }
+      },
+      "discovery": {
+        "total": 29,
+        "unresolved": 8,
+        "overdue": 0,
+        "changed_links": 0,
+        "current_linked_jobs": 3,
+        "allowance": {
+          "day": "2026-10-23",
+          "limit": 5,
+          "used": 1,
+          "remaining": 4,
+          "next_day": "2026-10-24T00:00:00.000Z"
+        }
+      },
+      "job_reviews": {
+        "total": 4,
+        "held": 4,
+        "overdue": 0
+      },
+      "jobs": {
+        "total": 1025,
+        "employers": 37,
+        "offered": 20,
+        "conditional": 32,
+        "unavailable": 143,
+        "not_stated": 830,
+        "early_career": 75,
+        "salary": 186
+      },
+      "social_delivery": {
+        "available": true,
+        "checked_at": "2026-10-23T04:45:41.729Z",
+        "records_checked": 7,
+        "limited": false,
+        "scheduled": 1,
+        "awaiting_check": 0,
+        "overdue": 0,
+        "uncertain": 0,
+        "failed_30d": 0,
+        "published_30d": 6,
+        "invalid_records": 0,
+        "last_published_observation": "2026-10-18T12:49:50.715Z",
+        "next_scheduled_at": "2026-10-23T09:00:00.000Z"
+      },
+      "links": [
+        {
+          "id": "47a1e23d9aea35e8ff7652b9",
+          "state": "checked",
+          "reason": "title_observed",
+          "requests": 1
+        },
+        {
+          "id": "d81949beacbd1786d35ae36d",
+          "state": "uncertain",
+          "reason": "response_body_limit",
+          "requests": 1
+        }
+      ],
+      "supervisor_model_calls": 0,
+      "supervisor_external_posts": 0,
+      "search_attempt_reused": true
+    }
+  },
+  "search_observation": {
+    "source": "Original scheduled 2026-10-23 read retained in business-497980; no new request",
+    "observed_at": "2026-10-23T00:45:35.020Z",
+    "window": {
+      "startDate": "2026-09-22",
+      "endDate": "2026-10-19",
+      "timeZone": "America/Los_Angeles",
+      "dataState": "final"
+    },
+    "total": {
+      "clicks": 0,
+      "impressions": 119,
+      "ctr": 0,
+      "position": 31.26890756302521
+    },
+    "inspected_urls": 4,
+    "all_four_verdicts_pass": true,
+    "whole_site_indexing_proven": false
+  },
+  "hosted_runtime_checks": {
+    "head": "88c47c10822f1de3a4902adcf4435f6d231a491e",
+    "linux_ids": [
+      120245603682,
+      120245594376
+    ],
+    "linux_state": "billing_blocked_before_execution",
+    "annotations_inspected": true,
+    "gitguardian_id": 120245639193,
+    "gitguardian_state": "neutral_skipped_pr_size"
   }
 }
