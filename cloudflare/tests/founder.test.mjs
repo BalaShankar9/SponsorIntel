@@ -32,5 +32,5 @@ test('source and directory roles remain explicit, primary-linked and searchable 
 test('founder entry is integrated with public metadata; private notes have no persistence, network or HTML rendering path',async()=>{
  const ui=await readFile(new URL('../src/founder-ui.tsx',import.meta.url),'utf8');assert.doesNotMatch(ui,/\bfetch\s*\(|localStorage|sessionStorage|dangerouslySetInnerHTML|navigator\.sendBeacon/);assert.match(ui,/beforeunload/);assert.match(ui,/setPending\(parsed\)/);assert.match(ui,/Replace with this workbook/);
  const pages=JSON.parse(await readFile(new URL('../shared/pages.json',import.meta.url),'utf8'));assert.equal(pages['innovator-founder'].path,'/innovator-founder');
- const main=await readFile(new URL('../src/main.tsx',import.meta.url),'utf8');assert.match(main,/view === 'innovator-founder' && <FounderPage/);assert.match(main,/label: "Founder hub"/);
+ const main=await readFile(new URL('../src/main.tsx',import.meta.url),'utf8');assert.match(main,/view === 'innovator-founder' && <FounderPage/);assert.match(main,/label: "Founder hub"/);assert.match(main,/view === 'innovator-founder' \? <p[\s\S]*Founder notes stay in this tab[\s\S]*: <CareerAccountLink/);
 });

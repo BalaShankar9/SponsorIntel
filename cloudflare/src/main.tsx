@@ -796,7 +796,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
             <Settings2 size={18} />
             Workspace settings
           </button>
-          <CareerAccountLink go={go} />
+          {view === 'innovator-founder' ? <p style={{fontSize:12,lineHeight:1.6,padding:16}}>Founder notes stay in this tab. Download your workbook to keep it.</p> : <CareerAccountLink go={go} />}
         </div>
       </aside>
       {menu && (
