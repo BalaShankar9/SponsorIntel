@@ -27,4 +27,4 @@ Budgets, source reviews, social cadence, approvals and the stalled business-supe
 
 ## Current delivery record
 
-Foundation implementation in progress. No release or cloud-persistence claim until verified. Later stages remain open. This plan is an acceptance roadmap, not completion evidence.
+The foundation is live as **2.98.1**, verified on 26 October 2026. See `cloudflare/RELEASE-2.98.md` and `cloudflare/tests/evidence/founder-hub-2026-10-26.json`: 775 full local tests, targeted final checks, build, narrow-screen layout, live route and source-linked tools. Actual file restore is verified; a download request was observed but saved-file completion remains unverified. There is no cloud-persistence claim. Later stages and independent legal/usefulness acceptance remain open; this is the first working increment, not completion of the full plan.
