@@ -1,6 +1,8 @@
+import {scheduleScopeResearch} from './research-scope-runtime.js';
+import {scopeSnapshot} from './research-scope.js';
 import {recordBusinessFindings} from './business-health.js';
 import { WorkflowEntrypoint } from 'cloudflare:workers';
-import { controls,captureBusiness,housekeeping,publishInsight,scheduleBusinessResearch,finishBusiness } from './business-operations.js';
+import { controls,captureBusiness,housekeeping,publishInsight,finishBusiness } from './business-operations.js';
 import {syncMarketing,reconcileOpportunities} from './marketing.js';
 import {dispatchMarketingAgents} from './marketing-agents.js';
 import {superviseAgents} from './agent-supervision.js';
@@ -25,13 +27,13 @@ export class BusinessWorkflow extends WorkflowEntrypoint {
       for(const checkId of linkIds)links.push(await step.do('check-employer-link-'+checkId,{retries:{limit:0,delay:'1 second'},timeout:'1 minute'},()=>checkJobLink(this.env,checkId)));
       const discovery=await step.do('discover-daily-education-leads',{retries:{limit:0,delay:'1 second'},timeout:'3 minutes'},()=>scoutTeachingVacancies(this.env,id));
       const opportunities=await step.do('recheck-vacancy-promotions',{retries:{limit:1,delay:'10 seconds'},timeout:'1 minute'},()=>reconcileOpportunities(this.env));
-      const snapshot=await step.do('check-site-and-sources',{retries:{limit:1,delay:'30 seconds'},timeout:'2 minutes'},()=>captureBusiness(this.env,id,supervision));
+      const snapshot=await step.do('check-site-and-sources',{retries:{limit:1,delay:'30 seconds'},timeout:'2 minutes'},async()=>({...await captureBusiness(this.env,id,supervision),research_scope:await scopeSnapshot(this.env)}));
       const health=await step.do('update-issues',()=>recordBusinessFindings(this.env,id,snapshot));
       const cleanup=await step.do('retire-stale-records',()=>housekeeping(this.env,id));
       const publication=await step.do('publish-evidence-report',()=>publishInsight(this.env,id,snapshot));
       const marketing=await step.do('reconcile-marketing-records',async()=> (await controls(this.env))?.enabled ? syncMarketing(this.env) : {state:'paused'});
       const editorial=await step.do('dispatch-daily-marketing-agents',()=>dispatchMarketingAgents(this.env));
-      const research=await step.do('dispatch-daily-research',{retries:{limit:0,delay:'1 second'},timeout:'1 minute'},()=>scheduleBusinessResearch(this.env));
+      const research=await step.do('dispatch-daily-research',{retries:{limit:0,delay:'1 second'},timeout:'1 minute'},()=>scheduleScopeResearch(this.env));
       const applications=await step.do('dispatch-application-evaluation',{retries:{limit:0,delay:'1 second'},timeout:'1 minute'},()=>dispatchApplicationEvaluation(this.env));
       return await step.do('record-completion',()=>finishBusiness(this.env,id,{health,supervision,search,links,discovery,opportunities,cleanup,publication,marketing,editorial,research,applications}));
     } catch {

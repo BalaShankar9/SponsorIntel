@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "files": {
+    "migrations/0046_research_scope.sql": "700c7d17be3d12a33cedd165c8c3d7741b04f91b93da63c812a94370348da949",
+    "shared/research-completion.js": "9655d13b371677322bd346c98fc6bc581bcccec6b08b45d2803e4afe59cc1331",
+    "worker/admin.js": "e28c1c317258d267136ba0f798331f94b36f0ecbd5d97c0748d9c7483b6b894f",
+    "worker/agent-api.js": "dcc13131594ad7ce206dd0366bb05c1051255ce2431130824d1d51ee9d5e053e",
+    "worker/business-health.js": "5e4936c574019f3049594074e5925ff94ff18e1bea98c9d972056aa5a0fc9592",
+    "worker/business-workflow.js": "8948a4ccd97d651fa8d08cebde2a08b2e85cecc3b2adc9429ffdaca1a3078163",
+    "worker/index.js": "951e0ceef9c085e70beea748961931a1064b5392db2c9cc94fc98ae69898e18e",
+    "worker/reference-manifest.js": "3fea83cd376ec66c1af7ff4ea58cb9f9e5aa18a61d9434a6d3854adb0411817e",
+    "worker/research-entrypoint.js": "e44ee71190f11f362836c1df125fde1b6ef1b9f3b741b24cfb2e6d324fdf4e93",
+    "worker/research-model.js": "dbd8121e1c8231e4f3d9402351cf1ce92f3a8028566a7f3e2705f985aa4524e2",
+    "worker/research-scope-api.js": "e932aaf9703317557493b0919cd40d4eff7bccb8a0b09fd9ac30a0a3dab9572a",
+    "worker/research-scope-contract.js": "e4f4f319624d3df4cbcb2b08a0747be726bc8d4b9f6fee9d6610a165a7893b1a",
+    "worker/research-scope-controls.js": "0d92589212e6f8b8dfdddbb05512cec381558ada70eace3621bcef6600022c48",
+    "worker/research-scope-runtime.js": "ed0ad5f311746d7e29ed8d51aa2b6697270eab42b3de88a063d282d81b4a9a3c",
+    "worker/research-scope.js": "18b44e59894b08d40722dc19e43bd00620bbe43aa032281e529002ba5b87a598",
+    "worker/research-source.json": "eac2874edcc8fde9d9bed45da5766419c6b7916ecb82eabe151be04934da2942"
+  },
+  "sha256": "c65167e8a1ea57d3bfd715cc0caeb2f0a6f687f0f69265007366b1d1c0789f90"
+}

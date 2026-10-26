@@ -1,11 +1,11 @@
 {
   "name": "sponsorintel-cloudflare",
-  "version": "2.95.0",
+  "version": "2.96.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5177",
-    "build": "node scripts/research-source.mjs && node scripts/application-source.mjs && node scripts/verify-application-contracts.mjs && node scripts/verify-marketing-media.mjs && tsc -p tsconfig.json && vite build && node scripts/prerender.mjs && node scripts/verify-browser-budget.mjs",
+    "build": "node scripts/research-source.mjs && node scripts/research-scope-source.mjs && node scripts/application-source.mjs && node scripts/verify-application-contracts.mjs && node scripts/verify-marketing-media.mjs && tsc -p tsconfig.json && vite build && node scripts/prerender.mjs && node scripts/verify-browser-budget.mjs",
     "preview": "wrangler dev --port 8788 --ip 127.0.0.1 --local-upstream 127.0.0.1:8788",
     "deploy": "npm run build && wrangler deploy",
     "check": "tsc --noEmit",
@@ -36,7 +36,9 @@
   },
   "overrides": {
     "miniflare": {
-      "sharp": "0.35.5"
-    }
+      "sharp": "0.35.5",
+      "undici": "7.30.1"
+    },
+    "zod": "4.6.6"
   }
 }

@@ -1,6 +1,14 @@
 # Development-tool security and local recovery
 
-## Current patch — 23 October 2026
+## Current patch — 26 October 2026
+
+Release 2.96 pins transitive **Zod 4.6.5 → 4.6.6** under Better Auth and **Undici 7.29.1 → 7.30.1** under Miniflare. Wrangler remains 4.147.0; no downgrade or new service. The incremental install ran with 22 GiB available, scripts disabled; actual resolved paths are checked. The fresh npm audit reports **zero known advisories**, not absence of unknown vulnerabilities. Zod is an authentication runtime dependency; the overridden Undici is in the local development toolchain, not Cloudflare's managed fetch implementation. No exploit or breach was established.
+
+Primary references: [Zod release](https://github.com/colinhacks/zod/releases/tag/v4.6.6), [Undici content-encoding advisory](https://github.com/nodejs/undici/security/advisories/GHSA-xjj6-f33q-929c), [Undici EventSource advisory](https://github.com/nodejs/undici/security/advisories/GHSA-4qv8-2p9j-2685), [Undici integrity advisory](https://github.com/nodejs/undici/security/advisories/GHSA-f72v-6w45-q472). The npm-reported Zod advisory is [GHSA-mrhx-c7xc-m3w5](https://github.com/advisories/GHSA-mrhx-c7xc-m3w5). See the release's actual test/deployment receipt; local passing checks do not resolve GitHub's billing lock.
+
+The 23 October scope integration suite was interrupted by ENOSPC (753 pass/11 fail); those failures were not relabelled. On 26 October disk headroom had recovered before work. No personal files, private local-state archive, dependencies or unrelated outputs were removed in this pass. The pre-patch suite passed 764/764 with serial execution; the patched suite passed 764/764 at concurrency two. A subsequently added lost-acknowledgement API regression is included in the final 2.96 validation.
+
+## Previous patch — 23 October 2026
 
 Release **2.92.0** patches DOMPurify **3.4.16 → 3.4.17** beneath jsPDF and pinned Vite **6.4.3 → 6.4.5**. Only those two package versions change. Incremental installation, 737 tests, TypeScript/build, 19 prerenders, browser budgets and Worker dry run pass on Node 24.19.0. Fresh npm audit reports **zero known vulnerabilities**; earlier moderate findings below are historical, not the current audit result. No claim that unknown vulnerabilities are absent.
 

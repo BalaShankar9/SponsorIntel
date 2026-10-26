@@ -5,6 +5,7 @@ import {registerFailureDetail} from './register-health.js';
 // Extend operational health here without changing that reviewed research identity.
 export function businessFindings(snapshot, now=Date.now()) {
   const findings=retainedBusinessFindings(snapshot,now);
+  if(snapshot.research_scope?.control?.prepared&&snapshot.research_scope.state==='needs_attention')findings.push({id:'scope-evaluation-held',category:'quality',severity:'high',title:'Review scope comparison evidence',detail:'The separate scope campaign has an incomplete, uncertain or changed attempt.',next_action:'Inspect original source, call receipts and provider execution. Do not restart a batch, reset allowances or replace earlier results.'});
   if(!snapshot.register?.refresh_error&&!snapshot.register?.refresh_failure)return findings;
   return [...findings.filter(x=>x.id!=='register-freshness'),{
     id:'register-freshness',category:'quality',severity:'high',title:'Restore sponsor register refresh',

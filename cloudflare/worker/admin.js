@@ -1,3 +1,4 @@
+import {scopeAPI} from './research-scope-api.js';
 import { currentJobs } from "./current-jobs.js";
 import { sessionFor, reply, bodyJSON, sameOrigin, limit } from "./auth.js";
 import { BOARDS, SECTORS, sourceRequestCost } from "./job-sources.js";
@@ -101,6 +102,7 @@ export async function adminAPI(request, env) {
   if (!owner) return reply({ error: "The owner account is required." }, 403);
   const url = new URL(request.url),
     path = url.pathname;
+  if (path === '/api/admin/agents/research/scope') return scopeAPI(request,env,owner);
   if (path === '/api/admin/business-identities') return businessIdentitiesAPI(request,env,owner);
   if (path === '/api/admin/job-reviews') return jobReviewsAPI(request,env,owner);
   if (path === '/api/admin/discovery' || path.startsWith('/api/admin/discovery/'))

@@ -1,3 +1,4 @@
+import {ResearchScope,ScopeEvidence,type ScopeComparison,type ScopeCase} from './research-scope';
 import React, { useEffect, useState } from 'react';
 import { BrainCircuit, FlaskConical, SearchCheck } from 'lucide-react';
 import { ResearchCompletionNote } from './research-completion';
@@ -8,6 +9,7 @@ type Assessment = { job_id:string; verdict:string; quote:string; reason:string }
 type SummaryClaim={claim_id:string;text:string;citations:{job_id:string;quote:string}[]};
 type ReviewCheck={supported:boolean;reason:string};
 type Report = {
+  scope_cases?:ScopeCase[];
   report:{ summary?:string;summary_claims?:SummaryClaim[]; assessments:Assessment[]; next_checks:string[] };
   review?:{ checks:({job_id:string}&ReviewCheck)[];summary_checks?:({claim_id:string}&ReviewCheck)[];next_check_checks?:({index:number}&ReviewCheck)[] };
   quality?:{review_complete:boolean;accepted:boolean;reviewed_items:number;unsupported_items:number};
@@ -18,7 +20,7 @@ type Report = {
   evaluation?:{ target?:string;synthetic?:boolean;provisional?:boolean;ambiguous_cases?:number;limitation?:string;correct:number;total:number;dangerous_false_positives?:number;unsupported_refusals?:number;missed_unsupported?:number;incorrect_rejections?:number;cases:{id:string;correct:boolean|null;expected:string|boolean;actual:string|boolean}[] };
 };
 type Run = {id:string;kind:string;evaluation_suite?:string;reference_batch?:string|null;state:string;policy:string;created_at:string;calls:number;report:Report|null;error:string|null};
-type Data = { reference_comparison?:ReferenceComparison; enabled:boolean;policy:string;models:Record<string,{provider:string;model:string}>;
+type Data = { scope?:ScopeComparison; reference_comparison?:ReferenceComparison; enabled:boolean;policy:string;models:Record<string,{provider:string;model:string}>;
   budget:{runs:number;calls:number;run_limit:number;call_limit:number};runs:Run[];
   reference?:{state:string;snapshot_at:string;total_adverts:number;unique_descriptions:number;evaluated_adverts:number;completed_batches:number;total_batches:number;correct:number;scored:number;ambiguous:number;disputed_items:number;comparable:boolean;next_batch:string|null;limitation:string;batches:{id:string;state:string;adverts:number;run_id:string|null}[]};
   memories:{job_id:string;expires_at:string}[];steps:{name:string;role:string;state:string;duration_ms:number|null;failure?:string;completion?:ResearchCompletion|null}[] };
@@ -50,9 +52,9 @@ export function AgentResearch() {
     {data&&<>
       <div className="research-models">{Object.entries(data.models).map(([role,m])=><div key={role}><strong>{label(role)}</strong><span>{m.model}</span></div>)}</div>
       <div className="agent-actions">
-        <button className="primary-button" disabled={busy||active||!data.enabled||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'research'})}><SearchCheck size={17}/>{active?'Investigation running…':'Investigate job quality'}</button>
-        <button className="secondary-button" disabled={busy||active||!data.enabled||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'evaluation'})}><FlaskConical size={17}/>Run capability test</button>
-        <button className="secondary-button" disabled={busy||active||!data.enabled||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'evaluation',evaluation_suite:'critic'})}>Test reviewer</button>
+        <button className="primary-button" disabled={busy||active||data.scope?.control.prepared||!data.enabled||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'research'})}><SearchCheck size={17}/>{active?'Investigation running…':'Investigate job quality'}</button>
+        <button className="secondary-button" disabled={busy||active||data.scope?.control.prepared||!data.enabled||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'evaluation'})}><FlaskConical size={17}/>Run capability test</button>
+        <button className="secondary-button" disabled={busy||active||data.scope?.control.prepared||!data.enabled||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'evaluation',evaluation_suite:'critic'})}>Test reviewer</button>
         <button className="secondary-button" disabled={busy} onClick={()=>void load()}>Refresh research</button>
       </div>
       <p className="fine-print">{data.budget.runs}/{data.budget.run_limit} shared agent attempts · {data.budget.calls}/{data.budget.call_limit} reserved model calls today (UTC). Only public data and fictional evaluation records are used. No customer CVs or account details.</p>
@@ -63,10 +65,11 @@ export function AgentResearch() {
         <p className="fine-print">{data.reference.unique_descriptions} unique advert texts. Expected interpretations were frozen before comparison and remain outside model input. They are AI-assisted provisional annotations; independent human review is still required.</p>
         {data.reference.scored>0&&<p>{data.reference.correct}/{data.reference.scored} single-label provisional agreements · {data.reference.ambiguous} ambiguous cases excluded · {data.reference.disputed_items} items disputed by the reviewer.{!data.reference.comparable&&' Mixed model or policy versions: these totals are not a comparable score.'}</p>}
         <p className="fine-print">{data.reference.limitation}</p>
-        <button className="secondary-button" disabled={busy||active||!data.enabled||!data.reference.next_batch||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'evaluation',reference_batch:'next'})}>Evaluate next advert batch</button>
+        <button className="secondary-button" disabled={busy||active||data.scope?.control.prepared||!data.enabled||!data.reference.next_batch||data.budget.runs>=data.budget.run_limit} onClick={()=>void act('/start',{kind:'evaluation',reference_batch:'next'})}>Evaluate next advert batch</button>
         <details><summary>Batch progress</summary><ol>{data.reference.batches.map((b,i)=><li key={b.id}>Batch {i+1}: {b.adverts} adverts · {label(b.state)}</li>)}</ol></details>
       </section>}
-      {data.reference_comparison&&<ResearchComparison data={data.reference_comparison} active={!!active} refresh={load}/>}
+      {data.scope&&<ResearchScope data={data.scope} active={!!active} refresh={load}/>}
+      {data.reference_comparison&&<ResearchComparison data={data.reference_comparison} active={!!active||!!data.scope?.control.prepared} refresh={load} historical={!!data.scope?.control.prepared}/>}
       {data.runs.length>0&&<label className="research-history">Investigation history<select value={run?.id||''} onChange={e=>setSelected(e.target.value)}>{data.runs.map(r=><option key={r.id} value={r.id}>{new Date(r.created_at).toLocaleString('en-GB')} · {r.kind} · {r.state}</option>)}</select></label>}
       {run&&<article className="research-result"><div className="agent-heading"><h3>{run.reference_batch?'Real advert evaluation':run.kind==='evaluation'?(run.evaluation_suite==='critic'?'Reviewer challenge':'Capability test'):'Job quality investigation'}</h3><span className="agent-pill">{label(run.state)} · {run.calls} model {run.calls===1?'call':'calls'}</span></div>
         {run.reference_batch&&<p className="fine-print">Archived employer text from the fixed reference snapshot. These results assess historical wording and do not confirm that the jobs remain open.</p>}
@@ -87,6 +90,7 @@ export function AgentResearch() {
           <p className="fine-print">{!result.review?'Incomplete draft — independent review has not completed. ':result.revision?'Revised after independent criticism. ':'Independent review recorded. '}Model agreement is not proof of correctness. Public job labels are unchanged.</p>
           {result.evaluation&&<div className="research-score"><strong>{result.evaluation.total?`${result.evaluation.correct}/${result.evaluation.total}`:'—'}</strong><span>{result.evaluation.provisional?'Single-label provisional agreements':result.evaluation.target==='review'?'Synthetic reviewer decisions correct':'Synthetic advert labels correct'}</span>{result.evaluation.target==='review'?<><span>{result.evaluation.missed_unsupported} unsupported claims missed</span><span>{result.evaluation.incorrect_rejections} valid items rejected</span></>:<span>{result.evaluation.dangerous_false_positives} false sponsorship positives</span>}{result.evaluation.unsupported_refusals!==undefined&&<span>{result.evaluation.unsupported_refusals} unsupported refusals</span>}{result.evaluation.provisional&&<span>{result.evaluation.ambiguous_cases} ambiguous cases excluded</span>}<p>{result.evaluation.limitation||'This small authored test measures specific failure cases. It is not a real-world accuracy score.'}</p></div>}
           {result.decisions&&result.decisions.length>0&&<details className="agent-panel"><summary>What the investigator chose to check</summary><ol>{result.decisions.map((d,i)=><li key={i}><strong>{label(d.tool)}</strong> — {d.purpose}</li>)}</ol></details>}
+          {result.scope_cases&&<ScopeEvidence cases={result.scope_cases}/>}
           <div className="research-assessments">{result.report.assessments.map(a=>{
             const evidence=result.evidence?.find(e=>e.id===a.job_id),review=result.review?.checks.find(c=>c.job_id===a.job_id),memory=data.memories.find(m=>m.job_id===a.job_id);
             return <article key={a.job_id}><div className="agent-heading"><h4>{evidence?.title||a.job_id}</h4><span className="agent-pill">{label(a.verdict)}</span></div>

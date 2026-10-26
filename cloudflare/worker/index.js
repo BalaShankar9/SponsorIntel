@@ -8,7 +8,7 @@ import { jobsAPI } from "./jobs.js";
 import { dispatchSources } from "./agent-operations.js";
 import { researchRetentionStatement } from './research-reference.js';
 export { SourceWorkflow } from "./source-workflow.js";
-export { ResearchWorkflow } from './research-workflow.js';
+export { ResearchWorkflow } from './research-entrypoint.js';
 export { BusinessWorkflow } from './business-workflow.js';
 export { MarketingWorkflow } from './marketing-workflow.js';
 export {ApplicationEvaluationWorkflow} from './application-evaluation-workflow.js';

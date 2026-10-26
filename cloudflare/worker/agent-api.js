@@ -1,3 +1,4 @@
+import {scopeSnapshot} from './research-scope.js';
 import {reviewReferenceComparison} from './research-reference-controls.js';
 import { bodyJSON, reply, sameOrigin, limit } from "./auth.js";
 import {
@@ -16,7 +17,7 @@ export async function agentOperationsAPI(request, env, owner) {
   if (request.method === "GET" && path === "/api/admin/agents")
     return reply(await operationsSnapshot(env, { ownerControls: true }));
   if (request.method === 'GET' && path === '/api/admin/agents/research')
-    return reply(await researchSnapshot(env));
+    return reply({...await researchSnapshot(env),scope:await scopeSnapshot(env)});
   if (
     request.method !== "POST" ||
     ![
