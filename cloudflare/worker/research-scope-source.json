@@ -16,7 +16,7 @@
     "worker/research-scope-controls.js": "0d92589212e6f8b8dfdddbb05512cec381558ada70eace3621bcef6600022c48",
     "worker/research-scope-runtime.js": "ed0ad5f311746d7e29ed8d51aa2b6697270eab42b3de88a063d282d81b4a9a3c",
     "worker/research-scope.js": "18b44e59894b08d40722dc19e43bd00620bbe43aa032281e529002ba5b87a598",
-    "worker/research-source.json": "eac2874edcc8fde9d9bed45da5766419c6b7916ecb82eabe151be04934da2942"
+    "worker/research-source.json": "2ce6707e2b9adcf83d952c937e48572c4a7922f91fbdc85b831806f05c902445"
   },
-  "sha256": "c65167e8a1ea57d3bfd715cc0caeb2f0a6f687f0f69265007366b1d1c0789f90"
+  "sha256": "68dd5c002cda99d4f37e571bb283accce91c5f3b712e0b964226b1bb2158f1d2"
 }

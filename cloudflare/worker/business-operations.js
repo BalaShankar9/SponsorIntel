@@ -22,6 +22,7 @@ import {opportunityBriefHealth,opportunityFindings} from './marketing-opportunit
 import {captureJobMovement,jobMovementHealth,jobMovementFindings} from './job-movement.js';
 import {discoverySummary,discoveryFindings} from './discovery.js';
 import {discoveryScoutHealth,discoveryScoutFindings} from './discovery-scout.js';
+import {businessDispatchHealth} from './business-dispatch-health.js';
 
 const iso = (time = Date.now()) => new Date(time).toISOString();
 // Invalid dates produce NaN, which does not satisfy an overdue comparison.
@@ -240,6 +241,7 @@ export async function businessSnapshot(env) {
   const latest=results[0].results[0];
   return {settings:await controls(env),measured_at:iso(),schedule:'Every hour at minute 45 UTC; research and education discovery once per UTC day; evidence report at most once every 7 days.',
     heartbeat:!latest?'not_started':Date.now()-Date.parse(latest.created_at)>2*3600000?'overdue':latest.state,
+    dispatch:await businessDispatchHealth(env),
     runs:results[0].results.map(x=>({...x,snapshot:x.snapshot?JSON.parse(x.snapshot):null,result:x.result?JSON.parse(x.result):null})),
     issues:results[1].results,outbox:results[2].results,publications:results[3].results,research:results[4].results,social_delivery:await socialDeliveryHealth(env),job_links:await jobLinkHealth(env),job_movement:await jobMovementHealth(env),discovery_scout:await discoveryScoutHealth(env),
     connections:{social:false,search_console:(await searchSnapshot(env,Date.now(),{compact:true})).connected,payments:false},

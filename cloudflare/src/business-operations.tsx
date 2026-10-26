@@ -6,11 +6,12 @@ import {OperationAlerts} from './operation-alerts';
 import {SocialDeliveryStatus,type SocialDeliveryHealth} from './social-delivery-health';
 import {JobLinkStatus,type JobLinkHealth} from './job-link-health';
 import {JobMovementStatus,type JobMovementHealth} from './job-movement';
+import {BusinessDispatchStatus,type BusinessDispatchHealth} from './business-dispatch-status';
 type Settings={enabled:number;publishing:number;research:number;discovery:number};
 type Run={id:string;state:string;trigger_kind:'unknown'|'owner'|'scheduled';created_at:string;finished_at:string|null;snapshot:any;result:any};
 type Issue={id:string;category:string;severity:string;title:string;detail:string;next_action:string};
 type Draft={id:string;audience:string;text:string;state:string;expires_at:string};
-type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];social_delivery?:SocialDeliveryHealth;job_links?:JobLinkHealth;job_movement?:JobMovementHealth;discovery_scout?:DiscoveryScoutHealth;publications:{slug:string;title:string;state:string;updated_at:string}[]};
+type Data={settings:Settings;heartbeat:string;schedule:string;runs:Run[];issues:Issue[];outbox:Draft[];dispatch?:BusinessDispatchHealth;social_delivery?:SocialDeliveryHealth;job_links?:JobLinkHealth;job_movement?:JobMovementHealth;discovery_scout?:DiscoveryScoutHealth;publications:{slug:string;title:string;state:string;updated_at:string}[]};
 const stamp=(x:string)=>new Date(x).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'});
 async function api(path='',body?:unknown){const r=await fetch('/api/admin/business'+path,body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});const v=await r.json();if(!r.ok)throw Error(v.error||'Operations could not load.');return v;}
 export function BusinessOperations({overview=false}:{overview?:boolean}){
@@ -30,6 +31,7 @@ export function BusinessOperations({overview=false}:{overview?:boolean}){
       <div className="business-section-heading"><h3 id="overview-attention-heading">Needs attention</h3><a href="#admin-operations">All operations <ArrowUpRight size={15}/></a></div>
       {error&&<p className="career-error" role="alert">{error}</p>}
       {!data?<p>Loading operational findings…</p>:<>
+        <BusinessDispatchStatus health={data.dispatch} paused={!active} compact/>
         <p className="business-fine">{data.issues.length} open findings · {!active?'Operations paused':`Latest hourly check: ${data.heartbeat}`}{run?.finished_at?' · '+stamp(run.finished_at):''}</p>
         <div className="business-issues">{urgent.slice(0,4).map(x=><details key={x.id}><summary><span className={'business-priority '+x.severity}>{x.severity}</span>{x.title}</summary><p>{x.detail}</p><p><strong>Next action:</strong> {x.next_action}</p></details>)}</div>
         {!data.issues.length&&<p className="business-fine">No open findings recorded. This does not establish that every requirement is met.</p>}
@@ -37,9 +39,10 @@ export function BusinessOperations({overview=false}:{overview?:boolean}){
       </>}
     </section>
     <section hidden={overview} className="business-ops" aria-labelledby="business-heading">
-    <header className="business-head"><div><p className="business-eyebrow">Your operating desk</p><h2 id="business-heading">Business operations</h2><p>Scheduled work, evidence and the next decisions. Running on Cloudflare.</p></div><div className="business-actions"><button onClick={()=>void load()} disabled={busy} aria-label="Refresh business operations"><RefreshCw size={16}/></button><button onClick={()=>void act('/run',{})} disabled={busy||!active}><Play size={15}/> Run checks</button></div></header>
+    <header className="business-head"><div><p className="business-eyebrow">Your operating desk</p><h2 id="business-heading">Business operations</h2><p>Scheduled work, evidence and the next decisions. Running on Cloudflare.</p></div><div className="business-actions"><button onClick={()=>void load()} disabled={busy} aria-label="Refresh business operations"><RefreshCw size={16}/></button><button onClick={()=>void act('/run',{})} disabled={busy||!active||!!data?.dispatch?.unfinished_count} title={data?.dispatch?.unfinished_count?'Resolve the unfinished receipt before starting another run.':undefined}><Play size={15}/> Run checks</button></div></header>
     {error&&<p className="career-error" role="alert">{error}</p>}{message&&<p role="status">{message}</p>}
     {!data?<p>Loading the operating desk…</p>:<>
+      <BusinessDispatchStatus health={data.dispatch} paused={!active}/>
       <div className={'business-banner '+(!active||data.heartbeat==='overdue'?'attention':'')}><Activity size={20}/><div><strong>{!active?'Business operations paused':data.heartbeat==='overdue'?'The hourly check is overdue':data.heartbeat==='not_started'?'Ready for the first run':`Latest run: ${data.heartbeat}`}</strong><p>{run?`Started ${stamp(run.created_at)}${run.finished_at?' · Finished '+stamp(run.finished_at):''}`:'No completed run is recorded yet.'}</p></div><button disabled={busy} onClick={()=>void act('/settings',{setting:'enabled',value:!active})}>{active?<Pause size={15}/>:<Play size={15}/>} {active?'Pause operations':'Resume operations'}</button></div>
       <p className="business-fine">{data.schedule} This switch controls the business workflow. Existing job and immigration refresh schedules remain separate.</p>
       <div className="business-grid">
