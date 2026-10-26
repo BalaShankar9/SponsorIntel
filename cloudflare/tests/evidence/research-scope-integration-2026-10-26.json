@@ -49,5 +49,165 @@
     "browser_budgets": true,
     "deployment_dry_run": true,
     "production_activation": false
+  },
+  "migration_preservation": {
+    "observed_at": "2026-10-26T02:18:11.646014+00:00",
+    "groups": [
+      {
+        "group": 0,
+        "records": 1,
+        "unchanged": true,
+        "before_sha256": "ec65219f94bc772403234d91a2870135b2850029649b6a8e3b26823ba50a9455",
+        "after_sha256": "ec65219f94bc772403234d91a2870135b2850029649b6a8e3b26823ba50a9455",
+        "name": "blocking_business_row"
+      },
+      {
+        "group": 1,
+        "records": 1,
+        "unchanged": true,
+        "before_sha256": "cd0e5efe267810586a780ddd18fc10f8c60b9328fa26879735dac63a8145fe4d",
+        "after_sha256": "cd0e5efe267810586a780ddd18fc10f8c60b9328fa26879735dac63a8145fe4d",
+        "name": "blocking_business_step_count"
+      },
+      {
+        "group": 2,
+        "records": 1,
+        "unchanged": true,
+        "before_sha256": "4de774196dd08b0ec6afa1dec24b952c6a5756e0b976f3d0f2f71a74a16f3088",
+        "after_sha256": "4de774196dd08b0ec6afa1dec24b952c6a5756e0b976f3d0f2f71a74a16f3088",
+        "name": "business_controls"
+      },
+      {
+        "group": 3,
+        "records": 1,
+        "unchanged": true,
+        "before_sha256": "b452644cb5a654654a0d895797c8ba72df39fe5b4c1a0d61672c7e2c6158d120",
+        "after_sha256": "b452644cb5a654654a0d895797c8ba72df39fe5b4c1a0d61672c7e2c6158d120",
+        "name": "legacy_reference_control"
+      },
+      {
+        "group": 4,
+        "records": 3,
+        "unchanged": true,
+        "before_sha256": "8a2dbf885f12ffeaf3aa96b0357473932907c90c7451662ff643d05772a3e65a",
+        "after_sha256": "8a2dbf885f12ffeaf3aa96b0357473932907c90c7451662ff643d05772a3e65a",
+        "name": "source_controls"
+      },
+      {
+        "group": 5,
+        "records": 13,
+        "unchanged": true,
+        "before_sha256": "67a55c628486cc0c7011e543fb56287a312226b55fc89c14cb3ac36452d31bd1",
+        "after_sha256": "67a55c628486cc0c7011e543fb56287a312226b55fc89c14cb3ac36452d31bd1",
+        "name": "research_investigations"
+      },
+      {
+        "group": 6,
+        "records": 29,
+        "unchanged": true,
+        "before_sha256": "951f092a96d95edba393ac528604b7ec989ee998048f89f1f8bef7a0e79be563",
+        "after_sha256": "951f092a96d95edba393ac528604b7ec989ee998048f89f1f8bef7a0e79be563",
+        "name": "research_steps"
+      },
+      {
+        "group": 7,
+        "records": 1358,
+        "unchanged": true,
+        "before_sha256": "e137ab1c8679340463ba978759e8500e28994d14014748fbf9351d9e46c544b3",
+        "after_sha256": "e137ab1c8679340463ba978759e8500e28994d14014748fbf9351d9e46c544b3",
+        "name": "job_labels_evidence_active"
+      },
+      {
+        "group": 8,
+        "records": 17,
+        "unchanged": true,
+        "before_sha256": "38aaa1116967c4da3824950136d6cd04b5adff12f0ea1431bcb9c7546682ffd1",
+        "after_sha256": "38aaa1116967c4da3824950136d6cd04b5adff12f0ea1431bcb9c7546682ffd1",
+        "name": "shared_ai_budget"
+      },
+      {
+        "group": 9,
+        "records": 17,
+        "unchanged": true,
+        "before_sha256": "bd12fd206a2d9c1c5ec8dc5340d9709cd4913c9ffbb1c9438399ee7639c3446e",
+        "after_sha256": "bd12fd206a2d9c1c5ec8dc5340d9709cd4913c9ffbb1c9438399ee7639c3446e",
+        "name": "business_daily"
+      },
+      {
+        "group": 10,
+        "records": 15,
+        "unchanged": true,
+        "before_sha256": "847af8c8d31844e5b75cc6d7fdd5b8040cf1c6307c4ddd7f75ac8a707fc99ef3",
+        "after_sha256": "847af8c8d31844e5b75cc6d7fdd5b8040cf1c6307c4ddd7f75ac8a707fc99ef3",
+        "name": "marketing_briefs"
+      },
+      {
+        "group": 11,
+        "records": 2,
+        "unchanged": true,
+        "before_sha256": "5bab55473e2ae605dfadb3030dee0476f4c454d5e17b6d6820f6557f7a55df2d",
+        "after_sha256": "5bab55473e2ae605dfadb3030dee0476f4c454d5e17b6d6820f6557f7a55df2d",
+        "name": "linked_report_receipts"
+      },
+      {
+        "group": 12,
+        "records": 0,
+        "unchanged": true,
+        "before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "name": "foreign_keys"
+      }
+    ],
+    "scope_control": [
+      {
+        "prepared": 0,
+        "enabled": 0,
+        "revision": 0
+      }
+    ],
+    "foreign_key_errors": 0
+  },
+  "live": {
+    "runtime_commit": "e14fd3d3d6fa730be77ed932eb2f3e5de93a3ade",
+    "worker": "919b7553-81df-4287-9595-e83248f0a2c7",
+    "deployment": "35d88080-bd6e-4439-aa18-4def87b03659",
+    "deployed_at": "2026-10-26T02:18:29.955373Z",
+    "traffic_percent": 100,
+    "observed_at": "2026-10-26T02:19:03.545406+00:00",
+    "routes": {
+      "/api/health": {
+        "status": 200,
+        "body": {
+          "ok": true,
+          "version": "2.96.0",
+          "register": {
+            "date": "2026-10-23",
+            "count": 128023,
+            "checked_at": "2026-10-25T07:15:33.741Z"
+          }
+        }
+      },
+      "/api/admin/agents/research/scope": {
+        "status": 403
+      },
+      "/assets/owner-QznZNsCn.js": {
+        "status": 200,
+        "sha256": "03e9a1e40025485d4129a3737c35078b3940b114ec62d4073cb48d50d1dd2acf",
+        "matches_build": true
+      }
+    },
+    "owner_scope_state": "not_prepared",
+    "owner_control_revision": 0,
+    "production_scope_calls": 0
+  },
+  "ci": {
+    "head": "e14fd3d3d6fa730be77ed932eb2f3e5de93a3ade",
+    "billing_blocked_check_ids": [
+      121365060437,
+      121365051235
+    ],
+    "annotations_verified": true,
+    "gitguardian_check_id": 121365052141,
+    "gitguardian": "neutral_skipped_pr_size"
   }
 }

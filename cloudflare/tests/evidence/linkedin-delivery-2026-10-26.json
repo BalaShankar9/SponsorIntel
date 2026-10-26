@@ -1,0 +1,27 @@
+{
+  "observed_at": "2026-10-26T02:07:25.233Z",
+  "destination": "linkedin-company",
+  "company_id": "146710167",
+  "brief_id": "bbbfd315-3bd4-4d64-b992-9af9d8d8a695",
+  "version": 2,
+  "revision_after": 5,
+  "receipt_id": "73594d42-d267-4e30-9852-05e5d861e12f",
+  "state": "published",
+  "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7519322228237381632",
+  "activity_id": "7519322228237381632",
+  "original_schedule_receipt_id": "146965f7-bd53-4a4e-b743-c0905f3727c6",
+  "original_observation_label": "linkedin-native-observed-20261023-0900-company",
+  "account_caption_campaign_preview_matched": true,
+  "native_list_publication_date": "2026-10-23",
+  "precise_publication_time": null,
+  "schedule_time_is_not_publication_proof": true,
+  "impressions_seen": 59,
+  "impressions_reporting_window": "not established; not entered as a performance observation",
+  "new_send": false,
+  "owner_ledger_after": {
+    "published": 7,
+    "scheduled": 0
+  },
+  "fresh_other_provider_queue_check": false,
+  "assistance": "Agent-assisted through owner account"
+}
