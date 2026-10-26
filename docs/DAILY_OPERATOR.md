@@ -8,6 +8,8 @@ The objective remains reliable autonomous sourcing, evidence quality, website ma
 
 **Learning addition, 20 October:** add role-matched, source-linked courses/resources and a transparent view of skill mentions across current sponsorship adverts. Follow `SKILLS_AND_LEARNING.md` and the growth plan. Preserve sample denominators/concentration, source freshness, resource-review dates and the distinction between learning, qualifications and sponsorship eligibility. No automatic enrolment, purchases, applicant fact changes or new AI allowance.
 
+**Founder hub addition, 26 October:** build the integrated Innovator Founder journey, evidence preparation, source-backed directory and private planning workspaces described in `INNOVATOR_FOUNDER_HUB_PLAN.md`. This expands existing scope without replacing unfinished work or clearing holds. No endorsement/visa guarantees, external applications, contacts, purchases or new model allowance.
+
 ## Run order
 
 1. Read the checkpoint and relevant latest release, inspect the worktree, current UTC time and available disk. Preserve unrelated changes. Prefer a small number of background tabs; close temporary research/QA tabs. Preserve personal tabs and unfinished forms.

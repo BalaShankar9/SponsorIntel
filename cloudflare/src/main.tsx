@@ -60,6 +60,7 @@ import { publicPages, updateMetadata } from "./seo";
 import socialLinks from "../shared/social-links.json";
 import { SponsorCities } from './sponsor-cities';
 import { LearningPage } from './learning-entry';
+import { FounderPage } from './founder-entry';
 import './sponsor-cities.css';
 import {
   FeedbackForm,
@@ -733,6 +734,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     { id: "career-profile", label: "My CV & profile", icon: FileText },
     { id: "updates", label: "Immigration updates", icon: Radio },
     { id: "routes", label: "Explore visa routes", icon: Compass },
+    { id: "innovator-founder", label: "Founder hub", icon: Building2 },
     { id: "study", label: "Study in the UK", icon: GraduationCap },
     { id: "guides", label: "UK career guides", icon: BookOpen },
     { id: "skills", label: "Skills & learning", icon: GraduationCap },
@@ -888,6 +890,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
           )}
           {view === 'sponsors-by-city' && <SponsorCities />}
           {view === 'skills' && <LearningPage />}
+          {view === 'innovator-founder' && <FounderPage />}
           {view === "discover" && (
             <div className="career-launch">
               <span>

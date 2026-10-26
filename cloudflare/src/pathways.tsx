@@ -196,6 +196,7 @@ function RouteExplorer() {
         text="Compare work, study, business and family routes. Start with the conditions that matter, then follow the official guidance."
       />
       <div className="path-quick">
+        <a href="/innovator-founder"><Building2 /> Innovator Founder hub <ArrowRight /></a>
         <a href="/routes/business-self-sponsorship">
           <Building2 /> Business & self-sponsorship <ArrowRight />
         </a>
@@ -305,6 +306,7 @@ function BusinessGuide() {
         </article>
         <article className="path-card">
           <h2>Innovator Founder</h2>
+          <a href="/innovator-founder">Open the founder journey and evidence workbook →</a>
           <p>
             This route needs an approved endorsement for a business idea that
             meets innovation, viability and scalability requirements. There is
