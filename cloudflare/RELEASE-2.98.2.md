@@ -23,3 +23,7 @@ The original business-497989 still returns missing-instance 10400, not terminal 
 Current receipt: `tests/evidence/database-capacity-2026-10-28.json`. See `docs/OPERATIONS-2026-10-28.md` and the current checkpoint for final validation, deployment and outstanding incident status.
 
 Primary references: [D1 query indexes](https://developers.cloudflare.com/d1/best-practices/use-indexes/), [D1 billing and limits](https://developers.cloudflare.com/d1/platform/pricing/). The installed dependency graph has zero known npm audit advisories today; Undici 7.30.1 matches the [vendor's patched version](https://github.com/nodejs/undici/security/advisories/GHSA-xjj6-f33q-929c).
+
+## Final result, 28 October 18:21 UTC
+
+776/776 tests pass on the exact Node 24.19.0 pin; TypeScript/build, 20 prerenders, browser budgets and dry run pass. Runtime commit `3ca2ff718dc341cc77dd369a07f0ee82ca6d8701` is deployed at 100% as Worker `c9d2f6b2-353f-408d-a828-7376bd24e878`. The cron-update phase failed with 10072; the browser independently shows all four original schedules retained, and no retry was attempted. Live health identifies 2.98.2 and the Founder hub serves, but job search remains 500 under the existing quota failure. This is a published query repair, not restored service or proven sustainable capacity. Hosted checks are billing-blocked; GitGuardian skipped the large PR. See the dated operations receipt for exact IDs.

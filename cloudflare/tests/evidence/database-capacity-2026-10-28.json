@@ -145,5 +145,72 @@
       "failed": 1,
       "failure": "reviewed research source manifest detected proposed index.js change; change removed without rewriting manifest"
     }
+  },
+  "deployment": {
+    "runtime_commit": "3ca2ff718dc341cc77dd369a07f0ee82ca6d8701",
+    "version": "2.98.2",
+    "worker": "c9d2f6b2-353f-408d-a828-7376bd24e878",
+    "deployment_id": "b9f8a475-26fa-4ce3-a433-20322c80f536",
+    "created_on": "2026-10-28T18:16:19.574092Z",
+    "percentage": 100,
+    "cli_exit": 1,
+    "trigger_update": "partial",
+    "cron_update_error": 10072,
+    "cron_update_reason": "account Workers Free cron trigger limit",
+    "existing_crons_browser_verified": [
+      "45 * * * *",
+      "30 */6 * * *",
+      "15 7 * * *",
+      "*/15 * * * *"
+    ],
+    "cron_update_retried": false,
+    "rollback_worker": "ac307219-732a-4d29-8d23-eff5da834cf4"
+  },
+  "live_after": {
+    "observed_at": "2026-10-28T18:18:09.492113+00:00",
+    "results": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "cf_ray": "a51bf0fb29b9075e-MAN",
+        "response": {
+          "ok": true,
+          "version": "2.98.2",
+          "register": {
+            "date": "2026-10-27",
+            "count": 128008,
+            "checked_at": "2026-10-28T07:15:32.207Z"
+          }
+        }
+      },
+      {
+        "path": "/api/jobs",
+        "status": 500,
+        "cf_ray": "a51bf0fe3b3a5395-MAN",
+        "response": {
+          "error": "We could not load this right now. Please try again."
+        }
+      },
+      {
+        "path": "/innovator-founder",
+        "status": 200,
+        "cf_ray": "a51bf1000bcfb3c9-MAN",
+        "founder_title_present": true
+      }
+    ]
+  },
+  "incident_resolved": false,
+  "hosted_runtime_checks": {
+    "head": "3ca2ff718dc341cc77dd369a07f0ee82ca6d8701",
+    "jobs": [
+      123010997854,
+      123010963474
+    ],
+    "result": "not started because account billing locked; annotations inspected",
+    "gitguardian": {
+      "id": 123010990891,
+      "conclusion": "neutral",
+      "scan": "skipped because pull request too large"
+    }
   }
 }

@@ -1,5 +1,9 @@
 # Development-tool security and local recovery
 
+## Runtime verification — 28 October 2026
+
+The bundled `codex-primary-runtime` Node path now reports 24.22.1; it is no longer the project's exact 24.19.0 pin. Final release 2.98.2 validation uses `~/.cache/sponsorintel/node-v24.19.0-darwin-arm64/bin/node`, downloaded from the official nodejs.org distribution with SHA256 `8294b7aa9b03997481c06babf1e8b270c859358f27da57a11509afe537ac381d` verified against its official checksum list. Check actual version and disk before use; do not assume a mutable bundled path remains pinned. 776 tests/build/dry-run pass, zero known npm advisories, dependency versions unchanged. Current recovery is unavailable under database capacity failure; these local results do not clear that incident or hosted CI billing lock.
+
 ## Current patch — 26 October 2026
 
 Release 2.96 pins transitive **Zod 4.6.5 → 4.6.6** under Better Auth and **Undici 7.29.1 → 7.30.1** under Miniflare. Wrangler remains 4.147.0; no downgrade or new service. The incremental install ran with 22 GiB available, scripts disabled; actual resolved paths are checked. The fresh npm audit reports **zero known advisories**, not absence of unknown vulnerabilities. Zod is an authentication runtime dependency; the overridden Undici is in the local development toolchain, not Cloudflare's managed fetch implementation. No exploit or breach was established.
