@@ -1,0 +1,14 @@
+{
+  "observed_on": "2026-10-28",
+  "release": "2.98.3",
+  "scope": "Public loading states and optional request reduction; not quota recovery",
+  "node": "24.19.0",
+  "validation": {"tests": 780, "passed": 780, "failed": 0, "typecheck": "passed", "production_build": "passed", "prerendered_pages": 20, "browser_budgets": "passed", "version_upload_dry_run": "passed", "source_manifests": "unchanged and verified"},
+  "browser_fixture": "tests/fixtures/public-loading-preview.mjs",
+  "browser_cases": ["partial failure preserves successful register metadata", "suggestions load only on input focus", "featured and suggestions retry independently", "total failure stops loading and can recover", "15-second stalled read times out while other records remain", "failed employer search is unavailable rather than zero results", "search retry restores one fictional employer"],
+  "local_request_counts": {"initial_discover": {"meta": 1, "featured": 1, "cities": 0}, "guide_page": {"meta": 1, "featured": 0, "cities": 0}},
+  "live_incident": {"checked_approximately_utc": "2026-10-28T19:16:00Z", "carpool_database_actual_row_read": "D1 free daily row read limit exceeded, code 7500", "sponsor_metadata_one_row_read": "succeeded", "constant_query_with_zero_rows_read": "succeeded on both databases; not service health evidence", "sponsor_job_search": "500 during this review", "full_service_recovery": "unverified", "production_read_savings": "unmeasured"},
+  "deployment": "pending",
+  "rollback_worker_version": "c9d2f6b2-353f-408d-a828-7376bd24e878",
+  "boundaries": ["No schema or data changes", "No spending or quota increase", "No schedule or owner-hold changes", "No model, source collection, application or marketing action"]
+}

@@ -58,6 +58,8 @@ import { PasswordReset } from "./account-email";
 import { GuideLinks, ResourceArticle, AboutPage, articles } from "./resources";
 import { publicPages, updateMetadata } from "./seo";
 import socialLinks from "../shared/social-links.json";
+import { publicRequest as api } from '../shared/public-request.js';
+import { usePublicResource } from './public-resource';
 import { SponsorCities } from './sponsor-cities';
 import { LearningPage } from './learning-entry';
 import { FounderPage } from './founder-entry';
@@ -122,12 +124,6 @@ const formatDate = (x: string) =>
       })
     : "Not available";
 const count = (n: number) => new Intl.NumberFormat("en-GB").format(n);
-async function api<T>(path: string): Promise<T> {
-  const r = await fetch(path);
-  const d = await r.json();
-  if (!r.ok) throw new Error(d.error || "Please try again.");
-  return d;
-}
 function stored<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") return fallback;
   try {
@@ -246,9 +242,13 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
   useEffect(() => {
     if (!isJobDetail) updateMetadata(view);
   }, [view, isJobDetail]);
-  const [meta, setMeta] = useState<Meta | null>(null);
-  const [featured, setFeatured] = useState<Employer[]>([]);
-  const [cities, setCities] = useState<{ city: string; count: number }[]>([]);
+  const register = usePublicResource<Meta>('/api/meta');
+  const featuredEmployers = usePublicResource<{ items: Employer[] }>('/api/featured', view === 'discover');
+  const [citySuggestionsRequested, setCitySuggestionsRequested] = useState(false);
+  const citySuggestions = usePublicResource<{ city: string; count: number }[]>('/api/cities', citySuggestionsRequested && view === 'discover');
+  const meta = register.data;
+  const featured = featuredEmployers.data?.items || [];
+  const cities = citySuggestions.data || [];
   const [saved, setSaved] = useState<Saved[]>(() =>
     stored<Saved[]>("si.saved.v1", [])
       .filter(
@@ -289,7 +289,6 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
   const [total, setTotal] = useState(0);
   const [pages, setPages] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [searchError, setSearchError] = useState("");
   const [menu, setMenu] = useState(false);
   const [filters, setFilters] = useState(false);
@@ -338,21 +337,6 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
       notify("Your browser could not save preferences.");
     }
   }, [profile]);
-  function load() {
-    setError("");
-    Promise.all([
-      api<Meta>("/api/meta"),
-      api<{ items: Employer[] }>("/api/featured"),
-      api<{ city: string; count: number }[]>("/api/cities"),
-    ])
-      .then(([m, f, c]) => {
-        setMeta(m);
-        setFeatured(f.items);
-        setCities(c);
-      })
-      .catch((e) => setError(e.message));
-  }
-  useEffect(load, []);
   useEffect(() => {
     const onPop = () => {
       setView(location.pathname.replace(/^\//, "") || "discover");
@@ -865,11 +849,11 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
           </div>
         </header>
         <main id="main" className="main-content">
-          {error && (
+          {register.error && (
             <div className="error-banner" role="alert">
               <Info size={20} />
-              <span>{error}</span>
-              <button onClick={load}>Try again</button>
+              <span>The register details are temporarily unavailable. {register.error}</span>
+              <button onClick={register.retry}>Try again</button>
               <button onClick={() => openFeedback("bug")}>
                 Report this problem
               </button>
@@ -925,7 +909,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                   <CalendarDays size={15} />
                   {meta
                     ? "Register · " + formatDate(meta.source_date)
-                    : "Loading official register…"}
+                    : register.loading ? "Loading official register…" : "Register temporarily unavailable"}
                 </span>
               </div>
               <div className="welcome-grid">
@@ -1072,6 +1056,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                     <input
                       list="cities"
                       value={city}
+                      onFocus={() => setCitySuggestionsRequested(true)}
                       onChange={(e) => setCity(e.target.value)}
                       placeholder="Anywhere in the UK"
                       maxLength={100}
@@ -1087,6 +1072,12 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                     <option key={c.city} value={c.city} />
                   ))}
                 </datalist>
+                {citySuggestions.error && (
+                  <p className="results-help" role="status">
+                    City suggestions are temporarily unavailable. You can still type a town or city.
+                    {' '}<button className="text-button" onClick={citySuggestions.retry}>Retry suggestions</button>
+                  </p>
+                )}
                 <div className="quick-filters">
                   <span>Explore:</span>
                   <a className="text-button" href="/sponsors-by-city">Browse all towns & cities <ArrowUpRight size={14}/></a>
@@ -1199,7 +1190,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                       {explored
                         ? loading
                           ? "Finding your possibilities…"
-                          : `${count(total)} employer${total === 1 ? "" : "s"} found`
+                          : searchError ? "Search temporarily unavailable" : `${count(total)} employer${total === 1 ? "" : "s"} found`
                         : "Discover the possibilities."}
                     </h2>
                   </div>
@@ -1237,19 +1228,19 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                   A sponsor licence is a useful starting point. It does not
                   confirm an open job or sponsorship for a specific role.
                 </p>
-                {searchError ? (
+                {(explored ? searchError : featuredEmployers.error) ? (
                   <div className="empty-state">
                     <Info />
                     <h3>We couldn’t load those results.</h3>
-                    <p>{searchError}</p>
+                    <p>{explored ? searchError : featuredEmployers.error}</p>
                     <button
                       className="secondary-button"
-                      onClick={() => setSearchKey((k) => k + 1)}
+                      onClick={() => explored ? setSearchKey((k) => k + 1) : featuredEmployers.retry()}
                     >
                       Try again
                     </button>
                   </div>
-                ) : loading ? (
+                ) : (explored ? loading : featuredEmployers.loading) ? (
                   <div
                     className="employer-grid"
                     aria-busy="true"
