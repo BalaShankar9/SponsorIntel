@@ -20,3 +20,7 @@ A live Carpool database read at approximately 19:16 UTC still returned Cloudflar
 This release changes no schema or stored data. The last complete recovery identity/bookmark/schema inspection remains 26 October; today's inspection was unavailable under the recorded incident. Compatible code rollback is 2.98.2 Worker `c9d2f6b2-353f-408d-a828-7376bd24e878`. Upload/deploy versions separately so existing routes and four cron triggers are not resubmitted. Record actual deployment and live checks in the dated receipt before claiming publication.
 
 Evidence: `tests/evidence/public-loading-2026-10-28.json`. Provider references: [D1 pricing and daily reset](https://developers.cloudflare.com/d1/platform/pricing/) and [separate version upload/deployment](https://developers.cloudflare.com/workers/versions-and-deployments/deployment-management/).
+
+## Publication receipt
+
+Live at 100% since 28 October 19:24:29.946389 UTC: Worker `c32a41a1-f0dd-4925-8d5d-cd459934cce1`, deployment `c63a593d-e5b1-43b0-87b2-0767acaf696d`, runtime `33f23ee49f0dd4c1b8ab75cdd80a068577cc4612`. Version upload/deploy both exit 0 and do not resubmit triggers. Health identifies 2.98.3 and served browser entry bytes match the tested build. Jobs still return 500; Carpool's signed-in Cardiff feed fails. This is a published loading repair, not full service recovery. Hosted checks 123047898408/123047843723 succeeded on this runtime head; GitGuardian 123048221357 skipped for PR size.
