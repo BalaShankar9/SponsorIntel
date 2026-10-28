@@ -1,0 +1,149 @@
+{
+  "observed_on": "2026-10-28",
+  "pre_change_version": "2.98.1",
+  "pre_change_worker": "ac307219-732a-4d29-8d23-eff5da834cf4",
+  "public_checks": {
+    "observed_at": "2026-10-28T18:05:05.884049+00:00",
+    "requests": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "cf_ray": "a51bdddea9cdb376-MAN",
+        "body": {
+          "ok": true,
+          "version": "2.98.1",
+          "register": {
+            "date": "2026-10-27",
+            "count": 128008,
+            "checked_at": "2026-10-28T07:15:32.207Z"
+          }
+        }
+      },
+      {
+        "path": "/api/jobs",
+        "status": 500,
+        "cf_ray": "a51bdddffaedbdc4-MAN",
+        "body": {
+          "error": "We could not load this right now. Please try again."
+        }
+      }
+    ]
+  },
+  "qa_only_error_evidence": [
+    {
+      "at": "2026-10-28T18:05:05.721000+00:00",
+      "worker_version": "ac307219-732a-4d29-8d23-eff5da834cf4",
+      "path": "/api/health",
+      "http_status": 200,
+      "errors": []
+    },
+    {
+      "at": "2026-10-28T18:05:05.931000+00:00",
+      "worker_version": "ac307219-732a-4d29-8d23-eff5da834cf4",
+      "path": "/api/jobs",
+      "http_status": 500,
+      "errors": [
+        {
+          "event": "request_failed",
+          "message": "D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details."
+        }
+      ]
+    }
+  ],
+  "connection": {
+    "renewed": true,
+    "scopes_unchanged": true,
+    "new_permission": false
+  },
+  "recovery": {
+    "status": "unavailable",
+    "successful_receipt_created": false,
+    "initial_error": "authentication 10000",
+    "subsequent_schema_read_error": "daily D1 read limit 7500 before renewal finished",
+    "post_renewal_attempt": "D1 info did not complete within the inspector timeout",
+    "last_success": "2026-10-26T10:05:54.166Z",
+    "restored": false,
+    "schema_changed": false
+  },
+  "source_provider": {
+    "id": "scheduled-1793169055003",
+    "versionId": "8234260a-1fbe-4d16-bb73-e8668ecf5daa",
+    "queued": "2026-10-28T06:30:57.117Z",
+    "start": "2026-10-28T06:30:59.272Z",
+    "end": "2026-10-28T06:32:06.528Z",
+    "success": true,
+    "error": null,
+    "output": {
+      "state": "attention",
+      "counts": {
+        "published": 37,
+        "skipped": 1
+      }
+    },
+    "status": "complete"
+  },
+  "business_provider": {
+    "original_id": "business-497989",
+    "post_renewal_error": 10400,
+    "interpretation": "unknown, not terminal; no replacement permitted",
+    "latest_listed": "business-497990",
+    "latest_end": "2026-10-23T14:46:55.000Z"
+  },
+  "dashboard": {
+    "reporting_window": "Last 24 hours, ending approximately 28 October 18:00 UTC; rounded UI values, not billing or UTC-day totals",
+    "licence_lookup": {
+      "calls": 478,
+      "rows_read": "58.62M",
+      "rows_read_per_returned": "4.46k"
+    },
+    "snapshot_cleanup": {
+      "calls": 145,
+      "rows_read": "55.69M",
+      "rows_written": "18.56M"
+    },
+    "note": "Cleanup is a separate unresolved cost finding. No cleanup or plan change was initiated."
+  },
+  "isolated_cost_test": {
+    "fictional_register_rows": 128000,
+    "requested_ids": 5,
+    "returned_rows": 3,
+    "before_rows_read_without_analyze": 128005,
+    "after_rows_read_without_analyze": 9,
+    "before_rows_read_after_analyze": 14,
+    "after_rows_read_after_analyze": 9,
+    "production_savings_measured": false
+  },
+  "security": {
+    "npm_audit_known_advisories": 0,
+    "dependency_versions_changed": false,
+    "node": "24.19.0",
+    "official_archive_sha256": "8294b7aa9b03997481c06babf1e8b270c859358f27da57a11509afe537ac381d"
+  },
+  "boundaries": {
+    "production_ai_calls": 0,
+    "google_calls": 0,
+    "new_source_requests": 0,
+    "new_discovery_leads": 0,
+    "social_or_email_sends": 0,
+    "production_data_writes_by_operator": 0,
+    "customer_data_exported": false,
+    "limits_or_holds_cleared": false
+  },
+  "validation": {
+    "full_tests_passed": 776,
+    "full_tests_failed": 0,
+    "duration_ms": 81331.784417,
+    "runtime": "24.19.0",
+    "build": true,
+    "typescript": true,
+    "prerenders": 20,
+    "browser_budgets": true,
+    "worker_dry_run": true,
+    "prior_attempt": {
+      "runtime": "24.22.1",
+      "passed": 777,
+      "failed": 1,
+      "failure": "reviewed research source manifest detected proposed index.js change; change removed without rewriting manifest"
+    }
+  }
+}

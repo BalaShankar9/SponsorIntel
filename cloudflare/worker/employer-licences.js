@@ -34,6 +34,12 @@ export const REVIEWED_EMPLOYER_LINKS = [
 ];
 
 const DAY = 86400000;
+// Start from the small reviewed ID set. With IN plus skilled=1, SQLite can
+// choose sponsors_skilled and scan the entire current register for every page.
+// CROSS JOIN fixes the lookup order while preserving exact snapshot/ID checks.
+export const REVIEWED_LICENCE_QUERY = `SELECT s.id,s.name,s.city,s.ratings,s.routes
+  FROM json_each(?) wanted CROSS JOIN sponsors s
+  ON s.snapshot=? AND s.id=wanted.value WHERE s.skilled=1`;
 function recent(value, age, now) {
   const time = Date.parse(value);
   return Number.isFinite(time) && time <= now + 300000 && now - time < age;
@@ -52,9 +58,8 @@ export async function employerLicences(DB, approvedBoards = [], now = Date.now()
   const links = [...REVIEWED_EMPLOYER_LINKS, ...approvedBoards.filter((b) => b.state === "approved")]
     .filter((b) => /^[a-f0-9]{24}$/.test(b.sponsor_id || "") && b.reviewed_at &&
       Number.isFinite(Date.parse(b.reviewed_at)) && Date.parse(b.reviewed_at) <= now + 300000);
-  const rows = await DB.prepare(
-    "SELECT id,name,city,ratings,routes FROM sponsors WHERE snapshot=? AND skilled=1 AND id IN (SELECT value FROM json_each(?))",
-  ).bind(meta.snapshot, JSON.stringify([...new Set(links.map((b) => b.sponsor_id))])).all();
+  const rows = await DB.prepare(REVIEWED_LICENCE_QUERY)
+    .bind(JSON.stringify([...new Set(links.map((b) => b.sponsor_id))]), meta.snapshot).all();
   const sponsors = new Map(rows.results.map((s) => [s.id, s]));
   for (const link of links) {
     const sponsor = sponsors.get(link.sponsor_id);
