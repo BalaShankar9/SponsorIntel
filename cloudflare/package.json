@@ -1,6 +1,6 @@
 {
   "name": "sponsorintel-cloudflare",
-  "version": "2.98.6",
+  "version": "2.98.7",
   "private": true,
   "type": "module",
   "scripts": {
