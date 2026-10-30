@@ -84,7 +84,8 @@
       ],
       "fixture_stopped": true,
       "test_tabs_closed": true,
-      "viewport_reset": true
+      "viewport_reset": true,
+      "offline_scope": "Only the Founder API returned 503; static app and sign-in remained available. No offline app shell is implemented."
     }
   },
   "limits": {
@@ -105,5 +106,20 @@
     "capacity_increased": false,
     "production_restore": false
   },
-  "ci": "Inspect the exact pushed head; local acceptance does not establish hosted execution. PR remains open/unmerged."
+  "ci": {
+    "checked_head": "01ada657ac07590555f3f04755c93667952c13ff",
+    "hosted_test_jobs": [
+      124086814958,
+      124086800750
+    ],
+    "status": "not_started_account_billing_locked",
+    "annotations_inspected": true,
+    "gitguardian": {
+      "id": 124086899847,
+      "conclusion": "neutral",
+      "reason": "PR too large; scan skipped"
+    },
+    "later_documentation_heads_require_separate_check": true
+  },
+  "code_commit": "01ada657ac07590555f3f04755c93667952c13ff"
 }
