@@ -70,6 +70,28 @@ export async function parseStudents(response) {
     ),
   };
 }
+// Compare the complete, validated source with the retained snapshot. A matching
+// URL or row count alone cannot establish that the directory is unchanged.
+export function sameStudentSnapshot(items, stored) {
+  if (items.length !== stored.length) return false;
+  const byId = new Map(stored.map((row) => [row.id, row]));
+  if (byId.size !== stored.length) return false;
+  return items.every((item) => {
+    const row = byId.get(item.id);
+    return row && ["name", "city", "locations", "type", "status", "compliance"]
+      .every((key) => item[key] === row[key]) &&
+      JSON.stringify(item.routes) === row.routes;
+  });
+}
+function studentMetadataStatement(DB, meta, expected, owner) {
+  return DB.prepare(`INSERT INTO metadata(key,value)
+    SELECT 'students',? WHERE
+      EXISTS (SELECT 1 FROM feed_locks WHERE name='students' AND owner=? AND expires>?)
+      AND ((? IS NULL AND NOT EXISTS (SELECT 1 FROM metadata WHERE key='students'))
+        OR EXISTS (SELECT 1 FROM metadata WHERE key='students' AND value=?))
+    ON CONFLICT(key) DO UPDATE SET value=excluded.value RETURNING value`)
+    .bind(JSON.stringify(meta), owner, Date.now(), expected, expected);
+}
 export async function refreshStudents(env, fetcher = fetch) {
   const owner = crypto.randomUUID(),
     now = new Date().toISOString();
@@ -120,8 +142,13 @@ export async function refreshStudents(env, fetcher = fetch) {
         Math.abs(data.items.length - previous.total) / previous.total > 0.2)
     )
       throw Error("Student register size needs review");
-    const snapshot = date + "-" + crypto.randomUUID();
-    for (let i = 0; i < data.items.length; i += 80)
+    const retained = previous?.snapshot
+      ? await env.DB.prepare("SELECT id,name,city,locations,type,status,routes,compliance FROM student_sponsors WHERE snapshot=? LIMIT 5001")
+          .bind(previous.snapshot).all()
+      : { results: [] };
+    const unchanged = sameStudentSnapshot(data.items, retained.results);
+    const snapshot = unchanged ? previous.snapshot : date + "-" + crypto.randomUUID();
+    for (let i = 0; !unchanged && i < data.items.length; i += 80)
       await env.DB.batch(
         data.items
           .slice(i, i + 80)
@@ -141,7 +168,7 @@ export async function refreshStudents(env, fetcher = fetch) {
             ),
           ),
       );
-    const check = await env.DB.prepare(
+    const check = unchanged ? { total: retained.results.length } : await env.DB.prepare(
       "SELECT COUNT(*) total FROM student_sponsors WHERE snapshot=?",
     )
       .bind(snapshot)
@@ -159,16 +186,15 @@ export async function refreshStudents(env, fetcher = fetch) {
       source_rows: data.rows,
       refresh_error: null,
     };
-    await env.DB.prepare(
-      "INSERT INTO metadata(key,value) VALUES('students',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",
-    )
-      .bind(JSON.stringify(meta))
-      .run();
-    await env.DB.prepare(
-      "DELETE FROM student_sponsors WHERE snapshot<>? AND snapshot<>?",
-    )
-      .bind(snapshot, previous?.snapshot || snapshot)
-      .run();
+    const activated = await studentMetadataStatement(env.DB, meta, row?.value ?? null, owner).first();
+    if (!activated) return { skipped: "Student register changed during this check" };
+    // Identical content needs no directory writes or cleanup. A real content
+    // change still stages and verifies every row before activating it.
+    if (!unchanged) await env.DB.prepare(
+      `DELETE FROM student_sponsors WHERE snapshot<>? AND snapshot<>?
+       AND EXISTS (SELECT 1 FROM metadata WHERE key='students' AND value=?)
+       AND EXISTS (SELECT 1 FROM feed_locks WHERE name='students' AND owner=? AND expires>?)`,
+    ).bind(snapshot, previous?.snapshot || snapshot, JSON.stringify(meta), owner, Date.now()).run();
     return meta;
   } catch (error) {
     const meta = {
@@ -177,17 +203,15 @@ export async function refreshStudents(env, fetcher = fetch) {
       refresh_error:
         "The latest register check failed. Verify directly with GOV.UK before paying.",
     };
-    await env.DB.prepare(
-      "INSERT INTO metadata(key,value) VALUES('students',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value",
-    )
-      .bind(JSON.stringify(meta))
-      .run();
     console.error(
       JSON.stringify({
         event: "student_register_failed",
         message: error.message,
       }),
     );
+    // A lost activation acknowledgement or a newer owner must never roll the
+    // public pointer back to the previous snapshot to record this failure.
+    await studentMetadataStatement(env.DB, meta, row?.value ?? null, owner).first();
     return { error: meta.refresh_error };
   } finally {
     await env.DB.prepare(
