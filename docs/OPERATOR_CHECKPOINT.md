@@ -1,10 +1,12 @@
 # Sponsor Intel operator checkpoint
 
-Updated **30 October 2026, 13:22 UTC**. Read `DAILY_OPERATOR.md` first. This dated state does not clear any hold. Prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-30-1234.md`. Detailed receipt: `OPERATIONS-2026-10-30.md`. Broad goal is **active**, not complete; other projects remain paused.
+Updated **30 October 2026, 13:50 UTC**. Read `DAILY_OPERATOR.md` first. This dated state does not clear any hold. Prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-30-1322.md`. Detailed receipt: `OPERATIONS-2026-10-30.md`. Broad goal is **active**, not complete; other projects remain paused.
 
 ## Current release and service
 
-**2.98.5 live**, runtime `24260aa01a43a2ab813e2ce085b056f3bde250e8`, Worker `7307c8e5-3743-4140-ab2f-a33741e5112b`, deployment `76cd4009-0ab2-4555-959e-34c7a933fdbd`, 100% since 12:17:19.467788 UTC. Read `cloudflare/RELEASE-2.98.5.md` and `cloudflare/tests/evidence/student-reuse-2026-10-30.json`.
+**2.98.6 live**, runtime `b606bb45897548bfe0873ef5ce3f8107f97206d1`, Worker `891f6774-6675-4e34-b484-7b06afd10bd3`, deployment `7227b1f5-6f8f-4efb-bb81-b9bc70607a6b`, 100% since **13:48:42.226231 UTC**. Read `cloudflare/RELEASE-2.98.6.md` and `cloudflare/tests/evidence/register-content-check-2026-10-30.json`. This isolated build excludes prepared Founder saving and migration 0047.
+
+Worker-register freshness previously advanced from URL equality without downloading the CSV. It now requires complete CSV validation and every-field/identity comparison before reusing a snapshot, even at the same URL. Changed content still stages/verifies a complete replacement. Owned lease/exact-metadata guards protect activation, failures and cleanup. Local complete 100,000-row fictional tests pass; actual local D1 comparison of 10,001 fictional rows uses two queries/10,001 reads/zero directory writes. This is not a production run or savings proof; full changed-register write capacity remains unresolved.
 
 Student checks now reuse an identical retained snapshot only after a complete original-source download, validation and every-field comparison. New content still stages/verifies a complete snapshot. Activation/failure/cleanup guards prevent stale-owner overwrites and rollback after lost acknowledgement. Actual local D1: 501 fictional sponsors cost 2,009 writes on initial import, four on a repeated identical check. Production reuse/savings are **not yet observed**; no check was forced.
 
@@ -14,7 +16,7 @@ Excluded live health/jobs/student-directory checks return 200. Current jobs: **1
 
 Today's read-only recovery at **11:42:37.069 UTC** verifies exact production database `f51fb6a9-1278-4643-a49f-30c2e52c6313`, a current recovery point and **46 migrations / 204 matching objects**. No restore/export/customer-recovery or retention-window proof. No production schema change. Prepared migration 0047 is now present locally, so local expectation is 47/206; its two missing new tables are a known unapplied difference, not production recovery acceptance. See FOUNDER_WORKSPACE.md before any later migration. Do not repeat a successful same-day check for documentation edits.
 
-Rollback: **2.98.4 / edc38235-3127-4ba6-bcdf-b6aa561ccef7**. Upload/deploy were separate, both exit 0, triggers not resubmitted. Original four cron schedules remain the baseline; no trigger quota retry or schedule removal.
+Rollback: **2.98.5 / 7307c8e5-3743-4140-ab2f-a33741e5112b**. Upload/deploy were separate, both exit 0, triggers not resubmitted. Original four cron schedules remain the baseline; no trigger quota retry or schedule removal.
 
 ## Active capacity and supervision blockers
 
@@ -48,10 +50,10 @@ Complete UTC days 26–29 October retain **15 page events and no other event row
 
 ## Validation and next evidence
 
-**Prepared 2.99.0: 801/801 local tests**, build/TypeScript, **20 prerenders**, browser budgets and version-upload dry run pass on pinned Node 24.19.0. Actual fictional Worker/auth/D1 and browser tests cover isolation, save/replay, offline reload, conflicts/recovery, sign-out and deletion races; 390-pixel layout has no horizontal overflow. 2.98.5 live validation was separately 790/790. npm audit zero known advisories; dependencies and research/application manifests unchanged. 8.2 GiB before Founder validation and 7.4 GiB before final build/runtime checks; protected archive/personal files/unrelated outputs preserved.
+**Combined prepared 2.99.0 plus register repair: 806/806 local tests**, build/TypeScript, **20 prerenders**, browser budgets and version-upload dry run pass on pinned Node 24.19.0. Actual fictional Worker/auth/D1 and browser tests cover isolation, save/replay, offline reload, conflicts/recovery, sign-out and deletion races; 390-pixel layout has no horizontal overflow. The isolated 2.98.6 live build separately passes 795/795 tests. Original Founder validation was 801/801. npm audit zero known advisories; dependencies and research/application manifests unchanged. 9.0 GiB before this repair validation and 8.1 GiB before the combined run; protected archive/personal files/unrelated outputs preserved.
 
-Exact runtime-head GitHub jobs **124057034249 / 124057009194** did not start because account billing is locked (annotations inspected). GitGuardian **124057100365** is neutral/skipped for PR size. Prior-head hosted results cannot establish acceptance for this head. PR #1 stays open/unmerged; inspect each final pushed head separately. No global pause/resume or automation schedule change.
+Integrated development head `43e0d9d331b3502197b8800ba23f7b4310619828` has hosted jobs **124098461832 / 124098438440** prevented from starting by the GitHub billing lock (both annotations inspected). GitGuardian **124098474208** is neutral/skipped for PR size. The deployed hotfix base has no independent hosted acceptance. Later documentation heads need their own check. PR #1 remains open/unmerged. No global pause/resume or automation schedule change.
 
-At the 12:32–12:34 UTC inspection, latest source application/provider receipts still ended at the 06:30 run; no new 12:30 receipt was visible. Missing observation is not proof of absent cron execution. No forced run.
+At the earlier 12:32–12:34 UTC inspection and the subsequent read-only check during this repair, latest source application/provider receipts still ended at the 06:30 run; no new 12:30 receipt was visible. Missing observation is not proof of absent cron execution. No forced run.
 
 Next: verify genuine register/source outcomes and capacity; reconcile the original supervisor using authoritative evidence; work overdue reviews; inspect actual provider delivery/performance; activate prepared Founder saving only after capacity, migration and live verification gates; continue remaining Founder components. Autonomous operation, independent quality and sustained business outcomes remain incomplete. Keep the full goal active and all standing limits/holds intact.

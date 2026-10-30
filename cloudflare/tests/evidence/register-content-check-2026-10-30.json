@@ -2,7 +2,7 @@
   "observed_date": "2026-10-30",
   "version": "2.98.6",
   "basis_runtime_commit": "24260aa01a43a2ab813e2ce085b056f3bde250e8",
-  "status": "tested_not_yet_deployed",
+  "status": "deployed_live_http_verified_scheduled_outcome_pending",
   "validation": {
     "node": "24.19.0",
     "tests_passed": 795,
@@ -40,5 +40,82 @@
     "includes_prepared_founder_saving": true,
     "typescript": "passed",
     "initial_wrong_directory_attempt": "Stopped after running from repository root caused fixture resolution failures; corrected cloudflare working directory run passed."
+  },
+  "deployment": {
+    "id": "7227b1f5-6f8f-4efb-bb81-b9bc70607a6b",
+    "versions": [
+      {
+        "version_id": "891f6774-6675-4e34-b484-7b06afd10bd3",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-10-30T13:48:42.226231Z"
+  },
+  "upload_exit": 0,
+  "deploy_exit": 0,
+  "live_observed_at": "2026-10-30T13:49:12.329235+00:00",
+  "live": {
+    "health": {
+      "status": 200,
+      "summary": {
+        "ok": true,
+        "version": "2.98.6",
+        "register": {
+          "date": "2026-10-27",
+          "count": 128008,
+          "checked_at": "2026-10-28T07:15:32.207Z"
+        }
+      }
+    },
+    "jobs": {
+      "status": 200,
+      "collections": {
+        "total": 1019,
+        "employers": 37,
+        "early_career": 66,
+        "sponsorship": 54,
+        "licensed": 0,
+        "salary": 212
+      },
+      "licence_register": {
+        "available": false,
+        "source_date": "2026-10-27",
+        "checked_at": "2026-10-28T07:15:32.207Z"
+      }
+    },
+    "students": {
+      "status": 200,
+      "total": 937,
+      "filtered_total": 751,
+      "checked_at": "2026-10-30T07:15:30.564Z"
+    },
+    "qa_path_correction": "An initial /api/study request returned 404; the documented /api/study/sponsors route returned 200."
+  },
+  "ci": {
+    "head": "43e0d9d331b3502197b8800ba23f7b4310619828",
+    "check_run_ids": [
+      124098461832,
+      124098438440
+    ],
+    "result": "not_started_account_billing_lock",
+    "annotations_inspected": true,
+    "gitguardian": {
+      "id": 124098474208,
+      "conclusion": "neutral",
+      "reason": "PR too large; scan skipped"
+    },
+    "deployed_base_commit_has_independent_hosted_acceptance": false
+  },
+  "operating_receipts": {
+    "latest_source": "scheduled-1793341855003",
+    "source_application_state": "attention",
+    "source_finished_at": "2026-10-30T07:20:25.877Z",
+    "source_provider_state": "complete",
+    "source_provider_finished_at": "2026-10-30T07:20:26Z",
+    "latest_business": "business-497990",
+    "business_finished_at": "2026-10-23T14:46:54.646Z",
+    "unresolved_business": "business-497989",
+    "source_reservations_2026_10_30": 138,
+    "forced_run": false
   }
 }
