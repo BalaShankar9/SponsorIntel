@@ -1,5 +1,6 @@
 import {REGISTER_URL,keyFor,idFor,csvRows,toRecord,boundedText,csvSource} from './data.js';
 import {registerFailureCode} from './register-health.js';
+import {registerCleanupStatement} from './register-cleanup.js';
 async function getMeta(env) {
   const row=await env.DB.prepare("SELECT value FROM metadata WHERE key='register'").first();
   return row ? JSON.parse(row.value) : null;
@@ -183,9 +184,7 @@ async function refresh(env, progress, fetcher, clock) {
     .run();
   progress.publication = "confirmed";
   progress.stage = "snapshot_cleanup";
-  await env.DB.prepare("DELETE FROM sponsors WHERE snapshot<>? AND snapshot<>?")
-    .bind(snapshot, current?.snapshot || snapshot)
-    .run();
+  await registerCleanupStatement(env.DB, snapshot, current?.snapshot || snapshot).run();
   progress.stage = "rate_limit_cleanup";
   await env.DB.prepare("DELETE FROM rate_limits WHERE expires<?")
     .bind(Date.now())
