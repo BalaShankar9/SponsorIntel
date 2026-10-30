@@ -1,10 +1,12 @@
 # Sponsor Intel operator checkpoint
 
-Updated **30 October 2026, 13:50 UTC**. Read `DAILY_OPERATOR.md` first. This dated state does not clear any hold. Prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-30-1322.md`. Detailed receipt: `OPERATIONS-2026-10-30.md`. Broad goal is **active**, not complete; other projects remain paused.
+Updated **30 October 2026, 14:18 UTC**. Read `DAILY_OPERATOR.md` first. This dated state does not clear any hold. Prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-30-1350.md`. Detailed receipt: `OPERATIONS-2026-10-30.md`. Broad goal is **active**, not complete; other projects remain paused.
 
 ## Current release and service
 
-**2.98.6 live**, runtime `b606bb45897548bfe0873ef5ce3f8107f97206d1`, Worker `891f6774-6675-4e34-b484-7b06afd10bd3`, deployment `7227b1f5-6f8f-4efb-bb81-b9bc70607a6b`, 100% since **13:48:42.226231 UTC**. Read `cloudflare/RELEASE-2.98.6.md` and `cloudflare/tests/evidence/register-content-check-2026-10-30.json`. This isolated build excludes prepared Founder saving and migration 0047.
+**2.98.7 live**, runtime `9bf8a1ebcf612c47380c0809d3ba765587f99d50`, Worker `5718ecde-d683-43dc-b5ef-91936abbb5d2`, deployment `5f8d4751-07cd-42de-8621-39beb6202a4a`, 100% since **14:17:03.260247 UTC**. Read `cloudflare/RELEASE-2.98.7.md`, `docs/SOURCE_EXECUTION.md` and `cloudflare/tests/evidence/source-lease-wait-2026-10-30.json`. This isolated build excludes prepared Founder saving/migration 0047.
+
+Source retries now read the existing receipt and jobs lease before collection, wait durably until its expiry (bounded by the original run deadline), then recheck ownership. Renewed leases remain held. The same three execution opportunities and 30/60-second backoff remain, without nested automatic retries. No lease is cleared, no early source request is reserved and a committed publication is replayed after a lost acknowledgement. Actual isolated Workflow/D1 and simulated termination tests pass; **production reduction of contention is unobserved**. The original receipts do not identify every historical lock owner. CPU/write capacity remains separate.
 
 Worker-register freshness previously advanced from URL equality without downloading the CSV. It now requires complete CSV validation and every-field/identity comparison before reusing a snapshot, even at the same URL. Changed content still stages/verifies a complete replacement. Owned lease/exact-metadata guards protect activation, failures and cleanup. Local complete 100,000-row fictional tests pass; actual local D1 comparison of 10,001 fictional rows uses two queries/10,001 reads/zero directory writes. This is not a production run or savings proof; full changed-register write capacity remains unresolved.
 
@@ -16,7 +18,7 @@ Excluded live health/jobs/student-directory checks return 200. Current jobs: **1
 
 Today's read-only recovery at **11:42:37.069 UTC** verifies exact production database `f51fb6a9-1278-4643-a49f-30c2e52c6313`, a current recovery point and **46 migrations / 204 matching objects**. No restore/export/customer-recovery or retention-window proof. No production schema change. Prepared migration 0047 is now present locally, so local expectation is 47/206; its two missing new tables are a known unapplied difference, not production recovery acceptance. See FOUNDER_WORKSPACE.md before any later migration. Do not repeat a successful same-day check for documentation edits.
 
-Rollback: **2.98.5 / 7307c8e5-3743-4140-ab2f-a33741e5112b**. Upload/deploy were separate, both exit 0, triggers not resubmitted. Original four cron schedules remain the baseline; no trigger quota retry or schedule removal.
+Rollback: **2.98.6 / 891f6774-6675-4e34-b484-7b06afd10bd3**. Upload/deploy were separate, both exit 0, triggers not resubmitted. Original four cron schedules remain the baseline; no trigger quota retry or schedule removal.
 
 ## Active capacity and supervision blockers
 
@@ -32,7 +34,7 @@ Original **business-497989** remains D1 queued since 23 October 13:45:30.093; ex
 
 ## Controls, quality and remaining product scope
 
-Current business enabled/research/publishing/discovery flags are on. **Scope-v3 unprepared/disabled/revision 0**. Application evaluator enabled=1 (setting dated 13 October); legacy reference enabled=1/revision 2. These flags do not clear campaign/source-identity/unknown-outcome holds. No model call or control change today. Read `REFERENCE_EVALUATION.md`, `APPLICATION_EVALUATION.md` and `RESEARCH_SCOPE_OPERATIONS.md` before any review or resume. Never overwrite profiles to clear compatibility.
+Fresh read-only controls in this bounded turn confirm business enabled/research/publishing/discovery flags on, PortmanDentex paused (revision zero, original 9 October timestamp), four held adverts and 138 source reservations. **Scope-v3 unprepared/disabled/revision 0**. Application evaluator enabled=1 (setting dated 13 October); legacy reference enabled=1/revision 2. These flags do not clear campaign/source-identity/unknown-outcome holds. No model call or control change today. Read `REFERENCE_EVALUATION.md`, `APPLICATION_EVALUATION.md` and `RESEARCH_SCOPE_OPERATIONS.md` before any review or resume. Never overwrite profiles to clear compatibility.
 
 Reviewed source digests remain research `cb02b055aa857d9133094c46a3b1b4deb9663a0ab304fe26205c660895d44489`, scope `68dd5c002cda99d4f37e571bb283accce91c5f3b712e0b964226b1bb2158f1d2`, application `4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2`. Application comparison last independently inspected 23 October: 20 cases/57 agent-assessed outputs, 33 needing work; independent adjudication/held-out validation/promotion open. Compact research 8/50 with retained false-refusal/timeout evidence. No model agreement or tests establish independent quality.
 
@@ -50,9 +52,9 @@ Complete UTC days 26–29 October retain **15 page events and no other event row
 
 ## Validation and next evidence
 
-**Combined prepared 2.99.0 plus register repair: 806/806 local tests**, build/TypeScript, **20 prerenders**, browser budgets and version-upload dry run pass on pinned Node 24.19.0. Actual fictional Worker/auth/D1 and browser tests cover isolation, save/replay, offline reload, conflicts/recovery, sign-out and deletion races; 390-pixel layout has no horizontal overflow. The isolated 2.98.6 live build separately passes 795/795 tests. Original Founder validation was 801/801. npm audit zero known advisories; dependencies and research/application manifests unchanged. 9.0 GiB before this repair validation and 8.1 GiB before the combined run; protected archive/personal files/unrelated outputs preserved.
+**Isolated live 2.98.7: 803/803 local tests**, TypeScript/build, **20 prerenders**, browser budgets and upload dry run pass on pinned Node 24.19.0. **Combined development branch with prepared Founder work: 814/814 tests and TypeScript** pass. Original Founder validation separately covered 801 tests, its build and real fictional browser save/recovery/sign-out checks at 390 pixels. Source-wait tests exercise actual Workflow/D1 lease waiting and the 30-second ordinary retry; simulated termination is not a production CPU test. Same-day zero-known-advisory audit reused; dependency versions and reviewed model-source digests unchanged. Disk 8.9 GiB before inspection/8.6 GiB before validation; protected archive/personal files/unrelated outputs preserved.
 
-Integrated development head `43e0d9d331b3502197b8800ba23f7b4310619828` has hosted jobs **124098461832 / 124098438440** prevented from starting by the GitHub billing lock (both annotations inspected). GitGuardian **124098474208** is neutral/skipped for PR size. The deployed hotfix base has no independent hosted acceptance. Later documentation heads need their own check. PR #1 remains open/unmerged. No global pause/resume or automation schedule change.
+Integrated code head `13f58c243bb326161f7be239ce32c334907fa23c` has hosted jobs **124112606233 / 124112572605** prevented from starting by the GitHub billing lock (annotations inspected). GitGuardian **124112693881** is neutral/skipped for PR size. The deployed isolated base has no independent hosted acceptance. Later documentation heads require their own check. PR #1 stays open/unmerged. No global pause/resume or automation schedule change.
 
 At the earlier 12:32–12:34 UTC inspection and the subsequent read-only check during this repair, latest source application/provider receipts still ended at the 06:30 run; no new 12:30 receipt was visible. Missing observation is not proof of absent cron execution. No forced run.
 

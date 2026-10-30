@@ -1,7 +1,7 @@
 {
   "date": "2026-10-30",
   "version": "2.98.7",
-  "state": "tested_not_deployed",
+  "state": "live_http_verified_scheduled_source_acceptance_pending",
   "original_provider": {
     "id": "scheduled-1793341855003",
     "version": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
@@ -70,5 +70,86 @@
     "latest_source_run": "scheduled-1793341855003",
     "latest_business_run": "business-497990",
     "unresolved_business_run": "business-497989"
+  },
+  "live": {
+    "observed_at": "2026-10-30T14:17:34.086959+00:00",
+    "checks": {
+      "/api/health": {
+        "status": 200,
+        "data": {
+          "ok": true,
+          "version": "2.98.7",
+          "register": {
+            "date": "2026-10-27",
+            "count": 128008,
+            "checked_at": "2026-10-28T07:15:32.207Z"
+          }
+        }
+      },
+      "/api/jobs": {
+        "status": 200,
+        "data": {
+          "total": 1019,
+          "collections": {
+            "total": 1019,
+            "employers": 37,
+            "early_career": 66,
+            "sponsorship": 54,
+            "licensed": 0,
+            "salary": 212
+          },
+          "licence_register": {
+            "available": false,
+            "source_date": "2026-10-27",
+            "checked_at": "2026-10-28T07:15:32.207Z"
+          }
+        }
+      },
+      "/api/study/sponsors": {
+        "status": 200,
+        "data": {
+          "total": 751,
+          "meta": {
+            "snapshot": "2026-10-29-736b5169-a08b-4531-8e2f-2271a059e5e8",
+            "source_url": "https://assets.publishing.service.gov.uk/media/6ae304ae976f73ef5cfb67a9/SP_-_Student_and_Child_Student_Web_Register_-_2026-10-29.csv",
+            "source_date": "2026-10-29",
+            "publication_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
+            "checked_at": "2026-10-30T07:15:30.564Z",
+            "last_success": "2026-10-30T07:15:30.564Z",
+            "total": 937,
+            "source_rows": 1289,
+            "refresh_error": null
+          }
+        }
+      }
+    },
+    "deployment": {
+      "id": "5f8d4751-07cd-42de-8621-39beb6202a4a",
+      "versions": [
+        {
+          "version_id": "5718ecde-d683-43dc-b5ef-91936abbb5d2",
+          "percentage": 100
+        }
+      ],
+      "created_on": "2026-10-30T14:17:03.260247Z"
+    }
+  },
+  "upload_exit": 0,
+  "deploy_exit": 0,
+  "triggers_resubmitted": false,
+  "ci": {
+    "head": "13f58c243bb326161f7be239ce32c334907fa23c",
+    "checks": [
+      124112606233,
+      124112572605
+    ],
+    "result": "did_not_start_account_billing_lock",
+    "annotations_inspected": true,
+    "gitguardian": {
+      "id": 124112693881,
+      "conclusion": "neutral",
+      "reason": "PR too large; scan skipped"
+    },
+    "independent_hosted_acceptance_for_isolated_runtime": false
   }
 }
