@@ -1,0 +1,35 @@
+# 30 October 2026 operator receipt
+
+The preceding bounded turn deployed 2.98.3 but left jobs unavailable. This turn established fresh recovery evidence, identified a distinct source CPU failure pattern and deployed a measured cleanup improvement. The broad goal is active and incomplete; other projects and existing holds were not resumed.
+
+## Live status and original receipts
+
+At 11:42 UTC, excluded health and job endpoints returned 200. Jobs reported 1,019 current adverts from 37 employers, 54 mentioning sponsorship, 66 early-career and 212 salary entries. Register metadata still identifies 27 October, last checked 28 October 07:15:32.207 UTC. The two-day check freshness gate therefore withholds licence relationships: the returned zero licensed count is unavailable evidence, not licence revocation. No historical count was substituted for an unavailable result.
+
+At 11:42:37.069 UTC the read-only recovery check verified `sponsorintel-db`, `f51fb6a9-1278-4643-a49f-30c2e52c6313`, a current recovery point and all 204 objects from 46 migrations. This is not a customer restore, independent backup or retention-window test. No schema change or production restore was performed.
+
+Original source workflow `scheduled-1793341855003`, created by the actual schedule at 06:30:59.647 UTC, completed in D1 at 07:20:25.877 and Cloudflare at 07:20:26.193. Provider version `5f1fdc10-c828-4902-a001-3e5f93c0e63b` reports complete/success, but its application output is attention: ten published, 28 failed. Original step attempts retain 22 `Worker exceeded CPU time limit.` errors and 68 `Another source operation is running.` errors. Earlier run `scheduled-1793320255003` completed at 00:53:17 with 28 published/ten failed. Today's consumed source reservations are 138, retained unchanged. No workflow, source refresh or failure was manufactured.
+
+The current code holds a two-minute source lease with `finally` release. Provider CPU termination can leave a lease until expiry; a later lock error does not identify who owns it and does not authorise deleting it. We did not clear the lock or rewrite failures. Cloudflare's current official [Workflow limits](https://developers.cloudflare.com/workflows/reference/limits/) specify 10 ms active CPU per step on Workers Free; [D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/) lists five million daily reads/100,000 daily writes. The last account-plan observation (28 October) was Free, not a newly verified billing change. CPU failure and write capacity remain unresolved; no higher limits or purchase was requested/applied in this run.
+
+Original `business-497989` remains D1 queued since 23 October 13:45:30.093, while the exact provider ID still returns 10400. Latest stored business completion remains `business-497990`, 23 October 14:46:54.646. Missing provider evidence is not a terminal receipt; no row was cleared, replaced or forced. All three high findings still bear the 23 October observation timestamp, so they are not fresh assessments. The social-delivery finding predates the subsequently recorded LinkedIn delivery; historical monitoring must not be silently rewritten.
+
+## Controls and business evidence
+
+Business enabled/research/publishing/discovery flags remain on. Scope-v3 is unprepared/disabled/revision zero. Application evaluator enabled=1 (last setting 13 October); legacy reference control enabled=1/revision two. These flags do not clear source-profile, campaign, unknown-outcome or supervisor holds, and no evaluator was called. PortmanDentex remains explicitly paused by the 9 October review. No production control, budget, review or private workspace was changed.
+
+No new leads were retained on 30 October. The last scout receipt is 23 October, completed with zero retained/one request and already-known advert links. Today’s marketing ledger is five Facebook and two LinkedIn-company briefs recorded published, zero scheduled/uncertain; Instagram welcome and other held briefs remain held. This is the internal ledger, not a new audit of every native/provider queue or publication. No social or email send, Google read or model call was made. Complete UTC days 26–29 October retain 15 page events (7/7/1/no row), with no other event rows; sparse aggregates and the intervening outage cannot establish unique visitors, conversion or lack of user interest.
+
+Existing advert, discovery and business-identity follow-ups are still overdue and need fresh original evidence plus append-only owner reviews. No follow-up date was advanced, legal relationship inferred or hold released. Capacity and reliable supervision were prioritised over adding sources to a degraded pipeline.
+
+## Repair and validation
+
+2.98.4 replaces the full-scan register cleanup with indexed lower/middle/upper obsolete snapshot ranges and an active-metadata guard. Fictional D1 tests measured 256,000 -> 4 reads with zero obsolete rows, and 15 reads to delete three obsolete rows while retaining all 256,000 current/previous rows. Tests cover analysed/unanalysed query plans, reversed/equal identities, newer/missing metadata, actual complete imports, cleanup failure and uncertain activation. This does not reduce the write cost of importing a complete register or prove production savings.
+
+9.2 GiB was available before runtime/build. Pinned Node 24.19.0: 783/783 tests, TypeScript/build, 20 prerenders, browser budgets and version-upload dry run pass. npm audit reports zero known advisories; dependency graph and reviewed research/application source identities are unchanged. Existing private archive, personal files and unrelated `outputs/` were preserved. Two initial read-only diagnostic queries used nonexistent columns; corrected queries succeeded. They performed no writes and are not recovery failures.
+
+Runtime `99ce87865656e17150726591003ac5ef1e5571ac` was pushed to existing PR #1. Separate upload/deploy succeeded, without resubmitting triggers. Worker `edc38235-3127-4ba6-bcdf-b6aa561ccef7` is 100% live at 11:51:49.574065 UTC, deployment `7d1441a0-a529-4fa7-83ee-22b6afecb690`. Health identifies 2.98.4; jobs/Founder hub return 200. This does not exercise cleanup or prove register refresh. Rollback: 2.98.3 Worker `c32a41a1-f0dd-4925-8d5d-cd459934cce1`; no schema rollback needed.
+
+Runtime CI jobs 124046899744/124046897533 were blocked before starting by account billing. GitGuardian 124046895040 skipped for PR size. The prior documentation head `28886fe` was separately verified with two successful checks 123052905914/123052872587. Check the new final documentation head independently; no billing payment or PR merge was authorised.
+
+Aggregate evidence: `cloudflare/tests/evidence/register-cleanup-2026-10-30.json`. Prior checkpoint retained at `docs/history/OPERATOR_CHECKPOINT-2026-10-28-1930.md`. Next gates: genuine cleanup/register refresh and source receipts, source CPU/capacity resolution, exact supervisor reconciliation, overdue reviews, current provider queue/performance audit, private Founder saving and independent product-quality acceptance. Full autonomous operation and business outcomes remain unproven.

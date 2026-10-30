@@ -1,7 +1,7 @@
 {
   "observed_at": "2026-10-30T11:50:27.698Z",
   "version": "2.98.4",
-  "state": "tested_not_deployed",
+  "state": "live",
   "change": "Indexed obsolete public-register snapshot cleanup with active-snapshot guard",
   "validation": {
     "runtime": "Node 24.19.0",
@@ -29,7 +29,19 @@
       "analysed_and_unanalysed": true
     },
     "production_savings_measured": false,
-    "version_upload_dry_run": true
+    "version_upload_dry_run": true,
+    "hosted_ci": {
+      "head": "99ce87865656e17150726591003ac5ef1e5571ac",
+      "checks": [
+        124046899744,
+        124046897533
+      ],
+      "result": "billing_blocked_not_started",
+      "gitguardian": {
+        "id": 124046895040,
+        "result": "neutral_skipped_pr_size"
+      }
+    }
   },
   "recovery": {
     "observed_at": "2026-10-30T11:42:37.069Z",
@@ -212,5 +224,35 @@
   "primary_references": [
     "https://developers.cloudflare.com/d1/platform/pricing/",
     "https://developers.cloudflare.com/workflows/reference/limits/"
-  ]
+  ],
+  "runtime_commit": "99ce87865656e17150726591003ac5ef1e5571ac",
+  "upload": {
+    "worker": "edc38235-3127-4ba6-bcdf-b6aa561ccef7",
+    "exit_code": 0
+  },
+  "deployment": {
+    "id": "7d1441a0-a529-4fa7-83ee-22b6afecb690",
+    "worker": "edc38235-3127-4ba6-bcdf-b6aa561ccef7",
+    "percentage": 100,
+    "created_at": "2026-10-30T11:51:49.574065Z",
+    "upload_exit": 0,
+    "deploy_exit": 0,
+    "triggers_resubmitted": false
+  },
+  "live_verification": {
+    "observed_at": "2026-10-30T11:54:57.684Z",
+    "health_status": 200,
+    "health": {
+      "ok": true,
+      "version": "2.98.4",
+      "register": {
+        "date": "2026-10-27",
+        "count": 128008,
+        "checked_at": "2026-10-28T07:15:32.207Z"
+      }
+    },
+    "jobs_status": 200,
+    "founder_status": 200,
+    "production_cleanup_execution_observed": false
+  }
 }

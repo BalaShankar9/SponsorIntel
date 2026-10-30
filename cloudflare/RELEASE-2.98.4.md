@@ -19,3 +19,9 @@ Full register import/delete write capacity, remaining directory scans and sustai
 Full-suite, build, dry-run, deployment and exact-head CI results are recorded in `tests/evidence/register-cleanup-2026-10-30.json` when available. Dependency graph is unchanged; the fresh npm audit reports zero known advisories. Source identity manifests are unchanged. Compatible rollback is 2.98.3 Worker `c32a41a1-f0dd-4925-8d5d-cd459934cce1`. Use separate version upload/deployment to retain existing triggers. No schema rollback or production restore.
 
 Primary provider references: [D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/), [Workflow limits](https://developers.cloudflare.com/workflows/reference/limits/). The full operator receipt is `docs/OPERATIONS-2026-10-30.md`.
+
+## Publication receipt
+
+Runtime `99ce87865656e17150726591003ac5ef1e5571ac` is live at 100% as Worker `edc38235-3127-4ba6-bcdf-b6aa561ccef7`, deployment `7d1441a0-a529-4fa7-83ee-22b6afecb690`, 30 October 11:51:49.574065 UTC. Version upload/deploy both exited 0; triggers were not resubmitted. Excluded live checks confirm health version 2.98.4, jobs 200 with the same 1,019/54 counts and stale licence relationship state, and Founder hub 200. No cleanup/import was forced; production execution/savings are pending the next genuine register run.
+
+All 783 local tests, TypeScript/build, 20 prerenders, browser budgets and version-upload dry run pass. Exact runtime-head GitHub check jobs 124046899744 and 124046897533 could not start because the account billing lock has returned. GitGuardian 124046895040 was neutral/skipped for PR size. These failures do not negate the earlier 2.98.3 hosted successes, or count as hosted acceptance for 2.98.4. PR #1 remains open and unmerged.
