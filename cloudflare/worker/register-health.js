@@ -1,5 +1,6 @@
 // Public/owner diagnostics use fixed vocabulary, never raw database/source errors.
 const stages = Object.freeze({
+  ownership:'acquiring refresh ownership', comparison:'comparing the complete retained register',
   metadata:'reading the saved register', publication:'checking the official publication',
   download:'downloading the official register', validation:'validating the source rows',
   staging:'storing the candidate snapshot', verification:'verifying the stored row count',
@@ -11,7 +12,7 @@ export function registerFailureCode(error) {
   if(error?.name==='TimeoutError'||error?.name==='AbortError')return 'source_timeout';
   if(/^D1_|SQLITE_|database/i.test(message))return 'database_error';
   if(/^(Source unavailable|Register download failed)$/.test(message))return 'source_unavailable';
-  if(/^(Official CSV not found|Unexpected source host|Source date not available)$/.test(message))return 'invalid_source';
+  if(/^(Official CSV not found|Unexpected source host|Source date not available|Source date needs review)$/.test(message))return 'invalid_source';
   if(/^(Register schema changed|Unexpected register columns|Incomplete register row|Malformed CSV quotes)$/.test(message))return 'invalid_register';
   if(/^(Register size needs manual review|Unexpected register growth|Register exceeds permitted size|Oversized CSV row|Source exceeds permitted size)$/.test(message))return 'size_guard';
   if(message==='Incomplete imported register')return 'incomplete_snapshot';

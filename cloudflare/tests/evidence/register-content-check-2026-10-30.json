@@ -1,0 +1,44 @@
+{
+  "observed_date": "2026-10-30",
+  "version": "2.98.6",
+  "basis_runtime_commit": "24260aa01a43a2ab813e2ce085b056f3bde250e8",
+  "status": "tested_not_yet_deployed",
+  "validation": {
+    "node": "24.19.0",
+    "tests_passed": 795,
+    "tests_failed": 0,
+    "duration_ms": 95803.293542,
+    "build_typescript_prerenders_budgets": "passed",
+    "prerenders": 20,
+    "version_upload_dry_run": "passed",
+    "npm_audit_known_advisories": 0,
+    "dependency_versions_changed": false,
+    "fixture_only": true,
+    "d1_comparison": {
+      "fictional_records": 10001,
+      "queries": 2,
+      "rows_read": 10001,
+      "rows_written": 0
+    }
+  },
+  "production_schema_changed": false,
+  "forced_refresh": false,
+  "production_directory_or_customer_writes": false,
+  "rollback_worker": "7307c8e5-3743-4140-ab2f-a33741e5112b",
+  "founder_saving_included": false,
+  "limitations": [
+    "Changed full-register staging still exceeds Free daily write capacity",
+    "Production reuse or freshness recovery not observed",
+    "Source CPU failures and old supervisor receipts remain",
+    "Prepared Founder migration 0047 remains unapplied"
+  ],
+  "runtime_commit": "b606bb45897548bfe0873ef5ce3f8107f97206d1",
+  "development_branch_validation": {
+    "tests_passed": 806,
+    "tests_failed": 0,
+    "duration_ms": 93284.813709,
+    "includes_prepared_founder_saving": true,
+    "typescript": "passed",
+    "initial_wrong_directory_attempt": "Stopped after running from repository root caused fixture resolution failures; corrected cloudflare working directory run passed."
+  }
+}
