@@ -1154,14 +1154,19 @@ function Account({
   async function removeAccount() {
     setBusy(true);
     try {
+      // Load cleanup code before the destructive request, so a missing chunk
+      // cannot prevent cleanup after the server has confirmed deletion.
+      const founder=await import('../shared/founder-workspace.js'),accountId=c.user?.id;
       await request("/api/career/account", "DELETE", {});
-      if (c.user) {
-        localStorage.removeItem("si.career.user." + c.user.id);
-        localStorage.removeItem(recoveryKey(c.user.id));
+      let deviceRemoved=true;
+      if (accountId) {
+        deviceRemoved=founder.finishFounderExit(localStorage,accountId,null,{deleted:true});
+        try{localStorage.removeItem("si.career.user."+accountId);localStorage.removeItem(recoveryKey(accountId));}
+        catch{deviceRemoved=false;}
       }
       await c.reload();
       setDeleteModal(false);
-      setMessage("Your account and cloud workspace have been deleted.");
+      setMessage(deviceRemoved?"Your account and cloud workspace have been deleted.":"Account deleted. A device copy could not be removed; clear this site’s browser data before sharing this device. Downloaded copies and other devices are unchanged.");
     } catch (e) {
       setMessage((e as Error).message);
     } finally {
@@ -1383,7 +1388,7 @@ function Account({
           <p className="fine-print">
             Backups contain personal information. Keep them somewhere private.
             Your original employer shortlist has its own backup in Workspace
-            settings.
+            settings. Founder workbooks have their own save status and export in the Founder hub.
           </p>
           <h3>How your information is used</h3>
           <p>
@@ -1457,9 +1462,11 @@ function Account({
       {deleteModal && (
         <Modal title="Delete your account?" close={() => setDeleteModal(false)}>
           <p>
-            This deletes your cloud career profile, applications, documents and
-            account. Download a backup first. Your older employer shortlist and
-            guest workspace on this browser are separate.
+            This deletes your cloud career profile, applications, documents,
+            saved founder workbook and account. Export any founder workbook
+            separately from your career backup first. Downloaded files and
+            device copies on other browsers remain. Your older employer
+            shortlist and guest workspace on this browser are separate.
           </p>
           <button
             className="danger-button"

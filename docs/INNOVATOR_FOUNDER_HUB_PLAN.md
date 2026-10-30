@@ -28,3 +28,10 @@ Budgets, source reviews, social cadence, approvals and the stalled business-supe
 ## Current delivery record
 
 The foundation is live as **2.98.1**, verified on 26 October 2026. See `cloudflare/RELEASE-2.98.md` and `cloudflare/tests/evidence/founder-hub-2026-10-26.json`: 775 full local tests, targeted final checks, build, narrow-screen layout, live route and source-linked tools. Actual file restore is verified; a download request was observed but saved-file completion remains unverified. There is no cloud-persistence claim. Later stages and independent legal/usefulness acceptance remain open; this is the first working increment, not completion of the full plan.
+
+
+## Prepared private-workbook increment — 30 October
+
+**2.99.0 implemented and tested locally, not deployed.** Explicit account saving, revision/request replay, browser recovery, conflict choice, account isolation and deletion/sign-out protections now cover the existing workbook. 801 local tests and actual desktop/mobile fictional-account checks pass. See `FOUNDER_WORKSPACE.md` and `cloudflare/RELEASE-2.99.md`. Production remains 2.98.5 and tab-memory-only; the original D1 write-capacity incident blocks migration 0047 and activation. The feature flag is absent, so no account persistence is advertised as live.
+
+This is a partial stage-two increment. Structured evidence attachments/references, multiple projects and milestone records remain unimplemented, alongside stages three through six and independent usefulness/legal acceptance. The initial tab-only privacy contract above still describes production; the prepared opt-in retention contract is in `FOUNDER_WORKSPACE.md`. No existing export is silently uploaded, no model call is added and no source freshness is renewed.

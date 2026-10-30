@@ -29,8 +29,8 @@ test('source and directory roles remain explicit, primary-linked and searchable 
  assert.deepEqual(filterDirectory('WALES','Business support','Wales').map(d=>d.id),['wales']);assert.equal(filterDirectory('not-a-real-provider').length,0);assert.equal(filterDirectory('','Endorser').length,3);
  assert.equal(new Set(stages.flatMap(s=>s.fields.map(f=>f.id))).size,Object.keys(emptyWorkbook().notes).length);assert.equal(stages.length,6);for(const s of stages)assert.ok(sources[s.source]);
 });
-test('founder entry is integrated with public metadata; private notes have no persistence, network or HTML rendering path',async()=>{
- const ui=await readFile(new URL('../src/founder-ui.tsx',import.meta.url),'utf8');assert.doesNotMatch(ui,/\bfetch\s*\(|localStorage|sessionStorage|dangerouslySetInnerHTML|navigator\.sendBeacon/);assert.match(ui,/beforeunload/);assert.match(ui,/setPending\(parsed\)/);assert.match(ui,/Replace with this workbook/);
+test('founder entry retains public metadata, guarded import and plain-text private rendering',async()=>{
+ const ui=await readFile(new URL('../src/founder-ui.tsx',import.meta.url),'utf8');assert.doesNotMatch(ui,/dangerouslySetInnerHTML|navigator\.sendBeacon/);assert.match(ui,/setPending\(parsed\)/);assert.match(ui,/Replace with this workbook/);
  const pages=JSON.parse(await readFile(new URL('../shared/pages.json',import.meta.url),'utf8'));assert.equal(pages['innovator-founder'].path,'/innovator-founder');
- const main=await readFile(new URL('../src/main.tsx',import.meta.url),'utf8');assert.match(main,/view === 'innovator-founder' && <FounderPage/);assert.match(main,/label: "Founder hub"/);assert.match(main,/view === 'innovator-founder' \? <p[\s\S]*Founder notes stay in this tab[\s\S]*: <CareerAccountLink/);
+ const main=await readFile(new URL('../src/main.tsx',import.meta.url),'utf8');assert.match(main,/view === 'innovator-founder' && <FounderPage/);assert.match(main,/label: "Founder hub"/);
 });

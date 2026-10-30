@@ -16,3 +16,8 @@ Late cloud responses cannot replace edits, another account or a changed saved ca
 - Helper tests cover read-back, quota/silent storage failure, network/malformed response, account/edits/other-tab races, failed cache persistence, exact-copy removal, separate accounts and damaged records.
 - Actual isolated Worker/auth/D1 checks assert returned account identity and reject a stale other-account save while keeping its stored data/revision unchanged. Existing account-deletion races and concurrent-save checks remain covered.
 - All fixtures contain invented records and deny external calls. They do not establish real customer recovery, actual downloaded-file delivery or independent security acceptance.
+
+
+## Separate Founder workbook (prepared 2.99.0)
+
+The Founder hub has its own explicit saving/recovery flow and exports; it does not add fields to the career payload. See [Founder workspace](FOUNDER_WORKSPACE.md) for pending-request replay, conflicting copies, malformed data, session expiry and shared-device cleanup. It is implemented/tested only: production activation is held pending capacity and migration. The existing career recovery mechanism above remains separate.

@@ -432,15 +432,20 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
           "Your latest changes have not synced. Download a career backup before reloading or signing out.",
         );
     }
+    const founder=await import('../shared/founder-workspace.js');
+    const exitAccount=currentUser.current;
+    const founderCopy=exitAccount?founder.prepareFounderExit(localStorage,exitAccount):null;
     ++loadVersion.current;
-    await request("/api/auth/sign-out", "POST", {});
-    if (user) localStorage.removeItem("si.career.user." + user.id);
+    try{await request("/api/auth/sign-out", "POST", {});}
+    catch(error){founder.cancelFounderExit();throw error;}
+    let deviceRemoved=!exitAccount||founder.finishFounderExit(localStorage,exitAccount,founderCopy);
+    try{if (exitAccount) localStorage.removeItem("si.career.user." + exitAccount);}catch{deviceRemoved=false;}
     currentUser.current = "";
     setUser(null);
     setRecoveryCopy(null);
     setData(readLocal("si.career.guest.v2")?.data || emptyData());
     setSelected("");
-    setError("");
+    setError(deviceRemoved?'':'Signed out. A changed or unavailable device copy was kept. Sign in to the same account to resolve it before sharing this browser.');
     setStatus("Saved on this browser");
     blocked.current = false;
   }

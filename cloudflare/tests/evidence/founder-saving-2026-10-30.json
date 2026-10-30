@@ -1,0 +1,109 @@
+{
+  "observed_at": "2026-10-30T13:21:58Z",
+  "release": "2.99.0",
+  "state": "implemented_and_tested_not_deployed",
+  "production": {
+    "version": "2.98.5",
+    "worker": "7307c8e5-3743-4140-ab2f-a33741e5112b",
+    "runtime_commit": "24260aa01a43a2ab813e2ce085b056f3bde250e8",
+    "migration_0047_applied": false,
+    "founder_saving_flag_configured": false,
+    "schema_last_verified": {
+      "at": "2026-10-30T11:42:37.069Z",
+      "migrations": 46,
+      "objects": 204
+    },
+    "activation_hold": "Original D1 daily row-write exhaustion; capacity, pre/post-migration and live save verification required"
+  },
+  "local_schema": {
+    "migrations": 47,
+    "objects": 206,
+    "added_tables": [
+      "founder_workspaces",
+      "founder_save_receipts"
+    ]
+  },
+  "validation": {
+    "node": "24.19.0",
+    "full_tests": {
+      "passed": 801,
+      "failed": 0,
+      "duration_ms": 88467.84625,
+      "sha256": "2390674e56721c9e0c6db5400888d69f9bb14b552e82b374555e3020b9537516"
+    },
+    "build": true,
+    "typescript": true,
+    "prerenders": 20,
+    "browser_budgets": true,
+    "version_upload_dry_run": true,
+    "dependency_graph_unchanged": true,
+    "known_advisory_audit": "Same-day zero-known-advisory result reused; dependency graph equality checked excluding release version metadata",
+    "model_source_manifests_unchanged": true,
+    "worker_auth_d1": [
+      "anonymous and origin rejection",
+      "two-account isolation",
+      "strict canonical input",
+      "exact request replay after later saves",
+      "different content with reused key rejected",
+      "concurrent writes yield 200 and 409",
+      "receipt failure rolls back content transaction",
+      "account deletion cascades",
+      "post-authentication deletion race cannot recreate a row",
+      "feature disabled by default without querying new schema"
+    ],
+    "device": [
+      "offline edit and reload",
+      "lost acknowledgement with original request replay and newer edits preserved",
+      "both conflict copies retained for choice",
+      "recovery restore requires explicit cloud save",
+      "storage failure and cross-tab mismatch preserve in-memory notes",
+      "intentional empty edit preserved",
+      "damaged raw data retained and account scoped",
+      "late replies ignored after identity change",
+      "storage-failed notes retained behind original identity after session expiry",
+      "cleanup failure reported without private display"
+    ],
+    "browser": {
+      "environment": "loopback actual Worker/auth/in-memory D1 plus built React, invented identities and notes only",
+      "save_reload_replay": true,
+      "conflict_and_recovery": true,
+      "offline_reload": true,
+      "blocked_and_clean_signout": true,
+      "two_accounts": true,
+      "first_account_final_revision": 6,
+      "request_receipts": 6,
+      "viewport": {
+        "width": 390,
+        "height": 844,
+        "document_width": 390,
+        "offscreen_main_buttons_or_textareas": 0
+      },
+      "screenshots": [
+        "outputs/operations-2026-10-30/founder-saving-desktop.jpg",
+        "outputs/operations-2026-10-30/founder-saving-mobile.jpg"
+      ],
+      "fixture_stopped": true,
+      "test_tabs_closed": true,
+      "viewport_reset": true
+    }
+  },
+  "limits": {
+    "new_save_attempts_per_account_per_hour": 20,
+    "server_autosave": false,
+    "full_revision_history": false,
+    "one_workbook_per_account": true,
+    "attachments": false,
+    "structured_projects_and_milestones": false
+  },
+  "actions": {
+    "production_data_mutation": false,
+    "production_deployment": false,
+    "real_application": false,
+    "model_or_google_call": false,
+    "external_send": false,
+    "owner_hold_changed": false,
+    "capacity_increased": false,
+    "production_restore": false
+  },
+  "ci": "Inspect the exact pushed head; local acceptance does not establish hosted execution. PR remains open/unmerged."
+}
