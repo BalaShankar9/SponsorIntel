@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-30",
+  "version": "2.98.7",
+  "state": "tested_not_deployed",
+  "original_provider": {
+    "id": "scheduled-1793341855003",
+    "version": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+    "status": "complete",
+    "finished_at": "2026-10-30T07:20:26.193Z",
+    "application_output": {
+      "state": "attention",
+      "counts": {
+        "failed": 28,
+        "published": 10
+      }
+    },
+    "cpu_errors": 22,
+    "lock_errors": 68,
+    "historical_lock_owners_proven": false
+  },
+  "validation": {
+    "node": "24.19.0",
+    "tests_passed": 803,
+    "failed": 0,
+    "duration_ms": 118807.617917,
+    "build_typescript": true,
+    "prerenders": 20,
+    "browser_budgets": true,
+    "dry_run": true,
+    "same_day_zero_advisory_audit_reused": true,
+    "fixtures_only": true,
+    "actual_workflow_d1": {
+      "lease_wait_requests": 1,
+      "early_requests": 0,
+      "publication_attempts": 1,
+      "after_lease_expiry_ms": 1023,
+      "ordinary_retry_delay_ms": 30104,
+      "ordinary_retry_requests_charged": 2
+    },
+    "reviewed_model_source_digests_changed": false,
+    "source_workflow_orchestration_changed": true
+  },
+  "production_schema_changed": false,
+  "production_source_requests_started_by_operator": 0,
+  "production_controls_changed": false,
+  "rollback_worker": "891f6774-6675-4e34-b484-7b06afd10bd3",
+  "unproven": [
+    "Production execution and reduction of contention errors",
+    "Source CPU capacity",
+    "D1 write capacity and private-save availability",
+    "Business supervision recovery"
+  ],
+  "runtime_commit": "9bf8a1ebcf612c47380c0809d3ba765587f99d50",
+  "development_validation": {
+    "tests_passed": 814,
+    "failed": 0,
+    "duration_ms": 118665.979208,
+    "typescript": "passed",
+    "includes_prepared_founder_saving": true
+  },
+  "current_read_only_controls": {
+    "business_enabled": true,
+    "research": true,
+    "publishing": true,
+    "discovery": true,
+    "portmandentex_paused": true,
+    "portmandentex_control_revision": 0,
+    "held_adverts": 4,
+    "source_requests_2026_10_30": 138,
+    "latest_source_run": "scheduled-1793341855003",
+    "latest_business_run": "business-497990",
+    "unresolved_business_run": "business-497989"
+  }
+}
