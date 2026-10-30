@@ -1,5 +1,13 @@
 # Reviewed businesses behind sponsor entries
 
+## 30 October follow-up — evidence retained, approvals not renewed
+
+Fresh browser checks at **14:30 UTC** still corroborate the two relationships: Animal Trust's primary terms name Animal Trust Vets CIC/company 07938025 and Companies House lists the active CIC; CQC identifies Vir Health Limited as also known as Numan and links numan.com. The CQC services page still distinguishes current Farringdon from archived Hatton Garden/Oxford Street locations. Its reuse terms continue to distinguish OGL material from third-party and logo rights. No endorsement/rating/logo is reused.
+
+Both cloud records remain their original approved revision 1; Numan's 27 October and Animal Trust's 30 October noon follow-ups remain overdue. The current register was last checked 28 October and is stale, and today's D1 write-capacity incident remains unresolved. No cloud save, approval renewal, date extension or source change was attempted. [Dated observations](../cloudflare/tests/evidence/employer-identity-review-2026-10-30.json) are retained in the repository only; they do not override the live freshness/review gates. After recovery, reread the exact current records and original evidence within the 72-hour observation window before appending agent-assisted decisions through the owner desk. Animal Trust's held vacancy remains a separate review.
+
+## Review procedure
+
 Release 2.88 adds owner-reviewed business relationships. Open **Admin → Sources → Business identities**. A new record starts held and requires selecting an exact entry from the current register. Trading name, website operator, operating organisation, subsidiary and group relationship are distinct choices. Describe the direction and scope of a group relationship in its public evidence summary; shared ownership or a similar name is not a vacancy's employing entity.
 
 Record the business website, optional sourced activity/operating locations/public identifier/careers URL, primary relationship evidence and a public summary. Unknown fields stay blank. Record a separate private source-rights assessment and private decision reason. The evidence observation is deliberately blank initially: supply the actual observation within 72 hours for new records or approvals, not the form-open time. Existing records can be held or withdrawn using their original observation, without inventing a recent source visit. Withdrawal does not require renewing an expired follow-up. Set a follow-up within 30 days. Attribute agent-assisted work honestly; an owner-account save is not independent human validation.

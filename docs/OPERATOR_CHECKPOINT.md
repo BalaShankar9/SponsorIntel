@@ -1,6 +1,6 @@
 # Sponsor Intel operator checkpoint
 
-Updated **30 October 2026, 14:18 UTC**. Read `DAILY_OPERATOR.md` first. This dated state does not clear any hold. Prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-30-1350.md`. Detailed receipt: `OPERATIONS-2026-10-30.md`. Broad goal is **active**, not complete; other projects remain paused.
+Updated **30 October 2026, 14:39 UTC**. Read `DAILY_OPERATOR.md` first. This dated state does not clear any hold. Prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-30-1418.md`. Detailed receipt: `OPERATIONS-2026-10-30.md`. Broad goal is **active**, not complete; other projects remain paused.
 
 ## Current release and service
 
@@ -32,6 +32,8 @@ Cloudflare documents 10 ms CPU/Workflow step on Free, five million D1 reads and 
 
 Original **business-497989** remains D1 queued since 23 October 13:45:30.093; exact provider lookup still returns **10400 missing**, not terminal execution proof. Latest completed business receipt is **business-497990**, 23 October 14:46:54.646. No row cleared/failed/replaced. Hourly supervision, link rotation, scout, daily research/marketing/Google remain unproven after that receipt. The three high/eight normal stored findings are dated 23 October; reconcile with later original receipts, not their stale summary alone.
 
+Read-only operator inspection now has a bounded, tested command: `node scripts/business-status.mjs --out <new-receipt>` from `cloudflare/`. Read `BUSINESS_RECONCILIATION.md`. The actual 14:35:21–14:35:31 UTC receipt retains exact provider evidence and stable before/after application rows: original 497989 lookup is still 10400/unknown; 497990 provider success ended 23 October 14:46:55.013 UTC. The script cannot dispatch or clear any reservation. A saved needs-review receipt exits 1. Seventeen focused tests pass; no Worker/model/schema/dependency change or deployment. This does not solve the outage or prove unattended use of the local inspection.
+
 ## Controls, quality and remaining product scope
 
 Fresh read-only controls in this bounded turn confirm business enabled/research/publishing/discovery flags on, PortmanDentex paused (revision zero, original 9 October timestamp), four held adverts and 138 source reservations. **Scope-v3 unprepared/disabled/revision 0**. Application evaluator enabled=1 (setting dated 13 October); legacy reference enabled=1/revision 2. These flags do not clear campaign/source-identity/unknown-outcome holds. No model call or control change today. Read `REFERENCE_EVALUATION.md`, `APPLICATION_EVALUATION.md` and `RESEARCH_SCOPE_OPERATIONS.md` before any review or resume. Never overwrite profiles to clear compatibility.
@@ -42,7 +44,7 @@ Applicant tools remain preparation-only pending permitted route, exact applicant
 
 ## Reviews, marketing and measurement
 
-29 retained discovery leads at last aggregate; **zero first retained today**. Last scout: 23 October completed, zero retained/one request, links already known. Eight unresolved historical follow-ups (Bangor, Revolut, Danu, NHS Children in Care, Animal Trust, Arctic Lake, Nu Quantum, Neudata) and four advert holds (New City College Plumbing; King's Lynn Drama, Science Technician, Senior Exam Invigilator) need fresh evidence and append-only review. No elapsed date releases anything. Numan identity review was due 27 October noon; Animal Trust is due **30 October noon**. Preserve original identifiers/evidence from employer docs and archived checkpoints.
+29 retained discovery leads at last aggregate; **zero first retained today**. Last scout: 23 October completed, zero retained/one request, links already known. Eight unresolved historical follow-ups (Bangor, Revolut, Danu, NHS Children in Care, Animal Trust, Arctic Lake, Nu Quantum, Neudata) and four advert holds (New City College Plumbing; King's Lynn Drama, Science Technician, Senior Exam Invigilator) need fresh evidence and append-only review. No elapsed date releases anything. Numan identity review was due 27 October noon; Animal Trust was due **30 October noon**. Fresh 14:29–14:31 UTC browser checks still support both business identities; the exact Animal Trust advert still says only Visa support available. Evidence is retained locally in `employer-identity-review-2026-10-30.json`; no cloud revision, follow-up or approval was changed while register freshness/write capacity remain blocked. Read `BUSINESS_IDENTITIES.md` before later append-only review. Preserve original identifiers/evidence from employer docs and archived checkpoints.
 
 **PortmanDentex explicitly paused** by 9 October 19:01:15.323 review; zero public jobs at last verification, old 51/249 cache historical. Neudata/Arctic Lake permission drafts remain unsent, owner approval pending. No new lead/source configured during capacity investigation.
 

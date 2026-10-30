@@ -1,6 +1,12 @@
 # Animal Trust source review
 
-## Current review — 23 October 2026
+## Current observation — 30 October 2026
+
+Fresh browser inspection at **14:29:45 UTC** still shows the exact Dewsbury Veterinary Surgeon advert, its Apply button and **“Visa support available”**, with no posting/deadline shown. The primary business terms and Companies House record at **14:30 UTC** still support Animal Trust → Animal Trust Vets CIC, company 07938025. These observations do not establish an explicit role sponsorship commitment or recruitment reuse permission.
+
+The cloud discovery record is still held r2, follow-up **26 October noon**, and business identity still approved r1 with follow-up **30 October noon**. Both deadlines remain historical and overdue. The register check is stale and today's original D1 write-capacity incident remains unresolved, so no review save/renewal was attempted and no hold, deadline or source changed. Fresh findings are retained in [the aggregate receipt](../cloudflare/tests/evidence/employer-identity-review-2026-10-30.json), not claimed as saved cloud review history. After recovery, reread the current exact records and fresh originals before an append-only agent-assisted review. Sponsorship wording, rights and complete BambooHR adapter acceptance remain required before separate admission. No application or new lead was created.
+
+## Previous review — 23 October 2026
 
 **Vacancy held, feed unconfigured; trading-name profile now published.** Fresh [primary business terms](https://www.animaltrust.org.uk/terms), observed **01:55:17.534 UTC**, explicitly identify Animal Trust Vets CIC trading as Animal Trust, company **07938025**, Cedab Road, Ellesmere Port. [Companies House](https://find-and-update.company-information.service.gov.uk/company/07938025), observed **01:54:42.134 UTC**, corroborates the active CIC, address and SIC 75000 veterinary activity. The [careers page](https://www.animaltrust.org.uk/careers/vacancies), observed **01:54:00.317 UTC**, supplies the board link and example practice locations; those examples do not establish licence coverage for every workplace.
 
