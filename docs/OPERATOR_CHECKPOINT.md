@@ -1,24 +1,30 @@
 # Sponsor Intel operator checkpoint
 
-Updated **30 October 2026, 11:53 UTC**. Read `DAILY_OPERATOR.md` first. This dated state does not clear any hold. Prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-28-1930.md`. Detailed receipt: `OPERATIONS-2026-10-30.md`. Broad goal is **active**, not complete; other projects remain paused.
+Updated **30 October 2026, 12:19 UTC**. Read `DAILY_OPERATOR.md` first. This dated state does not clear any hold. Prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-30-1153.md`. Detailed receipt: `OPERATIONS-2026-10-30.md`. Broad goal is **active**, not complete; other projects remain paused.
 
 ## Current release and service
 
-**2.98.4 live**, runtime `99ce87865656e17150726591003ac5ef1e5571ac`, Worker `edc38235-3127-4ba6-bcdf-b6aa561ccef7`, deployment `7d1441a0-a529-4fa7-83ee-22b6afecb690`, 100% since 11:51:49.574065 UTC. Read `cloudflare/RELEASE-2.98.4.md` and `cloudflare/tests/evidence/register-cleanup-2026-10-30.json`.
+**2.98.5 live**, runtime `24260aa01a43a2ab813e2ce085b056f3bde250e8`, Worker `7307c8e5-3743-4140-ab2f-a33741e5112b`, deployment `76cd4009-0ab2-4555-959e-34c7a933fdbd`, 100% since 12:17:19.467788 UTC. Read `cloudflare/RELEASE-2.98.5.md` and `cloudflare/tests/evidence/student-reuse-2026-10-30.json`.
 
-Register cleanup now seeks obsolete snapshot ranges, retaining the current/previous snapshots and refusing an older cleanup after another snapshot activates. In local D1, two 128,000-row fictional retained snapshots cost 4 reads rather than 256,000; deleting three obsolete rows costs 15 reads. Production execution/savings are **not yet observed**. No import/cleanup was forced. Full register write capacity, directory scans and sustainable Free-plan operation remain open.
+Student checks now reuse an identical retained snapshot only after a complete original-source download, validation and every-field comparison. New content still stages/verifies a complete snapshot. Activation/failure/cleanup guards prevent stale-owner overwrites and rollback after lost acknowledgement. Actual local D1: 501 fictional sponsors cost 2,009 writes on initial import, four on a repeated identical check. Production reuse/savings are **not yet observed**; no check was forced.
 
-Excluded live health/jobs/Founder checks return 200. Current jobs: **1,019 / 37 employers / 54 sponsorship-mentioned adverts** (66 early-career, 212 salary). Register is dated **27 October**, last checked **28 October 07:15:32.207 UTC**, 128,008 records. Its two-day freshness gate now withholds licence links; the zero licensed count means unavailable evidence, not licence revocations. Service is only partly recovered. Do not renew freshness without a real complete check.
+Included 2.98.4 indexed worker-register cleanup locally reduced reads from 256,000 to four with no obsolete rows. Its production execution/savings remain unobserved. Neither repair establishes sustainable Free-plan capacity, fixes full worker-register write cost or clears source CPU failures.
+
+Excluded live health/jobs/student-directory checks return 200. Current jobs: **1,019 / 37 employers / 54 sponsorship-mentioned adverts** (66 early-career, 212 salary). Register is dated **27 October**, last checked **28 October 07:15:32.207 UTC**, 128,008 records. Its two-day freshness gate now withholds licence links; the zero licensed count means unavailable evidence, not licence revocations. Service is only partly recovered. Do not renew freshness without a real complete check.
 
 Today's read-only recovery at **11:42:37.069 UTC** verifies exact production database `f51fb6a9-1278-4643-a49f-30c2e52c6313`, a current recovery point and **46 migrations / 204 matching objects**. No restore/export/customer-recovery or retention-window proof. No schema change. Do not repeat a successful same-day check for documentation edits.
 
-Rollback: **2.98.3 / c32a41a1-f0dd-4925-8d5d-cd459934cce1**. Upload/deploy were separate, both exit 0, triggers not resubmitted. Original four cron schedules remain the baseline; no trigger quota retry or schedule removal.
+Rollback: **2.98.4 / edc38235-3127-4ba6-bcdf-b6aa561ccef7**. Upload/deploy were separate, both exit 0, triggers not resubmitted. Original four cron schedules remain the baseline; no trigger quota retry or schedule removal.
 
 ## Active capacity and supervision blockers
 
+**Daily D1 writes exhausted:** original invocation `ea1d3d6f05148840893c133eb616aa0b`, 30 October 10:00:32.530 UTC, explicitly reports the account daily row-write limit. It is the `*/15` guidance-refresh source `student-money` (Worker 2.98.3), not the student-directory importer. Readable jobs do not establish successful saves/updates. No production write was manufactured to test the failure.
+
+Student-directory metadata independently confirms success at **07:15:30.564 UTC today**, 937 sponsors/1,289 rows, source dated 29 October. That step was not the worker-register blocker suspected during investigation. The original worker-register termination point remains unproven; sampled logs cannot prove absent execution.
+
 Original source **scheduled-1793341855003** completed at 07:20:26.193 UTC (D1 07:20:25.877), provider version `5f1fdc10-c828-4902-a001-3e5f93c0e63b`: **ten published, 28 failed**. Original attempts include **22 CPU-limit errors and 68 source-operation-lock errors**. Completion is not successful publication of every source. Earlier 00:30 run published 28/failed ten. Consumed source reservations at inspection: **138 on 30 October**, unchanged. Do not force a refresh or clear a lock/uncertain receipt. Next scheduled source/register runs need independent provider and application evidence.
 
-Cloudflare documents 10 ms CPU/Workflow step on Free, five million D1 reads and 100,000 writes/day. The last actual account-plan inspection (28 October) showed Free. Owner capacity/plan decision remains unanswered; no purchase, billing action or limit increase here. The cleanup repair cannot fix CPU termination or make full-register import writes fit that ceiling. Recheck current plan before relying on historical billing state.
+Cloudflare documents 10 ms CPU/Workflow step on Free, five million D1 reads and 100,000 writes/day. The actual account-plan inspection on 28 October showed Free; today’s original write-limit error and Observability Free-plan banner corroborate a continuing Free constraint. Owner capacity/plan decision remains unanswered; no purchase, billing action or limit increase here. The cleanup repair cannot fix CPU termination or make full-register import writes fit that ceiling. No billing or plan change was made.
 
 Original **business-497989** remains D1 queued since 23 October 13:45:30.093; exact provider lookup still returns **10400 missing**, not terminal execution proof. Latest completed business receipt is **business-497990**, 23 October 14:46:54.646. No row cleared/failed/replaced. Hourly supervision, link rotation, scout, daily research/marketing/Google remain unproven after that receipt. The three high/eight normal stored findings are dated 23 October; reconcile with later original receipts, not their stale summary alone.
 
@@ -42,8 +48,8 @@ Complete UTC days 26–29 October retain **15 page events and no other event row
 
 ## Validation and next evidence
 
-**783/783 local tests**, build/TypeScript, **20 prerenders**, browser budgets and version-upload dry run pass on pinned Node 24.19.0. npm audit zero known advisories; dependencies and research/application manifests unchanged. 9.2 GiB free before runtime/build; protected archive/personal files/unrelated outputs preserved.
+**790/790 local tests**, build/TypeScript, **20 prerenders**, browser budgets and version-upload dry run pass on pinned Node 24.19.0. npm audit zero known advisories; dependencies and research/application manifests unchanged. 7.4 GiB free before the new runtime checks and 8.0 GiB before build; protected archive/personal files/unrelated outputs preserved.
 
-Exact runtime-head GitHub jobs **124046899744 / 124046897533** did not start because account billing is locked. GitGuardian **124046895040** neutral/skipped for PR size. Prior documentation head `28886fe` has two verified successful hosted checks; do not transfer that result to this head. PR #1 stays open/unmerged; inspect each final pushed head separately. No global pause/resume or automation schedule change.
+Exact runtime-head GitHub jobs **124057034249 / 124057009194** did not start because account billing is locked (annotations inspected). GitGuardian **124057100365** is neutral/skipped for PR size. Prior-head hosted results cannot establish acceptance for this head. PR #1 stays open/unmerged; inspect each final pushed head separately. No global pause/resume or automation schedule change.
 
 Next: verify genuine register/source outcomes and capacity; reconcile the original supervisor using authoritative evidence; work overdue reviews; inspect actual provider delivery/performance; implement private Founder persistence without loss. Autonomous operation, independent quality and sustained business outcomes remain incomplete. Keep the full goal active and all standing limits/holds intact.

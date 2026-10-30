@@ -1,7 +1,7 @@
 {
   "observed_at": "2026-10-30T12:14:33.086Z",
   "version": "2.98.5",
-  "state": "validated_not_deployed",
+  "state": "live",
   "change": "Reuse an identical fully fetched and validated student directory; guard activation, failure recording and cleanup against stale owners",
   "validation": {
     "runtime": "Node 24.19.0",
@@ -26,7 +26,19 @@
     "prerenders": 20,
     "browser_budgets": true,
     "version_upload_dry_run": true,
-    "source_identity_manifests_changed": false
+    "source_identity_manifests_changed": false,
+    "hosted_ci": {
+      "head": "24260aa01a43a2ab813e2ce085b056f3bde250e8",
+      "checks": [
+        124057034249,
+        124057009194
+      ],
+      "result": "billing_blocked_not_started",
+      "gitguardian": {
+        "id": 124057100365,
+        "result": "neutral_skipped_pr_size"
+      }
+    }
   },
   "original_write_failure": {
     "event_at": "2026-10-30T10:00:32.530Z",
@@ -79,5 +91,63 @@
   "primary_references": [
     "https://developers.cloudflare.com/d1/platform/pricing/",
     "https://developers.cloudflare.com/workflows/reference/limits/"
-  ]
+  ],
+  "runtime_commit": "24260aa01a43a2ab813e2ce085b056f3bde250e8",
+  "deployment": {
+    "id": "76cd4009-0ab2-4555-959e-34c7a933fdbd",
+    "worker": "7307c8e5-3743-4140-ab2f-a33741e5112b",
+    "percentage": 100,
+    "created_at": "2026-10-30T12:17:19.467788Z",
+    "upload_exit": 0,
+    "deploy_exit": 0,
+    "triggers_resubmitted": false
+  },
+  "live_verification": {
+    "observed_at": "2026-10-30T12:18:48.840Z",
+    "metrics_excluded": true,
+    "health_status": 200,
+    "health": {
+      "ok": true,
+      "version": "2.98.5",
+      "register": {
+        "date": "2026-10-27",
+        "count": 128008,
+        "checked_at": "2026-10-28T07:15:32.207Z"
+      }
+    },
+    "jobs_status": 200,
+    "jobs": {
+      "total": 1019,
+      "collections": {
+        "total": 1019,
+        "employers": 37,
+        "early_career": 66,
+        "sponsorship": 54,
+        "licensed": 0,
+        "salary": 212
+      },
+      "licence_register": {
+        "available": false,
+        "source_date": "2026-10-27",
+        "checked_at": "2026-10-28T07:15:32.207Z"
+      }
+    },
+    "study_status": 200,
+    "study": {
+      "default_student_route_count": 751,
+      "meta": {
+        "snapshot": "2026-10-29-736b5169-a08b-4531-8e2f-2271a059e5e8",
+        "source_url": "https://assets.publishing.service.gov.uk/media/6ae304ae976f73ef5cfb67a9/SP_-_Student_and_Child_Student_Web_Register_-_2026-10-29.csv",
+        "source_date": "2026-10-29",
+        "publication_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-students",
+        "checked_at": "2026-10-30T07:15:30.564Z",
+        "last_success": "2026-10-30T07:15:30.564Z",
+        "total": 937,
+        "source_rows": 1289,
+        "refresh_error": null
+      }
+    },
+    "student_import_forced": false,
+    "production_reuse_observed": false
+  }
 }

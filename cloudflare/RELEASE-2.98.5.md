@@ -19,3 +19,9 @@ Job reads returning 200 do not establish working writes, private saves, all sour
 ## Release verification
 
 No schema or dependency graph change. Same-day recovery evidence remains 46 migrations/204 matching objects with a current recovery point at 11:42:37 UTC; it is not a restore or retention-window test. Same-day zero-known-advisory audit is reused with an unchanged dependency graph. Pinned runtime: Node 24.19.0. Exact tests, build, deployment and CI results are retained in `tests/evidence/student-reuse-2026-10-30.json` as they complete. Compatible rollback: **2.98.4 Worker `edc38235-3127-4ba6-bcdf-b6aa561ccef7`**. Use separate version upload/deploy, preserving existing triggers. Production reuse and its savings await the next genuine complete student check; do not force one for acceptance.
+
+## Publication receipt
+
+Runtime `24260aa01a43a2ab813e2ce085b056f3bde250e8` is live at 100% as Worker `7307c8e5-3743-4140-ab2f-a33741e5112b`, deployment `76cd4009-0ab2-4555-959e-34c7a933fdbd`, 30 October 12:17:19.467788 UTC. Upload/deploy both exited 0 and triggers were not resubmitted. Excluded HTTP checks confirm version 2.98.5, jobs 200 with 1,019 roles/54 sponsorship-mentioned adverts and study 200 with the existing 937-record snapshot (751 match the default Student-route filter). Stale worker-register evidence remains unavailable for licence relationships. No student check or customer write was forced.
+
+All **790 tests**, TypeScript/build, 20 prerenders, browser budgets and version-upload dry run pass on pinned Node 24.19.0. Hosted runtime jobs **124057034249/124057009194** did not start because of the GitHub account billing lock; annotations were inspected. GitGuardian **124057100365** is neutral/skipped for PR size. These are not hosted acceptance. Final documentation-head checks remain separately required; PR #1 stays open/unmerged.
