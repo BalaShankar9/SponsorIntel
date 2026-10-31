@@ -1,0 +1,84 @@
+{
+  "started_at": "2026-10-30T14:35:21.816Z",
+  "observed_at": "2026-10-30T14:35:31.655Z",
+  "database": "sponsorintel-db",
+  "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+  "workflow": "sponsorintel-business",
+  "status": "needs_review",
+  "issues": [
+    "latest_application_over_two_hours_old",
+    "unfinished_application:business-497989",
+    "provider_not_found:business-497989"
+  ],
+  "application_before": {
+    "unfinished_count": 1,
+    "selection_limited": false,
+    "runs": [
+      {
+        "id": "business-497989",
+        "state": "queued",
+        "created_at": "2026-10-23T13:45:30.093Z",
+        "finished_at": null,
+        "trigger_kind": "scheduled",
+        "recorded_steps": 0
+      },
+      {
+        "id": "business-497990",
+        "state": "attention",
+        "created_at": "2026-10-23T14:45:30.093Z",
+        "finished_at": "2026-10-23T14:46:54.646Z",
+        "trigger_kind": "scheduled",
+        "recorded_steps": 5
+      }
+    ]
+  },
+  "application_after": {
+    "unfinished_count": 1,
+    "selection_limited": false,
+    "runs": [
+      {
+        "id": "business-497989",
+        "state": "queued",
+        "created_at": "2026-10-23T13:45:30.093Z",
+        "finished_at": null,
+        "trigger_kind": "scheduled",
+        "recorded_steps": 0
+      },
+      {
+        "id": "business-497990",
+        "state": "attention",
+        "created_at": "2026-10-23T14:45:30.093Z",
+        "finished_at": "2026-10-23T14:46:54.646Z",
+        "trigger_kind": "scheduled",
+        "recorded_steps": 5
+      }
+    ]
+  },
+  "application_stable_during_inspection": true,
+  "providers": [
+    {
+      "id": "business-497989",
+      "observed_at": "2026-10-30T14:35:28.760Z",
+      "lookup": "not_found",
+      "error_code": 10400,
+      "execution_outcome": "unknown"
+    },
+    {
+      "observed_at": "2026-10-30T14:35:30.734Z",
+      "lookup": "found",
+      "id": "business-497990",
+      "version_id": "53176112-4726-4bdf-93f2-1e7ab3453bd9",
+      "queued_at": "2026-10-23T14:45:43.326Z",
+      "started_at": "2026-10-23T14:45:46.469Z",
+      "ended_at": "2026-10-23T14:46:55.013Z",
+      "success": true,
+      "execution_outcome": "ended_successfully",
+      "application_output_state": "attention"
+    }
+  ],
+  "actions_performed": [],
+  "execution_success_is_business_acceptance": false,
+  "missing_instance_is_terminal_proof": false,
+  "zero_recorded_steps_proves_no_external_action": false,
+  "automatic_recovery_authorized": false
+}

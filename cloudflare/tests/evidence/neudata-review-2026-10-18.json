@@ -1,0 +1,142 @@
+{
+  "observed_at": "2026-10-18T13:09:32.895Z",
+  "scope": "Private follow-up resolves employer identity evidence and retains a concrete source-rights hold; no source admission or public jobs",
+  "lead": {
+    "id": "b843497d-904f-4b2d-a48d-4004d7ce9695",
+    "revision": 2,
+    "revision_id": "ac38b9de-b897-4947-a490-c1d3f61cff3c",
+    "recorded_at": "2026-10-18T13:09:05.989Z",
+    "state": "held",
+    "method": "agent_assisted",
+    "source_observed_at": "2026-10-18T13:08:00.000Z",
+    "browser_observed_at": "2026-10-18T13:08:25.346Z",
+    "follow_up_at": "2026-10-21T11:00:00.000Z",
+    "original_url": "https://jobs.ashbyhq.com/neudata/cea38772-7d77-4342-a8f3-ff0d1c2f9224",
+    "precise_posted_at": null,
+    "precise_deadline": null
+  },
+  "primary_evidence": {
+    "careers": "https://www.neudata.co/careers",
+    "careers_browser": "Two visible London roles; exact Business Development Executive link matches retained Ashby original. Indexed hidden fallback text does not establish closure.",
+    "privacy": "https://www.neudata.co/privacy-statement",
+    "companies_house": "https://find-and-update.company-information.service.gov.uk/company/09942593",
+    "company": "Neudata Limited",
+    "company_number": "09942593",
+    "company_status": "Active",
+    "terms": "https://www.neudata.co/terms-and-conditions",
+    "terms_sections": [
+      "3.2",
+      "3.3",
+      "3.5",
+      "3.6"
+    ],
+    "rights_decision": "Hold under the existing source-admission policy until applicable recruitment-content reuse permission or a verified exception is established; public API access does not settle employer-specific redistribution rights.",
+    "public_api_documentation": "https://developers.ashbyhq.com/docs/public-job-posting-api",
+    "licence": {
+      "id": "01c4e93fe94adf92ba88b582",
+      "snapshot": "2026-10-16-7c8b2b3d",
+      "name": "Neudata Limited",
+      "city": "London",
+      "county": "",
+      "ratings": "[\"Worker (A rating)\"]",
+      "routes": "[\"Skilled Worker\"]",
+      "skilled": 1
+    },
+    "register": {
+      "snapshot": "2026-10-16-7c8b2b3d",
+      "source_date": "2026-10-16",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6ad1d58449ba86d6c953ca9d/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-16.csv",
+      "publication_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+      "checked_at": "2026-10-18T07:16:01.015Z"
+    },
+    "sponsorship_quote": "Candidates who may require visa sponsorship should discuss this with the hiring manager during the interview process.",
+    "application_boundary": "Original overview and Apply link rechecked; prior form inspection is historical, not a new submission or completed application. No applicant data entered."
+  },
+  "preservation": {
+    "interval": [
+      "2026-10-18T13:07:35.040Z",
+      "2026-10-18T13:09:32.895Z"
+    ],
+    "changed_content_fields": [
+      "identity_note",
+      "identity_url",
+      "observed_at",
+      "reason"
+    ],
+    "prior_revisions_preserved": 65,
+    "prior_audits_preserved": 55,
+    "new_revisions": 1,
+    "new_audit": {
+      "action": "discovery-review",
+      "target": "b843497d-904f-4b2d-a48d-4004d7ce9695",
+      "created_at": "2026-10-18T13:09:05.989Z"
+    },
+    "lead_count": 25,
+    "daily_new_leads": 4,
+    "daily_limit": 5,
+    "unchanged_groups": [
+      "leads",
+      "boards",
+      "scout",
+      "jobs"
+    ],
+    "before_hashes": {
+      "leads": "75ddb953f54f0f450728dee40b8b539a0c27174bc853e75c2509fcf7436f3587",
+      "revisions": "dd5d929fbcd9a93f4775f13929cf244851c4e8f885e6583ccedaa4a3efa2be99",
+      "audit": "8e970e7f4c84ed3ff4a2e8b068efcb296e070620178c970ecad1b505bbb57332",
+      "boards": "9915574320795bf1a0b6f8da1b359f2f48eb0f698c3f5c85204823818a2f8ebc",
+      "scout": "abfa8f99026abd099e43c95bbc7883e6c3ba945bb9b9efb2fa030943127c9e79",
+      "jobs": "c6e3d773fbda672f8445961494c13781b6840e6c0e2bed234a62498fc40dc54d"
+    },
+    "after_hashes": {
+      "leads": "75ddb953f54f0f450728dee40b8b539a0c27174bc853e75c2509fcf7436f3587",
+      "revisions": "f3694c37fd3e5478a7543d502072f6af1a3cea95c5702bbd78f585f1f4610646",
+      "audit": "f62aa5519bbc77eb31b7634cbabc7f9d7f62a3bc63cf24615b4a24edfbe3690e",
+      "boards": "9915574320795bf1a0b6f8da1b359f2f48eb0f698c3f5c85204823818a2f8ebc",
+      "scout": "abfa8f99026abd099e43c95bbc7883e6c3ba945bb9b9efb2fa030943127c9e79",
+      "jobs": "c6e3d773fbda672f8445961494c13781b6840e6c0e2bed234a62498fc40dc54d"
+    },
+    "all_fourteen_operational_groups_unchanged": true,
+    "operational_before_hashes": {
+      "business_controls": "0f4b27c24af98ea2a26b2cce1d6234689f79cb0c120cc9d2d6ce554c6c9d8606",
+      "marketing_controls": "f6d4499580d6a2ac2e1826cb785d7d34327044674423e93afee777d1a9703126",
+      "research_control": "b3bda3a8d16547cf4ad98d35773583d123f6cd3c506f6c5972d5ed70e1328500",
+      "application_controls": "16a9834b711b6f57cb52e748e14df296d03f58e696a7b602c7033e0f0f4460d8",
+      "source_controls": "86b1706d7eea2ceb20784aa14587d3ea62afce0ab03855200e3e7d0fc65cf4cd",
+      "marketing_briefs": "772f5c69bf0537ea9d99b102acb57125aa70fcedf9bbbd61dcb0c2f2f21d73ee",
+      "marketing_receipts": "dc108ca978a6d71091c1421bf9d78699a79e433dbb745e1c53cf74579982609b",
+      "source_budget": "7bce246ee30b2422006950d912cfa9754a7fcd2f2fd98a9a69c220048f8b5340",
+      "ai_budget": "94871d8784474bbb41be2739452b8762cc383fb17d1f85492e569dd586aae7b6",
+      "business_runs": "0a5bef3d20e6c116954a1a4f21982b18360697cc59188028e6cfdc1c1e2004da",
+      "source_runs": "7fab5268a44afa93298ea46058eac8d406df3efae39d3f1c9d5ef282773ac93c",
+      "marketing_runs": "65d120cea12ba228483cacf7edfe4b7c247f21fbe482fd731e27063d505c09d4",
+      "issues": "eb6462552efca3e6024b4d3cf86d5f0e4920ee050e443c9e1469579e63f0b38f",
+      "foreign_keys": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "operational_after_hashes": {
+      "business_controls": "0f4b27c24af98ea2a26b2cce1d6234689f79cb0c120cc9d2d6ce554c6c9d8606",
+      "marketing_controls": "f6d4499580d6a2ac2e1826cb785d7d34327044674423e93afee777d1a9703126",
+      "research_control": "b3bda3a8d16547cf4ad98d35773583d123f6cd3c506f6c5972d5ed70e1328500",
+      "application_controls": "16a9834b711b6f57cb52e748e14df296d03f58e696a7b602c7033e0f0f4460d8",
+      "source_controls": "86b1706d7eea2ceb20784aa14587d3ea62afce0ab03855200e3e7d0fc65cf4cd",
+      "marketing_briefs": "772f5c69bf0537ea9d99b102acb57125aa70fcedf9bbbd61dcb0c2f2f21d73ee",
+      "marketing_receipts": "dc108ca978a6d71091c1421bf9d78699a79e433dbb745e1c53cf74579982609b",
+      "source_budget": "7bce246ee30b2422006950d912cfa9754a7fcd2f2fd98a9a69c220048f8b5340",
+      "ai_budget": "94871d8784474bbb41be2739452b8762cc383fb17d1f85492e569dd586aae7b6",
+      "business_runs": "0a5bef3d20e6c116954a1a4f21982b18360697cc59188028e6cfdc1c1e2004da",
+      "source_runs": "7fab5268a44afa93298ea46058eac8d406df3efae39d3f1c9d5ef282773ac93c",
+      "marketing_runs": "65d120cea12ba228483cacf7edfe4b7c247f21fbe482fd731e27063d505c09d4",
+      "issues": "eb6462552efca3e6024b4d3cf86d5f0e4920ee050e443c9e1469579e63f0b38f",
+      "foreign_keys": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "foreign_key_errors": 0
+  },
+  "budgets": {
+    "source_reservations": 360,
+    "source_limit": 500,
+    "ai_starts": 2,
+    "ai_calls": 8
+  },
+  "next_action": "Review applicable reuse scope or retained permission and the current opening before any bounded complete-feed probe/admission. Follow-up stays 21 October noon BST. No outreach authorised or sent.",
+  "boundaries": "No new lead/source/public job, source probe, forced workflow, AI/Google call, contact, application, email/social send, permission expansion, deployment or other project resume."
+}

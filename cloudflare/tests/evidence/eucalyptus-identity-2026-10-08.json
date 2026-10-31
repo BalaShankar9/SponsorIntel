@@ -1,0 +1,30 @@
+{
+  "reviewed_at": "2026-10-08",
+  "board_id": "eucalyptus",
+  "brand": "Eucalyptus",
+  "evidence_url": "https://www.eucalyptus.health/privacy-policy",
+  "evidence_section": "Annex B: Responsible Group Entities / United Kingdom (Hims, Hers and Juniper)",
+  "quote": "Fill Function UK Limited - Employer, Consumer Services and Service Provider Contracts",
+  "sponsor": {
+    "id": "d6a811754495f7de7da70032",
+    "name": "Fill Function UK Ltd",
+    "city": "London",
+    "routes": "[\"Skilled Worker\"]",
+    "ratings": "[\"Worker (A rating)\"]",
+    "skilled": 1
+  },
+  "register": {
+    "snapshot": "2026-10-06-dbdf795f",
+    "source_date": "2026-10-06",
+    "source_url": "https://assets.publishing.service.gov.uk/media/6ac4b79911ed58342ad8e4c5/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-06.csv",
+    "publication_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+    "checked_at": "2026-10-07T07:15:14.478Z"
+  },
+  "decision": "Reviewed brand to UK group employer connection. Limited/Ltd suffix equivalence; no fuzzy company-name matching. This is not a vacancy-specific employing-entity or sponsorship finding.",
+  "not_accepted": [
+    "Eucalyptus Holdco Limited: brand relationship not established.",
+    "Juniper Tech Limited, Coventry: not the legal entity named by the brand."
+  ],
+  "advert_classifications_changed": false,
+  "job_observation_dates_changed": false
+}

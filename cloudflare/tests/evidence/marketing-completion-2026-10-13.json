@@ -1,0 +1,814 @@
+{
+  "generated_at": "2026-10-13T10:06:49.800462+00:00",
+  "release": "2.63.0",
+  "worker": "b8ba07ed-8d1d-481c-80d2-d96eba48a94d",
+  "code_commit": "86f48a0567cc76c74dff2cef9b5f48622a034c62",
+  "rollback": "6cdbd59a-b1f4-4af5-a38b-74c83420ab65",
+  "validation": {
+    "node": "24.19.0",
+    "tests_passed": 615,
+    "build": true,
+    "prerenders": 17,
+    "dry_run": true,
+    "initial_runtime_fixture_failure": "Missing seeded controls; fixed and passed focused and full suite.",
+    "initial_http_qa_failure": "Incorrect /api/workspace probe returned 404; corrected to the implemented /api/career/workspace route, which returned 401."
+  },
+  "recovery": {
+    "observed_at": "2026-10-13T09:04:10.506Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "4b2d62b36908a132d387f1c2497fbde297025486de75a33e21326964bc609009",
+    "database_size_bytes": 106708992,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 162,
+      "actual_objects": 162,
+      "migration_files": 38,
+      "expected_sha256": "5b34c8cd1359bda26c83eba34c06c4ffab300dba579aa873d0ffcf3fd20b15e6",
+      "actual_sha256": "5b34c8cd1359bda26c83eba34c06c4ffab300dba579aa873d0ffcf3fd20b15e6",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "live": {
+    "at": "2026-10-13T10:05:37.699Z",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "body": {
+          "ok": true,
+          "version": "2.63.0",
+          "register": {
+            "date": "2026-10-12",
+            "count": 127982,
+            "checked_at": "2026-10-13T07:15:42.984Z"
+          }
+        }
+      },
+      {
+        "path": "/api/admin/marketing/agents",
+        "status": 403
+      },
+      {
+        "path": "/api/career/workspace",
+        "status": 401
+      },
+      {
+        "path": "/jobs",
+        "status": 200
+      }
+    ],
+    "bundle": {
+      "path": "/assets/index-C16km4HF.js",
+      "sha256": "b07eead5692ae23b8a259f9859945f5d0491119ff5ae0c31fb54956a04c9333c",
+      "matches": true
+    },
+    "preserved": {
+      "research": true,
+      "application": true,
+      "application_campaign": true,
+      "source": true,
+      "marketing": true,
+      "briefs": true,
+      "steps": true,
+      "ai": true
+    },
+    "before": {
+      "observed_at": "2026-10-13T10:02:00.464Z",
+      "sha256": {
+        "research": "360e4f87e5a90e635d28f23ac63771e0427f5efcaeeb0e4ea84c55b01a3484c0",
+        "application": "7bf46ede07c48d909623c3a9f2f3300cd018166821c798d5c1a2cc97bcd354bd",
+        "application_campaign": "bfc0e8d2d2da800b2349c86b962877e6eb50e8fe80d15bb10e314d91af4b1f5a",
+        "source": "7a7d1bf85a5b52df1b0e2a6c0c726135baf172f1c7be0455df68ef29ca6c20a7",
+        "marketing": "f72f71f25548b3d63b906398a71709daef0e1210b189bb92723b042d4509eba9",
+        "briefs": "78a3fdc4c1f8ae9482d4fd72f53b27d98f1ab1ebc3bfd02f34a7ed752e605708",
+        "steps": "68f591064dd3458bfe5604ba0c3ab6bf860196bcb74a99cfc56f561907039207",
+        "ai": "c1c45061e5d4a067ecb56e0e24384a5f30ca1fa45a9c233634a08435f149293b"
+      },
+      "states": {
+        "research": [
+          {
+            "campaign": "real-adverts-2026-10-08-compact-v2",
+            "enabled": 0,
+            "revision": 1
+          }
+        ],
+        "application": [
+          {
+            "enabled": 0
+          }
+        ],
+        "application_campaign": [
+          {
+            "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0"
+          }
+        ],
+        "source": [
+          {
+            "source_id": "portmandentex",
+            "paused": 1,
+            "reason": "Agent-assisted containment, 9 October 2026: three scheduled collections repeatedly failed the public identity comparison for advert 744000145730189; zero PortmanDentex jobs published and shared source reservations exhausted. Pause this source pending original catalogue/detail reconciliation and tested repair. Preserve cache, failed receipts and consumed budgets; do not force a refresh."
+          }
+        ],
+        "marketing": [
+          {
+            "enabled": 1
+          }
+        ],
+        "briefs": [
+          {
+            "id": "29066bbc-acb2-4570-b2ee-2bd25719c3a8",
+            "state": "held",
+            "version": 1,
+            "revision": 2,
+            "last_event": "62facf40-1a32-4d32-9966-2e8601ae440d"
+          },
+          {
+            "id": "a19f14be-af7f-45d2-9382-2026162075f3",
+            "state": "held",
+            "version": 2,
+            "revision": 3,
+            "last_event": "b0b49069-98b1-42cc-aae8-2b1d005fde30"
+          },
+          {
+            "id": "launch-fb-adverts",
+            "state": "published",
+            "version": 1,
+            "revision": 2,
+            "last_event": "44844901-5d52-4753-881d-ffb0fe5d701d"
+          },
+          {
+            "id": "launch-fb-applications",
+            "state": "scheduled",
+            "version": 1,
+            "revision": 1,
+            "last_event": "launch-fb-applications:import"
+          },
+          {
+            "id": "launch-fb-evidence",
+            "state": "published",
+            "version": 1,
+            "revision": 2,
+            "last_event": "0e6cfa28-cb4c-4ac0-bfe6-904acaa3e437"
+          },
+          {
+            "id": "launch-li-evidence",
+            "state": "published",
+            "version": 1,
+            "revision": 2,
+            "last_event": "e0bb1985-3f00-4add-8c2e-cc3fe598e3b8"
+          }
+        ],
+        "ai": [
+          {
+            "day": "2026-10-13",
+            "runs": 1,
+            "calls": 0
+          }
+        ]
+      }
+    },
+    "after": {
+      "observed_at": "2026-10-13T10:04:23.107Z",
+      "sha256": {
+        "research": "360e4f87e5a90e635d28f23ac63771e0427f5efcaeeb0e4ea84c55b01a3484c0",
+        "application": "7bf46ede07c48d909623c3a9f2f3300cd018166821c798d5c1a2cc97bcd354bd",
+        "application_campaign": "bfc0e8d2d2da800b2349c86b962877e6eb50e8fe80d15bb10e314d91af4b1f5a",
+        "source": "7a7d1bf85a5b52df1b0e2a6c0c726135baf172f1c7be0455df68ef29ca6c20a7",
+        "marketing": "f72f71f25548b3d63b906398a71709daef0e1210b189bb92723b042d4509eba9",
+        "briefs": "78a3fdc4c1f8ae9482d4fd72f53b27d98f1ab1ebc3bfd02f34a7ed752e605708",
+        "steps": "68f591064dd3458bfe5604ba0c3ab6bf860196bcb74a99cfc56f561907039207",
+        "ai": "c1c45061e5d4a067ecb56e0e24384a5f30ca1fa45a9c233634a08435f149293b"
+      },
+      "states": {
+        "research": [
+          {
+            "campaign": "real-adverts-2026-10-08-compact-v2",
+            "enabled": 0,
+            "revision": 1
+          }
+        ],
+        "application": [
+          {
+            "enabled": 0
+          }
+        ],
+        "application_campaign": [
+          {
+            "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0"
+          }
+        ],
+        "source": [
+          {
+            "source_id": "portmandentex",
+            "paused": 1,
+            "reason": "Agent-assisted containment, 9 October 2026: three scheduled collections repeatedly failed the public identity comparison for advert 744000145730189; zero PortmanDentex jobs published and shared source reservations exhausted. Pause this source pending original catalogue/detail reconciliation and tested repair. Preserve cache, failed receipts and consumed budgets; do not force a refresh."
+          }
+        ],
+        "marketing": [
+          {
+            "enabled": 1
+          }
+        ],
+        "briefs": [
+          {
+            "id": "29066bbc-acb2-4570-b2ee-2bd25719c3a8",
+            "state": "held",
+            "version": 1,
+            "revision": 2,
+            "last_event": "62facf40-1a32-4d32-9966-2e8601ae440d"
+          },
+          {
+            "id": "a19f14be-af7f-45d2-9382-2026162075f3",
+            "state": "held",
+            "version": 2,
+            "revision": 3,
+            "last_event": "b0b49069-98b1-42cc-aae8-2b1d005fde30"
+          },
+          {
+            "id": "launch-fb-adverts",
+            "state": "published",
+            "version": 1,
+            "revision": 2,
+            "last_event": "44844901-5d52-4753-881d-ffb0fe5d701d"
+          },
+          {
+            "id": "launch-fb-applications",
+            "state": "scheduled",
+            "version": 1,
+            "revision": 1,
+            "last_event": "launch-fb-applications:import"
+          },
+          {
+            "id": "launch-fb-evidence",
+            "state": "published",
+            "version": 1,
+            "revision": 2,
+            "last_event": "0e6cfa28-cb4c-4ac0-bfe6-904acaa3e437"
+          },
+          {
+            "id": "launch-li-evidence",
+            "state": "published",
+            "version": 1,
+            "revision": 2,
+            "last_event": "e0bb1985-3f00-4add-8c2e-cc3fe598e3b8"
+          }
+        ],
+        "ai": [
+          {
+            "day": "2026-10-13",
+            "runs": 1,
+            "calls": 0
+          }
+        ]
+      }
+    }
+  },
+  "baseline_at": "2026-10-13T09:04:08.232Z",
+  "business": {
+    "platform": {
+      "id": "business-497744",
+      "status": "complete",
+      "success": true,
+      "start": "2026-10-13T08:45:41.377Z",
+      "end": "2026-10-13T08:46:11.657Z",
+      "versionId": "c28548d3-1c25-4617-abcd-cfa7f26cd9a8",
+      "output": {
+        "id": "business-497744",
+        "state": "attention",
+        "health": {
+          "findings": 11,
+          "high": 2
+        },
+        "supervision": {
+          "checked_at": "2026-10-13T08:45:41.766Z",
+          "checks": [
+            {
+              "kind": "research",
+              "action": "idle"
+            },
+            {
+              "kind": "marketing",
+              "action": "idle"
+            },
+            {
+              "kind": "applications",
+              "action": "paused"
+            }
+          ],
+          "reconciled": 0,
+          "needs_attention": 0,
+          "model_calls": 0,
+          "external_posts": 0
+        },
+        "search": {
+          "day": "2026-10-13",
+          "state": "completed",
+          "requests": 10,
+          "reused": true
+        },
+        "links": [
+          {
+            "id": "e93691c20c593c6ee637a6ea",
+            "state": "checked",
+            "reason": "title_observed",
+            "requests": 2
+          },
+          {
+            "id": "72759b1b32e39cde0218a118",
+            "state": "checked",
+            "reason": "title_observed",
+            "requests": 1
+          }
+        ],
+        "discovery": {
+          "day": "2026-10-13",
+          "run_id": "business-497736",
+          "claim": "b6795847-189e-452d-b207-e1265fd341af",
+          "state": "completed",
+          "reason": "bounded_search_finished",
+          "started_at": "2026-10-13T00:46:28.417Z",
+          "finished_at": "2026-10-13T00:46:37.384Z",
+          "capacity": 2,
+          "reserved_requests": 4,
+          "requests": 3,
+          "retained": 1,
+          "inspected": 2,
+          "search_pages": 1,
+          "replayed": true
+        },
+        "opportunities": {
+          "checked_at": "2026-10-13T08:45:54.994Z",
+          "enabled": true,
+          "checked": 0,
+          "held": [],
+          "changed": [],
+          "external_attention": 0,
+          "limited": false,
+          "external_actions": 0
+        },
+        "cleanup": {
+          "state": "completed",
+          "stale_roles": 0,
+          "policy": "Hide records last observed over 72 hours ago; retain the records, feedback and customer workspaces."
+        },
+        "publication": {
+          "state": "not_due",
+          "next_due": "2026-10-14T16:50:43.330Z"
+        },
+        "marketing": {
+          "prepared": 0,
+          "external_posts_sent": 0
+        },
+        "editorial": {
+          "id": "marketing-2026-10-13",
+          "state": "no_post",
+          "result": {
+            "decision": "no_post",
+            "source_id": "",
+            "reason": "No fresh, non-duplicate source has a slot within its evidence expiry.",
+            "ranked": [],
+            "timing_reason": "Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first."
+          },
+          "reused": true
+        },
+        "research": {
+          "state": "held",
+          "research_id": null,
+          "detail": "Research was held by its availability or budget controls. No automatic retry today."
+        },
+        "applications": {
+          "state": "paused"
+        }
+      }
+    },
+    "measured_at": "2026-10-13T08:45:55.943Z",
+    "jobs": {
+      "total": 924,
+      "employers": 36,
+      "offered": 21,
+      "conditional": 34,
+      "unavailable": 96,
+      "not_stated": 773,
+      "early_career": 50,
+      "salary": 145
+    },
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/jobs",
+        "status": 200,
+        "ok": true,
+        "security": true,
+        "content": {
+          "ok": true,
+          "visible_roles": 12,
+          "matching_roles": 924,
+          "generated_at": "2026-10-13T08:45:57.167Z"
+        }
+      },
+      {
+        "path": "/insights",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/api/admin/session",
+        "status": 403,
+        "ok": true,
+        "security": true
+      }
+    ],
+    "measurement": {
+      "version": 2,
+      "enabled_at": "2026-10-08T11:57:33.807Z",
+      "first_full_day": "2026-10-09",
+      "completed_days": 4,
+      "from": "2026-10-09",
+      "to": "2026-10-13",
+      "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+      "browser_evidence": {
+        "version": 1,
+        "kind": "browser_reported",
+        "state": "collecting",
+        "enabled_at": "2026-10-11T18:44:54.941Z",
+        "first_full_day": "2026-10-12",
+        "from": "2026-10-12",
+        "to": "2026-10-13",
+        "completed_days": 1,
+        "evidence_checks": 0,
+        "campaigns": [],
+        "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+      }
+    },
+    "metrics": [
+      {
+        "day": "2026-10-09",
+        "event": "campaign_page_view",
+        "count": 1
+      },
+      {
+        "day": "2026-10-09",
+        "event": "page_view",
+        "count": 24
+      },
+      {
+        "day": "2026-10-10",
+        "event": "campaign_page_view",
+        "count": 9
+      },
+      {
+        "day": "2026-10-10",
+        "event": "page_view",
+        "count": 35
+      },
+      {
+        "day": "2026-10-11",
+        "event": "page_view",
+        "count": 7
+      },
+      {
+        "day": "2026-10-12",
+        "event": "campaign_page_view",
+        "count": 10
+      },
+      {
+        "day": "2026-10-12",
+        "event": "page_view",
+        "count": 26
+      }
+    ],
+    "discovery": {
+      "checked_at": "2026-10-13T08:45:55.943Z",
+      "total": 16,
+      "unresolved": 9,
+      "overdue": 1,
+      "changed_links": 1,
+      "current_linked_jobs": 2,
+      "last_recorded_at": "2026-10-13T00:46:34.905Z",
+      "counts": [
+        {
+          "source_kind": "employer",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "employer",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "held",
+          "total": 2
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_post",
+          "state": "rejected",
+          "total": 2
+        },
+        {
+          "source_kind": "recruiter",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "held",
+          "total": 5
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "pending",
+          "total": 2
+        }
+      ],
+      "limitation": "Private sourcing records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Automated source candidates are identified separately from agent-assisted and owner reviews."
+    },
+    "advert_reviews": {
+      "total": 3,
+      "held": 3,
+      "overdue": 3
+    },
+    "application": {
+      "state": "paused",
+      "operation_state": "paused",
+      "progress_state": "ready",
+      "enabled": false,
+      "business_enabled": true,
+      "evaluation_enabled": false,
+      "pause_reason": "evaluation",
+      "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+      "completed": 0,
+      "total": 20,
+      "assessments": {
+        "assessable_outputs": 9,
+        "assessed_outputs": 9,
+        "unassessed_outputs": 0,
+        "needs_work": 6,
+        "incomplete": 0,
+        "stale": 0,
+        "groups": [],
+        "limited": false,
+        "automatic_promotion": false,
+        "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+      }
+    },
+    "reference": {
+      "state": "paused",
+      "dataset": "real-adverts-2026-10-08-compact-v2",
+      "original_state": "needs_attention",
+      "evaluated_adverts": 0,
+      "total_adverts": 50,
+      "dangerous_false_positives": 0,
+      "unsupported_refusals": 0,
+      "disputed_items": 0
+    },
+    "email_delivery": {
+      "configured": true,
+      "events_7d": 8,
+      "last_received": "2026-10-12T10:00:50.930Z",
+      "failures_7d": 0,
+      "blocked_owners": 0,
+      "queues": {
+        "unprocessed": {
+          "backlogCount": 0,
+          "backlogBytes": 0,
+          "oldestMessageTimestamp": 0,
+          "checked_at": "2026-10-13T08:45:55.943Z"
+        },
+        "incoming": {
+          "backlogCount": 0,
+          "backlogBytes": 0,
+          "oldestMessageTimestamp": 0,
+          "checked_at": "2026-10-13T08:45:55.943Z"
+        }
+      }
+    }
+  },
+  "source": {
+    "id": "scheduled-1791873036000",
+    "status": "complete",
+    "success": true,
+    "start": "2026-10-13T06:30:41.090Z",
+    "end": "2026-10-13T06:33:02.884Z",
+    "versionId": "17789755-6083-4702-b0f9-bbd62b3d2cc1",
+    "output": {
+      "state": "attention",
+      "counts": {
+        "published": 36,
+        "skipped": 1
+      }
+    }
+  },
+  "marketing": [
+    {
+      "id": "marketing-2026-10-13",
+      "state": "no_post",
+      "calls": 0,
+      "policy": "sourced-guides-and-browser-evidence-v5",
+      "measurement": {
+        "version": 2,
+        "enabled_at": "2026-10-08T11:57:33.807Z",
+        "first_full_day": "2026-10-09",
+        "completed_days": 4,
+        "from": "2026-10-09",
+        "to": "2026-10-13",
+        "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+        "browser_evidence": {
+          "version": 1,
+          "kind": "browser_reported",
+          "state": "collecting",
+          "enabled_at": "2026-10-11T18:44:54.941Z",
+          "first_full_day": "2026-10-12",
+          "from": "2026-10-12",
+          "to": "2026-10-13",
+          "completed_days": 1,
+          "evidence_checks": 0,
+          "campaigns": [],
+          "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+        }
+      },
+      "performance": {
+        "version": 1,
+        "items": [
+          {
+            "id": "b25098d4-c062-4677-9258-f68ee55d9a75",
+            "destination": "linkedin-company",
+            "post_url": "https://www.linkedin.com/feed/update/urn:li:share:7513668718439268353/",
+            "title": "Sponsor Intel company welcome \u2014 native LinkedIn results",
+            "observed_at": "2026-10-11T15:14:00.000Z",
+            "window_type": "lifetime",
+            "window_start": null,
+            "window_end": "2026-10-11T15:14:00.000Z",
+            "timezone": "Europe/London",
+            "published_at": null,
+            "availability": "reported",
+            "metrics": {
+              "impressions": 103,
+              "views": null,
+              "reach": 70,
+              "clicks": 2,
+              "link_clicks": null,
+              "reactions": 0,
+              "comments": 0,
+              "shares": 0,
+              "saves": null
+            },
+            "campaign_id": "li-welcome",
+            "assessment_type": "agent_assisted"
+          }
+        ],
+        "limit": "Owner-observed platform aggregates, not an independently connected provider feed. Missing figures are unknown. Windows, post ages and metric definitions can differ; do not sum overlapping reach, infer unique customers or causal conversions, or declare a winning campaign from sparse observations. Observations cannot authorise publication or clear a hold.",
+        "comparison": "No automatic winner, conversion rate or summed reach is calculated. A null publication time means post age is unknown."
+      },
+      "platform": {
+        "id": "marketing-2026-10-13",
+        "status": "complete",
+        "success": true,
+        "start": "2026-10-13T00:46:57.169Z",
+        "end": "2026-10-13T00:47:06.462Z",
+        "versionId": "20108141-1794-47d3-9bbd-a0023f8a1d87",
+        "output": {
+          "id": "marketing-2026-10-13",
+          "state": "no_post",
+          "decision": "no_post",
+          "source_id": "",
+          "reason": "No fresh, non-duplicate source has a slot within its evidence expiry.",
+          "ranked": [],
+          "timing_reason": "Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first."
+        }
+      }
+    },
+    {
+      "id": "marketing-2026-10-12",
+      "state": "held",
+      "calls": 1,
+      "policy": "sourced-guides-and-browser-evidence-v5",
+      "measurement": {
+        "version": 2,
+        "enabled_at": "2026-10-08T11:57:33.807Z",
+        "first_full_day": "2026-10-09",
+        "completed_days": 3,
+        "from": "2026-10-09",
+        "to": "2026-10-12",
+        "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+        "browser_evidence": {
+          "version": 1,
+          "kind": "browser_reported",
+          "state": "waiting_for_complete_day",
+          "enabled_at": "2026-10-11T18:44:54.941Z",
+          "first_full_day": "2026-10-12",
+          "from": "2026-10-12",
+          "to": "2026-10-12",
+          "completed_days": 0,
+          "evidence_checks": null,
+          "campaigns": [],
+          "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+        }
+      },
+      "performance": {
+        "version": 1,
+        "items": [
+          {
+            "id": "b25098d4-c062-4677-9258-f68ee55d9a75",
+            "destination": "linkedin-company",
+            "post_url": "https://www.linkedin.com/feed/update/urn:li:share:7513668718439268353/",
+            "title": "Sponsor Intel company welcome \u2014 native LinkedIn results",
+            "observed_at": "2026-10-11T15:14:00.000Z",
+            "window_type": "lifetime",
+            "window_start": null,
+            "window_end": "2026-10-11T15:14:00.000Z",
+            "timezone": "Europe/London",
+            "published_at": null,
+            "availability": "reported",
+            "metrics": {
+              "impressions": 103,
+              "views": null,
+              "reach": 70,
+              "clicks": 2,
+              "link_clicks": null,
+              "reactions": 0,
+              "comments": 0,
+              "shares": 0,
+              "saves": null
+            },
+            "campaign_id": "li-welcome",
+            "assessment_type": "agent_assisted"
+          }
+        ],
+        "limit": "Owner-observed platform aggregates, not an independently connected provider feed. Missing figures are unknown. Windows, post ages and metric definitions can differ; do not sum overlapping reach, infer unique customers or causal conversions, or declare a winning campaign from sparse observations. Observations cannot authorise publication or clear a hold.",
+        "comparison": "No automatic winner, conversion rate or summed reach is calculated. A null publication time means post age is unknown."
+      },
+      "platform": {
+        "id": "marketing-2026-10-12",
+        "status": "complete",
+        "success": true,
+        "start": "2026-10-12T00:46:58.867Z",
+        "end": "2026-10-12T00:49:08.397Z",
+        "versionId": "20108141-1794-47d3-9bbd-a0023f8a1d87",
+        "output": {
+          "id": "marketing-2026-10-12",
+          "state": "held",
+          "reason": "Agent execution stopped or a model outcome was uncertain. No automatic retry; inspect the step records.",
+          "brief_id": null
+        }
+      },
+      "planner_failure": [
+        {
+          "name": "editorial-plan-1",
+          "attempts": [
+            {
+              "start": "2026-10-12T00:47:07.783Z",
+              "end": "2026-10-12T00:49:07.783Z",
+              "success": false,
+              "error": {
+                "name": "WorkflowTimeoutError",
+                "message": "Execution timed out after 120000ms"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "external_effects": {
+    "model_calls_by_operator": 0,
+    "forced_workflows": 0,
+    "new_schedules": 0,
+    "new_leads": 0,
+    "email_tests": 0,
+    "google_calls_by_operator": 0
+  },
+  "limits": "No customer records; aggregate/provider receipts only. Runtime fixtures prove mechanics, not independent quality or live AI completion."
+}

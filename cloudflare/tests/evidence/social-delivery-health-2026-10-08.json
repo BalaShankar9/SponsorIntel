@@ -1,0 +1,125 @@
+{
+  "assembled_at": "2026-10-08T09:25:39.265Z",
+  "version": "2.33.0",
+  "worker": "8347567d-57a8-4d61-a34e-70d22d4b0f7f",
+  "rollback_worker": "fb2e847d-2f3c-4346-9431-3fba9c4f1957",
+  "tests": {
+    "passed": 351,
+    "failed": 0,
+    "build": true,
+    "worker_dry_run": true
+  },
+  "local": {
+    "fixture": "Isolated Workerd/D1; fictional recorded outcome; no external provider, email, model or Google call",
+    "before": {
+      "health": {
+        "available": true,
+        "checked_at": "2026-10-08T09:19:45.043Z",
+        "records_checked": 4,
+        "limited": false,
+        "scheduled": 4,
+        "awaiting_check": 1,
+        "overdue": 1,
+        "uncertain": 0,
+        "failed_30d": 0,
+        "published_30d": 0,
+        "invalid_records": 0,
+        "last_published_observation": null,
+        "next_scheduled_at": "2026-10-09T09:00:00.000Z"
+      },
+      "findings": [
+        {
+          "id": "social-delivery-overdue",
+          "category": "distribution",
+          "severity": "high",
+          "title": "Verify overdue social deliveries",
+          "detail": "1 scheduled posts are at least 30 minutes past their recorded slot without a recorded outcome. This does not establish provider failure.",
+          "next_action": "Inspect the exact existing provider schedule and social account, then record the matching post URL or confirmed outcome in Marketing desk. A pending or missing receipt is not proof of failure. Do not repost, reschedule or cancel until the outcome is reconciled."
+        }
+      ]
+    },
+    "after": {
+      "health": {
+        "available": true,
+        "checked_at": "2026-10-08T09:21:10.245Z",
+        "records_checked": 4,
+        "limited": false,
+        "scheduled": 3,
+        "awaiting_check": 0,
+        "overdue": 0,
+        "uncertain": 0,
+        "failed_30d": 0,
+        "published_30d": 1,
+        "invalid_records": 0,
+        "last_published_observation": "2026-10-08T09:21:10.245Z",
+        "next_scheduled_at": "2026-10-09T09:00:00.000Z"
+      },
+      "findings": []
+    },
+    "browser_recovery_verified": true
+  },
+  "production": {
+    "health_version": "2.33.0",
+    "anonymous_business_status": 403,
+    "owner_display": {
+      "published_30d": 1,
+      "scheduled": 3,
+      "overdue": 0,
+      "uncertain": 0,
+      "last_published_observation": "2026-10-08T09:09:26.936Z",
+      "next_scheduled_at": "2026-10-09T09:00:00.000Z"
+    },
+    "publication_receipt": {
+      "id": "launch-fb-evidence",
+      "title": "Evidence snapshot",
+      "destination": "facebook-company",
+      "state": "published",
+      "version": 1,
+      "revision": 2,
+      "provider": "metricool",
+      "external_id": "1319703417896763_122093924469512994",
+      "receipt_state": "published",
+      "scheduled_at": null,
+      "post_url": "https://www.facebook.com/122093616117512994/posts/122093924469512994",
+      "observed_at": "2026-10-08T09:09:26.936Z",
+      "evidence": "Metricool schedule 390622747 (UUID -9208903732162113867) returned Facebook PUBLISHED with post ID 1319703417896763_122093924469512994 on 8 October 2026. Opened the provider URL and verified Sponsor Intel author links to profile 61595389821505, Public audience, matching complete version-1 copy, dated 7 October figures (846/16/34/705/91) and the exact evidence_snapshot campaign link. The existing scheduled post published without a retry or duplicate. This verifies delivery, not reach or user growth."
+    },
+    "campaign_events": [
+      {
+        "day": "2026-10-07",
+        "event": "campaign_page_view",
+        "dimension": "fb-evidence",
+        "count": 3
+      },
+      {
+        "day": "2026-10-08",
+        "event": "campaign_page_view",
+        "dimension": "fb-evidence",
+        "count": 4
+      }
+    ],
+    "alert_scan": {
+      "checked_at": "2026-10-08T09:15:38.410Z",
+      "owners": 1,
+      "attempted": 0,
+      "accepted": 0,
+      "held": 0
+    }
+  },
+  "automation": {
+    "id": "sponsor-intel-daily-improvement",
+    "updated_in_place": true,
+    "schedule_preserved": true,
+    "status": "ACTIVE",
+    "next_unattended_reconciliation_observed": false
+  },
+  "new_email_sends": 0,
+  "new_production_model_calls": 0,
+  "google_retries": 0,
+  "new_provider_schedules": 0,
+  "limits": [
+    "First hourly collection of the new fields remains due.",
+    "Confirmed scheduled publication followed by operator reconciliation is not a full autonomous editorial cycle.",
+    "Provider reach, user conversion and ranking gains remain unproven."
+  ]
+}

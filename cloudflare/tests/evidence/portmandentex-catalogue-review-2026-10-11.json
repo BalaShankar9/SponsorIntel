@@ -1,0 +1,48 @@
+{
+  "observed_at": "2026-10-11T16:46:20.260423+00:00",
+  "kind": "manual_original_catalogue_reconciliation",
+  "requests": 4,
+  "catalogue_pages": [
+    {
+      "url": "https://api.smartrecruiters.com/v1/companies/PortmanDentex/postings?limit=100&offset=0&destination=PUBLIC&country=gb",
+      "rows": 100,
+      "total": 251
+    },
+    {
+      "url": "https://api.smartrecruiters.com/v1/companies/PortmanDentex/postings?limit=100&offset=100&destination=PUBLIC&country=gb",
+      "rows": 100,
+      "total": 251
+    },
+    {
+      "url": "https://api.smartrecruiters.com/v1/companies/PortmanDentex/postings?limit=100&offset=200&destination=PUBLIC&country=gb",
+      "rows": 51,
+      "total": 251
+    }
+  ],
+  "target": {
+    "id": "744000145730189",
+    "title": "Associate Dentist",
+    "catalogue_detail_identity_match": true,
+    "detail_active": true,
+    "changed_fields": [],
+    "application_url": "https://jobs.smartrecruiters.com/PortmanDentex/744000145730189-associate-dentist"
+  },
+  "production": {
+    "paused": true,
+    "published_jobs": 0,
+    "private_cache_rows": 68,
+    "last_complete_progress_ready": 51,
+    "last_complete_progress_total": 249,
+    "progress_checked_at": "2026-10-08T18:36:42.306Z",
+    "source_reservations_observed_before": 288,
+    "source_reservations_observed_after_scheduled_business": 296,
+    "manual_api_reads_today": 6,
+    "manual_reads_in_production_counter": false
+  },
+  "limitations": [
+    "The earlier two targeted reads and these four original-catalogue reads are separate diagnostic traffic, not production collection or reserved source workflow requests.",
+    "The full current catalogue contains 251 summaries. This is not 251 complete adverts or verified sponsorship opportunities.",
+    "The failed historical advert has no retained cache row; older diagnostics did not retain differing values. The 9 October cause remains unknown.",
+    "No source resume, publication, source refresh, new lead, AI call or counter reset."
+  ]
+}

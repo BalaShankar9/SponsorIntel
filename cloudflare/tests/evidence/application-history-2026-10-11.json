@@ -1,0 +1,501 @@
+{
+  "prepared_at": "2026-10-11",
+  "version": "2.54.0",
+  "deployment": "live",
+  "historical_source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+  "bundle_comparison": [
+    {
+      "source_version": "2.52.0",
+      "bundle_sha256": "a2fd6ae96e1a9cc61751a751574e940ae7cabfb9dc15dc90c3eedb6dcaecdedc",
+      "profile": {
+        "suite": "application-development-20-v1",
+        "fixture_hash": "5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3",
+        "policy": "paired-application-development-v1",
+        "candidate_policy": "application-linked-paragraphs-v1",
+        "writer": "@cf/zai-org/glm-4.7-flash",
+        "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "review_options": {
+          "max_tokens": 2700,
+          "temperature": 0.1,
+          "response_format": {
+            "type": "json_object"
+          }
+        },
+        "implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+      },
+      "outbound_calls": 0
+    },
+    {
+      "source_version": "2.53.0",
+      "bundle_sha256": "391e91fb4777784fb0221a2083c6fe1e94fdbc7f9ce12d58af896a707348c571",
+      "profile": {
+        "suite": "application-development-20-v1",
+        "fixture_hash": "5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3",
+        "policy": "paired-application-development-v1",
+        "candidate_policy": "application-linked-paragraphs-v1",
+        "writer": "@cf/zai-org/glm-4.7-flash",
+        "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "review_options": {
+          "max_tokens": 2700,
+          "temperature": 0.1,
+          "response_format": {
+            "type": "json_object"
+          }
+        },
+        "implementation": "db4e4498d8748b28e6f1bbc165be38f2dd760de1d89981da9a382524f32dca38"
+      },
+      "outbound_calls": 0
+    }
+  ],
+  "cause": "Five validator/helper function strings changed only because esbuild renamed local text variables. The writer function and original validator/helper source bytes were unchanged. The complete historical Worker reproduces all three retained production profiles exactly.",
+  "source_contract_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+  "retained_response_recheck": {
+    "observed_at": "2026-10-11T15:47:20.066Z",
+    "method": "local_archived_contract_recheck",
+    "retained_input_sha256": "260df8e2c2d1bfc1f98905bc064d7240f815554072a879c892cfd25381b4528c",
+    "count": 9,
+    "cases": [
+      {
+        "run": "application-eval-2026-10-09",
+        "case": "graduate-year",
+        "stage": "baseline",
+        "original_state": "rejected",
+        "diagnostic": {
+          "method": "archived_response_recheck_v1",
+          "state": "rejected_again",
+          "code": "evidence_check",
+          "summary": "A checked claim or source reference does not match the corrected document or supplied source identifiers.",
+          "contract": {
+            "id": "application-document-contract-20261008-v1",
+            "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+            "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+            "recorded_implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+          },
+          "limitation": "Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality."
+        }
+      },
+      {
+        "run": "application-eval-2026-10-09",
+        "case": "graduate-year",
+        "stage": "candidate",
+        "original_state": "rejected",
+        "diagnostic": {
+          "method": "archived_response_recheck_v1",
+          "state": "rejected_again",
+          "code": "structure",
+          "summary": "The response contains an invalid or unexpected structure.",
+          "contract": {
+            "id": "application-document-contract-20261008-v1",
+            "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+            "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+            "recorded_implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+          },
+          "limitation": "Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality."
+        }
+      },
+      {
+        "run": "application-eval-2026-10-09",
+        "case": "planned-product",
+        "stage": "candidate",
+        "original_state": "rejected",
+        "diagnostic": {
+          "method": "archived_response_recheck_v1",
+          "state": "rejected_again",
+          "code": "structure",
+          "summary": "The response contains an invalid or unexpected structure.",
+          "contract": {
+            "id": "application-document-contract-20261008-v1",
+            "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+            "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+            "recorded_implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+          },
+          "limitation": "Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality."
+        }
+      },
+      {
+        "run": "application-eval-2026-10-10",
+        "case": "advert-injection",
+        "stage": "baseline",
+        "original_state": "rejected",
+        "diagnostic": {
+          "method": "archived_response_recheck_v1",
+          "state": "rejected_again",
+          "code": "new_number",
+          "summary": "The current review introduces a number absent from the candidate input.",
+          "contract": {
+            "id": "application-document-contract-20261008-v1",
+            "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+            "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+            "recorded_implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+          },
+          "limitation": "Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality."
+        }
+      },
+      {
+        "run": "application-eval-2026-10-10",
+        "case": "advert-injection",
+        "stage": "candidate",
+        "original_state": "rejected",
+        "diagnostic": {
+          "method": "archived_response_recheck_v1",
+          "state": "rejected_again",
+          "code": "invalid_json",
+          "summary": "The retained model content is not valid JSON for this contract.",
+          "contract": {
+            "id": "application-document-contract-20261008-v1",
+            "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+            "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+            "recorded_implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+          },
+          "limitation": "Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality."
+        }
+      },
+      {
+        "run": "application-eval-2026-10-10",
+        "case": "career-change",
+        "stage": "baseline",
+        "original_state": "rejected",
+        "diagnostic": {
+          "method": "archived_response_recheck_v1",
+          "state": "rejected_again",
+          "code": "new_number",
+          "summary": "The current review introduces a number absent from the candidate input.",
+          "contract": {
+            "id": "application-document-contract-20261008-v1",
+            "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+            "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+            "recorded_implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+          },
+          "limitation": "Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality."
+        }
+      },
+      {
+        "run": "application-eval-2026-10-10",
+        "case": "career-change",
+        "stage": "candidate",
+        "original_state": "rejected",
+        "diagnostic": {
+          "method": "archived_response_recheck_v1",
+          "state": "rejected_again",
+          "code": "structure",
+          "summary": "The response contains an invalid or unexpected structure.",
+          "contract": {
+            "id": "application-document-contract-20261008-v1",
+            "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+            "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+            "recorded_implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+          },
+          "limitation": "Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality."
+        }
+      },
+      {
+        "run": "application-eval-2026-10-11",
+        "case": "project-provenance",
+        "stage": "candidate",
+        "original_state": "rejected",
+        "diagnostic": {
+          "method": "archived_response_recheck_v1",
+          "state": "rejected_again",
+          "code": "structure",
+          "summary": "The response contains an invalid or unexpected structure.",
+          "contract": {
+            "id": "application-document-contract-20261008-v1",
+            "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+            "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+            "recorded_implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+          },
+          "limitation": "Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality."
+        }
+      },
+      {
+        "run": "application-eval-2026-10-11",
+        "case": "source-injection",
+        "stage": "candidate",
+        "original_state": "rejected",
+        "diagnostic": {
+          "method": "archived_response_recheck_v1",
+          "state": "rejected_again",
+          "code": "structure",
+          "summary": "The response contains an invalid or unexpected structure.",
+          "contract": {
+            "id": "application-document-contract-20261008-v1",
+            "source_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+            "source_sha256": "da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e",
+            "recorded_implementation": "60d52fb00cdff87c0f24a98f0559f99f4b526d53fc106980541e31c4e9912962"
+          },
+          "limitation": "Read-only inspection using the archived original validator and helpers. Provider completion metadata remains unknown. This does not change the rejection, permit a retry or prove writing quality."
+        }
+      }
+    ],
+    "model_calls": 0,
+    "production_writes": 0,
+    "limitation": "No provider completion metadata. Original rejection and assessment state remain unchanged."
+  },
+  "original_full_worker_recheck": {
+    "observed_at": "2026-10-11T15:48:43.101Z",
+    "original_full_bundle": true,
+    "rows": [
+      {
+        "case": "graduate-year",
+        "stage": "baseline",
+        "result": "Unsupported evidence check"
+      },
+      {
+        "case": "graduate-year",
+        "stage": "candidate",
+        "result": "Invalid candidate review structure"
+      },
+      {
+        "case": "planned-product",
+        "stage": "candidate",
+        "result": "Invalid candidate review structure"
+      },
+      {
+        "case": "advert-injection",
+        "stage": "baseline",
+        "result": "New numeric claim"
+      },
+      {
+        "case": "advert-injection",
+        "stage": "candidate",
+        "result": "invalid_json"
+      },
+      {
+        "case": "career-change",
+        "stage": "baseline",
+        "result": "New numeric claim"
+      },
+      {
+        "case": "career-change",
+        "stage": "candidate",
+        "result": "Invalid candidate review structure"
+      },
+      {
+        "case": "project-provenance",
+        "stage": "candidate",
+        "result": "Invalid candidate review structure"
+      },
+      {
+        "case": "source-injection",
+        "stage": "candidate",
+        "result": "Invalid candidate review structure"
+      }
+    ],
+    "outbound_calls": 0
+  },
+  "validation": {
+    "node": "24.19.0",
+    "full_tests": 555,
+    "failures": 0,
+    "duration_seconds": 109.374,
+    "build": true,
+    "typescript": true,
+    "prerenders": 17,
+    "asset_budgets_unchanged": true,
+    "initial_javascript_bytes": 367164,
+    "initial_javascript_gzip": 112327,
+    "initial_css_bytes": 105467,
+    "initial_css_gzip": 22020,
+    "wrangler_dry_run": true,
+    "isolated_worker_auth_d1": {
+      "normal_and_minified_builds": true,
+      "anonymous_status": 403,
+      "replayed_reads": true,
+      "rejections_controls_budgets_assessments_audit_unchanged": true,
+      "external_calls": 0
+    }
+  },
+  "browser": {
+    "fixture": "actual component, fictional cases and finite retained diagnostics; no production connection",
+    "desktop": {
+      "viewport": 1280,
+      "page_width": 1280
+    },
+    "mobile": {
+      "viewport": 390,
+      "page_width": 390
+    },
+    "reads": 2,
+    "writes": 0,
+    "external_calls": 0,
+    "fictional_input": true,
+    "temporary_tab_closed": true,
+    "local_server_stopped": true
+  },
+  "recovery": {
+    "observed_at": "2026-10-11T15:40:02.859Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "fc94fb78fe6b0a7e9ccc34c04af4149e835626d90f3023bd6b51cfeba95178f9",
+    "database_size_bytes": 103002112,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 146,
+      "actual_objects": 146,
+      "migration_files": 35,
+      "expected_sha256": "123dbfca28b30746a1f0a5b7ed469df4fd102e1da756b3484bf98188691e0f2b",
+      "actual_sha256": "123dbfca28b30746a1f0a5b7ed469df4fd102e1da756b3484bf98188691e0f2b",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "production_actions": {
+    "ai_calls": 0,
+    "google_calls": 0,
+    "source_refreshes": 0,
+    "social_sends": 0,
+    "email_sends": 0,
+    "schema_changes": 0,
+    "restores": 0
+  },
+  "limits": [
+    "Retained response content only; original provider completion metadata remains unknown.",
+    "No response reclassification, rerun, model promotion or independent quality acceptance.",
+    "Current execution fingerprint and campaign gate remain unchanged; evaluator stays paused.",
+    "Public growth and marketing outcomes are not established by these diagnostics."
+  ],
+  "production_verification": {
+    "version": "2.54.0",
+    "worker": "c2eee049-7c16-4eda-84f6-374f7cfb946a",
+    "code_commit": "d7c3c759f412f8aca4306b15fad9410a5da7b8c6",
+    "rollback_worker": "389877c3-9b6e-43b3-a117-245c3a176f09",
+    "public_checks": {
+      "observed_at": "2026-10-11T15:59:58.414Z",
+      "results": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "body": {
+            "ok": true,
+            "version": "2.54.0",
+            "register": {
+              "date": "2026-10-09",
+              "count": 127981,
+              "checked_at": "2026-10-11T07:15:39.995Z"
+            }
+          }
+        },
+        {
+          "path": "/api/admin/application-evaluation/case?id=graduate-year",
+          "status": 403,
+          "body": {
+            "error": "The owner account is required."
+          }
+        }
+      ]
+    },
+    "browser": {
+      "observed_at": "2026-10-11T16:01:07.273Z",
+      "cases": [
+        {
+          "case": "graduate-year",
+          "diagnostics": [
+            "Diagnostic: structure \u00b7 rejected again",
+            "Archived contract: application-document-contract-20261008-v1. Original source: d886193. The current campaign stays separate.",
+            "Diagnostic: evidence_check \u00b7 rejected again",
+            "Archived contract: application-document-contract-20261008-v1. Original source: d886193. The current campaign stays separate."
+          ]
+        },
+        {
+          "case": "planned-product",
+          "diagnostics": [
+            "Diagnostic: structure \u00b7 rejected again",
+            "Archived contract: application-document-contract-20261008-v1. Original source: d886193. The current campaign stays separate."
+          ]
+        },
+        {
+          "case": "career-change",
+          "diagnostics": [
+            "Diagnostic: structure \u00b7 rejected again",
+            "Archived contract: application-document-contract-20261008-v1. Original source: d886193. The current campaign stays separate.",
+            "Diagnostic: new_number \u00b7 rejected again",
+            "Archived contract: application-document-contract-20261008-v1. Original source: d886193. The current campaign stays separate."
+          ]
+        },
+        {
+          "case": "advert-injection",
+          "diagnostics": [
+            "Diagnostic: invalid_json \u00b7 rejected again",
+            "Archived contract: application-document-contract-20261008-v1. Original source: d886193. The current campaign stays separate.",
+            "Diagnostic: new_number \u00b7 rejected again",
+            "Archived contract: application-document-contract-20261008-v1. Original source: d886193. The current campaign stays separate."
+          ]
+        },
+        {
+          "case": "source-injection",
+          "diagnostics": [
+            "Diagnostic: structure \u00b7 rejected again",
+            "Archived contract: application-document-contract-20261008-v1. Original source: d886193. The current campaign stays separate."
+          ]
+        },
+        {
+          "case": "project-provenance",
+          "diagnostics": [
+            "Diagnostic: structure \u00b7 rejected again",
+            "Archived contract: application-document-contract-20261008-v1. Original source: d886193. The current campaign stays separate."
+          ]
+        }
+      ]
+    },
+    "preserved_tables": [
+      {
+        "table": "application_eval_runs",
+        "rows": 4,
+        "sha256": "f70739db65b563d1083783179de48a3759f443fbe3fbb8ca75831a643cadda64"
+      },
+      {
+        "table": "application_eval_steps",
+        "rows": 18,
+        "sha256": "93f190869414d48392ce7ed6ea96f0242b9337ce9c5cdbd21b1da540cf96ef6a"
+      },
+      {
+        "table": "application_assessments",
+        "rows": 9,
+        "sha256": "d4f2fed6230d0a8e246c22bfc521db323186e8b615a4789eea120bc6c4713ffb"
+      },
+      {
+        "table": "application_eval_controls",
+        "rows": 1,
+        "sha256": "87ded263de1203b116af8cf50af94350348a26df13a78765c9ec4ddf1004b737"
+      },
+      {
+        "table": "agent_research_budget",
+        "rows": 1,
+        "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13"
+      }
+    ],
+    "after_hashes_identical": true,
+    "collection": {
+      "observed_at": "2026-10-11T16:01:52.447Z",
+      "status": 200
+    },
+    "collection_counts": {
+      "total": 928,
+      "employers": 36,
+      "early_career": 51,
+      "sponsorship": 55,
+      "licensed": 887,
+      "salary": 144
+    },
+    "evaluator_enabled": false,
+    "shared_starts": 2,
+    "shared_calls": 6,
+    "hosted_ci": {
+      "code_head_checks": [
+        114511659475,
+        114511651744
+      ],
+      "outcome": "did_not_start",
+      "reason": "GitHub account locked due to billing",
+      "gitguardian": "passed"
+    },
+    "shell_wrapper_note": "Wrangler completed deployment and printed version ID. The shell wrapper then failed on a read-only status variable; no deployment retry was made. Live health and owner reads confirm deployment."
+  }
+}

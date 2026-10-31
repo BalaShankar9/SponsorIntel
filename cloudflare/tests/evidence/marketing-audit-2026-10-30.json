@@ -1,0 +1,527 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-30",
+  "collection_window_utc": {
+    "from": "2026-10-30T12:24:00Z",
+    "to": "2026-10-30T12:34:00Z",
+    "precision": "bounded session interval, not fabricated per-request timestamps"
+  },
+  "observer": "Agent-assisted",
+  "status": "Read-only audit; repository retained, no cloud performance insertion or provider mutation",
+  "account": {
+    "brand_id": 7294726,
+    "label": "Sponsor Intel",
+    "timezone": "Europe/London",
+    "facebook_page": "1319703417896763",
+    "instagram": "sponsorintellondon"
+  },
+  "queue": {
+    "metricool": {
+      "from": "2026-10-23T00:00:00+01:00",
+      "to": "2026-11-30T23:59:59+00:00",
+      "timezone": "Europe/London",
+      "extended_range": false,
+      "result": {
+        "data": []
+      },
+      "pending_count": 0,
+      "scope": "Facebook/Instagram within requested range"
+    },
+    "linkedin_company": {
+      "account_id": "146710167",
+      "scheduled_count": 0,
+      "observed_ui": "Sponsor Intel’s scheduled posts: No scheduled posts yet"
+    },
+    "linkedin_personal": {
+      "profile": "https://www.linkedin.com/in/bala-sankar-bollineni-b246bb189/",
+      "scheduled_count": 0,
+      "observed_ui": "Scheduled tab contains empty-state explanation and Schedule link; no items"
+    },
+    "whatsapp": {
+      "connected_recurring_scheduler": false,
+      "current_manual_sends": "not inspected",
+      "historical_evidence": "docs/MARKETING_REVIEW-2026-10-15.md refers to eight groups verified 13 October; not current delivery evidence"
+    }
+  },
+  "facebook": {
+    "query": {
+      "from": "2026-10-07T00:00:00+01:00",
+      "to": "2026-10-29T23:59:59+00:00",
+      "metrics": [
+        "FBPO02",
+        "FBPO03",
+        "FBPO04",
+        "FBPO06",
+        "FBPO08",
+        "FBPO09",
+        "FBPO11",
+        "FBPO12",
+        "FBPO13",
+        "FBPO14",
+        "FBPO23",
+        "FBPO25"
+      ]
+    },
+    "metric_definitions": [
+      {
+        "id": "FBPO02",
+        "label": "Facebook Feed Posts > Post Date with Time",
+        "description": "Date and time of the publication"
+      },
+      {
+        "id": "FBPO03",
+        "label": "Facebook Feed Posts > Post Content",
+        "description": "Text of the feed post"
+      },
+      {
+        "id": "FBPO04",
+        "label": "Facebook Feed Posts > Post Id",
+        "description": "Id of the feed post"
+      },
+      {
+        "id": "FBPO06",
+        "label": "Facebook Feed Posts > Post Link",
+        "description": "Link of the feed post"
+      },
+      {
+        "id": "FBPO08",
+        "label": "Facebook Feed Posts > Post Comments",
+        "description": "Number of comments received by feed post"
+      },
+      {
+        "id": "FBPO09",
+        "label": "Facebook Feed Posts > Post Link Clicks",
+        "description": "Number of clicks on the link on your feed posts"
+      },
+      {
+        "id": "FBPO11",
+        "label": "Facebook Feed Posts > Post Impressions",
+        "description": "Number of times that the feed posts have been displayed."
+      },
+      {
+        "id": "FBPO12",
+        "label": "Facebook Feed Posts > Post Reach",
+        "description": "Number of people who have seen a feed post."
+      },
+      {
+        "id": "FBPO13",
+        "label": "Facebook Feed Posts > Post Reactions",
+        "description": "Number of reactions on each feed post. "
+      },
+      {
+        "id": "FBPO14",
+        "label": "Facebook Feed Posts > Post Shares",
+        "description": "Number of times that a feed post has been shared. "
+      },
+      {
+        "id": "FBPO23",
+        "label": "Facebook Feed Posts > Post Clicks",
+        "description": ""
+      },
+      {
+        "id": "FBPO25",
+        "label": "Facebook Feed Posts > Destination Link",
+        "description": "Destination URL for link type feed posts"
+      }
+    ],
+    "window_type": "cumulative post data through previous provider calendar day; query filters publication date",
+    "reporting_end": "2026-10-29T23:59:59+00:00",
+    "provider_synchronization_time": null,
+    "rows": [
+      {
+        "provider_publication_raw": "20261018091523",
+        "publication_time_zone_unconfirmed": true,
+        "caption": "Lecturer Carpentry — New City College. Location: New City College Rainham Campus, New Road, Rainham, Essex, RM13 8GP, United Kingdom.\n\nThe employer advert says: “Skilled Worker visas can be sponsored”\n\nThe employer has a reviewed link to New City College Corporation in the current Skilled Worker sponsor register. This is employer-level evidence, separate from the vacancy wording.\n\nThis is a dated advert observation, not a visa or job offer. A sponsor licence does not guarantee sponsorship for this vacancy or eligibility for any applicant. Read the original advert and confirm the details with the employer.\n\nRead the dated vacancy and original advert:",
+        "provider_post_id": "1319703417896763_122100903777512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122100903777512994",
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 1,
+          "impressions": null,
+          "views": null,
+          "reach": 1,
+          "reactions": 0,
+          "shares": 0,
+          "clicks": 1
+        },
+        "unresolved_connector_metric": {
+          "field_id": "FBPO11",
+          "label": "Facebook Feed Posts > Post Impressions",
+          "value": 1,
+          "reason": "Connector calls this impressions; official current provider post-list documentation calls the corresponding display views. Existing definition hold preserved; neither normalized field inferred."
+        },
+        "destination": "https://sponsorintel.london/jobs/6e7ca74036beafcb0431c567?utm_source=facebook&utm_medium=organic_social&utm_campaign=current_opportunities&utm_content=dated_vacancy",
+        "classification": "substantive_text_post"
+      },
+      {
+        "provider_publication_raw": "20261016090317",
+        "publication_time_zone_unconfirmed": true,
+        "caption": "A long list of applications can be hard to maintain. Try a smaller research session: three employers, one role worth investigating and a clear next action.\n\nWrite down two role titles that fit your experience and three skills you can support with examples. Include evidence from study, projects, volunteering or paid work.\n\nCompare the responsibilities, required experience, location, pay if stated and sponsorship wording. Keep unanswered questions beside the role.\n\nRead the guide:",
+        "provider_post_id": "1319703417896763_122099309745512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122099309745512994",
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 2,
+          "impressions": null,
+          "views": null,
+          "reach": 1,
+          "reactions": 0,
+          "shares": 0,
+          "clicks": 2
+        },
+        "unresolved_connector_metric": {
+          "field_id": "FBPO11",
+          "label": "Facebook Feed Posts > Post Impressions",
+          "value": 3,
+          "reason": "Connector calls this impressions; official current provider post-list documentation calls the corresponding display views. Existing definition hold preserved; neither normalized field inferred."
+        },
+        "destination": "https://sponsorintel.london/guides/build-a-shortlist?utm_source=facebook&utm_medium=organic_social&utm_campaign=editorial_guides&utm_content=small_shortlist",
+        "classification": "substantive_text_post"
+      },
+      {
+        "provider_publication_raw": "20261012090215",
+        "publication_time_zone_unconfirmed": true,
+        "caption": "Before you send an AI-assisted application, do these three checks.\n\n1. Evidence: can you point to a real example behind every skill or achievement?\n2. Accuracy: are the dates, qualifications and job titles yours, with no guessed details?\n3. Relevance: does the application answer this employer’s requirements?\n\nA polished sentence is only useful if you can stand behind it in an interview.\n\nSponsor Intel’s Application Studio brings your selected role, CV evidence and editable application drafts into one workspace. Use it to prepare a focused application, review it yourself, then submit through the employer’s own website.\n\nTry one role: https://sponsorintel.london/studio?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=application_review\n\nIf something is confusing, use Feedback & support in the app. Your experience helps us decide what to improve next.\n\n#JobApplications #InternationalStudents #UKJobs",
+        "provider_post_id": "1319703417896763_122096326947512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122096326947512994",
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 0,
+          "impressions": null,
+          "views": null,
+          "reach": 2,
+          "reactions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "unresolved_connector_metric": {
+          "field_id": "FBPO11",
+          "label": "Facebook Feed Posts > Post Impressions",
+          "value": 4,
+          "reason": "Connector calls this impressions; official current provider post-list documentation calls the corresponding display views. Existing definition hold preserved; neither normalized field inferred."
+        },
+        "destination": "https://sponsorintel.london/studio?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=application_review",
+        "classification": "substantive_text_post"
+      },
+      {
+        "provider_publication_raw": "20261010090200",
+        "publication_time_zone_unconfirmed": true,
+        "caption": "“Sponsorship not stated” is a question to investigate.\n\nIt does not tell you that the employer will sponsor this vacancy. It also does not, by itself, mean sponsorship has been refused.\n\nBefore tailoring your application:\n1. Open the employer’s current advert.\n2. Read the exact sponsorship wording, including any conditions.\n3. Check the employer’s identity against the sponsor register.\n4. If the answer is unclear, ask about the exact role and reference number.\n\nA useful question: “Does this vacancy support Skilled Worker sponsorship, and are there any restrictions applicants should know before applying?”\n\nOur guide explains the four labels: Offered, Conditional, Not stated and Unavailable. The labels are automated research aids, so check the original source.\n\nhttps://sponsorintel.london/guides/sponsorship-in-job-adverts?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=advert_wording\n\n#UKJobSearch #InternationalStudents #VisaSponsorship",
+        "provider_post_id": "1319703417896763_122094988383512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122094988383512994",
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 0,
+          "impressions": null,
+          "views": null,
+          "reach": 1,
+          "reactions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "unresolved_connector_metric": {
+          "field_id": "FBPO11",
+          "label": "Facebook Feed Posts > Post Impressions",
+          "value": 8,
+          "reason": "Connector calls this impressions; official current provider post-list documentation calls the corresponding display views. Existing definition hold preserved; neither normalized field inferred."
+        },
+        "destination": "https://sponsorintel.london/guides/sponsorship-in-job-adverts?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=advert_wording",
+        "classification": "substantive_text_post"
+      },
+      {
+        "provider_publication_raw": "20261008090439",
+        "publication_time_zone_unconfirmed": true,
+        "caption": "846 roles. Three very different sponsorship signals.\n\nOur 7 October snapshot of 30 selected UK employer boards found:\n• 16 adverts with wording that states sponsorship is offered.\n• 34 with conditional sponsorship wording.\n• 705 without a clear sponsorship commitment.\nAnother 91 explicitly said sponsorship was unavailable.\n\nThese are automated readings of adverts, not confirmed sponsorship offers or a picture of the whole UK job market. Always read the employer’s current advert and check anything unclear with them.\n\nThe report shows the date, contributing boards and limitations, so you can judge the evidence yourself.\n\nRead the snapshot: https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot\n\n#UKJobs #VisaSponsorship #InternationalStudents",
+        "provider_post_id": "1319703417896763_122093924469512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122093924469512994",
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 0,
+          "impressions": null,
+          "views": null,
+          "reach": 3,
+          "reactions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "unresolved_connector_metric": {
+          "field_id": "FBPO11",
+          "label": "Facebook Feed Posts > Post Impressions",
+          "value": 6,
+          "reason": "Connector calls this impressions; official current provider post-list documentation calls the corresponding display views. Existing definition hold preserved; neither normalized field inferred."
+        },
+        "destination": "https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot",
+        "classification": "substantive_text_post"
+      },
+      {
+        "provider_publication_raw": "20261007183925",
+        "publication_time_zone_unconfirmed": true,
+        "caption": "Searching for a UK job that offers sponsorship? Start with what the advert actually says.\n\nWelcome to Sponsor Intel — practical tools for international students, graduates and migrants planning their next chapter.\n\n• Explore selected UK employer vacancies.\n• Check sponsor-licence records and the sponsorship wording in each advert.\n• Save opportunities and prepare a focused application.\n• Follow immigration updates with links to official sources.\n\nA sponsor licence is not a promise that every role offers sponsorship. That distinction is built into the product.\n\nExplore: https://sponsorintel.london/jobs?utm_source=facebook&utm_medium=organic_social&utm_campaign=social_launch&utm_content=company_welcome\n\nTry one job search and tell us what would make it more useful. Use the site’s feedback/report tools for a missing employer, broken link or confusing information.\n\n#UKJobs #InternationalStudents #VisaSponsorship",
+        "provider_post_id": "1319703417896763_122093609445512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122093609445512994",
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 1,
+          "impressions": null,
+          "views": null,
+          "reach": 9,
+          "reactions": 0,
+          "shares": 0,
+          "clicks": 1
+        },
+        "unresolved_connector_metric": {
+          "field_id": "FBPO11",
+          "label": "Facebook Feed Posts > Post Impressions",
+          "value": 14,
+          "reason": "Connector calls this impressions; official current provider post-list documentation calls the corresponding display views. Existing definition hold preserved; neither normalized field inferred."
+        },
+        "destination": "https://sponsorintel.london/jobs?utm_source=facebook&utm_medium=organic_social&utm_campaign=social_launch&utm_content=company_welcome",
+        "classification": "substantive_text_post"
+      },
+      {
+        "provider_publication_raw": "20261007182734",
+        "publication_time_zone_unconfirmed": true,
+        "caption": "",
+        "provider_post_id": "1319703417896763_122093604159512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122093604159512994",
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 0,
+          "impressions": null,
+          "views": null,
+          "reach": 2,
+          "reactions": 0,
+          "shares": 0,
+          "clicks": 0
+        },
+        "unresolved_connector_metric": {
+          "field_id": "FBPO11",
+          "label": "Facebook Feed Posts > Post Impressions",
+          "value": 4,
+          "reason": "Connector calls this impressions; official current provider post-list documentation calls the corresponding display views. Existing definition hold preserved; neither normalized field inferred."
+        },
+        "destination": null,
+        "classification": "blank_caption_unclassified_setup_record"
+      }
+    ],
+    "substantive_text_posts": 6,
+    "unclassified_blank_caption_records": 1,
+    "total_link_click_events": 4,
+    "not_inferred": [
+      "unique people",
+      "sum of reach",
+      "website visits",
+      "conversions",
+      "current vacancy or licence evidence"
+    ]
+  },
+  "instagram": {
+    "query": {
+      "from": "2026-10-23T00:00:00+01:00",
+      "to": "2026-10-29T23:59:59+00:00",
+      "metrics": [
+        "IGEV01",
+        "IGEV37",
+        "IGEV04",
+        "IGEV22",
+        "IGEV16",
+        "IGEV05",
+        "IGEV06"
+      ]
+    },
+    "metric_definitions": [
+      {
+        "id": "IGEV01",
+        "label": "Instagram Evolution > Followers",
+        "description": "Current number of followers."
+      },
+      {
+        "id": "IGEV04",
+        "label": "Instagram Evolution > Feed Posts",
+        "description": "Number of feed posts (photos and carousels) published in the period. Does NOT include reels or stories. For all content use Instagram Evolution > Total Content (feed posts + reels); for reels use Instagram Evolution > Reels."
+      },
+      {
+        "id": "IGEV05",
+        "label": "Instagram Evolution > Views",
+        "description": "Total number of times the account's content was displayed, all formats (feed posts, reels, stories) plus profile. Organic and paid data."
+      },
+      {
+        "id": "IGEV06",
+        "label": "Instagram Evolution > Account Reach timeline",
+        "description": "Number of unique people reached by the account across all formats (feed posts, reels, stories). Organic and paid data."
+      },
+      {
+        "id": "IGEV16",
+        "label": "Instagram Evolution > Stories",
+        "description": "Number of stories published in the period. Not included in Feed Posts nor in Total Content."
+      },
+      {
+        "id": "IGEV22",
+        "label": "Instagram Evolution > Reels",
+        "description": "Number of reels published in the period. Not included in Instagram Evolution > Feed Posts; included in Instagram Evolution > Total Content."
+      },
+      {
+        "id": "IGEV37",
+        "label": "Instagram Evolution > Total Content (feed posts + reels)",
+        "description": "Number of pieces of content published in the period, all feed formats: feed posts (photos and carousels) + reels. Does not include stories. Use this to answer 'how much content was published'."
+      }
+    ],
+    "raw_rows": [
+      [
+        "4.0",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "0.0",
+        "20261023"
+      ],
+      [
+        "4.0",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "0.0",
+        "20261024"
+      ],
+      [
+        "4.0",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "0.0",
+        "20261025"
+      ],
+      [
+        "4.0",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "0.0",
+        "20261026"
+      ],
+      [
+        "4.0",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "0.0",
+        "20261027"
+      ],
+      [
+        null,
+        "0.0",
+        "0.0",
+        "0.0",
+        "0.0",
+        "0.0",
+        null,
+        "20261029"
+      ],
+      [
+        "4.0",
+        null,
+        null,
+        null,
+        null,
+        null,
+        "0.0",
+        "20261028"
+      ]
+    ],
+    "latest_populated_followers": {
+      "day": "2026-10-28",
+      "value": 4
+    },
+    "reporting_period_content": {
+      "feed": 0,
+      "reels": 0,
+      "stories": 0,
+      "total_feed_and_reels": 0,
+      "views": 0
+    },
+    "limitations": "Period aggregate zeroes occur on the 29 October row; followers/reach on that row are null. Daily nulls are unknown. No current-day follower claim or first delivery."
+  },
+  "linkedin_company": {
+    "account_id": "146710167",
+    "followers": 2,
+    "evidence_url": "https://www.linkedin.com/company/146710167/admin/page-posts/published/",
+    "new_report": {
+      "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7519322228237381632",
+      "analytics_url": "https://www.linkedin.com/company/146710167/admin/post-analytics/urn:li:activity:7519322228237381632/",
+      "publication_date_displayed": "10/23/2026",
+      "exact_publication_time": null,
+      "caption": "51 adverts in our selected UK catalogue contain positive or conditional sponsorship wording, out of 1018 roles checked as of 21 October 2026. These are advert signals, not sponsorship guarantees. Our new report shows the evidence, coverage and limits.",
+      "destination": "https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=linkedin&utm_medium=organic_social&utm_campaign=evidence-report",
+      "metrics": {
+        "organic_impressions": 102,
+        "engagements": 1,
+        "engagement_rate_percent": 0.98,
+        "clicks": 1,
+        "click_through_rate_percent": 0.98,
+        "reactions": 0,
+        "comments": 0,
+        "reposts": 0,
+        "link_clicks": null,
+        "reach": null
+      },
+      "provider_window_label": "Post performance; no explicit reporting end or synchronization timestamp shown"
+    },
+    "earlier_admin_rows": [
+      {
+        "share_id": "7513683557614120964",
+        "publication_date_displayed": "10/9/2026",
+        "organic_impressions": 8
+      },
+      {
+        "share_id": "7513668718439268353",
+        "publication_date_displayed": "10/7/2026",
+        "organic_impressions": 156
+      }
+    ],
+    "limitations": "Different ages and content; general clicks are not external link visits. No campaign winner inferred."
+  },
+  "cloud_history": {
+    "read_only_rows": 5,
+    "rows_read": 5,
+    "rows_written": 0,
+    "latest_observation": "2026-10-17T22:56:27.000Z",
+    "new_observations_saved": 0,
+    "reason": "Known daily D1 write exhaustion. No synthetic save probe or direct-table bypass. These repository observations are not in a cloud planner context."
+  },
+  "source_check": {
+    "precision": "bounded inspection interval",
+    "latest_application_and_provider_instance": "scheduled-1793341855003",
+    "latest_application_state": "attention",
+    "latest_provider_status": "complete",
+    "no_new_1230_receipt_visible": true,
+    "limitation": "Absence at inspection is not proof the cron did not run; no forced invocation.",
+    "observed_during_utc": [
+      "2026-10-30T12:32:00Z",
+      "2026-10-30T12:34:00Z"
+    ]
+  },
+  "unchanged": {
+    "ai_calls": 0,
+    "google_calls": 0,
+    "email_sends": 0,
+    "social_sends": 0,
+    "new_schedules": 0,
+    "provider_settings_changes": 0,
+    "owner_holds_cleared": 0
+  },
+  "primary_references": [
+    "https://help.metricool.com/facebook-metrics-8gdta",
+    "https://help.metricool.com/difference-between-published-posts-and-viewed-posts-in-the-period-2pwtf"
+  ],
+  "next_action": "Restore dependable production writes and genuine supervisor execution, then retain appropriately timed owner-attested observations and observe a new eligible planner context. Recheck sources, review, provider queue and cadence before any future schedule."
+}

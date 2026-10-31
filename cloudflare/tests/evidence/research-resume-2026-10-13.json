@@ -1,0 +1,287 @@
+{
+  "scope": "Reviewed resume of an existing private research comparison through authenticated owner UI. No workflow or model call was started by this action.",
+  "observed_before": "2026-10-13T15:26:00.902Z",
+  "observed_after": "2026-10-13T15:27:48.038Z",
+  "control_before": {
+    "campaign": "real-adverts-2026-10-08-compact-v2",
+    "enabled": 0,
+    "revision": 1,
+    "updated_at": "2026-10-11T17:34:27.618Z"
+  },
+  "control_after": {
+    "campaign": "real-adverts-2026-10-08-compact-v2",
+    "enabled": 1,
+    "revision": 2,
+    "updated_at": "2026-10-13T15:27:34.338Z"
+  },
+  "profile": {
+    "version": 1,
+    "policy": "investigator-v4-compact-reference",
+    "dataset": "real-adverts-2026-10-08-compact-v2",
+    "source_sha256": "6c9715f2b0479435c528f77fc44613a0147caeb7558af716447db0fd5d8ab49a",
+    "models": {
+      "investigator": {
+        "provider": "cloudflare",
+        "model": "@cf/zai-org/glm-4.7-flash"
+      },
+      "reviewer": {
+        "provider": "cloudflare",
+        "model": "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+      }
+    },
+    "max_tokens": 8192,
+    "temperature": 0.1,
+    "thinking": true,
+    "analyst_format": "json_object",
+    "reviewer_format": "json_schema",
+    "input": "complete-ordered-quote-blocks",
+    "revision_limit": 1
+  },
+  "profile_unchanged": true,
+  "review_history": [
+    {
+      "revision": 1,
+      "action": "prepare",
+      "created_at": "2026-10-11T17:34:27.618Z"
+    },
+    {
+      "revision": 2,
+      "action": "resume",
+      "created_at": "2026-10-13T15:27:34.338Z"
+    }
+  ],
+  "preflight": {
+    "at": "2026-10-13T15:27:48.032Z",
+    "source_sha256": "6c9715f2b0479435c528f77fc44613a0147caeb7558af716447db0fd5d8ab49a",
+    "original_dataset": "real-adverts-2026-10-08-v1",
+    "candidate_dataset": "real-adverts-2026-10-08-compact-v2",
+    "verified_records": 50,
+    "unique_description_hashes": 49,
+    "batches": [
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-01",
+        "adverts": 3,
+        "original_characters": 36820,
+        "candidate_characters": 19427,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-02",
+        "adverts": 2,
+        "original_characters": 42628,
+        "candidate_characters": 22193,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-03",
+        "adverts": 3,
+        "original_characters": 39945,
+        "candidate_characters": 21033,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-04",
+        "adverts": 3,
+        "original_characters": 38680,
+        "candidate_characters": 20377,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-05",
+        "adverts": 3,
+        "original_characters": 49955,
+        "candidate_characters": 26131,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-06",
+        "adverts": 4,
+        "original_characters": 47267,
+        "candidate_characters": 24926,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-07",
+        "adverts": 4,
+        "original_characters": 35590,
+        "candidate_characters": 19014,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-08",
+        "adverts": 3,
+        "original_characters": 48739,
+        "candidate_characters": 25464,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-09",
+        "adverts": 2,
+        "original_characters": 34491,
+        "candidate_characters": 18031,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-10",
+        "adverts": 3,
+        "original_characters": 44087,
+        "candidate_characters": 23111,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-11",
+        "adverts": 3,
+        "original_characters": 37622,
+        "candidate_characters": 19875,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-12",
+        "adverts": 3,
+        "original_characters": 32243,
+        "candidate_characters": 17089,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-13",
+        "adverts": 3,
+        "original_characters": 47977,
+        "candidate_characters": 25122,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-14",
+        "adverts": 3,
+        "original_characters": 41398,
+        "candidate_characters": 21792,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-15",
+        "adverts": 4,
+        "original_characters": 42022,
+        "candidate_characters": 22310,
+        "complete_original_text_retained": true
+      },
+      {
+        "batch": "real-adverts-2026-10-08-compact-v2-16",
+        "adverts": 4,
+        "original_characters": 39372,
+        "candidate_characters": 20896,
+        "complete_original_text_retained": true
+      }
+    ],
+    "maximum_original_characters": 49955,
+    "maximum_candidate_characters": 26131,
+    "total_original_characters": 658836,
+    "total_candidate_characters": 346791,
+    "model_calls": 0,
+    "source_requests": 0,
+    "production_writes": 0,
+    "model_quality_verified": false,
+    "limitation": "Byte and request-size preflight only. Character counts are not token usage or provider cost; no model has executed this comparison."
+  },
+  "protected_groups": {
+    "cases": {
+      "before": "b34c0eae6633487a4827a808c4c5d614e9a756105cd9dc9aa19fdca397a366c7",
+      "after": "b34c0eae6633487a4827a808c4c5d614e9a756105cd9dc9aa19fdca397a366c7",
+      "equal": true
+    },
+    "investigations": {
+      "before": "1795d772be0a1dd465a04c5a4b7c2afcc257a7f8df9fcfcd706472f06c12a175",
+      "after": "1795d772be0a1dd465a04c5a4b7c2afcc257a7f8df9fcfcd706472f06c12a175",
+      "equal": true
+    },
+    "steps": {
+      "before": "99cc4c5ecae84516fe9f2b740bc8b9df4f4b37879786af13c714d9a352eb698e",
+      "after": "99cc4c5ecae84516fe9f2b740bc8b9df4f4b37879786af13c714d9a352eb698e",
+      "equal": true
+    },
+    "daily": {
+      "before": "96cf624bdf56e369bfdf31affc87c462d10a2696fdbfa4a4644f2f4cb15b19ab",
+      "after": "96cf624bdf56e369bfdf31affc87c462d10a2696fdbfa4a4644f2f4cb15b19ab",
+      "equal": true
+    },
+    "budgets": {
+      "before": "57eca0d4a3d828a4a883ed97b85acaf5dfd50f533ecceda8bdd3214fbf07d18f",
+      "after": "57eca0d4a3d828a4a883ed97b85acaf5dfd50f533ecceda8bdd3214fbf07d18f",
+      "equal": true
+    },
+    "business": {
+      "before": "101b9a2c813df0693b0d8ba424996e5ce2e36068a9d12ff553859d846969e1c4",
+      "after": "101b9a2c813df0693b0d8ba424996e5ce2e36068a9d12ff553859d846969e1c4",
+      "equal": true
+    },
+    "application": {
+      "before": "f0d1879e35b31b2a6ec407738695f1f3d73092cde1cc1d49d0722b685f60f66a",
+      "after": "f0d1879e35b31b2a6ec407738695f1f3d73092cde1cc1d49d0722b685f60f66a",
+      "equal": true
+    },
+    "application_campaign": {
+      "before": "bfc0e8d2d2da800b2349c86b962877e6eb50e8fe80d15bb10e314d91af4b1f5a",
+      "after": "bfc0e8d2d2da800b2349c86b962877e6eb50e8fe80d15bb10e314d91af4b1f5a",
+      "equal": true
+    },
+    "paused_sources": {
+      "before": "7a7d1bf85a5b52df1b0e2a6c0c726135baf172f1c7be0455df68ef29ca6c20a7",
+      "after": "7a7d1bf85a5b52df1b0e2a6c0c726135baf172f1c7be0455df68ef29ca6c20a7",
+      "equal": true
+    },
+    "marketing": {
+      "before": "f72f71f25548b3d63b906398a71709daef0e1210b189bb92723b042d4509eba9",
+      "after": "f72f71f25548b3d63b906398a71709daef0e1210b189bb92723b042d4509eba9",
+      "equal": true
+    },
+    "briefs": {
+      "before": "7a2f949a8f5404177e3f46eb6c101f170813d08c62277fcf471447c0972e3d54",
+      "after": "7a2f949a8f5404177e3f46eb6c101f170813d08c62277fcf471447c0972e3d54",
+      "equal": true
+    }
+  },
+  "active_investigations": [],
+  "active_or_uncertain_steps": [],
+  "retained_today": {
+    "dispatch": {
+      "day": "2026-10-13",
+      "research_state": "held",
+      "research_id": null,
+      "detail": "Research was held by its availability or budget controls. No automatic retry today."
+    },
+    "shared_allowance": {
+      "day": "2026-10-13",
+      "runs": 1,
+      "calls": 0
+    }
+  },
+  "original_provider_receipts": [
+    {
+      "instance_id": "research-0891951a-b00f-4432-8534-dbbc901419e3",
+      "provider_status": "complete",
+      "provider_success": true,
+      "last_step": "finish-1",
+      "application_state": "review",
+      "calls": 2
+    },
+    {
+      "instance_id": "research-22f9075a-6e74-4cd7-a276-5978264d2df5",
+      "provider_status": "complete",
+      "provider_success": true,
+      "last_step": "record-failure-1",
+      "application_state": "failed",
+      "calls": 1,
+      "limitation": "Workflow failure handler completed; analysis failed. Historical stop metadata remains unknown."
+    }
+  ],
+  "next_gates": [
+    "Original next genuine hourly business snapshot records ready candidate and retained original needs_attention.",
+    "First eligible scheduled compact-v2 batch on or after 14 October UTC, subject to current controls and shared headroom.",
+    "Full 50-advert/16-batch coverage, independent adjudication and separately held-out validation before any promotion."
+  ],
+  "other_controls": "Application comparison, PortmanDentex, marketing and social holds retain their exact compared state; no permission or limit change.",
+  "production_model_calls": 0,
+  "forced_workflows": 0,
+  "google_calls": 0,
+  "social_sends": 0,
+  "email_sends": 0,
+  "runtime_deployment": false
+}

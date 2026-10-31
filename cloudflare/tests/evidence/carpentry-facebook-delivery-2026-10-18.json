@@ -1,0 +1,426 @@
+{
+  "observed_at": "2026-10-18T12:50:20.513Z",
+  "scope": "Verified Facebook vacancy delivery and repeated unattended source collections; immediate pre-delivery check not proven",
+  "provider": {
+    "brand_id": "7294726",
+    "facebook_page": "1319703417896763",
+    "timezone": "Europe/London",
+    "post": {
+      "id": "398874739",
+      "uuid": "-6642277219320184356",
+      "publicationDate": {
+        "dateTime": "2026-10-18T10:15:00",
+        "timezone": "Europe/London"
+      },
+      "text": "Lecturer Carpentry \u2014 New City College. Location: New City College Rainham Campus, New Road, Rainham, Essex, RM13 8GP, United Kingdom.\n\nThe employer advert says: \u201cSkilled Worker visas can be sponsored\u201d\n\nThe employer has a reviewed link to New City College Corporation in the current Skilled Worker sponsor register. This is employer-level evidence, separate from the vacancy wording.\n\nThis is a dated advert observation, not a visa or job offer. A sponsor licence does not guarantee sponsorship for this vacancy or eligibility for any applicant. Read the original advert and confirm the details with the employer.\n\nRead the dated vacancy and original advert: https://sponsorintel.london/jobs/6e7ca74036beafcb0431c567?utm_source=facebook&utm_medium=organic_social&utm_campaign=current_opportunities&utm_content=dated_vacancy",
+      "providers": [
+        {
+          "network": "facebook",
+          "id": "1319703417896763_122100903777512994",
+          "status": "PUBLISHED",
+          "publicUrl": "https://facebook.com/122093616117512994/posts/122100903777512994",
+          "detailedStatus": "Published"
+        }
+      ],
+      "autoPublish": true,
+      "draft": false
+    },
+    "queue": [
+      {
+        "id": "390624032",
+        "providers": [
+          {
+            "network": "facebook",
+            "id": "1319703417896763_122096326947512994",
+            "status": "PUBLISHED",
+            "publicUrl": "https://facebook.com/122093616117512994/posts/122096326947512994",
+            "detailedStatus": "Published"
+          }
+        ],
+        "publicationDate": {
+          "dateTime": "2026-10-12T10:00:00",
+          "timezone": "Europe/London"
+        }
+      },
+      {
+        "id": "397276739",
+        "providers": [
+          {
+            "network": "facebook",
+            "id": "1319703417896763_122099309745512994",
+            "status": "PUBLISHED",
+            "publicUrl": "https://facebook.com/122093616117512994/posts/122099309745512994",
+            "detailedStatus": "Published"
+          }
+        ],
+        "publicationDate": {
+          "dateTime": "2026-10-16T10:00:00",
+          "timezone": "Europe/London"
+        }
+      },
+      {
+        "id": "398874739",
+        "providers": [
+          {
+            "network": "facebook",
+            "id": "1319703417896763_122100903777512994",
+            "status": "PUBLISHED",
+            "publicUrl": "https://facebook.com/122093616117512994/posts/122100903777512994",
+            "detailedStatus": "Published"
+          }
+        ],
+        "publicationDate": {
+          "dateTime": "2026-10-18T10:15:00",
+          "timezone": "Europe/London"
+        }
+      }
+    ],
+    "precise_publication_time": null,
+    "observation_window_utc": "18 October 2026, approximately 12:46\u201312:50 UTC; exact provider observation timestamp not supplied"
+  },
+  "brief": {
+    "id": "eb9fb808-be7a-4507-9e81-d5b9181e612b",
+    "topic_key": "opportunity:6e7ca74036beafcb0431c567",
+    "destination": "facebook-company",
+    "title": "New City College: Lecturer Carpentry",
+    "state": "published",
+    "version": 1,
+    "revision": 4,
+    "last_event": "6ba7d83d-5ea2-41d2-9f9f-2620e1d0c71b",
+    "created_at": "2026-10-18T00:47:57.892Z",
+    "updated_at": "2026-10-18T12:49:51.100Z"
+  },
+  "ledger_receipt": {
+    "id": "6ba7d83d-5ea2-41d2-9f9f-2620e1d0c71b",
+    "brief_id": "eb9fb808-be7a-4507-9e81-d5b9181e612b",
+    "version": 1,
+    "destination": "facebook-company",
+    "provider": "metricool",
+    "external_id": "398874739",
+    "state": "published",
+    "scheduled_at": null,
+    "post_url": "https://www.facebook.com/122093616117512994/posts/122100903777512994",
+    "observed_at": "2026-10-18T12:49:50.715Z"
+  },
+  "caption_sha256": "c95d0c8a2e5d3adb48b33b180c084e33705a3c7f10b1b9f5c5b5d9d6950e7c60",
+  "original_schedule_receipt_preserved": "a6f441f0-af3c-4e3e-a7f8-834170006939",
+  "browser_verification": {
+    "author": "Sponsor Intel",
+    "public_audience": true,
+    "complete_caption_and_preview_match": true,
+    "exact_campaign_link_followed": true,
+    "owner_authenticated": true,
+    "post_delivery_original": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry",
+    "employer_reference": "R002978",
+    "closing_date": "1 November 2026",
+    "onward_apply_visible": true,
+    "application_submitted": false,
+    "actual_publication_timestamp": null,
+    "immediate_pre_delivery_check": "Not established by retained evidence; do not infer it from successful delivery or the later source check"
+  },
+  "ledger_counts": {
+    "held": 2,
+    "proposed": 2,
+    "published": 6
+  },
+  "preservation": {
+    "interval": [
+      "2026-10-18T12:46:43.104Z",
+      "2026-10-18T12:50:20.513Z"
+    ],
+    "changed_operational_groups": [
+      "marketing_briefs",
+      "marketing_receipts"
+    ],
+    "unchanged_operational_groups": 12,
+    "all_other_briefs_prior_events_receipts_versions_and_proofs_unchanged": true,
+    "job_source_and_business_receipts_unchanged_during_delivery_write": true,
+    "new_events": 1,
+    "new_receipts": 1,
+    "foreign_key_errors": 0,
+    "before_hashes": {
+      "briefs": "d466f38930401e7c014449cf55a14a238f67c58345e2a90339ea3b87f2072cc0",
+      "versions": "4c892316d19c5d3f3b50282d04e09815359fca5637073932a129b6389e4bd8c8",
+      "events": "bbe26e063bda81d22c0608d06825ad2291dc92a2e7d1d8211fe9dfb622929eca",
+      "receipts": "f0d8ff73fa68ca3df19e45e1bcd41c3e0d74792cd4f92f353a07d29bd293cec9",
+      "proofs": "f1f13fde4aa1a471e5d7fcd21c02230437fc090bdb69561fdc3fbf9627f33dc3",
+      "business": "d939315bccb82cdcd0b4f38786e7689fa3bac0ea7e1b109602bb36088c125465",
+      "sources": "cc47cba00f564b9875d9b87361b63421048b486784cd74df81e8d6fa40c4b4f4",
+      "source_tasks": "be54aaf7db3c7e8c38473befab787d1b5434ecbb2bbc04bf63073fea0dbd5641",
+      "job_aggregates": "c05be0715d3def954bf910fc186464924a1f5378d9ba33f9664d76c2c4b7cc5d",
+      "current_job": "1e97ee19ded2bfdae719ea88291740b6abce6cc14fc10793672204b4a33690b3",
+      "issues": "0c78aa9a95675d2bb1873d5982405bdd0ef3ed9b3833242c4e3e18a9f0629fcf"
+    },
+    "after_hashes": {
+      "briefs": "1d629261c4942314a366a3dba1b7d3f28b430115cb89b345c4fdc2d2f66660a4",
+      "versions": "4c892316d19c5d3f3b50282d04e09815359fca5637073932a129b6389e4bd8c8",
+      "events": "4d0005bc3c01da4234032b5f0357dfa14416336de6fe5b3f0bacf8a49340298a",
+      "receipts": "20c33dab7406f4eb24b2bc6c7efb8e83e70264fcfa9ba900b0842f2731530a4f",
+      "proofs": "f1f13fde4aa1a471e5d7fcd21c02230437fc090bdb69561fdc3fbf9627f33dc3",
+      "business": "d939315bccb82cdcd0b4f38786e7689fa3bac0ea7e1b109602bb36088c125465",
+      "sources": "cc47cba00f564b9875d9b87361b63421048b486784cd74df81e8d6fa40c4b4f4",
+      "source_tasks": "be54aaf7db3c7e8c38473befab787d1b5434ecbb2bbc04bf63073fea0dbd5641",
+      "job_aggregates": "c05be0715d3def954bf910fc186464924a1f5378d9ba33f9664d76c2c4b7cc5d",
+      "current_job": "1e97ee19ded2bfdae719ea88291740b6abce6cc14fc10793672204b4a33690b3",
+      "issues": "0c78aa9a95675d2bb1873d5982405bdd0ef3ed9b3833242c4e3e18a9f0629fcf"
+    }
+  },
+  "scheduled_platform_checks": [
+    {
+      "workflow": "sponsorintel-business",
+      "instance": "business-497868",
+      "state": "complete",
+      "success": true,
+      "end_display": "10/18/2026, 1:46:26 PM",
+      "display_timezone": "Europe/London",
+      "precision": "seconds"
+    },
+    {
+      "workflow": "sponsorintel-sources",
+      "instance": "scheduled-1792305053000",
+      "state": "complete",
+      "success": true,
+      "end_display": "10/18/2026, 7:33:12 AM",
+      "display_timezone": "Europe/London",
+      "precision": "seconds"
+    },
+    {
+      "workflow": "sponsorintel-sources",
+      "instance": "scheduled-1792326655003",
+      "state": "complete",
+      "success": true,
+      "end_display": "10/18/2026, 1:34:42 PM",
+      "display_timezone": "Europe/London",
+      "precision": "seconds"
+    }
+  ],
+  "source_runs": [
+    {
+      "id": "scheduled-1792305053000",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "created_at": "2026-10-18T06:30:54.913Z",
+      "finished_at": "2026-10-18T06:33:11.908Z",
+      "requests": 84,
+      "summary": {
+        "published": 37,
+        "skipped": 1
+      }
+    },
+    {
+      "id": "scheduled-1792326655003",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "created_at": "2026-10-18T12:30:57.380Z",
+      "finished_at": "2026-10-18T12:34:42.058Z",
+      "requests": 84,
+      "summary": {
+        "published": 37,
+        "skipped": 1
+      }
+    }
+  ],
+  "new_city_repeated_collections": [
+    {
+      "run_id": "scheduled-1792305053000",
+      "state": "published",
+      "count": 13,
+      "attempts": 1,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-18T06:32:53.023Z",
+        "received": 13,
+        "sponsorship_worded": 1,
+        "register_available": true,
+        "licence_id": "a14b6db81975f5a3899b5751",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0,
+        "feed_review": {
+          "provider": "teaching-vacancies",
+          "school_urn": "130418",
+          "organisation_slug": "new-city-college",
+          "advert_count": 13,
+          "requests": 17,
+          "checked_at": "2026-10-18T06:32:53.023Z",
+          "full_catalogue_checked": true
+        },
+        "adverts_on_review_hold": 1
+      }
+    },
+    {
+      "run_id": "scheduled-1792326655003",
+      "state": "published",
+      "count": 13,
+      "attempts": 1,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-18T12:34:12.462Z",
+        "received": 13,
+        "sponsorship_worded": 1,
+        "register_available": true,
+        "licence_id": "a14b6db81975f5a3899b5751",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0,
+        "feed_review": {
+          "provider": "teaching-vacancies",
+          "school_urn": "130418",
+          "organisation_slug": "new-city-college",
+          "advert_count": 13,
+          "requests": 17,
+          "checked_at": "2026-10-18T12:34:12.462Z",
+          "full_catalogue_checked": true
+        },
+        "adverts_on_review_hold": 1
+      }
+    }
+  ],
+  "business": {
+    "id": "business-497868",
+    "state": "attention",
+    "finished_at": "2026-10-18T12:46:25.935Z",
+    "measured_at": "2026-10-18T12:45:59.621Z",
+    "jobs": {
+      "total": 978,
+      "employers": 37,
+      "offered": 20,
+      "conditional": 34,
+      "unavailable": 106,
+      "not_stated": 818,
+      "early_career": 49,
+      "salary": 174
+    },
+    "discovery": {
+      "total": 25,
+      "unresolved": 7,
+      "overdue": 1,
+      "changed_links": 0,
+      "current_linked_jobs": 3,
+      "allowance": {
+        "day": "2026-10-18",
+        "limit": 5,
+        "used": 4,
+        "remaining": 1,
+        "next_day": "2026-10-19T00:00:00.000Z"
+      }
+    },
+    "assessments": {
+      "assessable_outputs": 40,
+      "assessed_outputs": 28,
+      "unassessed_outputs": 12,
+      "needs_work": 17,
+      "incomplete": 0,
+      "stale": 0,
+      "groups": [
+        {
+          "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+          "writer": "@cf/zai-org/glm-4.7-flash",
+          "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "policy": "paired-application-schema-v2",
+          "paired_cases": 5,
+          "both_acceptable": 3,
+          "candidate_only_acceptable": 1,
+          "baseline_only_acceptable": 0,
+          "both_need_work": 1
+        }
+      ],
+      "limited": false,
+      "automatic_promotion": false,
+      "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+    },
+    "social_delivery_before_reconciliation": {
+      "available": true,
+      "checked_at": "2026-10-18T12:45:59.621Z",
+      "records_checked": 6,
+      "limited": false,
+      "scheduled": 1,
+      "awaiting_check": 1,
+      "overdue": 1,
+      "uncertain": 0,
+      "failed_30d": 0,
+      "published_30d": 5,
+      "invalid_records": 0,
+      "last_published_observation": "2026-10-17T22:53:26.902Z",
+      "next_scheduled_at": null
+    },
+    "latest_job_movement": {
+      "id": "business-497868",
+      "observed_at": "2026-10-18T12:45:58.992Z",
+      "previous_at": "2026-10-18T11:45:46.502Z",
+      "trigger_kind": "scheduled",
+      "baseline": 0,
+      "before_counts": {
+        "total": 979,
+        "employers": 37,
+        "offered": 21,
+        "conditional": 34,
+        "unavailable": 106,
+        "not_stated": 818
+      },
+      "counts": {
+        "total": 978,
+        "employers": 37,
+        "offered": 20,
+        "conditional": 34,
+        "unavailable": 106,
+        "not_stated": 818
+      },
+      "changes": {
+        "entered": 0,
+        "returned": 0,
+        "left": 1,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 0,
+        "stated_lost": 1
+      }
+    }
+  },
+  "retired_role": {
+    "movement": {
+      "job_id": "8cec3fe7af41e51a3344df76",
+      "board_id": "callosum",
+      "company": "Callosum",
+      "title": "Applied AI - Member of Technical Staff",
+      "kind": "left",
+      "reason": "inactive_record",
+      "before_sponsorship": "offered",
+      "after_sponsorship": null,
+      "active": 0,
+      "apply_url": "https://jobs.ashbyhq.com/callosum/e33ede97-fee9-4c0a-8063-9944923fa36b",
+      "last_seen": "2026-10-18T06:32:06.616Z"
+    },
+    "original_browser_result": "Job not found; no cause or employer-wide closure inferred"
+  },
+  "salary_refresh": {
+    "carpentry_job_id": "6e7ca74036beafcb0431c567",
+    "salary_excerpt": "Full time equivalent salary\n\u00a333,400-\u00a352,100 dependent upon experience and qualifcation dependent upon qualification and experience",
+    "sponsorship": "conditional",
+    "evidence": "Skilled Worker visas can be sponsored",
+    "last_seen": "2026-10-18T12:34:12.462Z",
+    "catalogue_salary_count": 174,
+    "limitation": "Current stored marker and aggregate observed after genuine refresh; not a new parser accuracy study"
+  },
+  "automation_policy": {
+    "id": "sponsor-intel-daily-improvement",
+    "status": "ACTIVE",
+    "schedule_unchanged": true,
+    "target_and_notification_wording_unchanged": true,
+    "before_prompt_sha256": "293f155367552a12bc18d40987937f427a30697f25397d3e5c44b8d326f5753a",
+    "after_prompt_sha256": "5f0359fdae9f01007a874cde54b626bdb692c2750396b3ad9fbdadda11a70747",
+    "change": "Advance scheduling uses durable guides or dated reports until an independent pre-delivery check and provider-stop path is proven. Vacancy handoffs must remain in an actively observed session. Existing scopes, limits and holds unchanged."
+  },
+  "budgets": {
+    "ai_starts": 2,
+    "ai_calls": 8,
+    "source_reservations": 360,
+    "source_limit": 500
+  },
+  "next_gates": [
+    "Next genuine business snapshot should consume six published/zero scheduled and resolve its old delivery-overdue finding; do not manually clear or force it.",
+    "Whitchurch sourcing follow-up is overdue; source/application-pack blocker remains.",
+    "Independent quality, exact publication time, immediate pre-delivery check, audience growth and full autonomy remain unproven."
+  ],
+  "boundaries": "No resend, new schedule, provider edit, forced workflow, operator model/Google call, source probe, application, outreach, permission expansion, deployment, customer data change or other project resume."
+}

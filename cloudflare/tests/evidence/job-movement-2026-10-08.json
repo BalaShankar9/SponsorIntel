@@ -1,0 +1,309 @@
+{
+  "version": "2.43.0",
+  "worker_version": "6a3e90d1-64d2-47e1-a83b-a6df4fa6027d",
+  "local_tests": 432,
+  "runtime": {
+    "checked_at": "2026-10-08T15:40:41.686Z",
+    "environment": "Actual BusinessWorkflow in isolated Workerd/D1 with all 29 migrations, fictional jobs, fixed route responses and external network blocked. Scheduled trigger simulated locally; not an unattended production receipt.",
+    "baseline": {
+      "id": "business-497631",
+      "observed_at": "2026-10-08T15:40:41.092Z",
+      "previous_at": null,
+      "trigger_kind": "scheduled",
+      "baseline": 1,
+      "before_counts": {
+        "total": 0,
+        "employers": 0,
+        "offered": 0,
+        "conditional": 0,
+        "unavailable": 0,
+        "not_stated": 0
+      },
+      "counts": {
+        "total": 1,
+        "employers": 1,
+        "offered": 1,
+        "conditional": 0,
+        "unavailable": 0,
+        "not_stated": 0
+      },
+      "changes": {
+        "entered": 0,
+        "returned": 0,
+        "left": 0,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 0,
+        "stated_lost": 0
+      }
+    },
+    "comparison": {
+      "id": "business-497632",
+      "observed_at": "2026-10-08T15:40:41.393Z",
+      "previous_at": "2026-10-08T15:40:41.092Z",
+      "trigger_kind": "scheduled",
+      "baseline": 0,
+      "before_counts": {
+        "total": 1,
+        "employers": 1,
+        "offered": 1,
+        "conditional": 0,
+        "unavailable": 0,
+        "not_stated": 0
+      },
+      "counts": {
+        "total": 2,
+        "employers": 1,
+        "offered": 0,
+        "conditional": 1,
+        "unavailable": 1,
+        "not_stated": 0
+      },
+      "changes": {
+        "entered": 1,
+        "returned": 0,
+        "left": 0,
+        "sponsorship_changed": 1,
+        "evidence_changed": 0,
+        "stated_gained": 1,
+        "stated_lost": 1
+      }
+    },
+    "events": [
+      {
+        "run_id": "business-497632",
+        "job_id": "a",
+        "board_id": "fictional",
+        "company": "Fictional employer",
+        "title": "Fictional engineer",
+        "kind": "sponsorship_changed",
+        "reason": "source_wording_changed",
+        "before_sponsorship": "offered",
+        "after_sponsorship": "unavailable",
+        "before_evidence": "Fictional evidence",
+        "after_evidence": "Fictional exclusion",
+        "observed_at": "2026-10-08T15:40:41.393Z",
+        "previous_at": "2026-10-08T15:40:41.092Z",
+        "trigger_kind": "scheduled"
+      },
+      {
+        "run_id": "business-497632",
+        "job_id": "b",
+        "board_id": "fictional",
+        "company": "Fictional employer",
+        "title": "Fictional engineer",
+        "kind": "entered",
+        "reason": "current_at_observation",
+        "before_sponsorship": null,
+        "after_sponsorship": "conditional",
+        "before_evidence": null,
+        "after_evidence": "Fictional evidence",
+        "observed_at": "2026-10-08T15:40:41.393Z",
+        "previous_at": "2026-10-08T15:40:41.092Z",
+        "trigger_kind": "scheduled"
+      }
+    ],
+    "external_requests": 0,
+    "fixture_health_requests": 10,
+    "replay_additional_requests": 0,
+    "unrelated_controls_disabled": true,
+    "states": [
+      "attention",
+      "attention"
+    ]
+  },
+  "recovery": {
+    "observed_at": "2026-10-08T15:42:15.158Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "4cf6fd5534187b6701dd56f990796d0a739b9690665b00ea409b9900038139e5",
+    "database_size_bytes": 96452608,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 120,
+      "actual_objects": 120,
+      "migration_files": 29,
+      "expected_sha256": "dee2d524485eca472eb7b7c57a2356f56819e6e5f34e43aedc0b513f4704adac",
+      "actual_sha256": "dee2d524485eca472eb7b7c57a2356f56819e6e5f34e43aedc0b513f4704adac",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "scheduled_production_observation": {
+    "database": {
+      "id": "business-497631",
+      "state": "completed",
+      "trigger_kind": "scheduled",
+      "created_at": "2026-10-08T15:45:38.000Z",
+      "finished_at": "2026-10-08T15:45:59.471Z",
+      "movement": {
+        "enabled": true,
+        "checked_at": "2026-10-08T15:45:50.879Z",
+        "started_at": "2026-10-08T15:45:50.632Z",
+        "status": "baseline",
+        "latest": {
+          "id": "business-497631",
+          "observed_at": "2026-10-08T15:45:50.632Z",
+          "previous_at": null,
+          "trigger_kind": "scheduled",
+          "baseline": 1,
+          "before_counts": {
+            "total": 0,
+            "employers": 0,
+            "offered": 0,
+            "conditional": 0,
+            "unavailable": 0,
+            "not_stated": 0
+          },
+          "counts": {
+            "total": 904,
+            "employers": 33,
+            "offered": 16,
+            "conditional": 34,
+            "unavailable": 92,
+            "not_stated": 762
+          },
+          "changes": {
+            "entered": 0,
+            "returned": 0,
+            "left": 0,
+            "sponsorship_changed": 0,
+            "evidence_changed": 0,
+            "stated_gained": 0,
+            "stated_lost": 0
+          }
+        },
+        "employers": [
+          {
+            "board_id": "monzo",
+            "company": "Monzo",
+            "total": 54,
+            "offered": 0,
+            "conditional": 31
+          },
+          {
+            "board_id": "callosum",
+            "company": "Callosum",
+            "total": 10,
+            "offered": 10,
+            "conditional": 0
+          },
+          {
+            "board_id": "seamflow",
+            "company": "Seamflow",
+            "total": 8,
+            "offered": 5,
+            "conditional": 0
+          },
+          {
+            "board_id": "maven",
+            "company": "Maven Securities",
+            "total": 16,
+            "offered": 0,
+            "conditional": 2
+          },
+          {
+            "board_id": "university-nottingham",
+            "company": "University of Nottingham",
+            "total": 15,
+            "offered": 0,
+            "conditional": 1
+          },
+          {
+            "board_id": "sampura",
+            "company": "Sampura Research",
+            "total": 1,
+            "offered": 1,
+            "conditional": 0
+          },
+          {
+            "board_id": "deliveroo",
+            "company": "Deliveroo",
+            "total": 130,
+            "offered": 0,
+            "conditional": 0
+          },
+          {
+            "board_id": "bakerhicks",
+            "company": "BakerHicks",
+            "total": 97,
+            "offered": 0,
+            "conditional": 0
+          },
+          {
+            "board_id": "graphcore",
+            "company": "Graphcore",
+            "total": 85,
+            "offered": 0,
+            "conditional": 0
+          },
+          {
+            "board_id": "octopus-energy",
+            "company": "Octopus Energy",
+            "total": 79,
+            "offered": 0,
+            "conditional": 0
+          }
+        ],
+        "days": [
+          {
+            "day": "2026-10-08",
+            "observations": 1,
+            "entered": 0,
+            "returned": 0,
+            "left": 0,
+            "sponsorship_changed": 0,
+            "stated_gained": 0,
+            "stated_lost": 0
+          }
+        ],
+        "limitation": "Hourly observations of current jobs. Changes between observations may be missed; observation time is not publication time. Leaving the current list is not proof an employer closed a vacancy. Existing jobs form a baseline, not new discoveries."
+      },
+      "health": {
+        "findings": 5,
+        "high": 0
+      }
+    },
+    "platform": {
+      "id": "business-497631",
+      "queued": "2026-10-08T15:45:39.595Z",
+      "start": "2026-10-08T15:45:41.968Z",
+      "end": "2026-10-08T15:45:59.605Z",
+      "status": "complete",
+      "success": true,
+      "step_count": 16
+    },
+    "event_count": 0
+  },
+  "owner_browser": "Baseline and expanded employer concentration verified; screenshot saved. Counts match the scheduled receipt.",
+  "limits_changed": false,
+  "historical_changes_backfilled": false,
+  "linkedin_collector_connected": false,
+  "live_http": {
+    "checked_at": "2026-10-08T15:42:51.654970+00:00",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "version": "2.43.0"
+      },
+      {
+        "path": "/api/admin/business",
+        "status": 403,
+        "version": null
+      },
+      {
+        "path": "/jobs",
+        "status": 200,
+        "version": null
+      }
+    ]
+  }
+}

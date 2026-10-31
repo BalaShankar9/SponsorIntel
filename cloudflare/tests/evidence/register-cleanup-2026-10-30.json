@@ -1,0 +1,258 @@
+{
+  "observed_at": "2026-10-30T11:50:27.698Z",
+  "version": "2.98.4",
+  "state": "live",
+  "change": "Indexed obsolete public-register snapshot cleanup with active-snapshot guard",
+  "validation": {
+    "runtime": "Node 24.19.0",
+    "tests": {
+      "pass": 783,
+      "fail": 0
+    },
+    "build": true,
+    "prerenders": 20,
+    "dependency_audit": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "fixture": {
+      "retained_rows": 256000,
+      "old_rows_read": 256000,
+      "new_rows_read": 4,
+      "obsolete_rows_added": 3,
+      "obsolete_rows_deleted": 3,
+      "obsolete_rows_read": 15,
+      "analysed_and_unanalysed": true
+    },
+    "production_savings_measured": false,
+    "version_upload_dry_run": true,
+    "hosted_ci": {
+      "head": "99ce87865656e17150726591003ac5ef1e5571ac",
+      "checks": [
+        124046899744,
+        124046897533
+      ],
+      "result": "billing_blocked_not_started",
+      "gitguardian": {
+        "id": 124046895040,
+        "result": "neutral_skipped_pr_size"
+      }
+    }
+  },
+  "recovery": {
+    "observed_at": "2026-10-30T11:42:37.069Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "309b273875003b554143d18a48dc0df11b247d968ca52a80cc32164c528fc74e",
+    "database_size_bytes": 165048320,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 204,
+      "actual_objects": 204,
+      "migration_files": 46,
+      "expected_sha256": "2739ea97e3135cb58313a69e7d0b530db23afb3cf98521a00de1f6ee347964c1",
+      "actual_sha256": "2739ea97e3135cb58313a69e7d0b530db23afb3cf98521a00de1f6ee347964c1",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "public_jobs": {
+    "http_status": 200,
+    "total": 1019,
+    "collections": {
+      "total": 1019,
+      "employers": 37,
+      "early_career": 66,
+      "sponsorship": 54,
+      "licensed": 0,
+      "salary": 212
+    },
+    "licence_register": {
+      "available": false,
+      "source_date": "2026-10-27",
+      "checked_at": "2026-10-28T07:15:32.207Z"
+    },
+    "limitation": "Licence availability false; zero licensed count is not licence revocation evidence."
+  },
+  "sources": {
+    "id": "scheduled-1793341855003",
+    "version": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+    "status": "complete",
+    "end": "2026-10-30T07:20:26.193Z",
+    "output": {
+      "state": "attention",
+      "counts": {
+        "failed": 28,
+        "published": 10
+      }
+    },
+    "attempt_error_counts": {
+      "Worker exceeded CPU time limit.": 22,
+      "Another source operation is running.": 68
+    },
+    "budget": {
+      "day": "2026-10-30",
+      "requests": 138,
+      "briefs": 0
+    }
+  },
+  "supervisor": {
+    "id": "business-497989",
+    "provider_error": 10400,
+    "d1": {
+      "id": "business-497989",
+      "state": "queued",
+      "created_at": "2026-10-23T13:45:30.093Z",
+      "finished_at": null,
+      "trigger_kind": "scheduled"
+    },
+    "action": "Preserved; no replacement or forced run"
+  },
+  "controls": {
+    "business": {
+      "enabled": 1,
+      "research": 1,
+      "publishing": 1,
+      "discovery": 1,
+      "updated_at": "2026-10-07T16:47:50.104Z"
+    },
+    "scope": {
+      "enabled": 0,
+      "prepared": 0,
+      "revision": 0
+    },
+    "application_enabled": {
+      "enabled": 1,
+      "updated_at": "2026-10-13T15:52:21.056Z"
+    },
+    "reference_enabled": {
+      "enabled": 1,
+      "revision": 2
+    },
+    "note": "Enabled controls do not clear campaign, source identity or unresolved workflow holds; no settings changed."
+  },
+  "marketing_ledger": [
+    {
+      "destination": "facebook-company",
+      "state": "held",
+      "count": 2
+    },
+    {
+      "destination": "facebook-company",
+      "state": "published",
+      "count": 5
+    },
+    {
+      "destination": "facebook-company",
+      "state": "reviewed",
+      "count": 1
+    },
+    {
+      "destination": "instagram-company",
+      "state": "held",
+      "count": 1
+    },
+    {
+      "destination": "linkedin-company",
+      "state": "held",
+      "count": 1
+    },
+    {
+      "destination": "linkedin-company",
+      "state": "published",
+      "count": 2
+    },
+    {
+      "destination": "linkedin-personal",
+      "state": "held",
+      "count": 1
+    },
+    {
+      "destination": "linkedin-personal",
+      "state": "proposed",
+      "count": 2
+    }
+  ],
+  "discovery_new_today": 0,
+  "latest_scout": {
+    "day": "2026-10-23",
+    "state": "completed",
+    "reason": "checked_advert_links_already_known",
+    "retained": 0,
+    "requests": 1
+  },
+  "complete_day_events": [
+    {
+      "day": "2026-10-26",
+      "event": "page_view",
+      "count": 7
+    },
+    {
+      "day": "2026-10-27",
+      "event": "page_view",
+      "count": 7
+    },
+    {
+      "day": "2026-10-28",
+      "event": "page_view",
+      "count": 1
+    }
+  ],
+  "rollback_worker": "c32a41a1-f0dd-4925-8d5d-cd459934cce1",
+  "no_production_data_export": true,
+  "no_schema_change": true,
+  "no_forced_refresh": true,
+  "no_new_external_send": true,
+  "known_limits": [
+    "CPU-limit source failures unresolved",
+    "Register freshness stale",
+    "Business instance outcome unresolved",
+    "Production cleanup savings and sustained free-plan capacity unverified",
+    "Provider social queues not audited this pass"
+  ],
+  "primary_references": [
+    "https://developers.cloudflare.com/d1/platform/pricing/",
+    "https://developers.cloudflare.com/workflows/reference/limits/"
+  ],
+  "runtime_commit": "99ce87865656e17150726591003ac5ef1e5571ac",
+  "upload": {
+    "worker": "edc38235-3127-4ba6-bcdf-b6aa561ccef7",
+    "exit_code": 0
+  },
+  "deployment": {
+    "id": "7d1441a0-a529-4fa7-83ee-22b6afecb690",
+    "worker": "edc38235-3127-4ba6-bcdf-b6aa561ccef7",
+    "percentage": 100,
+    "created_at": "2026-10-30T11:51:49.574065Z",
+    "upload_exit": 0,
+    "deploy_exit": 0,
+    "triggers_resubmitted": false
+  },
+  "live_verification": {
+    "observed_at": "2026-10-30T11:54:57.684Z",
+    "health_status": 200,
+    "health": {
+      "ok": true,
+      "version": "2.98.4",
+      "register": {
+        "date": "2026-10-27",
+        "count": 128008,
+        "checked_at": "2026-10-28T07:15:32.207Z"
+      }
+    },
+    "jobs_status": 200,
+    "founder_status": 200,
+    "production_cleanup_execution_observed": false
+  }
+}

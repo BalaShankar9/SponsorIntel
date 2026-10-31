@@ -1,0 +1,35 @@
+{
+  "release": "2.52.0",
+  "worker_version": "3a133af1-df7d-443c-8ea9-e15e77f2ba5f",
+  "observed_date": "2026-10-08",
+  "tests": {
+    "passed": 507,
+    "failed": 0,
+    "actual_cloudflare_source_workflow_with_one_held_advert": true,
+    "release_and_renamed_url_controls": true,
+    "mobile_width": 390,
+    "mobile_horizontal_overflow": false
+  },
+  "production": {
+    "migration": 34,
+    "schema_objects": 141,
+    "recovery_schema_exact": true,
+    "job_aggregate_unchanged": true,
+    "employer_reviews_unchanged": true,
+    "foreign_key_errors": 0,
+    "advert_reviews_created": 0,
+    "anonymous_endpoint_status": 403,
+    "current_jobs": 926,
+    "sponsorship_mentions": 55,
+    "licence_linked_jobs": 873
+  },
+  "boundaries": {
+    "new_public_employer": false,
+    "new_public_jobs": 0,
+    "new_source_requests": 0,
+    "new_ai_calls": 0,
+    "new_social_posts": 0,
+    "real_advert_review_outcome_verified": false,
+    "customer_data_restoration_verified": false
+  }
+}

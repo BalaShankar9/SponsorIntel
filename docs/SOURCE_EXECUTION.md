@@ -1,0 +1,21 @@
+# Source execution and lease waits
+
+Release 2.98.7 separates durable waiting from an actual employer-source attempt. The original 30 October source workflow retained 22 CPU-limit errors and 68 lock-contention errors. The old 30/60-second automatic retries could both occur before a terminated operation's two-minute global jobs lease expired. The receipts do not identify every historical lock owner; local fixtures reproduce this failure pattern without claiming all errors have one cause.
+
+For each source, the same workflow/run now has at most three execution opportunities. A small read-only admission step checks its existing task receipt, original two-hour run deadline and current jobs lease. Terminal receipts are reused. A live lease is left untouched; the workflow sleeps until its recorded expiry plus one second, or the original run deadline plus one millisecond if sooner. It reads the receipt and lease again after waking. Renewed/replaced ownership remains authoritative. The sequence has at most one lease wait/recheck per opportunity and retains 30/60-second retry backoff between failed opportunities. There are no nested automatic collection retries.
+
+Admission/waiting does not call an employer, reserve a source request, clear a lock or rewrite a source decision. The existing collector still atomically acquires its lease and rechecks task state, approval, pause/cooldown, request ceilings and complete validation. Successful publication and its receipt remain one transaction; a committed publication after a lost response is replayed rather than fetched twice. Existing advert holds, stop-on-validation-failure behavior, source limits and original observations remain unchanged. Unknown database status cannot authorise a collection. Persistent contention ends within the existing attempt/run bounds, rather than waiting indefinitely.
+
+The current maximum configured source count fits Cloudflare's Free 1,024-step ceiling under the worst sequence; a regression check protects this bound. Step results contain only small state/deadline receipts. Existing workflow instances retain their original code/version; do not restart, replace or force a run to create acceptance evidence.
+
+## What this does not establish
+
+The actual isolated Workflow/D1 fixture proves an existing owner's lease remains present with zero requests reserved during the wait, then one source publication after expiry. An ordinary failed fetch still waits at least 30 seconds and retains both reservations. Simulated abrupt termination, renewed ownership, run expiry, unavailable admission and lost publication acknowledgements are separate local tests. A simulated termination is not an induced production CPU failure.
+
+This fixes timing around a held lease; it does not raise the 10 ms Free CPU limit or prove that a complete source fits it. It does not repair exhausted D1 writes or reconcile an old missing business instance. Genuine subsequent scheduled runs need their original provider step receipts, per-source application outcomes and actual reservations checked. Completion alone is not successful publication. See `DAILY_OPERATOR.md`, `SOURCE_CONTROL_REVIEWS.md`, the current checkpoint and the dated release receipt.
+
+## Observed scheduled path — 31 October
+
+Original `scheduled-1793428255003` completed at **06:38:31.429 UTC** with 37 published feeds, one preserved paused skip and zero failed source tasks. Its 93 provider steps include three CPU-limit failures followed by lease waits, successful readmission and second-attempt publication for Multiverse, Callosum and Seamflow. No source-operation-lock errors appear in those original attempts. Daily reservations remain 188, including the earlier 00:30 run. The application state is attention because a source remains skipped. No run was forced or replaced.
+
+This establishes genuine scheduled use of the admission/wait/recheck path and publication after those three retries. It does not prove sustainable Free capacity, a controlled causal improvement, complete market coverage or supervisor recovery. See [the original aggregate receipt](../cloudflare/tests/evidence/scheduled-source-2026-10-31.json) and [dated operating record](OPERATIONS-2026-10-31.md).

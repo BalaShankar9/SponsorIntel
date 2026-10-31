@@ -1,0 +1,266 @@
+{
+  "release": "2.85.0",
+  "runtime_commit": "e130be71c26a661a833b27be72eb18ded11c26fd",
+  "worker_version": "bd4a4df5-e501-47ed-9900-9dba2d1f952e",
+  "live": {
+    "observed_at": "2026-10-18T14:26:37.313Z",
+    "health": {
+      "ok": true,
+      "version": "2.85.0",
+      "register": {
+        "date": "2026-10-16",
+        "count": 128007,
+        "checked_at": "2026-10-18T07:16:01.015Z"
+      }
+    },
+    "source_version": {
+      "id": "6e7ca74036beafcb0431c567",
+      "state": "current",
+      "version": "5f881df092b64d0dd255bac5eb8e7496b35494b4a9ecf24a17f3504bf2e51cec",
+      "detail_and_local_hash_match": true
+    },
+    "stale": {
+      "status": 409,
+      "availability": "changed",
+      "textReturned": false
+    },
+    "current": {
+      "status": 200,
+      "textReturned": true
+    },
+    "manual": {
+      "status": 200,
+      "textReturned": true
+    },
+    "held": {
+      "state": "held",
+      "advertReturned": false
+    },
+    "anonymousOwner": 403,
+    "asset": {
+      "path": "assets/career-BMLBtqi4.js",
+      "bytes": 72164,
+      "sha256": "76b4abd2ecbf37ea27926b39e2027230b1b5bfae160a70c7235a06220d7c8787"
+    },
+    "no_workspace_write": true,
+    "no_model_call": true,
+    "metrics_excluded": true
+  },
+  "validation": {
+    "tests": 699,
+    "failed": 0,
+    "duration_ms": 60099.444583,
+    "node": "24.19.0",
+    "typescript": true,
+    "build": true,
+    "prerenders": 18,
+    "browser_budgets": true,
+    "worker_dry_run": true,
+    "initial_reproduction": "Actual isolated Worker returned 200 instead of 409 for a stale source version.",
+    "test_fixture_correction": "The original CV-refusal fixture omitted the role-specific scope required by the existing classifier. It was corrected to an explicit refusal for this application; the classifier was not widened.",
+    "browser": [
+      "Actual Studio: changed source disables preparation and shows comparison.",
+      "Use latest advert preserves notes edited during review, CV and letter.",
+      "Legacy differing copy asks for review without asserting an employer change.",
+      "Keep edited text requires explicit checkbox; text retained and public metadata updated.",
+      "Actual job detail Prepare button retains existing edited description.",
+      "A source change immediately before evidence checking stops the check and retains previous notes.",
+      "390px viewport and document widths match."
+    ],
+    "fictional_browser_preview": "outputs/advert-review-2026-10-18.png",
+    "preview_is_production_data": false
+  },
+  "preservation": {
+    "ops": {
+      "before": "2026-10-18T14:23:13.355Z",
+      "after": "2026-10-18T14:27:05.156Z",
+      "groups": {
+        "business_controls": {
+          "rows": 1,
+          "before_sha256": "0f4b27c24af98ea2a26b2cce1d6234689f79cb0c120cc9d2d6ce554c6c9d8606",
+          "after_sha256": "0f4b27c24af98ea2a26b2cce1d6234689f79cb0c120cc9d2d6ce554c6c9d8606",
+          "equal": true
+        },
+        "marketing_controls": {
+          "rows": 1,
+          "before_sha256": "f6d4499580d6a2ac2e1826cb785d7d34327044674423e93afee777d1a9703126",
+          "after_sha256": "f6d4499580d6a2ac2e1826cb785d7d34327044674423e93afee777d1a9703126",
+          "equal": true
+        },
+        "research_control": {
+          "rows": 1,
+          "before_sha256": "b3bda3a8d16547cf4ad98d35773583d123f6cd3c506f6c5972d5ed70e1328500",
+          "after_sha256": "b3bda3a8d16547cf4ad98d35773583d123f6cd3c506f6c5972d5ed70e1328500",
+          "equal": true
+        },
+        "application_controls": {
+          "rows": 1,
+          "before_sha256": "16a9834b711b6f57cb52e748e14df296d03f58e696a7b602c7033e0f0f4460d8",
+          "after_sha256": "16a9834b711b6f57cb52e748e14df296d03f58e696a7b602c7033e0f0f4460d8",
+          "equal": true
+        },
+        "source_controls": {
+          "rows": 1,
+          "before_sha256": "86b1706d7eea2ceb20784aa14587d3ea62afce0ab03855200e3e7d0fc65cf4cd",
+          "after_sha256": "86b1706d7eea2ceb20784aa14587d3ea62afce0ab03855200e3e7d0fc65cf4cd",
+          "equal": true
+        },
+        "marketing_briefs": {
+          "rows": 10,
+          "before_sha256": "772f5c69bf0537ea9d99b102acb57125aa70fcedf9bbbd61dcb0c2f2f21d73ee",
+          "after_sha256": "772f5c69bf0537ea9d99b102acb57125aa70fcedf9bbbd61dcb0c2f2f21d73ee",
+          "equal": true
+        },
+        "marketing_receipts": {
+          "rows": 12,
+          "before_sha256": "dc108ca978a6d71091c1421bf9d78699a79e433dbb745e1c53cf74579982609b",
+          "after_sha256": "dc108ca978a6d71091c1421bf9d78699a79e433dbb745e1c53cf74579982609b",
+          "equal": true
+        },
+        "source_budget": {
+          "rows": 1,
+          "before_sha256": "a52df1d5366f6baa4765285e0531366cde8ed893bc8346d3888fee53277ebb7c",
+          "after_sha256": "a52df1d5366f6baa4765285e0531366cde8ed893bc8346d3888fee53277ebb7c",
+          "equal": true
+        },
+        "ai_budget": {
+          "rows": 1,
+          "before_sha256": "94871d8784474bbb41be2739452b8762cc383fb17d1f85492e569dd586aae7b6",
+          "after_sha256": "94871d8784474bbb41be2739452b8762cc383fb17d1f85492e569dd586aae7b6",
+          "equal": true
+        },
+        "business_runs": {
+          "rows": 2,
+          "before_sha256": "07a15c538b731d19765c9352b4ce2071f35c19fefc8ccc8e03610ecd327c25c8",
+          "after_sha256": "07a15c538b731d19765c9352b4ce2071f35c19fefc8ccc8e03610ecd327c25c8",
+          "equal": true
+        },
+        "source_runs": {
+          "rows": 2,
+          "before_sha256": "7fab5268a44afa93298ea46058eac8d406df3efae39d3f1c9d5ef282773ac93c",
+          "after_sha256": "7fab5268a44afa93298ea46058eac8d406df3efae39d3f1c9d5ef282773ac93c",
+          "equal": true
+        },
+        "marketing_runs": {
+          "rows": 2,
+          "before_sha256": "65d120cea12ba228483cacf7edfe4b7c247f21fbe482fd731e27063d505c09d4",
+          "after_sha256": "65d120cea12ba228483cacf7edfe4b7c247f21fbe482fd731e27063d505c09d4",
+          "equal": true
+        },
+        "issues": {
+          "rows": 5,
+          "before_sha256": "fd07f088d1b9c35aba09b9b69c27bf8e5448c176aa0458aab7d00d30bc264bbc",
+          "after_sha256": "fd07f088d1b9c35aba09b9b69c27bf8e5448c176aa0458aab7d00d30bc264bbc",
+          "equal": true
+        },
+        "foreign_keys": {
+          "rows": 0,
+          "before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "equal": true
+        }
+      }
+    },
+    "protected": {
+      "before": "2026-10-18T14:23:04.768Z",
+      "after": "2026-10-18T14:27:06.653Z",
+      "groups": {
+        "workspace_metadata": {
+          "rows": 1,
+          "before_sha256": "63b7f97e9c296a21edba687fe10c646a6e6dba35d4b29bd005b1d890cb7da825",
+          "after_sha256": "63b7f97e9c296a21edba687fe10c646a6e6dba35d4b29bd005b1d890cb7da825",
+          "equal": true
+        },
+        "job_aggregates": {
+          "rows": 8,
+          "before_sha256": "c05be0715d3def954bf910fc186464924a1f5378d9ba33f9664d76c2c4b7cc5d",
+          "after_sha256": "c05be0715d3def954bf910fc186464924a1f5378d9ba33f9664d76c2c4b7cc5d",
+          "equal": true
+        },
+        "advert_holds": {
+          "rows": 4,
+          "before_sha256": "b0cd7e6ebb0e98ad5862c634b329f3118666ea0dc8f04e292766b37ece316d18",
+          "after_sha256": "b0cd7e6ebb0e98ad5862c634b329f3118666ea0dc8f04e292766b37ece316d18",
+          "equal": true
+        },
+        "customer_allowances": {
+          "rows": 3,
+          "before_sha256": "822310a2318a937fb085e7457b9c82b7fdc9b97706886ef63120b1c411437373",
+          "after_sha256": "822310a2318a937fb085e7457b9c82b7fdc9b97706886ef63120b1c411437373",
+          "equal": true
+        },
+        "discovery_identities": {
+          "rows": 25,
+          "before_sha256": "133216b28a232742a5c17508c0e6655dd7b0f3fbcabfa6078c01f644a67aea14",
+          "after_sha256": "133216b28a232742a5c17508c0e6655dd7b0f3fbcabfa6078c01f644a67aea14",
+          "equal": true
+        },
+        "discovery_revision_metadata": {
+          "rows": 66,
+          "before_sha256": "51e56402ccbbf48b8a3eeebdb0bbd97b1aa59cb42190621cb05521be4ee57aff",
+          "after_sha256": "51e56402ccbbf48b8a3eeebdb0bbd97b1aa59cb42190621cb05521be4ee57aff",
+          "equal": true
+        },
+        "scout_runs": {
+          "rows": 11,
+          "before_sha256": "694364e73788f6f27664141a356664357f8b07954084ae995d176e222af7e95f",
+          "after_sha256": "694364e73788f6f27664141a356664357f8b07954084ae995d176e222af7e95f",
+          "equal": true
+        },
+        "scout_items": {
+          "rows": 16,
+          "before_sha256": "2a4d09b6621a41d82e0cbd2e02776d6b807b380cadc450e6f089c82ace53ecc9",
+          "after_sha256": "2a4d09b6621a41d82e0cbd2e02776d6b807b380cadc450e6f089c82ace53ecc9",
+          "equal": true
+        }
+      }
+    }
+  },
+  "ci": {
+    "runtime_head": "e130be71c26a661a833b27be72eb18ded11c26fd",
+    "linux": [
+      {
+        "id": 117700172544,
+        "result": "billing-blocked before execution"
+      },
+      {
+        "id": 117700162447,
+        "result": "billing-blocked before execution"
+      }
+    ],
+    "gitguardian": {
+      "id": 117700174368,
+      "result": "passed"
+    },
+    "original_failure_annotations_inspected": true
+  },
+  "recovery": {
+    "reused_same_day_check": "2026-10-18T00:05:57.335Z",
+    "migrations": 40,
+    "schema_objects": 166,
+    "schema_changed": false,
+    "production_restore": false
+  },
+  "dependencies": {
+    "graph_changed": false,
+    "same_day_audit": {
+      "high": 0,
+      "critical": 0,
+      "moderate": 3
+    },
+    "known_chain": "Mammoth -> argparse -> sprintf-js",
+    "advisory": "GHSA-hp3w-g68c-fv3c"
+  },
+  "prior_runtime": {
+    "version": "2.84.0",
+    "worker": "6fc59940-5dba-4fb0-9204-37072c9e8ca3",
+    "limitations": "Rollback removes the new source guard and restores the old existing-role reopening behavior. Older workspace validation may drop optional sourceVersion on a later save; notes/documents are retained."
+  },
+  "limits_unchanged": true,
+  "new_sources_or_leads": 0,
+  "model_calls_for_release": 0,
+  "social_sends_for_release": 0,
+  "forced_workflows": 0,
+  "independent_model_quality_accepted": false,
+  "application_source_sha256": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2"
+}

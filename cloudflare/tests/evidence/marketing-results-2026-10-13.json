@@ -1,0 +1,173 @@
+{
+  "observed_day": "2026-10-13",
+  "provider": "Metricool",
+  "brand": "7294726",
+  "account": "1319703417896763",
+  "timezone": "Europe/London",
+  "query": {
+    "from": "2026-10-07T00:00:00+01:00",
+    "to": "2026-10-13T17:09:00+01:00",
+    "connector": "facebook/posts"
+  },
+  "rows": [
+    {
+      "created": "20261012090215",
+      "post_id": "1319703417896763_122096326947512994",
+      "post_url": "https://facebook.com/122093616117512994/posts/122096326947512994",
+      "comments": "0",
+      "link_clicks": "0",
+      "legacy_impressions": "1",
+      "reach": "1",
+      "reactions": "0",
+      "shares": "0",
+      "clicks": "0",
+      "campaign_url": "https://sponsorintel.london/studio?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=application_review"
+    },
+    {
+      "created": "20261010090200",
+      "post_id": "1319703417896763_122094988383512994",
+      "post_url": "https://facebook.com/122093616117512994/posts/122094988383512994",
+      "comments": "0",
+      "link_clicks": "0",
+      "legacy_impressions": "4",
+      "reach": "1",
+      "reactions": "0",
+      "shares": "0",
+      "clicks": "0",
+      "campaign_url": "https://sponsorintel.london/guides/sponsorship-in-job-adverts?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=advert_wording"
+    },
+    {
+      "created": "20261008090439",
+      "post_id": "1319703417896763_122093924469512994",
+      "post_url": "https://facebook.com/122093616117512994/posts/122093924469512994",
+      "comments": "0",
+      "link_clicks": "0",
+      "legacy_impressions": "2",
+      "reach": "2",
+      "reactions": "0",
+      "shares": "0",
+      "clicks": "0",
+      "campaign_url": "https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot"
+    }
+  ],
+  "metric_order": [
+    "FBPO02",
+    "FBPO03",
+    "FBPO04",
+    "FBPO06",
+    "FBPO08",
+    "FBPO09",
+    "FBPO11",
+    "FBPO12",
+    "FBPO13",
+    "FBPO14",
+    "FBPO23",
+    "FBPO25"
+  ],
+  "coverage": "All three previously scheduled launch posts now returned; no claim that every account post is covered.",
+  "definitions_url": "https://help.metricool.com/facebook-metrics-8gdta",
+  "reporting_basis": "Cumulative post metrics through the previous London calendar day, per official documentation. Query bounds select publication cohort, not activity interval. Provider synchronization time unknown.",
+  "metric_ambiguity": "FBPO11 is labelled impressions by connector metadata, but current official documentation calls the post-list count views. Raw values retained here; both impressions and views remain null in owner observations pending reconciliation.",
+  "public_browser_checks": {
+    "exact_authors": true,
+    "full_copy": true,
+    "campaign_links": true
+  },
+  "sends": 0,
+  "new_model_calls": 0,
+  "retained_observations": [
+    {
+      "id": "b25098d4-c062-4677-9258-f68ee55d9a75",
+      "created_at": "2026-10-11T15:16:06.040Z",
+      "title": "Sponsor Intel company welcome \u2014 native LinkedIn results",
+      "observed_at": "2026-10-11T15:14:00.000Z",
+      "window_type": "lifetime",
+      "window_start": null,
+      "window_end": "2026-10-11T15:14:00.000Z",
+      "published_at": null,
+      "metrics": {
+        "impressions": 103,
+        "views": null,
+        "reach": 70,
+        "clicks": 2,
+        "link_clicks": null,
+        "reactions": 0,
+        "comments": 0,
+        "shares": 0,
+        "saves": null
+      },
+      "campaign_id": "li-welcome"
+    },
+    {
+      "id": "9cb0b58d-9435-42d7-9694-99d6390184e3",
+      "created_at": "2026-10-13T16:20:49.438Z",
+      "title": "Facebook application review guide \u2014 13 October performance",
+      "observed_at": "2026-10-13T16:20:00.000Z",
+      "window_type": "lifetime",
+      "window_start": null,
+      "window_end": "2026-10-12T22:59:59.000Z",
+      "published_at": null,
+      "metrics": {
+        "impressions": null,
+        "views": null,
+        "reach": 1,
+        "clicks": 0,
+        "link_clicks": 0,
+        "reactions": 0,
+        "comments": 0,
+        "shares": 0,
+        "saves": null
+      },
+      "campaign_id": "fb-applications"
+    },
+    {
+      "id": "99a0d541-bc4b-44c8-bace-7c518acee6a3",
+      "created_at": "2026-10-13T16:21:09.188Z",
+      "title": "Facebook advert wording guide \u2014 13 October performance",
+      "observed_at": "2026-10-13T16:20:00.000Z",
+      "window_type": "lifetime",
+      "window_start": null,
+      "window_end": "2026-10-12T22:59:59.000Z",
+      "published_at": null,
+      "metrics": {
+        "impressions": null,
+        "views": null,
+        "reach": 1,
+        "clicks": 0,
+        "link_clicks": 0,
+        "reactions": 0,
+        "comments": 0,
+        "shares": 0,
+        "saves": null
+      },
+      "campaign_id": "fb-adverts"
+    },
+    {
+      "id": "13e347cc-e9bf-4f58-ad60-d433c4708317",
+      "created_at": "2026-10-13T16:21:09.771Z",
+      "title": "Facebook evidence report \u2014 13 October performance",
+      "observed_at": "2026-10-13T16:20:00.000Z",
+      "window_type": "lifetime",
+      "window_start": null,
+      "window_end": "2026-10-12T22:59:59.000Z",
+      "published_at": null,
+      "metrics": {
+        "impressions": null,
+        "views": null,
+        "reach": 2,
+        "clicks": 0,
+        "link_clicks": 0,
+        "reactions": 0,
+        "comments": 0,
+        "shares": 0,
+        "saves": null
+      },
+      "campaign_id": "fb-evidence"
+    }
+  ],
+  "owner_reload_verified": true,
+  "independent_d1_readback_verified": true,
+  "observations_total": 4,
+  "new_observations": 3,
+  "next_genuine_context_pending": true
+}

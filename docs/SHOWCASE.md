@@ -1,5 +1,7 @@
 # SponsorIntel · project guide
 
+> **4 October 2026 update:** A redesigned Cloudflare beta is live. Start with the [current release record](CLOUDFLARE_LAUNCH.md) and [Cloudflare app guide](../cloudflare/README.md). The review below describes the older services as inspected on 8 September; it is retained as historical context.
+
 A UK sponsor intelligence application with data ingestion, search, scoring and background processing.
 
 **For:** People researching sponsor organisations and related job information.<br>
