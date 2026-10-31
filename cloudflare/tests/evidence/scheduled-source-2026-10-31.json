@@ -1,0 +1,531 @@
+{
+  "recorded_at": "2026-10-31T10:06:21.429341+00:00",
+  "observation": "read-only original provider receipt and D1 aggregates; no forced run",
+  "provider": {
+    "id": "scheduled-1793428255003",
+    "versionId": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+    "queued": "2026-10-31T06:30:56.992Z",
+    "start": "2026-10-31T06:30:58.990Z",
+    "end": "2026-10-31T06:38:31.429Z",
+    "success": true,
+    "status": "complete",
+    "step_count": 93,
+    "output": {
+      "state": "attention",
+      "counts": {
+        "published": 37,
+        "skipped": 1
+      }
+    }
+  },
+  "attempt_error_counts": {
+    "cpu_limit": 3,
+    "source_operation_lock": 0,
+    "other": 0
+  },
+  "lease_wait_count": 3,
+  "selected_original_steps": [
+    {
+      "name": "source-admission-multiverse-1-1",
+      "type": "step",
+      "start": "2026-10-31T06:31:42.740Z",
+      "end": "2026-10-31T06:31:42.928Z",
+      "success": true,
+      "receipt": {
+        "ready": true
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:31:42.740Z",
+          "end": "2026-10-31T06:31:42.928Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "collect-check-publish-multiverse-attempt-1-1",
+      "type": "step",
+      "start": "2026-10-31T06:31:42.946Z",
+      "end": "2026-10-31T06:31:43.142Z",
+      "success": false,
+      "attempts": [
+        {
+          "start": "2026-10-31T06:31:42.946Z",
+          "end": "2026-10-31T06:31:43.142Z",
+          "success": false
+        }
+      ],
+      "error_codes": [
+        "cpu_limit"
+      ]
+    },
+    {
+      "name": "source-retry-delay-multiverse-1-1",
+      "type": "sleep",
+      "start": "2026-10-31T06:31:48.839Z",
+      "end": "2026-10-31T06:32:18.839Z",
+      "success": null,
+      "attempts": [],
+      "error_codes": []
+    },
+    {
+      "name": "source-admission-multiverse-2-1",
+      "type": "step",
+      "start": "2026-10-31T06:32:18.854Z",
+      "end": "2026-10-31T06:32:19.114Z",
+      "success": true,
+      "receipt": {
+        "ready": false,
+        "wake_at": 1793428423960
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:32:18.854Z",
+          "end": "2026-10-31T06:32:19.114Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "source-lease-wait-multiverse-2-1",
+      "type": "sleep",
+      "start": "2026-10-31T06:32:19.129Z",
+      "end": "2026-10-31T06:33:43.960Z",
+      "success": null,
+      "attempts": [],
+      "error_codes": []
+    },
+    {
+      "name": "source-readmission-multiverse-2-1",
+      "type": "step",
+      "start": "2026-10-31T06:33:43.976Z",
+      "end": "2026-10-31T06:33:44.205Z",
+      "success": true,
+      "receipt": {
+        "ready": true
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:33:43.976Z",
+          "end": "2026-10-31T06:33:44.205Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "collect-check-publish-multiverse-attempt-2-1",
+      "type": "step",
+      "start": "2026-10-31T06:33:44.220Z",
+      "end": "2026-10-31T06:33:45.867Z",
+      "success": true,
+      "receipt": {
+        "source_id": "multiverse",
+        "state": "published",
+        "count": 29
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:33:44.220Z",
+          "end": "2026-10-31T06:33:45.867Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "source-admission-callosum-1-1",
+      "type": "step",
+      "start": "2026-10-31T06:33:45.883Z",
+      "end": "2026-10-31T06:33:46.067Z",
+      "success": true,
+      "receipt": {
+        "ready": true
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:33:45.883Z",
+          "end": "2026-10-31T06:33:46.067Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "collect-check-publish-callosum-attempt-1-1",
+      "type": "step",
+      "start": "2026-10-31T06:33:46.082Z",
+      "end": "2026-10-31T06:33:46.716Z",
+      "success": false,
+      "attempts": [
+        {
+          "start": "2026-10-31T06:33:46.082Z",
+          "end": "2026-10-31T06:33:46.716Z",
+          "success": false
+        }
+      ],
+      "error_codes": [
+        "cpu_limit"
+      ]
+    },
+    {
+      "name": "source-retry-delay-callosum-1-1",
+      "type": "sleep",
+      "start": "2026-10-31T06:33:52.509Z",
+      "end": "2026-10-31T06:34:22.509Z",
+      "success": null,
+      "attempts": [],
+      "error_codes": []
+    },
+    {
+      "name": "source-admission-callosum-2-1",
+      "type": "step",
+      "start": "2026-10-31T06:34:22.524Z",
+      "end": "2026-10-31T06:34:22.705Z",
+      "success": true,
+      "receipt": {
+        "ready": false,
+        "wake_at": 1793428547095
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:34:22.524Z",
+          "end": "2026-10-31T06:34:22.705Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "source-lease-wait-callosum-2-1",
+      "type": "sleep",
+      "start": "2026-10-31T06:34:22.720Z",
+      "end": "2026-10-31T06:35:47.095Z",
+      "success": null,
+      "attempts": [],
+      "error_codes": []
+    },
+    {
+      "name": "source-readmission-callosum-2-1",
+      "type": "step",
+      "start": "2026-10-31T06:35:47.110Z",
+      "end": "2026-10-31T06:35:47.334Z",
+      "success": true,
+      "receipt": {
+        "ready": true
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:35:47.110Z",
+          "end": "2026-10-31T06:35:47.334Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "collect-check-publish-callosum-attempt-2-1",
+      "type": "step",
+      "start": "2026-10-31T06:35:47.351Z",
+      "end": "2026-10-31T06:35:48.606Z",
+      "success": true,
+      "receipt": {
+        "source_id": "callosum",
+        "state": "published",
+        "count": 10
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:35:47.351Z",
+          "end": "2026-10-31T06:35:48.606Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "source-admission-seamflow-1-1",
+      "type": "step",
+      "start": "2026-10-31T06:35:50.010Z",
+      "end": "2026-10-31T06:35:50.258Z",
+      "success": true,
+      "receipt": {
+        "ready": true
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:35:50.010Z",
+          "end": "2026-10-31T06:35:50.258Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "collect-check-publish-seamflow-attempt-1-1",
+      "type": "step",
+      "start": "2026-10-31T06:35:50.274Z",
+      "end": "2026-10-31T06:35:51.175Z",
+      "success": false,
+      "attempts": [
+        {
+          "start": "2026-10-31T06:35:50.274Z",
+          "end": "2026-10-31T06:35:51.175Z",
+          "success": false
+        }
+      ],
+      "error_codes": [
+        "cpu_limit"
+      ]
+    },
+    {
+      "name": "source-retry-delay-seamflow-1-1",
+      "type": "sleep",
+      "start": "2026-10-31T06:35:57.374Z",
+      "end": "2026-10-31T06:36:27.374Z",
+      "success": null,
+      "attempts": [],
+      "error_codes": []
+    },
+    {
+      "name": "source-admission-seamflow-2-1",
+      "type": "step",
+      "start": "2026-10-31T06:36:27.391Z",
+      "end": "2026-10-31T06:36:27.631Z",
+      "success": true,
+      "receipt": {
+        "ready": false,
+        "wake_at": 1793428671289
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:36:27.391Z",
+          "end": "2026-10-31T06:36:27.631Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "source-lease-wait-seamflow-2-1",
+      "type": "sleep",
+      "start": "2026-10-31T06:36:27.650Z",
+      "end": "2026-10-31T06:37:51.289Z",
+      "success": null,
+      "attempts": [],
+      "error_codes": []
+    },
+    {
+      "name": "source-readmission-seamflow-2-1",
+      "type": "step",
+      "start": "2026-10-31T06:37:51.306Z",
+      "end": "2026-10-31T06:37:51.552Z",
+      "success": true,
+      "receipt": {
+        "ready": true
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:37:51.306Z",
+          "end": "2026-10-31T06:37:51.552Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    },
+    {
+      "name": "collect-check-publish-seamflow-attempt-2-1",
+      "type": "step",
+      "start": "2026-10-31T06:37:51.569Z",
+      "end": "2026-10-31T06:37:52.831Z",
+      "success": true,
+      "receipt": {
+        "source_id": "seamflow",
+        "state": "published",
+        "count": 8
+      },
+      "attempts": [
+        {
+          "start": "2026-10-31T06:37:51.569Z",
+          "end": "2026-10-31T06:37:52.831Z",
+          "success": true
+        }
+      ],
+      "error_codes": []
+    }
+  ],
+  "application_runs": [
+    {
+      "id": "scheduled-1793428255003",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "created_at": "2026-10-31T06:30:55.863Z",
+      "finished_at": "2026-10-31T06:38:31.318Z",
+      "requests": 86
+    },
+    {
+      "id": "scheduled-1793406655003",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "created_at": "2026-10-31T00:30:55.761Z",
+      "finished_at": "2026-10-31T01:22:09.042Z",
+      "requests": 102
+    }
+  ],
+  "application_task_counts": [
+    {
+      "run_id": "scheduled-1793406655003",
+      "state": "failed",
+      "count": 7
+    },
+    {
+      "run_id": "scheduled-1793406655003",
+      "state": "published",
+      "count": 30
+    },
+    {
+      "run_id": "scheduled-1793406655003",
+      "state": "skipped",
+      "count": 1
+    },
+    {
+      "run_id": "scheduled-1793428255003",
+      "state": "published",
+      "count": 37
+    },
+    {
+      "run_id": "scheduled-1793428255003",
+      "state": "skipped",
+      "count": 1
+    }
+  ],
+  "public_jobs": {
+    "generated_at": "2026-10-31T10:01:55.520Z",
+    "total": 1001,
+    "collections": {
+      "total": 1001,
+      "employers": 37,
+      "early_career": 66,
+      "sponsorship": 54,
+      "licensed": 0,
+      "salary": 207
+    },
+    "licence_register": {
+      "available": false,
+      "source_date": "2026-10-27",
+      "checked_at": "2026-10-28T07:15:32.207Z"
+    }
+  },
+  "controls": {
+    "business": [
+      {
+        "enabled": 1,
+        "publishing": 1,
+        "research": 1,
+        "discovery": 1,
+        "updated_at": "2026-10-07T16:47:50.104Z"
+      }
+    ],
+    "paused_sources": [
+      {
+        "source_id": "portmandentex",
+        "paused": 1,
+        "control_revision": 0,
+        "updated_at": "2026-10-09T19:01:15.323Z"
+      }
+    ],
+    "advert_reviews": [
+      {
+        "state": "held",
+        "count": 4
+      }
+    ]
+  },
+  "source_daily_reservations": [
+    {
+      "day": "2026-10-30",
+      "requests": 138
+    },
+    {
+      "day": "2026-10-31",
+      "requests": 188
+    }
+  ],
+  "marketing_states": [
+    {
+      "state": "held",
+      "count": 5
+    },
+    {
+      "state": "proposed",
+      "count": 2
+    },
+    {
+      "state": "published",
+      "count": 7
+    },
+    {
+      "state": "reviewed",
+      "count": 1
+    }
+  ],
+  "stored_business_issues": [
+    {
+      "severity": "high",
+      "count": 3,
+      "latest_seen": "2026-10-23T14:46:43.925Z"
+    },
+    {
+      "severity": "normal",
+      "count": 8,
+      "latest_seen": "2026-10-23T14:46:43.925Z"
+    }
+  ],
+  "public_events_complete_day_2026_10_30": {
+    "rows": [],
+    "missing_rows_prove_no_activity": false
+  },
+  "new_leads_today": [
+    {
+      "leads_today": 0
+    }
+  ],
+  "last_scout": [
+    {
+      "day": "2026-10-23",
+      "run_id": "business-497976",
+      "state": "completed",
+      "retained": 0,
+      "finished_at": "2026-10-23T00:46:07.504Z"
+    }
+  ],
+  "aggregate_query_rows_read": 331,
+  "aggregate_query_rows_written": 0,
+  "dependency_audit": {
+    "scope": "all installed production and development dependencies",
+    "known_vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "package_lock_sha256": "a0064013264829d450682960462ebf1f20fb1f06fb715b9df2b13956081e3842",
+    "install_performed": false
+  },
+  "earlier_diagnostic_query": {
+    "failed": true,
+    "issue": "used created_at rather than recorded_at for discovery_leads",
+    "stderr_empty": true,
+    "exact_provider_error_not_retained": true,
+    "corrected_from_migration": true,
+    "all_statements_read_only": true
+  },
+  "production_mutations": [],
+  "causal_performance_improvement_proven": false,
+  "sustainable_capacity_proven": false,
+  "business_supervisor_recovered": false
+}
