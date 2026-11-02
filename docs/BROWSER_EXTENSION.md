@@ -24,6 +24,12 @@ Install the preview by extracting the ZIP and using Load unpacked in the browser
 
 Store publication needs an authorised publisher connection, the exact reviewed package, required privacy declarations and platform review. Do not buy a publisher registration, accept new agreements or imply a pending submission exists. Safari, Firefox and mobile installation are unverified; the paste checker remains available where supported. No per-site login, restricted-page access or CAPTCHA bypass is introduced.
 
+## Verified browser package — 2 November 2026
+
+The public 0.1.0 ZIP (SHA-256 `db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb`) was independently extracted and loaded into the installed **Google Chrome 156.0.8078.76**, using a separate temporary test profile. The actual browser action, active-tab capture, evidence/result, selected text, multiple-role/oversize holds, hidden/form exclusions, edit invalidation and close/clear checks passed on fictional local pages. The local web checker and 390-pixel layout also passed; no advert text appeared in observed requests. The profile was closed/removed. Receipt: `cloudflare/tests/evidence/extension-2026-11-02/chrome-packaged.json`.
+
+Repeat with an existing Playwright installation: `EXTENSION_BROWSER_CHANNEL=chrome PLAYWRIGHT_MODULE=<existing-index.mjs> node scripts/check-extension-browser.mjs`. Default is bundled Chromium; `msedge` requires Edge already installed. The harness validates the package hash, safely extracts it, and tests the extracted files, rather than loading development sources. It uses a temporary profile and the extension-debugging protocol. This is not a browser-store or consumer installation-UI acceptance, and it does not change the user's normal browser profile. No browser or dependency was installed for this check. Edge, Firefox, Safari, mobile installation and representative external job-site compatibility remain unverified.
+
 ## Acceptance and remaining gates
 
 - Meaningful wording cases cover positive/conditional/refusal, mixed support/refusal, questions, licences alone, right-to-work alone, funding, unrelated sponsorship, historical wording and non-UK references. Results must retain supporting text and avoid interpreting missing text as refusal.
