@@ -68,3 +68,8 @@ Reliability, private-work protection and current evidence failures retain priori
 ## Innovator Founder expansion, 26 October
 
 The owner has consolidated founder-route work into Sponsor Intel. Follow [INNOVATOR_FOUNDER_HUB_PLAN.md](INNOVATOR_FOUNDER_HUB_PLAN.md) for the end-to-end journey, evidence workspaces, verified directories, privacy and staged acceptance. This is additional scope; application dispatch, genuine sponsorship coverage, business identities and saved learning goals remain unfinished objectives.
+
+
+## Browser companion — owner addition, 2 November 2026
+
+The existing product goal also includes a downloadable extension for checking sponsorship wording on external job sites. Follow `BROWSER_EXTENSION.md` for implementation and acceptance: explicit user-triggered reading, complete-advert review, supporting sentences, offered/conditional/refused/unclear outcomes, private local processing and selection/paste fallback. Do not infer a refusal from silence or an offer from a licence. Browser-store installation, representative compatibility and measured usefulness remain distinct delivery gates. This direct independent feature request does not clear capacity/supervisor, source or prepared-saving holds.

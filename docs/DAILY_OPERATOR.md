@@ -10,6 +10,8 @@ The objective remains reliable autonomous sourcing, evidence quality, website ma
 
 **Founder hub addition, 26 October:** build the integrated Innovator Founder journey, evidence preparation, source-backed directory and private planning workspaces described in `INNOVATOR_FOUNDER_HUB_PLAN.md`. This expands existing scope without replacing unfinished work or clearing holds. No endorsement/visa guarantees, external applications, contacts, purchases or new model allowance.
 
+**Browser extension addition, 2 November:** build the downloadable, site-independent advert companion described in `BROWSER_EXTENSION.md`, with local wording checks, quoted evidence, uncertainty, selection/paste fallback and website installation guidance. Browser-store distribution and broad compatibility require separate verification. This direct product request authorises the independent extension/download work; it does not clear capacity/supervisor/private-saving holds, add AI spending or authorise publisher purchases/agreements.
+
 ## Run order
 
 1. Read the checkpoint and relevant latest release, inspect the worktree, current UTC time and available disk. Preserve unrelated changes. Prefer a small number of background tabs; close temporary research/QA tabs. Preserve personal tabs and unfinished forms.

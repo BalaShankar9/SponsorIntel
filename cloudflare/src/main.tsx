@@ -63,6 +63,7 @@ import { usePublicResource } from './public-resource';
 import { SponsorCities } from './sponsor-cities';
 import { LearningPage } from './learning-entry';
 import { FounderPage } from './founder-entry';
+import { BrowserExtensionPage } from './extension-entry';
 import './sponsor-cities.css';
 import {
   FeedbackForm,
@@ -722,6 +723,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     { id: "study", label: "Study in the UK", icon: GraduationCap },
     { id: "guides", label: "UK career guides", icon: BookOpen },
     { id: "skills", label: "Skills & learning", icon: GraduationCap },
+    { id: "browser-extension", label: "Browser extension", icon: Globe2 },
     { id: "insights", label: "Insights & reports", icon: FileText },
     { id: "advisers", label: "Find immigration advice", icon: Scale },
     { id: "ask", label: "Ask immigration questions", icon: MessageSquare },
@@ -874,6 +876,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
           )}
           {view === 'sponsors-by-city' && <SponsorCities />}
           {view === 'skills' && <LearningPage />}
+          {view === 'browser-extension' && <BrowserExtensionPage />}
           {view === 'innovator-founder' && <FounderPage />}
           {view === "discover" && (
             <div className="career-launch">

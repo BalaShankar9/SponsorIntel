@@ -106,5 +106,10 @@
     "title": "UK Innovator Founder Hub & Evidence Workbook | Sponsor Intel",
     "description": "Explore the UK Innovator Founder journey, build a private preparation workbook, compare source-linked support and understand the costs. No guaranteed endorsement or visa outcome.",
     "reviewed": "2026-10-26"
+  },
+  "browser-extension": {
+    "path": "/browser-extension",
+    "title": "Sponsorship Advert Checker & Browser Extension | Sponsor Intel",
+    "description": "Download the local Chrome and Edge advert checker, or paste a job advert to inspect its sponsorship wording with evidence. Unclear wording stays unclear."
   }
 }
