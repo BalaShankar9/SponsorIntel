@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "observed_on": "2026-11-02",
+  "review_completed_at": "2026-11-02T17:50:16Z",
+  "reviewer_kind": "agent-assisted primary-source observation, not independent legal review",
+  "scope": "Read-only comparison with the 26 October curated Founder hub findings; no public renewal or release",
+  "baseline_receipt": "cloudflare/tests/evidence/founder-sources-2026-10-26.json",
+  "baseline_content_sha256": "6fbed16e6927802cf6b6a52465f0db18ba75dc3d8875eca659eedbe4a5a62126",
+  "observed_local_content_sha256": "6fbed16e6927802cf6b6a52465f0db18ba75dc3d8875eca659eedbe4a5a62126",
+  "comparison": "No discrepancy identified in the retained curated findings. This does not establish unchanged complete official pages or independent legal correctness.",
+  "sources": [
+    {
+      "url": "https://www.gov.uk/innovator-founder-visa",
+      "sections": ["Overview", "How long you can stay", "Fees"],
+      "observation": "Fees remain GBP 1357 outside / 1693 inside, plus GBP 1000 endorsement and at least two GBP 500 meetings if successful. Three-year permission, 12/24-month contact points and conditional later applications remain described."
+    },
+    {
+      "url": "https://www.gov.uk/innovator-founder-visa/eligibility",
+      "sections": ["If you want to set up a new business", "Supporting yourself"],
+      "observation": "Business funding and its source remain separate from personal maintenance; the page retains GBP 1270 held for 28 days and its circumstances/exceptions."
+    },
+    {
+      "url": "https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-innovator-founder",
+      "sections": ["INNF 1", "INNF 8", "INNF 11", "INNF 12", "INNF 14"],
+      "observation": "The retained age, endorsement timing, switching questions, innovation/viability/scalability, B2/exemption and maintenance claims remain supported by the current sections. The manual header says updated 29 October 2026; that alone does not establish an Appendix change or effective date."
+    },
+    {
+      "url": "https://www.gov.uk/healthcare-immigration-application/how-much-pay",
+      "sections": ["Cost for a year", "Cost for part of a year"],
+      "observation": "The other-application adult rate remains GBP 1035 per year. The retained exactly-three-year illustration is GBP 3105; actual duration and circumstances still matter."
+    },
+    {
+      "url": "https://www.gov.uk/innovator-founder-visa/documents-youll-need-to-apply",
+      "sections": ["Documents you will need to apply"],
+      "observation": "The retained endorsement, identity, financial/English evidence, applicable TB evidence and certified-translation prompts remain supported. Additional documents can depend on circumstances."
+    },
+    {
+      "url": "https://www.gov.uk/government/publications/scale-up-and-innovator-founder-visa-endorsing-bodies-guidance/innovator-founder-and-scale-up-visas-guidance-for-endorsing-bodies-accessible",
+      "sections": ["Innovator Founder Endorsement Criteria: New Business Criteria"],
+      "observation": "The current guidance still distinguishes core innovation from incidental/outsourced technology and asks for realistic resources, founder skills, credible demand and evidence-backed growth. Its displayed update remains 17 August 2023."
+    },
+    {
+      "url": "https://www.gov.uk/government/publications/endorsing-bodies-innovator-founder-and-scale-up-visas/innovator-founder-and-scale-up-visas-endorsing-bodies",
+      "sections": ["Before contacting an Endorsing Body", "Business Endorsing Bodies", "Legacy Innovator Endorsing Bodies"],
+      "observation": "UK Endorsing Services, Innovator International and Envestors remain listed for new applications. GEP retains its invitation restriction; legacy bodies are not general new-application options. Displayed update: 7 August 2026."
+    },
+    {
+      "url": "https://www.ukesapp.co.uk/",
+      "observation": "A new-business application link remains visible. Capacity, decision timing and individual acceptance were not verified."
+    },
+    {
+      "url": "https://www.innovatorinternational.com/",
+      "observation": "An endorsement application route remains visible. No form was submitted; capacity and individual acceptance remain unknown."
+    },
+    {
+      "url": "https://envestors-visa-endorsement.co.uk/",
+      "observation": "The readable response only showed Loading. Official-list identity remains supported; provider intake details remain unverified, preserving the previous limitation."
+    },
+    {
+      "url": "https://www.business.gov.uk/invest-in-uk/expand-your-business-in-the-uk/",
+      "observation": "The destination provides UK expansion guidance. GEP invitation status is supported by the official endorsing-body list, not inferred from this generic destination."
+    },
+    {
+      "url": "https://businesswales.gov.wales/business-wales-service",
+      "observation": "The official service describes support for aspiring entrepreneurs and businesses in Wales, with guidance and adviser/helpline routes. No appointment, intake or endorsement is inferred."
+    },
+    {
+      "url": "https://www.gov.uk/get-business-support",
+      "observation": "Free advice and nation-specific support/contact signposts remain described. No individual appointment or programme acceptance was verified."
+    },
+    {
+      "url": "https://www.gov.uk/business-finance-support/innovate-uk-business-growth",
+      "observation": "Funded specialist growth support, the listed English regions and start-up/established stages remain supported. This is not evidence of a grant, investment or endorsement."
+    },
+    {
+      "url": "https://www.gov.uk/find-an-immigration-adviser",
+      "observation": "IAA and legal-professional search routes remain provided, with registration and fee checks. No named practitioner is verified or recommended by this observation."
+    },
+    {
+      "url": "https://www.gov.uk/guidance/information-for-advice-seekers",
+      "observation": "The regulator explains authorisation levels and finder/register checks. IAA is not itself an immigration adviser. Displayed update: 22 July 2025."
+    }
+  ],
+  "limitations": [
+    "The 26 October receipt retains curated findings and a module hash, not complete official page snapshots for every URL. This is a claim-level comparison, not a complete old/new official-version diff.",
+    "Search/browser-readable source content is not proof of current provider capacity, quality, availability, fees including VAT or accepted terms.",
+    "No public review date, legal claim, existing immigration baseline, source hash, control, reservation or production data was changed.",
+    "Live source expiry remains 2 November 00:00 UTC; this repository observation does not renew it.",
+    "Prepared Founder saving remains undeployed; this observation neither resolves capacity/supervisor holds nor activates persistence."
+  ],
+  "public_renewal_performed": false,
+  "deployment_performed": false,
+  "external_contact_or_application_performed": false,
+  "independent_legal_acceptance": false
+}
