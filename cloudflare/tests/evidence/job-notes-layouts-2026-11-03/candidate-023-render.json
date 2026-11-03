@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-11-03T23:00:47.476Z",
+  "version": "0.2.3",
+  "bundleSha256": "b90e0328b4109fbc9c4a7df01b1a7648e5a913a823bb8095d447b43a09ea8b68",
+  "fictionalPage": true,
+  "initialCompanionElements": 4,
+  "afterHarnessSecondEnable": 4,
+  "scope": "Exact bundled script rendered four companion elements. An immediate read after the harness second Enable still showed four, so this follow-up does not verify toggle removal. The browser tab was closed. Not an installed toolbar or complete closed-shadow interaction test.",
+  "removalVerified": false
+}

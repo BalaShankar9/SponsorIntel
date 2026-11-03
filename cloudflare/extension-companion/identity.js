@@ -1,7 +1,8 @@
+import {isLeverHost,leverAdvertURL} from './lever.js';
 // Job identity is a guard, never evidence of sponsorship or employer identity.
 export function jobIdentity(value, base) {
   let url; try { url = new URL(value, base); } catch { return null; }
-  if (!['https:', 'http:'].includes(url.protocol)) return null;
+  if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password) return null;
   const host = url.hostname.toLowerCase();
   if (host === 'linkedin.com' || host.endsWith('.linkedin.com')) {
     const id = url.pathname.match(/\/jobs\/view\/(?:[^/]*-)?(\d+)\/?$/)?.[1] || url.searchParams.get('currentJobId');
@@ -11,7 +12,10 @@ export function jobIdentity(value, base) {
     const id = url.searchParams.get('jk') || url.searchParams.get('vjk');
     return /^[a-zA-Z0-9_-]{4,80}$/.test(id || '') ? {provider:'indeed', id, key:`indeed:${id}`, url:`${url.origin}/viewjob?jk=${encodeURIComponent(id)}`} : null;
   }
-  if (!/\/(jobs?|careers?|positions?|opportunities)\/.+\w/i.test(url.pathname)) return null;
+  if (isLeverHost(host)) {
+    const advert=leverAdvertURL(url.href);if(!advert)return null;
+    url=new URL(advert);
+  } else if (!/\/(jobs?|careers?|positions?|opportunities)\/.+\w/i.test(url.pathname)) return null;
   url.hash='';
   // Do not collapse query-addressed jobs into one role or carry session links.
   for(const name of [...url.searchParams.keys()]) {

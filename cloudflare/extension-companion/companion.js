@@ -1,6 +1,7 @@
 import {analyseAdvert} from '../extension/analyse.js';
 import {captureAdvert} from '../extension/capture.js';
 import {jobIdentity,sameJob,nextStep} from './identity.js';
+import {isLeverHost} from './lever.js';
 import {discoverCards,findDescription,readDescription,nearViewport} from './read.js';
 import styleText from './theme.css';
 import {createJobNote} from '../shared/job-note.js';
@@ -56,7 +57,7 @@ function start(){
   function ensureFresh(){
     if(!selectionStillMatches() || location.href!==lastHref){invalidateSource();return false;}
     if(snapshot){
-      const root=selected?findDescription(selected.identity):snapshot.root;
+      const root=findDescription(selected?.identity);
       const current=root?readDescription(root):captureAdvert();
       if(root!==snapshot.root || current.error || current.text!==snapshot.text){invalidateSource();return false;}
     }
@@ -67,6 +68,7 @@ function start(){
     if(!selectionStillMatches()){invalidateSource();return;}
     const root=findDescription(selected?.identity);
     if(selected&&!root){$('message').textContent='This visible description cannot be matched to the selected job. Open that job’s full page, enable Job notes there, or paste its complete advert. No other role was read.';return;}
+    if(!root&&isLeverHost(location.hostname)&&(!window.getSelection()||window.getSelection().isCollapsed)){$('message').textContent='This employer page could not be matched to one complete advert. Open the exact job, select its complete public text, or paste it here. No application form or catalogue was read.';return;}
     const data=root?readDescription(root):captureAdvert();
     if(data.error){$('message').textContent=data.error;return;}
     snapshot={root,text:data.text,observedAt:new Date().toISOString()};lastHref=location.href;$('text').value=data.text;

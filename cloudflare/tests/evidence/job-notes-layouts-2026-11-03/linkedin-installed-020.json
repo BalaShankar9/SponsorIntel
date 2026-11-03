@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "profile": "existing separate signed-out test profile",
+  "source": "https://uk.linkedin.com/jobs/view/senior-product-engineer-backend-london-at-sequence-4372208758",
+  "observed": "Public title and description initially rendered; a sign-in prompt then obscured the page. Actual extension read refused to isolate the advert.",
+  "result": "No text classified or exported; current LinkedIn compatibility not established. No sign-in, prompt bypass or application.",
+  "cleanup": "Off removed the overlay; extension disabled again and test profile window closed.",
+  "disabledControl": "The following is a diff from the previous accessibility tree for Window: \"Extensions\" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 11-13, 59\n~\t\t\t\t\t\t\t\t60 switch Off, Value: off\nThe focused UI element is 60 switch Off, Value: off",
+  "recordedAt": "2026-11-03T22:47:15.954Z",
+  "inspectionWindow": "2026-11-03, after 22:28 UTC and before the 22:45 UTC fixture run; exact inspection timestamp was not retained"
+}
