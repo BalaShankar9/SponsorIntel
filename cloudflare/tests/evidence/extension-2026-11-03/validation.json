@@ -1,0 +1,133 @@
+{
+  "recorded_at": "2026-11-03T15:01:23.681601+00:00",
+  "status": "locally_validated_not_yet_deployed",
+  "runtime_version": "2.98.9",
+  "extension_version": "0.1.1",
+  "reproduced_old_behavior": [
+    {
+      "caveat": "This does not apply to this role.",
+      "old_status": "offered"
+    },
+    {
+      "caveat": "This support is no longer available.",
+      "old_status": "offered"
+    },
+    {
+      "caveat": "This statement is out of date.",
+      "old_status": "unavailable"
+    }
+  ],
+  "new_behavior": "Adjacent recognized caveats retain both exact sentences and return unclear; ambiguous sponsorship sentences and late conflicting kinds remain visible within six quotes.",
+  "test_results": {
+    "main": {
+      "passed": 831,
+      "failed": 0
+    },
+    "isolated_release": {
+      "passed": 812,
+      "failed": 0
+    },
+    "targeted_extension": {
+      "passed": 9,
+      "failed": 0
+    },
+    "typecheck_build": "passed",
+    "prerenders": 21,
+    "browser_budgets": "unchanged and passed",
+    "worker_upload_dry_run": "passed"
+  },
+  "browser": {
+    "fictional_only": true,
+    "method": "Connected Chrome UI: exact ZIP popup HTML/scripts served locally; packaged extension not installed in this run. Local release website exercised separately.",
+    "popup_adjacent_caveat": "unclear with both quotes",
+    "popup_late_conflicts": "six quotes including positive, refusal and ambiguous caveat",
+    "popup_clear": "text empty, confirmation unchecked, result hidden",
+    "web_stale_refusal": "unclear with both quotes",
+    "web_mobile_width": 390,
+    "web_scroll_width": 390,
+    "temporary_viewport_reset": true,
+    "active_tab_capture_retested": false,
+    "manual_installation_verified": false
+  },
+  "lineage": {
+    "base": "9bf8a1ebcf612c47380c0809d3ba765587f99d50",
+    "extension_feature": "e47b379396a6ef84d0104b3f2df526d989a7df74",
+    "feature_patch_sha256": "d84e4eaf45ec2229d2c0634a3a2c86a6bf9d84ea29f525048db67b11633f18fb",
+    "changed_existing_worker_shared_migration_src_paths": [
+      "cloudflare/shared/pages.json",
+      "cloudflare/src/main.tsx",
+      "cloudflare/worker/pages.js"
+    ],
+    "migrations": 46,
+    "prepared_founder_saving_included": false
+  },
+  "package": {
+    "version": "0.1.1",
+    "filename": "sponsor-intel-extension-0.1.1.zip",
+    "bytes": 25407,
+    "sha256": "42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7",
+    "files": [
+      {
+        "name": "manifest.json",
+        "bytes": 629,
+        "sha256": "0644420f242359a4c3bbabc07cdf34e451e663f2078cbdfa97e9815233f742d8"
+      },
+      {
+        "name": "popup.html",
+        "bytes": 2364,
+        "sha256": "e7f89c1cfa5913a8927137315903ebc7d59b7b25cad28cd77fd1b546a4436bfd"
+      },
+      {
+        "name": "popup.css",
+        "bytes": 2211,
+        "sha256": "69f5883f6ffd28bcf21d8c4543fc9665ce11a11feea5f234e98cd5980cde750e"
+      },
+      {
+        "name": "popup.js",
+        "bytes": 2417,
+        "sha256": "9e1667624883995addd553a4f7ab5a8d5a477e62fdafacc956a49105981cda3f"
+      },
+      {
+        "name": "analyse.js",
+        "bytes": 7667,
+        "sha256": "ce852a0783bd12e7ba392ebcab325b86022914fdcb50943c051be22e5ae38a21"
+      },
+      {
+        "name": "capture.js",
+        "bytes": 3612,
+        "sha256": "99805463bcb82b0d3ca039302e838cb5ac436bc1c90da45ea448a4a714f79453"
+      },
+      {
+        "name": "README.txt",
+        "bytes": 1758,
+        "sha256": "9ef5508a20e40cd12cd315924b078fcfccb102ed9c780269a54c569b28a6538d"
+      },
+      {
+        "name": "icon-16.png",
+        "bytes": 409,
+        "sha256": "a786511a2f7ffccd63c022fe19f21ba899e7879b2d625dcad1d8efeccfc953f6"
+      },
+      {
+        "name": "icon-48.png",
+        "bytes": 1114,
+        "sha256": "3e10c105bffed3f07f0e4ef8af70da0f8b194398dfe5a19d81a8b50d92b38c07"
+      },
+      {
+        "name": "icon-128.png",
+        "bytes": 2236,
+        "sha256": "435c081453d2615330cbc0b2aec5ad353eed3a0918c6b099d2a86401469df953"
+      }
+    ]
+  },
+  "previous_package": {
+    "version": "0.1.0",
+    "sha256": "db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb",
+    "unchanged": true
+  },
+  "rollback_worker": "d2ab60fa-fc96-4e54-8048-89ad6e01c83f",
+  "limits": [
+    "Fictional regression cases, not independent semantic acceptance or all-job-site compatibility.",
+    "Only immediately adjacent recognized caveats are covered; context can still be missed.",
+    "No new permissions, networking, model call, database change or source-label change."
+  ]
+}

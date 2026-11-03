@@ -52,3 +52,7 @@ The official [registration](https://developer.chrome.com/docs/webstore/register)
 ## Manual installation UI attempt — 3 November 2026
 
 A separate temporary Chrome profile was launched with an extracted copy of the unchanged public package after an 8.7 GiB disk preflight. UI control exposed the normal browser window rather than the isolated test window. No Load unpacked or installation action occurred. The exact isolated process was verified, terminated and observed exiting; all processes using that profile were gone before its created directory was removed. The user profile and live package were unchanged. This is an unverified acceptance step, not proof of an extension defect or successful consumer installation. Receipt: `cloudflare/tests/evidence/extension-install-ui-2026-11-03.json`.
+
+## Prepared wording correction — 3 November 2026
+
+Version 0.1.1 corrects a reproduced adjacent-caveat false verdict and keeps the quotes that make an answer unclear. The bounded display retains each present evidence kind, including a refusal after several positives. Right-to-work wording alone remains separate. Regression and local browser display checks pass; this does not establish independent accuracy, installed 0.1.1 acceptance or store distribution. The previous 0.1.0 ZIP remains immutable. Read `cloudflare/RELEASE-2.98.9.md` for exact deployment status and `cloudflare/tests/evidence/extension-2026-11-03/validation.json` for validation scope. The 0.1.0 store draft/preflight remains historical and must be refreshed for any new candidate before submission.

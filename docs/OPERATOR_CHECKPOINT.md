@@ -12,6 +12,8 @@ The goal tool reports **active and incomplete** after the owner's resume. The pr
 
 Store preparation **14:30 UTC**: `EXTENSION_STORE_SUBMISSION.md` now contains draft listing/permission text, local-data inventory and fictional reviewer steps, checked against the exact unchanged ZIP. The four reviewer examples match current checker outcomes. Measured asset gaps: icon artwork fills 128×128 rather than retaining square-icon padding; genuine Chrome popup image is 380×498, not a store-size screenshot. Store-specific policy/declarations and publisher access remain unverified; no certification or public legal claim changed. Receipt: `cloudflare/tests/evidence/extension-store-preflight-2026-11-03.json`. This is preparation, not a submission-ready or published listing. A later isolated manual-installation attempt could not address the temporary Chrome window through UI control; no installation action occurred. The exact test process exited and temporary profile/extracted copy were removed. Consumer installation remains unverified; package/assets unchanged. Receipt: `cloudflare/tests/evidence/extension-install-ui-2026-11-03.json`.
 
+Prepared **2.98.9 / extension 0.1.1** corrects a reproduced adjacent-caveat false verdict and hidden conflicting evidence. Combined/isolated tests **831/812** pass; isolated build/budgets/dry-run and local popup-script/web checks pass. It is not live until the release records deployment; prepared Founder saving remains excluded. Read `cloudflare/RELEASE-2.98.9.md`.
+
 ## Genuine scheduled sources and public state
 
 All three original **3 November** provider executions finished successfully; application outcomes are attention:

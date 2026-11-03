@@ -1,4 +1,4 @@
-Sponsor Intel — Advert Check 0.1.0 (developer preview)
+Sponsor Intel — Advert Check 0.1.1 (developer preview)
 
 Install on desktop Chrome or Edge:
 1. Extract the ZIP into a folder you will keep.

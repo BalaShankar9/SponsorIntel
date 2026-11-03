@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Sponsor Intel — Advert Check",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Read sponsorship wording in one job advert, with evidence. Local checks; unclear wording stays unclear.",
   "permissions": ["activeTab", "scripting"],
   "action": {"default_popup": "popup.html", "default_title": "Check this job advert"},
