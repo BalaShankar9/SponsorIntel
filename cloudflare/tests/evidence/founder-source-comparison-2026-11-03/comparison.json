@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "started_at": "2026-11-03T19:23:52.596Z",
+  "scope": "Read-only comparison of three retained complete guide-section bodies; not a full Founder hub renewal",
+  "baseline": "cloudflare/tests/fixtures/immigration-guidance-2026-10-08.json",
+  "baseline_file_sha256": "13650c7e6f13d9dfc53859e2b06b4ddd84884538246bb4035070de2acedd6edf",
+  "requests": [
+    {
+      "url": "https://www.gov.uk/api/content/innovator-founder-visa",
+      "started_at": "2026-11-03T19:23:52.605Z",
+      "finished_at": "2026-11-03T19:23:53.235Z",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 57154,
+      "sha256": "938e1baa8ec3e2527b292318650bb9035ff579a57b08e8255e7cfa68857d0057",
+      "file": "founder-guide.json"
+    },
+    {
+      "url": "https://www.gov.uk/api/content/healthcare-immigration-application",
+      "started_at": "2026-11-03T19:23:53.240Z",
+      "finished_at": "2026-11-03T19:23:53.338Z",
+      "status": 200,
+      "content_type": "application/json; charset=utf-8",
+      "bytes": 29562,
+      "sha256": "adaba816a1bb7105a9d5a77f8404b8ff4f1f94311d806b3a43f207009e971b06",
+      "file": "healthcare-guide.json"
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "founder",
+      "url": "https://www.gov.uk/innovator-founder-visa",
+      "old_checked_at": "2026-10-08T05:04:21.092Z",
+      "old_content_hash": "34b27109c731f426a83deadce557aa9d013c7a5a54c78955d81dea574b4c5a0b",
+      "new_checked_at": "2026-11-03T19:23:53.235Z",
+      "new_content_hash": "34b27109c731f426a83deadce557aa9d013c7a5a54c78955d81dea574b4c5a0b",
+      "old_source_updated_at": "2024-10-21T12:36:20+01:00",
+      "new_source_updated_at": "2024-10-21T12:36:20+01:00",
+      "exact_body_equal": true,
+      "normalised_body_equal": true,
+      "title_equal": true,
+      "withdrawal_equal": true,
+      "old_body_chars": 4462,
+      "new_body_chars": 4462,
+      "conclusion": "Retained title, normalised full guide-section body and withdrawal flag match",
+      "current_file": "founder-current.json"
+    },
+    {
+      "id": "founder-eligibility",
+      "url": "https://www.gov.uk/innovator-founder-visa/eligibility",
+      "old_checked_at": "2026-10-08T05:04:21.092Z",
+      "old_content_hash": "b3bdb6ef97507a635a2d8d657bbc15ed11540c42c495be57007ff60d4fbbf799",
+      "new_checked_at": "2026-11-03T19:23:53.235Z",
+      "new_content_hash": "b3bdb6ef97507a635a2d8d657bbc15ed11540c42c495be57007ff60d4fbbf799",
+      "old_source_updated_at": "2024-10-21T12:36:20+01:00",
+      "new_source_updated_at": "2024-10-21T12:36:20+01:00",
+      "exact_body_equal": true,
+      "normalised_body_equal": true,
+      "title_equal": true,
+      "withdrawal_equal": true,
+      "old_body_chars": 1337,
+      "new_body_chars": 1337,
+      "conclusion": "Retained title, normalised full guide-section body and withdrawal flag match",
+      "current_file": "founder-eligibility-current.json"
+    },
+    {
+      "id": "ihs",
+      "url": "https://www.gov.uk/healthcare-immigration-application/how-much-pay",
+      "old_checked_at": "2026-10-08T05:04:21.676Z",
+      "old_content_hash": "6f3fa6778d227e72e3f1f8f15db6405a509b24f42158d68b0d47b5016bc54101",
+      "new_checked_at": "2026-11-03T19:23:53.338Z",
+      "new_content_hash": "6f3fa6778d227e72e3f1f8f15db6405a509b24f42158d68b0d47b5016bc54101",
+      "old_source_updated_at": "2024-11-28T10:11:14+00:00",
+      "new_source_updated_at": "2024-11-28T10:11:14+00:00",
+      "exact_body_equal": true,
+      "normalised_body_equal": true,
+      "title_equal": true,
+      "withdrawal_equal": true,
+      "old_body_chars": 1960,
+      "new_body_chars": 1960,
+      "conclusion": "Retained title, normalised full guide-section body and withdrawal flag match",
+      "current_file": "ihs-current.json"
+    }
+  ],
+  "public_renewal": false,
+  "production_write": false,
+  "finished_at": "2026-11-03T19:23:53.340Z"
+}
