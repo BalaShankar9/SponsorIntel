@@ -365,7 +365,7 @@ export function AboutPage() {
         </p>
         <h2>Your application workspace</h2>
         <p>
-          Hire Stack tools are integrated here to help you organise a CV, draft
+          Application Studio helps you organise a CV, draft
           application documents and track next steps. Guest work stays in this
           browser; creating an account lets you save your career workspace
           online. Optional AI assistance requires your choice before sending the

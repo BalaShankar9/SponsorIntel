@@ -1,5 +1,16 @@
 import React from "react";
 import { BriefcaseBusiness, ArrowRight } from "lucide-react";
+export function StudioIntro({ hasRole = false }: { hasRole?: boolean }) {
+  return (
+    <header className="studio-intro">
+      <p className="studio-signature"><span>Sponsor Intel</span>{" "}<span>Application Studio</span></p>
+      <h1>{hasRole ? "Make this application yours." : "Put your best evidence forward."}</h1>
+      <p className="studio-intro-copy">{hasRole
+        ? "Read the role carefully. Draw on your experience. Review each document before it leaves your hands."
+        : "A practical workspace for a thoughtful application. Start with a real role and your own experience."}</p>
+    </header>
+  );
+}
 export function Title({
   label,
   title,

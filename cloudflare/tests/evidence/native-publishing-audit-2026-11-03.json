@@ -1,0 +1,61 @@
+{
+  "observedAt": "2026-11-03T23:40:30.443Z",
+  "scope": "Read-only native LinkedIn observations; not cloud ledger writes",
+  "company": {
+    "accountId": "146710167",
+    "companyName": "Sponsor Intel",
+    "scheduledCount": 0,
+    "queueEvidence": "Sponsor Intel\u2019s scheduled posts \u2014 No scheduled posts yet",
+    "queueObservedAt": "2026-11-03T23:40:30.446Z",
+    "report": {
+      "postUrl": "https://www.linkedin.com/feed/update/urn:li:activity:7519322228237381632",
+      "analyticsUrl": "https://www.linkedin.com/company/146710167/admin/post-analytics/urn:li:activity:7519322228237381632/",
+      "observedAt": "2026-11-03T23:41:03.356Z",
+      "organicImpressions": 103,
+      "membersReached": 83,
+      "pageViewersFromPost": 0,
+      "followersGainedFromPost": 0,
+      "engagements": 1,
+      "engagementRatePercent": 1,
+      "clicks": 1,
+      "clickThroughRatePercent": 1,
+      "reactions": 0,
+      "comments": 0,
+      "reposts": 0,
+      "externalLinkClicks": null,
+      "providerReportingEnd": null,
+      "limitation": "Native post performance. General clicks are not verified external visits or conversions. No explicit report end or synchronization timestamp."
+    }
+  },
+  "personal": {
+    "profileUrl": "https://www.linkedin.com/in/bala-sankar-bollineni-b246bb189/",
+    "identityConfirmed": "Bala Sankar Bollineni",
+    "observedAt": "2026-11-03T23:43:28.297Z",
+    "scheduledCount": 0,
+    "queueEvidence": "Scheduled tab displayed the empty-state explanation and Schedule link, with no post rows",
+    "queueEvidenceText": "Schedule post\nScheduled\n\nWhen you schedule a post, it automatically posts at the date and time you chose\n\nSchedule\n0 notifications",
+    "contentEntered": false,
+    "confirmedSchedule": false
+  },
+  "closedTemporaryTab": true,
+  "userTabsAndUnfinishedFormsPreserved": true,
+  "productionWrites": 0,
+  "newSchedules": 0,
+  "comparison": {
+    "previous": "marketing-audit-2026-10-30.json",
+    "companyQueueUnchanged": true,
+    "personalQueueUnchanged": true,
+    "reportImpressions": {
+      "previous": 102,
+      "current": 103
+    },
+    "reportClicks": {
+      "previous": 1,
+      "current": 1
+    },
+    "previousReach": null,
+    "decision": "No cadence, content, hold or spending change from sparse results. No attributed product outcome established."
+  },
+  "providerMutationRequested": false,
+  "mutationScope": "No deliberate schedule, content, send or settings mutation; browser/network side effects were not audited."
+}

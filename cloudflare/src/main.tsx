@@ -39,7 +39,7 @@ import {
   RefreshCw,
   Trash2,
   Scale,
-  Sparkles,
+  PenLine,
   Target,
   FileText,
   Radio,
@@ -715,7 +715,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
     { id: "sponsors-by-city", label: "Sponsors by city", icon: MapPin },
     { id: "saved", label: "My shortlist", icon: Bookmark, badge: saved.length },
     { id: "applications", label: "My applications", icon: BriefcaseBusiness },
-    { id: "studio", label: "Application studio", icon: Sparkles },
+    { id: "studio", label: "Application studio", icon: PenLine },
     { id: "career-profile", label: "My CV & profile", icon: FileText },
     { id: "updates", label: "Immigration updates", icon: Radio },
     { id: "routes", label: "Explore visa routes", icon: Compass },
@@ -762,7 +762,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
         </nav>
         <div className="sidebar-note">
           <span className="little-spark">
-            <Sparkles size={18} />
+            <Leaf size={18} aria-hidden="true" />
           </span>
           <strong>
             A little progress.
@@ -881,9 +881,9 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
           {view === "discover" && (
             <div className="career-launch">
               <span>
-                <Sparkles size={18} />
+                <FileText size={18} aria-hidden="true" />
                 <strong>Your next step is here.</strong> Explore real roles and
-                prepare with Hire Stack.
+                prepare your application in one place.
               </span>
               <button onClick={() => go("jobs")}>
                 Find my next role <ArrowRight size={16} />
@@ -1464,7 +1464,7 @@ export function App({ initialPath }: { initialPath?: string } = {}) {
                   {
                     n: saved.filter((x) => x.stage === "Offer").length,
                     l: "Offers received",
-                    icon: Sparkles,
+                    icon: CheckCircle2,
                   },
                 ].map((s) => (
                   <div key={s.l}>

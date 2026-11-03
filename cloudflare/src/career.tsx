@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Title, Empty } from "./career-ui";
+import { Title, Empty, StudioIntro } from "./career-ui";
 import { AccountEmailHelp } from "./account-email";
 import { SavedSearches } from "./search-notifications";
 import { ApplicationBatches } from './application-batches';
@@ -21,7 +21,7 @@ import {
   Plus,
   Search,
   ShieldCheck,
-  Sparkles,
+  PenLine,
   Trash2,
   Upload,
   X,
@@ -53,6 +53,7 @@ import {
   exportCalendar,
 } from "./documents";
 import "./career.css";
+import "./studio.css";
 import { WorkspaceRecovery } from "./workspace-recovery";
 import { recoveryKey } from "../shared/workspace-recovery.js";
 import { DocumentDownloads } from "./document-downloads";
@@ -653,15 +654,11 @@ function Studio({ go }: { go: Go }) {
   if (!a)
     return (
       <>
-        <Title
-          label="POWERED BY HIRE STACK"
-          title="Put your best evidence forward."
-          description="A practical workspace for a thoughtful application. Start with a real role and your own experience."
-        />
+        <StudioIntro />
         <EvidenceExample onChooseRole={() => go('jobs')} />
         <Empty
           title="Choose your next opportunity."
-          text="Save a role, add your CV and let Hire Stack help you prepare."
+          text="Save a role, add your CV and prepare your application here."
           label="Find a role"
           action={() => go("jobs")}
         />
@@ -728,11 +725,7 @@ function Studio({ go }: { go: Go }) {
   }
   return (
     <>
-      <Title
-        label="SPONSOR INTEL × HIRE STACK"
-        title="Make this application yours."
-        description="Use the evidence you have. See what needs work. Keep the final say."
-      />
+      <StudioIntro hasRole />
       {tab === 'analysis' && <EvidenceExample onChooseRole={() => go('jobs')} />}
       <div className="studio-job">
         <span className="company-initial">
@@ -903,7 +896,7 @@ function Studio({ go }: { go: Go }) {
                   {busy && busy !== "export" ? (
                     <Loader2 size={16} className="spin" />
                   ) : (
-                    <Sparkles size={16} />
+                    <PenLine size={16} aria-hidden="true" />
                   )}{" "}
                   {tab === "analysis"
                     ? "Check evidence"
