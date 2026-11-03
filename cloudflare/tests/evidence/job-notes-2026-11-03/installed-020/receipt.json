@@ -1,0 +1,24 @@
+{
+  "observedAt": "2026-11-03T22:16:34.434394+00:00",
+  "approval": "Allow temporary 0.2.0 test installation",
+  "profile": "Sponsor Intel Temporary QA 017",
+  "extensionId": "objlfcgaepkjonajkmebhlacfdgiloai",
+  "version": "0.2.0",
+  "zipSha256": "3f5ab9dda35352b696555b40bf59f2c7bfb5a296ba853a4d2e4f1641dccdb052",
+  "actualToolbarAndActiveTab": true,
+  "fixtureEnableButtonUsed": false,
+  "cases": {
+    "toolbarEnablesThreeCardMarkers": "pass",
+    "collapsedConditionsHeld": "pass",
+    "expandedMatchingDescription": "569 characters; hidden/form content excluded",
+    "conditionalQuote": "We may provide visa sponsorship, subject to eligibility.",
+    "changedSelectedRoleClearsResult": "pass",
+    "mismatchedDescriptionHeld": "pass",
+    "offRemovesControls": "pass"
+  },
+  "realSite": "One current Lever advert held with selection/paste instruction; automatic capture unsupported",
+  "normalProfileInstallation": false,
+  "disabledAfterTest": true,
+  "windowClosed": true,
+  "uiIssues": "Initial native paste retained the previous directory; picker files reconciled before selecting exact path. Native profile change and timeout reconciled; cleanup verified in named test profile. No duplicate account or installation in normal profile."
+}

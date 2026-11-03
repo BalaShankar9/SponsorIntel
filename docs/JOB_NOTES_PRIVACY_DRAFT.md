@@ -1,6 +1,6 @@
-# Job notes 0.2.0 privacy policy — proposed, not approved or published
+# Job notes 0.2.0 privacy policy — owner approved 3 November 2026
 
-Prepared 3 November 2026 for `cloudflare/store/job-notes/0.2.0/`. The existing Advert Check approval does not cover this changed behavior. This proposal does not amend the published policy. Package SHA-256: `3f5ab9dda35352b696555b40bf59f2c7bfb5a296ba853a4d2e4f1641dccdb052`.
+Prepared 3 November 2026 for `cloudflare/store/job-notes/0.2.0/`. The owner explicitly approved this exact policy for the verified release. Its article below is unchanged; publication is separately recorded in RELEASE-2.98.13. The earlier Advert Check policy remains intact. Package SHA-256: `3f5ab9dda35352b696555b40bf59f2c7bfb5a296ba853a4d2e4f1641dccdb052`.
 
 ---
 
@@ -54,4 +54,4 @@ Changes to reading, storage or sharing require updated disclosures. Check the ex
 
 ---
 
-Installation, current-site compatibility, store disclosure fields and consumer installation remain separate gates. Public policy and extension 0.1.6 are unchanged. No dashboard declaration or independent legal approval is certified here.
+The owner also approved temporary 0.2.0 installation, now verified and disabled in the separate test profile. Current-site compatibility, store declarations/submission and consumer installation remain separate gates. No independent legal approval is certified here.

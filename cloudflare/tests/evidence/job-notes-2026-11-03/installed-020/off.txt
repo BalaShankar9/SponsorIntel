@@ -1,0 +1,86 @@
+Window: "Sponsor Intel / Job notes — fictional browsing preview", App: Google Chrome.
+0 standard window URL: 127.0.0.1:49274/, Secondary Actions: Raise, Sponsor Intel / Job notes — fictional browsing preview - Google Chrome - Sponsor Intel Temporary QA 017
+	1 container URL: 127.0.0.1:49274/, Sponsor Intel / Job notes — fictional browsing preview - Google Chrome - Sponsor Intel Temporary QA 017
+		2 container
+			3 toolbar
+				4 button Back
+				5 button (disabled) Forward
+				6 button Reload
+				7 container
+					8 pop up button View site information
+					9 text field (settable) Address and search bar, Value: 127.0.0.1:49274, Placeholder: Ask Google or type a URL
+					10 button Bookmark this tab
+				11 container
+					12 pop up button Sponsor Intel job notes
+Has access to this site
+					13 pop up button Extensions
+				14 button Sponsor Intel Temporary QA 017
+				15 pop up button New Chrome available
+			16 container
+				17 scroll area
+					18 HTML content Sponsor Intel / Job notes — fictional browsing preview, URL: 127.0.0.1:49274/
+						19 container
+							20 text Sponsor Intel / a closer reading Fictional job board · working design preview · no vacancies or applications
+						21 button Enable Job notes
+						22 button Load another card
+						23 button Change this advert’s wording
+						24 button Recycle first card
+						25 button Check removal
+						26 container
+							27 text THREE DIFFERENT SITUATIONS
+							28 content list
+								29 container
+									30 link Product engineer, Value: linkedin.com/jobs/view/900000001/
+									31 text Example Studio · London Build thoughtful tools with a small product team.
+								32 container
+									33 link Research analyst, Value: linkedin.com/jobs/view/900000002/
+									34 text Example Research · Manchester A card preview deliberately omits sponsorship conditions.
+								35 container
+									36 link Operations manager, Value: linkedin.com/jobs/view/900000003/
+									37 text Example Works · Bristol Help a growing team improve its operations.
+							38 text COMPLETE FICTIONAL ADVERT
+							39 heading Product engineer, Value: 1
+								40 text Product engineer
+							41 text Example Studio · London, UK
+							42 container
+								43 heading About the role, Value: 2
+									44 text About the role
+								45 text Build and test software with designers and engineers. Explain technical choices, review code and improve accessible services for a small product team.
+								46 heading What you will bring, Value: 2
+									47 text What you will bring
+								48 text Experience building reliable software, collaborating across disciplines and documenting decisions clearly.
+								49 heading Sponsorship, Value: 2
+									50 text Sponsorship
+								51 text We may provide visa sponsorship, subject to eligibility.
+								52 disclosure triangle Additional conditions
+									53 text Additional conditions
+								54 text Review the complete employer conditions before making an application.
+								55 text HIDDEN: We cannot offer visa sponsorship.
+								56 container
+									57 text Fictional application field
+									58 text field Fictional application field, Value: PRIVATE FICTIONAL ANSWER
+								59 heading Next step, Value: 2
+									60 text Next step
+								61 text This entire role is fictional demonstration material. No employer, opening or application is represented.
+			62 pop up button Tab search
+			63 container
+				64 tab group
+					65 tab (selected, settable, boolean) Sponsor Intel / Job notes — fictional browsing preview, Value: on
+						66 button Close
+			67 button New Tab
+	68 close button
+	69 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	70 minimize button
+71 menu bar
+	72 Chrome
+	73 File
+	74 Edit
+	75 View
+	76 History
+	77 Bookmarks
+	78 Profiles
+	79 Tab
+	80 Window
+	81 Help
+
+The focused UI element is 18 HTML content Sponsor Intel / Job notes — fictional browsing preview, URL: 127.0.0.1:49274/

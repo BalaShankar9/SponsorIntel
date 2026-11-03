@@ -1,15 +1,15 @@
 # Job notes — current store review handoff
 
-Updated **3 November 2026, 21:25 UTC**. The proposed store product is **Sponsor Intel — Job notes 0.2.0**. This is a complete draft for review, **not uploaded, submitted, approved or ready for submission**. Public Advert Check remains 0.1.6 on live Worker 2.98.12. Read `DAILY_OPERATOR.md`, `OPERATOR_CHECKPOINT.md` and `JOB_NOTES_PLAN.md` first.
+Updated **3 November 2026, 22:18 UTC**. The proposed store product is **Sponsor Intel — Job notes 0.2.1**. This is a complete draft for review, **not uploaded, submitted, approved or ready for submission**. Matching 2.98.13 publication is in progress; consult its release receipt before claiming it is live. Read `DAILY_OPERATOR.md`, `OPERATOR_CHECKPOINT.md` and `JOB_NOTES_PLAN.md` first.
 
 ## Exact package and current boundary
 
-- Private ZIP: `cloudflare/store/job-notes/0.2.0/sponsor-intel-job-notes-0.2.0.zip`, **51,613 bytes**, SHA-256 `3f5ab9dda35352b696555b40bf59f2c7bfb5a296ba853a4d2e4f1641dccdb052`. Nine allowlisted entries, CRC/hashes, identical rebuild and refusal to replace an existing candidate are verified. The ZIP is unchanged by this listing draft.
+- Release ZIP: `cloudflare/store/job-notes/0.2.1/sponsor-intel-job-notes-0.2.1.zip`, **52,592 bytes**, SHA-256 `bffe815a988a9f1aed864eb2babb16c8b2ade7cf02b73ea1636cf5c9f442c98f`. Nine allowlisted entries, CRC/hashes, identical rebuild and refusal to replace an existing candidate are verified. The ZIP is unchanged by this listing draft.
 - Machine-readable copy, permission explanations and gates: adjacent `store-review.json`. No dashboard fields have been completed from it.
 - Name and short description below exactly match the manifest. The 128-pixel icon is retained from reviewed 0.1.7 artwork. This does not prove an accepted store asset or native 0.2.0 appearance.
-- The **0.1.7** installed test is complete in the separate signed-out Chrome profile; it is disabled and the window is closed. That specific approval does not authorise the materially different **0.2.0** installation. Its pending question must not be repeated or bypassed.
-- The new [privacy draft](JOB_NOTES_PRIVACY_DRAFT.md) is unapproved and unpublished. The live [Advert Check policy](https://sponsorintel.london/extension-privacy.html) describes earlier behavior and must not be submitted as the policy for enabled-page observation/export.
-- Existing help URL: [Sponsor Intel browser extension](https://sponsorintel.london/browser-extension). It currently describes public 0.1.6. A matching verified release/help page must accompany a later 0.2.0 listing; do not claim it already exists.
+- The owner approved actual **0.2.0** installation and the exact new policy. Native toolbar/activeTab tests passed on the fictional board; the extension is disabled and its window closed. Final **0.2.1** only updates version/README, with executable, UI, images, permissions and CSP byte-identical to tested 0.2.0. It is not a separate installed-version claim.
+- The approved policy article is served by the prepared release at `/job-notes-privacy.html`; live verification is recorded in `cloudflare/RELEASE-2.98.13.md`. The older Advert Check policy remains available for its own versions.
+- Help: [Sponsor Intel browser extension](https://sponsorintel.london/browser-extension). Verify its actual 0.2.1 release and policy before a later store submission. No submission has been authorised.
 
 ## Proposed store copy
 
@@ -47,25 +47,25 @@ A sponsor licence is not a job offer. Missing wording is not a refusal. These no
 
 The package contains no remote executable code, host permissions, background service, extension storage, account messaging or model service. Optional Blob download happens only after a user chooses it. The code's temporary state, observer and export must agree with the final approved policy; the earlier statement that no files are written is not valid for 0.2.0.
 
-Current dashboard data-category wording and certifications have not been independently read because the console is protected. Website content and current job URLs are handled locally; incidental information can exist in pasted text. Review the dashboard's browsing-activity definitions rather than assuming local processing means no disclosure. Do not select or certify any category or Limited Use commitment from this draft alone. The owner has a separate exact-policy approval question pending.
+Current dashboard data-category wording and certifications have not been independently read because the console is protected. Website content and current job URLs are handled locally; incidental information can exist in pasted text. Review the dashboard's browsing-activity definitions rather than assuming local processing means no disclosure. Do not select or certify any category or Limited Use commitment from this draft alone. The owner approved the exact article; dashboard declarations and submission remain separate.
 
 Google requires a clear single purpose, necessary permission justifications, data-use disclosures and a matching policy. These are submission requirements, not approval already obtained. [Official privacy-field guidance](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy).
 
 ## Reviewer walkthrough and visual evidence
 
-1. After the exact installation is authorised, use the prepared 0.2.0 package in the separate signed-out test profile. Enable one fictional job-list tab through the toolbar. Verify that the actual toolbar says On and that card controls appear.
+1. The authorised 0.2.0 installed check is recorded. For a final store walkthrough, use the 0.2.1 release package in the separate signed-out test profile. Enable one fictional job-list tab through the toolbar. Verify that the actual toolbar says On and that card controls appear.
 2. Open one complete description. Check collapsed-section refusal, then expand it, read, confirm and inspect the exact offered/conditional/refused/unclear quotations. Wrong-role split views must refuse to read the other job.
 3. Change/recycle a card and load a later card. Verify invalidation, identity and cleanup without opening jobs automatically. Check keyboard focus/Escape, narrow viewport and Off.
 4. Download one reviewed fictional advert and verify the actual file. Keep full text, link, checksum and observations; hidden text and form answers must not appear. Download is not account saving. The isolated actual Applications/Studio/Worker/D1 import already verifies one role, preserved documents and zero preparation calls; production import is still undeployed.
 5. Test representative current LinkedIn, Indeed and employer-original layouts after the installed gate, preserving a support matrix and unsupported cases. Do not claim all-site compatibility from the fictional board or an earlier 0.1.7 test.
 
-Google's current listing guide asks for a 128×128 icon and at least one 1280×800 screenshot, with at most five screenshots. Existing local-page previews and native 0.1.7 observations do **not** satisfy the installed-0.2.0 artwork gate. Capture the actual installed candidate, use fictional roles, retain enough surrounding context to show what is happening, and never add unsupported success claims. Optional promotional assets are unnecessary for the first listing. [Official listing requirements](https://developer.chrome.com/docs/webstore/cws-dashboard-listing).
+Google's current listing guide asks for a 128×128 icon and at least one 1280×800 screenshot, with at most five screenshots. Existing local-page previews and native installed 0.2.0 observations are **not** yet approved store-size artwork. Capture the actual installed candidate, use fictional roles, retain enough surrounding context to show what is happening, and never add unsupported success claims. Optional promotional assets are unnecessary for the first listing. [Official listing requirements](https://developer.chrome.com/docs/webstore/cws-dashboard-listing).
 
 ## Remaining delivery sequence
 
 The owner reports publisher registration/payment complete. Do not ask for payment again. The protected console returned “The extensions gallery cannot be scripted”; do not work around that restriction with protocol, CLI or new credentials. Existing publisher identity/contact, activation, category/distribution, agreements and declarations still require their actual manual review.
 
-The next gates are the already-requested exact 0.2.0 installation approval and exact policy approval. Complete installed/compatibility tests and store-size evidence, verify the matching public help/privacy release, then obtain separate authorisation for the concrete store submission. No store upload, new agreement, payment or publication is authorised by this document. Only after actual store approval and consumer installation should Sponsor Intel advertise one-click installation.
+The installation and policy permissions are answered. Remaining gates are broader current-site compatibility, store-size evidence, matching live help/privacy verification and truthful publisher fields, then separate authorisation for the concrete store submission. No store upload, new agreement, payment or publication is authorised by this document. Only after actual store approval and consumer installation should Sponsor Intel advertise one-click installation.
 
 Production applicant saving/direct transfer remains subject to the existing capacity and recovery gates. Main includes held Founder 2.99.0/0047; do not deploy the combined branch to publish extension assets. All model, social, source and application controls remain unchanged.
 
