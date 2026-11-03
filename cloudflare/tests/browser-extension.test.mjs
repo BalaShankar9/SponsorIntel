@@ -124,7 +124,7 @@ test('shipped archive matches each allowlisted source and declared permissions',
 });
 test('public download and landing routes work without a database and unknown assets stay unavailable',async()=>{
  const env={ASSETS:{fetch:async r=>new Response(new URL(r.url).pathname)}};
- for(const path of ['/browser-extension','/downloads/sponsor-intel-extension-0.1.0.zip','/downloads/sponsor-intel-extension-0.1.1.zip','/downloads/sponsor-intel-extension.json']){
+ for(const path of ['/browser-extension','/extension-privacy.html','/downloads/sponsor-intel-extension-0.1.0.zip','/downloads/sponsor-intel-extension-0.1.1.zip','/downloads/sponsor-intel-extension.json']){
   const r=await pageResponse(new Request('https://sponsorintel.london'+path),env);assert.equal(r.status,200);assert.match(await r.text(),new RegExp(path.replace(/[.]/g,'\\.')));
  }
  const r=await pageResponse(new Request('https://sponsorintel.london/downloads/private.json'),env);assert.equal(r.status,404);
