@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "recorded_at": "2026-11-03T19:37:52.421801+00:00",
+  "goal_status": "blocked",
+  "goal_status_confirmed_by": "update_goal tool",
+  "goal_status_updated_at_unix": 1793734613,
+  "objective_preserved": true,
+  "completed": false,
+  "last_progress_head": "6eb3cc224327306d3afed6748f96cd31b63bc2d8",
+  "last_progress": "Three exact retained/current Founder section comparisons and newly readable Envestors public entry; full public renewal remains incomplete.",
+  "consecutive_no_progress_turns": 3,
+  "turns": [
+    {
+      "number": 1,
+      "evidence_recorded_at": "2026-11-03T19:33:21.718033+00:00",
+      "result": "Fresh employer page rendered, but native capture verification unavailable; no installed-extension result."
+    },
+    {
+      "number": 2,
+      "provider_observed_at": "2026-11-03T19:35:30.081Z",
+      "result": "Current-day provider list still ends at the noon source run; all three listed instances complete. Requirements and unchanged holds inspected."
+    },
+    {
+      "number": 3,
+      "result": "Worktree/head and prior audit revalidated; no new approval or authoritative recovery evidence. Same impasse confirmed; goal marked blocked."
+    }
+  ],
+  "browser_attempt": {
+    "url": "https://www.wintermute.com/company/opportunities/66a6c9f0-b504-4942-af22-b555969564e5",
+    "capture_sha256": "df8f7290d0b6255d95589ce4a0ea67bcc8fbc96b124ec5c4d54d23fedbc48c26",
+    "observations": [
+      "Fresh Chrome tab renders the original role and application controls; no fields were entered or submitted.",
+      "First read-only expression returned undefined because the function expression was not invoked; corrected expression returned the unsupported visibility API fallback.",
+      "The read-only browser evaluation scope does not establish whether the actual page native visibility API is absent.",
+      "Documented raw CDP alternative rejected execution while Browser Use was resolving a paused document response. No authentic native capture result was obtained.",
+      "Temporary research tab was closed. A subsequent local binding cleanup raised a variable error after close; tab inventory independently confirmed the tab absent."
+    ],
+    "classification": "Unverified; not an extension defect, extraction pass or installed-extension test",
+    "research_tab_closed": true,
+    "full_advert_retained": false
+  },
+  "source_provider_followup": {
+    "observed_at": "2026-11-03T19:35:30.081Z",
+    "workflow": "sponsorintel-sources",
+    "per_page": 5,
+    "date_start": "2026-11-03T00:00:00Z",
+    "instances": [
+      {
+        "id": "scheduled-1793709055003",
+        "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+        "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+        "status": "complete",
+        "created_on": "2026-11-03T12:30:58.820Z",
+        "modified_on": "2026-11-03T12:34:33.541Z",
+        "started_on": "2026-11-03T12:31:00.000Z",
+        "ended_on": "2026-11-03T12:34:33.000Z",
+        "trigger_source": "binding"
+      },
+      {
+        "id": "scheduled-1793687455003",
+        "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+        "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+        "status": "complete",
+        "created_on": "2026-11-03T06:30:59.934Z",
+        "modified_on": "2026-11-03T07:35:07.476Z",
+        "started_on": "2026-11-03T06:31:02.000Z",
+        "ended_on": "2026-11-03T07:35:07.000Z",
+        "trigger_source": "binding"
+      },
+      {
+        "id": "scheduled-1793665855003",
+        "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+        "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+        "status": "complete",
+        "created_on": "2026-11-03T00:31:00.538Z",
+        "modified_on": "2026-11-03T01:05:03.920Z",
+        "started_on": "2026-11-03T00:31:02.000Z",
+        "ended_on": "2026-11-03T01:05:03.000Z",
+        "trigger_source": "binding"
+      }
+    ],
+    "conclusion": "No later evening instance observed; not proof of absent invocation, dispatch cause or terminal failure. No live wait handle established."
+  },
+  "blocking_requirements": [
+    "Specific existing temporary-profile/Advert Check 0.1.7 installation approval remains unanswered; do not repeat or bypass it.",
+    "Store dashboard scripting is restricted; owner-reported payment is not verified account fields, upload, submission or publication.",
+    "Owner capacity decision and original business-workflow evidence remain unresolved. Preserve unknown reservations; no speculative replacement or prepared Founder saving activation.",
+    "Full Founder legal/source renewal, permitted application provider and independent quality/usefulness acceptance remain incomplete."
+  ],
+  "actions_not_taken": [
+    "Extension install or new test profile",
+    "New approval question",
+    "Production write or migration",
+    "Forced/replacement workflow",
+    "AI or Google-property request",
+    "Source reservation reset",
+    "Application/contact/social/email send",
+    "Purchase or agreement",
+    "Public legal renewal",
+    "Worker deployment"
+  ],
+  "daily_monitoring": "Existing recovery-gated daily heartbeat may make bounded read-only observations. It cannot resume this blocked goal or clear any hold.",
+  "resume_boundary": "New owner authorization or authoritative external evidence must be reviewed within its exact scope. A later date, successful unrelated source run or automatic continuation is not consent."
+}
