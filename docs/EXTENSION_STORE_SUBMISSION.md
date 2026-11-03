@@ -10,7 +10,7 @@ Updated **3 November 2026** for Advert Check **0.1.1**. **Draft only; not upload
 - Reviewed package: `cloudflare/public/downloads/sponsor-intel-extension-0.1.1.zip`, **25,407 bytes**; [public download](https://sponsorintel.london/downloads/sponsor-intel-extension-0.1.1.zip).
 - SHA-256: `42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7`.
 - Homepage/help candidate: <https://sponsorintel.london/browser-extension>.
-- Privacy-policy field: **not selected/certified**. The current homepage describes local processing and links to the site's data policy, but a store-specific policy and Limited Use statement still need publisher review. Do not claim that a live store policy exists merely because a help link exists.
+- Privacy-policy field: **not selected/certified**. [Extension-specific policy and Limited Use draft](EXTENSION_PRIVACY_DRAFT.md) now describes the exact 0.1.1 behavior, temporary state, incidental personal content, current-tab URL and separate website/support handling. It is unapproved and unpublished; no public policy URL exists. The current homepage/help link is not proof of a final store policy.
 - Language: English. Suggested category: Productivity, subject to the current dashboard's available taxonomy. Distribution countries, publisher identity/contact and any verification declarations remain unselected; a UK job focus does not establish the user's location.
 - Public store URL, submission/item ID and review status: **none**.
 
@@ -56,7 +56,7 @@ The extension **handles website content locally**. A “no upload” design must
 | Help link | An ordinary user-initiated website visit. The website's separate hosting/aggregate measurement and data policy apply; extension text is not attached to the link. |
 | Analytics, sale, advertising, training or third-party processing of advert text | None implemented by the extension. No new model call or telemetry permission. |
 
-Chrome's [privacy-field guide](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy) requires purpose, permission and data declarations. Its [User Data FAQ](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq) includes local handling and requires consistent policy/disclosures. The publisher must review the current checkbox wording and certify accurate declarations after the policy is final. This document does not accept platform terms or assert compliance approval. No public legal/privacy claim was changed.
+Chrome's [privacy-field guide](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy) requires purpose, permission and data declarations. Its [User Data FAQ](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq) includes local handling and requires consistent policy/disclosures. The publisher must review the current checkbox wording and certify accurate declarations after the policy is final. The complete proposed policy and code-to-disclosure review are in [EXTENSION_PRIVACY_DRAFT.md](EXTENSION_PRIVACY_DRAFT.md). This document does not accept platform terms or assert compliance approval. No public legal/privacy claim was changed.
 
 ## Reviewer walkthrough — fictional text only
 
@@ -96,4 +96,4 @@ Historical 0.1.0 byte/asset/source audit: `cloudflare/tests/evidence/extension-s
 
 For a **manual draft upload only**, Google documents **Add new item → Choose file → select the exact ZIP → Upload**. This creates a draft item, not a public listing. Keep it as a draft; the image/privacy/account gates above must be completed before Submit for Review. See [Google's upload instructions](https://developer.chrome.com/docs/webstore/publish). No draft upload has been observed yet.
 
-Current status: 0.1.1 listing/reviewer/permission text prepared and package checked; asset/privacy/account fields still open; owner reports payment complete; dashboard tab is visible but its contents cannot be scripted; no store submission. Existing independent accuracy, live-site compatibility and usefulness gates remain in `BROWSER_EXTENSION.md`.
+Current status: 0.1.1 listing/reviewer/permission text and extension-specific privacy draft prepared and package checked; assets, policy approval/publication and account fields still open; owner reports payment complete; dashboard tab is visible but its contents cannot be scripted; no store submission. Existing independent accuracy, live-site compatibility and usefulness gates remain in `BROWSER_EXTENSION.md`.

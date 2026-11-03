@@ -1,0 +1,69 @@
+{
+  "recorded_at": "2026-11-03T16:09:12.395724+00:00",
+  "scope": "Agent-assisted privacy draft for exact existing extension; no public policy or certification",
+  "extension_version": "0.1.1",
+  "archive_bytes": 25407,
+  "archive_sha256": "42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7",
+  "source_entry_hashes": {
+    "manifest.json": "0644420f242359a4c3bbabc07cdf34e451e663f2078cbdfa97e9815233f742d8",
+    "popup.html": "e7f89c1cfa5913a8927137315903ebc7d59b7b25cad28cd77fd1b546a4436bfd",
+    "popup.css": "69f5883f6ffd28bcf21d8c4543fc9665ce11a11feea5f234e98cd5980cde750e",
+    "popup.js": "9e1667624883995addd553a4f7ab5a8d5a477e62fdafacc956a49105981cda3f",
+    "analyse.js": "ce852a0783bd12e7ba392ebcab325b86022914fdcb50943c051be22e5ae38a21",
+    "capture.js": "99805463bcb82b0d3ca039302e838cb5ac436bc1c90da45ea448a4a714f79453",
+    "README.txt": "9ef5508a20e40cd12cd315924b078fcfccb102ed9c780269a54c569b28a6538d",
+    "icon-16.png": "a786511a2f7ffccd63c022fe19f21ba899e7879b2d625dcad1d8efeccfc953f6",
+    "icon-48.png": "3e10c105bffed3f07f0e4ef8af70da0f8b194398dfe5a19d81a8b50d92b38c07",
+    "icon-128.png": "435c081453d2615330cbc0b2aec5ad353eed3a0918c6b099d2a86401469df953"
+  },
+  "crc_ok": true,
+  "all_ten_entries_match_source": true,
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "draft": "docs/EXTENSION_PRIVACY_DRAFT.md",
+  "draft_sha256": "8fbd60620bf58b834d6d129ac3491965c8d43e86585e7d79770b10d6d1628b60",
+  "official_sources": [
+    {
+      "url": "https://developer.chrome.com/docs/webstore/cws-dashboard-privacy",
+      "reviewed_date": "2026-11-03"
+    },
+    {
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/user-data-faq",
+      "reviewed_date": "2026-11-03"
+    },
+    {
+      "url": "https://developer.chrome.com/docs/webstore/program-policies/limited-use",
+      "reviewed_date": "2026-11-03"
+    }
+  ],
+  "website_read": {
+    "at": "2026-11-03T16:06:50.306865+00:00",
+    "url": "https://sponsorintel.london/about",
+    "status": 200,
+    "metrics_excluded": true,
+    "feedback_control_present": true,
+    "privacy_control_present": true,
+    "literal_about_title_present": false,
+    "form_submitted": false,
+    "support_delivery_tested": false
+  },
+  "review_limits": [
+    "No independent legal/privacy/security acceptance",
+    "Current protected dashboard categories/certifications not inspected",
+    "Publisher identity/contact/activation not independently verified",
+    "No effective policy date/public privacy URL",
+    "No installed 0.1.1 or consumer store acceptance"
+  ],
+  "actions": {
+    "policy_published": false,
+    "dashboard_certified": false,
+    "upload_or_submission": false,
+    "production_write": false,
+    "runtime_or_package_changed": false,
+    "model_calls": 0,
+    "google_property_calls": 0,
+    "email_or_social_sends": 0
+  }
+}
