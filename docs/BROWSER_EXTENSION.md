@@ -1,5 +1,7 @@
 # Sponsor Intel browser companion
 
+**3 November 21:10 update:** the owner-approved 0.1.7 native installation test is complete on fictional adverts in a separate signed-out Chrome profile; it was disabled afterward. See `OPERATOR_CHECKPOINT.md` and installed-test evidence. The owner has since requested the materially changed **Job notes 0.2.0** browsing companion plus advert-to-workspace handoff. That private package and staged website import are implemented but not installed, live or submitted. Read `JOB_NOTES_PLAN.md` and the separate unapproved `JOB_NOTES_PRIVACY_DRAFT.md`; old listing/policy copy below must not be reused for 0.2.0. The public download remains 0.1.6.
+
 Owner addition, 2 November 2026: provide an extension downloadable from Sponsor Intel that helps a visitor determine sponsorship wording for jobs they encounter on other websites. This is part of the existing product goal. It does not clear source, capacity, supervisor, model or private-saving holds.
 
 ## Required outcome

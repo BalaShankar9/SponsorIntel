@@ -1,5 +1,7 @@
 # Applications, real businesses and sponsorship coverage
 
+**Owner addition, 3 November 2026:** the browser companion must bring a selected external advert and its full details into the applicant's workspace for CV/required-document preparation and the later authorised application journey. Read `JOB_NOTES_PLAN.md`. A reviewed file export/import is implemented and locally verified with a fictional account; direct authenticated transfer and production release remain open. Preserve original text/link/evidence and existing drafts, reject silent truncation and duplicates, keep master-profile claims truthful, and do not equate import with a licence check or application send. Capacity, privacy/store and permitted-submission gates remain.
+
 Owner-requested additions to the active Sponsor Intel objective, **20 October 2026**. These are implementation requirements; dated acceptance below identifies the first delivered slice. Codex leads implementation within the existing services, owner controls and budgets. Read `DAILY_OPERATOR.md` and the current checkpoint before execution.
 
 The owner wants an autonomous tool that applies to all jobs a user chooses, real businesses behind sponsor-licence names, and substantially more genuine sponsorship opportunities. This request authorises building these capabilities. It does not supply any customer's answers, documents, consent to particular destinations, or authority to submit an application today. Existing restrictions on operator application submission remain until a specific applicant authorises a supported batch.

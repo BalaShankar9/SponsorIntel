@@ -1,0 +1,44 @@
+# Sponsor Intel / Job notes
+
+Owner scope, 3 November 2026: move beyond a popup into a useful companion beside job cards on LinkedIn, Indeed and other job sites. Enable it from the extension, keep it useful while browsing/scrolling, and show detailed, informative evidence. The owner also wants a distinctive, personal, professional identity across the extension and platform, without generic AI presentation. This expands the existing product goal; it does not clear capacity, supervisor, source, model, Founder or store-publication holds.
+
+## Product direction
+
+The organising idea is **a closer reading**. Sponsor Intel provides a small research note beside a decision, with the underlying evidence immediately accessible. A marker alone is not the product: the value is an exact role identity, the quoted sponsorship statement, conditions, missing evidence and a practical next check. Do not claim the interaction is a novel invention or universal site coverage.
+
+Three separate questions stay visible: what the **advert says**, whether the **exact legal employer has a current licence**, and whether the **vacancy and applicant circumstances** are eligible/current. The first can run locally. The other two remain explicitly unverified until their own evidence exists. A short card preview, trading name, licence or right-to-work question must never become a sponsorship offer/refusal.
+
+## Design language
+
+Keep Sponsor Intel as the name; **Job notes** names the browsing companion. Warm paper (`#f8f6ed`), deep green (`#203d31`) and restrained copper (`#995738`) form the working palette. Serif headings introduce the reading task; system sans-serif carries controls and evidence metadata. A double editorial margin echoes the existing slash mark. Use thin rules, generous line height, clear evidence quotations and direct verbs. Avoid chat bubbles, sparkle icons, synthetic confidence percentages, loud gradients, fake urgency and claims of intelligence. Technical operation belongs in disclosure/settings, not the main journey.
+
+This direction starts with the extension and should inform later role pages, learning resources, sponsor identity views and Founder workspaces. Those wider screens have **not** been redesigned by this candidate. Preserve useful existing behaviours and validate contrast, keyboard navigation and mobile layouts before each rollout.
+
+Avoiding AI branding does not mean concealing processing. Features that actually send inputs to a model must still explain their data handling and limitations where relevant. Job notes itself uses local phrase rules and makes no model call.
+
+## Working release stages and acceptance
+
+1. **In-tab companion:** toolbar enable/disable, local card markers, compact dock and reading panel; same `activeTab` + `scripting` permissions. No all-site permission, background service, remote code, account save, network/model request or enrolment. Enabling is per tab/page; a reload/new document needs another click. The in-tab observer notices rendered cards while enabled; this changes the 0.1 privacy wording and needs a reviewed disclosure before public release.
+2. **Identity before analysis:** recognise exact LinkedIn/Indeed identifiers and conservative employer-original URLs; require the visible full description to match the selected card. Split-view URL changes alone are insufficient. Recycled cards and changing source text invalidate old results. No automatic clicks, fetching hidden descriptions, application interaction, access bypass or cross-frame scanning. Unsupported layouts offer complete-advert paste and an explicit limitation.
+3. **Reading and decisions:** full public advert review/confirmation, quotes, conditional/refused/unclear states, actionable next checks, separate licence/freshness status. Preserve hidden/form exclusions, collapsed-section holds, content limits and edit invalidation. Closing clears in-memory text; Off removes markers, panel, observers/listeners and timers. No comparison history is silently persisted.
+4. **Measured compatibility:** installed exact-candidate tests, keyboard and 390px checks, repeated/recycled/lazy card scenarios, page changes and off/close cleanup. Test representative current LinkedIn, Indeed and employer-original pages independently. Fictional DOMs do not prove those sites work today. Record layouts not supported. Keep the existing 50-advert independent-quality gate separate.
+5. **Delivery:** final immutable ZIP; exact disclosure/permission/store copy; owner-approved legal changes; actual screenshot; manually verified publisher fields; explicit store-submission handoff; review/consumer installation before a one-click website link. Public 0.1.6 and candidate 0.1.7 remain immutable. Do not deploy the prepared 2.99.0 Worker or migration 0047 to publish an extension.
+6. **Later evidence additions:** reviewed operating-business/licence matches, source dates and role-linked learning, plus user-controlled comparison/shortlist choices. Implement only when exact source freshness/identity and privacy/storage acceptance exist. Do not populate these with guesses or add spending. A later milestone, not a claim of the initial companion.
+
+## Implementation and verification boundary
+
+### Advert to applicant workspace — owner addition, 3 November
+
+The intended journey is: choose a role beside its original advert → review the source and sponsorship wording → add that role to the applicant's workspace → use their truthful profile to prepare a CV, cover letter and other required documents → review the final pack and proceed through the permitted application route. Retain the full description, original URL, known employer/location, observation time and evidence. Unknown dates, salary and qualifications stay unknown; mentioned details remain in the complete text. Capture time is not the posting date. Attachments and hidden sections are not silently invented or fetched.
+
+The prepared first handoff is explicit file export/import. The companion produces a bounded Job notes file; the actual Applications component previews it, confirms employer and complete-advert review, then opens Application Studio through the existing manual/unverified-advert route. It recomputes wording, checks the body checksum, refuses oversized input without truncation, rejects private URL parameters and finds existing work by source URL before creating another role. Existing documents and the master profile stay unchanged. The file's verdict is not independent verification. Import makes no model call and never changes the stage to Applied.
+
+This release is **not deployed** and is not a one-click account transfer. Later direct transfer requires an authenticated destination, exact-payload review, replay and cross-account isolation, current storage capacity, durable save receipt and recovery checks. Do not introduce account tokens in job-page URLs, broad all-site access, silent CV collection or extension-to-website messaging merely for convenience. The fictional local save does not release the capacity hold.
+
+Document preparation keeps existing evidence, consent and shared-call controls. Submission still requires the applicant's authorised batch, truthful answers, a permitted route and required handoffs. The broader goal includes that later application tool; this import does not claim it exists.
+
+Source: `cloudflare/extension-companion/`. `prepare-extension-companion.mjs` creates a separate private 0.2.0 candidate and refuses an existing destination. It does not change the website's active download metadata. `serve-companion-preview.mjs` runs the actual bundled companion on a fictional job board; it does not mock extension permissions and does not prove an installed extension. `tests/extension-companion.test.mjs` tests identity and next-action rules; browser receipts must test the actual changing DOM and controls.
+
+Chrome's original [activeTab documentation](https://developer.chrome.com/docs/extensions/develop/concepts/activeTab) and [scripting API](https://developer.chrome.com/docs/extensions/reference/api/scripting) were checked on 3 November. Their temporary, user-invoked access model supports this permission design; it does not guarantee compatibility with any website.
+
+The owner authorised temporary **0.1.7** installation, which was executed separately on fictional adverts. That approval does not itself authorise installing a materially changed 0.2.0 preview or publishing a new policy. Finish and review the exact new package before requesting any required installation confirmation. No repeated request for the already completed 0.1.7 installation.

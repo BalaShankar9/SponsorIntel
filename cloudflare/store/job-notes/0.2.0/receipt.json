@@ -1,0 +1,60 @@
+{
+  "preparedAt": "2026-11-03T21:04:51.463Z",
+  "version": "0.2.0",
+  "status": "private_review_candidate_not_installed_or_published",
+  "bytes": 51613,
+  "sha256": "3f5ab9dda35352b696555b40bf59f2c7bfb5a296ba853a4d2e4f1641dccdb052",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "files": [
+    {
+      "name": "manifest.json",
+      "bytes": 695,
+      "sha256": "2f8e2a01126ae7a1bbb80b7aebf291679fb682f538b5d302e72e4e0f8349e14e"
+    },
+    {
+      "name": "popup.html",
+      "bytes": 1561,
+      "sha256": "0db55d361da6500c8b6c7e28a9717553cca77189a3f40e57dc3c2e68a7b43003"
+    },
+    {
+      "name": "popup.css",
+      "bytes": 1365,
+      "sha256": "0288d4fc82d92be9e31b8c4f6abfe784bb2b0b3e0eea4104d7ec5063cb81a034"
+    },
+    {
+      "name": "popup.js",
+      "bytes": 1495,
+      "sha256": "92e10f7d5035ae3f0511e1c077d54526738c618d406a1e37a4a5951b78167a48"
+    },
+    {
+      "name": "companion.js",
+      "bytes": 41359,
+      "sha256": "f99d70a0ed54ce38b47d5752ed48be79776fd5b11b10d6b331bdbbd8c98f35f2"
+    },
+    {
+      "name": "README.txt",
+      "bytes": 899,
+      "sha256": "0d5dc52c65b2a44060fa98894bf09a0c02c7b892abf6f105492b99019a72fbcf"
+    },
+    {
+      "name": "icon-16.png",
+      "bytes": 409,
+      "sha256": "a786511a2f7ffccd63c022fe19f21ba899e7879b2d625dcad1d8efeccfc953f6"
+    },
+    {
+      "name": "icon-48.png",
+      "bytes": 1114,
+      "sha256": "3e10c105bffed3f07f0e4ef8af70da0f8b194398dfe5a19d81a8b50d92b38c07"
+    },
+    {
+      "name": "icon-128.png",
+      "bytes": 1818,
+      "sha256": "96384a13eda22c8ebc1207aa954cbbfe990b331f880819bc153437348f3c8a6c"
+    }
+  ],
+  "policy": "Changed in-tab behavior needs a new disclosure review before public release; no store upload",
+  "scope": "Local wording only. No automatic licence/freshness/eligibility decision."
+}

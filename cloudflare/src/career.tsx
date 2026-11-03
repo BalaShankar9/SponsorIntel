@@ -68,6 +68,7 @@ import { buildEvidenceReview } from "../worker/career-evidence.js";
 import { EvidenceExample } from './evidence-example';
 import {DraftSourceComparison} from './draft-source-comparison';
 import { draftWarnings, sourceWarnings } from "../worker/career-quality.js";
+import {JobNoteImport} from './job-note-import';
 const external = { target: "_blank", rel: "noopener noreferrer" };
 type Go = (view: string) => void;
 
@@ -197,6 +198,7 @@ function Applications({ go }: { go: Go }) {
           Add a role
         </button>
       </Title>
+      <JobNoteImport go={go}/>
       <div className="career-metrics">
         {[
           { n: c.data.applications.length, l: "Roles saved" },
