@@ -1,6 +1,6 @@
 # 2.98.12 — visible advert capture boundaries
 
-3 November 2026. Validated candidate; deployment is recorded below after verification.
+3 November 2026. Live deployment and verification are recorded below.
 
 Fictional connected-Chrome checks reproduced three gaps in Advert Check 0.1.3: fully transparent ancestor text, collapsed table text and closed details content entered automatic capture. The retained baseline includes their exact fictional results. **0.1.6** uses the browser visibility check with opacity/CSS visibility enabled, excludes hidden regions and requires visible closed advert sections to be expanded before capture. A selection intersecting hidden/application text is refused rather than silently including it. Browsers without the required visibility API receive a paste instruction. The popup preserves the new Expand error so the user sees the required action.
 
@@ -21,3 +21,9 @@ Current ZIP: **28,360 bytes**, SHA-256 **564d8d1b6addf305d15194c4eefd72c3f50ccf9
 Deploy only the isolated **2.98.11** lineage with this change and 2.98.12 version metadata. Exactly 46 migrations, no prepared Founder saving/0047/activation. The combined branch still contains prepared 2.99.0 and must not be deployed wholesale. Compatible rollback: **2.98.11 Worker 05d33310-4679-440a-a35a-0ac964d9bcbe**. Separate version upload/deploy preserves queues/triggers. All capacity/supervisor/model/source/marketing holds remain. Store artwork, manual publisher declarations/submission, consumer installation and independent compatibility/quality acceptance remain open.
 
 Evidence: `tests/evidence/extension-capture-2026-11-03/`. Temporary local test tabs/servers were closed; no normal-profile extension installation or external-site capture occurred.
+
+## Deployment and live verification
+
+Live at **100% since 3 November 18:42:42.671866 UTC**, Worker **ac955e96-9ed7-4efb-8f56-5cb91eaf2abf**, deployment **4e130b3e-eeab-49c1-b02c-107a390108cf**. Feature commit **75795d579ec4ebe2f8e38c08c5919dcee65b9f4d** applied only to the isolated lineage. Upload/deploy exited successfully, retaining inherited queues. No trigger/schema submission. Compatible rollback remains **2.98.11 / 05d33310-4679-440a-a35a-0ac964d9bcbe**.
+
+At **18:43:13 UTC**, 14 metrics-excluded HTTP checks pass: exact prerender/page/checker, four public archives/current metadata, approved policy/empty HEAD, 404s for unpublished 0.1.2/0.1.4/0.1.5, and health 2.98.12. These prove served bytes and status; local fictional browser evidence has its separate scope. No model/Google-property call, new external source request, real application, social/email send, purchase, customer-data write or hold release. Final pushed-head CI and PR status are checked separately; local validation does not resolve GitHub billing or establish independent semantic quality.

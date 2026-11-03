@@ -1,7 +1,7 @@
 {
   "release": "2.98.12",
   "extension_version": "0.1.6",
-  "state": "validated; deployment pending",
+  "state": "deployed and exact live HTTP verified",
   "package_sha256": "564d8d1b6addf305d15194c4eefd72c3f50ccf969045b15c1444e7a7a18ee97f",
   "bytes": 28360,
   "node": "24.19.0",

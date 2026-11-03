@@ -65,3 +65,7 @@ Genuine 00:30/06:30/12:30 source executions are now observed. They published 32/
 ## Refreshed account capacity — 3 November
 
 Authenticated read-only UI now confirms **Workers Free / Current plan**. The D1 daily view for 3 November displays **103.36k rows written against 100k**, 3.49M reads against 5M, 11 databases against 10, and 267.55MB storage against 5GB. These rounded account-wide values are not per-project attribution or a diagnosis of a specific failed request. [Dated receipt](../cloudflare/tests/evidence/capacity-observation-2026-11-03.json). This supersedes the previous plan-observation date, not the unresolved owner decision or original-instance holds. No purchase, agreement, plan change, permission expansion, write probe, message or repeated permission question occurred. The temporary dashboard tab was closed.
+
+## Second evening absence — 3 November
+
+At 18:38:37 the source provider list still ended at the noon run; at 18:39:59 D1 likewise had no run since 18:00, and daily reservations stayed 331. Read cost seven rows/zero writes, changed_db false. This is a second dated missing evening observation, not proof of the dispatch cause, a terminal failure or zero invocation. The current release changes only local extension behavior/static delivery and does not submit triggers or clear holds. See `cloudflare/tests/evidence/evening-source-observation-2026-11-03.json`. This draft remains unsent; no owner decision, support contact, permission expansion, replacement or reservation reset is implied.
