@@ -1,10 +1,22 @@
 {
   "manifest_version": 3,
   "name": "Sponsor Intel — Advert Check",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "Read sponsorship wording in one job advert, with evidence. Local checks; unclear wording stays unclear.",
-  "permissions": ["activeTab", "scripting"],
-  "action": {"default_popup": "popup.html", "default_title": "Check this job advert"},
-  "icons": {"16": "icon-16.png", "48": "icon-48.png", "128": "icon-128.png"},
-  "content_security_policy": {"extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"}
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Check this job advert"
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+  }
 }

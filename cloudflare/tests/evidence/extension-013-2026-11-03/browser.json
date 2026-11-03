@@ -1,0 +1,70 @@
+{
+  "at": "2026-11-03T18:10:15.772Z",
+  "scope": "Local built website and unchanged popup scripts extracted from exact 0.1.3 archive over local HTTP; not installed-extension, capture permission or store acceptance",
+  "website": [
+    {
+      "sample": "Sponsorship\nUnfortunately, we cannot offer visa sponsorship for this role.",
+      "expected": "unavailable",
+      "actual": "unavailable",
+      "text": "WHAT THE WORDING SAYS\n\nSponsorship refused in this wording\n\nA direct refusal was found. This describes the supplied wording, not every role at this employer.\n\nUnfortunately, we cannot offer visa sponsorship for this role.\n\nMatched text is evidence of wording only. Automated phrase checks can miss context; confirm important points with the employer."
+    },
+    {
+      "sample": "Visa Sponsorship: We offer visa sponsorship for this role.",
+      "expected": "offered",
+      "actual": "offered",
+      "text": "WHAT THE WORDING SAYS\n\nSponsorship offered in this wording\n\nThis is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.\n\nVisa Sponsorship: We offer visa sponsorship for this role.\n\nMatched text is evidence of wording only. Automated phrase checks can miss context; confirm important points with the employer."
+    },
+    {
+      "sample": "Visa sponsorship:\nWe may provide visa sponsorship, subject to eligibility.",
+      "expected": "conditional",
+      "actual": "conditional",
+      "text": "WHAT THE WORDING SAYS\n\nSponsorship may be available\n\nThis is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.\n\nWe may provide visa sponsorship, subject to eligibility.\n\nMatched text is evidence of wording only. Automated phrase checks can miss context; confirm important points with the employer."
+    },
+    {
+      "sample": "We offer visa sponsorship.\nVisa Sponsorship: We provide sponsorship for training.",
+      "expected": "unclear",
+      "actual": "unclear",
+      "text": "WHAT THE WORDING SAYS\n\nSponsorship is unclear\n\nA caveat or other sponsorship wording needs interpretation. Read the quoted context and complete advert before relying on a matched sentence.\n\nWe offer visa sponsorship.\nVisa Sponsorship: We provide sponsorship for training.\n\nMatched text is evidence of wording only. Automated phrase checks can miss context; confirm important points with the employer."
+    }
+  ],
+  "popup": [
+    {
+      "sample": "Sponsorship\nUnfortunately, we cannot offer visa sponsorship for this role.",
+      "expected": "unavailable",
+      "actual": "unavailable",
+      "text": "WHAT THE WORDING SAYS\nSponsorship refused in this wording\n\nA direct refusal was found. This describes the supplied wording, not every role at this employer.\n\nUnfortunately, we cannot offer visa sponsorship for this role.\n\nAutomated phrase checks can miss context. Check the original and confirm unclear points with the employer. A sponsor licence is separate; this tool does not look it up."
+    },
+    {
+      "sample": "Visa Sponsorship: We offer visa sponsorship for this role.",
+      "expected": "offered",
+      "actual": "offered",
+      "text": "WHAT THE WORDING SAYS\nSponsorship offered in this wording\n\nThis is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.\n\nVisa Sponsorship: We offer visa sponsorship for this role.\n\nAutomated phrase checks can miss context. Check the original and confirm unclear points with the employer. A sponsor licence is separate; this tool does not look it up."
+    },
+    {
+      "sample": "Visa sponsorship:\nWe may provide visa sponsorship, subject to eligibility.",
+      "expected": "conditional",
+      "actual": "conditional",
+      "text": "WHAT THE WORDING SAYS\nSponsorship may be available\n\nThis is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.\n\nWe may provide visa sponsorship, subject to eligibility.\n\nAutomated phrase checks can miss context. Check the original and confirm unclear points with the employer. A sponsor licence is separate; this tool does not look it up."
+    },
+    {
+      "sample": "We offer visa sponsorship.\nVisa Sponsorship: We provide sponsorship for training.",
+      "expected": "unclear",
+      "actual": "unclear",
+      "text": "WHAT THE WORDING SAYS\nSponsorship is unclear\n\nA caveat or other sponsorship wording needs interpretation. Read the quoted context and complete advert before relying on a matched sentence.\n\nWe offer visa sponsorship.\nVisa Sponsorship: We provide sponsorship for training.\n\nAutomated phrase checks can miss context. Check the original and confirm unclear points with the employer. A sponsor licence is separate; this tool does not look it up."
+    }
+  ],
+  "mobile": {
+    "width": 390,
+    "scrollWidth": 390
+  },
+  "invalidate": {
+    "confirmed": false,
+    "resultHidden": true
+  },
+  "clear": {
+    "confirmed": false,
+    "resultHidden": true,
+    "text": ""
+  },
+  "initialHarnessError": "Expected abbreviated refused heading instead of actual longer title; corrected to exact data-status assertion without product change"
+}

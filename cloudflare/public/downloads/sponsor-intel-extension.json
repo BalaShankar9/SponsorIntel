@@ -1,13 +1,13 @@
 {
-  "version": "0.1.1",
-  "filename": "sponsor-intel-extension-0.1.1.zip",
-  "bytes": 25407,
-  "sha256": "42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7",
+  "version": "0.1.3",
+  "filename": "sponsor-intel-extension-0.1.3.zip",
+  "bytes": 26528,
+  "sha256": "26da3edea46fd7c6f193cfb2dafac872048ea5d9e51e5bb44d73f79a3180189b",
   "files": [
     {
       "name": "manifest.json",
-      "bytes": 629,
-      "sha256": "0644420f242359a4c3bbabc07cdf34e451e663f2078cbdfa97e9815233f742d8"
+      "bytes": 677,
+      "sha256": "c446abdea061e72344110a9bbb8e58f9b283f8646b0a4dafbb787158fa19e907"
     },
     {
       "name": "popup.html",
@@ -26,8 +26,8 @@
     },
     {
       "name": "analyse.js",
-      "bytes": 7667,
-      "sha256": "ce852a0783bd12e7ba392ebcab325b86022914fdcb50943c051be22e5ae38a21"
+      "bytes": 8499,
+      "sha256": "76b200565ea4bcd1ffa5d3a69d5ebaf30c1c9ebec4d907df55a69fb73d9a543a"
     },
     {
       "name": "capture.js",
@@ -36,8 +36,8 @@
     },
     {
       "name": "README.txt",
-      "bytes": 1758,
-      "sha256": "9ef5508a20e40cd12cd315924b078fcfccb102ed9c780269a54c569b28a6538d"
+      "bytes": 1999,
+      "sha256": "6e10e748f9a5352792d610466afeec3a23fc9e90ca17d6b91ab0b9ce11db9837"
     },
     {
       "name": "icon-16.png",

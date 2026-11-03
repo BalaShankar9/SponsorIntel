@@ -1,4 +1,4 @@
-Sponsor Intel — Advert Check 0.1.1 (developer preview)
+Sponsor Intel — Advert Check 0.1.3 (developer preview)
 
 Install on desktop Chrome or Edge:
 1. Extract the ZIP into a folder you will keep.
@@ -28,3 +28,7 @@ answers or CVs. Opening a help link is ordinary website navigation.
 
 Help, current downloads and privacy: https://sponsorintel.london/browser-extension
 No external source content is bundled. Copyright Sponsor Intel 2026.
+
+0.1.3: Recognizes sponsorship headings and narrowly prefaced direct refusals.
+Quotes keep the original wording; questions, caveats and unknown meaning remain
+unclear. Data handling and permissions are unchanged from privacy baseline 0.1.1.

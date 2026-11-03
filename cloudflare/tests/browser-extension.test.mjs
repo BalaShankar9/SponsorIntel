@@ -102,6 +102,38 @@ test('unmatched caveats, questions and late conflicting evidence remain visible 
  const repeated=analyseAdvert(intro+(unclear+'\n').repeat(500),true);
  assert.equal(repeated.evidence.length,1);
 });
+test('section headings and refusal prefaces retain the full direct statement',()=>{
+ for(const [text,status,quote] of [
+  ['Sponsorship\nUnfortunately, we cannot offer visa sponsorship for this role.','unavailable','Unfortunately, we cannot offer visa sponsorship for this role.'],
+  ['Unfortunately at this time, we are unable to provide visa sponsorship.','unavailable','Unfortunately at this time, we are unable to provide visa sponsorship.'],
+  ['Visa Sponsorship: We offer visa sponsorship for this role.','offered','Visa Sponsorship: We offer visa sponsorship for this role.'],
+  ['Visa sponsorship:\nWe may provide visa sponsorship, subject to eligibility.','conditional','We may provide visa sponsorship, subject to eligibility.'],
+ ]) {
+  const answer=analyseAdvert(intro+'\n'+text,true);
+  assert.equal(answer.status,status,text);
+  assert.deepEqual(answer.evidence.map(e=>e.quote),[quote]);
+ }
+});
+test('presentation normalization cannot erase questions, exceptions or unsupported wording',()=>{
+ for(const text of [
+  'Visa Sponsorship: If we offer visa sponsorship, ask about the conditions.',
+  'Visa Sponsorship: "We offer visa sponsorship."',
+  'Visa Sponsorship: We offer visa sponsorship?',
+  'Sponsorship\nWe offer visa sponsorship, but not for this vacancy.',
+  'Unfortunately, we cannot offer visa sponsorship, unless an exception applies.',
+  'Unfortunately, we cannot offer visa sponsorship. This statement is out of date.',
+  'Unfortunately, we offer visa sponsorship.',
+  'We offer visa sponsorship.\nVisa Sponsorship: This does not apply to this vacancy.',
+  'We offer visa sponsorship.\nVisa Sponsorship: We provide sponsorship for training.',
+  'We offer visa sponsorship.\nSponsorship?\nWe welcome international applicants.',
+  'Visa sponsorship',
+ ]) assert.equal(analyseAdvert(intro+'\n'+text,true).status,'unclear',text);
+ const statement='We offer visa sponsorship.', caveat='This does not apply to this vacancy.';
+ const answer=analyseAdvert(intro+statement+'\nSponsorship\n'+caveat,true);
+ assert.equal(answer.status,'unclear');assert.deepEqual(answer.evidence.map(e=>e.quote),[statement,caveat]);
+ const long='Visa sponsorship: We offer visa sponsorship '+('a'.repeat(630));
+ const bounded=analyseAdvert(intro+long,true);assert.equal(bounded.status,'unclear');assert.equal(bounded.evidence.length,0);
+});
 test('download archive is deterministic and independently readable, with no extra entries',()=>{
  const entries=[['manifest.json',Buffer.from('{"manifest_version":3}')],['popup.js',Buffer.from('hello\n')]];
  const bytes=archive(entries);assert.deepEqual(bytes,archive(entries));
@@ -124,7 +156,7 @@ test('shipped archive matches each allowlisted source and declared permissions',
 });
 test('public download and landing routes work without a database and unknown assets stay unavailable',async()=>{
  const env={ASSETS:{fetch:async r=>new Response(new URL(r.url).pathname)}};
- for(const path of ['/browser-extension','/extension-privacy.html','/downloads/sponsor-intel-extension-0.1.0.zip','/downloads/sponsor-intel-extension-0.1.1.zip','/downloads/sponsor-intel-extension.json']){
+ for(const path of ['/browser-extension','/extension-privacy.html','/downloads/sponsor-intel-extension-0.1.0.zip','/downloads/sponsor-intel-extension-0.1.1.zip','/downloads/sponsor-intel-extension-0.1.3.zip','/downloads/sponsor-intel-extension.json']){
   const r=await pageResponse(new Request('https://sponsorintel.london'+path),env);assert.equal(r.status,200);assert.match(await r.text(),new RegExp(path.replace(/[.]/g,'\\.')));
  }
  const r=await pageResponse(new Request('https://sponsorintel.london/downloads/private.json'),env);assert.equal(r.status,404);

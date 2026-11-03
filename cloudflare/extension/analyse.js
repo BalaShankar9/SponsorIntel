@@ -34,10 +34,21 @@ export function analyseAdvert(text, confirmed = false) {
   };
   const sentences = text.split(/(?<=[.!?])\s+|[\r\n]+/).map(x => x.trim()).filter(Boolean);
   for (const original of sentences) {
-    const s = normal(original).replace(/^[-•*]\s*/, '');
+    const whole = normal(original).replace(/^[-•*]\s*/, '');
     const followsStatement = previousStatement;
     previousStatement = false;
-    if (!/sponsor/i.test(s)) {
+    // A section label is not an uncertain claim. It also must not hide a
+    // caveat referring to the preceding statement across that label.
+    const heading = '(?:(?:UK |Skilled Worker )?(?:visa|immigration|work permit) )?sponsorship';
+    if (new RegExp('^'+heading+':?$','i').test(whole)) {
+      previousStatement = followsStatement;
+      continue;
+    }
+    let s = whole.replace(new RegExp('^'+heading+':\\s*','i'), '');
+    // Strip this courtesy preface only before an explicit employer refusal.
+    // Keep the complete original quote; unfamiliar prefaces remain unclear.
+    s = s.replace(/^unfortunately(?: at this time)?,?\s+(?=(?:we|the company|the employer) (?:(?:currently )?(?:cannot|can't|do not|don't|will not|won't)|are (?:(?:currently )?unable to|not (?:currently )?able to))\b)/i, '');
+    if (!/sponsor/i.test(whole)) {
       // An adjacent caveat may refer back without repeating "sponsorship".
       // Preserve uncertainty; this is not a general right-to-work refusal rule.
       if (followsStatement && /^(?:(?:however|unfortunately|please note)[,:]?\s+)?(?:this|that|it)(?:\s+(?:offer|support|assistance|policy|statement|information|arrangement|benefit))?\s+(?:does not apply\b|is (?:no longer|not (?:available|offered|provided|applicable|valid)|out of date|outdated|withdrawn)\b|has been (?:withdrawn|discontinued)\b|applies only\b|is only (?:available|offered|provided)\b)/i.test(s)) {
@@ -47,12 +58,12 @@ export function analyseAdvert(text, confirmed = false) {
       continue;
     }
     // Questions, advice, examples and very long clauses cannot establish an offer/refusal.
-    if (s.length > 650 || /\?/.test(s) || /^(?:if |unless |for example|example|ask |please ask|check whether|you should|"|'|“|‘)/i.test(s)) {
+    if (whole.length > 650 || /\?/.test(s) || /^(?:if |unless |for example|example|ask |please ask|check whether|you should|"|'|“|‘)/i.test(s)) {
       ambiguous = true;
-      if (s.length <= 650) retain('unclear', original);
+      if (whole.length <= 650) retain('unclear', original);
       continue;
     }
-    const immigration = /visa|immigration|work permit|skilled worker|right to work|authori[sz]ed to work/i.test(s);
+    const immigration = /visa|immigration|work permit|skilled worker|right to work|authori[sz]ed to work/i.test(whole);
     // Avoid treating a non-immigration funding statement as job visa evidence.
     if (!immigration && /qualification|course|degree|training|conference|event|charit|sport/i.test(s)) continue;
     const employer = '(?:we|the company|the employer)';

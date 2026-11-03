@@ -1,0 +1,43 @@
+{
+  "version": "2.98.11",
+  "extension_version": "0.1.3",
+  "state": "validated; deployment pending",
+  "base_worker": "c64fe70f-4c83-4a6f-92ba-62cdcc598fe0",
+  "targeted_tests": 20,
+  "combined_and_isolated_pass": true,
+  "isolated_typescript_build_prerenders": 21,
+  "browser_budgets_pass": true,
+  "upload_dry_run_pass": true,
+  "node": "24.19.0",
+  "disk_preflight_gib": 9.5,
+  "dependency_changes": false,
+  "same_day_audit": "zero known findings on unchanged lockfile; not complete security assurance",
+  "applied_schema_changes": false,
+  "stage_migrations": 46,
+  "founder_activation": false,
+  "existing_stage_diffs": [
+    "wrangler.jsonc",
+    "package-lock.json",
+    "package.json",
+    "extension/analyse.js",
+    "extension/manifest.json",
+    "extension/README.txt",
+    "tests/browser-extension.test.mjs",
+    "public/extension-privacy.html",
+    "worker/pages.js",
+    "src/extension-page.tsx",
+    "src/extension-entry.tsx",
+    "public/downloads/sponsor-intel-extension.json"
+  ],
+  "approved_privacy_article_unchanged": true,
+  "privacy_header": "Technical compatibility notice only; approved substantive article unchanged",
+  "manifest_except_version_unchanged": true,
+  "capture_and_popup_bytes_unchanged": true,
+  "prior_archive_hashes": {
+    "0.1.0": "db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb",
+    "0.1.1": "42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7"
+  },
+  "candidate_013_sha256": "26da3edea46fd7c6f193cfb2dafac872048ea5d9e51e5bb44d73f79a3180189b",
+  "skipped_012": "Unpublished candidate preserved privately; a training-funding counterexample was caught before release. Immigration context now uses original full sentence. 0.1.2 is not a public asset.",
+  "limits": "No independent human accuracy, installed current extension, capture compatibility or store approval claim. No model/source request, database write, hold release or added permission."
+}
