@@ -1,0 +1,54 @@
+{
+  "observedAt": "2026-11-03T19:07:33.743Z",
+  "candidateVersion": "0.1.7",
+  "candidateSha256": "4bea24f8b62ede60bddf81873ee2595a5260d4622836b8a2d2793a900ec2d0d0",
+  "sourceVectorHashMatches": true,
+  "geometryAssertionsPassed": true,
+  "visualInspection": "Existing green and lime mark is centered with visible transparent margin; native/store appearance unverified.",
+  "archiveCrc": {
+    "entries": 10,
+    "errors": 0
+  },
+  "baselineTargetedTests": {
+    "passed": 15,
+    "failed": 0,
+    "scope": "Existing analyser and packaging suites; no changed executable code"
+  },
+  "duplicatePreparation": {
+    "rejected": true,
+    "existingReceiptUnchanged": true
+  },
+  "finalScriptRebuild": {
+    "byteIdentical": [
+      "archive",
+      "icon PNG",
+      "icon SVG"
+    ]
+  },
+  "unchangedPublicDownload": {
+    "version": "0.1.6",
+    "sha256": "564d8d1b6addf305d15194c4eefd72c3f50ccf969045b15c1444e7a7a18ee97f"
+  },
+  "scriptSha256": "8d62446a8ab60f9719c9ef2d5015944329bf7f7d5438601c712c2eb2fe2db7ca",
+  "browser": {
+    "target": "Existing public LinkedIn job 4422483456",
+    "tabRemainedPresent": true,
+    "nativeWindow": "Blank advert content; browser chrome responded",
+    "inspection": "Focus-setup timeouts persisted",
+    "reload": "One normal UI reload requested after API reload timed out; network completion unknown",
+    "advertBodyObtained": false,
+    "captureOutcomeObtained": false,
+    "applicationActions": 0,
+    "scope": "Not compatibility evidence"
+  },
+  "notPerformed": [
+    "Installed candidate testing",
+    "Consumer installation",
+    "Store screenshot capture",
+    "Publisher upload or submission",
+    "Worker deployment",
+    "AI calls",
+    "Schema changes",
+    "Production record writes"
+  ]
+}

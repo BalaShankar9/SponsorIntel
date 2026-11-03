@@ -1,0 +1,100 @@
+{
+  "preparedAt": "2026-11-03T19:04:39.464Z",
+  "status": "prepared_only_not_installed_uploaded_or_public",
+  "baseline": {
+    "version": "0.1.6",
+    "sha256": "564d8d1b6addf305d15194c4eefd72c3f50ccf969045b15c1444e7a7a18ee97f"
+  },
+  "candidate": {
+    "version": "0.1.7",
+    "filename": "sponsor-intel-extension-0.1.7.zip",
+    "bytes": 27939,
+    "sha256": "4bea24f8b62ede60bddf81873ee2595a5260d4622836b8a2d2793a900ec2d0d0",
+    "files": [
+      {
+        "name": "manifest.json",
+        "bytes": 677,
+        "sha256": "75ae48907f2761b4736dbabb64926b3ccd7616068de7c0f9038dd14bb4ba3b3a"
+      },
+      {
+        "name": "popup.html",
+        "bytes": 2364,
+        "sha256": "e7f89c1cfa5913a8927137315903ebc7d59b7b25cad28cd77fd1b546a4436bfd"
+      },
+      {
+        "name": "popup.css",
+        "bytes": 2211,
+        "sha256": "69f5883f6ffd28bcf21d8c4543fc9665ce11a11feea5f234e98cd5980cde750e"
+      },
+      {
+        "name": "popup.js",
+        "bytes": 2425,
+        "sha256": "4308e56700c4498b8a0964b43da1ba35ac4a83876ab35b9ca1db83bdf5910f77"
+      },
+      {
+        "name": "analyse.js",
+        "bytes": 8499,
+        "sha256": "76b200565ea4bcd1ffa5d3a69d5ebaf30c1c9ebec4d907df55a69fb73d9a543a"
+      },
+      {
+        "name": "capture.js",
+        "bytes": 5075,
+        "sha256": "df8f7290d0b6255d95589ce4a0ea67bcc8fbc96b124ec5c4d54d23fedbc48c26"
+      },
+      {
+        "name": "README.txt",
+        "bytes": 2357,
+        "sha256": "45c88252ecb7dce0c49388f70d1e94e364494206e1312f1454fe6ee385b18a9c"
+      },
+      {
+        "name": "icon-16.png",
+        "bytes": 409,
+        "sha256": "a786511a2f7ffccd63c022fe19f21ba899e7879b2d625dcad1d8efeccfc953f6"
+      },
+      {
+        "name": "icon-48.png",
+        "bytes": 1114,
+        "sha256": "3e10c105bffed3f07f0e4ef8af70da0f8b194398dfe5a19d81a8b50d92b38c07"
+      },
+      {
+        "name": "icon-128.png",
+        "bytes": 1818,
+        "sha256": "96384a13eda22c8ebc1207aa954cbbfe990b331f880819bc153437348f3c8a6c"
+      }
+    ]
+  },
+  "changedFiles": [
+    "manifest.json",
+    "README.txt",
+    "icon-128.png"
+  ],
+  "artwork": {
+    "source": "public/favicon.svg",
+    "sourceSha256": "c6dcaa86790ecb09f99c97f4fa7101df9325ca928e0b0c84ad55f555adb8768f",
+    "renderedSvgSha256": "dd92442828358818551f4f5cc0a9a5a60d8cc6847f9eeff3f7afd6afc966e2df",
+    "iconSha256": "96384a13eda22c8ebc1207aa954cbbfe990b331f880819bc153437348f3c8a6c",
+    "width": 128,
+    "height": 128,
+    "transparentPadding": 16,
+    "alphaBounds": {
+      "left": 16,
+      "top": 16,
+      "right": 111,
+      "bottom": 111
+    }
+  },
+  "toolchain": {
+    "node": "v24.19.0",
+    "sharp": "0.35.5",
+    "rsvg": "2.63.2"
+  },
+  "unchanged": "All executable code, popup HTML/CSS, smaller icons, permissions and CSP match the verified baseline.",
+  "remaining": [
+    "Installed candidate acceptance",
+    "Actual-experience store-size screenshot",
+    "Publisher fields and declarations",
+    "Manual store submission and approval",
+    "Consumer installation",
+    "Independent semantic and external-site compatibility evidence"
+  ]
+}
