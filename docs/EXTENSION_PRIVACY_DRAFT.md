@@ -1,6 +1,6 @@
-# Advert Check privacy policy — publisher review draft
+# Advert Check privacy policy — approved copy and review record
 
-Prepared **3 November 2026** for **Sponsor Intel — Advert Check 0.1.1**. **Unapproved and unpublished.** The text between the rules below is proposed website copy, not an effective policy, a platform certification or legal advice. No new public policy URL exists. Owner approval is required before publication under `DAILY_OPERATOR.md`'s restriction on automatic legal-claim changes.
+Prepared **3 November 2026** for **Sponsor Intel — Advert Check 0.1.1**. The owner explicitly answered **“Approve this policy for publication”** after reviewing the exact draft at commit `fc5256f011405fef434a4ad78a995df2163c5f6d` (SHA-256 `8fbd60620bf58b834d6d129ac3491965c8d43e86585e7d79770b10d6d1628b60`). The unchanged text between the rules below is now [published policy](https://sponsorintel.london/extension-privacy.html), live **3 November 16:21:59 UTC** and byte-verified at 16:22 UTC. This is the approved policy commitment, not Google approval, a completed dashboard certification or independent legal advice.
 
 The draft is tied to the 25,407-byte package with SHA-256 `42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7`. Re-review it if the package's behavior changes. Publisher identity, contact/account fields and the actual dashboard declarations must still be checked manually; the protected dashboard cannot be scripted. Registration/payment reported by the owner is not a submitted or approved listing.
 
@@ -52,7 +52,7 @@ Any future version that changes how information is read, stored or sent must hav
 
 ## Publisher review and evidence
 
-The affirmative Limited Use paragraph is a **proposed publisher commitment**, not an agent certification or a claim of Google approval. The owner must approve the complete policy before it becomes public website policy. No effect date is asserted until publication. The current Feedback route is real, but a successful new support submission or timely response was not tested; do not substitute the account-email sender for an unverified support address.
+The owner approved the affirmative Limited Use paragraph with the complete policy. It is now a published commitment, not an agent dashboard certification or a claim of Google approval. The published page is dated 3 November 2026. The current Feedback route is real, but a successful new support submission or timely response was not tested; do not substitute the account-email sender for an unverified support address.
 
 | Proposed disclosure | Implementation inspected on 3 November |
 | --- | --- |
@@ -69,4 +69,4 @@ Official references inspected on 3 November: [privacy fields](https://developer.
 
 Suggested declaration review: **website content** is handled locally; the current page URL/origin also needs review against the dashboard's current **web history/browsing activity** definition. Do not select “no user data” merely because nothing leaves the device. Incidental personal information can exist in text, but the extension does not intentionally request identity, payment, health, authentication, communications or location information. The exact category wording and required certifications have not been read from the protected current dashboard. No checkbox is selected or certified here.
 
-Publication still requires: owner approval of the policy/commitment; accurate publisher identity/contact fields; a real public policy URL with the complete approved text; consistent listing and permission declarations; and inspection of that live URL before submission. Current source review is agent-assisted, not independent privacy/security or legal acceptance. Store image, installed 0.1.1 and consumer-installation gates in `EXTENSION_STORE_SUBMISSION.md` remain separate.
+Policy approval and publication are complete; all 21 approved headings/paragraphs and the live HTML match. Store submission still requires accurate publisher identity/contact fields, consistent current dashboard declarations and inspection of the exact listing/candidate. Current source review is agent-assisted, not independent privacy/security or legal acceptance. Store image, installed 0.1.1 and consumer-installation gates in `EXTENSION_STORE_SUBMISSION.md` remain separate.

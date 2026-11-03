@@ -6,7 +6,7 @@
   "approved_copy_sha256": "cc7506518a525e50716b17c4079e03473809f261f2191008b423846910094a73",
   "candidate_html_sha256": "8ee6f2e586c6421bfa9f380faf75a73d48970394325c89b4bd4690ad492fcc46",
   "public_path": "/extension-privacy.html",
-  "state": "prepared_not_deployed",
+  "state": "published_and_http_verified",
   "extension_archive_unchanged": true,
   "schema_changed": false,
   "store_submission": false,
@@ -50,5 +50,22 @@
     "founder_activation": false,
     "archive_metadata_bytes_unchanged": true,
     "rollback_worker": "3ca5be9e-3c75-4c6e-8d9c-5f96297dcf41"
-  }
+  },
+  "deployment": {
+    "id": "558139de-8ef2-4f19-8768-b78608bd0c24",
+    "versions": [
+      {
+        "version_id": "c64fe70f-4c83-4a6f-92ba-62cdcc598fe0",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-11-03T16:21:59.179437Z",
+    "strategy": "percentage",
+    "rollback_worker": "3ca5be9e-3c75-4c6e-8d9c-5f96297dcf41",
+    "schema_changed": false,
+    "trigger_submission": false,
+    "queues_inherited": true,
+    "feature_commit": "2d87fa8f11656f0a132247917dd291b4d22729ea"
+  },
+  "live_verification": "extension-privacy-2026-11-03/live.json"
 }
