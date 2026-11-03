@@ -1,0 +1,15 @@
+{
+  "id": "d1a64e99-fc8d-4c49-9d89-02ade1cfe509",
+  "versions": [
+    {
+      "version_id": "3ca5be9e-3c75-4c6e-8d9c-5f96297dcf41",
+      "percentage": 100
+    }
+  ],
+  "created_on": "2026-11-03T15:04:52.871465Z",
+  "strategy": "percentage",
+  "rollback_worker": "d2ab60fa-fc96-4e54-8048-89ad6e01c83f",
+  "schema_changed": false,
+  "trigger_submission": false,
+  "queues_inherited": true
+}

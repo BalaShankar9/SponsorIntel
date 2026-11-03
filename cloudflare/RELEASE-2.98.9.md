@@ -1,6 +1,6 @@
 # 2.98.9 — preserve adjacent sponsorship caveats
 
-3 November 2026. Locally validated; deployment is recorded separately below when verified.
+3 November 2026. Live deployment and exact verification scope are recorded below.
 
 Advert Check 0.1.0 could label “We offer visa sponsorship. This does not apply to this role.” as offered, and a stale-refusal statement as unavailable. The checker ignored the adjacent sentence because it did not repeat the word sponsorship. It also omitted unmatched sponsorship sentences that made a result unclear, and its first-six display could hide a late refusal.
 
@@ -17,3 +17,13 @@ Connected Chrome UI exercised the exact ZIP's popup HTML/scripts served locally:
 The isolated release reconstructs live base `9bf8a1ebcf612c47380c0809d3ba765587f99d50`, applies only the original extension feature diff from `e47b379396a6ef84d0104b3f2df526d989a7df74`, then this correction. It sets package/root-lock/Worker version **2.98.9**. Across existing Worker/shared/migration/source files, only `worker/pages.js`, `shared/pages.json` and `src/main.tsx` differ from that base; all other existing runtime files match. Exactly 46 migrations are present; prepared 2.99.0 saving/0047/flag remain excluded. **Do not deploy the combined branch.**
 
 The confirmed current compatible rollback is **2.98.8 / d2ab60fa-fc96-4e54-8048-89ad6e01c83f**, deployment `4e0b50d5-360d-4050-86fe-2675a98b64b0`. Upload/deploy separately to preserve queues/triggers. Today's recovery receipt is reused; no schema change or repeat inspection is needed. Capacity and unknown business execution remain held.
+
+## Deployment and live verification
+
+**Live at 3 November 15:04:52.871465 UTC**, Worker `3ca5be9e-3c75-4c6e-8d9c-5f96297dcf41`, deployment `d1a64e99-fc8d-4c49-9d89-02ade1cfe509`, 100%. Correction commit `7bb86f6b5da0033f1d82312f6075dd6c4bbef90c` is applied only within the isolated release lineage above. Upload and deploy were separate; inherited queues remain, no trigger submission or migration. Rollback remains **2.98.8 / d2ab60fa-fc96-4e54-8048-89ad6e01c83f**. The combined prepared branch was not deployed.
+
+Metrics-excluded HTTP checks verify health 2.98.9, the exact prerender/download link, metadata, new ZIP, unchanged old ZIP and all three deferred checker/page/style assets byte-for-byte against the validated release. Unknown download returns 404. See `tests/evidence/extension-2026-11-03/live.json` and `deployment.json`. An initial assertion expected hydrated text in raw HTML, and a later asset lookup assumed an extension-entry filename instead of the actual extension-checker/page names. Both endpoint and follow-up asset evidence is retained, including the failed verification attempts; no deployment retry was made.
+
+The connected browser could not set the required QA exclusion header through its supported CDP capability, so no production browser navigation was performed. Local connected-browser acceptance and exact live HTTP/asset verification are deliberately separate; no signed-out QA traffic was manufactured. The temporary local tab/server were closed and viewport reset. The new package's installed-extension flow, store distribution and independent semantic accuracy remain unverified.
+
+Feature-head checks **125999516669 / 125999461133** were blocked before starting by GitHub billing; original annotations inspected. GitGuardian **125999471753** skipped the oversized PR (neutral), not a completed scan. Local tests do not replace hosted Linux evidence. Every later documentation head is checked separately on PR #1, which remains unmerged. No production AI/Google call, forced source refresh, application, new lead, social/email send, data write, budget reset, plan change or owner-hold release.
