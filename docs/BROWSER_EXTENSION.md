@@ -39,3 +39,8 @@ Repeat with an existing Playwright installation: `EXTENSION_BROWSER_CHANNEL=chro
 - Browser-store listing, representative live-site compatibility, independent semantic accuracy, international/language coverage, licence-identity integration and measured usefulness remain explicit future gates. Site-agnostic selection/paste is a fallback, not proof of automatic extraction on every site.
 
 Status and original validation/deployment receipts belong in `cloudflare/RELEASE-2.98.8.md` and the operator checkpoint. This document is a durable requirement record, not deployment proof.
+
+
+## Store access observation — 2 November 2026
+
+The official [registration](https://developer.chrome.com/docs/webstore/register) and [preparation](https://developer.chrome.com/docs/webstore/prepare) pages were reviewed. Chrome requires a registered publisher and its one-time registration fee/agreements for a new developer, along with the extension/listing review process; no owner account status is inferred from those general requirements. Opening the developer console in Chrome returned `Not allowed` before inspection. Publisher identity/registration and authorised upload access therefore remain unknown. No alternate route, registration, agreement, purchase, upload or submission was attempted. Preserve the public manual download and these open gates; no browser-store URL exists for this release.

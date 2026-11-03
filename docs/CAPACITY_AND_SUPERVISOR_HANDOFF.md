@@ -52,3 +52,8 @@ We can provide the attached sanitized aggregate receipt, containing instance ide
 5. Recheck exact-head hosted CI after any new code push. GitHub's existing billing lock is a separate owner issue; a Cloudflare plan change does not fix it. Resume overdue authenticated evidence reviews and retain new performance observations only after their own freshness, identity and save gates pass.
 
 No code, package, schema or production change accompanies this handoff. The existing 2.98.7 Worker and compatible rollback remain unchanged. Continuing automatic implementation cannot resolve the unresolved commercial decision or invent the missing provider evidence.
+
+
+## Additional read-only evidence — 2 November evening
+
+The expected 18:30 source refresh has no observed application run/provider instance; both latest lists still end at 12:30 and no source application run is open. Daily reservations remain 194. All four platform schedules are present, retaining 28 October modification timestamps. Existing-auth diagnostic-key discovery was denied (403/code 10104); the invocation/dispatch cause remains unknown. See `cloudflare/tests/evidence/evening-source-observation-2026-11-02.json` for exact observation times and read costs. This adds evidence to the existing **unsent** handoff; it does not authorise support contact, a permission expansion, a purchase, schedule changes or a replacement workflow. The capacity decision and original business-instance evidence are still required.

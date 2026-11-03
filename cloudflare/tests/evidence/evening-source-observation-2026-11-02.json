@@ -1,0 +1,160 @@
+{
+  "recorded_at": "2026-11-02T20:08:20.619454+00:00",
+  "purpose": "Read-only investigation of unobserved genuine 18:30 source opportunity",
+  "expected_cron_utc": "2026-11-02T18:30:00Z",
+  "schedule_configuration": {
+    "observed_at": "2026-11-02T20:02:38.848765+00:00",
+    "script": "sponsorintel",
+    "method": "GET",
+    "resource": "workers/scripts/sponsorintel/schedules",
+    "result": {
+      "schedules": [
+        {
+          "cron": "*/15 * * * *",
+          "created_on": "2026-10-04T13:31:13.065721Z",
+          "modified_on": "2026-10-28T10:48:38.239818Z"
+        },
+        {
+          "cron": "15 7 * * *",
+          "created_on": "2026-10-04T08:35:14.52832Z",
+          "modified_on": "2026-10-28T10:48:38.239818Z"
+        },
+        {
+          "cron": "30 */6 * * *",
+          "created_on": "2026-10-04T11:52:30.593022Z",
+          "modified_on": "2026-10-28T10:48:38.239818Z"
+        },
+        {
+          "cron": "45 * * * *",
+          "created_on": "2026-10-07T16:48:23.756536Z",
+          "modified_on": "2026-10-28T10:48:38.239818Z"
+        }
+      ]
+    }
+  },
+  "application_after_18_utc": {
+    "received_at": "2026-11-02T19:59:59.347119+00:00",
+    "rows": []
+  },
+  "latest_application_runs": [
+    {
+      "id": "scheduled-1793622655003",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "created_at": "2026-11-02T12:30:56.620Z",
+      "finished_at": "2026-11-02T13:30:09.292Z",
+      "requests": 54
+    },
+    {
+      "id": "scheduled-1793601055003",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "created_at": "2026-11-02T06:30:57.124Z",
+      "finished_at": "2026-11-02T06:34:22.100Z",
+      "requests": 85
+    }
+  ],
+  "open_application_runs": {
+    "received_at": "2026-11-02T20:03:11.935522+00:00",
+    "rows": []
+  },
+  "source_daily_reservations": [
+    {
+      "day": "2026-11-02",
+      "requests": 194
+    }
+  ],
+  "provider_filtered_list": {
+    "received_at": "2026-11-02T19:58:27.317993+00:00",
+    "requested_from": "2026-11-02T18:00:00Z",
+    "requested_to": "2026-11-02T20:00:00Z",
+    "rows": [],
+    "observation_is_as_of_received_at_not_future_filter_end": true
+  },
+  "provider_latest_list": {
+    "received_at": "2026-11-02T19:59:59.699530+00:00",
+    "rows": [
+      {
+        "id": "scheduled-1793622655003",
+        "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+        "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+        "status": "complete",
+        "created_on": "2026-11-02T12:30:59.256Z",
+        "modified_on": "2026-11-02T13:30:21.597Z",
+        "started_on": "2026-11-02T12:31:01.000Z",
+        "ended_on": "2026-11-02T13:30:21.000Z",
+        "trigger_source": "binding"
+      },
+      {
+        "id": "scheduled-1793601055003",
+        "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+        "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+        "status": "complete",
+        "created_on": "2026-11-02T06:30:58.732Z",
+        "modified_on": "2026-11-02T06:34:22.268Z",
+        "started_on": "2026-11-02T06:31:00.000Z",
+        "ended_on": "2026-11-02T06:34:22.000Z",
+        "trigger_source": "binding"
+      },
+      {
+        "id": "scheduled-1793579455003",
+        "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+        "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+        "status": "errored",
+        "created_on": "2026-11-02T00:30:57.441Z",
+        "modified_on": "2026-11-02T01:57:51.603Z",
+        "started_on": "2026-11-02T00:30:59.000Z",
+        "ended_on": "2026-11-02T01:57:51.000Z",
+        "trigger_source": "binding"
+      }
+    ]
+  },
+  "diagnostic_log_access": {
+    "received_at": "2026-11-02T20:05:59.660104+00:00",
+    "endpoint": "workers/observability/telemetry/keys",
+    "request_scope": "Key discovery only, 18:25-18:35 UTC; no log bodies returned",
+    "http_status": 403,
+    "errors": [
+      {
+        "code": 10104,
+        "message": "workers_observability.api.error.authentication.no_access_to_workers_observability"
+      }
+    ],
+    "permission_expanded": false
+  },
+  "d1_cost": {
+    "statements": 4,
+    "rows_read": 109,
+    "rows_written": 0
+  },
+  "interpretation": {
+    "evening_execution_observed": false,
+    "cause": "unknown; no original invocation log available",
+    "not_evidence_of_terminal_execution": true,
+    "capacity_and_original_business_hold_cleared": false
+  },
+  "browser_store_access": {
+    "attempt": "Open existing Chrome Web Store developer console in Chrome",
+    "result": "Browser tool returned Not allowed before page inspection",
+    "publisher_identity_or_registration_verified": false,
+    "registration_or_submission": false,
+    "purchase_or_agreement": false,
+    "scope_expanded": false
+  },
+  "actions": {
+    "source_refreshes": 0,
+    "workflow_restarts": 0,
+    "schedule_changes": 0,
+    "source_requests": 0,
+    "new_leads": 0,
+    "model_or_google_calls": 0,
+    "external_sends": 0,
+    "customer_writes": 0
+  },
+  "official_references": [
+    "https://developers.cloudflare.com/api/resources/workers/subresources/scripts/subresources/schedules/methods/get/",
+    "https://developers.cloudflare.com/api/resources/workers/subresources/observability/subresources/telemetry/methods/keys/",
+    "https://developer.chrome.com/docs/webstore/register",
+    "https://developer.chrome.com/docs/webstore/prepare"
+  ]
+}
