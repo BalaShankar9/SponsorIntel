@@ -1,0 +1,57 @@
+{
+  "recorded_at": "2026-11-03T14:46:40.859252+00:00",
+  "observed_date": "2026-11-03",
+  "observation_precision": "Authenticated UI observed during this session before 14:44 UTC; exact UI observation timestamp was not retained.",
+  "method": "Read-only authenticated Cloudflare D1 daily usage and Workers plan pages in a temporary agent tab.",
+  "scope": "Cloudflare account-wide rounded UI aggregates; not Sponsor Intel-only attribution.",
+  "plan": {
+    "name": "Workers Free",
+    "displayed_state": "Current plan",
+    "upgrade_selected": false
+  },
+  "usage": {
+    "selected_period": "Daily",
+    "displayed_start_date": "November 3",
+    "displayed_end_date": "November 3",
+    "rows_written": {
+      "displayed_used": "103.36k",
+      "displayed_allowance": "100k"
+    },
+    "rows_read": {
+      "displayed_used": "3.49M",
+      "displayed_allowance": "5M"
+    },
+    "database_count": {
+      "displayed_used": 11,
+      "displayed_allowance": 10
+    },
+    "storage": {
+      "displayed_used": "267.55MB",
+      "displayed_allowance": "5GB"
+    }
+  },
+  "interpretation": [
+    "The displayed write total is above the displayed daily allowance.",
+    "The Workers plan is currently Free; no owner capacity decision was made.",
+    "No exact unrounded count, project-level attribution or current write-failure diagnosis is inferred.",
+    "Earlier successful source publication does not establish sustainable register or private-saving capacity."
+  ],
+  "holds": {
+    "capacity_decision": "unresolved",
+    "original_business_execution": "unknown; same-day original receipt reused",
+    "prepared_founder_saving": "inactive"
+  },
+  "actions": {
+    "purchases": 0,
+    "agreements": 0,
+    "plan_changes": 0,
+    "production_write_probes": 0,
+    "reservation_changes": 0,
+    "workflow_restarts": 0,
+    "new_permissions": 0,
+    "messages": 0,
+    "repeated_permission_questions": 0,
+    "temporary_tab_closed": true
+  },
+  "privacy": "Account email, account identity, other database identities and screenshots containing private account data are omitted."
+}
