@@ -1,0 +1,137 @@
+{
+  "observed_at": "2026-11-03T14:30:14.290269+00:00",
+  "status": "prepared_material_with_open_gates",
+  "submission_ready": false,
+  "package": {
+    "version": "0.1.0",
+    "path": "public/downloads/sponsor-intel-extension-0.1.0.zip",
+    "bytes": 23871,
+    "sha256": "db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb",
+    "entries_match_source": true,
+    "crc_valid": true,
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "host_permissions": [],
+    "background": null,
+    "content_scripts": [],
+    "content_security_policy": {
+      "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+    }
+  },
+  "source_review": [
+    {
+      "path": "extension/manifest.json",
+      "sha256": "b4e2f2e6bf4fc28a9318cde857506984de029072d9b9056d5a26758f549daa26"
+    },
+    {
+      "path": "extension/popup.html",
+      "sha256": "e7f89c1cfa5913a8927137315903ebc7d59b7b25cad28cd77fd1b546a4436bfd"
+    },
+    {
+      "path": "extension/popup.js",
+      "sha256": "9e1667624883995addd553a4f7ab5a8d5a477e62fdafacc956a49105981cda3f"
+    },
+    {
+      "path": "extension/capture.js",
+      "sha256": "99805463bcb82b0d3ca039302e838cb5ac436bc1c90da45ea448a4a714f79453"
+    },
+    {
+      "path": "extension/analyse.js",
+      "sha256": "8d95b9e840d1156ae6f9b374ca97f069af4c70a819980a26262fad89dcc467db"
+    }
+  ],
+  "assets": [
+    {
+      "path": "extension/icon-128.png",
+      "sha256": "435c081453d2615330cbc0b2aec5ad353eed3a0918c6b099d2a86401469df953",
+      "width": 128,
+      "height": 128,
+      "image_changed": false
+    },
+    {
+      "path": "tests/evidence/extension-2026-11-02/chrome-packaged-popup.png",
+      "sha256": "5fee6d2a4104ca1518253dd12c2753cc37c4357b50f0e57212c05c1d1a9e908a",
+      "width": 380,
+      "height": 498,
+      "image_changed": false
+    },
+    {
+      "path": "tests/evidence/extension-2026-11-02/live-desktop.png",
+      "sha256": "9dffc3e5846196d512ef611b3b98f658679a6d4cf8d0c7920f253ebed9bfbcba",
+      "width": 1200,
+      "height": 850,
+      "image_changed": false
+    }
+  ],
+  "icon_inspection": {
+    "method": "Read-only RGBA PNG decoding plus visual inspection",
+    "nontransparent_bounds": [
+      0,
+      0,
+      127,
+      127
+    ],
+    "canvas": [
+      128,
+      128
+    ],
+    "square_artwork_padding_guide_met": false
+  },
+  "required_screenshot": {
+    "preferred_dimensions": [
+      1280,
+      800
+    ],
+    "alternate_dimensions_in_image_guide": [
+      640,
+      400
+    ],
+    "current_popup_dimensions": [
+      380,
+      498
+    ],
+    "existing_qa_image_meets_dimensions": false,
+    "existing_qa_is_store_listing": false
+  },
+  "draft": {
+    "path": "../docs/EXTENSION_STORE_SUBMISSION.md",
+    "sha256": "9d95e41b3665a8c32292cb79fe496d6ba3fe0909904cb0ccc38a27ac3a802ff5",
+    "listing_text_prepared": true,
+    "permission_explanations_prepared": true,
+    "local_data_inventory_prepared": true,
+    "fictional_examples_match_current_classifier": true,
+    "privacy_policy_certified": false,
+    "publisher_fields_selected": false
+  },
+  "publisher": {
+    "identity_verified": false,
+    "registration_verified": false,
+    "access": "Prior browser navigation denied; no repeat or alternate access attempted",
+    "submission_id": null,
+    "public_store_url": null
+  },
+  "official_sources": [
+    "https://developer.chrome.com/docs/webstore/cws-dashboard-listing",
+    "https://developer.chrome.com/docs/webstore/cws-dashboard-privacy",
+    "https://developer.chrome.com/docs/webstore/images",
+    "https://developer.chrome.com/docs/webstore/program-policies/user-data-faq"
+  ],
+  "limitations": [
+    "Not a platform approval or rejection",
+    "No universal extraction or independent semantic acceptance",
+    "No new public privacy or legal declaration",
+    "Existing package and live preview unchanged"
+  ],
+  "actions": {
+    "production_changes": 0,
+    "model_calls": 0,
+    "source_requests": 0,
+    "new_permissions": 0,
+    "purchases": 0,
+    "agreements": 0,
+    "uploads": 0,
+    "submissions": 0
+  }
+}
