@@ -1,4 +1,4 @@
-import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdirSync,mkdtempSync,linkSync,renameSync,rmSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {resolve,dirname} from 'node:path';
@@ -21,16 +21,29 @@ export function archive(entries){
   end.writeUInt32LE(0x06054b50,0);end.writeUInt16LE(entries.length,8);end.writeUInt16LE(entries.length,10);end.writeUInt32LE(directory.length,12);end.writeUInt32LE(offset,16);
   return Buffer.concat([...local,directory,end]);
 }
-export function packageExtension(){
-  const manifest=JSON.parse(readFileSync(resolve(root,'extension/manifest.json')));
+export function packageExtension({projectRoot=root}={}){
+  const manifest=JSON.parse(readFileSync(resolve(projectRoot,'extension/manifest.json')));
   if(manifest.manifest_version!==3||JSON.stringify(manifest.permissions)!=='["activeTab","scripting"]'||manifest.host_permissions||manifest.background||manifest.content_scripts)throw Error('Extension permissions changed; review required');
   if(!/^\d+\.\d+\.\d+$/.test(manifest.version))throw Error('Invalid extension version');
-  const entries=files.map(name=>[name,readFileSync(resolve(root,'extension',name))]);
+  const entries=files.map(name=>[name,readFileSync(resolve(projectRoot,'extension',name))]);
   const zip=archive(entries),hash=createHash('sha256').update(zip).digest('hex');
   const filename=`sponsor-intel-extension-${manifest.version}.zip`;
-  const dir=resolve(root,'public/downloads');mkdirSync(dir,{recursive:true});writeFileSync(resolve(dir,filename),zip);
+  const dir=resolve(projectRoot,'public/downloads');mkdirSync(dir,{recursive:true});
   const receipt={version:manifest.version,filename,bytes:zip.length,sha256:hash,files:entries.map(([name,data])=>({name,bytes:data.length,sha256:createHash('sha256').update(data).digest('hex')}))};
-  writeFileSync(resolve(dir,'sponsor-intel-extension.json'),JSON.stringify(receipt,null,2)+'\n');
+  const temporary=mkdtempSync(resolve(dir,'.extension-package-'));
+  try{
+    // Publish complete bytes without replacing an existing version, including racing builds.
+    const stagedZip=resolve(temporary,'archive.zip'),target=resolve(dir,filename);
+    writeFileSync(stagedZip,zip);
+    try{linkSync(stagedZip,target);}catch(error){
+      if(error.code!=='EEXIST')throw error;
+      if(!readFileSync(target).equals(zip))throw Error(`Refusing to replace ${filename}: existing bytes differ. Bump the extension version and preserve the old archive.`);
+    }
+    // A rejected archive must never move the current-download receipt.
+    const stagedReceipt=resolve(temporary,'receipt.json');
+    writeFileSync(stagedReceipt,JSON.stringify(receipt,null,2)+'\n');
+    renameSync(stagedReceipt,resolve(dir,'sponsor-intel-extension.json'));
+  }finally{rmSync(temporary,{recursive:true,force:true});}
   return receipt;
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url))console.log(JSON.stringify(packageExtension()));
