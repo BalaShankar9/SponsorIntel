@@ -1,0 +1,969 @@
+{
+  "observed_at": "2026-11-03T14:18:40.334356+00:00",
+  "scope": "Bounded read-only scheduled recovery inspection; no workflow dispatch, application mutation, purchase or hold release",
+  "goal": {
+    "observed_status": "active",
+    "objective_complete": false,
+    "progress": "Original scheduled execution and publication evidence retained; capacity and original supervisor gates remain"
+  },
+  "live": {
+    "observed_at": "2026-11-03T14:15:25.852601+00:00",
+    "version": "2.98.8",
+    "health_http": 200,
+    "jobs_http": 200,
+    "sources_http": 200,
+    "metrics_excluded": true,
+    "generated_at": "2026-11-03T14:15:25.256Z",
+    "collections": {
+      "total": 985,
+      "employers": 37,
+      "early_career": 64,
+      "sponsorship": 52,
+      "licensed": 0,
+      "salary": 194
+    },
+    "licence_register": {
+      "available": false,
+      "source_date": "2026-10-27",
+      "checked_at": "2026-10-28T07:15:32.207Z"
+    },
+    "register": {
+      "date": "2026-10-27",
+      "count": 128008,
+      "checked_at": "2026-10-28T07:15:32.207Z"
+    },
+    "source_freshness": [
+      {
+        "id": "axon",
+        "last_success": "2026-11-03T12:31:38.184Z",
+        "count": 4,
+        "error": null
+      },
+      {
+        "id": "allica-bank",
+        "last_success": "2026-11-03T12:33:48.420Z",
+        "count": 25,
+        "error": null
+      },
+      {
+        "id": "apothecom",
+        "last_success": "2026-11-03T12:31:34.772Z",
+        "count": 2,
+        "error": null
+      },
+      {
+        "id": "bakerhicks",
+        "last_success": "2026-11-03T12:33:44.601Z",
+        "count": 97,
+        "error": null
+      },
+      {
+        "id": "callosum",
+        "last_success": "2026-11-03T12:33:53.578Z",
+        "count": 10,
+        "error": null
+      },
+      {
+        "id": "university-cardiff-met",
+        "last_success": "2026-11-03T12:34:16.288Z",
+        "count": 10,
+        "error": null
+      },
+      {
+        "id": "cloudflare",
+        "last_success": "2026-11-03T12:31:03.576Z",
+        "count": 65,
+        "error": null
+      },
+      {
+        "id": "deliveroo",
+        "last_success": "2026-11-03T12:31:08.183Z",
+        "count": 125,
+        "error": null
+      },
+      {
+        "id": "eucalyptus",
+        "last_success": "2026-11-03T12:34:02.338Z",
+        "count": 30,
+        "error": null
+      },
+      {
+        "id": "figma",
+        "last_success": "2026-11-03T12:31:12.748Z",
+        "count": 20,
+        "error": null
+      },
+      {
+        "id": "funding-circle",
+        "last_success": "2026-11-03T12:31:18.122Z",
+        "count": 27,
+        "error": null
+      },
+      {
+        "id": "gocardless",
+        "last_success": "2026-11-03T12:31:06.383Z",
+        "count": 7,
+        "error": null
+      },
+      {
+        "id": "graphcore",
+        "last_success": "2026-11-03T12:33:42.283Z",
+        "count": 113,
+        "error": null
+      },
+      {
+        "id": "hr-wallingford",
+        "last_success": "2026-11-03T12:33:46.793Z",
+        "count": 6,
+        "error": null
+      },
+      {
+        "id": "invinity",
+        "last_success": "2026-11-03T12:31:29.571Z",
+        "count": 1,
+        "error": null
+      },
+      {
+        "id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+        "last_success": "2026-11-03T12:34:27.861Z",
+        "count": 8,
+        "error": null
+      },
+      {
+        "id": "maven",
+        "last_success": "2026-11-03T12:33:58.321Z",
+        "count": 13,
+        "error": null
+      },
+      {
+        "id": "monzo",
+        "last_success": "2026-11-03T12:31:01.444Z",
+        "count": 48,
+        "error": null
+      },
+      {
+        "id": "multiverse",
+        "last_success": "2026-11-03T12:33:51.757Z",
+        "count": 28,
+        "error": null
+      },
+      {
+        "id": "reviewed-teaching-vacancies-130418--new-city-college",
+        "last_success": "2026-11-03T12:34:23.329Z",
+        "count": 5,
+        "error": null
+      },
+      {
+        "id": "nucleus",
+        "last_success": "2026-11-03T12:31:33.181Z",
+        "count": 14,
+        "error": null
+      },
+      {
+        "id": "numan",
+        "last_success": "2026-11-03T12:33:59.894Z",
+        "count": 13,
+        "error": null
+      },
+      {
+        "id": "octopus-energy",
+        "last_success": "2026-11-03T12:31:14.802Z",
+        "count": 83,
+        "error": null
+      },
+      {
+        "id": "portmandentex",
+        "last_success": null,
+        "count": 0,
+        "error": "Paused by owner. Vacancies hidden."
+      },
+      {
+        "id": "precision-aq",
+        "last_success": "2026-11-03T12:31:36.625Z",
+        "count": 2,
+        "error": null
+      },
+      {
+        "id": "sampura",
+        "last_success": "2026-11-03T12:33:55.118Z",
+        "count": 1,
+        "error": null
+      },
+      {
+        "id": "seamflow",
+        "last_success": "2026-11-03T12:33:56.837Z",
+        "count": 8,
+        "error": null
+      },
+      {
+        "id": "reviewed-ashby-sequence",
+        "last_success": "2026-11-03T12:34:19.710Z",
+        "count": 4,
+        "error": null
+      },
+      {
+        "id": "stripe",
+        "last_success": "2026-11-03T12:31:10.593Z",
+        "count": 55,
+        "error": null
+      },
+      {
+        "id": "voleon",
+        "last_success": "2026-11-03T12:33:50.166Z",
+        "count": 11,
+        "error": null
+      },
+      {
+        "id": "university-bath",
+        "last_success": "2026-11-03T12:34:04.227Z",
+        "count": 33,
+        "error": null
+      },
+      {
+        "id": "university-greater-manchester",
+        "last_success": "2026-11-03T12:34:07.359Z",
+        "count": 8,
+        "error": null
+      },
+      {
+        "id": "university-nottingham",
+        "last_success": "2026-11-03T12:34:13.107Z",
+        "count": 28,
+        "error": null
+      },
+      {
+        "id": "university-southampton",
+        "last_success": "2026-11-03T12:34:10.070Z",
+        "count": 24,
+        "error": null
+      },
+      {
+        "id": "wep-clinical",
+        "last_success": "2026-11-03T12:31:31.509Z",
+        "count": 5,
+        "error": null
+      },
+      {
+        "id": "reviewed-lever-wintermute-trading",
+        "last_success": "2026-11-03T12:34:21.230Z",
+        "count": 15,
+        "error": null
+      },
+      {
+        "id": "zeeco",
+        "last_success": "2026-11-03T12:31:21.550Z",
+        "count": 4,
+        "error": null
+      },
+      {
+        "id": "zopa",
+        "last_success": "2026-11-03T12:31:19.757Z",
+        "count": 33,
+        "error": null
+      }
+    ]
+  },
+  "source_runs": [
+    {
+      "id": "scheduled-1793665855003",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "created_at": "2026-11-03T00:30:57.625Z",
+      "finished_at": "2026-11-03T01:05:03.447Z",
+      "requests": 140
+    },
+    {
+      "id": "scheduled-1793687455003",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "created_at": "2026-11-03T06:30:57.487Z",
+      "finished_at": "2026-11-03T07:35:06.968Z",
+      "requests": 106
+    },
+    {
+      "id": "scheduled-1793709055003",
+      "trigger_kind": "scheduled",
+      "state": "attention",
+      "created_at": "2026-11-03T12:30:56.587Z",
+      "finished_at": "2026-11-03T12:34:33.338Z",
+      "requests": 85
+    }
+  ],
+  "task_totals": [
+    {
+      "run_id": "scheduled-1793665855003",
+      "state": "failed",
+      "count": 4
+    },
+    {
+      "run_id": "scheduled-1793665855003",
+      "state": "published",
+      "count": 32
+    },
+    {
+      "run_id": "scheduled-1793665855003",
+      "state": "skipped",
+      "count": 2
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "state": "failed",
+      "count": 8
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "state": "published",
+      "count": 29
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "state": "skipped",
+      "count": 1
+    },
+    {
+      "run_id": "scheduled-1793709055003",
+      "state": "published",
+      "count": 37
+    },
+    {
+      "run_id": "scheduled-1793709055003",
+      "state": "skipped",
+      "count": 1
+    }
+  ],
+  "nonpublished_tasks": [
+    {
+      "run_id": "scheduled-1793665855003",
+      "source_id": "portmandentex",
+      "state": "skipped",
+      "attempts": 0,
+      "error_code": "owner_paused"
+    },
+    {
+      "run_id": "scheduled-1793665855003",
+      "source_id": "reviewed-lever-wintermute-trading",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793665855003",
+      "source_id": "reviewed-teaching-vacancies-130418--new-city-college",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793665855003",
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "state": "skipped",
+      "attempts": 1,
+      "error_code": "request_budget"
+    },
+    {
+      "run_id": "scheduled-1793665855003",
+      "source_id": "university-bath",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793665855003",
+      "source_id": "university-nottingham",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "source_id": "bakerhicks",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "source_id": "eucalyptus",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "source_id": "multiverse",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "source_id": "portmandentex",
+      "state": "skipped",
+      "attempts": 0,
+      "error_code": "owner_paused"
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "source_id": "reviewed-lever-wintermute-trading",
+      "state": "failed",
+      "attempts": 2,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "source_id": "university-bath",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "source_id": "university-cardiff-met",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "source_id": "university-nottingham",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793687455003",
+      "source_id": "university-southampton",
+      "state": "failed",
+      "attempts": 3,
+      "error_code": "execution_failed"
+    },
+    {
+      "run_id": "scheduled-1793709055003",
+      "source_id": "portmandentex",
+      "state": "skipped",
+      "attempts": 0,
+      "error_code": "owner_paused"
+    }
+  ],
+  "providers": [
+    {
+      "id": "scheduled-1793665855003",
+      "versionId": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+      "queued": "2026-11-03T00:30:59.814Z",
+      "start": "2026-11-03T00:31:02.479Z",
+      "end": "2026-11-03T01:05:03.713Z",
+      "success": true,
+      "output": {
+        "state": "attention",
+        "counts": {
+          "failed": 4,
+          "published": 32,
+          "skipped": 2
+        }
+      },
+      "receipt_saved_at": "2026-11-03T14:13:44.682641+00:00",
+      "status": "complete",
+      "step_count": 147,
+      "attempt_errors": [
+        {
+          "step": "collect-check-publish-university-bath-attempt-1-1",
+          "start": "2026-11-03T00:33:06.074Z",
+          "end": "2026-11-03T00:33:11.943Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-bath-attempt-2-1",
+          "start": "2026-11-03T00:35:07.660Z",
+          "end": "2026-11-03T00:35:11.805Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-bath-attempt-3-1",
+          "start": "2026-11-03T00:37:09.262Z",
+          "end": "2026-11-03T00:37:13.463Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-southampton-attempt-1-1",
+          "start": "2026-11-03T00:39:16.937Z",
+          "end": "2026-11-03T00:39:21.363Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-southampton-attempt-2-1",
+          "start": "2026-11-03T00:41:18.518Z",
+          "end": "2026-11-03T00:41:22.398Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-nottingham-attempt-1-1",
+          "start": "2026-11-03T00:42:31.267Z",
+          "end": "2026-11-03T00:42:37.464Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-nottingham-attempt-2-1",
+          "start": "2026-11-03T00:44:32.875Z",
+          "end": "2026-11-03T00:44:37.083Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-nottingham-attempt-3-1",
+          "start": "2026-11-03T00:46:34.448Z",
+          "end": "2026-11-03T00:46:37.757Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-ashby-sequence-attempt-1-1",
+          "start": "2026-11-03T00:48:44.164Z",
+          "end": "2026-11-03T00:48:45.864Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-lever-wintermute-trading-attempt-1-1",
+          "start": "2026-11-03T00:50:49.524Z",
+          "end": "2026-11-03T00:50:52.531Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-lever-wintermute-trading-attempt-2-1",
+          "start": "2026-11-03T00:52:51.152Z",
+          "end": "2026-11-03T00:52:54.509Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-lever-wintermute-trading-attempt-3-1",
+          "start": "2026-11-03T00:54:52.720Z",
+          "end": "2026-11-03T00:54:55.256Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-teaching-vacancies-130418--new-city-college-attempt-1-1",
+          "start": "2026-11-03T00:56:54.291Z",
+          "end": "2026-11-03T00:56:58.469Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-teaching-vacancies-130418--new-city-college-attempt-2-1",
+          "start": "2026-11-03T00:58:55.914Z",
+          "end": "2026-11-03T00:58:59.893Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-teaching-vacancies-130418--new-city-college-attempt-3-1",
+          "start": "2026-11-03T01:00:57.483Z",
+          "end": "2026-11-03T01:01:01.619Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-teaching-vacancies-136202--king-s-lynn-academy-attempt-1-1",
+          "start": "2026-11-03T01:02:59.076Z",
+          "end": "2026-11-03T01:03:02.276Z",
+          "error": "Worker exceeded CPU time limit."
+        }
+      ],
+      "cpu_limit_errors": 16,
+      "source_operation_lock_errors": 0
+    },
+    {
+      "id": "scheduled-1793687455003",
+      "versionId": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+      "queued": "2026-11-03T06:30:59.219Z",
+      "start": "2026-11-03T06:31:01.920Z",
+      "end": "2026-11-03T07:35:07.339Z",
+      "success": true,
+      "output": {
+        "state": "attention",
+        "counts": {
+          "failed": 8,
+          "published": 29,
+          "skipped": 1
+        }
+      },
+      "receipt_saved_at": "2026-11-03T14:13:40.403683+00:00",
+      "status": "complete",
+      "step_count": 214,
+      "attempt_errors": [
+        {
+          "step": "collect-check-publish-bakerhicks-attempt-1-1",
+          "start": "2026-11-03T06:32:22.118Z",
+          "end": "2026-11-03T06:32:24.256Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-bakerhicks-attempt-2-1",
+          "start": "2026-11-03T06:34:23.782Z",
+          "end": "2026-11-03T06:34:25.916Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-bakerhicks-attempt-3-1",
+          "start": "2026-11-03T06:36:25.402Z",
+          "end": "2026-11-03T06:36:28.025Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-allica-bank-attempt-1-1",
+          "start": "2026-11-03T06:38:30.906Z",
+          "end": "2026-11-03T06:38:33.559Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-allica-bank-attempt-2-1",
+          "start": "2026-11-03T06:40:32.474Z",
+          "end": "2026-11-03T06:40:35.465Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "source-admission-voleon-1-1",
+          "start": "2026-11-03T06:42:37.996Z",
+          "end": "2026-11-03T06:42:38.494Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-multiverse-attempt-1-1",
+          "start": "2026-11-03T06:43:19.012Z",
+          "end": "2026-11-03T06:43:21.381Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-multiverse-attempt-2-1",
+          "start": "2026-11-03T06:45:20.614Z",
+          "end": "2026-11-03T06:45:23.059Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-multiverse-attempt-3-1",
+          "start": "2026-11-03T06:47:22.131Z",
+          "end": "2026-11-03T06:47:24.639Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-seamflow-attempt-1-1",
+          "start": "2026-11-03T06:49:31.986Z",
+          "end": "2026-11-03T06:49:32.832Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-maven-attempt-1-1",
+          "start": "2026-11-03T06:51:38.091Z",
+          "end": "2026-11-03T06:51:40.434Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-numan-attempt-1-1",
+          "start": "2026-11-03T06:53:44.271Z",
+          "end": "2026-11-03T06:53:47.785Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-eucalyptus-attempt-1-1",
+          "start": "2026-11-03T06:55:52.445Z",
+          "end": "2026-11-03T06:55:54.639Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-eucalyptus-attempt-2-1",
+          "start": "2026-11-03T06:57:54.011Z",
+          "end": "2026-11-03T06:57:56.709Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-eucalyptus-attempt-3-1",
+          "start": "2026-11-03T06:59:55.532Z",
+          "end": "2026-11-03T06:59:57.908Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-bath-attempt-1-1",
+          "start": "2026-11-03T07:01:57.051Z",
+          "end": "2026-11-03T07:02:03.023Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-bath-attempt-2-1",
+          "start": "2026-11-03T07:03:58.630Z",
+          "end": "2026-11-03T07:04:03.623Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-bath-attempt-3-1",
+          "start": "2026-11-03T07:06:00.161Z",
+          "end": "2026-11-03T07:06:05.020Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-southampton-attempt-1-1",
+          "start": "2026-11-03T07:08:14.919Z",
+          "end": "2026-11-03T07:08:19.913Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-southampton-attempt-2-1",
+          "start": "2026-11-03T07:10:16.480Z",
+          "end": "2026-11-03T07:10:19.124Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-southampton-attempt-3-1",
+          "start": "2026-11-03T07:12:18.003Z",
+          "end": "2026-11-03T07:12:20.766Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-nottingham-attempt-1-1",
+          "start": "2026-11-03T07:14:19.567Z",
+          "end": "2026-11-03T07:14:26.433Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-nottingham-attempt-2-1",
+          "start": "2026-11-03T07:16:21.097Z",
+          "end": "2026-11-03T07:16:25.879Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-nottingham-attempt-3-1",
+          "start": "2026-11-03T07:18:22.622Z",
+          "end": "2026-11-03T07:18:26.628Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-cardiff-met-attempt-1-1",
+          "start": "2026-11-03T07:20:24.154Z",
+          "end": "2026-11-03T07:20:29.258Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-cardiff-met-attempt-2-1",
+          "start": "2026-11-03T07:22:25.755Z",
+          "end": "2026-11-03T07:22:28.744Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-university-cardiff-met-attempt-3-1",
+          "start": "2026-11-03T07:24:27.285Z",
+          "end": "2026-11-03T07:24:29.991Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-ashby-sequence-attempt-1-1",
+          "start": "2026-11-03T07:26:30.865Z",
+          "end": "2026-11-03T07:26:33.734Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-lever-wintermute-trading-attempt-1-1",
+          "start": "2026-11-03T07:28:36.826Z",
+          "end": "2026-11-03T07:28:37.325Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-lever-wintermute-trading-attempt-2-1",
+          "start": "2026-11-03T07:30:38.352Z",
+          "end": "2026-11-03T07:30:41.362Z",
+          "error": "Worker exceeded CPU time limit."
+        },
+        {
+          "step": "collect-check-publish-reviewed-lever-wintermute-trading-attempt-3-1",
+          "start": "2026-11-03T07:32:39.871Z",
+          "end": "2026-11-03T07:32:42.832Z",
+          "error": "Worker exceeded CPU time limit."
+        }
+      ],
+      "cpu_limit_errors": 31,
+      "source_operation_lock_errors": 0
+    },
+    {
+      "id": "scheduled-1793709055003",
+      "versionId": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+      "queued": "2026-11-03T12:30:57.691Z",
+      "start": "2026-11-03T12:31:00.460Z",
+      "end": "2026-11-03T12:34:33.455Z",
+      "success": true,
+      "output": {
+        "state": "attention",
+        "counts": {
+          "published": 37,
+          "skipped": 1
+        }
+      },
+      "receipt_saved_at": "2026-11-03T13:57:04.119292+00:00",
+      "status": "complete",
+      "step_count": 83,
+      "attempt_errors": [
+        {
+          "step": "collect-check-publish-graphcore-attempt-1-1",
+          "start": "2026-11-03T12:31:39.777Z",
+          "end": "2026-11-03T12:31:40.645Z",
+          "error": "Worker exceeded CPU time limit."
+        }
+      ],
+      "cpu_limit_errors": 1,
+      "source_operation_lock_errors": 0
+    }
+  ],
+  "controls": {
+    "observed_at": "2026-11-03T14:16:38.252750+00:00",
+    "business": [
+      {
+        "enabled": 1,
+        "publishing": 1,
+        "research": 1,
+        "discovery": 1,
+        "updated_at": "2026-10-07T16:47:50.104Z"
+      }
+    ],
+    "paused_sources": [
+      {
+        "source_id": "portmandentex",
+        "paused": 1,
+        "control_revision": 0,
+        "updated_at": "2026-10-09T19:01:15.323Z"
+      }
+    ],
+    "advert_review_states": [
+      {
+        "state": "held",
+        "count": 4
+      }
+    ],
+    "source_daily_reservations": [
+      {
+        "day": "2026-11-02",
+        "requests": 194
+      },
+      {
+        "day": "2026-11-03",
+        "requests": 331
+      }
+    ]
+  },
+  "marketing": {
+    "internal_states": [
+      {
+        "state": "held",
+        "count": 5
+      },
+      {
+        "state": "proposed",
+        "count": 2
+      },
+      {
+        "state": "published",
+        "count": 7
+      },
+      {
+        "state": "reviewed",
+        "count": 1
+      }
+    ],
+    "metricool": {
+      "observed_on": "2026-11-03",
+      "brand": "7294726",
+      "timezone": "Europe/London",
+      "facebook_page": "1319703417896763",
+      "instagram": "sponsorintellondon",
+      "from": "2026-11-02T00:00:00+00:00",
+      "to": "2026-12-03T23:59:59+00:00",
+      "scheduled_posts": 0,
+      "result": {
+        "data": []
+      },
+      "only_queue_checked": true,
+      "delivery_inferred_from_absence": false
+    },
+    "native_linkedin_last_checked": "2026-10-30",
+    "whatsapp_scheduler_connected": false,
+    "new_sends": 0
+  },
+  "stored_findings": [
+    {
+      "severity": "high",
+      "count": 3,
+      "latest_seen": "2026-10-23T14:46:43.925Z"
+    },
+    {
+      "severity": "normal",
+      "count": 8,
+      "latest_seen": "2026-10-23T14:46:43.925Z"
+    }
+  ],
+  "complete_day_usage": {
+    "day": "2026-11-02",
+    "rows": [],
+    "missing_rows_are_not_zero_activity": true
+  },
+  "discovery": {
+    "new_leads_today": 0,
+    "last_scout": [
+      {
+        "day": "2026-10-23",
+        "run_id": "business-497976",
+        "state": "completed",
+        "retained": 0,
+        "finished_at": "2026-10-23T00:46:07.504Z"
+      }
+    ]
+  },
+  "aggregate_query_cost": {
+    "query_interface": {
+      "queries": 12,
+      "rows_read": 494,
+      "rows_written": 0
+    },
+    "prior_select_file_execution": {
+      "queries": 12,
+      "rows_read": 265,
+      "rows_written": 0,
+      "provider_changed_db": true,
+      "provider_changes": 1,
+      "sql_sha256": "64271d9c956a631a91af0dc768c408c7dec4b54380b45932863197fff82b4d12",
+      "explanation": "An initial --file invocation uploaded the SELECT-only file and returned an import execution summary rather than result rows; parsing failed. All 12 statements were SELECT. The same read-only queries were then run via --command to obtain results. Zero rows written in both receipts; import metadata changed_db/changes retained without reinterpretation."
+    },
+    "total_queries": 24,
+    "total_rows_read": 759,
+    "total_rows_written": 0
+  },
+  "capacity": {
+    "last_authenticated_plan_check": "2026-10-30",
+    "last_verified_plan": "Free",
+    "plan_change_verified": false,
+    "purchase_performed": false,
+    "pending_owner_question_repeated": false
+  },
+  "recovery_receipt": "recovery-status-2026-11-03.json",
+  "business_receipt": "business-status-2026-11-03.json",
+  "dependency_review": {
+    "audit": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "dependencies": {
+        "prod": 85,
+        "dev": 206,
+        "optional": 140,
+        "peer": 0,
+        "peerOptional": 0,
+        "total": 318
+      }
+    },
+    "package_lock_sha256": "a0064013264829d450682960462ebf1f20fb1f06fb715b9df2b13956081e3842",
+    "official_indexes_read": [
+      "https://github.com/nodejs/undici/security/advisories",
+      "https://github.com/colinhacks/zod/security/advisories"
+    ],
+    "limitation": "Zero known npm audit findings and primary index review; not a complete independent security assessment"
+  },
+  "production_application_mutations": [],
+  "new_source_requests": 0,
+  "new_model_or_google_calls": 0,
+  "customer_data_exported": false,
+  "unknown_reservations_cleared": false,
+  "source_recovery_acceptance": "Latest noon run published all 37 active feeds; earlier two runs contain failures and 47 CPU-limit errors, noon adds one recovered CPU error. Sustained reliability, register freshness, capacity and supervisor recovery remain unproven."
+}

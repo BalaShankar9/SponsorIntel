@@ -14,6 +14,8 @@ The script pins the live database identity, reads its current Time Travel bookma
 
 The existing 10:00 UK daily Codex routine runs this check and remains quiet for unchanged healthy evidence. It also runs before a schema change. This is connected-desktop execution, not an independent cloud monitor. The newly configured future daily execution is not yet observed. A missed check must not be described as a successful backup.
 
+For additional bounded aggregate reads, use Wrangler's `d1 execute --remote --command` query interface with reviewed SELECT-only SQL passed as a structured process argument. Do not use `--file` for result inspection: on 3 November that path uploaded the SELECT file and returned an import summary instead of result rows. Its receipt reported zero rows written but `changed_db: true`/`changes: 1`; preserve those fields rather than interpreting them as a customer-data change or silently discarding them. Read-only SQL still consumes read capacity. Retain all attempts and their costs; do not rerun a completed daily recovery check merely to obtain green output.
+
 ## Verified exercise: 8 October 2026
 
 A temporary unbound cloud database, `sponsorintel-recovery-drill-20261008`, was created for the exercise. All 23 migrations applied, and all 105 schema objects matched production exactly. Only fictional data was seeded; no customer records, secrets, real provider tokens or AI calls entered the exercise. It had no Worker, public route, cron, model or publishing connection, and business/marketing controls were disabled.
