@@ -1,4 +1,4 @@
-Sponsor Intel — Advert Check 0.1.3 (developer preview)
+Sponsor Intel — Advert Check 0.1.6 (developer preview)
 
 Install on desktop Chrome or Edge:
 1. Extract the ZIP into a folder you will keep.
@@ -32,3 +32,5 @@ No external source content is bundled. Copyright Sponsor Intel 2026.
 0.1.3: Recognizes sponsorship headings and narrowly prefaced direct refusals.
 Quotes keep the original wording; questions, caveats and unknown meaning remain
 unclear. Data handling and permissions are unchanged from privacy baseline 0.1.1.
+
+0.1.6: Local page capture excludes fully transparent and collapsed CSS regions. Open collapsed advert sections before reading. Selections crossing hidden/application regions are refused; browsers without the visibility API must use paste. No new permissions, storage, uploads or model calls. This is not complete visibility or site compatibility assurance.

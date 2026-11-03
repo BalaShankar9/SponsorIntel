@@ -19,7 +19,7 @@ $('read').addEventListener('click',async()=>{
     advert.value=data.text;
     $('source').textContent=`${data.source} · ${data.mode} · ${new Date().toLocaleTimeString('en-GB')}`;
     $('message').textContent='Review the text and confirm it contains only this complete advert. Expand any missing sections on the site before reading again.';
-  }catch(error){if(token===generation)$('message').textContent=error instanceof Error&&/^(Open |Select |Several |One |Too |The |This |No )/.test(error.message)?error.message:'This page could not be read. Select or paste the complete advert instead.';}
+  }catch(error){if(token===generation)$('message').textContent=error instanceof Error&&/^(Open |Expand |Select |Several |One |Too |The |This |No )/.test(error.message)?error.message:'This page could not be read. Select or paste the complete advert instead.';}
   finally{$('read').disabled=false;}
 });
 $('check').addEventListener('click',()=>{

@@ -1,0 +1,53 @@
+{
+  "release": "2.98.12",
+  "extension_version": "0.1.6",
+  "state": "validated; deployment pending",
+  "package_sha256": "564d8d1b6addf305d15194c4eefd72c3f50ccf969045b15c1444e7a7a18ee97f",
+  "bytes": 28360,
+  "node": "24.19.0",
+  "targeted_tests": 20,
+  "combined_and_isolated_pass": true,
+  "build_typecheck_prerenders": 21,
+  "budgets_pass": true,
+  "dry_run_pass": true,
+  "capture_browser_cases": 34,
+  "case_archive": "0.1.5 unpublished; capture.js/analyse.js exact-byte equality to final 0.1.6 independently checked",
+  "final_package_popup_integration": "exact 0.1.6 with fictional chrome API bridge; collapsed instruction and expanded contradictory quotes pass",
+  "new_capture_sha256": "df8f7290d0b6255d95589ce4a0ea67bcc8fbc96b124ec5c4d54d23fedbc48c26",
+  "analysis_sha256_unchanged": "76b200565ea4bcd1ffa5d3a69d5ebaf30c1c9ebec4d907df55a69fb73d9a543a",
+  "old_archives_unchanged": [
+    "0.1.0",
+    "0.1.1",
+    "0.1.3"
+  ],
+  "prior_candidates_retained_privately": {
+    "0.1.4": "README header mismatch caught before publication; version assertion added",
+    "0.1.5": "new Expand error suppressed by existing popup whitelist; integration fixed before publication"
+  },
+  "approved_privacy_article_unchanged": true,
+  "manifest_permissions_csp_unchanged": true,
+  "source_requests": 0,
+  "ai_calls": 0,
+  "installed_extension_acceptance": false,
+  "external_site_acceptance": false,
+  "stage_migrations": 46,
+  "founder_flag": false,
+  "existing_stage_diffs": [
+    "wrangler.jsonc",
+    "package-lock.json",
+    "package.json",
+    "extension/popup.js",
+    "extension/manifest.json",
+    "extension/README.txt",
+    "extension/capture.js",
+    "tests/browser-extension.test.mjs",
+    "public/extension-privacy.html",
+    "worker/pages.js",
+    "src/extension-page.tsx",
+    "src/extension-entry.tsx",
+    "public/downloads/sponsor-intel-extension.json"
+  ],
+  "official_reference": "https://drafts.csswg.org/cssom-view/#dom-element-checkvisibility",
+  "reference_scope": "Working specification visibility semantics; observed Chrome behavior is separate runtime evidence",
+  "disk_preflight_gib": 9.4
+}

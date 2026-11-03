@@ -157,7 +157,7 @@ export async function pageResponse(request, env) {
       url.pathname === "/" ? "/index.html" : url.pathname + "/index.html";
   else if (privatePaths.has(url.pathname)) assetPath = "/app.html";
   else if (
-    ['/extension-privacy.html','/downloads/sponsor-intel-extension-0.1.0.zip','/downloads/sponsor-intel-extension-0.1.1.zip','/downloads/sponsor-intel-extension-0.1.3.zip','/downloads/sponsor-intel-extension.json'].includes(url.pathname) || marketingAssetPaths.has(url.pathname) || /^\/(assets\/|fonts\/|campaigns\.js$|insights-tracking\.js$|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|open-source-notices\.txt$)/.test(
+    ['/extension-privacy.html','/downloads/sponsor-intel-extension-0.1.0.zip','/downloads/sponsor-intel-extension-0.1.1.zip','/downloads/sponsor-intel-extension-0.1.3.zip','/downloads/sponsor-intel-extension-0.1.6.zip','/downloads/sponsor-intel-extension.json'].includes(url.pathname) || marketingAssetPaths.has(url.pathname) || /^\/(assets\/|fonts\/|campaigns\.js$|insights-tracking\.js$|favicon\.svg$|share-card-v1\.jpg$|robots\.txt$|open-source-notices\.txt$)/.test(
       url.pathname,
     )
   ) {

@@ -1,0 +1,606 @@
+{
+  "at": "2026-11-03T18:35:28.268Z",
+  "package_version": "0.1.5",
+  "package_sha256": "da8b4deeb81dbef5fec08341a1d6a57f4f02498f6620828a2c2f4b4c4c1abe54",
+  "scope": "Exact archived capture/analyser modules, fictional local DOM in connected Chrome. Not installed extension, activeTab permission or external-site acceptance.",
+  "cases": [
+    {
+      "fixture": "opacity",
+      "mode": "automatic",
+      "status": "offered",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "offered",
+          "title": "Sponsorship offered in this wording",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "opacity",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Select visible advert text outside hidden or application regions, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "collapse",
+      "mode": "automatic",
+      "status": "offered",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "offered",
+          "title": "Sponsorship offered in this wording",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "collapse",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Select visible advert text outside hidden or application regions, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "hidden",
+      "mode": "automatic",
+      "status": "offered",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "offered",
+          "title": "Sponsorship offered in this wording",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "hidden",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Select visible advert text outside hidden or application regions, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "aria",
+      "mode": "automatic",
+      "status": "offered",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "offered",
+          "title": "Sponsorship offered in this wording",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "aria",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Select visible advert text outside hidden or application regions, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "display",
+      "mode": "automatic",
+      "status": "offered",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "offered",
+          "title": "Sponsorship offered in this wording",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "display",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Select visible advert text outside hidden or application regions, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "content",
+      "mode": "automatic",
+      "status": "offered",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "offered",
+          "title": "Sponsorship offered in this wording",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "content",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Select visible advert text outside hidden or application regions, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "closed",
+      "mode": "automatic",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Expand the collapsed advert sections before reading, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "closed",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Expand the collapsed advert sections before selecting, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "open",
+      "mode": "automatic",
+      "status": "unclear",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.\nAdditional role conditions\nHIDDEN FICTIONAL NOTE. We cannot offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            },
+            {
+              "kind": "unavailable",
+              "quote": "We cannot offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "open",
+      "mode": "selection",
+      "status": "unclear",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\n\nWe offer visa sponsorship.\n\nAdditional role conditions\nHIDDEN FICTIONAL NOTE. We cannot offer visa sponsorship.",
+          "mode": "Selected text — check that it includes the complete advert",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            },
+            {
+              "kind": "unavailable",
+              "quote": "We cannot offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "visible",
+      "mode": "automatic",
+      "status": "unclear",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.\nHIDDEN FICTIONAL NOTE. We cannot offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            },
+            {
+              "kind": "unavailable",
+              "quote": "We cannot offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "visible",
+      "mode": "selection",
+      "status": "unclear",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\n\nWe offer visa sponsorship.\n\nHIDDEN FICTIONAL NOTE. We cannot offer visa sponsorship.",
+          "mode": "Selected text — check that it includes the complete advert",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            },
+            {
+              "kind": "unavailable",
+              "quote": "We cannot offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "forms",
+      "mode": "automatic",
+      "status": "offered",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "offered",
+          "title": "Sponsorship offered in this wording",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "forms",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Select advert text outside application fields, or paste the public advert instead."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "inline",
+      "mode": "automatic",
+      "status": "conditional",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe may provide visa sponsorship, subject to eligibility.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "conditional",
+          "title": "Sponsorship may be available",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "conditional",
+              "quote": "We may provide visa sponsorship, subject to eligibility."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "inline",
+      "mode": "selection",
+      "status": "conditional",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\n\nWe may provide visa sponsorship, subject to eligibility.",
+          "mode": "Selected text — check that it includes the complete advert",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "conditional",
+          "title": "Sponsorship may be available",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "conditional",
+              "quote": "We may provide visa sponsorship, subject to eligibility."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "opaqueRoot",
+      "mode": "automatic",
+      "status": "unclear",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.",
+          "mode": "Main page text — may include other roles; review before checking",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "No clear role-specific commitment or refusal matched. Silence, a right-to-work question and a sponsor licence do not establish the answer.",
+          "evidence": []
+        }
+      }
+    },
+    {
+      "fixture": "opaqueRoot",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Select visible advert text outside hidden or application regions, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "closedRoot",
+      "mode": "automatic",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Expand the collapsed advert sections before reading, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "closedRoot",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Expand the collapsed advert sections before selecting, or paste the complete public advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "multiple",
+      "mode": "automatic",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "Several advert sections were found. Select one complete advert, or paste it below."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "multiple",
+      "mode": "selection",
+      "status": "unclear",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\n\nWe offer visa sponsorship.\n\nFictional London engineer\nBuild and test software in our fictional team.\n\nHIDDEN FICTIONAL NOTE. We cannot offer visa sponsorship.",
+          "mode": "Selected text — check that it includes the complete advert",
+          "source": "http://127.0.0.1:59448"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            },
+            {
+              "kind": "unavailable",
+              "quote": "We cannot offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fixture": "unsupported",
+      "mode": "automatic",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "This browser cannot safely check page visibility. Paste the complete public advert instead."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "unsupported",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "This browser cannot safely check page visibility. Paste the complete public advert instead."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "oversized",
+      "mode": "automatic",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "This section is too long. Select or paste one complete advert; no partial check was made."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "oversized",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "The selection is too long. Select one complete advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "complex",
+      "mode": "automatic",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "The page is too complex to read completely. Select or paste one complete advert."
+        },
+        "result": null
+      }
+    },
+    {
+      "fixture": "complex",
+      "mode": "selection",
+      "status": "error",
+      "value": {
+        "captured": {
+          "error": "The selection is too complex to read completely. Paste one complete public advert."
+        },
+        "result": null
+      }
+    }
+  ],
+  "closed": {
+    "captured": {
+      "error": "Expand the collapsed advert sections before reading, or paste the complete public advert."
+    },
+    "result": null
+  },
+  "expanded": {
+    "captured": {
+      "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.\nAdditional role conditions\nHIDDEN FICTIONAL NOTE. We cannot offer visa sponsorship.",
+      "mode": "Detected advert section",
+      "source": "http://127.0.0.1:59600"
+    },
+    "result": {
+      "status": "unclear",
+      "title": "Sponsorship is unclear",
+      "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+      "evidence": [
+        {
+          "kind": "offered",
+          "quote": "We offer visa sponsorship."
+        },
+        {
+          "kind": "unavailable",
+          "quote": "We cannot offer visa sponsorship."
+        }
+      ]
+    }
+  },
+  "transient_browser_control_timeouts": "Two click timeouts were reconciled against rendered state; completed actions retained. Complex fixture was shortened to exercise node count separately from text length."
+}

@@ -143,6 +143,7 @@ test('download archive is deterministic and independently readable, with no extr
 });
 test('shipped archive matches each allowlisted source and declared permissions',()=>{
  const manifest=JSON.parse(readFileSync(new URL('../extension/manifest.json',import.meta.url)));
+ assert.equal(readFileSync(new URL('../extension/README.txt',import.meta.url),'utf8').split('\n')[0],`Sponsor Intel — Advert Check ${manifest.version} (developer preview)`);
  assert.deepEqual(manifest.permissions,['activeTab','scripting']);
  for(const k of ['host_permissions','optional_host_permissions','content_scripts','background','externally_connectable','web_accessible_resources'])assert.equal(manifest[k],undefined);
  assert.match(manifest.content_security_policy.extension_pages,/connect-src 'none'/);
@@ -156,7 +157,7 @@ test('shipped archive matches each allowlisted source and declared permissions',
 });
 test('public download and landing routes work without a database and unknown assets stay unavailable',async()=>{
  const env={ASSETS:{fetch:async r=>new Response(new URL(r.url).pathname)}};
- for(const path of ['/browser-extension','/extension-privacy.html','/downloads/sponsor-intel-extension-0.1.0.zip','/downloads/sponsor-intel-extension-0.1.1.zip','/downloads/sponsor-intel-extension-0.1.3.zip','/downloads/sponsor-intel-extension.json']){
+ for(const path of ['/browser-extension','/extension-privacy.html','/downloads/sponsor-intel-extension-0.1.0.zip','/downloads/sponsor-intel-extension-0.1.1.zip','/downloads/sponsor-intel-extension-0.1.3.zip','/downloads/sponsor-intel-extension-0.1.6.zip','/downloads/sponsor-intel-extension.json']){
   const r=await pageResponse(new Request('https://sponsorintel.london'+path),env);assert.equal(r.status,200);assert.match(await r.text(),new RegExp(path.replace(/[.]/g,'\\.')));
  }
  const r=await pageResponse(new Request('https://sponsorintel.london/downloads/private.json'),env);assert.equal(r.status,404);
