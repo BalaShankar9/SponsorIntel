@@ -1,103 +1,72 @@
-# Advert Check — prepared store listing
+# Job notes — current store review handoff
 
-**3 November 21:10 update:** the owner-approved 0.1.7 native installation test is complete on fictional adverts in a separate signed-out Chrome profile; it was disabled afterward. See `OPERATOR_CHECKPOINT.md` and installed-test evidence. The owner has since requested the materially changed **Job notes 0.2.0** browsing companion plus advert-to-workspace handoff. That private package and staged website import are implemented but not installed, live or submitted. Read `JOB_NOTES_PLAN.md` and the separate unapproved `JOB_NOTES_PRIVACY_DRAFT.md`; old listing/policy copy below must not be reused for 0.2.0. The public download remains 0.1.6.
+Updated **3 November 2026, 21:25 UTC**. The proposed store product is **Sponsor Intel — Job notes 0.2.0**. This is a complete draft for review, **not uploaded, submitted, approved or ready for submission**. Public Advert Check remains 0.1.6 on live Worker 2.98.12. Read `DAILY_OPERATOR.md`, `OPERATOR_CHECKPOINT.md` and `JOB_NOTES_PLAN.md` first.
 
-Updated **3 November 2026, 19:06 UTC** for prepared Advert Check **0.1.7**; the public download remains **0.1.6**. **Draft only; not uploaded, submitted, approved or ready for submission.** The non-public candidate changes only the version, README version and 128-pixel icon. Its executable code, popup HTML/CSS, smaller icons, permissions/CSP and data handling match verified 0.1.6 byte-for-byte. The icon is rendered from the existing vector brand mark with a 96-pixel footprint and 16-pixel transparent padding. Fifteen existing targeted tests pass, archive CRC is valid, a second preparation is byte-identical and an existing candidate cannot be overwritten. These checks do not establish installed 0.1.7 acceptance. The earlier 34 fictional capture cases and popup bridge remain historical 0.1.6-code evidence, not a new installed run. The six reviewer examples below still require the manual installed-extension walkthrough. Earlier 0.1.0–0.1.6 store preflights are historical.
+## Exact package and current boundary
 
-**Publisher handoff, 3 November:** the owner first requested account setup, then reported **“Done and paid”** after opening the console personally. A user-owned Chrome Web Store Developer Dashboard tab with a publisher-specific URL is present. Inspecting that page returned **“The extensions gallery cannot be scripted.”** Account activation, exact fee/currency, agreements accepted by the owner and remaining account fields are therefore not independently verified. Do not ask the owner to pay again, repeat the answered account/fee handoff, or bypass the browser restriction. The agent made no payment, accepted no agreement and uploaded nothing. [Google's registration guide](https://developer.chrome.com/docs/webstore/register) requires a one-time fee and developer agreement and says the account email cannot later be changed. Store actions must be completed manually through the existing dashboard; no new API credentials or permission expansion are authorized. Capacity/supervisor and all other holds remain.
+- Private ZIP: `cloudflare/store/job-notes/0.2.0/sponsor-intel-job-notes-0.2.0.zip`, **51,613 bytes**, SHA-256 `3f5ab9dda35352b696555b40bf59f2c7bfb5a296ba853a4d2e4f1641dccdb052`. Nine allowlisted entries, CRC/hashes, identical rebuild and refusal to replace an existing candidate are verified. The ZIP is unchanged by this listing draft.
+- Machine-readable copy, permission explanations and gates: adjacent `store-review.json`. No dashboard fields have been completed from it.
+- Name and short description below exactly match the manifest. The 128-pixel icon is retained from reviewed 0.1.7 artwork. This does not prove an accepted store asset or native 0.2.0 appearance.
+- The **0.1.7** installed test is complete in the separate signed-out Chrome profile; it is disabled and the window is closed. That specific approval does not authorise the materially different **0.2.0** installation. Its pending question must not be repeated or bypassed.
+- The new [privacy draft](JOB_NOTES_PRIVACY_DRAFT.md) is unapproved and unpublished. The live [Advert Check policy](https://sponsorintel.london/extension-privacy.html) describes earlier behavior and must not be submitted as the policy for enabled-page observation/export.
+- Existing help URL: [Sponsor Intel browser extension](https://sponsorintel.london/browser-extension). It currently describes public 0.1.6. A matching verified release/help page must accompany a later 0.2.0 listing; do not claim it already exists.
 
-## Exact candidate and public destinations
+## Proposed store copy
 
-- Product: **Sponsor Intel — Advert Check**; prepared store manifest version **0.1.7**.
-- Candidate: `cloudflare/store/advert-check/0.1.7/sponsor-intel-extension-0.1.7.zip`, **27,939 bytes**, SHA-256 `4bea24f8b62ede60bddf81873ee2595a5260d4622836b8a2d2793a900ec2d0d0`. This is outside public assets and has not been installed, uploaded or published. See the adjacent `receipt.json` and `README.md`.
-- The [public download](https://sponsorintel.london/downloads/sponsor-intel-extension-0.1.6.zip) remains **0.1.6**, **28,360 bytes**, SHA-256 `564d8d1b6addf305d15194c4eefd72c3f50ccf969045b15c1444e7a7a18ee97f`. Do not label it 0.1.7 or replace its bytes.
-- Homepage/help candidate: <https://sponsorintel.london/browser-extension>.
-- Privacy-policy URL: **https://sponsorintel.london/extension-privacy.html**. The owner approved the exact [policy copy](EXTENSION_PRIVACY_DRAFT.md); release 2.98.10 published it at 16:21:59 UTC and excluded HTTP verified all bytes at 16:22 UTC. The approved substantive article is unchanged. Its header records that 0.1.6 retains the 0.1.1 data handling and Limited Use commitment while tightening local page-capture boundaries. This closes the public-policy gate only; current dashboard categories/certifications and publisher identity/contact still need manual review.
-- Language: English. Suggested category: Productivity, subject to the current dashboard's available taxonomy. Distribution countries, publisher identity/contact and any verification declarations remain unselected; a UK job focus does not establish the user's location.
-- Public store URL, submission/item ID and review status: **none**.
+**Name:** Sponsor Intel — Job notes
 
-The manifest summary is already: “Read sponsorship wording in one job advert, with evidence. Local checks; unclear wording stays unclear.” Keep store copy consistent with the actual package. A revised icon or other package change needs a new version/hash, packaging and acceptance; do not silently replace the existing public ZIP.
+**Short description:** Read sponsorship evidence beside the jobs you browse. Enable one tab, inspect a complete advert and keep unknowns visible.
 
-## Listing description — ready to review
+**Detailed description:**
 
-Check the sponsorship wording in a job advert and see the sentences behind the result.
+Read the sponsorship wording behind a job, with the original advert still in view.
 
-Sponsor Intel Advert Check helps you read one complete English-language UK job advert. Open the extension, read the visible description or paste its public text, then review it before checking. It distinguishes wording that offers sponsorship, makes it conditional, explicitly refuses it or leaves the answer unclear.
+Sponsor Intel Job notes is a local reading companion. Turn it on for one tab, then use Sponsorship notes beside recognised job cards. Open the complete job description before checking; a short preview is not enough to establish sponsorship.
 
-Each supported result includes the relevant sentences so you can check the context yourself. If the page contains several jobs or cannot be read reliably, select one complete advert or paste it into the popup.
+The reading panel shows the advert's exact words and separates an offered statement, conditions, a refusal and unclear evidence. It also explains the next check. Sponsor-licence identity, vacancy freshness and personal eligibility are separate questions; this version does not verify them.
 
-The check runs locally in your browser. No account, AI service, background scanner or text upload is used. The extension does not save your advert or result; closing the popup clears them.
+The companion checks whether a visible description belongs to the job you selected. A changed advert or recycled card clears the old result. Unsupported layouts can use complete public text pasted by you. No claim is made that every LinkedIn, Indeed or employer website works.
 
-This is an early wording-assistance preview. It does not check sponsor licences, confirm that a vacancy is still open, decide your eligibility or submit applications. Missing wording is not a refusal. Phrase checks can miss meaning, so confirm important conditions in the employer's original advert. Some layouts, embedded content, scanned PDFs, restricted browser pages and other languages are unsupported. Do not paste CVs, credentials or private application answers.
+You can choose Download job notes to keep the reviewed advert, original link, title, known employer/location and wording evidence in a file. Workspace import is prepared for a future Sponsor Intel website release and is not live yet. Downloading does not save to a profile, generate a CV or submit an application.
 
-Help and the equivalent local website checker: https://sponsorintel.london/browser-extension
+Your controls stay close: Clear removes working text; closing the notes clears the advert; Off removes the companion from that page. Reloading or leaving the page requires enabling it again. Downloaded files remain under your control.
 
-## Single-purpose and permission fields — ready to review
+No account is needed for the local check. There is no automatic upload or saving, model service or all-site permission. The companion observes rendered cards only within an enabled page, and reads descriptions when you ask. Use public advert text, not CVs, passwords, private messages or application answers.
 
-**Single purpose:** Help a user inspect sponsorship wording in one job advert, using local phrase checks and supporting sentences from the text they choose to read or paste.
+A sponsor licence is not a job offer. Missing wording is not a refusal. These notes help you read an advert; the employer and original application route remain the place to confirm uncertain details.
 
-| Field | Proposed explanation grounded in 0.1.6 |
-| --- | --- |
-| `activeTab` | Temporarily access the tab the user chose through the extension action. When they press Read this advert, inspect that tab and capture readable advert text. No browsing-history permission, background monitoring or persistent all-site access. |
-| `scripting` | Run the packaged `captureAdvert` function in the chosen tab after Read this advert. It extracts text for the visible popup, with form/editable/hidden/navigation exclusions and selection fallback. It does not fetch or run remote code. |
-| Remote code | No. All executable code is included in the ZIP. The extension's content security policy sets `connect-src 'none'`; there is no background process or remote script import. The ordinary help link opens the website only when the user follows it. |
+**Language:** English. **Proposed category:** Workflow & Planning, subject to the categories actually available in the existing dashboard. Do not invent a current selection or install statistics.
 
-Source evidence: `cloudflare/extension/manifest.json`, `popup.js`, `capture.js`, `analyse.js`, `popup.html`; package checksums and fictional Chrome acceptance are retained in the release receipts. No additional permission is proposed.
+## Purpose, permissions and data review
 
-## Data handling — publisher review input, not a certification
+**Single purpose:** Help a user inspect and retain the sponsorship wording in a complete public job advert while browsing.
 
-The extension **handles website content locally**. A “no upload” design must not be described as “handles no user data.” Its active-tab query also makes the current URL available to check whether the page is HTTP/HTTPS; only the page origin is shown with captured text. There is no history API or tab inventory collection.
+**activeTab:** Temporary access to the tab the user explicitly enables. The companion reads the current URL, visible job links/titles and selected full description within that page. It does not request persistent access to every website or examine other tabs.
 
-| Information / event | Actual handling in 0.1.6 |
-| --- | --- |
-| Visible advert or selected text | Read only after the user presses Read this advert; held in popup memory and analysed locally. The user reviews and confirms one complete advert. |
-| Pasted/edited text | Held in popup memory. Edits invalidate the prior result and confirmation. Users are warned against private application material. |
-| Origin, local capture time, result and sentences | Shown in the popup, not persisted or transmitted by the extension. |
-| Closing or clearing the popup | Clears its text/result; no extension storage, sync, account save or recovery copy is implemented. |
-| Forms and editable regions | Excluded from automatic capture; this is not a guarantee that arbitrary webpage text or user-pasted text contains no private information. |
-| Help link | An ordinary user-initiated website visit. The website's separate hosting/aggregate measurement and data policy apply; extension text is not attached to the link. |
-| Analytics, sale, advertising, training or third-party processing of advert text | None implemented by the extension. No new model call or telemetry permission. |
+**scripting:** Run the locally packaged companion in the chosen tab after the toolbar action. It places bounded job-card controls, observes page changes while enabled, and reads a complete description on request. Off removes the observer and controls.
 
-Chrome's [privacy-field guide](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy) requires purpose, permission and data declarations. Its [User Data FAQ](https://developer.chrome.com/docs/webstore/program-policies/user-data-faq) includes local handling and requires consistent policy/disclosures. The publisher must review the current checkbox wording and certify accurate declarations after the policy is final. The complete proposed policy and code-to-disclosure review are in [EXTENSION_PRIVACY_DRAFT.md](EXTENSION_PRIVACY_DRAFT.md). The owner explicitly approved the complete policy before it was published. This document does not accept new platform terms, certify dashboard fields or assert Google approval.
+The package contains no remote executable code, host permissions, background service, extension storage, account messaging or model service. Optional Blob download happens only after a user chooses it. The code's temporary state, observer and export must agree with the final approved policy; the earlier statement that no files are written is not valid for 0.2.0.
 
-## Reviewer walkthrough — fictional text only
+Current dashboard data-category wording and certifications have not been independently read because the console is protected. Website content and current job URLs are handled locally; incidental information can exist in pasted text. Review the dashboard's browsing-activity definitions rather than assuming local processing means no disclosure. Do not select or certify any category or Limited Use commitment from this draft alone. The owner has a separate exact-policy approval question pending.
 
-No Sponsor Intel account or test credentials are required. After installing the exact candidate through the review environment, open the toolbar action. Paste one of the complete fictional examples below, tick the complete-advert confirmation and select Check wording. Compare the result and displayed sentence. Clear between examples; close/reopen the popup and check that nothing remains. Editing text must hide the previous result and clear confirmation.
+Google requires a clear single purpose, necessary permission justifications, data-use disclosures and a matching policy. These are submission requirements, not approval already obtained. [Official privacy-field guidance](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy).
 
-| Fictional example | Expected wording result |
-| --- | --- |
-| Fictional London engineering role. Build software for our team. We offer visa sponsorship for this role. | Offered wording |
-| Fictional London engineering role. Build software for our team. We may provide visa sponsorship, subject to eligibility. | Conditional wording |
-| Fictional London engineering role. Build software for our team. We cannot offer visa sponsorship for this role. | Refused wording |
-| Fictional London engineering role. Build and test software for our team. Read the full role description before applying. | Unclear; no sponsorship statement |
-| Fictional London engineering role. Build software for our team. We offer visa sponsorship. This does not apply to this role. | Unclear; offered sentence and adjacent caveat both retained |
-| Fictional London engineering role. Build software for our team. We cannot offer visa sponsorship. This statement is out of date. | Unclear; refusal and stale-statement caveat both retained |
+## Reviewer walkthrough and visual evidence
 
-For capture review, use a non-sensitive complete job description on an ordinary HTTP/HTTPS page, expand its description, open the action and press Read this advert. Inspect the captured text before confirmation. Open collapsed advert sections before capture. Selections crossing hidden/application regions are refused. Browsers lacking the visibility API require paste; this is not proof of visibility under every CSS layout. Multiple/embedded/inaccessible pages may require selection or paste. No site login, application, CAPTCHA bypass or claim of universal extraction is part of the review. The existing automated acceptance uses isolated fictional local pages, not real applicants.
+1. After the exact installation is authorised, use the prepared 0.2.0 package in the separate signed-out test profile. Enable one fictional job-list tab through the toolbar. Verify that the actual toolbar says On and that card controls appear.
+2. Open one complete description. Check collapsed-section refusal, then expand it, read, confirm and inspect the exact offered/conditional/refused/unclear quotations. Wrong-role split views must refuse to read the other job.
+3. Change/recycle a card and load a later card. Verify invalidation, identity and cleanup without opening jobs automatically. Check keyboard focus/Escape, narrow viewport and Off.
+4. Download one reviewed fictional advert and verify the actual file. Keep full text, link, checksum and observations; hidden text and form answers must not appear. Download is not account saving. The isolated actual Applications/Studio/Worker/D1 import already verifies one role, preserved documents and zero preparation calls; production import is still undeployed.
+5. Test representative current LinkedIn, Indeed and employer-original layouts after the installed gate, preserving a support matrix and unsupported cases. Do not claim all-site compatibility from the fictional board or an earlier 0.1.7 test.
 
-For the actual installed-candidate walkthrough, `node scripts/serve-extension-manual-qa.mjs` serves ten clearly fictional examples on a temporary loopback port. It has no browser automation, scripts, mocked extension APIs, computed verdicts, external assets or submission route. The six wording cases above are supplemented with hidden/application exclusions, collapsed conditions, multiple adverts and an oversized page. Fresh Chrome rendering and the read-only HTTP routes were checked on 3 November; this confirms the background test page only. `extension-manual-preparation-2026-11-03.json` records the distinction. The server/tab were closed after preparation. A separate temporary-profile/preview-installation confirmation is pending under browser security rules; **do not create that profile or install until answered, and do not repeat the pending question**. No actual extension/store screenshot has been captured.
+Google's current listing guide asks for a 128×128 icon and at least one 1280×800 screenshot, with at most five screenshots. Existing local-page previews and native 0.1.7 observations do **not** satisfy the installed-0.2.0 artwork gate. Capture the actual installed candidate, use fictional roles, retain enough surrounding context to show what is happening, and never add unsupported success claims. Optional promotional assets are unnecessary for the first listing. [Official listing requirements](https://developer.chrome.com/docs/webstore/cws-dashboard-listing).
 
-## Asset preflight — icon prepared, screenshot still missing
+## Remaining delivery sequence
 
-The [store listing guide](https://developer.chrome.com/docs/webstore/cws-dashboard-listing) calls for an icon and screenshot; the detailed [image guide](https://developer.chrome.com/docs/webstore/images) specifies dimensions and actual-experience screenshots. Official guidance was inspected on 3 November; dashboard acceptance remains untested.
+The owner reports publisher registration/payment complete. Do not ask for payment again. The protected console returned “The extensions gallery cannot be scripted”; do not work around that restriction with protocol, CLI or new credentials. Existing publisher identity/contact, activation, category/distribution, agreements and declarations still require their actual manual review.
 
-| Asset | Current measured evidence | Remaining work |
-| --- | --- | --- |
-| Prepared 0.1.7 icon | 128×128 RGBA PNG; nontransparent bounds `(16,16)`–`(111,111)`; all outer 16-pixel alpha values zero | Corrected source-rendered icon is included in the new candidate and inspected visually. Native/store appearance remains unverified. Public 0.1.6 retains its original edge-reaching icon. |
-| Actual Chrome popup screenshot | `chrome-packaged-popup.png`, 380×498, fictional local advert | Authentic QA evidence, but not a store-size asset. Capture an honest actual-experience image at the required 1280×800 size (the detailed guide also permits 640×400). Do not stretch, pad or fabricate a result to disguise the size mismatch. |
-| Website screenshots | 1200×850 or full-page/mobile dimensions | Useful website QA, not a substitute for an extension-experience store screenshot. |
-| Optional promotional tiles/video | Not prepared | Optional; no generated artwork, model spend or public marketing claim introduced by this preparation. |
+The next gates are the already-requested exact 0.2.0 installation approval and exact policy approval. Complete installed/compatibility tests and store-size evidence, verify the matching public help/privacy release, then obtain separate authorisation for the concrete store submission. No store upload, new agreement, payment or publication is authorised by this document. Only after actual store approval and consumer installation should Sponsor Intel advertise one-click installation.
 
-Historical 0.1.0 byte/asset/source audit: `cloudflare/tests/evidence/extension-store-preflight-2026-11-03.json`. Live 0.1.6 evidence is in `cloudflare/tests/evidence/extension-capture-2026-11-03/`. Prepared 0.1.7 source/hash/alpha bounds are in `cloudflare/store/advert-check/0.1.7/receipt.json`; validation is in the adjacent `validation.json`. The icon preparation uses existing local rendering dependencies, not image generation or a model call. A browser retry found the existing LinkedIn tab blank and its inspection still unavailable; no real-site acceptance was added. This preflight is not platform rejection or approval.
+Production applicant saving/direct transfer remains subject to the existing capacity and recovery gates. Main includes held Founder 2.99.0/0047; do not deploy the combined branch to publish extension assets. All model, social, source and application controls remain unchanged.
 
-## Remaining publication sequence
-
-1. Validate the installed **0.1.7** candidate and capture an honest actual-experience screenshot at the required size. Its icon geometry/package preparation is complete; installed/native appearance is not. Keep all public 0.1.0, 0.1.1, 0.1.3 and 0.1.6 receipts intact. Unpublished 0.1.2/0.1.4/0.1.5 remain privately preserved and skipped.
-2. The owner reports registration/payment complete. Confirm the remaining account fields manually in that existing dashboard; do not create or pay for a second publisher. The browser restriction prevents agent inspection. No guessed identity, trader status, address or agreement acceptance.
-3. Use the published, owner-approved policy URL above. Review precise dashboard data categories, contact, distribution and declarations against the exact package and actual publisher; policy publication is not a dashboard certification.
-4. Upload only the reviewed package/assets and exact approved listing under that verified publisher; preserve item/submission identity and platform outcome. No such upload or submission has occurred.
-5. After approval, verify the exact public listing and ordinary consumer installation/update path before adding a one-click store link to Sponsor Intel. A submitted item is not a published listing; a listing is not independent semantic accuracy or universal compatibility.
-
-For a **manual draft upload only**, Google documents **Add new item → Choose file → select the exact ZIP → Upload**. This creates a draft item, not a public listing. Keep it as a draft; the image/privacy/account gates above must be completed before Submit for Review. See [Google's upload instructions](https://developer.chrome.com/docs/webstore/publish). No draft upload has been observed yet.
-
-Current status: **0.1.7 candidate and corrected icon prepared**, with code/permission/data handling identical to public 0.1.6. Listing/reviewer text prepared; policy approved and live. Actual installed verification/screenshot, dashboard declarations and account fields remain open. Owner reports payment complete; dashboard contents cannot be scripted; no store submission. Independent accuracy, live-site compatibility and usefulness gates remain in `BROWSER_EXTENSION.md`. No Worker deployment is needed for this non-public preparation.
+Earlier 0.1.7 listing text and its historical pending states are preserved in [the archived handoff](history/EXTENSION_STORE_SUBMISSION-2026-11-03-1910.md); use this file for current work.

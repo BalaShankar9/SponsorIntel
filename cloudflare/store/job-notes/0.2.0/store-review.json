@@ -1,0 +1,44 @@
+{
+  "preparedAt": "2026-11-03T21:23:19.542732+00:00",
+  "status": "draft_not_submitted_or_ready_for_submission",
+  "version": "0.2.0",
+  "name": "Sponsor Intel \u2014 Job notes",
+  "shortDescription": "Read sponsorship evidence beside the jobs you browse. Enable one tab, inspect a complete advert and keep unknowns visible.",
+  "longDescription": "Read the sponsorship wording behind a job, with the original advert still in view.\n\nSponsor Intel Job notes is a local reading companion. Turn it on for one tab, then use Sponsorship notes beside recognised job cards. Open the complete job description before checking; a short preview is not enough to establish sponsorship.\n\nThe reading panel shows the advert's exact words and separates an offered statement, conditions, a refusal and unclear evidence. It also explains the next check. Sponsor-licence identity, vacancy freshness and personal eligibility are separate questions; this version does not verify them.\n\nThe companion checks whether a visible description belongs to the job you selected. A changed advert or recycled card clears the old result. Unsupported layouts can use complete public text pasted by you. No claim is made that every LinkedIn, Indeed or employer website works.\n\nYou can choose Download job notes to keep the reviewed advert, original link, title, known employer/location and wording evidence in a file. Workspace import is prepared for a future Sponsor Intel website release and is not live yet. Downloading does not save to a profile, generate a CV or submit an application.\n\nYour controls stay close: Clear removes working text; closing the notes clears the advert; Off removes the companion from that page. Reloading or leaving the page requires enabling it again. Downloaded files remain under your control.\n\nNo account is needed for the local check. There is no automatic upload or saving, model service or all-site permission. The companion observes rendered cards only within an enabled page, and reads descriptions when you ask. Use public advert text, not CVs, passwords, private messages or application answers.\n\nA sponsor licence is not a job offer. Missing wording is not a refusal. These notes help you read an advert; the employer and original application route remain the place to confirm uncertain details.",
+  "candidate": {
+    "bytes": 51613,
+    "sha256": "3f5ab9dda35352b696555b40bf59f2c7bfb5a296ba853a4d2e4f1641dccdb052",
+    "zip": "sponsor-intel-job-notes-0.2.0.zip"
+  },
+  "proposedCategory": "Workflow & Planning",
+  "language": "English",
+  "categoryNeedsCurrentDashboardVerification": true,
+  "singlePurpose": "Help a user inspect and retain the sponsorship wording in a complete public job advert while browsing.",
+  "permissionJustifications": {
+    "activeTab": "Temporary access to the tab the user explicitly enables. The companion reads the current URL, visible job links/titles and selected full description within that page. It does not request persistent access to every website or examine other tabs.",
+    "scripting": "Run the locally packaged companion in the chosen tab after the toolbar action. It places bounded job-card controls, observes page changes while enabled, and reads a complete description on request. Off removes the observer and controls."
+  },
+  "remoteCode": false,
+  "dataDeclarationReview": "Website content, current job URLs and local export are used. Review the current dashboard definitions for browsing activity and any incidental personal content. Local-only processing is not a reason to skip disclosure. No dashboard category or Limited Use checkbox has been selected or certified.",
+  "privacyPolicy": "docs/JOB_NOTES_PRIVACY_DRAFT.md \u2014 unapproved, not live; existing 0.1 policy cannot support this changed package",
+  "screenshots": {
+    "requiredDimensions": "1280x800",
+    "minimum": 1,
+    "maximum": 5,
+    "installed020Screenshots": 0,
+    "localPagePreviewsAreStoreAcceptance": false
+  },
+  "gates": [
+    "Owner exact-0.2.0 temporary installation approval",
+    "Installed package and current-site acceptance",
+    "Owner exact-policy publication approval and matching release/help page",
+    "Actual store-sized screenshots of the installed candidate",
+    "Verified publisher/contact/category/distribution and truthful dashboard declarations",
+    "Separate store-submission authorisation",
+    "Store review and consumer installation"
+  ],
+  "officialReferences": [
+    "https://developer.chrome.com/docs/webstore/cws-dashboard-listing",
+    "https://developer.chrome.com/docs/webstore/cws-dashboard-privacy"
+  ]
+}
