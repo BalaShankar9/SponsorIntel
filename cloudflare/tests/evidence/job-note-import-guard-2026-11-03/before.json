@@ -1,0 +1,10 @@
+{
+  "scope": "fictional local account only",
+  "finding": "Tracking URL versus canonical import creates a second role with empty documents",
+  "roles": 2,
+  "apiWrites": 2,
+  "preparationRequests": 0,
+  "originalWorkPreserved": true,
+  "duplicateHasEmptyDraft": true,
+  "masterProfileUnchanged": true
+}

@@ -56,3 +56,14 @@ Twelve targeted tests, TypeScript, sixteen fictional browser DOM cases, determin
 
 
 At 22:56 UTC an added fictional counterexample failed: 0.2.2 dropped a condition adjacent to Apply because it excluded the whole control wrapper. **0.2.2 is held**, and its installation question is obsolete. Corrected **0.2.3** excludes only the link; all **17** browser DOM cases pass at 22:57:21 UTC. Twelve targeted tests, exact bundle/ZIP rebuilding and immutability checks pass again. This is the current private candidate, 54,760 bytes / SHA-256 `78d9008aa9633faf66f1cb5687241ea75135d0924b149361d1c24ab0db6e13e8`. It is not installed/published; see `JOB_NOTES_0.2.3_REVIEW.md`. No earlier approval transfers automatically to this changed candidate. Both the failure and initial results remain evidence.
+
+
+## Prepared import correction — 3 November, 23:26 UTC
+
+Actual fictional account testing found that an existing role saved with a tracking link was imported again from the clean link, opening a second workspace with empty documents. The original work was not deleted, but the duplicate interrupted the intended journey. The import now checks the provider’s current snapshot and normalises both links using the same narrow public-URL rule. Unknown role query parameters remain significant; this is not universal cross-site deduplication. Multiple matching workspaces are held for the applicant to choose, never merged or removed automatically.
+
+An existing match offers **Open existing workspace** and leaves its source, description, notes, CV, letter and stage unchanged. A new import creates its role and provenance notes synchronously; a repeated action sees that role before adding another. File previews carry their account/reload scope, and the current 100-role ceiling is checked at the write boundary. No source-version approval, verified sponsorship label, preparation request or application submission is inferred from the file.
+
+Twenty targeted import/extension tests, 22 related preparation/recovery/account tests and TypeScript pass. The real local React/Worker/auth/D1 form retains one tracked-link role and all prior fictional work, with one seed save and zero preparation calls. The actual provider fixture also passes repeat-action, retained-note, stale-scope and 99-to-100-limit checks. A 390-pixel result view has no horizontal overflow. Evidence is `cloudflare/tests/evidence/job-note-import-guard-2026-11-03/`; this is not an installed-extension transfer, production capacity test or full-suite result.
+
+This remains prepared in the combined branch. No Worker, schema, public policy, extension executable or ZIP changed. Public 0.2.1 and pending private 0.2.3 are byte-identical to their prior receipts; the 0.2.3 permission question is still pending and is not repeated.

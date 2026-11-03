@@ -8,6 +8,8 @@ import React, {
 import { campaignHeaders } from './metrics';
 import {beginPreparedDraft,acceptPreparedDraft,type PreparationTicket} from '../shared/prepared-draft.js';
 import {acceptAdvertReview, type AdvertSnapshot} from '../shared/advert-version.js';
+import {planJobNoteImport,type JobNoteImportResult} from '../shared/job-note-workspace.js';
+import type {JobNote} from '../shared/job-note.js';
 
 import {readRecoveryCopy,discardRecoveryCopy,switchCloudWorkspace,type RecoveryCopy} from '../shared/workspace-recovery.js';
 
@@ -210,6 +212,8 @@ type CareerContextValue = {
   restoreRecovery: () => Promise<void>;
   removeRecovery: () => void;
   saveJob: (job: Job) => string;
+  workspaceScope: string;
+  importJobNote: (note:JobNote,company:string,expectedScope:string) => JobNoteImportResult;
   updateApplication: (id: string, patch: Partial<CareerApplication>) => void;
   reviewAdvert: (expected:CareerApplication,advert:AdvertSnapshot,keepText:boolean) => boolean;
   beginPreparation: (id: string, kind: string) => PreparationTicket;
@@ -475,7 +479,7 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
       setSelected(existing.id);
       return existing.id;
     }
-    if (data.applications.length >= 100) {
+    if (latest.current.applications.length >= 100) {
       setError(
         "Your workspace holds 100 applications. Export a backup and remove finished entries to make room.",
       );
@@ -516,6 +520,17 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
     setSelected(id);
     return id;
   }
+  function importJobNote(note:JobNote,company:string,expectedScope:string):JobNoteImportResult {
+    if (!ready || replacing.current) return {status:'blocked'};
+    const plan=planJobNoteImport(latest.current,note,company,expectedScope,preparationScope());
+    if (plan.status!=='ready') return plan;
+    // This whole operation is synchronous. A repeated click sees the newly
+    // added role, and only a new role receives import notes.
+    const id=saveJob(plan.job);
+    if (!id) return {status:'blocked'};
+    updateApplication(id,{notes:plan.notes});
+    return {status:'added',id};
+  }
   function importGuest() {
     const guest = readLocal("si.career.guest.v2")?.data;
     if (guest) setData((d) => mergeData(d, guest));
@@ -536,6 +551,8 @@ export function CareerProvider({ children }: { children: React.ReactNode }) {
         restoreRecovery,
         removeRecovery,
         saveJob,
+        workspaceScope:preparationScope(),
+        importJobNote,
         updateApplication,
         reviewAdvert,
         beginPreparation,
