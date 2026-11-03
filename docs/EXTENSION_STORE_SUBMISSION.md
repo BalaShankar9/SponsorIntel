@@ -1,6 +1,6 @@
 # Job notes — current store review handoff
 
-Updated **3 November 2026, 22:18 UTC**. The proposed store product is **Sponsor Intel — Job notes 0.2.1**. This is a complete draft for review, **not uploaded, submitted, approved or ready for submission**. Matching 2.98.13 publication is in progress; consult its release receipt before claiming it is live. Read `DAILY_OPERATOR.md`, `OPERATOR_CHECKPOINT.md` and `JOB_NOTES_PLAN.md` first.
+Updated **3 November 2026, 22:18 UTC**. The proposed store product is **Sponsor Intel — Job notes 0.2.1**. This is a complete draft for review, **not uploaded, submitted, approved or ready for submission**. Matching 2.98.13 is live as Worker 244d81f0-b12f-45e9-97c9-411a663d5aff; exact public download/help/privacy checks are retained in its release receipt. Read `DAILY_OPERATOR.md`, `OPERATOR_CHECKPOINT.md` and `JOB_NOTES_PLAN.md` first.
 
 ## Exact package and current boundary
 
@@ -8,7 +8,7 @@ Updated **3 November 2026, 22:18 UTC**. The proposed store product is **Sponsor 
 - Machine-readable copy, permission explanations and gates: adjacent `store-review.json`. No dashboard fields have been completed from it.
 - Name and short description below exactly match the manifest. The 128-pixel icon is retained from reviewed 0.1.7 artwork. This does not prove an accepted store asset or native 0.2.0 appearance.
 - The owner approved actual **0.2.0** installation and the exact new policy. Native toolbar/activeTab tests passed on the fictional board; the extension is disabled and its window closed. Final **0.2.1** only updates version/README, with executable, UI, images, permissions and CSP byte-identical to tested 0.2.0. It is not a separate installed-version claim.
-- The approved policy article is served by the prepared release at `/job-notes-privacy.html`; live verification is recorded in `cloudflare/RELEASE-2.98.13.md`. The older Advert Check policy remains available for its own versions.
+- The approved policy article is served by the verified live release at `/job-notes-privacy.html`; live verification is recorded in `cloudflare/RELEASE-2.98.13.md`. The older Advert Check policy remains available for its own versions.
 - Help: [Sponsor Intel browser extension](https://sponsorintel.london/browser-extension). Verify its actual 0.2.1 release and policy before a later store submission. No submission has been authorised.
 
 ## Proposed store copy

@@ -1,6 +1,6 @@
 # 2.98.13 — Job notes browsing companion
 
-3 November 2026. Prepared and validated; deployment receipt follows separately.
+3 November 2026. Live at 100%; exact deployment and verification are recorded below.
 
 The owner requested sponsorship evidence alongside job cards, a distinctive quiet identity, and a route from the complete advert into their applicant workspace. **Job notes** adds opt-in controls on recognised cards, a reading panel, exact-role checks, source quotations, conditions, explicit unknown licence/freshness states and a chosen file export. Its warm paper/green/copper identity extends to the download page. No model, account connection, automatic network request, all-site permission or application submission is added.
 
@@ -23,3 +23,13 @@ Only the existing **2.98.12** isolated runtime plus the public extension pages/p
 The real Applications/Studio file-import path is implemented and tested with fictional account data in the combined branch, but **not live**. Direct profile transfer, document-generation outcomes and authorised applying remain unfinished requirements. The broad goal stays active and incomplete.
 
 Evidence: `tests/evidence/job-notes-2026-11-03/`. Local results, installed candidate, exact release-byte comparison, deployment, live service and hosted CI are distinct evidence.
+
+## Live release
+
+Live **3 November 22:18:37.334896 UTC**, Worker **244d81f0-b12f-45e9-97c9-411a663d5aff**, deployment **19235112-42c7-40a1-95da-33f5405117cb**, 100%. Runtime feature commit **2826edfa4a4c3024454d782fe5c08c47e28886b8**; rollback **ac955e96-9ed7-4efb-8f56-5cb91eaf2abf / 2.98.12**. Separate upload and deploy completed with inherited queues, unchanged schedules and no schema submission.
+
+At **22:20:57 UTC**, **13 metrics-excluded HTTP checks** verify health 2.98.13, landing page, exact new ZIP/metadata/policy, exact previous policy and all four public old ZIPs, private-candidate 404 and empty policy HEAD. The static live policy was also browser-confirmed. The browser header-control method was unsupported before app navigation, so live app navigation was not performed; its exact served bytes and the locally rendered release have separate evidence. No synthetic customer metric or private write probe.
+
+Feature-head hosted checks **126242739317 / 126242698942** failed before starting because of GitHub's account billing lock; original annotations retained. GitGuardian **126242715001** was neutral, skipped for the oversized PR. Local validation is not passing hosted Linux/security evidence. Final documentation-head status is recorded on PR #1.
+
+Temporary extension disabled, its profile window and local/live QA tabs closed, viewport reset and fixture servers stopped. No store submission, new model/Google call, email/social send, application, source approval, purchase or hold release.
