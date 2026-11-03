@@ -1,12 +1,14 @@
 # Advert Check — prepared store listing
 
-Prepared **3 November 2026** for the existing owner-requested browser extension. **Draft only; not uploaded, submitted, approved or ready for submission.** The public manual preview remains unchanged. Publisher-console access was denied before inspection on 2 November; registration, authorised publisher identity and access are unknown. Do not bypass that denial, purchase registration or accept agreements. This preparation does not clear capacity, supervisor or other product holds.
+Updated **3 November 2026** for Advert Check **0.1.1**. **Draft only; not uploaded, submitted, approved or ready for submission.** Package CRC, all ten source entries, manifest permissions and six fictional reviewer examples were rechecked after the 0.1.1 release. Only manifest version, analysis logic and README differ from 0.1.0; capture, popup, permissions and icon bytes are unchanged. The earlier `extension-store-preflight-2026-11-03.json` remains a historical 0.1.0 receipt, not current installed-extension or store acceptance.
+
+**Publisher handoff, 3 November:** the owner first requested account setup, then reported **“Done and paid”** after opening the console personally. A user-owned Chrome Web Store Developer Dashboard tab with a publisher-specific URL is present. Inspecting that page returned **“The extensions gallery cannot be scripted.”** Account activation, exact fee/currency, agreements accepted by the owner and remaining account fields are therefore not independently verified. Do not ask the owner to pay again, repeat the answered account/fee handoff, or bypass the browser restriction. The agent made no payment, accepted no agreement and uploaded nothing. [Google's registration guide](https://developer.chrome.com/docs/webstore/register) requires a one-time fee and developer agreement and says the account email cannot later be changed. Store actions must be completed manually through the existing dashboard; no new API credentials or permission expansion are authorized. Capacity/supervisor and all other holds remain.
 
 ## Exact candidate and public destinations
 
-- Product: **Sponsor Intel — Advert Check**; manifest version **0.1.0**.
-- Reviewed package: `cloudflare/public/downloads/sponsor-intel-extension-0.1.0.zip`, **23,871 bytes**.
-- SHA-256: `db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb`.
+- Product: **Sponsor Intel — Advert Check**; manifest version **0.1.1**.
+- Reviewed package: `cloudflare/public/downloads/sponsor-intel-extension-0.1.1.zip`, **25,407 bytes**; [public download](https://sponsorintel.london/downloads/sponsor-intel-extension-0.1.1.zip).
+- SHA-256: `42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7`.
 - Homepage/help candidate: <https://sponsorintel.london/browser-extension>.
 - Privacy-policy field: **not selected/certified**. The current homepage describes local processing and links to the site's data policy, but a store-specific policy and Limited Use statement still need publisher review. Do not claim that a live store policy exists merely because a help link exists.
 - Language: English. Suggested category: Productivity, subject to the current dashboard's available taxonomy. Distribution countries, publisher identity/contact and any verification declarations remain unselected; a UK job focus does not establish the user's location.
@@ -32,7 +34,7 @@ Help and the equivalent local website checker: https://sponsorintel.london/brows
 
 **Single purpose:** Help a user inspect sponsorship wording in one job advert, using local phrase checks and supporting sentences from the text they choose to read or paste.
 
-| Field | Proposed explanation grounded in 0.1.0 |
+| Field | Proposed explanation grounded in 0.1.1 |
 | --- | --- |
 | `activeTab` | Temporarily access the tab the user chose through the extension action. When they press Read this advert, inspect that tab and capture readable advert text. No browsing-history permission, background monitoring or persistent all-site access. |
 | `scripting` | Run the packaged `captureAdvert` function in the chosen tab after Read this advert. It extracts text for the visible popup, with form/editable/hidden/navigation exclusions and selection fallback. It does not fetch or run remote code. |
@@ -44,7 +46,7 @@ Source evidence: `cloudflare/extension/manifest.json`, `popup.js`, `capture.js`,
 
 The extension **handles website content locally**. A “no upload” design must not be described as “handles no user data.” Its active-tab query also makes the current URL available to check whether the page is HTTP/HTTPS; only the page origin is shown with captured text. There is no history API or tab inventory collection.
 
-| Information / event | Actual handling in 0.1.0 |
+| Information / event | Actual handling in 0.1.1 |
 | --- | --- |
 | Visible advert or selected text | Read only after the user presses Read this advert; held in popup memory and analysed locally. The user reviews and confirms one complete advert. |
 | Pasted/edited text | Held in popup memory. Edits invalidate the prior result and confirmation. Users are warned against private application material. |
@@ -66,6 +68,8 @@ No Sponsor Intel account or test credentials are required. After installing the 
 | Fictional London engineering role. Build software for our team. We may provide visa sponsorship, subject to eligibility. | Conditional wording |
 | Fictional London engineering role. Build software for our team. We cannot offer visa sponsorship for this role. | Refused wording |
 | Fictional London engineering role. Build and test software for our team. Read the full role description before applying. | Unclear; no sponsorship statement |
+| Fictional London engineering role. Build software for our team. We offer visa sponsorship. This does not apply to this role. | Unclear; offered sentence and adjacent caveat both retained |
+| Fictional London engineering role. Build software for our team. We cannot offer visa sponsorship. This statement is out of date. | Unclear; refusal and stale-statement caveat both retained |
 
 For capture review, use a non-sensitive complete job description on an ordinary HTTP/HTTPS page, expand its description, open the action and press Read this advert. Inspect the captured text before confirmation. Multiple/embedded/inaccessible pages may require selection or paste. No site login, application, CAPTCHA bypass or claim of universal extraction is part of the review. The existing automated acceptance uses isolated fictional local pages, not real applicants.
 
@@ -80,14 +84,16 @@ The [store listing guide](https://developer.chrome.com/docs/webstore/cws-dashboa
 | Website screenshots | 1200×850 or full-page/mobile dimensions | Useful website QA, not a substitute for an extension-experience store screenshot. |
 | Optional promotional tiles/video | Not prepared | Optional; no generated artwork, model spend or public marketing claim introduced by this preparation. |
 
-Machine-readable byte/asset/source audit: `cloudflare/tests/evidence/extension-store-preflight-2026-11-03.json`. Existing images and public package are unchanged. This preflight is not a platform rejection or approval.
+Historical 0.1.0 byte/asset/source audit: `cloudflare/tests/evidence/extension-store-preflight-2026-11-03.json`. Current 0.1.1 release evidence is in `cloudflare/tests/evidence/extension-2026-11-03/`; current store handoff is in `extension-store-handoff-2026-11-03.json`. Icon bytes are unchanged and the same asset gaps remain. This preflight is not a platform rejection or approval.
 
 ## Remaining publication sequence
 
-1. Resolve the concrete icon/screenshot gaps and revalidate any new package; keep the public 0.1.0 receipt intact.
-2. Establish authorised publisher-console access, identity and registration using permitted access. If new payment or agreements are required, obtain the owner's specific decision; do not assume earlier Cloudflare consent covers Chrome.
+1. Resolve the concrete icon/screenshot gaps and revalidate any new package; keep both public 0.1.0 and 0.1.1 receipts intact.
+2. The owner reports registration/payment complete. Confirm the remaining account fields manually in that existing dashboard; do not create or pay for a second publisher. The browser restriction prevents agent inspection. No guessed identity, trader status, address or agreement acceptance.
 3. Finalise the extension-specific privacy-policy URL, precise dashboard data categories, contact, distribution and declarations against the reviewed package and actual publisher. Do not silently publish a legal certification from this draft.
 4. Upload only the reviewed package/assets and exact approved listing under that verified publisher; preserve item/submission identity and platform outcome. No such upload or submission has occurred.
 5. After approval, verify the exact public listing and ordinary consumer installation/update path before adding a one-click store link to Sponsor Intel. A submitted item is not a published listing; a listing is not independent semantic accuracy or universal compatibility.
 
-Current status: listing/reviewer/permission text prepared, asset gaps measured, package unchanged, publisher access unknown, no store submission. Existing independent accuracy, live-site compatibility and usefulness gates remain in `BROWSER_EXTENSION.md`.
+For a **manual draft upload only**, Google documents **Add new item → Choose file → select the exact ZIP → Upload**. This creates a draft item, not a public listing. Keep it as a draft; the image/privacy/account gates above must be completed before Submit for Review. See [Google's upload instructions](https://developer.chrome.com/docs/webstore/publish). No draft upload has been observed yet.
+
+Current status: 0.1.1 listing/reviewer/permission text prepared and package checked; asset/privacy/account fields still open; owner reports payment complete; dashboard tab is visible but its contents cannot be scripted; no store submission. Existing independent accuracy, live-site compatibility and usefulness gates remain in `BROWSER_EXTENSION.md`.
