@@ -1,0 +1,87 @@
+{
+  "started_at": "2026-11-03T18:12:54.151Z",
+  "verified_at": "2026-11-03T18:12:58.521Z",
+  "scope": "Metrics-excluded live HTTP and exact deployed artifact identities; browser behavior separately checked locally",
+  "version": "2.98.11",
+  "checks": [
+    {
+      "path": "/browser-extension",
+      "method": "GET",
+      "status": 200,
+      "bytes": 23759,
+      "sha256": "0143bc9140f92338d189b0043f24594d7f4fb9e8f4f72a3a0546cb978aa9a49d"
+    },
+    {
+      "path": "/assets/extension-page-Cs-l2i7m.js",
+      "method": "GET",
+      "status": 200,
+      "bytes": 7154,
+      "sha256": "84484733fdfa5bea98820dfd9a5a4b079ecb74e8ff29c1883dc598cca259b5e1"
+    },
+    {
+      "path": "/assets/extension-checker-iHkAVcTc.js",
+      "method": "GET",
+      "status": 200,
+      "bytes": 7353,
+      "sha256": "b573ae33e7143a9bb2e849be9e3cf147ddb2fd5687137632300a4f07b6942743"
+    },
+    {
+      "path": "/downloads/sponsor-intel-extension-0.1.0.zip",
+      "method": "GET",
+      "status": 200,
+      "bytes": 23871,
+      "sha256": "db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb"
+    },
+    {
+      "path": "/downloads/sponsor-intel-extension-0.1.1.zip",
+      "method": "GET",
+      "status": 200,
+      "bytes": 25407,
+      "sha256": "42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7"
+    },
+    {
+      "path": "/downloads/sponsor-intel-extension-0.1.3.zip",
+      "method": "GET",
+      "status": 200,
+      "bytes": 26528,
+      "sha256": "26da3edea46fd7c6f193cfb2dafac872048ea5d9e51e5bb44d73f79a3180189b"
+    },
+    {
+      "path": "/downloads/sponsor-intel-extension.json",
+      "method": "GET",
+      "status": 200,
+      "bytes": 1643,
+      "sha256": "c8fe4d60f86b280f9baedafa440d565af97cd321dc82285951d814c2a9c6e061"
+    },
+    {
+      "path": "/extension-privacy.html",
+      "method": "GET",
+      "status": 200,
+      "bytes": 7985,
+      "sha256": "5518499cd3e95e7688a25aa400e6cf92c142f3a77dd5046a451724784d9d578a"
+    },
+    {
+      "path": "/extension-privacy.html",
+      "method": "HEAD",
+      "status": 200,
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/downloads/sponsor-intel-extension-0.1.2.zip",
+      "method": "GET",
+      "status": 404,
+      "bytes": 20854,
+      "sha256": "da00af6b142cbd2ed2d162c004440d783244257c5d20979f8edc403eeca6b43e"
+    },
+    {
+      "path": "/api/health",
+      "method": "GET",
+      "status": 200,
+      "bytes": 119,
+      "sha256": "4d30ea01cfaef863635818fd856b0935083e6220f405f0590d1670f8ece371ba"
+    }
+  ],
+  "all_pass": true,
+  "holds_unchanged": true
+}

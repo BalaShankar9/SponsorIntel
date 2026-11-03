@@ -1,7 +1,7 @@
 {
   "version": "2.98.11",
   "extension_version": "0.1.3",
-  "state": "validated; deployment pending",
+  "state": "deployed and exact live HTTP verified",
   "base_worker": "c64fe70f-4c83-4a6f-92ba-62cdcc598fe0",
   "targeted_tests": 20,
   "combined_and_isolated_pass": true,

@@ -1,6 +1,6 @@
 # 2.98.11 — preserve evidence across advert headings
 
-3 November 2026. Validated release candidate; deployment recorded below when verified.
+3 November 2026. Live deployment and verification are recorded below.
 
 Advert Check 0.1.3 recognises a standalone or inline Sponsorship heading and a narrow “Unfortunately…” preface before a direct employer refusal. It retains the complete original evidence sentence. Headings cannot hide an adjacent caveat, and questions, examples, exceptions, conflicting clauses and long unsupported wording remain unclear. The website paste checker uses the same local analyser. Public job labels, research fingerprints and model settings are unchanged.
 
@@ -17,3 +17,9 @@ Connected Chrome checks four fictional cases in the built website and the exact 
 Capture, popup, permission and CSP bytes are unchanged; no upload, persistence, telemetry, background scanning, AI or licence lookup is introduced. The substantive approved privacy article is byte-identical; its header adds only a verified 0.1.3 compatibility notice. Policy approval remains separate from store certifications. Publisher payment is owner-reported; dashboard scripting remains blocked and must not be bypassed. Store artwork, actual installed-current-version testing, account declarations, manual upload/submission and independent semantic acceptance remain open.
 
 Deploy only the isolated **2.98.10** lineage with these changes and version metadata set to **2.98.11**, retaining 46 migrations and no prepared Founder saving/0047/activation. Do not deploy the whole prepared 2.99.0 branch. Compatible rollback is **2.98.10 Worker c64fe70f-4c83-4a6f-92ba-62cdcc598fe0**. Separate version upload/deploy preserves inherited queues/triggers. All capacity, supervisor, marketing, model and source holds remain.
+
+## Live verification
+
+**Live at 100% since 3 November 18:12:32.950939 UTC**, Worker **05d33310-4679-440a-a35a-0ac964d9bcbe**, deployment **61172193-2c7d-4a5f-a532-d8aa243d1c03**. Feature commit **64380de6e7fef4dc9bfb63cc8aa04a536713d933**. Separate upload/deploy exited successfully and retained inherited email queues. No triggers or migrations were submitted. Rollback remains 2.98.10 Worker **c64fe70f-4c83-4a6f-92ba-62cdcc598fe0**.
+
+Eleven metrics-excluded live HTTP checks pass at **18:12:58 UTC**: exact prerender, compiled page/checker, all three public archives, current metadata, approved policy HTML and empty HEAD, skipped 0.1.2 returning 404, and health 2.98.11. These verify deployed bytes; local browser checks remain separately scoped. No production-browser visit, source refresh, model/Google-property call, application, social/email send, purchase, customer-data write or hold release accompanied the update. The exact final pushed head is checked separately for hosted CI; prior local results do not clear GitHub's billing lock.
