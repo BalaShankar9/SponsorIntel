@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "observer": "Agent-assisted",
+  "date": "2026-11-03",
+  "collection_window_utc": {
+    "from": "2026-11-03T15:19:40Z",
+    "to": "2026-11-03T15:19:42Z",
+    "precision": "Tool-call interval, not provider synchronization"
+  },
+  "account": {
+    "brand_id": 7294726,
+    "facebook_page": "1319703417896763",
+    "instagram": "sponsorintellondon",
+    "timezone": "Europe/London",
+    "identity_evidence": "Same-day recovery-monitor-2026-11-03.json and OPERATOR_CHECKPOINT.md; not queried again"
+  },
+  "scope": "Read-only aggregate provider refresh; no production performance save, delivery claim, schedule or model input",
+  "facebook": {
+    "query": {
+      "brandId": "7294726",
+      "from": "2026-10-07T00:00:00+01:00",
+      "to": "2026-11-02T23:59:59+00:00",
+      "metrics": [
+        "FBPO02",
+        "FBPO03",
+        "FBPO04",
+        "FBPO06",
+        "FBPO08",
+        "FBPO09",
+        "FBPO12",
+        "FBPO13",
+        "FBPO14",
+        "FBPO23",
+        "FBPO25"
+      ]
+    },
+    "window_type": "Publication-date filter; cumulative post performance through prior provider calendar day per retained provider guidance",
+    "reporting_end": "2026-11-02T23:59:59+00:00",
+    "provider_synchronization_time": null,
+    "rows": [
+      {
+        "provider_publication_raw": "20261018091523",
+        "provider_publication_timezone": null,
+        "provider_post_id": "1319703417896763_122100903777512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122100903777512994",
+        "destination_url": "https://sponsorintel.london/jobs/6e7ca74036beafcb0431c567?utm_source=facebook&utm_medium=organic_social&utm_campaign=current_opportunities&utm_content=dated_vacancy",
+        "substantive_caption": true,
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 1,
+          "reach": 1,
+          "reactions": 0,
+          "shares": 0,
+          "general_clicks": 1,
+          "impressions": null,
+          "views": null
+        }
+      },
+      {
+        "provider_publication_raw": "20261016090317",
+        "provider_publication_timezone": null,
+        "provider_post_id": "1319703417896763_122099309745512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122099309745512994",
+        "destination_url": "https://sponsorintel.london/guides/build-a-shortlist?utm_source=facebook&utm_medium=organic_social&utm_campaign=editorial_guides&utm_content=small_shortlist",
+        "substantive_caption": true,
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 2,
+          "reach": 1,
+          "reactions": 0,
+          "shares": 0,
+          "general_clicks": 2,
+          "impressions": null,
+          "views": null
+        }
+      },
+      {
+        "provider_publication_raw": "20261012090215",
+        "provider_publication_timezone": null,
+        "provider_post_id": "1319703417896763_122096326947512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122096326947512994",
+        "destination_url": "https://sponsorintel.london/studio?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=application_review",
+        "substantive_caption": true,
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 0,
+          "reach": 2,
+          "reactions": 0,
+          "shares": 0,
+          "general_clicks": 0,
+          "impressions": null,
+          "views": null
+        }
+      },
+      {
+        "provider_publication_raw": "20261010090200",
+        "provider_publication_timezone": null,
+        "provider_post_id": "1319703417896763_122094988383512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122094988383512994",
+        "destination_url": "https://sponsorintel.london/guides/sponsorship-in-job-adverts?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=advert_wording",
+        "substantive_caption": true,
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 0,
+          "reach": 1,
+          "reactions": 0,
+          "shares": 0,
+          "general_clicks": 0,
+          "impressions": null,
+          "views": null
+        }
+      },
+      {
+        "provider_publication_raw": "20261008090439",
+        "provider_publication_timezone": null,
+        "provider_post_id": "1319703417896763_122093924469512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122093924469512994",
+        "destination_url": "https://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=facebook&utm_medium=organic_social&utm_campaign=launch_week&utm_content=evidence_snapshot",
+        "substantive_caption": true,
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 0,
+          "reach": 3,
+          "reactions": 0,
+          "shares": 0,
+          "general_clicks": 0,
+          "impressions": null,
+          "views": null
+        }
+      },
+      {
+        "provider_publication_raw": "20261007183925",
+        "provider_publication_timezone": null,
+        "provider_post_id": "1319703417896763_122093609445512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122093609445512994",
+        "destination_url": "https://sponsorintel.london/jobs?utm_source=facebook&utm_medium=organic_social&utm_campaign=social_launch&utm_content=company_welcome",
+        "substantive_caption": true,
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 1,
+          "reach": 9,
+          "reactions": 0,
+          "shares": 0,
+          "general_clicks": 1,
+          "impressions": null,
+          "views": null
+        }
+      },
+      {
+        "provider_publication_raw": "20261007182734",
+        "provider_publication_timezone": null,
+        "provider_post_id": "1319703417896763_122093604159512994",
+        "post_url": "https://facebook.com/122093616117512994/posts/122093604159512994",
+        "destination_url": null,
+        "substantive_caption": false,
+        "metrics": {
+          "comments": 0,
+          "link_clicks": 0,
+          "reach": 2,
+          "reactions": 0,
+          "shares": 0,
+          "general_clicks": 0,
+          "impressions": null,
+          "views": null
+        }
+      }
+    ],
+    "substantive_posts": 6,
+    "substantive_link_click_events": 4,
+    "comparison": "Seven matching post IDs and all six collected numeric metric fields unchanged from marketing-audit-2026-10-30.json. Reach not summed. Blank-caption row separate. No unique-user, causal or conversion inference.",
+    "definition_hold": "FBPO11 omitted; prior impressions/views naming conflict remains unresolved"
+  },
+  "instagram": {
+    "query": {
+      "brandId": "7294726",
+      "from": "2026-10-27T00:00:00+00:00",
+      "to": "2026-11-02T23:59:59+00:00",
+      "metrics": [
+        "IGEV01",
+        "IGEV37",
+        "IGEV04",
+        "IGEV22",
+        "IGEV16",
+        "IGEV05",
+        "IGEV06"
+      ]
+    },
+    "provider_synchronization_time": null,
+    "rows": [
+      {
+        "provider_day": "20261027",
+        "followers": 4,
+        "total_content": null,
+        "feed_posts": null,
+        "reels": null,
+        "stories": null,
+        "views": null,
+        "account_reach": 0
+      },
+      {
+        "provider_day": "20261028",
+        "followers": 4,
+        "total_content": null,
+        "feed_posts": null,
+        "reels": null,
+        "stories": null,
+        "views": null,
+        "account_reach": 0
+      },
+      {
+        "provider_day": "20261029",
+        "followers": 4,
+        "total_content": null,
+        "feed_posts": null,
+        "reels": null,
+        "stories": null,
+        "views": null,
+        "account_reach": 0
+      },
+      {
+        "provider_day": "20261030",
+        "followers": 4,
+        "total_content": null,
+        "feed_posts": null,
+        "reels": null,
+        "stories": null,
+        "views": null,
+        "account_reach": 0
+      },
+      {
+        "provider_day": "20261031",
+        "followers": 4,
+        "total_content": null,
+        "feed_posts": null,
+        "reels": null,
+        "stories": null,
+        "views": null,
+        "account_reach": 0
+      },
+      {
+        "provider_day": "20261101",
+        "followers": 4,
+        "total_content": null,
+        "feed_posts": null,
+        "reels": null,
+        "stories": null,
+        "views": null,
+        "account_reach": 0
+      },
+      {
+        "provider_day": "20261102",
+        "followers": null,
+        "total_content": 0,
+        "feed_posts": 0,
+        "reels": 0,
+        "stories": 0,
+        "views": 0,
+        "account_reach": null
+      }
+    ],
+    "latest_populated_follower_day": "2026-11-01",
+    "latest_populated_followers": 4,
+    "interpretation": "Provider reports zero content and views in the 27 October–2 November request, emitted on 2 November aggregate row. Missing daily fields and 2 November followers/reach remain null, not inferred zero. No first delivery proven."
+  },
+  "not_refreshed": [
+    "Native LinkedIn metrics/queues (last 30 October)",
+    "WhatsApp manual activity",
+    "Production performance observation history (no new cloud reads/writes)"
+  ],
+  "unchanged_holds": [
+    "capacity",
+    "unknown original business workflow",
+    "Instagram welcome",
+    "personal/company/Monzo",
+    "expired Sequence proposed slot"
+  ],
+  "decision": "No cadence, format, hold, publication or acquisition claim changes; current data remain sparse and acquisition unproven",
+  "references": [
+    "../../../docs/MARKETING_REVIEW-2026-10-30.md",
+    "https://help.metricool.com/facebook-metrics-8gdta",
+    "https://help.metricool.com/difference-between-published-posts-and-viewed-posts-in-the-period-2pwtf"
+  ]
+}
