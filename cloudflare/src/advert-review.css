@@ -1,0 +1,12 @@
+.advert-review { min-width:0; margin-top:1rem; }
+.advert-review dl { margin:1rem 0; }
+.advert-review dt { font-weight:700; margin-top:.75rem; }
+.advert-review dd { margin:.25rem 0; overflow-wrap:anywhere; }
+.advert-review blockquote { margin:.5rem 0; padding-left:.75rem; border-left:2px solid currentColor; }
+.advert-comparison { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.advert-comparison > div { min-width:0; }
+.advert-comparison pre { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; max-height:18rem; overflow:auto; padding:.75rem; border:1px solid #d6dfe4; border-radius:8px; }
+.advert-review > .secondary-button { margin:.75rem 0; }
+.advert-review details { margin:1rem 0; }
+.advert-review summary { cursor:pointer; font-weight:600; }
+@media(max-width:640px) { .advert-comparison { grid-template-columns:1fr; } }

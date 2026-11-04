@@ -1,0 +1,10 @@
+{
+  "release": "2.14.0",
+  "worker_version": "1bc441fd-a33b-4de1-88be-57bd99b28cfe",
+  "local_tests": {"passed":154,"failed":0,"marketing_cases":13},
+  "live_ui": {"briefs":5,"scheduled":4,"held":1,"published":0,"replay_created":0,"mobile_width":390,"mobile_panel_client_width":348,"mobile_panel_scroll_width":348},
+  "live_database": {"imported_schedule_events":4,"proposal_events":1,"hold_events":1,"metricool_schedule_receipts":3,"native_linkedin_schedule_observations":1},
+  "anonymous_marketing_api_status":403,
+  "cloud_workflow": {"id":"business-497613","state":"completed","finished_at":"2026-10-07T21:33:07.241Z","marketing":{"prepared":0,"external_posts_sent":0},"trigger":"owner acceptance run"},
+  "limitations":["No automatic planner, writer, reviewer or publisher deployed by this release","Manual receipts need provider verification","Historical schedules are not publication receipts","Future cron and desktop-heartbeat execution not observed in this acceptance"]
+}

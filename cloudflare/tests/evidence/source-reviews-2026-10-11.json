@@ -1,0 +1,42 @@
+{
+  "observed_at": "2026-10-11T10:37:17.649Z",
+  "kind": "agent_assisted_browser_review_through_owner_account",
+  "production_version": "2.52.0",
+  "new_discovery_leads_inserted": 0,
+  "scout_candidates_already_retained_today": 2,
+  "discovery_summary": {"total": 11, "unresolved": 6, "overdue": 0, "changed_links": 0, "current_linked_jobs": 2},
+  "reviews": [
+    {"id": "4bace142-d560-4ef9-88aa-a7dc7b00c035", "revision": 3, "decision": "rejected", "source": "https://www.argo-aviation.co.uk/job/b1-licensed-engineer-8/", "finding": "Exact retained link displays Page Not Found; current opening and employer remain unverified. Formal closure is not established."},
+    {"id": "615eda6e-601f-4e7e-905b-7c33460794e0", "revision": 2, "decision": "held", "finding": "Outwood employer advert 7581 salary fields conflict with its body and DfE. No source configured.", "follow_up_at": "2026-10-13T09:00:00.000Z"},
+    {"id": "ec758817-56e3-4585-89cc-4cf4202799bd", "revision": 2, "decision": "pending", "finding": "School source approved; wait for genuine scheduled publication before linking a current job."}
+  ],
+  "school_source": {
+    "id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+    "state_observed": "approved",
+    "school": "King's Lynn Academy",
+    "urn": "136202",
+    "company_number": "07338780",
+    "sponsor_id": "117def56da94d6962dbec248",
+    "register_source_date": "2026-10-09",
+    "probe_passed": true,
+    "probe_reservations": 24,
+    "daily_reservations_before": 156,
+    "daily_reservations_after": 180,
+    "daily_cap": 500,
+    "dfe_originals_reviewed": 7,
+    "employer_catalogue_entries_reviewed": 15,
+    "holds_recorded_before_approval": [
+      {"url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy", "reason": "deadline_conflict", "employer_reference": "3600-R0174", "finding": "DfE 21 October versus employer 16 October", "revision": 2},
+      {"url": "https://teaching-vacancies.service.gov.uk/jobs/science-technician-king-s-lynn-academy", "reason": "availability_conflict", "finding": "Exact DfE application route shows No suitable matches; absent from the full employer catalogue."},
+      {"url": "https://teaching-vacancies.service.gov.uk/jobs/senior-exam-invigilator-king-s-lynn-academy", "reason": "availability_conflict", "finding": "Exact DfE application route shows No suitable matches; different non-senior role must not substitute."}
+    ],
+    "expected_unaffected_roles": 4,
+    "expected_conditional_roles": 1,
+    "public_jobs_observed": 0,
+    "first_scheduled_publication_verified": false,
+    "repeated_scheduled_refresh_verified": false
+  },
+  "public_collections": {"total": 924, "employers": 35, "sponsorship": 54, "licensed": 872},
+  "limits": {"new_model_calls": 0, "new_google_calls": 0, "new_social_schedules": 0, "new_email_sends": 0, "forced_source_refreshes": 0},
+  "limitations": ["Attachments and complete external application screening not tested.", "No applicant eligibility judgment, application or recruiter contact.", "Source approval is not publication or evidence of repeated unattended operation.", "Cloudflare CLI access and current recovery check remain blocked; pending 2.53 code was not deployed."]
+}

@@ -1,0 +1,100 @@
+{
+  "observed_at": "2026-10-11T14:41:48.282753+00:00",
+  "release": "2.53.0",
+  "deployment": "prepared_not_deployed",
+  "production_release": "2.52.0",
+  "purpose": "Retain owner-observed platform metrics for eligible new planner contexts without inventing attribution or changing publishing decisions.",
+  "runtime": "Node 24.19.0",
+  "tests": {
+    "all": 548,
+    "passed": 548,
+    "failed": 0,
+    "duration_ms": 108890.418458,
+    "new_unit_tests": 10,
+    "new_isolated_worker_auth_d1_tests": 1,
+    "actual_worker_checks": [
+      "anonymous and member GET/POST forbidden",
+      "cross-origin owner POST forbidden",
+      "concurrent identical saves retain one observation and one audit",
+      "concurrent corrections retain one successor",
+      "overlapping owner/member sessions preserve authorization",
+      "zero outbound provider/model calls and no marketing receipts"
+    ],
+    "earlier_full_pass_duration_ms": 108240.006417,
+    "destination_validation": "Rejects unknown and inherited object-property names in addition to account/provider mismatches."
+  },
+  "browser": {
+    "component": "actual MarketingPerformance React component",
+    "backend": "actual performance API with isolated local SQLite; separate Worker/auth/D1 test covers auth",
+    "data": "fictional public-post values only",
+    "checks": [
+      "explicit zero and missing figure stay distinct",
+      "identical save returns same record reference",
+      "reporting period starting after end rejected",
+      "correction retains original and survives reload",
+      "untagged record remains unlinked",
+      "final saved view and form fit 390-pixel viewport"
+    ],
+    "date_entry": "Browser fill did not commit native date segments initially; native arrow-key input committed the dates and successful saved UTC conversion was inspected.",
+    "fixture_charset": "UTF-8 declared before final screenshot",
+    "mobile": {
+      "viewport_width": 390,
+      "page_width": 390,
+      "metric_grid_columns": "286px"
+    }
+  },
+  "build": {
+    "typescript": true,
+    "production": true,
+    "prerendered_pages": 17,
+    "initial_javascript_bytes": 367164,
+    "initial_javascript_gzip_bytes": 112331,
+    "initial_css_bytes": 105467,
+    "initial_css_gzip_bytes": 22020,
+    "unchanged_budgets": true,
+    "worker_dry_run": true
+  },
+  "migration": {
+    "prepared": "0035_marketing_performance.sql",
+    "applied_in_production": false,
+    "local_migrations": 35,
+    "local_schema_objects": 146,
+    "last_verified_production_migrations": 34,
+    "last_verified_production_objects": 141,
+    "prechange_recovery": "failed access; no new recovery or schema agreement confirmed",
+    "objects_added": [
+      "marketing_performance",
+      "marketing_performance_recent",
+      "marketing_performance_observation",
+      "marketing_performance_no_update",
+      "marketing_performance_no_delete"
+    ]
+  },
+  "production_effects": {
+    "observations_added": 0,
+    "model_calls": 0,
+    "provider_posts_or_schedules": 0,
+    "permissions_changed": 0,
+    "source_refreshes": 0,
+    "paid_requests_retried": 0
+  },
+  "limits": [
+    "Not a direct analytics feed or account-ownership proof",
+    "Historical untagged posts have no retroactive campaign attribution",
+    "No independent human judgment, autonomous optimisation, acquisition or revenue outcome proved",
+    "Real observation retention and the next genuine eligible planner context remain pending"
+  ],
+  "disk_free_before_checks_gib": 3.1,
+  "dependency_install": false,
+  "screenshots": [
+    {
+      "file": "outputs/sponsorintel-marketing-performance-local-2026-10-11.png",
+      "sha256": "e2474fe55e8b6248eeedb82cef93791e260d56bfadfead23d50983208938678f"
+    },
+    {
+      "file": "outputs/sponsorintel-marketing-performance-mobile-2026-10-11.png",
+      "sha256": "410f8854b0cd497a56a9313f83e467609c101631874cd3bf830e404027e1e5fc"
+    }
+  ],
+  "disk_free_before_final_suite_gib": 3.4
+}

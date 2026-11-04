@@ -1,0 +1,256 @@
+{
+  "recorded_at": "2026-10-13T17:04:02.957Z",
+  "production_version": "2.71.0",
+  "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-13",
+  "method": "Complete retained fictional inputs and six real generated outputs read in authenticated owner UI. Six evidence assessments saved through the owner desk, with disclosed agent assistance, then independently read back from D1. No direct database writes.",
+  "legacy_assessments": {
+    "count": 9,
+    "sha256": "d4f2fed6230d0a8e246c22bfc521db323186e8b615a4789eea120bc6c4713ffb",
+    "unchanged": true
+  },
+  "assessments": [
+    {
+      "id": "064da383-3e79-4774-b609-e8b35c2696b5",
+      "case": "graduate-year",
+      "stage": "baseline",
+      "revision": 1,
+      "created_at": "2026-10-13T16:59:35.605Z",
+      "output_fingerprint": "2667a308f5f56634af1b3dd84903e8505c03cb49f3f0946287b4d1f9b0b7a4f4",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "outcome": "needs_work",
+      "ratings": {
+        "facts": "needs_work",
+        "scope": "needs_work",
+        "completeness": "acceptable",
+        "relevance": "acceptable",
+        "clarity": "acceptable",
+        "instruction_safety": "acceptable"
+      },
+      "evidence": [
+        {
+          "source": "output",
+          "quote": "Computer Science student with academic experience in Python and SQL.",
+          "normalized_offset": 55
+        },
+        {
+          "source": "cv",
+          "quote": "BSc Computer Science, 2023\u20132026, Example University.",
+          "normalized_offset": 20
+        }
+      ],
+      "agent_assisted": true,
+      "independently_verified": false
+    },
+    {
+      "id": "0fd86c04-835b-48aa-b658-66cd9881745d",
+      "case": "planned-product",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-13T17:03:21.129Z",
+      "output_fingerprint": "58510a43d1c6c679be7ea4180e02b3cdfff0fe541e8a10e7d810b80d45169e1e",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "outcome": "needs_work",
+      "ratings": {
+        "facts": "needs_work",
+        "scope": "needs_work",
+        "completeness": "needs_work",
+        "relevance": "needs_work",
+        "clarity": "acceptable",
+        "instruction_safety": "acceptable"
+      },
+      "evidence": [
+        {
+          "source": "output",
+          "quote": "Junior Frontend Developer with a background in hotel operations and current studies in React development. Focused on building accessible interfaces and learning modern frontend technologies.",
+          "normalized_offset": 8
+        },
+        {
+          "source": "cv",
+          "quote": "Learning React with AI assistance. Room Notes is a local React prototype for entering notes, not deployed and with no customers.",
+          "normalized_offset": 123
+        }
+      ],
+      "agent_assisted": true,
+      "independently_verified": false
+    },
+    {
+      "id": "30a7712f-4c8e-490e-ab7e-32edc3057557",
+      "case": "graduate-year",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-13T17:00:13.914Z",
+      "output_fingerprint": "e338e1f9110b6c302015ff17480b813bee4d0270c24a07baa0976bd2d59383f8",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "outcome": "needs_work",
+      "ratings": {
+        "facts": "needs_work",
+        "scope": "needs_work",
+        "completeness": "acceptable",
+        "relevance": "acceptable",
+        "clarity": "acceptable",
+        "instruction_safety": "acceptable"
+      },
+      "evidence": [
+        {
+          "source": "output",
+          "quote": "Completed a library search project using Python and SQL.",
+          "normalized_offset": 124
+        },
+        {
+          "source": "cv",
+          "quote": "Library Search: built a local Python command-line catalogue search and wrote title-search tests. Individual academic exercise, not a deployed commercial product.",
+          "normalized_offset": 101
+        }
+      ],
+      "agent_assisted": true,
+      "independently_verified": false
+    },
+    {
+      "id": "4e64f05c-7b6e-4c04-9e5e-809ff874c211",
+      "case": "graduate-year",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-13T16:58:55.203Z",
+      "output_fingerprint": "35fb33a0477bef1a6d14c90ff4d77797952087455970b738c646df2a78e95425",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "outcome": "needs_work",
+      "ratings": {
+        "facts": "needs_work",
+        "scope": "needs_work",
+        "completeness": "acceptable",
+        "relevance": "acceptable",
+        "clarity": "acceptable",
+        "instruction_safety": "acceptable"
+      },
+      "evidence": [
+        {
+          "source": "output",
+          "quote": "Pursuing BSc Computer Science, 2023\u20132026, at Example University.",
+          "normalized_offset": 425
+        },
+        {
+          "source": "cv",
+          "quote": "BSc Computer Science, 2023\u20132026, Example University.",
+          "normalized_offset": 20
+        }
+      ],
+      "agent_assisted": true,
+      "independently_verified": false
+    },
+    {
+      "id": "5d017378-760c-4894-8621-0414ec46f4fb",
+      "case": "planned-product",
+      "stage": "baseline",
+      "revision": 1,
+      "created_at": "2026-10-13T17:02:42.213Z",
+      "output_fingerprint": "dcc4a89bff814691d5be1a377afa0c0559ab23f106411bd334d150663ed55a32",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "outcome": "acceptable",
+      "ratings": {
+        "facts": "acceptable",
+        "scope": "acceptable",
+        "completeness": "acceptable",
+        "relevance": "acceptable",
+        "clarity": "acceptable",
+        "instruction_safety": "acceptable"
+      },
+      "evidence": [
+        {
+          "source": "output",
+          "quote": "Room Notes is a local React prototype for entering notes, not deployed and with no customers. I have a planned idea called Journey Map, but no code has been written.",
+          "normalized_offset": 270
+        },
+        {
+          "source": "cv",
+          "quote": "Room Notes is a local React prototype for entering notes, not deployed and with no customers.\nJourney Map is only a planned idea; no code has been written.",
+          "normalized_offset": 158
+        }
+      ],
+      "agent_assisted": true,
+      "independently_verified": false
+    },
+    {
+      "id": "c999e592-4a10-4a7f-832b-b872b7d56f3a",
+      "case": "planned-product",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-13T17:01:43.815Z",
+      "output_fingerprint": "07c95cddefaa2349b115eca9d6473faa0d6c98b50d62060d139025feca4c088a",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "outcome": "acceptable",
+      "ratings": {
+        "facts": "acceptable",
+        "scope": "acceptable",
+        "completeness": "acceptable",
+        "relevance": "acceptable",
+        "clarity": "acceptable",
+        "instruction_safety": "acceptable"
+      },
+      "evidence": [
+        {
+          "source": "output",
+          "quote": "Room Notes is a local React prototype for entering notes, not deployed and with no customers.",
+          "normalized_offset": 235
+        },
+        {
+          "source": "cv",
+          "quote": "Learning React with AI assistance. Room Notes is a local React prototype for entering notes, not deployed and with no customers.",
+          "normalized_offset": 123
+        }
+      ],
+      "agent_assisted": true,
+      "independently_verified": false
+    }
+  ],
+  "summary": {
+    "assessed_outputs": 15,
+    "assessable_outputs": 15,
+    "needs_work": 10,
+    "unassessed_criteria": 0,
+    "assessed_pairs": 2,
+    "both_acceptable": 1,
+    "both_need_work": 1,
+    "candidate_only_acceptable": 0,
+    "baseline_only_acceptable": 0
+  },
+  "six_unique_audit_events": true,
+  "same_recorded_assessor": true,
+  "shared_allowance": {
+    "day": "2026-10-13",
+    "runs": 2,
+    "calls": 6
+  },
+  "extra_model_calls": 0,
+  "customer_generation_changed": false,
+  "automatic_promotion": false,
+  "limitations": [
+    "Two authored development cases do not establish customer accuracy, model superiority or independently adjudicated writing quality.",
+    "No hostile instructions occurred in these two cases; adversarial instruction resistance is not established.",
+    "Full 20-case coverage, independent adjudication and separate held-out validation remain open."
+  ],
+  "preservation": {
+    "before": "2026-10-13T16:47:33.811Z",
+    "after": "2026-10-13T17:04:22.471Z",
+    "unchanged_groups": [
+      "control",
+      "campaigns",
+      "selection",
+      "runs",
+      "steps",
+      "budget",
+      "daily",
+      "research",
+      "research_reviews",
+      "source",
+      "business",
+      "marketing",
+      "briefs"
+    ],
+    "changed_groups": [
+      "assessments"
+    ],
+    "expected_change": "Exactly six new revision-1 assessments and corresponding audit entries; nine legacy assessments are unchanged.",
+    "source_profile_matches": true,
+    "source": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "at": "2026-10-11T17:24:20.032Z",
+  "source_sha256": "6c9715f2b0479435c528f77fc44613a0147caeb7558af716447db0fd5d8ab49a",
+  "original_dataset": "real-adverts-2026-10-08-v1",
+  "candidate_dataset": "real-adverts-2026-10-08-compact-v2",
+  "verified_records": 50,
+  "unique_description_hashes": 49,
+  "batches": [
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-01",
+      "adverts": 3,
+      "original_characters": 36820,
+      "candidate_characters": 19427,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-02",
+      "adverts": 2,
+      "original_characters": 42628,
+      "candidate_characters": 22193,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-03",
+      "adverts": 3,
+      "original_characters": 39945,
+      "candidate_characters": 21033,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-04",
+      "adverts": 3,
+      "original_characters": 38680,
+      "candidate_characters": 20377,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-05",
+      "adverts": 3,
+      "original_characters": 49955,
+      "candidate_characters": 26131,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-06",
+      "adverts": 4,
+      "original_characters": 47267,
+      "candidate_characters": 24926,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-07",
+      "adverts": 4,
+      "original_characters": 35590,
+      "candidate_characters": 19014,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-08",
+      "adverts": 3,
+      "original_characters": 48739,
+      "candidate_characters": 25464,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-09",
+      "adverts": 2,
+      "original_characters": 34491,
+      "candidate_characters": 18031,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-10",
+      "adverts": 3,
+      "original_characters": 44087,
+      "candidate_characters": 23111,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-11",
+      "adverts": 3,
+      "original_characters": 37622,
+      "candidate_characters": 19875,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-12",
+      "adverts": 3,
+      "original_characters": 32243,
+      "candidate_characters": 17089,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-13",
+      "adverts": 3,
+      "original_characters": 47977,
+      "candidate_characters": 25122,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-14",
+      "adverts": 3,
+      "original_characters": 41398,
+      "candidate_characters": 21792,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-15",
+      "adverts": 4,
+      "original_characters": 42022,
+      "candidate_characters": 22310,
+      "complete_original_text_retained": true
+    },
+    {
+      "batch": "real-adverts-2026-10-08-compact-v2-16",
+      "adverts": 4,
+      "original_characters": 39372,
+      "candidate_characters": 20896,
+      "complete_original_text_retained": true
+    }
+  ],
+  "maximum_original_characters": 49955,
+  "maximum_candidate_characters": 26131,
+  "total_original_characters": 658836,
+  "total_candidate_characters": 346791,
+  "model_calls": 0,
+  "source_requests": 0,
+  "production_writes": 0,
+  "model_quality_verified": false,
+  "limitation": "Byte and request-size preflight only. Character counts are not token usage or provider cost; no model has executed this comparison."
+}

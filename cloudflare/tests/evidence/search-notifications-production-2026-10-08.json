@@ -1,0 +1,43 @@
+{
+  "checked_at": "2026-10-08T06:18:24.087Z",
+  "version": "2.28.0",
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "cache": "no-store",
+      "health": {
+        "ok": true,
+        "version": "2.28.0",
+        "register": {
+          "date": "2026-10-06",
+          "count": 127934,
+          "checked_at": "2026-10-07T07:15:14.478Z"
+        }
+      }
+    },
+    {
+      "path": "/applications",
+      "status": 200,
+      "cache": "private, no-store"
+    },
+    {
+      "path": "/api/career/search-notifications",
+      "status": 401,
+      "cache": "no-store"
+    },
+    {
+      "path": "/api/jobs?sector=education&licence=matched",
+      "status": 200,
+      "cache": "no-store",
+      "total": 94,
+      "catalog_total": 887
+    }
+  ],
+  "worker_version": "c60219cb-a52b-4e10-80ce-894f22fa52d1",
+  "migration": "0021_search_notifications.sql",
+  "existing_users_automatically_subscribed": false,
+  "followed_searches_at_check": 0,
+  "first_production_scheduled_receipt": "pending",
+  "browser": "Signed-in live account displays the new-matches entry point; existing applications remain present."
+}

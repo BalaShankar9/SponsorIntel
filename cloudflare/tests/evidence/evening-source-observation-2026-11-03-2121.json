@@ -1,0 +1,37 @@
+{
+  "observed_at": "2026-11-03T21:21:03.991Z",
+  "workflow": "sponsorintel-sources",
+  "filter": {
+    "date_start": "2026-11-03",
+    "page": 1,
+    "per_page": 5
+  },
+  "instances": [
+    {
+      "id": "scheduled-1793709055003",
+      "status": "complete",
+      "created_on": "2026-11-03T12:30:58.820Z",
+      "ended_on": "2026-11-03T12:34:33.000Z",
+      "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b"
+    },
+    {
+      "id": "scheduled-1793687455003",
+      "status": "complete",
+      "created_on": "2026-11-03T06:30:59.934Z",
+      "ended_on": "2026-11-03T07:35:07.000Z",
+      "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b"
+    },
+    {
+      "id": "scheduled-1793665855003",
+      "status": "complete",
+      "created_on": "2026-11-03T00:31:00.538Z",
+      "ended_on": "2026-11-03T01:05:03.000Z",
+      "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b"
+    }
+  ],
+  "finding": "Same three completed instances; latest noon. No evening instance or live wait handle observed. This is not terminal failure or dispatch-cause evidence.",
+  "application_read_repeated": false,
+  "recovery_read_repeated": false,
+  "actions_performed": [],
+  "holds_cleared": false
+}

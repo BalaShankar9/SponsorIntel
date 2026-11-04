@@ -1,0 +1,10 @@
+export const LEARNING_VERSION:string;
+export const RESOURCE_CHECKED:string;
+export const RESOURCE_REVIEW_DUE:string;
+export type LearningResource={id:string;title:string;provider:string;url:string;kind:string;startingPoint:string;access:string;project:string;checked_at:string;review_due_at:string};
+export type Skill={id:string;label:string;group:string;resource:string};
+export type SkillMention=Skill & {excerpt:string;shortened:boolean};
+export const resources:LearningResource[];
+export const skills:Skill[];
+export function skillMentions(description:unknown):SkillMention[];
+export function resourceCurrent(resource:LearningResource,now?:number):boolean;

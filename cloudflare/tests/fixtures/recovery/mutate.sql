@@ -1,0 +1,11 @@
+UPDATE metadata SET value='{"marker":"fictional-only-20261008","phase":"after"}' WHERE key='recovery_drill';
+UPDATE career_workspaces SET data=json_set(data,'$.profile.cv','After-checkpoint fictional CV'),revision=2,updated_at='2026-10-08T10:05:00.000Z' WHERE user_id='drill-keep';
+DELETE FROM career_workspaces WHERE user_id='drill-delete';
+DELETE FROM recovery_codes WHERE user_id='drill-delete';
+DELETE FROM session WHERE userId='drill-delete';
+DELETE FROM account WHERE userId='drill-delete';
+DELETE FROM user WHERE id='drill-delete';
+UPDATE agent_research_budget SET runs=2,calls=5 WHERE day='2026-10-08';
+UPDATE marketing_briefs SET state='published',revision=2,last_event='fictional-publication',updated_at='2026-10-08T10:05:00.000Z' WHERE id='fictional-brief';
+INSERT INTO marketing_events VALUES('fictional-publication','fictional-brief',2,1,'published','fictional-operator','No provider call occurred.','2026-10-08T10:05:00.000Z','fictional-key-2','fictional-hash-2');
+INSERT INTO marketing_receipts VALUES('fictional-publication','fictional-brief',1,'facebook-company','fictional-provider','fictional-publication-id','published',NULL,'https://example.invalid/fictional-publication','2026-10-08T10:05:00.000Z','Fictional receipt for isolated restore exercise only.');

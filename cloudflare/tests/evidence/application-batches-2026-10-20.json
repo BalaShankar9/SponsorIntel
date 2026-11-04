@@ -1,0 +1,221 @@
+{
+  "release": "2.89.0",
+  "observed_at": "2026-10-20T16:20:49.693Z",
+  "runtime_commit": "4368dd0c8c5079cd62a62cf37fee8f5dbb436710",
+  "worker_version": "4fa5281d-0b39-43e7-b025-a528259a67a8",
+  "rollback": {
+    "release": "2.88.0",
+    "worker_version": "4014c52f-ecdb-420d-9ab3-418e4386db43",
+    "runtime_commit": "c2393cb4c72fc5cb63fd3a68b757623ff5272fe6",
+    "retain_additive_schema": true
+  },
+  "pre_schema": {
+    "observed_at": "2026-10-20T16:15:19.325Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "73484b8230cfec5e7450daa29731c1434aa770e604964c2b1b64025dddf4b932",
+    "database_size_bytes": 123482112,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 177,
+      "actual_objects": 177,
+      "migration_files": 42,
+      "expected_sha256": "3cb0194e993c139218637bb940e32492b122ac578ed7c3515bf75f605c29d1da",
+      "actual_sha256": "3cb0194e993c139218637bb940e32492b122ac578ed7c3515bf75f605c29d1da",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "post_schema": {
+    "observed_at": "2026-10-20T16:19:46.010Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "948bb58c52d85d5c13902641611cef6ff4e1493c7d89101572ce1def4e1c0eed",
+    "database_size_bytes": 123518976,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 182,
+      "actual_objects": 182,
+      "migration_files": 43,
+      "expected_sha256": "9fa4fb58b04ede1e19619a64ec1f41cd03aebdb43b181ddb177f7372a59e85d3",
+      "actual_sha256": "9fa4fb58b04ede1e19619a64ec1f41cd03aebdb43b181ddb177f7372a59e85d3",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "local_validation": {
+    "node": "24.19.0",
+    "tests": 729,
+    "passed": 729,
+    "initial_full_run": {
+      "total": 728,
+      "passed": 727,
+      "finding": "Existing identical campaign replay could lose race between initial lookup and proposal. Fixed with exact-request reconciliation and deterministic regression."
+    },
+    "build": true,
+    "typecheck": true,
+    "prerenders": 18,
+    "unchanged_browser_budgets": true,
+    "deployment_dry_run": true,
+    "fixture_100_roles": true,
+    "external_requests": 0,
+    "model_calls": 0
+  },
+  "browser": {
+    "fictional_only_mutations": true,
+    "select_all_and_exclusion": true,
+    "lost_save_reply_exact_replay_one_batch": true,
+    "pause_retained_after_reload": true,
+    "removed_role_flagged": true,
+    "changed_profile_hides_and_marks_earlier_notes": true,
+    "terminal_end": true,
+    "mobile": {
+      "viewport": 390,
+      "document_width": 390,
+      "component_width": 366
+    },
+    "live_owner_feature_visible": true,
+    "live_batches": 0,
+    "live_events": 0,
+    "temporary_tabs_closed": true
+  },
+  "public_qa": {
+    "observed_at": "2026-10-20T16:20:49.570655+00:00",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "cache_control": "no-store",
+        "health": {
+          "ok": true,
+          "version": "2.89.0",
+          "register": {
+            "date": "2026-10-19",
+            "count": 127988,
+            "checked_at": "2026-10-20T07:15:36.345Z"
+          }
+        }
+      },
+      {
+        "path": "/api/career/batches",
+        "status": 401,
+        "cache_control": "no-store",
+        "reply": {
+          "error": "Sign in to sync your workspace."
+        }
+      },
+      {
+        "path": "/api/career/batches/nonexistent",
+        "status": 401,
+        "cache_control": "no-store",
+        "reply": {
+          "error": "Sign in to sync your workspace."
+        }
+      },
+      {
+        "path": "/applications",
+        "status": 200,
+        "cache_control": "private, no-store"
+      }
+    ]
+  },
+  "operations": {
+    "before": "2026-10-20T16:18:24.685Z",
+    "after": "2026-10-20T16:20:49.693Z",
+    "groups": {
+      "business_controls": {
+        "unchanged": true,
+        "sha256": "317fa0ed184264041c74d8a2db366bd83b3d677633a58fb057e0af7ad0582097"
+      },
+      "marketing_controls": {
+        "unchanged": true,
+        "sha256": "6247706feb45129b294dfac836c3e8aee0c1864e4d37451cdefbd6bd94df64c5"
+      },
+      "research_control": {
+        "unchanged": true,
+        "sha256": "5387c0b62f2eef02a152c1dae07f4cdce27aafbfd5510152227c2f4f035c1d05"
+      },
+      "application_controls": {
+        "unchanged": true,
+        "sha256": "0965773fe87ba2742dae69f1c633db1343f0c14eafc83bfc92cf9d17c7be2d90"
+      },
+      "source_controls": {
+        "unchanged": true,
+        "sha256": "71fc5175af70c7fc1a01768302b9b35f0ec86d4dc95e9e5256a701238708a308"
+      },
+      "marketing_briefs": {
+        "unchanged": true,
+        "sha256": "ef303f9d42b6b788a16f0c8eaab56805590b78d6d7c77e6a61680897a8cfb2cd"
+      },
+      "marketing_receipts": {
+        "unchanged": true,
+        "sha256": "9afdf7d4f5da855a08096a3c432535d3c3e59a15a5a5fc5af1160a8a679693e2"
+      },
+      "source_budget": {
+        "unchanged": true,
+        "sha256": "ad28548ae322a716ec3e3a4bb477238e67260bbc66e3e994c987ab6ecb39e012"
+      },
+      "ai_budget": {
+        "unchanged": true,
+        "sha256": "5db4d9e6f68220bf3713d67dad2fbd2dbeac96b50ea02e49852beaf42f3f4139"
+      },
+      "business_runs": {
+        "unchanged": true,
+        "sha256": "de88512c205311846c3480bba8dd76bd76a1bb18eb3a50161d94e60d7dd5fe56"
+      },
+      "source_runs": {
+        "unchanged": true,
+        "sha256": "4dd12d1e8845d285058aca2960d1cbbfab07c553fdc76532b34925047e9d8962"
+      },
+      "marketing_runs": {
+        "unchanged": true,
+        "sha256": "2272d50829132b89f7a54e72ada625092f5c76197b2f51604c98c9df97c68ffb"
+      },
+      "issues": {
+        "unchanged": true,
+        "sha256": "860244ede0418e6fb07c89e22ae6d9f19119ee12e8100b6fa814aaafa215f65d"
+      },
+      "foreign_keys": {
+        "unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    "ai_starts": 2,
+    "ai_calls": 8,
+    "source_reservations": 384,
+    "production_ai_google_refresh_email_social_application_actions": 0
+  },
+  "runtime_head_ci": {
+    "head": "4368dd0c8c5079cd62a62cf37fee8f5dbb436710",
+    "linux_checks": [
+      118744286164,
+      118744261723
+    ],
+    "state": "not started - account billing lock",
+    "original_annotations_inspected": true,
+    "gitguardian": {
+      "id": 118744263945,
+      "conclusion": "success"
+    }
+  },
+  "limitations": [
+    "Preparation notes only; no background preparation, applicant dispatch approval or submission provider.",
+    "20 retained batches and 100 selected saved roles; archive is not an importable workspace backup.",
+    "No fictional production batch or customer deletion test.",
+    "No independent writing-quality or hiring-outcome acceptance."
+  ]
+}

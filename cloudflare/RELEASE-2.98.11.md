@@ -1,0 +1,25 @@
+# 2.98.11 — preserve evidence across advert headings
+
+3 November 2026. Live deployment and verification are recorded below.
+
+Advert Check 0.1.3 recognises a standalone or inline Sponsorship heading and a narrow “Unfortunately…” preface before a direct employer refusal. It retains the complete original evidence sentence. Headings cannot hide an adjacent caveat, and questions, examples, exceptions, conflicting clauses and long unsupported wording remain unclear. The website paste checker uses the same local analyser. Public job labels, research fingerprints and model settings are unchanged.
+
+A read-only replay used the 50 original retained adverts from 8 October (49 unique bodies, 18 sources). All frozen record/content hashes match and every displayed quotation occurs in its source. Three refusal examples and one offer change from unclear to the provisional accepted label; the other 46 results are unchanged. The final matrix is 14 not-stated → unclear; two conditional → conditional; eight provisionally ambiguous → unclear; ten refusals → three refused/seven unclear; sixteen offers → eleven offered/five unclear. These are historical, AI-assisted provisional annotations, not independently adjudicated accuracy or current opportunities. Full descriptions remain private. No model or source request was made; the original D1 read used 50 rows and zero writes, with no repeated query.
+
+The unpublished 0.1.2 candidate revealed a fictional counterexample during pre-release review: stripping a Visa Sponsorship heading could hide immigration context in a training-funding clause after an offer. The final analyser checks that context against the complete sentence and retains uncertainty. A regression covers it. The candidate was preserved privately and its version skipped; no 0.1.2 public asset or deployment occurred. Prior 0.1.0/0.1.1 archives remain byte-identical. New archive: **26,528 bytes**, SHA-256 **26da3edea46fd7c6f193cfb2dafac872048ea5d9e51e5bb44d73f79a3180189b**.
+
+## Validation and boundaries
+
+Pinned Node 24.19.0: **20/20 targeted tests** pass in both combined and isolated checkouts. Isolated TypeScript/build, **21 prerenders**, browser budgets and version-upload dry run pass. No dependency installation or schema change; same-day security/recovery evidence applies to the unchanged dependencies/schema.
+
+Connected Chrome checks four fictional cases in the built website and the exact archive's popup scripts served locally. Result invalidation and clearing pass; the website fits a 390-pixel viewport. The first browser assertion used an abbreviated title rather than the actual title; corrected data-status assertions pass without changing the product. This is local UI/script evidence, not an installed extension, active-tab capture, production-browser or store acceptance. Temporary tab/server closed and viewport reset. Screenshots and aggregate replay are in `tests/evidence/extension-013-2026-11-03/`.
+
+Capture, popup, permission and CSP bytes are unchanged; no upload, persistence, telemetry, background scanning, AI or licence lookup is introduced. The substantive approved privacy article is byte-identical; its header adds only a verified 0.1.3 compatibility notice. Policy approval remains separate from store certifications. Publisher payment is owner-reported; dashboard scripting remains blocked and must not be bypassed. Store artwork, actual installed-current-version testing, account declarations, manual upload/submission and independent semantic acceptance remain open.
+
+Deploy only the isolated **2.98.10** lineage with these changes and version metadata set to **2.98.11**, retaining 46 migrations and no prepared Founder saving/0047/activation. Do not deploy the whole prepared 2.99.0 branch. Compatible rollback is **2.98.10 Worker c64fe70f-4c83-4a6f-92ba-62cdcc598fe0**. Separate version upload/deploy preserves inherited queues/triggers. All capacity, supervisor, marketing, model and source holds remain.
+
+## Live verification
+
+**Live at 100% since 3 November 18:12:32.950939 UTC**, Worker **05d33310-4679-440a-a35a-0ac964d9bcbe**, deployment **61172193-2c7d-4a5f-a532-d8aa243d1c03**. Feature commit **64380de6e7fef4dc9bfb63cc8aa04a536713d933**. Separate upload/deploy exited successfully and retained inherited email queues. No triggers or migrations were submitted. Rollback remains 2.98.10 Worker **c64fe70f-4c83-4a6f-92ba-62cdcc598fe0**.
+
+Eleven metrics-excluded live HTTP checks pass at **18:12:58 UTC**: exact prerender, compiled page/checker, all three public archives, current metadata, approved policy HTML and empty HEAD, skipped 0.1.2 returning 404, and health 2.98.11. These verify deployed bytes; local browser checks remain separately scoped. No production-browser visit, source refresh, model/Google-property call, application, social/email send, purchase, customer-data write or hold release accompanied the update. The exact final pushed head is checked separately for hosted CI; prior local results do not clear GitHub's billing lock.

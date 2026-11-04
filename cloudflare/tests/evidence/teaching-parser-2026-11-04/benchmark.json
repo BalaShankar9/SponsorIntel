@@ -1,0 +1,172 @@
+{
+  "observed_at": "2026-11-04T04:58:33.091Z",
+  "node": "v24.19.0",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "baseline": "58ca3efee2a30b82d38d728d834f61c9342900c8",
+  "scope": "Fictional local Node parser comparison, not Cloudflare CPU or production-source acceptance",
+  "equivalent_cases": 45,
+  "fixture_digest": "461820111d43d72ba6293dd94427de03347233c3451d64001c15d8ad77729547",
+  "baseline_files": {
+    "worker/teaching-vacancies.js": "cd309efa9751b0045a36a7ede9c2816a2d12534ef9635c4c388a6f543c28ec72",
+    "worker/teaching-location.js": "79156d4d3aebfc5492b19ad900f6a4550b80165388518ff34421bf77000b367e"
+  },
+  "candidate_files": {
+    "worker/teaching-vacancies.js": "1621995e2c88548078ba1572acccc0f7c3fadc589f9e6f126ef9ddd9964bf882",
+    "worker/teaching-location.js": "f32d01dc7000cd2fadbba06f7201a78ddc25d9d07106f0fb2e0e09d5d693cc67",
+    "worker/teaching-tree.js": "a0e867f3e9b57b28709ba3b89b8a10f9f73143055f2f8a4d5754774beaffb2d5"
+  },
+  "timing": [
+    {
+      "case": "small",
+      "html_bytes": 1085,
+      "baseline_thread_cpu_ms_per_parse": 0.2557,
+      "candidate_thread_cpu_ms_per_parse": 0.1995,
+      "reduction_percent": 21.978881501759865,
+      "samples": {
+        "baseline": [
+          0.5254,
+          0.3113,
+          0.2722,
+          0.1947,
+          0.17880000000000001,
+          0.23650000000000002,
+          0.4803,
+          0.2239,
+          0.2088,
+          0.324,
+          0.2392,
+          0.2943
+        ],
+        "candidate": [
+          0.25880000000000003,
+          0.21810000000000002,
+          0.20870000000000002,
+          0.1673,
+          0.1744,
+          0.23610000000000003,
+          0.2857,
+          0.2189,
+          0.1541,
+          0.1538,
+          0.1903,
+          0.1454
+        ]
+      }
+    },
+    {
+      "case": "medium",
+      "html_bytes": 96285,
+      "baseline_thread_cpu_ms_per_parse": 12.99925,
+      "candidate_thread_cpu_ms_per_parse": 8.494599999999998,
+      "reduction_percent": 34.65315306652308,
+      "samples": {
+        "baseline": [
+          12.115,
+          12.8867,
+          13.304599999999999,
+          12.936699999999998,
+          12.6959,
+          13.215100000000001,
+          12.7437,
+          14.4301,
+          13.3964,
+          13.0618,
+          13.4362,
+          11.658100000000001
+        ],
+        "candidate": [
+          8.2204,
+          8.2167,
+          7.9557,
+          8.527,
+          8.4622,
+          9.0459,
+          9.0803,
+          9.170300000000001,
+          8.9661,
+          9.0362,
+          8.046,
+          8.3162
+        ]
+      }
+    },
+    {
+      "case": "large",
+      "html_bytes": 613085,
+      "baseline_thread_cpu_ms_per_parse": 75.53325000000001,
+      "candidate_thread_cpu_ms_per_parse": 57.730599999999995,
+      "reduction_percent": 23.569289021722238,
+      "samples": {
+        "baseline": [
+          90.83529999999999,
+          86.9759,
+          87.8114,
+          84.3027,
+          86.689,
+          75.9838,
+          75.0827,
+          74.97200000000001,
+          68.0847,
+          70.95320000000001,
+          65.04560000000001,
+          66.4191
+        ],
+        "candidate": [
+          61.6398,
+          59.948699999999995,
+          59.39829999999999,
+          58.8922,
+          59.4419,
+          57.501400000000004,
+          57.0446,
+          57.959799999999994,
+          53.2136,
+          56.1203,
+          52.890499999999996,
+          52.574
+        ]
+      }
+    },
+    {
+      "case": "catalogue-1",
+      "html_bytes": 98983,
+      "baseline_thread_cpu_ms_per_parse": 12.988299999999999,
+      "candidate_thread_cpu_ms_per_parse": 10.209399999999999,
+      "reduction_percent": 21.395409714897255,
+      "samples": {
+        "baseline": [
+          9.8491,
+          12.847900000000001,
+          14.6912,
+          15.388200000000001,
+          16.7505,
+          13.076699999999999,
+          12.1099,
+          12.9363,
+          11.6843,
+          12.0533,
+          13.040299999999998,
+          14.660300000000001
+        ],
+        "candidate": [
+          8.917300000000001,
+          9.9652,
+          11.767900000000001,
+          11.4604,
+          10.9657,
+          10.830200000000001,
+          9.7324,
+          9.6409,
+          9.557599999999999,
+          8.9269,
+          10.9099,
+          10.4536
+        ]
+      }
+    }
+  ],
+  "source_requests": 0,
+  "production_writes": 0,
+  "limits_changed": false
+}

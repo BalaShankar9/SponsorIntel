@@ -1,0 +1,60 @@
+{
+  "release": "2.25.0",
+  "checked_at": "2026-10-08T04:57:57.705054+00:00",
+  "worker_version": "c646d909-a5ed-4079-a5e3-29dcec8fd261",
+  "previous_worker_version": "2b8c7700-bc0f-4932-8734-c90554c4da6e",
+  "health": {
+    "ok": true,
+    "version": "2.25.0",
+    "register": {
+      "date": "2026-10-06",
+      "count": 127934,
+      "checked_at": "2026-10-07T07:15:14.478Z"
+    }
+  },
+  "instagram_brief": {
+    "id": "a19f14be-af7f-45d2-9382-2026162075f3",
+    "state": "proposed",
+    "version": 1,
+    "revision": 1,
+    "expires_at": "2026-10-15T04:32:15.871Z",
+    "review_count": 0,
+    "receipt_count": 0
+  },
+  "ai_budget": {
+    "day": "2026-10-08",
+    "runs": 4,
+    "calls": 6
+  },
+  "retained_marketing_run": {
+    "id": "marketing-2026-10-08",
+    "state": "no_post",
+    "calls": 0,
+    "policy": "sourced-guides-v1"
+  },
+  "latest_scheduled_business": {
+    "id": "business-497620",
+    "state": "completed",
+    "created_at": "2026-10-08T04:45:34.000Z",
+    "finished_at": "2026-10-08T04:45:39.472Z",
+    "trigger_kind": "scheduled"
+  },
+  "anonymous_marketing_status": 403,
+  "new_production_model_calls": 0,
+  "new_provider_schedules": 0,
+  "new_posts_sent": 0,
+  "browser": {
+    "new_review_scope_visible": true,
+    "original_no_post_status_retained": true,
+    "daily_check_disabled": true,
+    "screenshot_in_task_outputs": "sponsorintel-editorial-review-live.png"
+  },
+  "metricool_connection": {
+    "brand_id": 7294726,
+    "instagram": "sponsorintellondon",
+    "facebook": "1319703417896763",
+    "timezone": "Europe/London",
+    "verified_by": "getbrandsettings"
+  },
+  "daily_heartbeat": "Existing active sponsor-intel-daily-improvement updated; no duplicate created."
+}

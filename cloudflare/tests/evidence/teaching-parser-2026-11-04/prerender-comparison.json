@@ -1,0 +1,26 @@
+{
+  "observed_at": "2026-11-04T10:55:30.554498+00:00",
+  "pages": [
+    {
+      "path": "/innovator-founder",
+      "only_difference": "temporary build root in pre-existing React Suspense diagnostic template attributes",
+      "visible_copy_and_source_claims_unchanged": true,
+      "before_sha256": "8cde409b6943e567980f00f8c24f6d9bf2d1c5141687f79acbc7d796cc6b18c7",
+      "after_sha256": "fa1aba5965696fc07ae5429796ac6444372c0850da00053540049ccb6ce449fd"
+    },
+    {
+      "path": "/browser-extension",
+      "only_difference": "temporary build root in pre-existing React Suspense diagnostic template attributes",
+      "visible_copy_and_source_claims_unchanged": true,
+      "before_sha256": "88ba785dcea46b3933b0f3d117b5b307836662d877e44815a4d43488435ff2d7",
+      "after_sha256": "0bb80e4e8e74e1d7a7b09c482cc24f66185e214307cb2c57121bb62533a9ee1a"
+    },
+    {
+      "path": "/skills",
+      "only_difference": "temporary build root in pre-existing React Suspense diagnostic template attributes",
+      "visible_copy_and_source_claims_unchanged": true,
+      "before_sha256": "aecd9ce6c4f86c503363cfe04e489c17995797c0b60acc52472682b1cb51d854",
+      "after_sha256": "bd1ec89e18225376ac2b534122bc5831bd04d59b42e6f425a1debad81267c1f0"
+    }
+  ]
+}

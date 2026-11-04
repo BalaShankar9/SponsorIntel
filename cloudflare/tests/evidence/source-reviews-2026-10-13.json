@@ -1,0 +1,189 @@
+{
+  "observed_at": "2026-10-13T11:18:29.010Z",
+  "method": "Agent-assisted through authenticated owner dashboard; read-only database verification; no direct database writes",
+  "discovery": [
+    {
+      "lead_id": "113a240e-708a-4d31-b5a7-fa2ca482901b",
+      "revision": 3,
+      "recorded_at": "2026-10-13T10:58:36.586Z",
+      "employer": "Danu Insights",
+      "state": "held",
+      "observed_at": "2026-10-11T11:04:00.000Z",
+      "follow_up_at": "2026-10-15T11:00:00.000Z",
+      "job_id": null,
+      "method": "agent_assisted",
+      "preserved_revisions": 2
+    },
+    {
+      "lead_id": "5a3587bd-69a9-4238-86f0-33dfd56b6da7",
+      "revision": 3,
+      "recorded_at": "2026-10-13T10:57:45.730Z",
+      "employer": "Hazelwick School",
+      "state": "held",
+      "observed_at": "2026-10-11T11:20:00.000Z",
+      "follow_up_at": "2026-10-14T11:30:00.000Z",
+      "job_id": null,
+      "method": "agent_assisted",
+      "preserved_revisions": 2
+    },
+    {
+      "lead_id": "615eda6e-601f-4e7e-905b-7c33460794e0",
+      "revision": 3,
+      "recorded_at": "2026-10-13T10:55:47.323Z",
+      "employer": "Outwood Academy Shafton",
+      "state": "held",
+      "observed_at": "2026-10-11T10:25:00.000Z",
+      "follow_up_at": "2026-10-14T09:00:00.000Z",
+      "job_id": null,
+      "method": "agent_assisted",
+      "preserved_revisions": 2
+    },
+    {
+      "lead_id": "c40c5567-c617-4047-8f93-af72b9feacaa",
+      "revision": 3,
+      "recorded_at": "2026-10-13T11:05:31.178Z",
+      "employer": "North Ridge High School",
+      "state": "rejected",
+      "observed_at": "2026-10-13T11:05:00.000Z",
+      "follow_up_at": null,
+      "job_id": null,
+      "method": "agent_assisted",
+      "preserved_revisions": 2
+    },
+    {
+      "lead_id": "ec758817-56e3-4585-89cc-4cf4202799bd",
+      "revision": 5,
+      "recorded_at": "2026-10-13T11:01:09.594Z",
+      "employer": "King's Lynn Academy",
+      "state": "linked",
+      "observed_at": "2026-10-13T10:59:00.000Z",
+      "follow_up_at": null,
+      "job_id": "e2f7bc10bb188fa2488bacc4",
+      "method": "agent_assisted",
+      "preserved_revisions": 4
+    }
+  ],
+  "advert_reviews": [
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/science-technician-king-s-lynn-academy",
+      "revision": 1,
+      "state": "held",
+      "title": "Science Technician \u2014 King's Lynn Academy",
+      "reason": "availability_conflict",
+      "observed_at": "2026-10-11T10:33:44.000Z",
+      "follow_up_at": "2026-10-12T10:32:24.000Z",
+      "recorded_at": "2026-10-11T10:33:51.322Z"
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/science-technician-king-s-lynn-academy",
+      "revision": 2,
+      "state": "held",
+      "title": "Science Technician \u2014 King's Lynn Academy",
+      "reason": "availability_conflict",
+      "observed_at": "2026-10-13T11:07:00.000Z",
+      "follow_up_at": "2026-10-14T11:30:00.000Z",
+      "recorded_at": "2026-10-13T11:16:27.944Z"
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/senior-exam-invigilator-king-s-lynn-academy",
+      "revision": 1,
+      "state": "held",
+      "title": "Senior Exam Invigilator \u2014 King's Lynn Academy",
+      "reason": "availability_conflict",
+      "observed_at": "2026-10-11T10:34:10.000Z",
+      "follow_up_at": "2026-10-12T10:33:58.000Z",
+      "recorded_at": "2026-10-11T10:34:11.872Z"
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/senior-exam-invigilator-king-s-lynn-academy",
+      "revision": 2,
+      "state": "held",
+      "title": "Senior Exam Invigilator \u2014 King's Lynn Academy",
+      "reason": "availability_conflict",
+      "observed_at": "2026-10-13T11:13:00.000Z",
+      "follow_up_at": "2026-10-15T09:30:00.000Z",
+      "recorded_at": "2026-10-13T11:17:04.537Z"
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+      "revision": 1,
+      "state": "held",
+      "title": "Teacher of Drama \u2014 King's Lynn Academy \u2014 3600-R0174",
+      "reason": "deadline_conflict",
+      "observed_at": "2026-10-11T10:29:11.000Z",
+      "follow_up_at": "2026-10-12T10:29:11.000Z",
+      "recorded_at": "2026-10-11T10:30:07.847Z"
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+      "revision": 2,
+      "state": "held",
+      "title": "Teacher of Drama \u2014 King's Lynn Academy \u2014 3600-R0174",
+      "reason": "deadline_conflict",
+      "observed_at": "2026-10-11T10:30:48.000Z",
+      "follow_up_at": "2026-10-12T10:29:11.000Z",
+      "recorded_at": "2026-10-11T10:30:48.841Z"
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "apply_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+      "revision": 3,
+      "state": "held",
+      "title": "Teacher of Drama \u2014 King's Lynn Academy \u2014 3600-R0174",
+      "reason": "deadline_conflict",
+      "observed_at": "2026-10-13T11:06:00.000Z",
+      "follow_up_at": "2026-10-15T09:00:00.000Z",
+      "recorded_at": "2026-10-13T11:15:42.387Z"
+    }
+  ],
+  "new_leads_today": 1,
+  "new_operator_leads": 0,
+  "browser_summary": {
+    "retained": 16,
+    "awaiting_review": 8,
+    "overdue_discovery": 0,
+    "changed_links": 0,
+    "current_links": 3,
+    "held_adverts": 3,
+    "overdue_adverts": 0
+  },
+  "public_catalogue": {
+    "generated_at": "2026-10-13T11:18:29.102Z",
+    "collections": {
+      "total": 924,
+      "employers": 36,
+      "early_career": 50,
+      "sponsorship": 55,
+      "licensed": 883,
+      "salary": 145
+    }
+  },
+  "business": [
+    {
+      "id": "business-497746",
+      "state": "attention",
+      "created_at": "2026-10-13T10:45:48.000Z",
+      "finished_at": "2026-10-13T10:46:10.246Z"
+    }
+  ],
+  "limitations": [
+    "No independent human adjudication or applicant eligibility claim.",
+    "Hazelwick overlapping adverts need identity/contract/visa reconciliation; no conclusion they are the same vacancy.",
+    "English proof reviewed after navigation cleanup; the next genuine source refresh must separately establish its continued match.",
+    "No new source approval, public role, source refresh, model call, provider send or application.",
+    "Whitchurch and Lift Kingswood later follow-ups remain due today; Revolut is due 14 October."
+  ],
+  "business_platform": {
+    "id": "business-497746",
+    "status": "Completed",
+    "success": true,
+    "end_display_europe_london": "2026-10-13 11:46:10",
+    "observation_scope": "Original provider status; application snapshot predates delivery and review reconciliation."
+  }
+}

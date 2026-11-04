@@ -1,0 +1,106 @@
+Window: "Extensions", App: Google Chrome.
+0 standard window Extensions - Google Chrome - Sponsor Intel Temporary QA 017, URL: chrome://extensions/, Secondary Actions: Raise
+	1 container Extensions - Google Chrome - Sponsor Intel Temporary QA 017, URL: chrome://extensions/
+		2 container
+			3 toolbar
+				4 button Back
+				5 button (disabled) Forward
+				6 button Reload
+				7 container
+					8 pop up button Chrome
+					9 text field (settable) Address and search bar, Value: chrome://extensions, Placeholder: Ask Google or type a URL
+					10 button Bookmark this tab
+				11 container
+					12 pop up button Sponsor Intel job notes
+					13 pop up button Extensions
+				14 button Sponsor Intel Temporary QA 017
+				15 pop up button New Chrome available
+			16 container
+				17 scroll area
+					18 HTML content Extensions, URL: chrome://extensions/
+						19 container
+							20 heading Extensions, Value: 1
+								21 text Extensions
+							22 search text field (settable) Search extensions
+							23 text Developer mode
+							24 switch Developer mode, Value: on
+							25 container
+								26 button Load unpacked
+								27 button Pack extension
+								28 button Update, Help: Update extensions now
+						29 container
+							30 container
+								31 menu Secondary Actions: Cancel
+									32 My extensions
+										33 text My extensions
+									34 Keyboard shortcuts
+										35 text Keyboard shortcuts
+								36 text Using AI coding agents to build extensions? Install the 
+								37 link Chrome Extensions and Chrome Web Store skill, Value: developer.chrome.com/docs/extensions/ai/build-with-ai?utm_source=ext_sidebar&hl=en-US#modern_web_guidance
+								38 text  to teach your coding agent the latest API updates and best practices.
+								39 container
+									40 text Discover more extensions and themes on the 
+									41 link Chrome Web Store, Value: chromewebstore.google.com/category/extensions?utm_source=ext_sidebar&hl=en-US
+							42 container
+								43 heading All Extensions Pin new extensions to Toolbar Pin new extensions to Toolbar, Value: 2
+									44 text All Extensions Pin new extensions to Toolbar
+									45 switch Pin new extensions to Toolbar, Value: on
+								46 image Unpacked extension
+								47 heading Sponsor Intel — Advert Check, Value: 3
+									48 text Sponsor Intel — Advert Check
+								49 text 0.1.7 Read sponsorship wording in one job advert, with evidence. Local checks; unclear wording stays unclear. ID: bbcjcdnakfglaadnfjeipghbpjadnehb
+								50 button Details
+								51 button Remove
+								52 switch Off, Value: off
+								53 image Unpacked extension
+								54 heading Sponsor Intel — Job notes, Value: 3
+									55 text Sponsor Intel — Job notes
+								56 text 0.2.0 Read sponsorship evidence beside the jobs you browse. Enable one tab, inspect a complete advert and keep unknowns visible. ID: objlfcgaepkjonajkmebhlacfdgiloai
+								57 button Details
+								58 button Remove
+								59 button Reload
+								60 switch On, extension enabled, Value: on
+								61 image Added by a third-party
+								62 heading Adobe Acrobat: PDF edit, convert, sign tools, Value: 3
+									63 text Adobe Acrobat: PDF edit, convert, sign tools
+								64 text 26.10.2.1 Do more in Google Chrome with Adobe Acrobat PDF tools. View, fill, comment, sign, and try convert and compress tools. ID: efaidnbmnnnibpcajpcglclefindmkaj
+								65 button Details
+								66 button Remove
+								67 switch Off, Value: off
+								68 image Added by a third-party
+								69 heading Claude, Value: 3
+									70 text Claude
+								71 text 1.0.104 Claude in Chrome ID: fcoeoabgfenejglbffodgkkbkcdhcgfn
+								72 button Details
+								73 button Remove
+								74 switch Off, Value: off
+								75 heading Google Docs Offline, Value: 3
+									76 text Google Docs Offline
+								77 text 1.111.1 Edit, create, and view your documents, spreadsheets, and presentations — all without internet access. ID: ghbmnnjooekpmoecnnnilnnbdlolhkhi Inspect views
+								78 link service worker (Inactive)
+									79 text service worker (Inactive)
+								80 button Details
+								81 button Remove
+								82 switch On, extension enabled, Value: on
+			83 pop up button Tab search
+			84 container
+				85 tab group
+					86 tab (selected, settable, boolean) Extensions, Value: on
+						87 button Close
+			88 button New Tab
+	89 close button
+	90 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	91 minimize button
+92 menu bar
+	93 Chrome
+	94 File
+	95 Edit
+	96 View
+	97 History
+	98 Bookmarks
+	99 Profiles
+	100 Tab
+	101 Window
+	102 Help
+
+The focused UI element is 26 button Load unpacked

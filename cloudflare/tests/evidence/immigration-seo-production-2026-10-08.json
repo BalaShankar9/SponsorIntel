@@ -1,0 +1,71 @@
+{
+  "release": "2.27.0",
+  "checked_at": "2026-10-08T05:50:14.981884+00:00",
+  "worker_version": "9a8e9bef-c6ee-45c8-bb35-bfc5e6cd69ae",
+  "previous_worker_version": "023b0e28-630b-4827-9723-bee94c67aa60",
+  "health": {
+    "ok": true,
+    "version": "2.27.0",
+    "register": {
+      "date": "2026-10-06",
+      "count": 127934,
+      "checked_at": "2026-10-07T07:15:14.478Z"
+    }
+  },
+  "read_only_http_acceptance": {
+    "origin": "https://sponsorintel.london",
+    "checked_at": "2026-10-08T05:48:30.108Z",
+    "checks": "Initial HTML, topic links, canonical, freshness headers and public bootstrap only; not indexing or rankings.",
+    "results": [
+      {
+        "path": "/updates",
+        "status": 200,
+        "guidance_cards": 19,
+        "source_snapshot": "2026-10-08T05:48:29.656Z",
+        "html_bytes": 155157
+      },
+      {
+        "path": "/updates?topic=student",
+        "status": 200,
+        "guidance_cards": 3,
+        "source_snapshot": "2026-10-08T05:48:30.038Z",
+        "html_bytes": 101246
+      },
+      {
+        "path": "/updates?topic=business",
+        "status": 200,
+        "guidance_cards": 6,
+        "source_snapshot": "2026-10-08T05:48:30.150Z",
+        "html_bytes": 110237
+      }
+    ]
+  },
+  "preview_hostname_noindex": true,
+  "live_browser": {
+    "topics_are_links": true,
+    "public_bootstrap_consumed": true,
+    "student_guidance_cards": 3,
+    "business_guidance_cards": 6,
+    "screenshot": "sponsorintel-searchable-guidance-live.png"
+  },
+  "observed_scheduled_business": {
+    "id": "business-497621",
+    "state": "completed",
+    "created_at": "2026-10-08T05:45:34.000Z",
+    "finished_at": "2026-10-08T05:45:40.549Z",
+    "trigger_kind": "scheduled",
+    "guidance": 19,
+    "explained": 19,
+    "full_bodies": 0
+  },
+  "ai_budget": {
+    "day": "2026-10-08",
+    "runs": 4,
+    "calls": 6
+  },
+  "new_model_calls": 0,
+  "new_google_requests": 0,
+  "new_social_posts": 0,
+  "tests": 303,
+  "ranking_improvement": "Not measured. Initial HTML acceptance is not indexing, traffic or conversion evidence."
+}

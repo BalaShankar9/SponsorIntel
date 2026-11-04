@@ -1,0 +1,77 @@
+{
+  "observedAt": "2026-11-03T22:56:31.588Z",
+  "scope": "Real modules in fictional browser DOM; explicit source URL parameter, not installed or live-site acceptance",
+  "checks": [
+    {
+      "name": "complete posting retains first and final sections and exact conditions",
+      "status": "passed"
+    },
+    {
+      "name": "hidden and application content stay outside captured text",
+      "status": "passed"
+    },
+    {
+      "name": "conditions beside an application link are kept while the control is excluded",
+      "status": "failed",
+      "error": "Final condition was dropped"
+    },
+    {
+      "name": "closed conditions hold the read; expansion preserves their text",
+      "status": "passed"
+    },
+    {
+      "name": "selected exact role matches and a different role is refused",
+      "status": "passed"
+    },
+    {
+      "name": "a changed application target invalidates unchanged description text",
+      "status": "passed"
+    },
+    {
+      "name": "foreign application destination is refused",
+      "status": "passed"
+    },
+    {
+      "name": "two visible postings are ambiguous",
+      "status": "passed"
+    },
+    {
+      "name": "a hidden duplicate is not used",
+      "status": "passed"
+    },
+    {
+      "name": "missing title or application proof is held",
+      "status": "passed"
+    },
+    {
+      "name": "hidden complete body cannot become a header-only verdict",
+      "status": "passed"
+    },
+    {
+      "name": "unexpected layout is held rather than taking its first section",
+      "status": "passed"
+    },
+    {
+      "name": "application page and catalogue URL cannot use advert capture",
+      "status": "passed"
+    },
+    {
+      "name": "Lever-looking markup on an unrelated site is not sufficient",
+      "status": "passed"
+    },
+    {
+      "name": "oversize text is rejected without a partial result",
+      "status": "passed"
+    },
+    {
+      "name": "original job cards use title links, not Apply or location text",
+      "status": "passed"
+    },
+    {
+      "name": "generic nested and conflicting descriptions retain existing guards",
+      "status": "passed"
+    }
+  ],
+  "passed": 16,
+  "failed": 1
+}

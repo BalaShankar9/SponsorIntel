@@ -1,0 +1,379 @@
+{
+  "observed_at": "2026-11-04T04:23:53.876862+00:00",
+  "scope": "Read-only exact genuine 00:30 run and unchanged research control, no dispatch",
+  "results": {
+    "run": {
+      "results": [
+        {
+          "id": "scheduled-1793752255003",
+          "state": "attention",
+          "trigger_kind": "scheduled",
+          "created_at": "2026-11-04T00:30:56.017Z",
+          "finished_at": "2026-11-04T00:49:33.819Z",
+          "requests": 134,
+          "summary": "{\"failed\":1,\"published\":35,\"skipped\":2}"
+        }
+      ],
+      "success": true,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.3809
+        },
+        "duration": 0.3809,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202514432,
+        "rows_read": 1,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "tasks": {
+      "results": [
+        {
+          "source_id": "allica-bank",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 25
+        },
+        {
+          "source_id": "apothecom",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 2
+        },
+        {
+          "source_id": "axon",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 4
+        },
+        {
+          "source_id": "bakerhicks",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 96
+        },
+        {
+          "source_id": "callosum",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 10
+        },
+        {
+          "source_id": "cloudflare",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 66
+        },
+        {
+          "source_id": "deliveroo",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 124
+        },
+        {
+          "source_id": "eucalyptus",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 30
+        },
+        {
+          "source_id": "figma",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 20
+        },
+        {
+          "source_id": "funding-circle",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 29
+        },
+        {
+          "source_id": "gocardless",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 7
+        },
+        {
+          "source_id": "graphcore",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 115
+        },
+        {
+          "source_id": "hr-wallingford",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 6
+        },
+        {
+          "source_id": "invinity",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 1
+        },
+        {
+          "source_id": "maven",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 13
+        },
+        {
+          "source_id": "monzo",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 46
+        },
+        {
+          "source_id": "multiverse",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 28
+        },
+        {
+          "source_id": "nucleus",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 14
+        },
+        {
+          "source_id": "numan",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 13
+        },
+        {
+          "source_id": "octopus-energy",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 82
+        },
+        {
+          "source_id": "portmandentex",
+          "state": "skipped",
+          "error_code": "owner_paused",
+          "attempts": 0,
+          "count": 0
+        },
+        {
+          "source_id": "precision-aq",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 2
+        },
+        {
+          "source_id": "reviewed-ashby-sequence",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 4
+        },
+        {
+          "source_id": "reviewed-lever-wintermute-trading",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 15
+        },
+        {
+          "source_id": "reviewed-teaching-vacancies-130418--new-city-college",
+          "state": "failed",
+          "error_code": "execution_failed",
+          "attempts": 3,
+          "count": 0
+        },
+        {
+          "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+          "state": "skipped",
+          "error_code": "request_budget",
+          "attempts": 1,
+          "count": 0
+        },
+        {
+          "source_id": "sampura",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 1
+        },
+        {
+          "source_id": "seamflow",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 8
+        },
+        {
+          "source_id": "stripe",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 55
+        },
+        {
+          "source_id": "university-bath",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 34
+        },
+        {
+          "source_id": "university-cardiff-met",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 10
+        },
+        {
+          "source_id": "university-greater-manchester",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 6
+        },
+        {
+          "source_id": "university-nottingham",
+          "state": "published",
+          "error_code": null,
+          "attempts": 3,
+          "count": 22
+        },
+        {
+          "source_id": "university-southampton",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 23
+        },
+        {
+          "source_id": "voleon",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 11
+        },
+        {
+          "source_id": "wep-clinical",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 3
+        },
+        {
+          "source_id": "zeeco",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 4
+        },
+        {
+          "source_id": "zopa",
+          "state": "published",
+          "error_code": null,
+          "attempts": 1,
+          "count": 33
+        }
+      ],
+      "success": true,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 1.2234
+        },
+        "duration": 1.2234,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202514432,
+        "rows_read": 38,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "budget": {
+      "results": [
+        {
+          "day": "2026-11-04",
+          "requests": 134
+        }
+      ],
+      "success": true,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.244
+        },
+        "duration": 0.244,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202514432,
+        "rows_read": 1,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "scope_control": {
+      "results": [
+        {
+          "prepared": 0,
+          "enabled": 0,
+          "revision": 0,
+          "updated_at": null
+        }
+      ],
+      "success": true,
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.1515
+        },
+        "duration": 0.1515,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202514432,
+        "rows_read": 1,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    }
+  }
+}

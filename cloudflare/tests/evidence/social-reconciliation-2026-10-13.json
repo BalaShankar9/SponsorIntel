@@ -1,0 +1,49 @@
+{
+  "observed_at": "2026-10-13T11:18:29.010Z",
+  "prior_receipt": "facebook-delivery-2026-10-13.json",
+  "brief": {
+    "id": "launch-fb-applications",
+    "state": "published",
+    "version": 1,
+    "revision": 2,
+    "updated_at": "2026-10-13T10:52:49.126Z"
+  },
+  "receipts": [
+    {
+      "version": 1,
+      "provider": "metricool",
+      "external_id": "8669160755592973829",
+      "state": "scheduled",
+      "scheduled_at": "2026-10-12T10:00:00+01:00",
+      "post_url": null,
+      "observed_at": "2026-10-07"
+    },
+    {
+      "version": 1,
+      "provider": "metricool",
+      "external_id": "1319703417896763_122096326947512994",
+      "state": "published",
+      "scheduled_at": null,
+      "post_url": "https://www.facebook.com/122093616117512994/posts/122096326947512994",
+      "observed_at": "2026-10-13T10:52:48.849Z"
+    }
+  ],
+  "fresh_public_browser_check": {
+    "account": true,
+    "public_audience": true,
+    "complete_copy": true,
+    "campaign_link": true,
+    "media_expected": false
+  },
+  "actual_publication_at": null,
+  "browser_delivery_summary": {
+    "published": 4,
+    "scheduled": 0,
+    "overdue": 0,
+    "uncertain": 0
+  },
+  "new_provider_send": false,
+  "new_schedule": false,
+  "weekly_slots_remain_consumed": 3,
+  "method": "Authenticated owner Marketing desk; original imported schedule retained; separate read-only D1 confirmation."
+}

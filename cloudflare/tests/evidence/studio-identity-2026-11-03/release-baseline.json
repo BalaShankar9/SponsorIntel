@@ -1,0 +1,15 @@
+{
+  "version": "2.98.13",
+  "worker": "244d81f0-b12f-45e9-97c9-411a663d5aff",
+  "files": {
+    "src/career.tsx": "29dbb8c8a3d2fecd7b5e359fdf588ae697e7d95b88e766f0e09ec8056f435090",
+    "src/career-ui.tsx": "ded3bedac48d2163d2e0e78d1a11bbdffa42353a031919a30c7eb6c734fc6cd3",
+    "src/career.css": "2ed9de36ec74261a6e59fccba6f349742dfc1b058dfbf2455a8ba3f0b674d651",
+    "src/main.tsx": "9c808cc97982f75921576d9fdf2254cf7f92d824877f6c22c48f34fcfe682a67",
+    "src/resources.tsx": "9079c7ab8822c74fcc169b440b319d3bf63ecac27694cb21b4844a1f433f0804",
+    "package.json": "fd05342fc8aadde5aca66c85f4d4e3b3174da13df1ae582530d51325e0232a8a",
+    "wrangler.jsonc": "9f1d015c3c94d5e1abb0c4dd1d79f6672c9447067bff6468e36cfb20ed0f62c6"
+  },
+  "migrations": 46,
+  "prepared_import_present": false
+}

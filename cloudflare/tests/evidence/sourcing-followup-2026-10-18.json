@@ -1,0 +1,122 @@
+{
+  "observed_at": "2026-10-18T03:10:45.449Z",
+  "scope": "Agent-assisted private discovery follow-up; no public source admission or job publication",
+  "discovery_interval": [
+    "2026-10-18T03:04:15.747Z",
+    "2026-10-18T03:10:44.074Z"
+  ],
+  "operational_interval": [
+    "2026-10-18T02:59:28.801Z",
+    "2026-10-18T03:10:45.449Z"
+  ],
+  "queue": {
+    "retained": 25,
+    "held": 7,
+    "rejected": 15,
+    "linked": 3,
+    "new_today": 4,
+    "daily_limit": 5,
+    "remaining": 1,
+    "immutable_revisions": 65
+  },
+  "new_leads": [
+    {
+      "id": "1f0b6a71-5460-4408-aa8b-8982b211ff18",
+      "source_url": "https://www.linkedin.com/feed/update/urn:li:activity:7517332798375034880/",
+      "source_kind": "linkedin_post",
+      "recorded_at": "2026-10-18T03:04:55.323Z",
+      "latest_revision": 2,
+      "latest_recorded_at": "2026-10-18T03:05:47.983Z",
+      "observed_at": "2026-10-18T03:03:00.000Z",
+      "follow_up_at": "2026-10-22T11:00:00.000Z",
+      "state": "held",
+      "method": "agent_assisted",
+      "original_url": "https://www.jobs.nhs.uk/candidate/jobadvert/C9835-HC26-131b",
+      "precise_posting_and_deadline": null
+    },
+    {
+      "id": "b843497d-904f-4b2d-a48d-4004d7ce9695",
+      "source_url": "https://jobs.ashbyhq.com/neudata/cea38772-7d77-4342-a8f3-ff0d1c2f9224",
+      "source_kind": "employer",
+      "recorded_at": "2026-10-18T03:10:37.012Z",
+      "latest_revision": 1,
+      "latest_recorded_at": "2026-10-18T03:10:37.012Z",
+      "observed_at": "2026-10-18T03:10:00.000Z",
+      "follow_up_at": "2026-10-21T11:00:00.000Z",
+      "state": "held",
+      "method": "agent_assisted",
+      "original_url": "https://jobs.ashbyhq.com/neudata/cea38772-7d77-4342-a8f3-ff0d1c2f9224",
+      "precise_posting_and_deadline": null
+    }
+  ],
+  "new_revisions": [
+    {
+      "id": "79527045-0a80-47c2-9d7b-7ddb203784e3",
+      "lead_id": "1f0b6a71-5460-4408-aa8b-8982b211ff18",
+      "revision": 1,
+      "recorded_at": "2026-10-18T03:04:55.323Z"
+    },
+    {
+      "id": "ee8e6c91-5920-4052-b338-75382ff16b0c",
+      "lead_id": "1f0b6a71-5460-4408-aa8b-8982b211ff18",
+      "revision": 2,
+      "recorded_at": "2026-10-18T03:05:47.983Z"
+    },
+    {
+      "id": "fb9426a4-04ea-49de-b3ff-741edf227787",
+      "lead_id": "b843497d-904f-4b2d-a48d-4004d7ce9695",
+      "revision": 1,
+      "recorded_at": "2026-10-18T03:10:37.012Z"
+    }
+  ],
+  "nurse_correction": {
+    "earlier_revision_preserved": true,
+    "changed_fields": [
+      "deadline_evidence",
+      "observed_at",
+      "posted_evidence",
+      "reason"
+    ],
+    "reason": "Appended date-source notes and corrected observation to the actual browser-check minute; hold and follow-up preserved"
+  },
+  "source_findings": {
+    "nhs": "Current original accepts sponsorship applications conditionally; date-only closing 25 October differs from separate 30 October interview. Written commercial-reuse agreement and exact current legal/licence scope remain unresolved.",
+    "neudata": "Current Business Development Executive original and matching application form visible; sponsorship discussion is not a guaranteed offer. Legal/licence identity, ownership/reuse and complete-feed review remain unresolved. No applicant fields entered; later reCAPTCHA connection warning not bypassed.",
+    "unavailable_search_result": "https://jobs.ashbyhq.com/neudata/8bf09756-6d95-4004-94e6-ba132c323e7f",
+    "search_result_status": "Original displayed Job not found; current catalogue had two different Sales roles. No old Research Analyst wording or dates transferred."
+  },
+  "preservation": {
+    "prior_identities": 23,
+    "prior_revisions": 62,
+    "prior_audit_rows": 52,
+    "all_preserved": true,
+    "unique_audit_for_each_new_revision": true,
+    "boards_scout_and_job_aggregates_unchanged": true,
+    "operational_groups_identical": 14,
+    "foreign_key_errors": 0
+  },
+  "before_group_hashes": {
+    "leads": "a8afac6e26a3010f50c1d2a8f572f558d4a3be50f5c2dc15d8683e8501f91c1f",
+    "revisions": "6fbfea093cb06835e774259b89dc0760fc263dad8dfc552ae681af3745a6e123",
+    "audit": "bebff5744eb48fdc8b0cab99785f90bcc71c4e384eb4dae09cd269eea887ae99",
+    "boards": "9915574320795bf1a0b6f8da1b359f2f48eb0f698c3f5c85204823818a2f8ebc",
+    "scout": "abfa8f99026abd099e43c95bbc7883e6c3ba945bb9b9efb2fa030943127c9e79",
+    "jobs": "65229bea67ef4750cf9f353917ac0ae358ab74a30e13c839bad5fb4a82915280"
+  },
+  "after_group_hashes": {
+    "leads": "75ddb953f54f0f450728dee40b8b539a0c27174bc853e75c2509fcf7436f3587",
+    "revisions": "dd5d929fbcd9a93f4775f13929cf244851c4e8f885e6583ccedaa4a3efa2be99",
+    "audit": "8e970e7f4c84ed3ff4a2e8b068efcb296e070620178c970ecad1b505bbb57332",
+    "boards": "9915574320795bf1a0b6f8da1b359f2f48eb0f698c3f5c85204823818a2f8ebc",
+    "scout": "abfa8f99026abd099e43c95bbc7883e6c3ba945bb9b9efb2fa030943127c9e79",
+    "jobs": "65229bea67ef4750cf9f353917ac0ae358ab74a30e13c839bad5fb4a82915280"
+  },
+  "budgets": {
+    "shared_ai_starts": 2,
+    "shared_ai_calls": 8,
+    "source_reservations": 112,
+    "source_daily_limit": 500
+  },
+  "runtime": "2.82.0 unchanged",
+  "limits": "Private reviews do not prove independent human review, sponsorship eligibility, publication or automatic LinkedIn ingestion. No model/Google call, probe/refresh, contact, application, external send, permission or hold change."
+}

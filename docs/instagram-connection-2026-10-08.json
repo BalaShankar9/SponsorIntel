@@ -1,0 +1,93 @@
+{
+  "observed_at": "2026-10-08T04:09:01Z",
+  "kind": "connection_verification",
+  "brand": {
+    "provider": "metricool",
+    "id": "7294726",
+    "label": "Sponsor Intel",
+    "timezone": "Europe/London"
+  },
+  "instagram": {
+    "username": "sponsorintellondon",
+    "url": "https://www.instagram.com/sponsorintellondon/",
+    "profile_type": "Business",
+    "category": "Business and economy website",
+    "logo_verified": true,
+    "bio_verified": true,
+    "bio": "UK jobs & clear sponsorship evidence.\nApplication tools and sourced immigration updates.\nFree to explore: sponsorintel.london",
+    "clickable_website_link": false,
+    "website_link_blocker": "Instagram web says website links must be edited in its mobile app."
+  },
+  "owner_consent": {
+    "reply": "Allow these company-account permissions",
+    "granted": [
+      "profile_and_media",
+      "publish_content",
+      "insights"
+    ],
+    "declined": [
+      "manage_messages",
+      "manage_comments",
+      "allow_access_to_messages"
+    ],
+    "checked_before_allow": true
+  },
+  "evidence": {
+    "ui_success": "Ready! You have connected your Instagram account",
+    "persisted_after_reload": true,
+    "connector": {
+      "networksData": {
+        "facebookData": "1319703417896763",
+        "instagramData": "sponsorintellondon"
+      }
+    },
+    "method": "Direct Instagram login; optional Facebook linking skipped",
+    "screenshots_in_task_outputs": [
+      "sponsorintel-instagram-permissions.png",
+      "sponsorintel-instagram-business.png",
+      "sponsorintel-instagram-connected.png"
+    ]
+  },
+  "limits": {
+    "new_subscription": false,
+    "new_instagram_post_scheduled": false,
+    "instagram_delivery_verified": false,
+    "insights_retrieval_verified": true,
+    "cloudflare_publisher_connected": false,
+    "marketing_desk_instagram_adapter_complete": false,
+    "campaign_mapping_complete": false
+  },
+  "next_acceptance": [
+    "Add exact Instagram destination and receipt validation to the Marketing desk with reviewed campaign mapping.",
+    "Review image-backed welcome copy and media against current public sources.",
+    "Reconcile provider queue and existing posting limits before scheduling.",
+    "Record returned schedule, then verify exact public post and external ID after delivery.",
+    "Recheck metrics after verified delivery and provider synchronization; do not count setup/operator checks as organic growth."
+  ],
+  "analytics_check": {
+    "provider": "Metricool analytics connector",
+    "from": "2026-10-08T00:00:00+01:00",
+    "to": "2026-10-08T05:10:00+01:00",
+    "field_ids": [
+      "IGEV01",
+      "IGEV04",
+      "IGEV05",
+      "IGEV06"
+    ],
+    "fields": [
+      "followers",
+      "posts",
+      "views",
+      "reach"
+    ],
+    "returned_row": [
+      "0.0",
+      "0.0",
+      "0.0",
+      "0.0",
+      "20261008"
+    ],
+    "provider_error": false,
+    "interpretation": "Read returned successfully with zero aggregate values for the selected range. Newly connected, zero-post account; this is not delivery proof, meaningful audience measurement, or a completeness guarantee."
+  }
+}

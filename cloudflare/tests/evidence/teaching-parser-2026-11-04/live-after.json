@@ -1,0 +1,115 @@
+{
+  "observed_at": "2026-11-04T10:55:10.001103+00:00",
+  "finished_at": "2026-11-04T10:55:14.362434+00:00",
+  "scope": "Metrics-excluded public HTTP and exact assets; no forced source or private write",
+  "all_passed": false,
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 500,
+      "bytes": 63,
+      "sha256": "2bd2850e2a98bf093e990b1a87d8c3ebf16dc11f8301a8090d96fb5a0c3557e5",
+      "passed": false
+    },
+    {
+      "path": "/api/jobs?limit=1",
+      "status": 500,
+      "bytes": 63,
+      "sha256": "2bd2850e2a98bf093e990b1a87d8c3ebf16dc11f8301a8090d96fb5a0c3557e5",
+      "passed": false
+    },
+    {
+      "path": "/api/jobs/sources",
+      "status": 500,
+      "bytes": 63,
+      "sha256": "2bd2850e2a98bf093e990b1a87d8c3ebf16dc11f8301a8090d96fb5a0c3557e5",
+      "passed": false
+    },
+    {
+      "path": "/api/admin/agents",
+      "status": 403,
+      "bytes": 42,
+      "sha256": "df49dca94ad131c85924a3869e55275ee8ce8de6d4b20ce2ba2e1ea2a8dbcacd",
+      "passed": true
+    },
+    {
+      "path": "/downloads/sponsor-intel-job-notes-0.2.3.zip",
+      "status": 404,
+      "bytes": 20466,
+      "sha256": "2dd4afd561ede2d2a5f1b2aa3f31484469bb88ad2e3d9dafe589c88c7e91835c",
+      "passed": true
+    },
+    {
+      "path": "/downloads/sponsor-intel-job-notes-0.2.1.zip",
+      "status": 200,
+      "bytes": 52592,
+      "sha256": "bffe815a988a9f1aed864eb2babb16c8b2ade7cf02b73ea1636cf5c9f442c98f",
+      "passed": true,
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/job-notes-privacy.html",
+      "status": 200,
+      "bytes": 8168,
+      "sha256": "d2a8101c57ab9f816d6ce9f615a0a67bcef650479e79f04b4c768f82d4ed7506",
+      "passed": true,
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/assets/index-DB9jiuYp.js",
+      "status": 200,
+      "bytes": 398297,
+      "sha256": "616a4bcc59818c370a816ea1fdaa224605d3121159aab8ae03d7301253e8c779",
+      "passed": true,
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/assets/index-Ddp5rNlF.css",
+      "status": 200,
+      "bytes": 109950,
+      "sha256": "664f91166933de08769b1618e11d46b483d4715af6d274527fbfee84e294f667",
+      "passed": true,
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/assets/career-C-yF5IFQ.js",
+      "status": 200,
+      "bytes": 104076,
+      "sha256": "9b4220812e65326d9bc2dc3d513568ec3fa57a8867c584e620336166e2718edd",
+      "passed": true,
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/assets/career-2xQkt_JN.css",
+      "status": 200,
+      "bytes": 8707,
+      "sha256": "0aafdd8dc1a2ab9e4376fdd2460e1552e4131146341d3cefa25ea281516dc558",
+      "passed": true,
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/innovator-founder",
+      "status": 200,
+      "bytes": 22795,
+      "sha256": "fa1aba5965696fc07ae5429796ac6444372c0850da00053540049ccb6ce449fd",
+      "passed": true,
+      "exact_build_match": true
+    },
+    {
+      "path": "/browser-extension",
+      "status": 200,
+      "bytes": 23430,
+      "sha256": "0bb80e4e8e74e1d7a7b09c482cc24f66185e214307cb2c57121bb62533a9ee1a",
+      "passed": true,
+      "exact_build_match": true
+    },
+    {
+      "path": "/skills",
+      "status": 200,
+      "bytes": 23643,
+      "sha256": "bd1ec89e18225376ac2b534122bc5831bd04d59b42e6f425a1debad81267c1f0",
+      "passed": true,
+      "exact_build_match": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "observedAt": "2026-11-03T23:20:50.130117+00:00",
+  "scope": "fictional browser using actual React CareerProvider, Worker auth and isolated in-memory D1",
+  "roles": 1,
+  "revision": 1,
+  "apiWrites": 1,
+  "preparationRequests": 0,
+  "cvPreserved": true,
+  "letterPreserved": true,
+  "notesPreserved": true,
+  "profilePreserved": true,
+  "originalURLPreserved": true,
+  "stagePreserved": true,
+  "providerBoundaryChecks": {
+    "repeatSameRole": true,
+    "repeatKeptNotes": true,
+    "staleScopeBlocked": true,
+    "latestLimitEnforced": true,
+    "exactly100": true
+  },
+  "boundaryProvenance": "Five booleans observed in actual provider fixture DOM; fictional temporary changes restored within the same event. Not a real account-switch or production capacity test."
+}

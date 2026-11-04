@@ -1,0 +1,440 @@
+{
+  "observed_at": "2026-10-13T14:23:42.447Z",
+  "scope": "Agent-assisted owner-desk reviews of two existing leads, read-only D1 persistence and original Cloudflare execution checks. No public admission or independent human adjudication.",
+  "reviews": [
+    {
+      "lead_id": "150311d7-86c7-48dc-9132-691482dc924b",
+      "revision": 1,
+      "recorded_at": "2026-10-11T00:46:05.578Z",
+      "employer": "Lift Kingswood",
+      "state": "pending",
+      "method": "automated_source",
+      "observed_at": "2026-10-11T00:46:05.531Z",
+      "follow_up_at": "2026-10-14T00:46:05.531Z",
+      "posted_at": null,
+      "deadline": "2026-10-16T07:23:33.000Z",
+      "original_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-60c8518e-bccf-49cb-aeec-1f52c3ab24c0"
+    },
+    {
+      "lead_id": "150311d7-86c7-48dc-9132-691482dc924b",
+      "revision": 2,
+      "recorded_at": "2026-10-11T13:08:35.244Z",
+      "employer": "Lift Kingswood",
+      "state": "held",
+      "method": "agent_assisted",
+      "observed_at": "2026-10-11T13:07:00.000Z",
+      "follow_up_at": "2026-10-13T13:00:00.000Z",
+      "posted_at": null,
+      "deadline": null,
+      "original_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-60c8518e-bccf-49cb-aeec-1f52c3ab24c0"
+    },
+    {
+      "lead_id": "150311d7-86c7-48dc-9132-691482dc924b",
+      "revision": 3,
+      "recorded_at": "2026-10-13T14:21:08.554Z",
+      "employer": "Lift Kingswood",
+      "state": "held",
+      "method": "agent_assisted",
+      "observed_at": "2026-10-13T14:21:00.000Z",
+      "follow_up_at": "2026-10-15T07:00:00.000Z",
+      "posted_at": null,
+      "deadline": null,
+      "original_url": "https://careers.liftschools.org/jobs/teacher-of-english-hull-england-united-kingdom"
+    },
+    {
+      "lead_id": "22eb0cdf-824c-4d53-bddc-0d916f88feda",
+      "revision": 1,
+      "recorded_at": "2026-10-10T00:46:05.892Z",
+      "employer": "Whitchurch Church of England Primary School",
+      "state": "pending",
+      "method": "automated_source",
+      "observed_at": "2026-10-10T00:46:05.862Z",
+      "follow_up_at": "2026-10-13T00:46:05.862Z",
+      "posted_at": null,
+      "deadline": "2026-10-19T11:00:00.000Z",
+      "original_url": "https://teaching-vacancies.service.gov.uk/jobs/key-stage-1-class-teacher-permanent-part-time"
+    },
+    {
+      "lead_id": "22eb0cdf-824c-4d53-bddc-0d916f88feda",
+      "revision": 2,
+      "recorded_at": "2026-10-11T11:25:02.077Z",
+      "employer": "Whitchurch Church of England Primary School",
+      "state": "held",
+      "method": "agent_assisted",
+      "observed_at": "2026-10-11T11:25:00.000Z",
+      "follow_up_at": "2026-10-13T12:00:00.000Z",
+      "posted_at": null,
+      "deadline": "2026-10-19T11:00:00.000Z",
+      "original_url": "https://south.education-jobs.org.uk/jobs/job/KS1-Class-Teacher-part-time-3-days-a-week/13679"
+    },
+    {
+      "lead_id": "22eb0cdf-824c-4d53-bddc-0d916f88feda",
+      "revision": 3,
+      "recorded_at": "2026-10-13T14:20:07.134Z",
+      "employer": "Whitchurch Church of England Primary School",
+      "state": "held",
+      "method": "agent_assisted",
+      "observed_at": "2026-10-13T14:20:00.000Z",
+      "follow_up_at": "2026-10-15T12:00:00.000Z",
+      "posted_at": null,
+      "deadline": "2026-10-19T11:00:00.000Z",
+      "original_url": "https://south.education-jobs.org.uk/jobs/job/KS1-Class-Teacher-part-time-3-days-a-week/13679"
+    }
+  ],
+  "new_evidence": [
+    {
+      "employer": "Whitchurch Church of England Primary School",
+      "identity_url": "https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/116324",
+      "finding": "Official record confirms exact school, URN 116324, voluntary controlled status and Hampshire authority; legal employing entity and role-specific sponsor relationship remain unverified. Earlier full-school-name register nonmatch is historical, not refusal.",
+      "application_document_gap": "Blank teaching-form retrieval returned HTTP 403; browser download timed out and no downloaded file was found. No remaining attachment contents certified."
+    },
+    {
+      "employer": "Lift Kingswood",
+      "original_url": "https://careers.liftschools.org/jobs/teacher-of-english-hull-england-united-kingdom",
+      "finding": "Original reference 0175 still closes 19 October while DfE closes 16 October 08:23 BST. English/PE and September-2026-QTS versus January-2027-start wording remains. Downloaded specification requires QTS while advert offers instructor route; clarification still needed.",
+      "application_pack": "Both PDFs read in full; safer-recruitment statement requires form, permits CV only as requested support and holds applicants responsible for accurate AI-assisted content. Right-to-work checks are not classified as sponsorship refusal."
+    }
+  ],
+  "lift_downloads": [
+    {
+      "file": "lift-job-specification.pdf",
+      "url": "https://recruitment.liftschools.org/jobs/vacancy/teacher-of-english-0175-lift-kingswood/193/description/ajaxaction/downloadfile/?id=319",
+      "bytes": 118681,
+      "sha256": "7568ea6336558fe46019cce88e64835db0ec5bcb08b022d3737e7138ce7aaf80",
+      "status": 200
+    },
+    {
+      "file": "lift-safer-recruitment.pdf",
+      "url": "https://recruitment.liftschools.org/jobs/vacancy/teacher-of-english-0175-lift-kingswood/193/description/ajaxaction/downloadfile/?id=802",
+      "bytes": 111444,
+      "sha256": "e3c4811e30cb656172efdc19fdc2c552b805d9dec862fc9c4bd76bd1e9553ccb",
+      "status": 200
+    }
+  ],
+  "business_post_reconciliation": {
+    "receipt": {
+      "id": "business-497747",
+      "state": "attention",
+      "created_at": "2026-10-13T11:45:48.000Z",
+      "finished_at": "2026-10-13T11:46:10.037Z",
+      "discovery": {
+        "checked_at": "2026-10-13T11:46:00.489Z",
+        "total": 16,
+        "unresolved": 8,
+        "overdue": 0,
+        "changed_links": 0,
+        "current_linked_jobs": 3,
+        "last_recorded_at": "2026-10-13T11:05:31.178Z",
+        "counts": [
+          {
+            "source_kind": "employer",
+            "state": "linked",
+            "total": 1
+          },
+          {
+            "source_kind": "employer",
+            "state": "rejected",
+            "total": 1
+          },
+          {
+            "source_kind": "linkedin_job",
+            "state": "held",
+            "total": 2
+          },
+          {
+            "source_kind": "linkedin_job",
+            "state": "linked",
+            "total": 1
+          },
+          {
+            "source_kind": "linkedin_post",
+            "state": "rejected",
+            "total": 2
+          },
+          {
+            "source_kind": "recruiter",
+            "state": "rejected",
+            "total": 1
+          },
+          {
+            "source_kind": "teaching_vacancy",
+            "state": "held",
+            "total": 4
+          },
+          {
+            "source_kind": "teaching_vacancy",
+            "state": "linked",
+            "total": 1
+          },
+          {
+            "source_kind": "teaching_vacancy",
+            "state": "pending",
+            "total": 2
+          },
+          {
+            "source_kind": "teaching_vacancy",
+            "state": "rejected",
+            "total": 1
+          }
+        ],
+        "limitation": "Private sourcing records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Automated source candidates are identified separately from agent-assisted and owner reviews."
+      },
+      "job_reviews": {
+        "total": 3,
+        "held": 3,
+        "overdue": 0
+      },
+      "social_delivery": {
+        "available": true,
+        "checked_at": "2026-10-13T11:46:00.489Z",
+        "records_checked": 4,
+        "limited": false,
+        "scheduled": 0,
+        "awaiting_check": 0,
+        "overdue": 0,
+        "uncertain": 0,
+        "failed_30d": 0,
+        "published_30d": 4,
+        "invalid_records": 0,
+        "last_published_observation": "2026-10-13T10:52:48.849Z",
+        "next_scheduled_at": null
+      },
+      "measurement": {
+        "version": 2,
+        "enabled_at": "2026-10-08T11:57:33.807Z",
+        "first_full_day": "2026-10-09",
+        "completed_days": 4,
+        "from": "2026-10-09",
+        "to": "2026-10-13",
+        "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+        "browser_evidence": {
+          "version": 1,
+          "kind": "browser_reported",
+          "state": "collecting",
+          "enabled_at": "2026-10-11T18:44:54.941Z",
+          "first_full_day": "2026-10-12",
+          "from": "2026-10-12",
+          "to": "2026-10-13",
+          "completed_days": 1,
+          "evidence_checks": 0,
+          "campaigns": [],
+          "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+        }
+      }
+    },
+    "provider": {
+      "id": "business-497747",
+      "status": "complete",
+      "success": true,
+      "start": "2026-10-13T11:45:52.300Z",
+      "end": "2026-10-13T11:46:10.172Z"
+    }
+  },
+  "later_business_before_these_reviews": {
+    "id": "business-497749",
+    "state": "attention",
+    "created_at": "2026-10-13T13:45:48.000Z",
+    "finished_at": "2026-10-13T13:46:10.872Z",
+    "discovery": {
+      "checked_at": "2026-10-13T13:46:00.287Z",
+      "total": 16,
+      "unresolved": 8,
+      "overdue": 2,
+      "changed_links": 0,
+      "current_linked_jobs": 3,
+      "last_recorded_at": "2026-10-13T11:05:31.178Z",
+      "counts": [
+        {
+          "source_kind": "employer",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "employer",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "held",
+          "total": 2
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_post",
+          "state": "rejected",
+          "total": 2
+        },
+        {
+          "source_kind": "recruiter",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "held",
+          "total": 4
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "pending",
+          "total": 2
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "rejected",
+          "total": 1
+        }
+      ],
+      "limitation": "Private sourcing records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Automated source candidates are identified separately from agent-assisted and owner reviews."
+    },
+    "job_reviews": {
+      "total": 3,
+      "held": 3,
+      "overdue": 0
+    },
+    "social_delivery": {
+      "available": true,
+      "checked_at": "2026-10-13T13:46:00.287Z",
+      "records_checked": 4,
+      "limited": false,
+      "scheduled": 0,
+      "awaiting_check": 0,
+      "overdue": 0,
+      "uncertain": 0,
+      "failed_30d": 0,
+      "published_30d": 4,
+      "invalid_records": 0,
+      "last_published_observation": "2026-10-13T10:52:48.849Z",
+      "next_scheduled_at": null
+    },
+    "measurement": {
+      "version": 2,
+      "enabled_at": "2026-10-08T11:57:33.807Z",
+      "first_full_day": "2026-10-09",
+      "completed_days": 4,
+      "from": "2026-10-09",
+      "to": "2026-10-13",
+      "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+      "browser_evidence": {
+        "version": 1,
+        "kind": "browser_reported",
+        "state": "collecting",
+        "enabled_at": "2026-10-11T18:44:54.941Z",
+        "first_full_day": "2026-10-12",
+        "from": "2026-10-12",
+        "to": "2026-10-13",
+        "completed_days": 1,
+        "evidence_checks": 0,
+        "campaigns": [],
+        "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+      }
+    }
+  },
+  "source_run": {
+    "id": "scheduled-1791894648000",
+    "state": "attention",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-13T12:30:48.692Z",
+    "finished_at": "2026-10-13T12:32:24.032Z",
+    "requests": 60,
+    "summary": {
+      "published": 36,
+      "skipped": 1
+    }
+  },
+  "source_provider": {
+    "id": "scheduled-1791894648000",
+    "status": "complete",
+    "success": true,
+    "start": "2026-10-13T12:30:51.601Z",
+    "end": "2026-10-13T12:32:24.170Z"
+  },
+  "source_tasks": [
+    {
+      "source_id": "portmandentex",
+      "company": "PortmanDentex",
+      "state": "skipped",
+      "attempts": 0,
+      "started_at": null,
+      "finished_at": "2026-10-13T12:32:11.942Z",
+      "count": 0,
+      "error_code": "owner_paused"
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "company": "King's Lynn Academy",
+      "state": "published",
+      "attempts": 1,
+      "started_at": "2026-10-13T12:32:17.862Z",
+      "finished_at": "2026-10-13T12:32:17.862Z",
+      "count": 7,
+      "error_code": null
+    }
+  ],
+  "english_revision_5_proof_after_scheduled_refresh": [
+    {
+      "id": "e2f7bc10bb188fa2488bacc4",
+      "last_seen": "2026-10-13T12:32:17.862Z",
+      "revision": 5,
+      "all_pinned_fields_match": 1
+    }
+  ],
+  "source_budget": [
+    {
+      "day": "2026-10-13",
+      "requests": 296
+    }
+  ],
+  "discovery_today": [
+    {
+      "retained_today": 1
+    }
+  ],
+  "scout": [
+    {
+      "day": "2026-10-13",
+      "run_id": "business-497736",
+      "state": "completed",
+      "started_at": "2026-10-13T00:46:28.417Z",
+      "finished_at": "2026-10-13T00:46:37.384Z",
+      "reserved_requests": 4,
+      "requests": 3,
+      "retained": 1,
+      "inspected": 2
+    }
+  ],
+  "owner_queue_after_review": {
+    "retained": 16,
+    "unresolved": 8,
+    "overdue": 0,
+    "changed_links": 0,
+    "current_linked_jobs": 3,
+    "held_adverts": 3,
+    "overdue_advert_reviews": 0
+  },
+  "new_operator_leads": 0,
+  "verification_note": "An initial read-only comparison used a nonexistent observed_at jobs column and failed; corrected to schema-defined last_seen before successful verification. No writes resulted.",
+  "limitations": [
+    "Business snapshots at 11:46 and 13:46 predate the 14:20/14:21 school revisions; next genuine hourly run must separately incorporate them.",
+    "No source approval, public vacancy, forced workflow, production model/Google call, provider send, application or recruiter contact.",
+    "Current role proof and scheduled execution do not prove full autonomy, applicant eligibility, market coverage or business outcomes.",
+    "Public PDF files stay in task outputs; only URLs, hashes and bounded findings are committed."
+  ],
+  "later_business_provider": {
+    "id": "business-497749",
+    "status": "complete",
+    "success": true,
+    "start": "2026-10-13T13:45:51.679Z",
+    "end": "2026-10-13T13:46:11.014Z"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "recordedAt": "2026-11-03T23:27:38.913242+00:00",
+  "scope": "prepared applicant import only; not deployed",
+  "baselineCommit": "04c4731c616413b39f95257d4b2e743ff85a9768",
+  "tests": {
+    "jobNoteAndExtension": {
+      "passed": 20,
+      "failed": 0,
+      "files": [
+        "job-note.test.mjs",
+        "job-note-workspace.test.mjs",
+        "extension-companion.test.mjs",
+        "job-notes-release.test.mjs"
+      ]
+    },
+    "workspaceAndPreparation": {
+      "passed": 22,
+      "failed": 0,
+      "files": [
+        "prepared-draft.test.mjs",
+        "advert-version.test.mjs",
+        "workspace-recovery.test.mjs",
+        "workspace-account-runtime.test.mjs",
+        "preparation-availability-runtime.test.mjs"
+      ]
+    },
+    "typescript": "passed; rerun after final presentation-only wrapper",
+    "runtime": "Node 24.19.0; existing dependencies"
+  },
+  "browser": {
+    "before": "before.json",
+    "after": "after.json",
+    "finalDesktop": "final-desktop.png",
+    "mobile": "mobile.json",
+    "narrowWidth": 390,
+    "horizontalOverflow": false,
+    "temporaryTabsClosed": true,
+    "viewportReset": true,
+    "serversStopped": true
+  },
+  "noFullSuiteOrWebsiteBuild": true,
+  "productionQueries": 0,
+  "productionWrites": 0,
+  "modelCalls": 0,
+  "sourceRefreshes": 0,
+  "applicationsSubmitted": 0,
+  "deployed": false,
+  "sameDayAdvisories": "recovery-monitor-2026-11-03.json; unchanged package-lock hash",
+  "heldBoundaries": [
+    "capacity decision",
+    "original supervisor outcomes",
+    "production profile import",
+    "Founder saving",
+    "0.2.3 installation approval",
+    "store submission"
+  ],
+  "preservedHashes": {
+    "cloudflare/package-lock.json": "a0064013264829d450682960462ebf1f20fb1f06fb715b9df2b13956081e3842",
+    "cloudflare/store/job-notes/0.2.3/sponsor-intel-job-notes-0.2.3.zip": "78d9008aa9633faf66f1cb5687241ea75135d0924b149361d1c24ab0db6e13e8",
+    "cloudflare/public/downloads/sponsor-intel-job-notes-0.2.1.zip": "bffe815a988a9f1aed864eb2babb16c8b2ade7cf02b73ea1636cf5c9f442c98f"
+  }
+}

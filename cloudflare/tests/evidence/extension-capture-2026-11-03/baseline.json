@@ -1,0 +1,126 @@
+{
+  "at": "2026-11-03T18:21:54.099Z",
+  "cases": [
+    {
+      "case": "opacity",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.\nHIDDEN FICTIONAL NOTE. We cannot offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:58383"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            },
+            {
+              "kind": "unavailable",
+              "quote": "We cannot offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "collapse",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.\nHIDDEN FICTIONAL NOTE. We cannot offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:58383"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            },
+            {
+              "kind": "unavailable",
+              "quote": "We cannot offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "closed",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.\nCollapsed additional information\nHIDDEN FICTIONAL NOTE. We cannot offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:58383"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            },
+            {
+              "kind": "unavailable",
+              "quote": "We cannot offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "hidden",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:58383"
+        },
+        "result": {
+          "status": "offered",
+          "title": "Sponsorship offered in this wording",
+          "reason": "This is wording evidence, not a confirmed offer, current opening, licence match or personal eligibility decision.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    },
+    {
+      "case": "visible",
+      "value": {
+        "captured": {
+          "text": "Fictional London engineer\nBuild and test software in our fictional team.\nWe offer visa sponsorship.\nWe cannot offer visa sponsorship.",
+          "mode": "Detected advert section",
+          "source": "http://127.0.0.1:58383"
+        },
+        "result": {
+          "status": "unclear",
+          "title": "Sponsorship is unclear",
+          "reason": "The text contains both support and refusal wording. Check the exact role and all conditions with the employer.",
+          "evidence": [
+            {
+              "kind": "offered",
+              "quote": "We offer visa sponsorship."
+            },
+            {
+              "kind": "unavailable",
+              "quote": "We cannot offer visa sponsorship."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

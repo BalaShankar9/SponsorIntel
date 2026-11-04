@@ -1,0 +1,83 @@
+{
+  "observed_date": "2026-10-08",
+  "scope": "Read-only discovery source evaluation; not an automated production discovery receipt",
+  "source": "Department for Education Teaching Vacancies",
+  "terms_url": "https://teaching-vacancies.service.gov.uk/pages/terms-and-conditions#terms-and-conditions-for-api-users",
+  "listing_licence": "Open Government Licence v3.0",
+  "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+  "attribution": "Contains Department for Education Teaching Vacancies listing information licensed under the Open Government Licence v3.0.",
+  "search_url": "https://teaching-vacancies.service.gov.uk/jobs?visa_sponsorship_availability%5B%5D=true&sort_by=publish_on",
+  "search_page_candidates": 10,
+  "detail_sample": {
+    "url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-6f190dda-8595-415d-bc69-d3a0de3eaf46",
+    "title": "Teacher of English",
+    "employer": "King's Lynn Academy",
+    "datePosted": "2026-10-08",
+    "validThrough": "2026-10-19T23:59:00+01:00",
+    "structured_visa_row": "Skilled Worker visas can be sponsored",
+    "external_apply_route_reviewed": false,
+    "employer_register_identity_reviewed": false,
+    "public_job_created": false,
+    "captured_file_at": "2026-10-08T19:34:39.814609+00:00",
+    "html_sha256": "0a238f8bf43bbfd06baea3716c7db90213235f915bfa4ed7f13adfde9f80d6f7"
+  },
+  "api_checked": {
+    "url": "https://teaching-vacancies.service.gov.uk/api/v1/jobs.json?page=1",
+    "status": 200,
+    "sample_size": 100,
+    "catalogue_count_at_capture": 7432,
+    "structured_visa_field_present": false
+  },
+  "operating_limits": {
+    "new_education_leads_per_UTC_day": 2,
+    "shared_new_leads_per_UTC_day": 5,
+    "search_pages_per_UTC_day": 2,
+    "reserved_source_requests_per_UTC_day": 4,
+    "shared_source_request_limit": 500
+  },
+  "requires_follow_up": [
+    "First genuine scheduled producer receipt",
+    "New-employer candidates retained without manual creation",
+    "Original external application route and legal employer verification",
+    "Separate reviewed publication pipeline",
+    "Continuous LinkedIn integration remains unconnected"
+  ],
+  "deployment": {
+    "version": "2.49.0",
+    "worker_version": "7a5da86f-2251-4378-a83c-407646e1a793",
+    "local_tests_passed": 477,
+    "recovery": {
+      "observed_at": "2026-10-08T19:48:45.944Z",
+      "database": "sponsorintel-db",
+      "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+      "status": "available",
+      "current_recovery_point_available": true,
+      "bookmark_sha256": "9c1683c5d79b5ad804cf6fd3c08d70f923d030cb82ec84e1bc4473e9331d146c",
+      "database_size_bytes": 97501184,
+      "region": "WEUR",
+      "schema": {
+        "expected_objects": 131,
+        "actual_objects": 131,
+        "migration_files": 32,
+        "expected_sha256": "4f27392d97511c39381bcc0b15dc3b38fd1e894b4c6a7b779bc2cd13455024ef",
+        "actual_sha256": "4f27392d97511c39381bcc0b15dc3b38fd1e894b4c6a7b779bc2cd13455024ef",
+        "missing": [],
+        "extra": [],
+        "changed": []
+      },
+      "production_data_exported": false,
+      "production_restore_performed": false,
+      "retention_window_verified": false,
+      "customer_data_restoration_verified": false
+    },
+    "live_scout_runs": 0,
+    "retained_leads_today": 5,
+    "public_counts": {
+      "jobs": 926,
+      "employers": 35,
+      "sponsorship_mentioned": 55,
+      "licence_linked": 873
+    },
+    "scheduled_producer_verified": false
+  }
+}

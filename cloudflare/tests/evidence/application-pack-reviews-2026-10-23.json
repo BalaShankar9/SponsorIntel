@@ -1,0 +1,123 @@
+{
+  "version": "2.94.0",
+  "observed_at": "2026-10-23T03:47:33.632312+00:00",
+  "scope": "Private per-role content review only; no dispatch approval or employer submission",
+  "tests": {
+    "passed": 746,
+    "failed": 0,
+    "runtime": "Node 24.19.0",
+    "concurrency": 2,
+    "build": true,
+    "prerenders": 19,
+    "browser_budgets": true,
+    "dry_run": true,
+    "final_ui_fact_reset_rebuilt": true
+  },
+  "fictional_browser": {
+    "preview": true,
+    "complete_documents": true,
+    "routine_unknown_answers_preserved": true,
+    "lost_reply_reconciled_original_version": true,
+    "revocation_visible": true,
+    "mobile_viewport": 390,
+    "mobile_scroll_width": 390,
+    "download_saved_bytes_verified": false,
+    "download_observation": "Timed out; browser reconnected. No saved-file claim."
+  },
+  "production": {
+    "status": "Deployed and verified",
+    "live_version": "2.94.0",
+    "runtime_commit": "a69c1a30983dc712ea5f996dcab9b6e356d7c8b3",
+    "worker": "e7aec3d4-15c2-4a73-820f-95bb3107f169",
+    "deployment": "c5947339-194a-42ec-95fb-206bd5d78015",
+    "deployed_at": "2026-10-23T03:40:04.777961Z",
+    "traffic_percent": 100,
+    "migration_0045_applied": true,
+    "pre_change_recovery": {
+      "observed_at": "2026-10-23T03:38:15.437Z",
+      "migrations": 44,
+      "objects": 186,
+      "current_recovery_point_available": true
+    },
+    "post_change_recovery": {
+      "observed_at": "2026-10-23T03:39:18.202Z",
+      "migrations": 45,
+      "objects": 190,
+      "schema_matches": true,
+      "current_recovery_point_available": true,
+      "customer_restore_test": false,
+      "retention_window_test": false
+    },
+    "live_check": {
+      "observed_at": "2026-10-23T03:40:45.336Z",
+      "health": {
+        "ok": true,
+        "version": "2.94.0",
+        "register": {
+          "date": "2026-10-21",
+          "count": 128000,
+          "checked_at": "2026-10-22T07:15:39.699Z"
+        }
+      },
+      "status": 200,
+      "asset": "assets/career-4dAZddT3.js",
+      "sha256": "04ebb00cdf0b49ec6595eda62c0381683570eb1284de1873654a95c9ae6018d2",
+      "asset_bytes_match": true,
+      "anonymous_pack_status": 401
+    },
+    "owner_applications_entry_loaded": true,
+    "private_record_counts": {
+      "batches": 0,
+      "facts": 0,
+      "pack_reviews": 0,
+      "pack_revocations": 0
+    },
+    "foreign_key_errors": 0,
+    "operations": {
+      "before": "2026-10-23T03:38:10.862Z",
+      "after": "2026-10-23T03:41:48.405Z",
+      "groups_compared": 14,
+      "changed_groups": 0,
+      "source_requests_reserved": 112,
+      "ai_starts": 1,
+      "ai_calls": 2
+    },
+    "new_model_calls": 0,
+    "new_social_schedules": 0,
+    "new_employer_applications": 0,
+    "login": "Routine device OAuth succeeded with the existing eight scopes after three localhost callback attempts timed out; no scope expansion."
+  },
+  "early_failures": [
+    "Bare unconditional CV-refusal sentence was unrecognized; parser and regression coverage repaired.",
+    "Response-clone and fictional signup-IP test harness faults repaired.",
+    "Incorrect working-directory commands corrected without production mutation."
+  ],
+  "constraints": {
+    "roles_in_selection": 100,
+    "per_role_versions": 10,
+    "pack_bytes": 300000,
+    "retained_bytes_per_batch": 5000000,
+    "batch_api_requests_per_hour": 60,
+    "permitted_submission_providers": 0
+  },
+  "rollback": {
+    "worker": "30114f08-77d2-4d06-8001-924ba101af68",
+    "version": "2.93.0",
+    "preserve_new_tables": true
+  },
+  "unchanged_dependency_resolutions": true,
+  "hosted_ci": {
+    "head": "a69c1a30983dc712ea5f996dcab9b6e356d7c8b3",
+    "linux_checks": [
+      120226017168,
+      120226002437
+    ],
+    "status": "Billing-blocked before execution; annotations inspected",
+    "gitguardian": {
+      "id": 120226008097,
+      "conclusion": "neutral",
+      "reason": "Skipped because PR is too large"
+    },
+    "local_validation_is_separate": true
+  }
+}

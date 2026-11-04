@@ -1,0 +1,201 @@
+{
+  "observed_at": "2026-10-13T16:49:04.012Z",
+  "run": {
+    "id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-13",
+    "state": "completed",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-13T16:46:11.998Z",
+    "finished_at": "2026-10-13T16:47:07.936Z",
+    "calls": 6,
+    "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+    "result": {
+      "cases": [
+        {
+          "id": "graduate-year",
+          "stages": [
+            {
+              "stage": "baseline",
+              "state": "completed",
+              "screening": {
+                "missing_anchors": [],
+                "flagged_patterns": [],
+                "warnings": [],
+                "review_question": "Does the draft preserve the actual graduation period without claiming the advert requirement is met?",
+                "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+              }
+            },
+            {
+              "stage": "candidate",
+              "state": "completed",
+              "screening": {
+                "missing_anchors": [],
+                "flagged_patterns": [],
+                "warnings": [],
+                "review_question": "Does the draft preserve the actual graduation period without claiming the advert requirement is met?",
+                "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+              }
+            },
+            {
+              "stage": "write",
+              "state": "completed",
+              "screening": {
+                "missing_anchors": [],
+                "flagged_patterns": [],
+                "warnings": [],
+                "review_question": "Does the draft preserve the actual graduation period without claiming the advert requirement is met?",
+                "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+              }
+            }
+          ],
+          "assessment": "awaiting_independent_review"
+        },
+        {
+          "id": "planned-product",
+          "stages": [
+            {
+              "stage": "baseline",
+              "state": "completed",
+              "screening": {
+                "missing_anchors": [],
+                "flagged_patterns": [],
+                "warnings": [
+                  "Your source includes planned concepts. Keep them separate from products you have actually built."
+                ],
+                "review_question": "Are learning, AI assistance, local work and an unbuilt concept kept distinct?",
+                "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+              }
+            },
+            {
+              "stage": "candidate",
+              "state": "completed",
+              "screening": {
+                "missing_anchors": [],
+                "flagged_patterns": [],
+                "warnings": [
+                  "Your source includes planned concepts. Keep them separate from products you have actually built."
+                ],
+                "review_question": "Are learning, AI assistance, local work and an unbuilt concept kept distinct?",
+                "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+              }
+            },
+            {
+              "stage": "write",
+              "state": "completed",
+              "screening": {
+                "missing_anchors": [],
+                "flagged_patterns": [],
+                "warnings": [
+                  "Your source includes planned concepts. Keep them separate from products you have actually built."
+                ],
+                "review_question": "Are learning, AI assistance, local work and an unbuilt concept kept distinct?",
+                "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+              }
+            }
+          ],
+          "assessment": "awaiting_independent_review"
+        }
+      ],
+      "interpretation": "Development comparison only. Completion describes execution, not acceptable writing quality. Customer generation remains on the existing reviewer.",
+      "automatic_promotion": false
+    }
+  },
+  "steps": [
+    {
+      "case_id": "graduate-year",
+      "stage": "baseline",
+      "state": "completed",
+      "created_at": "2026-10-13T16:46:22.767Z",
+      "finished_at": "2026-10-13T16:46:29.779Z",
+      "error": null
+    },
+    {
+      "case_id": "graduate-year",
+      "stage": "candidate",
+      "state": "completed",
+      "created_at": "2026-10-13T16:46:29.965Z",
+      "finished_at": "2026-10-13T16:46:42.781Z",
+      "error": null
+    },
+    {
+      "case_id": "graduate-year",
+      "stage": "write",
+      "state": "completed",
+      "created_at": "2026-10-13T16:46:19.906Z",
+      "finished_at": "2026-10-13T16:46:22.571Z",
+      "error": null
+    },
+    {
+      "case_id": "planned-product",
+      "stage": "baseline",
+      "state": "completed",
+      "created_at": "2026-10-13T16:46:49.227Z",
+      "finished_at": "2026-10-13T16:46:56.177Z",
+      "error": null
+    },
+    {
+      "case_id": "planned-product",
+      "stage": "candidate",
+      "state": "completed",
+      "created_at": "2026-10-13T16:46:56.378Z",
+      "finished_at": "2026-10-13T16:47:07.382Z",
+      "error": null
+    },
+    {
+      "case_id": "planned-product",
+      "stage": "write",
+      "state": "completed",
+      "created_at": "2026-10-13T16:46:42.990Z",
+      "finished_at": "2026-10-13T16:46:49.033Z",
+      "error": null
+    }
+  ],
+  "business": {
+    "id": "business-497752",
+    "state": "attention",
+    "created_at": "2026-10-13T16:45:36.000Z",
+    "finished_at": "2026-10-13T16:46:14.993Z",
+    "application": {
+      "state": "ready",
+      "operation_state": "enabled",
+      "progress_state": "ready",
+      "enabled": true,
+      "business_enabled": true,
+      "evaluation_enabled": true,
+      "pause_reason": null,
+      "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+      "completed": 0,
+      "total": 20,
+      "assessments": {
+        "assessable_outputs": 9,
+        "assessed_outputs": 9,
+        "unassessed_outputs": 0,
+        "needs_work": 6,
+        "incomplete": 0,
+        "stale": 0,
+        "groups": [],
+        "limited": false,
+        "automatic_promotion": false,
+        "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+      }
+    }
+  },
+  "source_budget": {
+    "day": "2026-10-13",
+    "requests": 320
+  },
+  "provider": {
+    "instance_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-13",
+    "status": "complete",
+    "success": true,
+    "last_step": "finish-1",
+    "finished_at_display": "2026-10-13T16:47:08Z"
+  },
+  "limitations": "Two fictional development cases; retained output contract completion is not independent writing-quality acceptance or customer promotion. No forced workflow or operator model call.",
+  "owner_browser": {
+    "selected_comparison_completed": 2,
+    "total": 20,
+    "completed_outputs": 15,
+    "assessed_outputs": 9,
+    "automatic_promotion": false
+  }
+}

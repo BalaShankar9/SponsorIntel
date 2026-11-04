@@ -1,0 +1,33 @@
+# Source execution and lease waits
+
+## School-page traversal — deployed 2.98.16
+
+The school importer and shared campus reader now use an iterative document-order query. It preserves nested matches and duplicate detection while avoiding repeated subtree-result copies. This is a local performance improvement motivated by the genuine 4 November school CPU failures; it does not identify their exact cause or prove that full collections fit the Free CPU limit. Complete source validation, source/request limits, approvals, holds, pauses and publication transactions remain unchanged. See `cloudflare/RELEASE-2.98.16.md` and its exact local comparison; original scheduled outcomes remain the acceptance source.
+
+The 4 November deployment is verified at 100%, but live data acceptance is blocked: the exact deployed jobs request logged an exhausted account D1 daily read allowance. Static assets and occasional health/source-directory success do not establish data recovery. Preserve the failure receipts and existing capacity/supervisor holds; no forced collection or allowance reset follows deployment.
+
+## Dispatch uncertainty — 2.98.15
+
+One new source-run reservation owns one workflow-create attempt. Replaying that ID or requesting a new ID while it remains open cannot call the creator again. A lost reservation response or unconfirmed provider outcome stays held; future scheduled time alone is not recovery evidence. New unconfirmed outcomes remain queued so the original late-starting workflow can initialise, with their original budgets and source decisions intact. An original known terminal status is still required before the existing overdue-run reconciliation permits another run. Missing history is unknown, not proof that nothing happened.
+
+Legacy `dispatch_failed` rows also block admission. Their old owner status message can still say “retried” despite no new create attempt, and their old 30-day cleanup path remains a separate guarded-source follow-up. The owner recovery endpoint is unchanged; do not use it against an active, paused or unknown execution. New queued uncertainty is excluded from cleanup. The attempted API/cleanup edits were removed when the protected research manifest refused them; no manifest/profile was overwritten. See `cloudflare/RELEASE-2.98.15.md` for the exact boundary and dated deployment evidence. No production retry or replacement is needed to exercise these safeguards; use fictional isolated tests.
+
+Release 2.98.7 separates durable waiting from an actual employer-source attempt. The original 30 October source workflow retained 22 CPU-limit errors and 68 lock-contention errors. The old 30/60-second automatic retries could both occur before a terminated operation's two-minute global jobs lease expired. The receipts do not identify every historical lock owner; local fixtures reproduce this failure pattern without claiming all errors have one cause.
+
+For each source, the same workflow/run now has at most three execution opportunities. A small read-only admission step checks its existing task receipt, original two-hour run deadline and current jobs lease. Terminal receipts are reused. A live lease is left untouched; the workflow sleeps until its recorded expiry plus one second, or the original run deadline plus one millisecond if sooner. It reads the receipt and lease again after waking. Renewed/replaced ownership remains authoritative. The sequence has at most one lease wait/recheck per opportunity and retains 30/60-second retry backoff between failed opportunities. There are no nested automatic collection retries.
+
+Admission/waiting does not call an employer, reserve a source request, clear a lock or rewrite a source decision. The existing collector still atomically acquires its lease and rechecks task state, approval, pause/cooldown, request ceilings and complete validation. Successful publication and its receipt remain one transaction; a committed publication after a lost response is replayed rather than fetched twice. Existing advert holds, stop-on-validation-failure behavior, source limits and original observations remain unchanged. Unknown database status cannot authorise a collection. Persistent contention ends within the existing attempt/run bounds, rather than waiting indefinitely.
+
+The current maximum configured source count fits Cloudflare's Free 1,024-step ceiling under the worst sequence; a regression check protects this bound. Step results contain only small state/deadline receipts. Existing workflow instances retain their original code/version; do not restart, replace or force a run to create acceptance evidence.
+
+## What this does not establish
+
+The actual isolated Workflow/D1 fixture proves an existing owner's lease remains present with zero requests reserved during the wait, then one source publication after expiry. An ordinary failed fetch still waits at least 30 seconds and retains both reservations. Simulated abrupt termination, renewed ownership, run expiry, unavailable admission and lost publication acknowledgements are separate local tests. A simulated termination is not an induced production CPU failure.
+
+This fixes timing around a held lease; it does not raise the 10 ms Free CPU limit or prove that a complete source fits it. It does not repair exhausted D1 writes or reconcile an old missing business instance. Genuine subsequent scheduled runs need their original provider step receipts, per-source application outcomes and actual reservations checked. Completion alone is not successful publication. See `DAILY_OPERATOR.md`, `SOURCE_CONTROL_REVIEWS.md`, the current checkpoint and the dated release receipt.
+
+## Observed scheduled path — 31 October
+
+Original `scheduled-1793428255003` completed at **06:38:31.429 UTC** with 37 published feeds, one preserved paused skip and zero failed source tasks. Its 93 provider steps include three CPU-limit failures followed by lease waits, successful readmission and second-attempt publication for Multiverse, Callosum and Seamflow. No source-operation-lock errors appear in those original attempts. Daily reservations remain 188, including the earlier 00:30 run. The application state is attention because a source remains skipped. No run was forced or replaced.
+
+This establishes genuine scheduled use of the admission/wait/recheck path and publication after those three retries. It does not prove sustainable Free capacity, a controlled causal improvement, complete market coverage or supervisor recovery. See [the original aggregate receipt](../cloudflare/tests/evidence/scheduled-source-2026-10-31.json) and [dated operating record](OPERATIONS-2026-10-31.md).

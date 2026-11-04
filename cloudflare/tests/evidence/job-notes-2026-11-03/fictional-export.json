@@ -1,0 +1,25 @@
+{
+  "schema": "sponsor-intel.job-note",
+  "version": 1,
+  "source": {
+    "url": "https://www.linkedin.com/jobs/view/900000001/",
+    "title": "Product engineer",
+    "company": "Example Studio",
+    "location": "London, UK",
+    "observedAt": "2026-11-03T20:54:50.422Z"
+  },
+  "advert": {
+    "text": "About the role\nBuild and test software with designers and engineers. Explain technical choices, review code and improve accessible services for a small product team.\nWhat you will bring\nExperience building reliable software, collaborating across disciplines and documenting decisions clearly.\nSponsorship\nWe may provide visa sponsorship, subject to eligibility.\nAdditional conditions\nReview the complete employer conditions before making an application.\nNext step\nThis entire role is fictional demonstration material. No employer, opening or application is represented.",
+    "sha256": "be691190dfedb33f0eceeea48457d56f873c825c21736da95a11d010f5dfa553"
+  },
+  "wording": {
+    "status": "conditional",
+    "evidence": [
+      {
+        "kind": "conditional",
+        "quote": "We may provide visa sponsorship, subject to eligibility."
+      }
+    ],
+    "method": "Local phrase check; not independently verified"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "observed_at": "2026-11-02T19:54:02.214Z",
+  "browser": "156.0.8078.76",
+  "channel": "chrome",
+  "package_version": "0.1.0",
+  "package_sha256": "db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb",
+  "packaged_zip_extracted": true,
+  "temporary_profile": true,
+  "fictional_only": true,
+  "extension_loaded": true,
+  "real_action_and_active_tab_capture": true,
+  "private_fields_excluded": true,
+  "closing_clears_text": true,
+  "multiple_roles_held": true,
+  "oversized_capture_held": true,
+  "selection_scope": true,
+  "edit_invalidates_result": true,
+  "no_advert_text_in_network_requests": true,
+  "website_check": true,
+  "mobile_width": 390,
+  "no_horizontal_overflow": true
+}

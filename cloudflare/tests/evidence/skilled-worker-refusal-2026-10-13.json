@@ -1,0 +1,315 @@
+{
+  "observed_at": "2026-10-13T14:47:50.315Z",
+  "classification_replay_at": "2026-10-13T14:50:10.910Z",
+  "current_jobs": 935,
+  "baseline_stored_mismatches": 0,
+  "changed_count": 0,
+  "changed": [],
+  "baseline_sha256": "62b8df0cba3188aeb0aa2212b0d96e5a4d73c68c299c114ec2229f3115745bf8",
+  "movement": [
+    {
+      "id": "business-497750",
+      "observed_at": "2026-10-13T14:46:00.221Z",
+      "trigger_kind": "scheduled",
+      "before_counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "changes": {
+        "entered": 0,
+        "returned": 0,
+        "left": 0,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 0,
+        "stated_lost": 0
+      }
+    },
+    {
+      "id": "business-497749",
+      "observed_at": "2026-10-13T13:45:59.982Z",
+      "trigger_kind": "scheduled",
+      "before_counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "changes": {
+        "entered": 0,
+        "returned": 0,
+        "left": 0,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 0,
+        "stated_lost": 0
+      }
+    },
+    {
+      "id": "business-497748",
+      "observed_at": "2026-10-13T12:46:11.346Z",
+      "trigger_kind": "scheduled",
+      "before_counts": {
+        "total": 924,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 34,
+        "unavailable": 96,
+        "not_stated": 773
+      },
+      "counts": {
+        "total": 935,
+        "employers": 36,
+        "offered": 21,
+        "conditional": 33,
+        "unavailable": 97,
+        "not_stated": 784
+      },
+      "changes": {
+        "entered": 17,
+        "returned": 1,
+        "left": 7,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 0,
+        "stated_lost": 1
+      }
+    }
+  ],
+  "positive_events": [
+    {
+      "run_id": "business-497748",
+      "job_id": "47a756674e464ccc8d26b6e5",
+      "board_id": "maven",
+      "company": "Maven Securities",
+      "title": "Quant Trader Internship 2027 (6 months)",
+      "kind": "left",
+      "reason": "inactive_record",
+      "before_sponsorship": "conditional",
+      "after_sponsorship": null,
+      "before_evidence": "Visa sponsorship is available for this role and will be discussed with eligible candidates at later stages of the process",
+      "after_evidence": null
+    }
+  ],
+  "existing_review": [
+    {
+      "lead_id": "78a799ba-15b3-48c9-abb9-5bd25ff9c491",
+      "revision": 1,
+      "recorded_at": "2026-10-12T00:46:35.147Z",
+      "state": "pending",
+      "method": "automated_source",
+      "follow_up_at": "2026-10-15T00:46:34.654Z"
+    },
+    {
+      "lead_id": "78a799ba-15b3-48c9-abb9-5bd25ff9c491",
+      "revision": 2,
+      "recorded_at": "2026-10-13T14:46:25.819Z",
+      "state": "held",
+      "method": "agent_assisted",
+      "follow_up_at": "2026-10-15T09:00:00.000Z"
+    }
+  ],
+  "limitations": [
+    "Read-only stored-advert replay, not independent classification quality acceptance.",
+    "No production refresh or source request was triggered.",
+    "Inactive collection record does not establish formal employer closure."
+  ],
+  "deployment": {
+    "observed_at": "2026-10-13T14:54:09.549Z",
+    "release": "2.68.0",
+    "worker": "444062e9-7bed-43a6-a501-4eab6fe13548",
+    "commit": "a4a1ef57876c8a005592d34271a1e1c796b9ccaf",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "version": "2.68.0"
+      },
+      {
+        "path": "/api/jobs",
+        "status": 200,
+        "total": 935
+      },
+      {
+        "path": "/api/admin/dashboard",
+        "status": 403
+      },
+      {
+        "path": "/api/admin/job-reviews",
+        "status": 403
+      }
+    ]
+  },
+  "protected_state": {
+    "before": "2026-10-13T14:47:19.994Z",
+    "after": "2026-10-13T14:54:12.481Z",
+    "equal": true,
+    "sha256": {
+      "research": "360e4f87e5a90e635d28f23ac63771e0427f5efcaeeb0e4ea84c55b01a3484c0",
+      "application": "7bf46ede07c48d909623c3a9f2f3300cd018166821c798d5c1a2cc97bcd354bd",
+      "application_campaign": "bfc0e8d2d2da800b2349c86b962877e6eb50e8fe80d15bb10e314d91af4b1f5a",
+      "source": "7a7d1bf85a5b52df1b0e2a6c0c726135baf172f1c7be0455df68ef29ca6c20a7",
+      "marketing": "f72f71f25548b3d63b906398a71709daef0e1210b189bb92723b042d4509eba9",
+      "briefs": "7a2f949a8f5404177e3f46eb6c101f170813d08c62277fcf471447c0972e3d54",
+      "steps": "68f591064dd3458bfe5604ba0c3ab6bf860196bcb74a99cfc56f561907039207",
+      "ai": "c1c45061e5d4a067ecb56e0e24384a5f30ca1fa45a9c233634a08435f149293b"
+    },
+    "shared_ai": [
+      {
+        "day": "2026-10-13",
+        "runs": 1,
+        "calls": 0
+      }
+    ]
+  },
+  "validation": {
+    "tests": 630,
+    "passed": 630,
+    "failed": 0,
+    "node": "24.19.0",
+    "npm": "11.8.0",
+    "build": true,
+    "prerenders": 17,
+    "browser_budgets": true,
+    "worker_dry_run": true
+  },
+  "scheduled_business": {
+    "id": "business-497750",
+    "finished_at": "2026-10-13T14:46:11.256Z",
+    "state": "attention",
+    "cloudflare_status": "complete",
+    "cloudflare_success": true,
+    "cloudflare_displayed_end": "2026-10-13 15:46:11 Europe/London",
+    "discovery": {
+      "checked_at": "2026-10-13T14:46:00.492Z",
+      "total": 16,
+      "unresolved": 8,
+      "overdue": 0,
+      "changed_links": 0,
+      "current_linked_jobs": 3,
+      "last_recorded_at": "2026-10-13T14:21:08.554Z",
+      "counts": [
+        {
+          "source_kind": "employer",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "employer",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "held",
+          "total": 2
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_post",
+          "state": "rejected",
+          "total": 2
+        },
+        {
+          "source_kind": "recruiter",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "held",
+          "total": 4
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "pending",
+          "total": 2
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "rejected",
+          "total": 1
+        }
+      ],
+      "limitation": "Private sourcing records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Automated source candidates are identified separately from agent-assisted and owner reviews."
+    },
+    "advert_reviews": {
+      "total": 3,
+      "held": 3,
+      "overdue": 0
+    },
+    "social_delivery": {
+      "available": true,
+      "checked_at": "2026-10-13T14:46:00.492Z",
+      "records_checked": 4,
+      "limited": false,
+      "scheduled": 0,
+      "awaiting_check": 0,
+      "overdue": 0,
+      "uncertain": 0,
+      "failed_30d": 0,
+      "published_30d": 4,
+      "invalid_records": 0,
+      "last_published_observation": "2026-10-13T10:52:48.849Z",
+      "next_scheduled_at": null
+    },
+    "limitations": "Incorporates Whitchurch and Lift reviews; precedes Loughborough revision 2."
+  },
+  "hosted_checks": {
+    "head": "a4a1ef57876c8a005592d34271a1e1c796b9ccaf",
+    "checks": [
+      {
+        "completed_at": "2026-10-13T14:54:10Z",
+        "conclusion": "success",
+        "id": 115364899769,
+        "name": "GitGuardian Security Checks",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-10-13T14:55:05Z",
+        "conclusion": "success",
+        "id": 115364878270,
+        "name": "check",
+        "status": "completed"
+      },
+      {
+        "completed_at": "2026-10-13T14:55:32Z",
+        "conclusion": "success",
+        "id": 115364850057,
+        "name": "check",
+        "status": "completed"
+      }
+    ]
+  }
+}

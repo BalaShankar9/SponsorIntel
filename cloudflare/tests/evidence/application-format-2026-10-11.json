@@ -1,0 +1,108 @@
+{
+  "checked_on": "2026-10-11",
+  "release": "2.53.0",
+  "deployed": false,
+  "production_version": "2.52.0",
+  "finding": "The English school advert explicitly refuses CVs, but the earlier evidence next step always offered a tailored CV.",
+  "implemented": [
+    "Quote explicit unconditional application-scoped CV refusal on public role and studio.",
+    "Retain application-format wording in browser-only evidence notes.",
+    "Offer original employer instructions rather than a tailored-CV next step.",
+    "Reject CV generation before model/quota use for the recognised refusal.",
+    "Keep saved drafts editable/exportable and ordinary CV flow unchanged."
+  ],
+  "recognition_scope": "Narrow whole-statement rules; no conclusion from absent or unrecognised wording. Not complete external form or attachment inspection.",
+  "validation": {
+    "node": "24.19.0",
+    "tests_passed": 524,
+    "tests_failed": 0,
+    "duration_ms": 110174.418083,
+    "typescript": "passed",
+    "build": "passed",
+    "public_prerenders": 17,
+    "browser_budgets": "passed_without_increase",
+    "dry_run": "passed",
+    "initial_javascript_bytes": 365180,
+    "initial_javascript_gzip_bytes": 111637,
+    "initial_css_bytes": 105467,
+    "initial_css_gzip_bytes": 22020,
+    "initial_failure": "One pre-existing Worker measurement test rejected a stylesheet import without output path. Moving the shared style into the existing global stylesheet fixed it; the complete suite then passed."
+  },
+  "isolated_runtime": {
+    "actual_worker_d1": true,
+    "cv_rejection_status": 409,
+    "repeated_rejection_preserves_prior_reservations": true,
+    "evidence_review_status": 200,
+    "model_calls": 0,
+    "external_calls": 0
+  },
+  "built_browser": {
+    "fictional_applications": 2,
+    "public_quote_visible": true,
+    "form_route_next_step": true,
+    "ordinary_cv_route_next_step": true,
+    "ordinary_cv_requires_consent": true,
+    "restricted_cv_action_disabled": true,
+    "restricted_cv_consent_not_requested": true,
+    "saved_cv_edit_preserved_after_reload": true,
+    "evidence_notes_retain_format_quote": true,
+    "original_link_opened_local_fixture": true,
+    "mobile_public_viewport": 390,
+    "mobile_public_page_width": 390,
+    "mobile_studio_viewport": 390,
+    "mobile_studio_page_width": 390,
+    "viewport_reset": true,
+    "preparation_requests": 0,
+    "no_external_application_submitted": true
+  },
+  "evaluation_profile": {
+    "checked_at": "2026-10-11T12:54:25.624Z",
+    "previous_commit": "d8861939886a71b693920bc09150396bf4d4aed5",
+    "bundled_evaluation_profile_unchanged": true,
+    "fixture_hash": "5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3",
+    "implementation_hash": "caa518aad4d181b5d93837691ad403c85e6f9fa61f5bf8ed9ca17901de5541c4",
+    "model_calls": 0
+  },
+  "production_movement_observation": {
+    "run_id": "business-497700",
+    "trigger": "scheduled",
+    "observed_minute_utc": "2026-10-11T12:45Z",
+    "application_receipt": "attention",
+    "platform_status_independently_checked": false,
+    "total_jobs": 928,
+    "employers": 36,
+    "offered": 21,
+    "conditional": 34,
+    "entered": 4,
+    "left": 0,
+    "stated_before": 54,
+    "stated_after": 55,
+    "gained": 1,
+    "lost": 0,
+    "existing_labels_changed": 0,
+    "stale_roles_retired": 0,
+    "publication": "not_due",
+    "research": "held"
+  },
+  "limits": {
+    "production_model_calls": 0,
+    "forced_workflows": 0,
+    "new_discovery_leads": 0,
+    "emails": 0,
+    "social_schedules": 0,
+    "google_api_calls": 0,
+    "customer_records_changed": 0,
+    "new_permissions": 0
+  },
+  "screenshots": [
+    "outputs/sponsorintel-application-format-2026-10-11.png",
+    "outputs/sponsorintel-application-format-mobile-2026-10-11.png",
+    "outputs/sponsorintel-application-format-role-mobile-2026-10-11.png"
+  ],
+  "remaining": [
+    "Existing Cloudflare agreement approval and fresh recovery inspection before deployment.",
+    "Live authenticated-owner verification of the prepared release.",
+    "Later repeat school source refresh.",
+    "Independent model-quality and external-form submission outcomes remain unproven."
+  ]
+}

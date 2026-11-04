@@ -1,0 +1,58 @@
+{
+  "id": "business-497706",
+  "state": "attention",
+  "trigger_kind": "scheduled",
+  "created_at": "2026-10-11T18:45:36.000Z",
+  "finished_at": "2026-10-11T18:46:01.845Z",
+  "platform": {
+    "version": "3f5274e4-33f5-42ba-ad2f-92be325cd353",
+    "status": "completed",
+    "success": true,
+    "finished_utc": "2026-10-11T18:46:02Z"
+  },
+  "application_evaluation": {
+    "state": "paused",
+    "operation_state": "paused",
+    "progress_state": "ready",
+    "enabled": false,
+    "business_enabled": true,
+    "evaluation_enabled": false,
+    "pause_reason": "evaluation",
+    "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+    "completed": 0,
+    "total": 20,
+    "assessments": {
+      "assessable_outputs": 9,
+      "assessed_outputs": 9,
+      "unassessed_outputs": 0,
+      "needs_work": 6,
+      "incomplete": 0,
+      "stale": 0,
+      "groups": [],
+      "limited": false,
+      "automatic_promotion": false,
+      "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+    }
+  },
+  "reference": {
+    "state": "paused",
+    "dataset": "real-adverts-2026-10-08-compact-v2",
+    "original_state": "needs_attention",
+    "evaluated_adverts": 0,
+    "total_adverts": 50,
+    "dangerous_false_positives": 0,
+    "unsupported_refusals": 0,
+    "disputed_items": 0
+  },
+  "measurement": {
+    "version": 2,
+    "enabled_at": "2026-10-08T11:57:33.807Z",
+    "first_full_day": "2026-10-09",
+    "completed_days": 2,
+    "from": "2026-10-09",
+    "to": "2026-10-11",
+    "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes."
+  },
+  "next_measurement_field_observed": false,
+  "interpretation": "Genuine run started under 2.59 before 2.60 deployment. Proves first scheduled corrected application pause fields. New browser-evidence snapshot and eligible marketing context still pending; no workflow forced."
+}

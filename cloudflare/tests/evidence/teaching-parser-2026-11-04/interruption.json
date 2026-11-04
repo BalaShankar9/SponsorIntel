@@ -1,0 +1,17 @@
+{
+  "checked_at": "2026-11-04T10:35:03.650301+00:00",
+  "original_handles_missing": true,
+  "original_processes_missing": true,
+  "tests_complete": false,
+  "build_complete": false,
+  "test_failures_observed": [
+    "source-reservation-runtime",
+    "teaching-board-runtime ordinary collection",
+    "teaching-board-runtime held advert"
+  ],
+  "full_failure_diagnostics_available": false,
+  "source_files_checked": 374,
+  "missing": [],
+  "changed": [],
+  "interpretation": "Interrupted local validation is not a pass. The original logs and source identities are retained before any new local validation. No production action was attempted."
+}

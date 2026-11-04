@@ -1,0 +1,271 @@
+{
+  "observed_at": "2026-10-20T14:16:27.339Z",
+  "release": "2.87.0",
+  "runtime_commit": "0caeeef6af658b2972c49981717cd25c224524a1",
+  "worker": "b38a770d-04ea-4918-b130-91456805b6b6",
+  "rollback_worker": "587948e1-3b0e-4a3a-bb64-ee6fe5a9ac0a",
+  "scope": "Future untouched LinkedIn company-report reviews request a pinned response schema; bounded contract failures preserve holds. No production model call or publication was triggered.",
+  "public_health": {
+    "ok": true,
+    "version": "2.87.0",
+    "register": {
+      "date": "2026-10-19",
+      "count": 127988,
+      "checked_at": "2026-10-20T07:15:36.345Z"
+    }
+  },
+  "anonymous_owner_history_status": 403,
+  "validation": {
+    "runtime": "Node 24.19.0",
+    "initial_regressions": {
+      "passed": 11,
+      "failed": 2
+    },
+    "targeted_passed": 35,
+    "first_full": {
+      "passed": 712,
+      "failed": 1,
+      "failure": "Stale v7 policy expectation in browser measurement test"
+    },
+    "final_full": {
+      "passed": 713,
+      "failed": 0
+    },
+    "typescript_build": true,
+    "prerenders": 18,
+    "browser_budget": true,
+    "deploy_dry_run": true,
+    "isolated_actual_workflow": {
+      "fictional_ai": true,
+      "calls": 1,
+      "external_requests": 0,
+      "provider_sends": 0,
+      "schema_matches_pinned_request": true,
+      "replay_does_not_call_again": true
+    },
+    "independent_quality_acceptance": false,
+    "actual_v8_provider_execution": false
+  },
+  "preservation": {
+    "operations_before": "2026-10-20T14:14:08.812Z",
+    "operations_after": "2026-10-20T14:16:25.292Z",
+    "groups": {
+      "business_controls": {
+        "rows": 1,
+        "before_sha256": "19600147b597694f685efa625f83db9431481e538b2e0c0ef2102f16be98bffd",
+        "after_sha256": "19600147b597694f685efa625f83db9431481e538b2e0c0ef2102f16be98bffd",
+        "equal": true
+      },
+      "marketing_controls": {
+        "rows": 1,
+        "before_sha256": "cd19324b7aedb466a72f6d4a16604a75d45d4c84d4903e9a7262b5d3dd045388",
+        "after_sha256": "cd19324b7aedb466a72f6d4a16604a75d45d4c84d4903e9a7262b5d3dd045388",
+        "equal": true
+      },
+      "research_control": {
+        "rows": 1,
+        "before_sha256": "edc9916cca9d925193c9af4941e9eb7d41e82f7508e6aac535f7cc84f2533c4e",
+        "after_sha256": "edc9916cca9d925193c9af4941e9eb7d41e82f7508e6aac535f7cc84f2533c4e",
+        "equal": true
+      },
+      "application_controls": {
+        "rows": 1,
+        "before_sha256": "c3ccee2e92a4ca02c84097a4c4a4ce78d9e69ff55558f54c65422e1668e74854",
+        "after_sha256": "c3ccee2e92a4ca02c84097a4c4a4ce78d9e69ff55558f54c65422e1668e74854",
+        "equal": true
+      },
+      "source_controls": {
+        "rows": 1,
+        "before_sha256": "a5f1b1367870ec549ab766966f8b5a6b9c6fc3db2bc6d090904c1791c5a05532",
+        "after_sha256": "a5f1b1367870ec549ab766966f8b5a6b9c6fc3db2bc6d090904c1791c5a05532",
+        "equal": true
+      },
+      "marketing_briefs": {
+        "rows": 11,
+        "before_sha256": "0e9fb954dece0e5cce44b80ed90862157fda4691f02b827314bf78eff291ec0e",
+        "after_sha256": "0e9fb954dece0e5cce44b80ed90862157fda4691f02b827314bf78eff291ec0e",
+        "equal": true
+      },
+      "marketing_receipts": {
+        "rows": 12,
+        "before_sha256": "d930a98daca313489c2895474dd1d0d639fbbb7acdc7207976668617274b9337",
+        "after_sha256": "d930a98daca313489c2895474dd1d0d639fbbb7acdc7207976668617274b9337",
+        "equal": true
+      },
+      "source_budget": {
+        "rows": 1,
+        "before_sha256": "c91a07b9ca51eb8e413145c85feac744bec693a967fbf4e5ab4faef8cb5521bc",
+        "after_sha256": "c91a07b9ca51eb8e413145c85feac744bec693a967fbf4e5ab4faef8cb5521bc",
+        "equal": true
+      },
+      "ai_budget": {
+        "rows": 1,
+        "before_sha256": "b3abe911ea5d5a34d89343c825509902c316fb68d5acedd671d51701647af0aa",
+        "after_sha256": "b3abe911ea5d5a34d89343c825509902c316fb68d5acedd671d51701647af0aa",
+        "equal": true
+      },
+      "business_runs": {
+        "rows": 2,
+        "before_sha256": "5e81467c7cef4e31d8f7f6269b5220a6af5dfe6787d9e0bf6a97a2c260f60ae7",
+        "after_sha256": "5e81467c7cef4e31d8f7f6269b5220a6af5dfe6787d9e0bf6a97a2c260f60ae7",
+        "equal": true
+      },
+      "source_runs": {
+        "rows": 2,
+        "before_sha256": "c190851ae485580ff448aa02356a56b94dbdb6672d4f4806ca9a26e53baa2ea3",
+        "after_sha256": "c190851ae485580ff448aa02356a56b94dbdb6672d4f4806ca9a26e53baa2ea3",
+        "equal": true
+      },
+      "marketing_runs": {
+        "rows": 2,
+        "before_sha256": "8bf2e692e9c0622a703226951a183b8529bd3d052c10595869e853734fb92728",
+        "after_sha256": "8bf2e692e9c0622a703226951a183b8529bd3d052c10595869e853734fb92728",
+        "equal": true
+      },
+      "issues": {
+        "rows": 5,
+        "before_sha256": "3165891ac783db3a2009422ee4d18deee1cd3851e2d9e3c73a7ef23c604f1b7e",
+        "after_sha256": "3165891ac783db3a2009422ee4d18deee1cd3851e2d9e3c73a7ef23c604f1b7e",
+        "equal": true
+      },
+      "foreign_keys": {
+        "rows": 0,
+        "before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "equal": true
+      }
+    },
+    "marketing_before": "2026-10-20T14:13:54.752Z",
+    "marketing_after": "2026-10-20T14:16:27.339Z",
+    "retained_marketing_groups": {
+      "runs": {
+        "rows": 2,
+        "sha256": "9e64a44030ef14377eace8a3d276f3405c3d908a88bbef874e94f9c952dbcc76",
+        "unchanged": true
+      },
+      "steps": {
+        "rows": 3,
+        "sha256": "bb638f8af011d5b682cddf2e89c329f41ab5a1e4426f4209bea6643fe305016a",
+        "unchanged": true
+      },
+      "versions": {
+        "rows": 3,
+        "sha256": "fb0d5d5a0c72b362fa99f14c52fb41bf0e69c016dc113bffd3092c4638e456f2",
+        "unchanged": true
+      },
+      "active_runs": {
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "unchanged": true
+      }
+    },
+    "original_report_hold": {
+      "id": "dafbf66c-90aa-4773-bc1e-c1470b0a9bb1",
+      "destination": "linkedin-company",
+      "state": "held",
+      "version": 2,
+      "revision": 3,
+      "updated_at": "2026-10-19T00:46:12.829Z"
+    },
+    "vacancy_hold_before_deployment": {
+      "brief_id": "8a13ca40-710e-4b61-badd-3e509efe9a59",
+      "revision": 3,
+      "version": 1,
+      "kind": "held",
+      "detail": "{\"note\":\"Vacancy evidence changed, expired or failed its current source/link checks. A fresh version and review are required. No external post was sent or cancelled.\"}",
+      "created_at": "2026-10-20T13:46:03.664Z"
+    },
+    "ai_budget": [
+      {
+        "day": "2026-10-20",
+        "runs": 2,
+        "calls": 8
+      }
+    ],
+    "source_budget": [
+      {
+        "day": "2026-10-20",
+        "requests": 368,
+        "briefs": 0
+      }
+    ],
+    "foreign_key_errors": 0
+  },
+  "original_business_platform": {
+    "id": "business-497917",
+    "status": "complete",
+    "start": "2026-10-20T13:45:39.584Z",
+    "end": "2026-10-20T13:46:39.573Z",
+    "success": true
+  },
+  "recovery": {
+    "observed_at": "2026-10-20T13:36:16.644Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "d3b2ad76e339dd5c6bd1ba0a8d36a644d0bc96fc3068e2b5697e65ec36b1ca46",
+    "database_size_bytes": 123195392,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 172,
+      "actual_objects": 172,
+      "migration_files": 41,
+      "expected_sha256": "e9d4fc341ea91960f3378ab0f81164ff3db86ffce5542e75aa56041dd2ce6d6f",
+      "actual_sha256": "e9d4fc341ea91960f3378ab0f81164ff3db86ffce5542e75aa56041dd2ce6d6f",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "hosted_ci": {
+    "head": "0caeeef6af658b2972c49981717cd25c224524a1",
+    "checks": [
+      {
+        "id": 118678547592,
+        "name": "check",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "id": 118678536045,
+        "name": "GitGuardian Security Checks",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "id": 118678504934,
+        "name": "check",
+        "status": "completed",
+        "conclusion": "failure"
+      }
+    ],
+    "linux_reason": "The job was not started because your account is locked due to a billing issue.",
+    "original_annotations_inspected": true
+  },
+  "dependency_audit": {
+    "high": 0,
+    "critical": 0,
+    "moderate": 3,
+    "remaining": "Existing Mammoth/argparse/sprintf-js chain; no inspected patched advisory version. No dependency graph changes."
+  },
+  "external_actions": {
+    "production_model_calls": 0,
+    "google_calls": 0,
+    "source_refreshes": 0,
+    "social_sends": 0,
+    "email_sends": 0,
+    "owner_decisions": 0,
+    "migrations": 0,
+    "customer_data_exported": false
+  },
+  "remaining_gates": [
+    "Observe a genuine future eligible v8 report attempt without retrying the held v7 report or a consumed day.",
+    "Validate its retained decision and exact sources separately from schema/execution checks.",
+    "Native queue and delivery verification remain separate; no direct cloud publisher is connected."
+  ]
+}

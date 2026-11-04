@@ -1,0 +1,13 @@
+{
+  "verifiedAt": "2026-11-03T21:05:45.932Z",
+  "identicalRebuild": true,
+  "existingDestinationRefused": true,
+  "existingArchiveUnchanged": true,
+  "crcAndAllEntryHashes": true,
+  "entries": 9,
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "persistentHostsOrBackground": false
+}

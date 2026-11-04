@@ -1,0 +1,78 @@
+{
+  "observed_at": "2026-10-08T10:32:27.182Z",
+  "version": "2.35.0",
+  "worker_version": "ee5df1cb-b60e-49f5-bc1b-1dedbff7a641",
+  "checks": [
+    {
+      "id": "58e098d0a61d700bd69a85bc",
+      "title": "Principal Hardware System Test Engineer",
+      "body_sha256": "d49d769d426a282e928d44e39d5d7b0e301ec2518e0e0bc3b9097bb1d12f2986",
+      "unchanged_other_fields": true,
+      "first_seen": "2026-10-04T16:46:02.879Z",
+      "last_seen": "2026-10-08T06:30:55.334Z",
+      "source_updated_at": "2026-09-24T06:15:00-04:00",
+      "sponsorship": "not_stated",
+      "initial_html_clean": true
+    },
+    {
+      "id": "95c4f66532cd787bc01eb635",
+      "title": "Silicon Verification Engineer",
+      "body_sha256": "985f5838c8421c1e527edacf6a3e63f710394fbbbf74a1eca0369eec8cf2c5fe",
+      "unchanged_other_fields": true,
+      "first_seen": "2026-10-04T16:46:02.879Z",
+      "last_seen": "2026-10-08T06:30:55.334Z",
+      "source_updated_at": "2026-09-30T04:05:54-04:00",
+      "sponsorship": "not_stated",
+      "initial_html_clean": true
+    }
+  ],
+  "audit": {
+    "active_records_read": 885,
+    "leaked_wrappers_found": 2,
+    "source_url": "https://boards-api.greenhouse.io/v1/boards/graphcore/jobs?content=true",
+    "source_sha256": "dd5df6dcd0f694c6f512aa2cc27f64aaae60adbcc123fee14d69200073908126",
+    "source_records": 180,
+    "accepted_uk_records": 85,
+    "unchanged_sponsorship_labels": 85,
+    "cleaned_uk_texts": 2,
+    "source_modified_other_role_not_backfilled": true
+  },
+  "runtime": {
+    "checked_at": "2026-10-08T10:30:28.515Z",
+    "runtime": "isolated local Cloudflare Workerd",
+    "raw_records": 180,
+    "uk_records": 85,
+    "complete_node_runtime_parity": true,
+    "production_bindings": false
+  },
+  "validation": {
+    "tests_passed": 364,
+    "build": true,
+    "dry_run": true,
+    "live_browser_text": true,
+    "live_initial_html": true
+  },
+  "production_correction": {
+    "records": 2,
+    "fields": [
+      "description"
+    ],
+    "exact_old_text_and_observation_guards": true,
+    "all_other_detail_fields_unchanged": true,
+    "schema_migration": false
+  },
+  "limits": {
+    "ai_calls": 0,
+    "google_requests": 0,
+    "emails": 0,
+    "social_posts": 0,
+    "scheduled_importer_execution_observed": false,
+    "classification_accuracy_claimed": false,
+    "google_jobs_eligibility_claimed": false
+  },
+  "security": {
+    "new_parser_dependency_advisories": 0,
+    "existing_sprintf_dependency_entries": 3,
+    "existing_dev_sharp_dependency_entries": 3
+  }
+}

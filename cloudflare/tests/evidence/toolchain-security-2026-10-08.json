@@ -1,0 +1,98 @@
+{
+  "observed_on": "2026-10-08",
+  "scope": "Local development dependency remediation; no production deployment or data mutation.",
+  "base_commit": "be9653c4f265838942aaac5f7aabc08125907281",
+  "runtime": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "validation_node": "24.19.0",
+    "install_node": "25.5.0",
+    "install_warning": "nanoid 6.0.1 excludes Node 25; full tests/build/dry-run subsequently passed on supported Node 24.19.0."
+  },
+  "dependencies": {
+    "wrangler": "4.147.0",
+    "miniflare": "5.20261001.0-alpha",
+    "sharp": "0.35.5",
+    "vips": "8.18.7",
+    "rsvg": "2.63.2"
+  },
+  "validation": {
+    "clean_install": "passed; npm ci --ignore-scripts",
+    "tests": 365,
+    "tests_passed": 365,
+    "tests_failed": 0,
+    "native_images_binding": "local SVG info and 12x8 PNG transform passed",
+    "build": "passed",
+    "public_prerenders": 17,
+    "browser_asset_budget": "passed",
+    "worker_dry_run": "passed",
+    "linux_hosted_checks": "unobserved; account billing lock"
+  },
+  "audit": {
+    "counts": {
+      "info": 0,
+      "low": 0,
+      "moderate": 3,
+      "high": 0,
+      "critical": 0,
+      "total": 3
+    },
+    "remaining_advisory": "https://github.com/advisories/GHSA-hp3w-g68c-fv3c",
+    "remaining_packages": [
+      "mammoth",
+      "argparse",
+      "sprintf-js"
+    ],
+    "forced_downgrade": false
+  },
+  "storage": {
+    "owner_authorised_cache_cleanup": true,
+    "free_after_cleanup_bytes": 3592998912,
+    "free_after_install_build_dryrun_bytes": 2618286080,
+    "clean_install_minimum_free_bytes": 2147483648,
+    "private_local_state_archive_preserved": true,
+    "personal_files_deleted": false
+  },
+  "live": {
+    "at": "2026-10-08T11:05:49.632Z",
+    "healthStatus": 200,
+    "health": {
+      "ok": true,
+      "version": "2.35.0",
+      "register": {
+        "date": "2026-10-07",
+        "count": 127949,
+        "checked_at": "2026-10-08T07:15:42.693Z"
+      }
+    },
+    "jobsStatus": 200,
+    "jobs": {
+      "ok": true,
+      "visible_roles": 12,
+      "matching_roles": 885,
+      "generated_at": "2026-10-08T11:05:49.172Z"
+    }
+  },
+  "logs": {
+    "clean_install": {
+      "local_log": "/tmp/sponsorintel-sharp-clean-recovered.log",
+      "sha256": "f9d1690311169abb7ee399a75cf445cb9499bf87e6c206bfca1c1f185122077a"
+    },
+    "tests_node24": {
+      "local_log": "/tmp/sponsorintel-sharp-tests-node24.log",
+      "sha256": "3fb1619e4b08efdaf5015bf7512b43f095dd7b574bfb61907f15cc3eca534a4b"
+    },
+    "build": {
+      "local_log": "/tmp/sponsorintel-sharp-build-recovered.log",
+      "sha256": "b21a28157c6e8f16e45abb1eccc64f65b2b93b38a79c4fd0f08dcfcc84d0d80c"
+    },
+    "dry_run": {
+      "local_log": "/tmp/sponsorintel-sharp-dryrun-recovered.log",
+      "sha256": "b5ced824f1666a4acc4d6769624870e06be8d3f73ba2fb6ebfd186987da72850"
+    },
+    "audit": {
+      "local_log": "/tmp/sponsorintel-audit-sharp-recovered.json",
+      "sha256": "8bd7f83d74b06c50bbc4aaa07bfb2b91a5b5ed6eea458760daebab47802e0a4a"
+    }
+  }
+}

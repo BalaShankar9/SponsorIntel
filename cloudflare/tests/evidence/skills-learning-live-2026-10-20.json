@@ -1,0 +1,152 @@
+{
+  "version": "2.90.0",
+  "state": "deployed_and_live_verified",
+  "observed_at": "2026-10-20T17:01:07.907Z",
+  "runtime_commit": "311ebedc921ca125f54907833ce3827a92a424e1",
+  "deployment_checkout": "e2802b022c5d90d925aac082bdad256f850ea2e7",
+  "provider_deployment": {
+    "id": "d79d4d91-55a3-4908-aa87-846220a8abaa",
+    "created_on": "2026-10-20T17:00:36.680023Z",
+    "worker": "ae6db52c-5740-4a5e-be60-688f4e418ae9",
+    "percentage": 100
+  },
+  "authorization": {
+    "owner_explicitly_accepted_signin_terms": true,
+    "existing_scopes_only": [
+      "user:read",
+      "account:read",
+      "workers_scripts:write",
+      "workers_routes:write",
+      "zone:read",
+      "d1:write",
+      "queues:write",
+      "offline_access"
+    ],
+    "renewal_completed": true,
+    "new_permissions": false,
+    "new_plan": false,
+    "auth_tab_closed": true,
+    "credentials_or_callback_urls_in_receipt": false
+  },
+  "historical_failed_attempt": "skills-learning-2026-10-20.json",
+  "http": {
+    "health_version": "2.90.0",
+    "all_sectors_status": 200,
+    "technology_status": 200,
+    "invalid_sector_status": 400,
+    "skills_page_status": 200,
+    "skills_page_prerender_heading": true,
+    "api_cache": "no-store",
+    "qa_exclusion_header": true
+  },
+  "all_sectors": {
+    "generated_at": "2026-10-20T17:01:07.364Z",
+    "valid_until": "2026-10-20T17:06:07.364Z",
+    "sector": "",
+    "jobs": 54,
+    "employers": 9,
+    "matched_jobs": 38,
+    "unmatched_jobs": 16,
+    "largest_employer_jobs": 31
+  },
+  "technology": {
+    "generated_at": "2026-10-20T17:01:07.552Z",
+    "valid_until": "2026-10-20T17:06:07.552Z",
+    "sector": "technology",
+    "jobs": 16,
+    "employers": 3,
+    "matched_jobs": 13,
+    "unmatched_jobs": 3,
+    "largest_employer_jobs": 10
+  },
+  "browser": {
+    "owner_authenticated": true,
+    "live_sample_matches_api": true,
+    "skill_filter": true,
+    "topic_selection": true,
+    "provider_link": "https://cs50.harvard.edu/python/",
+    "clipboard_success": true,
+    "sector_counts_match": true,
+    "role_id": "042cd46377025e215a7ecb16",
+    "exact_role_excerpt": true,
+    "role_to_prefiltered_learning_plan": true,
+    "no_applicant_facts_or_cloud_plan_saved": true,
+    "screenshot_files_private_outputs": [
+      "skills-learning-overview-live-2026-10-20.png",
+      "skills-learning-live-2026-10-20.png",
+      "role-learning-live-2026-10-20.png"
+    ]
+  },
+  "preservation": {
+    "before": "2026-10-20T16:59:54.688Z",
+    "after": "2026-10-20T17:01:12.490Z",
+    "groups_identical": [
+      "business_controls",
+      "marketing_controls",
+      "research_control",
+      "application_controls",
+      "source_controls",
+      "marketing_briefs",
+      "marketing_receipts",
+      "source_budget",
+      "ai_budget",
+      "business_runs",
+      "source_runs",
+      "marketing_runs",
+      "issues",
+      "foreign_keys"
+    ],
+    "digests": {
+      "business_controls": "0f4b27c24af98ea2a26b2cce1d6234689f79cb0c120cc9d2d6ce554c6c9d8606",
+      "marketing_controls": "f6d4499580d6a2ac2e1826cb785d7d34327044674423e93afee777d1a9703126",
+      "research_control": "b3bda3a8d16547cf4ad98d35773583d123f6cd3c506f6c5972d5ed70e1328500",
+      "application_controls": "16a9834b711b6f57cb52e748e14df296d03f58e696a7b602c7033e0f0f4460d8",
+      "source_controls": "86b1706d7eea2ceb20784aa14587d3ea62afce0ab03855200e3e7d0fc65cf4cd",
+      "marketing_briefs": "ca510baf0d7e7ea07c3d15a47151686268d90f7c05de1544666ae49d5ffe90fc",
+      "marketing_receipts": "dc108ca978a6d71091c1421bf9d78699a79e433dbb745e1c53cf74579982609b",
+      "source_budget": "468116a24f0d7c56cf03e200370be6696ff84dfdbe2ab05e48d732c9b8a9eb33",
+      "ai_budget": "5dc952c64f69a71e0627cc4e7961d4564175fc8ac98861c68f0e92573260673a",
+      "business_runs": "3e45a9d2a8179c1461c909aae104d2fd2e336cb947271b5cbcee61f4491e321e",
+      "source_runs": "1e1864e72a0edc41458d17ea031f55ce63f8149ea62d55b6d600fd6f850d28f3",
+      "marketing_runs": "d23caa0c80a1118ec8ce60e0535f603535bcab6ba7132398c42293063df3c1c5",
+      "issues": "95786ba00eeb92e2a369bf448ba08e8f8bf58afe0054ed8ad8c730330768ee33",
+      "foreign_keys": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ai_starts": 2,
+    "ai_calls": 8,
+    "source_reservations": 392,
+    "foreign_key_errors": 0
+  },
+  "validation_reused": {
+    "tests_passed": 734,
+    "same_runtime_source": true,
+    "build_typescript_prerenders_budget_and_dryrun_pass": true,
+    "prerenders": 19,
+    "no_dependency_graph_or_schema_change": true,
+    "same_day_recovery_at": "2026-10-20T16:19:46.010Z",
+    "migrations": 43,
+    "schema_objects": 182
+  },
+  "rollback": {
+    "version": "2.89.0",
+    "worker": "4fa5281d-0b39-43e7-b025-a528259a67a8",
+    "runtime_commit": "4368dd0c8c5079cd62a62cf37fee8f5dbb436710",
+    "preserve_additive_database_history": true
+  },
+  "extra_external_actions": {
+    "model_calls": 0,
+    "source_refreshes": 0,
+    "google_reads": 0,
+    "email_sends": 0,
+    "social_posts": 0,
+    "employer_applications": 0,
+    "application_assessments": 0
+  },
+  "limitations": [
+    "These are limited-catalogue skill mentions, not requirements, personal gaps or market-wide demand.",
+    "Copied plans are not saved account progress.",
+    "No course-effectiveness, qualification-equivalence or sponsorship outcome is established.",
+    "Next genuine scheduled business/source observations after deployment remain separate.",
+    "Hosted Linux checks are billing-blocked; local validation is separate."
+  ]
+}

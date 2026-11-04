@@ -1,0 +1,166 @@
+{
+  "observed_on": "2026-10-08",
+  "run": {
+    "id": "business-497626",
+    "state": "completed",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-08T10:45:38.000Z",
+    "finished_at": "2026-10-08T10:45:50.619Z",
+    "measured_at": "2026-10-08T10:45:44.581Z",
+    "jobs": {
+      "total": 885,
+      "employers": 32,
+      "offered": 16,
+      "conditional": 34,
+      "unavailable": 91,
+      "not_stated": 744,
+      "early_career": 51,
+      "salary": 141
+    },
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/jobs",
+        "status": 200,
+        "ok": true,
+        "security": true,
+        "content": {
+          "ok": true,
+          "visible_roles": 12,
+          "matching_roles": 885,
+          "generated_at": "2026-10-08T10:45:45.008Z"
+        }
+      },
+      {
+        "path": "/insights",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/api/admin/session",
+        "status": 403,
+        "ok": true,
+        "security": true
+      }
+    ],
+    "social_delivery": {
+      "available": true,
+      "checked_at": "2026-10-08T10:45:44.581Z",
+      "records_checked": 4,
+      "limited": false,
+      "scheduled": 3,
+      "awaiting_check": 0,
+      "overdue": 0,
+      "uncertain": 0,
+      "failed_30d": 0,
+      "published_30d": 1,
+      "invalid_records": 0,
+      "last_published_observation": "2026-10-08T09:09:26.936Z",
+      "next_scheduled_at": "2026-10-09T09:00:00.000Z"
+    },
+    "email_delivery": {
+      "configured": true,
+      "events_7d": 0,
+      "last_received": null,
+      "failures_7d": 0,
+      "blocked_owners": 0,
+      "queues": {
+        "unprocessed": {
+          "backlogCount": 0,
+          "backlogBytes": 0,
+          "oldestMessageTimestamp": 0,
+          "checked_at": "2026-10-08T10:45:44.581Z"
+        },
+        "incoming": {
+          "backlogCount": 0,
+          "backlogBytes": 0,
+          "oldestMessageTimestamp": 0,
+          "checked_at": "2026-10-08T10:45:44.581Z"
+        }
+      }
+    },
+    "result": {
+      "health": {
+        "findings": 3,
+        "high": 0
+      },
+      "supervision": {
+        "checked_at": "2026-10-08T10:45:42.059Z",
+        "checks": [
+          {
+            "kind": "research",
+            "action": "idle"
+          },
+          {
+            "kind": "marketing",
+            "action": "idle"
+          },
+          {
+            "kind": "applications",
+            "action": "idle"
+          }
+        ],
+        "reconciled": 0,
+        "needs_attention": 0,
+        "model_calls": 0,
+        "external_posts": 0
+      },
+      "search": {
+        "day": "2026-10-08",
+        "state": "failed",
+        "requests": 1,
+        "reused": true
+      },
+      "cleanup": {
+        "state": "completed",
+        "stale_roles": 0,
+        "policy": "Hide records last observed over 72 hours ago; retain the records, feedback and customer workspaces."
+      },
+      "publication": {
+        "state": "not_due",
+        "next_due": "2026-10-14T16:50:43.330Z"
+      },
+      "marketing": {
+        "prepared": 0,
+        "external_posts_sent": 0
+      },
+      "editorial": {
+        "id": "marketing-2026-10-08",
+        "state": "no_post",
+        "result": {
+          "decision": "no_post",
+          "source_id": "",
+          "reason": "No eligible slot: the queue is full, expired or needs delivery reconciliation.",
+          "ranked": [],
+          "timing_reason": "Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first."
+        },
+        "reused": true
+      },
+      "research": {
+        "state": "held",
+        "research_id": null,
+        "detail": "Research was held by its availability or budget controls. No automatic retry today."
+      },
+      "applications": {
+        "id": "application-eval-2026-10-08",
+        "state": "held",
+        "reused": true
+      }
+    }
+  },
+  "read_only": true,
+  "forced_scheduled_invocation": false,
+  "scope": "Stored aggregate receipt for the genuine 10:45 business run after release 2.35; no source refresh, AI, Google retry, social or email call was forced."
+}

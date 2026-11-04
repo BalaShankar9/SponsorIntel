@@ -1,0 +1,641 @@
+{
+  "version": "2.44.1",
+  "worker_version": "20e9918e-15f7-4895-9917-255237a1f170",
+  "local_tests": 443,
+  "runtime": {
+    "checked_at": "2026-10-08T16:27:46.494Z",
+    "environment": "Actual Worker/auth/D1 in isolated Workerd with all 30 migrations and fictional accounts/job; outbound services disabled.",
+    "anonymous_and_member": 403,
+    "foreign_origin": 403,
+    "concurrent_owner_member_requests": 12,
+    "owner_save": true,
+    "original_link_and_quote_match": true,
+    "replay_duplicate_rows": 0,
+    "competing_review_statuses": [
+      200,
+      409
+    ],
+    "history_revisions": 2,
+    "public_jobs_unchanged": true,
+    "external_requests": 0,
+    "model_calls": 0
+  },
+  "business_runtime": {
+    "checked_at": "2026-10-08T16:31:33.182Z",
+    "environment": "Actual BusinessWorkflow in isolated Workerd/D1 with all 30 migrations, fictional jobs, fixed route responses and external network blocked. Scheduled trigger simulated locally; not an unattended production receipt.",
+    "baseline": {
+      "id": "business-497632",
+      "observed_at": "2026-10-08T16:31:32.597Z",
+      "previous_at": null,
+      "trigger_kind": "scheduled",
+      "baseline": 1,
+      "before_counts": {
+        "total": 0,
+        "employers": 0,
+        "offered": 0,
+        "conditional": 0,
+        "unavailable": 0,
+        "not_stated": 0
+      },
+      "counts": {
+        "total": 1,
+        "employers": 1,
+        "offered": 1,
+        "conditional": 0,
+        "unavailable": 0,
+        "not_stated": 0
+      },
+      "changes": {
+        "entered": 0,
+        "returned": 0,
+        "left": 0,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 0,
+        "stated_lost": 0
+      }
+    },
+    "comparison": {
+      "id": "business-497633",
+      "observed_at": "2026-10-08T16:31:32.911Z",
+      "previous_at": "2026-10-08T16:31:32.597Z",
+      "trigger_kind": "scheduled",
+      "baseline": 0,
+      "before_counts": {
+        "total": 1,
+        "employers": 1,
+        "offered": 1,
+        "conditional": 0,
+        "unavailable": 0,
+        "not_stated": 0
+      },
+      "counts": {
+        "total": 2,
+        "employers": 1,
+        "offered": 0,
+        "conditional": 1,
+        "unavailable": 1,
+        "not_stated": 0
+      },
+      "changes": {
+        "entered": 1,
+        "returned": 0,
+        "left": 0,
+        "sponsorship_changed": 1,
+        "evidence_changed": 0,
+        "stated_gained": 1,
+        "stated_lost": 1
+      }
+    },
+    "events": [
+      {
+        "run_id": "business-497633",
+        "job_id": "a",
+        "board_id": "fictional",
+        "company": "Fictional employer",
+        "title": "Fictional engineer",
+        "kind": "sponsorship_changed",
+        "reason": "source_wording_changed",
+        "before_sponsorship": "offered",
+        "after_sponsorship": "unavailable",
+        "before_evidence": "Fictional evidence",
+        "after_evidence": "Fictional exclusion",
+        "observed_at": "2026-10-08T16:31:32.911Z",
+        "previous_at": "2026-10-08T16:31:32.597Z",
+        "trigger_kind": "scheduled"
+      },
+      {
+        "run_id": "business-497633",
+        "job_id": "b",
+        "board_id": "fictional",
+        "company": "Fictional employer",
+        "title": "Fictional engineer",
+        "kind": "entered",
+        "reason": "current_at_observation",
+        "before_sponsorship": null,
+        "after_sponsorship": "conditional",
+        "before_evidence": null,
+        "after_evidence": "Fictional evidence",
+        "observed_at": "2026-10-08T16:31:32.911Z",
+        "previous_at": "2026-10-08T16:31:32.597Z",
+        "trigger_kind": "scheduled"
+      }
+    ],
+    "external_requests": 0,
+    "fixture_health_requests": 10,
+    "replay_additional_requests": 0,
+    "discovery_overdue": 1,
+    "discovery_finding": "discovery-overdue",
+    "unrelated_controls_disabled": true,
+    "states": [
+      "attention",
+      "attention"
+    ]
+  },
+  "browser": {
+    "owner_ui_saved_review": true,
+    "unsupported_quote_rejected_locally": true,
+    "history_retained": true,
+    "phone_width": 390,
+    "phone_document_width": 390,
+    "phone_controls_width": 312,
+    "date_input_and_follow_up_saved_exactly_after_fix": true,
+    "production_initial_date_defaults_preserved_and_corrected_by_revision": true,
+    "live_counts": {
+      "leads": 3,
+      "unresolved": 1,
+      "current_linked_jobs": 1,
+      "changed_links": 0
+    },
+    "scheduled_movement_50_to_53_visible": true
+  },
+  "production_records": [
+    {
+      "id": "b1774244-c7b0-430b-89ff-0a318522a1c0",
+      "source_kind": "linkedin_job",
+      "revision": 1,
+      "first_recorded_at": "2026-10-08T16:37:22.214Z",
+      "recorded_at": "2026-10-08T16:37:22.214Z",
+      "content": {
+        "title": "Senior Product Engineer (Backend) - London",
+        "employer": "Sequence",
+        "location": "London, United Kingdom",
+        "observed_at": "2026-10-08T16:36:21.193Z",
+        "posted_at": null,
+        "posted_evidence": "",
+        "deadline": null,
+        "deadline_evidence": "",
+        "original_url": "https://jobs.ashbyhq.com/sequence/bcb44650-b5f6-4477-b33e-0aab9446e764",
+        "identity_url": "https://docs.sequencehq.com/compliance/privacy-policy",
+        "identity_note": "Sequence careers links to its Ashby board. Its privacy policy identifies Sequence HQ Ltd, company 13585168, Canterbury. The 7 October 2026 sponsor snapshot matches Sequence HQ Ltd, Canterbury, Skilled Worker, Worker (A rating), record 76496ae7f3f326456b3703de. This is separate from applicant eligibility.",
+        "quote": "Visa sponsorship available",
+        "state": "linked",
+        "reason": "Agent-assisted record of the verified 8 October review. The LinkedIn lead was followed to Sequence’s official careers page and current employer Ashby feed. Full stored advert text, application destination and explicit sponsorship wording matched. The first owner-triggered import completed; its first scheduled refresh is still pending. This record links an existing published job and does not claim another new vacancy.",
+        "follow_up_at": null,
+        "job_id": "1cbc004ee3191d8ee1189088",
+        "duplicate_of": null,
+        "method": "agent_assisted"
+      },
+      "job_fingerprint": "377e78f74884bb270b6b97d059f13422ef1b2635feeb567734300bad590dcf98"
+    },
+    {
+      "id": "b1774244-c7b0-430b-89ff-0a318522a1c0",
+      "source_kind": "linkedin_job",
+      "revision": 2,
+      "first_recorded_at": "2026-10-08T16:37:22.214Z",
+      "recorded_at": "2026-10-08T16:44:21.289Z",
+      "content": {
+        "title": "Senior Product Engineer (Backend) - London",
+        "employer": "Sequence",
+        "location": "London, United Kingdom",
+        "observed_at": "2026-10-08T15:58:00.000Z",
+        "posted_at": null,
+        "posted_evidence": "",
+        "deadline": null,
+        "deadline_evidence": "",
+        "original_url": "https://jobs.ashbyhq.com/sequence/bcb44650-b5f6-4477-b33e-0aab9446e764",
+        "identity_url": "https://docs.sequencehq.com/compliance/privacy-policy",
+        "identity_note": "Sequence careers links to its Ashby board. Its privacy policy identifies Sequence HQ Ltd, company 13585168, Canterbury. The 7 October 2026 sponsor snapshot matches Sequence HQ Ltd, Canterbury, Skilled Worker, Worker (A rating), record 76496ae7f3f326456b3703de. This is separate from applicant eligibility.",
+        "quote": "Visa sponsorship available",
+        "state": "linked",
+        "reason": "Agent-assisted record of the verified 8 October review. The LinkedIn lead was followed to Sequence’s official careers page and current employer Ashby feed. Full stored advert text, application destination and explicit sponsorship wording matched. The first owner-triggered import completed; its first scheduled refresh is still pending. This record links an existing published job and does not claim another new vacancy. Date correction: the first revision retained the form’s current-time default. This revision records the earlier verified source-import observation; the original server recording time and history are preserved.",
+        "follow_up_at": null,
+        "job_id": "1cbc004ee3191d8ee1189088",
+        "duplicate_of": null,
+        "method": "agent_assisted"
+      },
+      "job_fingerprint": "377e78f74884bb270b6b97d059f13422ef1b2635feeb567734300bad590dcf98"
+    },
+    {
+      "id": "4bace142-d560-4ef9-88aa-a7dc7b00c035",
+      "source_kind": "recruiter",
+      "revision": 1,
+      "first_recorded_at": "2026-10-08T16:38:04.632Z",
+      "recorded_at": "2026-10-08T16:38:04.632Z",
+      "content": {
+        "title": "B1 licensed engineer — recruiter reference J1493",
+        "employer": "Client unnamed; Argo Aviation is the recruiter",
+        "location": "",
+        "observed_at": "2026-10-08T16:37:31.202Z",
+        "posted_at": null,
+        "posted_evidence": "",
+        "deadline": null,
+        "deadline_evidence": "",
+        "original_url": "https://www.argo-aviation.co.uk/job/b1-licensed-engineer-8/",
+        "identity_url": "",
+        "identity_note": "",
+        "quote": "",
+        "state": "held",
+        "reason": "Agent-assisted record of the 8 October 15:13–15:18 UTC sourcing audit. Argo’s company posts led to this recruiter page. It welcomed sponsorship applicants but showed a December 2025 posting and did not identify the employing client. Hold privately until the current opening, employing sponsor and publication rights are verified. No recruiter contact, application or public listing has been made.",
+        "follow_up_at": "2026-10-11T16:37:31.202Z",
+        "job_id": null,
+        "duplicate_of": null,
+        "method": "agent_assisted"
+      },
+      "job_fingerprint": null
+    },
+    {
+      "id": "4bace142-d560-4ef9-88aa-a7dc7b00c035",
+      "source_kind": "recruiter",
+      "revision": 2,
+      "first_recorded_at": "2026-10-08T16:38:04.632Z",
+      "recorded_at": "2026-10-08T16:43:44.845Z",
+      "content": {
+        "title": "B1 licensed engineer — recruiter reference J1493",
+        "employer": "Client unnamed; Argo Aviation is the recruiter",
+        "location": "",
+        "observed_at": "2026-10-08T15:18:00.000Z",
+        "posted_at": null,
+        "posted_evidence": "",
+        "deadline": null,
+        "deadline_evidence": "",
+        "original_url": "https://www.argo-aviation.co.uk/job/b1-licensed-engineer-8/",
+        "identity_url": "",
+        "identity_note": "",
+        "quote": "",
+        "state": "held",
+        "reason": "Agent-assisted record of the 8 October 15:13–15:18 UTC sourcing audit. Argo’s company posts led to this recruiter page. It welcomed sponsorship applicants but showed a December 2025 posting and did not identify the employing client. Hold privately until the current opening, employing sponsor and publication rights are verified. No recruiter contact, application or public listing has been made. Date correction: the first saved revision retained form defaults. This revision records the earlier audit observation and the intended next-day follow-up; it does not claim a fresh source inspection.",
+        "follow_up_at": "2026-10-09T09:00:00.000Z",
+        "job_id": null,
+        "duplicate_of": null,
+        "method": "agent_assisted"
+      },
+      "job_fingerprint": null
+    },
+    {
+      "id": "fa88f9b3-34b2-44b8-9eb5-72703b6a7c25",
+      "source_kind": "linkedin_post",
+      "revision": 1,
+      "first_recorded_at": "2026-10-08T16:38:21.045Z",
+      "recorded_at": "2026-10-08T16:38:21.045Z",
+      "content": {
+        "title": "Fabrication and welding recruiting post — stale lead",
+        "employer": "",
+        "location": "",
+        "observed_at": "2026-10-08T16:38:20.422Z",
+        "posted_at": null,
+        "posted_evidence": "",
+        "deadline": null,
+        "deadline_evidence": "",
+        "original_url": "",
+        "identity_url": "",
+        "identity_note": "",
+        "quote": "",
+        "state": "rejected",
+        "reason": "Agent-assisted record of the 8 October 15:13–15:18 UTC sourcing audit. This ordinary LinkedIn recruiting post appeared in recently crawled search results, but opening the post showed it was about ten months old. It has no verified current employer-original opening in this review. Reject as a current sponsorship opportunity; a crawl date is not a posting date. This does not assert the employer has formally closed a vacancy.",
+        "follow_up_at": null,
+        "job_id": null,
+        "duplicate_of": null,
+        "method": "agent_assisted"
+      },
+      "job_fingerprint": null
+    },
+    {
+      "id": "fa88f9b3-34b2-44b8-9eb5-72703b6a7c25",
+      "source_kind": "linkedin_post",
+      "revision": 2,
+      "first_recorded_at": "2026-10-08T16:38:21.045Z",
+      "recorded_at": "2026-10-08T16:44:06.969Z",
+      "content": {
+        "title": "Fabrication and welding recruiting post — stale lead",
+        "employer": "",
+        "location": "",
+        "observed_at": "2026-10-08T15:18:00.000Z",
+        "posted_at": null,
+        "posted_evidence": "",
+        "deadline": null,
+        "deadline_evidence": "",
+        "original_url": "",
+        "identity_url": "",
+        "identity_note": "",
+        "quote": "",
+        "state": "rejected",
+        "reason": "Agent-assisted record of the 8 October 15:13–15:18 UTC sourcing audit. This ordinary LinkedIn recruiting post appeared in recently crawled search results, but opening the post showed it was about ten months old. It has no verified current employer-original opening in this review. Reject as a current sponsorship opportunity; a crawl date is not a posting date. This does not assert the employer has formally closed a vacancy. Date correction: the first revision retained the form’s current-time default. This revision restores the earlier audit observation without claiming a new inspection.",
+        "follow_up_at": null,
+        "job_id": null,
+        "duplicate_of": null,
+        "method": "agent_assisted"
+      },
+      "job_fingerprint": null
+    }
+  ],
+  "scheduled": {
+    "id": "business-497632",
+    "state": "completed",
+    "created_at": "2026-10-08T16:45:38.000Z",
+    "finished_at": "2026-10-08T16:46:00.554Z",
+    "trigger_kind": "scheduled",
+    "discovery": {
+      "checked_at": "2026-10-08T16:45:51.984Z",
+      "total": 3,
+      "unresolved": 1,
+      "overdue": 0,
+      "changed_links": 0,
+      "current_linked_jobs": 1,
+      "last_recorded_at": "2026-10-08T16:44:21.289Z",
+      "counts": [
+        {
+          "source_kind": "linkedin_job",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_post",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "recruiter",
+          "state": "held",
+          "total": 1
+        }
+      ],
+      "limitation": "Private review records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Source inspection and dates are reviewer-recorded."
+    },
+    "movement": {
+      "id": "business-497632",
+      "observed_at": "2026-10-08T16:45:51.705Z",
+      "previous_at": "2026-10-08T15:45:50.632Z",
+      "trigger_kind": "scheduled",
+      "baseline": 0,
+      "before_counts": {
+        "total": 904,
+        "employers": 33,
+        "offered": 16,
+        "conditional": 34,
+        "unavailable": 92,
+        "not_stated": 762
+      },
+      "counts": {
+        "total": 908,
+        "employers": 34,
+        "offered": 19,
+        "conditional": 34,
+        "unavailable": 92,
+        "not_stated": 763
+      },
+      "changes": {
+        "entered": 4,
+        "returned": 0,
+        "left": 0,
+        "sponsorship_changed": 0,
+        "evidence_changed": 0,
+        "stated_gained": 3,
+        "stated_lost": 0
+      }
+    },
+    "result": {
+      "health": {
+        "findings": 5,
+        "high": 0
+      },
+      "supervision": {
+        "checked_at": "2026-10-08T16:45:42.685Z",
+        "checks": [
+          {
+            "kind": "research",
+            "action": "idle"
+          },
+          {
+            "kind": "marketing",
+            "action": "idle"
+          },
+          {
+            "kind": "applications",
+            "action": "idle"
+          }
+        ],
+        "reconciled": 0,
+        "needs_attention": 0,
+        "model_calls": 0,
+        "external_posts": 0
+      },
+      "search": {
+        "day": "2026-10-08",
+        "state": "failed",
+        "requests": 1,
+        "reused": true
+      },
+      "links": [
+        {
+          "id": "149c560d9df802ff3213c62b",
+          "state": "checked",
+          "reason": "title_observed",
+          "requests": 2
+        },
+        {
+          "id": "3c537dc881049c04073437bc",
+          "state": "checked",
+          "reason": "title_observed",
+          "requests": 1
+        }
+      ],
+      "opportunities": {
+        "checked_at": "2026-10-08T16:45:51.350Z",
+        "enabled": true,
+        "checked": 0,
+        "held": [],
+        "changed": [],
+        "external_attention": 0,
+        "limited": false,
+        "external_actions": 0
+      },
+      "cleanup": {
+        "state": "completed",
+        "stale_roles": 0,
+        "policy": "Hide records last observed over 72 hours ago; retain the records, feedback and customer workspaces."
+      },
+      "publication": {
+        "state": "not_due",
+        "next_due": "2026-10-14T16:50:43.330Z"
+      },
+      "marketing": {
+        "prepared": 0,
+        "external_posts_sent": 0
+      },
+      "editorial": {
+        "id": "marketing-2026-10-08",
+        "state": "no_post",
+        "result": {
+          "decision": "no_post",
+          "source_id": "",
+          "reason": "No eligible slot: the queue is full, expired or needs delivery reconciliation.",
+          "ranked": [],
+          "timing_reason": "Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first."
+        },
+        "reused": true
+      },
+      "research": {
+        "state": "held",
+        "research_id": null,
+        "detail": "Research was held by its availability or budget controls. No automatic retry today."
+      },
+      "applications": {
+        "id": "application-eval-2026-10-08",
+        "state": "held",
+        "reused": true
+      }
+    }
+  },
+  "platform": {
+    "id": "business-497632",
+    "status": "complete",
+    "success": true,
+    "start": "2026-10-08T16:45:42.244Z",
+    "end": "2026-10-08T16:46:00.723Z",
+    "step_count": 16
+  },
+  "movement_events": [
+    {
+      "job_id": "1cbc004ee3191d8ee1189088",
+      "board_id": "reviewed-ashby-sequence",
+      "company": "Sequence",
+      "title": "Senior Product Engineer (Backend) - London",
+      "kind": "entered",
+      "reason": "current_at_observation",
+      "before_sponsorship": null,
+      "after_sponsorship": "offered"
+    },
+    {
+      "job_id": "3b19d70febf062dcd9110013",
+      "board_id": "reviewed-ashby-sequence",
+      "company": "Sequence",
+      "title": "AI Engineer - London",
+      "kind": "entered",
+      "reason": "current_at_observation",
+      "before_sponsorship": null,
+      "after_sponsorship": "offered"
+    },
+    {
+      "job_id": "536242bffe0bdef9f8319c08",
+      "board_id": "reviewed-ashby-sequence",
+      "company": "Sequence",
+      "title": "Product Engineer - London",
+      "kind": "entered",
+      "reason": "current_at_observation",
+      "before_sponsorship": null,
+      "after_sponsorship": "offered"
+    },
+    {
+      "job_id": "e9d29fbcc11ce1f853c94429",
+      "board_id": "reviewed-ashby-sequence",
+      "company": "Sequence",
+      "title": "Senior Product Designer - London",
+      "kind": "entered",
+      "reason": "current_at_observation",
+      "before_sponsorship": null,
+      "after_sponsorship": "not_stated"
+    }
+  ],
+  "health": {
+    "version": null,
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/jobs",
+        "status": 200,
+        "ok": true,
+        "security": true,
+        "content": {
+          "ok": true,
+          "visible_roles": 12,
+          "matching_roles": 908,
+          "generated_at": "2026-10-08T16:45:52.662Z"
+        }
+      },
+      {
+        "path": "/insights",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/api/admin/session",
+        "status": 403,
+        "ok": true,
+        "security": true
+      }
+    ]
+  },
+  "recovery_before": {
+    "observed_at": "2026-10-08T16:34:26.203Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "schema_drift",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "08eb20b5ac227e9fc3f3974a1e03872bed38b4f57a611f0269ba6ea676c197fc",
+    "database_size_bytes": 96706560,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 127,
+      "actual_objects": 120,
+      "migration_files": 30,
+      "expected_sha256": "c2fe02cae63c297eca152892b16b646a860b1e8bd905ac0c70a98ab924dc19a0",
+      "actual_sha256": "dee2d524485eca472eb7b7c57a2356f56819e6e5f34e43aedc0b513f4704adac",
+      "missing": [
+        "index:discovery_revision_time",
+        "table:discovery_leads",
+        "table:discovery_revisions",
+        "trigger:discovery_leads_immutable",
+        "trigger:discovery_leads_retained",
+        "trigger:discovery_revisions_immutable",
+        "trigger:discovery_revisions_retained"
+      ],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "recovery_after": {
+    "observed_at": "2026-10-08T16:34:49.787Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "5970efc2c5a230c8296978318d86d9e2eded027ddb001aee7a1a982073a15330",
+    "database_size_bytes": 96739328,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 127,
+      "actual_objects": 127,
+      "migration_files": 30,
+      "expected_sha256": "c2fe02cae63c297eca152892b16b646a860b1e8bd905ac0c70a98ab924dc19a0",
+      "actual_sha256": "c2fe02cae63c297eca152892b16b646a860b1e8bd905ac0c70a98ab924dc19a0",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "automation": {
+    "id": "sponsor-intel-daily-improvement",
+    "existing_schedule_preserved": true,
+    "saved_prompt_read_back": true,
+    "daily_execution_of_new_queue_instructions_verified": false
+  },
+  "limits": [
+    "Daily Codex use of the new queue remains to be observed.",
+    "LinkedIn automated ingestion remains disconnected.",
+    "Sequence source first unattended refresh remains due at 18:30 UTC.",
+    "A matched quotation and owner-recorded judgment do not establish independent classification quality or applicant eligibility.",
+    "No production AI or Google retry, test email, social post, application, budget reset, customer-data export or restore was forced.",
+    "Direct browser navigation to the public health endpoint was blocked by the client; it was not retried or bypassed. The ordinary owner UI and genuine scheduled health checks provide separate evidence."
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "observed_at": "2026-11-02T19:41:49.498189+00:00",
+  "node": "24.19.0",
+  "live_base": "9bf8a1ebcf612c47380c0809d3ba765587f99d50",
+  "prepared_founder_excluded": true,
+  "migration_required": false,
+  "public_prerenders": 21,
+  "browser_budget_unchanged": true,
+  "checks": {
+    "development_tests": {
+      "passed": 828,
+      "failed": 0,
+      "log_sha256": "b9150e78dcd88253915d214b2000fbdb330c45d3854aef0ea983dbad8b0a8ffe"
+    },
+    "isolated_live_base_tests": {
+      "passed": 809,
+      "failed": 0,
+      "log_sha256": "b77353cd14fb90742c4752c3c45a18beed466c8a31aaa8d3054b1531172911c9"
+    },
+    "development_build": {
+      "log_sha256": "40ce9be5e2108c868a67edf059192c91ed461e8c2a9f8fba5998fda12cb003b1"
+    },
+    "isolated_build": {
+      "log_sha256": "fd661fb6b932297511f36a5054203feabe46ce6f0b9354b5fcc4fb603b848ba3"
+    },
+    "isolated_final_dry_run": {
+      "log_sha256": "9d6aac66a729adce07b8fe7520ae9ed766859094b2d617b96cf4aedbdcd2c3c1"
+    }
+  },
+  "package": {
+    "version": "0.1.0",
+    "filename": "sponsor-intel-extension-0.1.0.zip",
+    "bytes": 23871,
+    "sha256": "db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb",
+    "files": [
+      {
+        "name": "manifest.json",
+        "bytes": 629,
+        "sha256": "b4e2f2e6bf4fc28a9318cde857506984de029072d9b9056d5a26758f549daa26"
+      },
+      {
+        "name": "popup.html",
+        "bytes": 2364,
+        "sha256": "e7f89c1cfa5913a8927137315903ebc7d59b7b25cad28cd77fd1b546a4436bfd"
+      },
+      {
+        "name": "popup.css",
+        "bytes": 2211,
+        "sha256": "69f5883f6ffd28bcf21d8c4543fc9665ce11a11feea5f234e98cd5980cde750e"
+      },
+      {
+        "name": "popup.js",
+        "bytes": 2417,
+        "sha256": "9e1667624883995addd553a4f7ab5a8d5a477e62fdafacc956a49105981cda3f"
+      },
+      {
+        "name": "analyse.js",
+        "bytes": 6131,
+        "sha256": "8d95b9e840d1156ae6f9b374ca97f069af4c70a819980a26262fad89dcc467db"
+      },
+      {
+        "name": "capture.js",
+        "bytes": 3612,
+        "sha256": "99805463bcb82b0d3ca039302e838cb5ac436bc1c90da45ea448a4a714f79453"
+      },
+      {
+        "name": "README.txt",
+        "bytes": 1758,
+        "sha256": "bdc82a0fd463ef5a4f2b73f48afdebadc621789f339fe585c7b910e14fd009e8"
+      },
+      {
+        "name": "icon-16.png",
+        "bytes": 409,
+        "sha256": "a786511a2f7ffccd63c022fe19f21ba899e7879b2d625dcad1d8efeccfc953f6"
+      },
+      {
+        "name": "icon-48.png",
+        "bytes": 1114,
+        "sha256": "3e10c105bffed3f07f0e4ef8af70da0f8b194398dfe5a19d81a8b50d92b38c07"
+      },
+      {
+        "name": "icon-128.png",
+        "bytes": 2236,
+        "sha256": "435c081453d2615330cbc0b2aec5ad353eed3a0918c6b099d2a86401469df953"
+      }
+    ]
+  },
+  "limitations": [
+    "Local suites are not hosted Linux checks",
+    "Fictional Chromium QA is not universal website compatibility",
+    "No browser-store submission or approval",
+    "No independent semantic accuracy evaluation"
+  ],
+  "feature_commit": "e47b379396a6ef84d0104b3f2df526d989a7df74",
+  "runtime_patch_sha256": "78c1e77887a74e710a923fa5f3e8e27e5409078a0c290931d536fede18297322",
+  "existing_runtime_files_changed": [
+    "cloudflare/shared/pages.json",
+    "cloudflare/src/main.tsx",
+    "cloudflare/worker/pages.js"
+  ],
+  "code_head_ci": {
+    "head": "e47b379396a6ef84d0104b3f2df526d989a7df74",
+    "billing_blocked": [
+      125507776604,
+      125507749530
+    ],
+    "original_annotations_read": true,
+    "gitguardian_skipped_oversized_pr": 125507775369
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "observedAt": "2026-11-03T21:02:35.301Z",
+  "scope": "fictional browser import with actual CareerProvider, Worker auth and isolated in-memory D1; not production saving",
+  "roles": 1,
+  "revision": 2,
+  "apiWrites": 2,
+  "preparationRequests": 0,
+  "fullDescriptionRetained": true,
+  "sourceURLRetained": true,
+  "manualPreparationRoute": true,
+  "duplicateKeptExistingCV": true,
+  "masterProfileUnchanged": true,
+  "stage": "Saved",
+  "sourceTextSha256": "be691190dfedb33f0eceeea48457d56f873c825c21736da95a11d010f5dfa553"
+}

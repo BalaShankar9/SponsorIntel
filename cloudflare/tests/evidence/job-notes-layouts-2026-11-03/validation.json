@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-03T22:52:15.356Z",
+  "version": "0.2.2",
+  "bytes": 54756,
+  "sha256": "f90a126146c2ed56bae5a6b62ede0ae0b42becea49a9164ba144aab99afd88ec",
+  "sourceBundleMatch": true,
+  "deterministicArchive": true,
+  "existingDestinationRefused": true,
+  "manifestPermissionsAndCspUnchangedFromPublic021": true,
+  "targetedUnitTests": 12,
+  "typeScript": "passed",
+  "browserDomTests": 16,
+  "installed022": false,
+  "published022": false,
+  "public021Unchanged": true,
+  "fullWebsiteBuildRun": false,
+  "dependencyInstallRun": false,
+  "scope": "Prepared local candidate only. Local page bundle rendered controls; its closed-shadow UI was not fully automated in this follow-up. Separate installed acceptance is pending.",
+  "diskPreflight": "1.9 GiB; no clean install or full website build",
+  "sameDaySecurity": "Reused unchanged dependency/advisory evidence"
+}

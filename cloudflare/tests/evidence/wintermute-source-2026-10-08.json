@@ -1,0 +1,286 @@
+{
+  "checked_at": "2026-10-08T17:27:09.451198+00:00",
+  "app_version": "2.45.0",
+  "worker_version": "f3410515-006d-4aa8-9882-12f63b4fc453",
+  "source": {
+    "id": "reviewed-lever-wintermute-trading",
+    "company": "Wintermute",
+    "state": "approved",
+    "reviewed_at": "2026-10-08T17:19:25.560Z",
+    "sponsor_id": "bfdf4216a82c578531f2bead"
+  },
+  "raw_listed": 18,
+  "uk_accepted": 16,
+  "us_only_excluded": 2,
+  "offered": 1,
+  "not_stated": 15,
+  "all_stored_fields_match_reviewed_feed": true,
+  "matched_fields_per_role": 18,
+  "feed_sha256": "97c244f03997e4a92c1e1c74b6e467f69406f20d76630ee17efc6b3edb49bddf",
+  "run": {
+    "id": "owner-8c14dccd-83ef-4416-b2cd-693911c71cb5",
+    "state": "completed",
+    "created_at": "2026-10-08T17:20:13.078Z",
+    "finished_at": "2026-10-08T17:20:18.514Z",
+    "trigger_kind": "owner",
+    "requests": 1
+  },
+  "task": {
+    "source_id": "reviewed-lever-wintermute-trading",
+    "state": "published",
+    "attempts": 1,
+    "count": 16,
+    "evidence": {
+      "policy": "sources-v1",
+      "checked_at": "2026-10-08T17:20:16.399Z",
+      "received": 16,
+      "sponsorship_worded": 1,
+      "register_available": true,
+      "licence_id": "bfdf4216a82c578531f2bead",
+      "licence_is_not_vacancy_sponsorship": true,
+      "duplicate_ids": 0,
+      "duplicate_links": 0
+    }
+  },
+  "platform": {
+    "id": "owner-8c14dccd-83ef-4416-b2cd-693911c71cb5",
+    "status": "complete",
+    "success": true,
+    "start": "2026-10-08T17:20:15.971Z",
+    "end": "2026-10-08T17:20:18.556Z",
+    "step_count": 3
+  },
+  "roles": [
+    {
+      "id": "03705dffd4e51309ec702873",
+      "title": "Institutional Business Development - Manager/Director",
+      "location": "London/New York",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/3db29d6b-7f7e-4251-a151-82933382473b",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "15d5d084ff95a72e31c4138b",
+      "title": "DeFi Algorithmic Trader",
+      "location": "London/New York/Singapore",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/cbc68e87-442f-4724-b3c5-c1f0bb3da80c",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "2e0ae81886459d90755b9560",
+      "title": "C++ Trading Platform Developer",
+      "location": "London",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/8c31337e-9989-4cf2-9cab-e876cbc96f10",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "4b259a3114ddd238b0c3775b",
+      "title": "Options Trader",
+      "location": "London/New York",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/f0db771f-936b-4999-91d1-7a13fa0b8c25",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "6a85bcf6f16a6cb219051ee4",
+      "title": "Quant Researcher (MFT Focus)",
+      "location": "London",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/0874ca9b-7c02-4364-bb78-b7b04272351e",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "6e4a958d20db96754ffd0f1b",
+      "title": "Core Developer (Python)",
+      "location": "London",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/d059ea72-e3d2-42ce-bbb3-d47531e0c933",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "88d6b2b07ca3b73fe3f1c710",
+      "title": "Machine Learning Researcher",
+      "location": "London",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/a37ce8fb-afc7-4ede-ae93-ca1395228cda",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "99a060fc5629a736319beb89",
+      "title": "Business Development & Partnerships Director",
+      "location": "London",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/bb850148-6459-4fa1-9ce8-07bf53036804",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "9b8466ef14d7b09ba97af5d6",
+      "title": "Business Development Manager (Sports/Prediction Markets)",
+      "location": "London/ New York/ Remote",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/42b799cd-95cb-4f12-89b1-7e22a7cbf7cc",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "a67d2b5bdbaf0c9940a578f0",
+      "title": "Algorithmic Trader",
+      "location": "London/New York",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/28c7e15f-b3a0-48c6-8322-2e9f25371fd0",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "bcb839930b0e0a9f445aad18",
+      "title": "Full Stack Engineer",
+      "location": "London",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/0281d99d-aaa5-4e87-8785-9e3a4fbbff16",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "c24ab6ee79bc8591b9e3e2b9",
+      "title": "C++ Quant Developer",
+      "location": "London",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/4cab7a75-4304-4590-90c5-6755dbd97d36",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "c5d990da3ae0b5d696be7044",
+      "title": "Infrastructure Engineer",
+      "location": "London / Singapore",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/62f77abd-1f4a-44dc-858e-06ebe45d51a3",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "cb95ff0b0bc6a404302c6fc2",
+      "title": "Product Manager",
+      "location": "London/New York",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/cc1ae0c6-7e19-4aa3-95aa-0d109b10edda",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "d1f560f84721746296033a68",
+      "title": "C++ Quant Developer - Options",
+      "location": "London",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/89c2714e-7748-42ab-a03c-36fc821f7362",
+      "sponsorship": "not_stated",
+      "evidence": "",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    },
+    {
+      "id": "fca0bd0481d33af61b30598c",
+      "title": "Product Engineering - Team Lead",
+      "location": "London",
+      "apply_url": "https://jobs.lever.co/wintermute-trading/66a6c9f0-b504-4942-af22-b555969564e5",
+      "sponsorship": "offered",
+      "evidence": "We will arrange a UK visa sponsorship and help with relocation to London.",
+      "first_seen": "2026-10-08T17:20:16.399Z",
+      "last_seen": "2026-10-08T17:20:16.399Z"
+    }
+  ],
+  "classification_replay": {
+    "existing_replayed": 908,
+    "existing_changed": 0,
+    "new_board_replayed": 16,
+    "new_board_changed": [
+      {
+        "id": "fca0bd0481d33af61b30598c",
+        "title": "Product Engineering - Team Lead",
+        "sponsorship": "offered",
+        "evidence": "We will arrange a UK visa sponsorship and help with relocation to London."
+      }
+    ]
+  },
+  "public_browser": {
+    "total": 924,
+    "employers": 35,
+    "sponsorship": 54,
+    "licensed": 871,
+    "detail_label_quote_and_original_link_verified": true
+  },
+  "discovery": {
+    "id": "1e992bbb-f821-4646-aa96-4ce3ce7cb19a",
+    "revision": 1,
+    "state": "linked",
+    "observed_at": "2026-10-08T17:22:00.000Z",
+    "recorded_at": "2026-10-08T17:22:59.049Z",
+    "method": "agent_assisted",
+    "posted_at": null,
+    "deadline": null,
+    "job_id": "fca0bd0481d33af61b30598c"
+  },
+  "scheduled_refresh_verified": false,
+  "next_scheduled_collection": "2026-10-08T18:30:00Z",
+  "linkedin_ingestion_connected": false,
+  "validation": {
+    "suite_total": 444,
+    "initial_passed": 443,
+    "initial_cancelled_timeout": 1,
+    "isolated_retry_passed": 1,
+    "tests_changed_after_retry": false,
+    "build": true,
+    "prerenders": 17,
+    "browser_budget": true,
+    "worker_dry_run": true,
+    "final_suite_passed": 444,
+    "final_suite_failed": 0,
+    "final_suite_cancelled": 0,
+    "final_suite_runtime": "Node 24.19.0",
+    "final_suite_duration_ms": 8087.661958
+  },
+  "sources": {
+    "careers": "https://www.wintermute.com/company/opportunities",
+    "original": "https://www.wintermute.com/company/opportunities/66a6c9f0-b504-4942-af22-b555969564e5",
+    "lever_advert": "https://jobs.lever.co/wintermute-trading/66a6c9f0-b504-4942-af22-b555969564e5",
+    "identity": "https://www.wintermute.com",
+    "company": "https://find-and-update.company-information.service.gov.uk/company/10882520",
+    "address_history": "https://find-and-update.company-information.service.gov.uk/company/10882520/filing-history",
+    "feed": "https://api.lever.co/v0/postings/wintermute-trading?mode=json",
+    "documentation": "https://github.com/lever/postings-api"
+  },
+  "limits": [
+    "Owner-triggered publication is not a scheduled collection receipt.",
+    "Sponsorship wording and employer licence do not establish individual eligibility.",
+    "The one sponsorship-stated role requires substantial engineering and leadership experience.",
+    "A current multi-location advert including London does not guarantee UK sponsorship.",
+    "No original publication date or closing date was supplied; they remain unknown.",
+    "The graduate vacancy is New York only and excluded; an earlier UK assessment-day application deadline has passed.",
+    "Public posting documentation is not an employer partnership or bespoke redistribution agreement.",
+    "The narrow rule and replay are not an independently labelled classification-accuracy study.",
+    "No application submitted, CV uploaded, model or Google retry, operational email or social post sent."
+  ]
+}

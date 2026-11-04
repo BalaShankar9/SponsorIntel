@@ -1,0 +1,37 @@
+{
+  "recordedAt": "2026-11-03T19:15:30Z",
+  "timestampMeaning": "Clock observation after the UI/HTTP checks and server shutdown; not the timestamp of each check",
+  "candidateVersion": "0.1.7",
+  "candidateSha256": "4bea24f8b62ede60bddf81873ee2595a5260d4622836b8a2d2793a900ec2d0d0",
+  "extraction": {
+    "entries": 10,
+    "crcValid": true,
+    "everyEntryHashMatched": true,
+    "profileCreated": false,
+    "extensionInstalled": false
+  },
+  "fixture": {
+    "pages": 10,
+    "http200": 10,
+    "noScripts": true,
+    "noMockedExtensionApis": true,
+    "noExternalAssets": true,
+    "post405": true,
+    "unknown404": true,
+    "headEmpty": true,
+    "screenshot": "extension-manual-fixture-2026-11-03.jpg",
+    "screenshotSha256": "bd5691871ee0b399bb9bcde1855d152280817eba3afad565bea5403aa1ae9d7c"
+  },
+  "browser": {
+    "freshLocalTabLoaded": true,
+    "publicLinkedInCompatibilityVerified": false,
+    "temporaryTabClosed": true
+  },
+  "approval": "Requested for separate temporary Chrome profile and preview installation; no answer observed. Do not install or create the profile until answered.",
+  "fixtureServer": "Original session ended with exit 130 after explicit shutdown; no server left running",
+  "limitations": [
+    "This image is a fictional background page, not an extension or store screenshot.",
+    "No installed extension, actual activeTab capture or consumer acceptance is established.",
+    "No package, website, policy, owner control, production database or permission changed."
+  ]
+}

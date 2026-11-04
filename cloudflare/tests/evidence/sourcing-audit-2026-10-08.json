@@ -1,0 +1,114 @@
+{
+  "checked_at": "2026-10-08T15:13:07.815Z",
+  "collections": {
+    "total": 904,
+    "employers": 33,
+    "early_career": 51,
+    "sponsorship": 50,
+    "licensed": 851,
+    "salary": 156
+  },
+  "all_approved_sources_successful": true,
+  "employers": 33,
+  "daily_snapshots": [
+    {
+      "day": "2026-10-08",
+      "runs": 15,
+      "min_jobs": 846,
+      "max_jobs": 904,
+      "min_stated": 50,
+      "max_stated": 50
+    },
+    {
+      "day": "2026-10-07",
+      "runs": 8,
+      "min_jobs": 846,
+      "max_jobs": 848,
+      "min_stated": 50,
+      "max_stated": 50
+    }
+  ],
+  "first_observed_current": [
+    {
+      "first_observed_day": "2026-10-08",
+      "current_roles": 63,
+      "current_stated": 1
+    },
+    {
+      "first_observed_day": "2026-10-07",
+      "current_roles": 99,
+      "current_stated": 1
+    },
+    {
+      "first_observed_day": "2026-10-06",
+      "current_roles": 31,
+      "current_stated": 0
+    },
+    {
+      "first_observed_day": "2026-10-05",
+      "current_roles": 7,
+      "current_stated": 0
+    },
+    {
+      "first_observed_day": "2026-10-04",
+      "current_roles": 704,
+      "current_stated": 48
+    }
+  ],
+  "recent_conditional_ids": [
+    "8d6a8f63032c4fcb4d0d0712",
+    "b6e64de0cf1584ecf33341ab"
+  ],
+  "positive_by_employer": [
+    {
+      "board_id": "callosum",
+      "sponsorship": "offered",
+      "n": 10,
+      "earliest": "2026-10-04T16:46:04.170Z",
+      "newest": "2026-10-04T16:46:04.170Z"
+    },
+    {
+      "board_id": "maven",
+      "sponsorship": "conditional",
+      "n": 2,
+      "earliest": "2026-10-04T16:46:04.740Z",
+      "newest": "2026-10-04T16:46:04.740Z"
+    },
+    {
+      "board_id": "monzo",
+      "sponsorship": "conditional",
+      "n": 31,
+      "earliest": "2026-10-04T11:52:48.124Z",
+      "newest": "2026-10-07T09:22:09.088Z"
+    },
+    {
+      "board_id": "sampura",
+      "sponsorship": "offered",
+      "n": 1,
+      "earliest": "2026-10-04T16:46:04.382Z",
+      "newest": "2026-10-04T16:46:04.382Z"
+    },
+    {
+      "board_id": "seamflow",
+      "sponsorship": "offered",
+      "n": 5,
+      "earliest": "2026-10-04T16:46:04.579Z",
+      "newest": "2026-10-04T16:46:04.579Z"
+    },
+    {
+      "board_id": "university-nottingham",
+      "sponsorship": "conditional",
+      "n": 1,
+      "earliest": "2026-10-08T03:25:28.307Z",
+      "newest": "2026-10-08T03:25:28.307Z"
+    }
+  ],
+  "keyword_audit": {
+    "records": 84,
+    "scope": "active unknown labels containing sponsor or certificate-of",
+    "missed_explicit_exclusions": 2,
+    "independent_accuracy_estimate": false
+  },
+  "linkedin_job_ingestion_connected": false,
+  "linkedin_post_collector_connected": false
+}

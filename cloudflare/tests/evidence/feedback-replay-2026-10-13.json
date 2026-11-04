@@ -1,0 +1,127 @@
+{
+  "observed_at": "2026-10-13T17:21:02.540728+00:00",
+  "production_version": "2.72.0",
+  "worker": "0f7f72c2-63e5-4275-a4bc-356a2ae14486",
+  "code_commit": "4f7b2e26f5cdb8b39a7a1fbcf619f17f8bc89b0f",
+  "rollback": {
+    "worker": "ba0a850c-be01-46e4-92f4-cc4aa0a624ba",
+    "health": {
+      "ok": true,
+      "version": "2.72.0",
+      "register": {
+        "date": "2026-10-12",
+        "count": 127982,
+        "checked_at": "2026-10-13T07:15:42.984Z"
+      }
+    },
+    "old_ui_asset": "/assets/index-Bjus3CRq.js",
+    "sha256": "2cdde4061a6d051ee61e0deacb0ccb16f373cbe48eb0d381f01c4def12223451",
+    "matched": true
+  },
+  "live": {
+    "/api/health": {
+      "status": 200,
+      "version": "2.72.0"
+    },
+    "/api/jobs?limit=1": {
+      "status": 200,
+      "total": 935
+    },
+    "/api/admin/support": {
+      "status": 403
+    },
+    "/api/feedback": {
+      "status": 405
+    },
+    "bundle": {
+      "path": "/assets/index-DQJ0nIEt.js",
+      "sha256": "128c9fefb799ae32e40c33659d9f519daaa1df25f22c1d994e4b6e9ac58b8484",
+      "matched": true,
+      "retry_ui_included": true
+    },
+    "at": "2026-10-13T17:21:02.540728+00:00"
+  },
+  "preservation": {
+    "before": "2026-10-13T17:16:37.722Z",
+    "after": "2026-10-13T17:21:01.962Z",
+    "unchanged_groups": [
+      "control",
+      "campaigns",
+      "selection",
+      "runs",
+      "steps",
+      "assessments",
+      "budget",
+      "daily",
+      "research",
+      "research_reviews",
+      "source",
+      "business",
+      "marketing",
+      "briefs"
+    ],
+    "hashes": {
+      "control": "5d30728d0748ddd2cf83766885310f003965e3737fd9a9972dcad5051b91ef35",
+      "campaigns": "309698eb2f559d8f554049944a5de4e73c0d85d9028e8943d36c052a42fa939e",
+      "selection": "49c3235f79bffe6292c56479d022654494da716602632792431f356790c224f6",
+      "runs": "143c3c07c918970818b2d029f79f7ca4a8d3173169f76323f67f924bc2e94f81",
+      "steps": "c08b01814206bebf302c3ddbccc052578fabf7de17211317a097279a6d68287d",
+      "assessments": "85f540066f073dda7057d1f7136a67fb69630833a7bf5758d584e7d062722f88",
+      "budget": "8180930f9b821df7116142f9a63a8b541bb6a7e96383b33cb529ad7e30759434",
+      "daily": "96cf624bdf56e369bfdf31affc87c462d10a2696fdbfa4a4644f2f4cb15b19ab",
+      "research": "c319b82794235d714fb7165787bdbc217308f941b768da4382ca3aa18fa3cbb5",
+      "research_reviews": "df3cc14365378e6d90144e5bad1248a2d2ea918578796f30a27bba9912361a85",
+      "source": "13159c7ff9c606ab374f96f120e1437c8ba23ac39ec8e3fead24fd57097cddbf",
+      "business": "fa4ff3d06c5e455910a634ab41f8217fe07c1b2e4f97cba5b0f202bc59bda0b5",
+      "marketing": "948cb760a020fe9d48ddec065bf54962b514e96ca17c450868b06944d988bb2c",
+      "briefs": "7a2f949a8f5404177e3f46eb6c101f170813d08c62277fcf471447c0972e3d54"
+    },
+    "profile_matches": true,
+    "reports": 0,
+    "support_reviews": 0,
+    "foreign_key_errors": 0,
+    "ai_starts": 2,
+    "ai_calls": 6
+  },
+  "validation": {
+    "tests": 640,
+    "failed": 0,
+    "typescript_build": true,
+    "prerenders": 17,
+    "browser_budgets": true,
+    "dry_run": true,
+    "dependency_graph_unchanged": true,
+    "initial_regression": "Old API inserted another report on the same uncertain retry: expected 200 replay, actual 201 new record.",
+    "isolated_runtime": [
+      "lost acknowledgement recovery",
+      "same-key concurrent admission",
+      "distinct last-slot competition",
+      "changed-content conflict",
+      "replay with exhausted quota or changed network",
+      "failed quota insert rolls back feedback"
+    ],
+    "browser": {
+      "environment": "Fictional isolated actual FeedbackForm and Worker/D1, no production records",
+      "first_response": "502 after original insertion",
+      "retry": "same receipt",
+      "reports_before_and_after": 1,
+      "quota_before_and_after": 1,
+      "receipt_focus": true,
+      "mobile_width": 390,
+      "document_width": 390,
+      "final_error_copy": "clarified after functional browser test; final build and served bundle verified"
+    }
+  },
+  "production_feedback_submitted": false,
+  "extra_model_calls": 0,
+  "forced_workflows": false,
+  "outbound_sends": 0,
+  "independent_support_outcome": false,
+  "limitations": [
+    "Replay identity stays only in the open form; closing/reloading loses it.",
+    "Older cached clients without a request key do not gain replay protection.",
+    "No genuine customer report or resolved customer problem is proven by fictional verification.",
+    "Hosted Linux checks remain blocked by GitHub account billing.",
+    "Recovery-point/schema agreement is not a customer restore or retention-window proof."
+  ]
+}

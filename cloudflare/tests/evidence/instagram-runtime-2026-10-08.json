@@ -1,0 +1,44 @@
+{
+  "release": "2.24.0",
+  "scope": "Isolated local Workerd/D1, synthetic local owner and vacancy; real public first-party guide reads; no AI/email/workflow bindings",
+  "checked_at": "2026-10-08T04:22:49.406Z",
+  "first": {
+    "id": "9c43aba8-85a6-4238-96b2-1a7c50355dab",
+    "replayed": false
+  },
+  "repeat": {
+    "id": "9c43aba8-85a6-4238-96b2-1a7c50355dab",
+    "replayed": true
+  },
+  "brief": {
+    "state": "proposed",
+    "version": 1,
+    "source_count": 3,
+    "media": [
+      {
+        "id": "launch-square-2026-10",
+        "url": "https://sponsorintel.london/social/launch-square-f4987b2ec8265164.png",
+        "sha256": "f4987b2ec82651645cdf93f1185bc938fe5d62e93a1d7c94fb007b77b720416c",
+        "width": 1080,
+        "height": 1080,
+        "type": "image/png",
+        "alt": "Sponsor Intel. Your next chapter starts with clarity. Find UK employer vacancies, check the sponsorship evidence and prepare a focused application. For international students, graduates and migrants. sponsorintel.london."
+      }
+    ],
+    "receipt_count": 0
+  },
+  "publishing_connected": false,
+  "browser": {
+    "image_loaded": true,
+    "image_dimensions": [
+      1080,
+      1080
+    ],
+    "review_disabled_without_media_check": true,
+    "review_enabled_after_media_check": true,
+    "narrow_viewport_width": 390,
+    "narrow_document_width": 390,
+    "narrow_card_width": 312,
+    "review_recorded": false
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "kind": "manual-application-availability-regression-repair",
+  "date": "2026-10-18",
+  "runtime": {
+    "version": "2.83.1",
+    "commit": "d5e113febe4e82513693f6d16e85d79faca6bd37",
+    "worker": "c800e7c0-6da3-4e18-bf86-06958f2e4140",
+    "prior_with_known_regression": "2.83.0",
+    "compatible_fallback": {
+      "version": "2.82.0",
+      "worker": "3b8e7099-3ffd-45b9-b58e-70093065567a",
+      "limitation": "Removes the saved catalogue-role preparation guard."
+    },
+    "schema_changed": false,
+    "dependency_graph_changed": false
+  },
+  "regression": {
+    "trigger": "Actual Add a role form creates manual-UUID v4 identity. 2.83 treated it as a missing catalogue role.",
+    "pre_fix_actual_worker_status": 409,
+    "expected_status": 200,
+    "prior_test_gap": "Only an empty manual identity was exercised. Original historical receipt is preserved."
+  },
+  "validation": {
+    "node": "24.19.0",
+    "tests": {
+      "passed": 691,
+      "failed": 0,
+      "duration_ms": 59280.145958
+    },
+    "typescript": true,
+    "build": true,
+    "prerenders": 18,
+    "browser_budgets": true,
+    "worker_dry_run": true,
+    "disk_available_gib": 8.3,
+    "application_source_sha256": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2",
+    "model_contract_unchanged": true,
+    "actual_worker_manual_uuid_analysis": 200,
+    "actual_worker_manual_uuid_writer_and_reviewer": {
+      "status": 200,
+      "fictional_adapter_calls": 2,
+      "external_calls": 0
+    },
+    "malformed_identities_rejected": true,
+    "catalogue_hold_and_late_hold_guards_retained": true
+  },
+  "browser": {
+    "actual_add_role_form": true,
+    "fictional_input_only": true,
+    "evidence_check_succeeded": true,
+    "manual_source_unverified_disclaimer": true,
+    "catalogue_requests": 0,
+    "generation_requests": 0,
+    "unexpected_requests": 0,
+    "source_cv_unchanged": true,
+    "screenshot": "outputs/manual-application-fixed-2026-10-18.png",
+    "live_manual_status": "manual"
+  },
+  "live_http": {
+    "observed_at": "2026-10-18T13:48:32.675319+00:00",
+    "results": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "version": "2.83.1"
+      },
+      {
+        "path": "/api/career/availability?job=manual-59f8222b-1900-4c36-b562-b21e67eb1f8c",
+        "status": 200,
+        "body": {
+          "jobId": "manual-59f8222b-1900-4c36-b562-b21e67eb1f8c",
+          "state": "manual"
+        }
+      },
+      {
+        "path": "/api/career/availability?job=manual-not-a-uuid",
+        "status": 200,
+        "body": {
+          "jobId": "manual-not-a-uuid",
+          "state": "missing"
+        }
+      },
+      {
+        "path": "/api/career/availability?job=60a4199207ee8422ffe35c80",
+        "status": 200,
+        "body": {
+          "jobId": "60a4199207ee8422ffe35c80",
+          "state": "held"
+        }
+      },
+      {
+        "path": "/api/career/availability?job=8cec3fe7af41e51a3344df76",
+        "status": 200,
+        "body": {
+          "jobId": "8cec3fe7af41e51a3344df76",
+          "state": "removed"
+        }
+      },
+      {
+        "path": "/api/career/availability?job=6e7ca74036beafcb0431c567",
+        "status": 200,
+        "body": {
+          "jobId": "6e7ca74036beafcb0431c567",
+          "state": "current"
+        }
+      },
+      {
+        "path": "/api/career/generate",
+        "jobId": "manual-59f8222b-1900-4c36-b562-b21e67eb1f8c",
+        "kind": "analysis",
+        "status": 200,
+        "reviewRequired": true,
+        "availability": null,
+        "fictional_unsaved_input": true
+      },
+      {
+        "path": "/api/career/generate",
+        "jobId": "60a4199207ee8422ffe35c80",
+        "kind": "analysis",
+        "status": 409,
+        "reviewRequired": null,
+        "availability": "held",
+        "fictional_unsaved_input": true
+      }
+    ],
+    "assets": [
+      {
+        "asset": "career-DNcJHdP6.js",
+        "bytes": 68416,
+        "sha256": "8494ce17c238cac18bd0131b797a1d6e50166548ecb16f5b26d23fa3c5d6aaaf"
+      },
+      {
+        "asset": "career-validation-BFzYC5DA.js",
+        "bytes": 1980,
+        "sha256": "ef57ed4654911b099e8642c2577afb6faaa28901645e1917445d1a21127147b5"
+      }
+    ],
+    "operator_model_calls": 0
+  },
+  "preservation": {
+    "before": "2026-10-18T13:44:10.503Z",
+    "after": "2026-10-18T13:48:40.664Z",
+    "unchanged_operational_groups": 11,
+    "changed_operational_groups": [
+      "source_budget",
+      "business_runs",
+      "issues"
+    ],
+    "protected_groups": [
+      {
+        "group": "workspace_metadata",
+        "rows": 1,
+        "sha256": "e65d4561e118ce213be60fc85d780459015ca8eac07caefae23b62e9b7460d68"
+      },
+      {
+        "group": "job_aggregates",
+        "rows": 8,
+        "sha256": "8b693e5276edd32a4395c9cb8e89dce6acd5004d451cf2b8b1c25f55bb737c2b"
+      },
+      {
+        "group": "advert_holds",
+        "rows": 4,
+        "sha256": "a1ebcd91e4042c3c46d0e8be9721397b0f4e9e997de95970cbb82054e99ef1c3"
+      },
+      {
+        "group": "customer_allowance",
+        "rows": 3,
+        "sha256": "7541cb1c90572ed16d573afe97600a419f51c31adf6554b48963f6e187ede715"
+      }
+    ],
+    "budgets": {
+      "ai": [
+        {
+          "day": "2026-10-18",
+          "runs": 2,
+          "calls": 8
+        }
+      ],
+      "sources": [
+        {
+          "day": "2026-10-18",
+          "requests": 368,
+          "briefs": 0
+        }
+      ]
+    },
+    "foreign_keys": []
+  },
+  "genuine_scheduled_business": {
+    "id": "business-497869",
+    "trigger_kind": "scheduled",
+    "state": "attention",
+    "finished_at": "2026-10-18T13:46:29.811Z",
+    "platform_status": "completed",
+    "platform_success": true,
+    "platform_end_display": "2026-10-18 14:46:30 Europe/London",
+    "platform_precision": "seconds",
+    "snapshot_at": "2026-10-18T13:45:59.644Z",
+    "social_delivery": {
+      "available": true,
+      "checked_at": "2026-10-18T13:45:59.644Z",
+      "records_checked": 6,
+      "limited": false,
+      "scheduled": 0,
+      "awaiting_check": 0,
+      "overdue": 0,
+      "uncertain": 0,
+      "failed_30d": 0,
+      "published_30d": 6,
+      "invalid_records": 0,
+      "last_published_observation": "2026-10-18T12:49:50.715Z",
+      "next_scheduled_at": null
+    },
+    "health": {
+      "findings": 9,
+      "high": 2
+    },
+    "link_checks": [
+      {
+        "id": "e86aeca55685cb98d3c6f447",
+        "state": "checked",
+        "reason": "title_observed",
+        "requests": 1
+      },
+      {
+        "id": "49811bd66512af49ed5185a3",
+        "state": "checked",
+        "reason": "title_observed",
+        "requests": 1
+      }
+    ],
+    "source_reservations_before": 360,
+    "source_reservations_after": 368,
+    "reason_for_budget_change": "Two genuine scheduled link samples, four reservations each. No operator source request.",
+    "operator_verified_delivery_was_required_first": true,
+    "forced": false
+  },
+  "runtime_hosted_checks": {
+    "head": "d5e113febe4e82513693f6d16e85d79faca6bd37",
+    "billing_blocked_before_execution": [
+      117692243653,
+      117692236396
+    ],
+    "annotations_inspected": true,
+    "gitguardian_passed": 117692236972
+  },
+  "boundaries": {
+    "operator_model_calls": 0,
+    "operator_google_calls": 0,
+    "operator_source_requests": 0,
+    "new_social_sends": 0,
+    "workspace_writes": 0,
+    "customer_data_exported": false,
+    "controls_or_holds_changed": false
+  },
+  "limitations": [
+    "Manual source text remains unverified.",
+    "The stored availability check does not detect changes to the body of a still-open saved advert.",
+    "The repair does not establish independent model quality or unattended company operation.",
+    "Hosted Linux tests did not execute.",
+    "The scheduled business snapshot consumes operator-recorded delivery; it does not itself verify a public provider post."
+  ]
+}

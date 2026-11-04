@@ -1,0 +1,132 @@
+{
+  "checked_at": "2026-10-11T13:08:49.358Z",
+  "lead_id": "150311d7-86c7-48dc-9132-691482dc924b",
+  "revision": 2,
+  "verified_from": "saved owner review form",
+  "fields": [
+    {
+      "label": "Source type",
+      "type": "select-one",
+      "value": "teaching_vacancy"
+    },
+    {
+      "label": "Individual source link",
+      "type": "url",
+      "value": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-60c8518e-bccf-49cb-aeec-1f52c3ab24c0"
+    },
+    {
+      "label": "Role or lead title",
+      "type": "text",
+      "value": "Teacher of English"
+    },
+    {
+      "label": "Employer name, if established",
+      "type": "text",
+      "value": "Lift Kingswood"
+    },
+    {
+      "label": "Location, if established",
+      "type": "text",
+      "value": "Hull, Yorkshire and the Humber, HU7 4WR"
+    },
+    {
+      "label": "Source observed at (your local time)",
+      "type": "datetime-local",
+      "value": "2026-10-11T14:07"
+    },
+    {
+      "label": "Exact sponsorship wording, if present",
+      "type": "textarea",
+      "value": "Skilled Worker visas can be sponsored"
+    },
+    {
+      "label": "Original employer application link",
+      "type": "url",
+      "value": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-60c8518e-bccf-49cb-aeec-1f52c3ab24c0"
+    },
+    {
+      "label": "Employer identity evidence link",
+      "type": "url",
+      "value": "https://careers.liftschools.org/jobs/teacher-of-english-hull-england-united-kingdom"
+    },
+    {
+      "label": "Employer identity evidence",
+      "type": "textarea",
+      "value": "The DfE advert identifies Lift Kingswood, Wawne Road, Hull HU7 4WR, and links Ofsted URN 139118. Its own Aplitrak application link redirects to the Lift Schools employer advert, reference 0175, with the same school, address, role and salary. This corroborates the advertised school and designated portal, but the legal employing entity and current sponsor-register relationship remain unreviewed. No licence or applicant eligibility is inferred."
+    },
+    {
+      "label": "Original posting time, only if known",
+      "type": "datetime-local",
+      "value": ""
+    },
+    {
+      "label": "Posting-date source wording",
+      "type": "textarea",
+      "value": "DfE visibly lists 9 October 2026; its retained datePosted is 2026-10-09 without a publication time. The linked employer advert separately says Advert opened: 7 September 2026. These are different source publication dates; no precise original posting time is inferred."
+    },
+    {
+      "label": "Closing time, only if known",
+      "type": "datetime-local",
+      "value": ""
+    },
+    {
+      "label": "Closing-date source wording",
+      "type": "textarea",
+      "value": "Conflict observed 11 October: the DfE original visibly closes 16 October 2026 at 8:23am (retained metadata: 2026-10-16T08:23:33+01:00); its own linked Lift Schools advert, reference 0175, says Closing date: 19 October 2026, without a time. Closing timestamp left blank until reconciled; both original statements remain in this evidence and the previous revision."
+    },
+    {
+      "label": "Decision",
+      "type": "select-one",
+      "value": "held"
+    },
+    {
+      "label": "How this review was recorded",
+      "type": "select-one",
+      "value": "agent_assisted"
+    },
+    {
+      "label": "Review again by (within 30 days)",
+      "type": "datetime-local",
+      "value": "2026-10-13T14:00"
+    },
+    {
+      "label": "Decision reason and evidence still needed",
+      "type": "textarea",
+      "value": "Agent-assisted review through owner account on 11 October 2026. Hold privately: DfE closes this role on 16 October at 08:23 BST, while its own application link reaches Lift Schools reference 0175 closing 19 October, with no time. Do not silently choose a deadline. Both English adverts also ask for passion for teaching PE and retain a September 2026 QTS-training date despite a January 2027 DfE start; requirements need clarification. The role is permanent full-time, £34,069–£46,940, ECT suitable on DfE, with QTS or an English-degree/instructor-training route described. DfE explicitly permits Skilled Worker sponsorship and rejects CV-only applications; this does not certify individual eligibility. The employer Apply now button opens a blank name/email/privacy-consent form, not a verified completed application flow. Recheck these exact originals by 13 October, ahead of the earlier deadline, then review legal employer/licence identity, attachments and complete school catalogue before source admission. No new lead, source, public job, contact, application data, consent, account or forced refresh was created. Original automated revision is preserved."
+    }
+  ],
+  "queue": {
+    "retained": 14,
+    "unresolved": 7,
+    "overdue": 0,
+    "changed_links": 0,
+    "current_linked_jobs": 3
+  },
+  "new_leads_added": 0,
+  "new_jobs_added": 0,
+  "production_version": "2.52.0",
+  "daily_new_lead_allowance": {
+    "maximum": 5,
+    "already_retained": 5,
+    "remaining": 0
+  },
+  "primary_pages_checked": [
+    "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-english-60c8518e-bccf-49cb-aeec-1f52c3ab24c0",
+    "https://careers.liftschools.org/jobs/teacher-of-english-hull-england-united-kingdom"
+  ],
+  "advertised_deadlines": {
+    "dfe_visible": "16 October 2026 at 8:23am",
+    "dfe_prior_retained_metadata": "2026-10-16T08:23:33+01:00",
+    "employer_visible": "19 October 2026",
+    "employer_time": null,
+    "resolved": false
+  },
+  "application_route": {
+    "employer_reference": "0175",
+    "blank_contact_consent_form_observed": true,
+    "personal_data_entered": false,
+    "consent_given": false,
+    "application_submitted": false,
+    "full_flow_verified": false
+  }
+}

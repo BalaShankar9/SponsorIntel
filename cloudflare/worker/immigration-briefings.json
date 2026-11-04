@@ -1,0 +1,498 @@
+{
+  "graduate": {
+    "title": "Graduate visa: your application date matters",
+    "audience": "Students planning their next step after a UK course",
+    "status": "Confirmed upcoming change",
+    "effective_date": "2027-01-01",
+    "points": [
+      "Applications made by 31 December 2026 normally receive 2 years. Applications from 1 January 2027 normally receive 18 months.",
+      "Doctoral graduates, including PhDs, normally receive 3 years under either date.",
+      "You must apply from the UK before your Student permission expires, after your education provider has reported successful completion. Other eligibility conditions still apply."
+    ],
+    "action": "Check when your provider will report completion and compare that with your visa expiry date. Read the full application conditions before choosing a date.",
+    "caveat": "The Graduate route cannot be extended. Switching to another route depends on that route’s requirements.",
+    "content_hash": "42ecc16a9cc35461326f0b11e64abb356321800384f7a14c470e7c63ddf896a6",
+    "prepared_at": "2026-10-08",
+    "evidence": [
+      [
+        "A Graduate visa lasts for: 2 years if you apply on or before 31 December 2026 18 months if you apply on or after 1 January 2027"
+      ],
+      [
+        "If you have a PhD or other doctoral qualification, it will last for 3 years."
+      ],
+      [
+        "You must be in the UK when you apply.",
+        "You must apply before your Student visa or Tier 4 (General) student visa expires. You can apply after your education provider (such as your university or college) has told the Home Office that you’ve successfully completed the course you took with your Student or Tier 4 (General) student visa. You do not have to wait until you’ve graduated or have been given a certificate."
+      ]
+    ]
+  },
+  "student": {
+    "title": "Student work: the conditions come first",
+    "audience": "People working alongside a UK course",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "Whether you can work, and how much, depends on your course and whether it is term time. A single hours limit does not apply to every student.",
+      "Student permission does not allow self-employment. Restrictions also apply to some occupations, including professional sport."
+    ],
+    "action": "Check the conditions attached to your permission and your university’s term dates before accepting shifts or freelance work.",
+    "caveat": "An employer advertising a role does not establish that your permission allows you to do it.",
+    "content_hash": "a0a28099940f5a4eb4dca3d3db19ca8715981d5991394da286bbe038bda9e90f",
+    "prepared_at": "2026-10-08",
+    "evidence": [
+      [
+        "You may be able to work - how much depends on what you’re studying and whether you’re working in or out of term-time."
+      ],
+      [
+        "You cannot: claim public funds (benefits) and pensions work in certain jobs, for example as a professional sportsperson or sports coach be self-employed"
+      ]
+    ]
+  },
+  "skilled-job": {
+    "title": "A sponsor licence is only the first check",
+    "audience": "Applicants considering a Skilled Worker role",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "The employer needs Home Office approval, but the specific job and salary must also qualify. You need a certificate of sponsorship for the application.",
+      "The usual salary test is the higher of £41,700 or the occupation’s going rate. Different rules and exceptions can apply, including for some health and education jobs."
+    ],
+    "action": "Ask the employer to confirm sponsorship for this vacancy, the occupation code and the salary. Check the official requirements for your circumstances.",
+    "caveat": "A sponsor-register match, job title or advertised salary on its own is not an eligibility decision.",
+    "content_hash": "c302b17ae57be36db212254dddb703820bb941962734d5a722472b80ba4cf725",
+    "prepared_at": "2026-10-08",
+    "evidence": [
+      [
+        "You must meet all the following requirements to be eligible for a Skilled Worker visa: your job is eligible for this visa you’ll be working for a UK employer that’s been approved by the Home Office you’ll be paid at least the minimum salary rate for the type of work you’ll be doing",
+        "Your employer - also known as your sponsor - will check that you meet the eligibility requirements. They’ll give you a ‘certificate of sponsorship’ ( CoS ) to prove this. The certificate of sponsorship is an electronic record, not a physical document. It will have a reference number, which you’ll need for your visa application."
+      ],
+      [
+        "You’ll usually need to be paid the ‘standard’ salary rate of at least £41,700 per year, or the ‘going rate’ for your job, whichever is higher.",
+        "There are different salary rules if you work in some healthcare or education jobs , where the going rate is based on national pay scales."
+      ]
+    ]
+  },
+  "skilled-salary": {
+    "title": "Lower salary rules have extra conditions",
+    "audience": "Students, recent graduates and other applicants checking salary exceptions",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "Some applicants can qualify under a lower salary rule. Age, recent study, qualifications, occupation and other conditions can matter.",
+      "The student or new-entrant provisions have a time limit. Time already spent on the Graduate route can count towards the 4-year limit described in the guidance."
+    ],
+    "action": "Read the conditions of the relevant exception alongside the occupation’s going rate. Do not assume every graduate qualifies for a discount.",
+    "caveat": "This is a guide to the questions to check, not a salary or visa eligibility calculator.",
+    "content_hash": "f5d4f8034d3cd7d48bb3648f42ecc26788a03f6fa411bdf8711316a956a22847",
+    "prepared_at": "2026-10-08",
+    "evidence": [
+      [
+        "You might still be able to apply for a Skilled Worker visa if your job is eligible but your salary is less than the standard salary requirement of £41,700 or your job’s standard ‘going rate’. You can be paid between 70% and 90% of the standard going rate for your job if your salary is at least £33,400 per year and you meet one of the following criteria: you’re under 26, studying or a recent graduate, or in professional training you have a science, technology, engineering or maths (STEM) PhD level qualification that’s relevant to your job (if you have a relevant PhD level qualification in any other subject your salary must be at least £37,500) you have a postdoctoral position in science or higher education"
+      ],
+      [
+        "Your total stay in the UK cannot be more than 4 years if you apply for one of these reasons. This includes any time you’ve already spent in the UK on a Graduate visa."
+      ]
+    ]
+  },
+  "healthcare-job": {
+    "title": "Health and care: check the specific occupation",
+    "audience": "People considering a Health and Care Worker role",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "The job must be in an eligible occupation, with an approved employer and the required pay. Working in healthcare alone is not enough.",
+      "The guidance treats some new applications differently from extensions, updates and switches. Care worker and senior care worker jobs have specific conditions."
+    ],
+    "action": "Ask for the occupation code and check the section that matches the application you intend to make.",
+    "caveat": "Do not treat every care-sector advert or sponsor licence as an available route from overseas.",
+    "content_hash": "ac9b2e5d63dbea7f0c979c9dc9dd4ca09defa0d21f18830706d11ce239dbc123",
+    "prepared_at": "2026-10-08",
+    "evidence": [
+      [
+        "You must meet all of the following requirements to be eligible for a Health and Care Worker visa: you’re a qualified doctor, nurse, health professional or adult social care professional your job is eligible for this visa you’ll be working for a UK health and care sector employer that’s been approved by the Home Office you’ll be paid the minimum salary or the ‘going rate’ for the type of work you’ll be doing - whichever is higher"
+      ],
+      [
+        "Check if an occupation code is eligible to extend, update or switch to this visa If you’re extending, updating or switching to a Health and Care Worker visa, your job can also be in one of the following ‘medium skilled’ occupation codes: 6135: care workers and home carers 6136: senior care workers If you’re switching from a different visa, you must have been working legally in your job for your sponsor for at least 3 months."
+      ]
+    ]
+  },
+  "student-money": {
+    "title": "Student finances: course fees and living costs",
+    "audience": "Students preparing financial evidence",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "Plan for the course fees shown on your CAS for one academic year, plus the required living funds. Evidence exceptions depend on your circumstances.",
+      "The living-funds figures are £1,529 a month in London or £1,171 outside London, for up to nine months. The guide has separate provisions for residential boarding and financial-evidence exceptions.",
+      "Where bank funds are required, hold the money for 28 consecutive days. That period must end within 31 days before the visa application."
+    ],
+    "evidence": [
+      [
+        "You need enough money to pay for your course for 1 academic year (up to 9 months). The amount you need to pay will be on your Confirmation of Acceptance for Studies ( CAS ). If you’ve been in the UK with a valid visa for at least 12 months, you do not need to prove you have this money for your visa application."
+      ],
+      [
+        "How much money you need depends on where you will be studying. You’ll need either: £1,529 per month (for up to 9 months) for courses in London £1,171 per month (for up to 9 months) for courses outside London If you’re boarding at a residential independent school, you’ll need to pay boarding fees instead. The amount you need to pay will be on your CAS .",
+        "When you do not need to prove you have money to support yourself You do not need to prove that you meet the financial requirement if either: you’ve been living in the UK with a visa for at least 12 months prior to the date of your Student visa application you’re applying as a student union sabbatical officer"
+      ],
+      [
+        "You must have this money for at least 28 days in a row. The end date of the 28-day period must be within 31 days of the date you apply for your visa."
+      ]
+    ],
+    "action": "Compare your CAS, study location and application date with the full financial-evidence guidance before submitting.",
+    "caveat": "This is a guide to financial evidence, not a complete cost-of-living budget or an eligibility decision.",
+    "content_hash": "b23a066c18052daea737a40dc36b1df355a4b632f4682f1e747a347be2bb0412",
+    "prepared_at": "2026-10-08"
+  },
+  "student-course": {
+    "title": "Check the course and CAS before applying",
+    "audience": "People choosing a UK course",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "You need an unconditional offer from a licensed student sponsor and a Confirmation of Acceptance for Studies (CAS) before applying.",
+      "The course must fit an eligible category. Some sensitive postgraduate study or research also needs an ATAS certificate.",
+      "Enter the CAS reference in your application and apply within six months of receiving it."
+    ],
+    "evidence": [
+      [
+        "You must have an unconditional offer of a place on a course with a licensed student sponsor . To prove this, your education provider will send you a reference number (called a Confirmation of Acceptance for Studies ( CAS )) once they’ve offered you a place on the course. You need a CAS before you can apply for your visa."
+      ],
+      [
+        "Courses you can study You can do one of the following courses on the Regulated Qualifications Framework ( RQF ) : a course that’s RQF level 2 or above if you’re on an Erasmus+ programme with a participating licensed student sponsor a full-time course leading to a qualification that’s below degree level ( RQF level 3, 4 or 5) with at least 15 hours a week of organised daytime study a full-time course leading to a qualification that’s degree level or above ( RQF level 6, 7 or 8) a full-time course at degree level or above ( RQF level 6,7 or 8) that’s equivalent to a UK higher education course and is being delivered as part of a longer course overseas a part-time course leading to a qualification that’s above degree level ( RQF level 7 or above) You may also need an Academic Technology Approval Scheme ( ATAS ) certificate if you’re studying or researching sensitive topics at RQF level 7 or above."
+      ],
+      [
+        "You must enter this reference number on your visa application. You must apply for your visa within 6 months of receiving your CAS ."
+      ]
+    ],
+    "action": "Ask the education provider which eligible course category applies and whether you need ATAS.",
+    "caveat": "A course offer or a low tuition fee alone does not establish visa eligibility.",
+    "content_hash": "1603b600de9eea45f2cd29ea9c560b452acd2587509fe46d577af7fca259f654",
+    "prepared_at": "2026-10-08"
+  },
+  "founder": {
+    "title": "Innovator Founder: endorsement comes first",
+    "audience": "People exploring a business route",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "The business idea must be new, innovative, viable and scalable, and assessed by an approved endorsing body.",
+      "This route normally gives three years. Progress meetings with the endorsing body are required after 12 and 24 months; withdrawal of endorsement can shorten permission.",
+      "The guide lists a £1,000 endorsement fee and £500 for each required contact meeting, with at least two meetings. Visa fees and the healthcare surcharge are additional."
+    ],
+    "evidence": [
+      [
+        "You must be able to show that your business idea is: new - you cannot join a business that is already trading innovative - you must have an original business idea which is different from anything else on the market viable, with potential for growth scalable - you must give evidence of planning that includes creating jobs and growing into national and international markets You’ll need to get an endorsing body to assess that your business idea meets the requirements."
+      ],
+      [
+        "You can stay for 3 years if you either: come to the UK on an Innovator Founder visa switch to this visa from another visa while in the UK You’ll need to meet with your endorsing body after 12 months and 24 months to show you’re making progress with your business. Your visa may be cut short if your endorsement is withdrawn by the endorsing body."
+      ],
+      [
+        "Fees How much you pay for an application depends on where you apply from. It costs £1,357 per person if you apply outside the UK. It costs £1,693 per person if you apply to extend or switch your visa in the UK. Endorsement You’ll need to pay £1,000 to get an endorsement from an approved endorsing body . If your visa application is successful, you’ll also have to pay £500 each time you meet with your endorsing body. You need to meet at least twice during your stay in the UK. You pay these fees directly to your endorsing body. Healthcare surcharge You’ll also have to pay the healthcare surcharge as part of your application."
+      ]
+    ],
+    "action": "Read the endorsement criteria and eligibility page, then prepare a realistic business and funding plan.",
+    "caveat": "Do not treat this as a guaranteed route, an investment product or a promise of settlement.",
+    "content_hash": "34b27109c731f426a83deadce557aa9d013c7a5a54c78955d81dea574b4c5a0b",
+    "prepared_at": "2026-10-08"
+  },
+  "founder-eligibility": {
+    "title": "Business funding and personal savings are separate",
+    "audience": "Prospective Innovator Founder applicants",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "Before applying, the business must be assessed for endorsement. Applicants must also be at least 18, meet the English requirement and have personal savings.",
+      "For a new business, the endorsing body needs evidence of sufficient funding and its source. The guide’s investment-fund exceptions apply to specified previously endorsed or agreed business situations.",
+      "The guide specifies £1,270 held for 28 consecutive days for a first application, and for extension or switching applicants who have been in the UK for less than a year. Investment money cannot be used as those personal maintenance funds."
+    ],
+    "evidence": [
+      [
+        "Before you apply you need to have your business or business idea assessed by an endorsing body . They will provide you with an endorsement letter if your business is eligible. You must also: meet the English language requirement be at least 18 years old be able to prove that you have enough personal savings to support yourself while you’re in the UK Read the specific requirements for the Innovator Founder visa before you apply."
+      ],
+      [
+        "If you want to set up a new business You’ll need to prove to your endorsing body that you have enough funding and where it’s from. You do not need any investment funds if either: your business is already established and has been endorsed for an earlier visa you’ve changed your business and already agreed it with your endorsing body"
+      ],
+      [
+        "Supporting yourself You need to have had at least £1,270 in your bank account for 28 consecutive days before you either: apply for an Innovator Founder visa apply to extend your Innovator Founder visa or switch to an Innovator Founder visa if you’ve been in the UK for less than a year You cannot use either of the following to support yourself: money from your investment funds money earned while working in the UK illegally"
+      ]
+    ],
+    "action": "Separate the business funding plan from your personal maintenance evidence and check the conditions for your application.",
+    "caveat": "The absence of a single fixed business-investment figure is not evidence that a business can operate with no funding.",
+    "content_hash": "b3bdb6ef97507a635a2d8d657bbc15ed11540c42c495be57007ff60d4fbbf799",
+    "prepared_at": "2026-10-08"
+  },
+  "sponsor-fees": {
+    "title": "Sponsor licence fees depend on the organisation",
+    "audience": "Employers considering a sponsorship licence",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "A Worker licence costs £611 for a small or charitable sponsor, or £1,682 for a medium or large sponsor. Other licence types and additions have separate fees.",
+      "The employer must pay the licence fee. Asking the sponsored worker to pay it or related application costs may lead to the licence being revoked.",
+      "Most licence applications are dealt with in under eight weeks. UKVI may visit the business; the faster service has limited availability."
+    ],
+    "evidence": [
+      [
+        "Type of licence Fee for small or charitable sponsors Fee for medium or large sponsors Worker £611 £1,682 Temporary Worker £611 £611 Worker and Temporary Worker £611 £ 1,682 Add a Worker licence to an existing Temporary Worker licence No fee £1,071 Add a Temporary Worker licence to an existing Worker licence No fee No fee"
+      ],
+      [
+        "You must pay the licence fee yourself. Your licence may be revoked if you ask the sponsored worker to pay the fee or any costs linked to your application."
+      ],
+      [
+        "Most applications are dealt with in less than 8 weeks. UKVI may need to visit your business. You may be able to pay an extra £750 to get a decision within 10 working days. This service is limited to a small number of applications every working day. Faster decisions are allocated in the order that requests arrive (first come, first served)."
+      ]
+    ],
+    "action": "Check your organisation’s size category, required documents and licence type before budgeting or applying.",
+    "caveat": "Paying an application fee does not guarantee a licence or an individual worker’s visa.",
+    "content_hash": "e0e34577f63127a2b5a53b4c686e8bfa9d567b468de2680868ddca41ead3bf1e",
+    "prepared_at": "2026-10-08"
+  },
+  "sponsor-certificate": {
+    "title": "A certificate of sponsorship is an electronic record",
+    "audience": "Employers and applicants checking a sponsored role",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "The employer assigns an electronic certificate with a reference number for the visa application. Use it within three months, and do not apply more than three months before the stated job start date.",
+      "Defined certificates are for Skilled Worker applications from outside the UK. Undefined certificates cover Skilled Workers applying inside the UK and applicants on other sponsored routes described in the guide.",
+      "A Worker certificate, excluding the separate International Sportsperson rates, costs £525. For Skilled Worker sponsorship, the employer must pay the certificate fee; an immigration skills charge may also apply."
+    ],
+    "evidence": [
+      [
+        "You must assign a certificate of sponsorship to each foreign worker you employ. This is an electronic record, not a physical document. Each certificate has its own number which a worker can use to apply for a visa. When you assign the certificate to a worker, they must use it to apply for their visa within 3 months. They must not apply for their visa more than 3 months before the start date of the job listed on the certificate."
+      ],
+      [
+        "Defined certificates These are for people applying on a Skilled Worker visa from outside the UK.",
+        "These are for Skilled Workers applying from inside the UK, and applicants on all other visas."
+      ],
+      [
+        "You must pay the certificate of sponsorship fee yourself if you’re sponsoring a: Skilled Worker person on any of the Global Business Mobility routes Minister of Religion International Sportsperson Scale-up Worker Seasonal Worker",
+        "Type of licence Cost per certificate Worker (except workers on the International Sportsperson visa) £525 Temporary Worker £55",
+        "If you assign a certificate of sponsorship to a worker on a Skilled Worker or Senior or Specialist Worker visa, you might also need to pay the immigration skills charge ."
+      ]
+    ],
+    "action": "Confirm the certificate type, dates and role details with the sponsoring employer.",
+    "caveat": "A certificate reference is one part of a visa application; it is not a visa approval.",
+    "content_hash": "0cd7a27f652c753094f009b9c98f09cdca424a24b6507191b1ff0e6b9534795d",
+    "prepared_at": "2026-10-08"
+  },
+  "sponsor-skills-charge": {
+    "title": "The immigration skills charge is an employer cost",
+    "audience": "Employers budgeting for sponsored workers",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "The charge can apply when sponsoring a Skilled Worker or Senior or Specialist Worker. The guide lists exceptions, including specified occupations and some switches from study permission.",
+      "For small or charitable sponsors the charge is £480 for the first 12 months and £240 for each additional six months. For medium or large sponsors it is £1,320 and £660 respectively.",
+      "The employer must pay the charge and must not pass it to the worker. The full charge is paid in one go, based on the sponsored period and applicable rules."
+    ],
+    "evidence": [
+      [
+        "You might have to pay an additional charge when you assign a certificate of sponsorship to someone applying for a Skilled Worker or Senior or Specialist Worker visa. This is called the ‘immigration skills charge’.",
+        "When you do not need to pay You will not have to pay the charge if you’re sponsoring someone with one of the following occupation codes: chemical scientists (2111) biological scientists (2112) biochemists and biomedical scientists (2113) physical scientists (2114) social and humanities scientists (2115) natural and social science professionals not elsewhere classified (2119) research and development managers (2161) other researchers, unspecified discipline (2162) higher education teaching professionals (2311)",
+        "If you’re sponsoring someone to switch to a work visa from a visa that allows them to study You will not have to pay the charge if they switch to either a Skilled Worker or Senior or Specialist Worker visa and then extend their stay on the new visa."
+      ],
+      [
+        "Period Small or charitable sponsors Medium or large sponsors First 12 months £480 £1,320 Each additional 6 months £240 £660"
+      ],
+      [
+        "You must pay the immigration skills charge yourself. Your licence may be revoked if you ask the sponsored worker to pay the fee or any costs linked to your application.",
+        "You must pay the full charge in one go.",
+        "The amount you need to pay is based on: the size of your organisation how long the worker will work for you, using the start and end dates on their sponsorship certificate"
+      ]
+    ],
+    "action": "Check the occupation, route, application circumstances and sponsorship dates before calculating the charge.",
+    "caveat": "These figures are not a complete sponsorship budget. Licence, certificate and other applicable costs are separate.",
+    "content_hash": "2f07b204d074f92064a86226450d80dda1f52bb5767d8ccbda5447e4dc3d9df0",
+    "prepared_at": "2026-10-08"
+  },
+  "india-young-professionals": {
+    "title": "India Young Professionals: ballot before application",
+    "audience": "Indian citizens exploring this route",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "The route is for eligible Indian citizens aged 18 to 30 and can permit up to two years in the UK. You must be selected in the ballot before applying.",
+      "The requirements include an eligible qualification and £2,530 in savings. A successful ballot invitation gives 90 days to apply, prove identity and provide documents.",
+      "The visa cannot be extended. Family members cannot be included on the same application and must apply separately."
+    ],
+    "evidence": [
+      [
+        "An India Young Professionals Scheme visa allows Indian citizens between 18 and 30 years old to live and work in the UK for up to 2 years. You must be selected in the India Young Professionals Scheme ballot before you can apply for this visa. To enter the ballot you must declare that you’re eligible for the visa - check if you’re eligible before you enter."
+      ],
+      [
+        "To be eligible for the visa, you must: be an Indian citizen be between 18 and 30 years old have an eligible qualification have £2,530 in savings Check the full list of eligibility requirements .",
+        "You’ll have 90 days from the date of the email to: apply online prove your identity provide your documents"
+      ],
+      [
+        "You cannot: extend your stay apply for most benefits ( public funds ) include family members on your application - they must apply separately work as a professional sportsperson (for example as a coach)"
+      ]
+    ],
+    "action": "Check the official ballot page and full eligibility conditions before entering. Check the invitation deadline if selected.",
+    "caveat": "This summary does not say that a ballot is currently open or that selection guarantees a visa.",
+    "content_hash": "3a981e53dba48ed0e52b637e4a5434d6644d655777cbce9e9515eddd6324ddcb",
+    "prepared_at": "2026-10-08"
+  },
+  "hpi": {
+    "title": "HPI: check your university and award year",
+    "audience": "Graduates of potentially eligible overseas universities",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "You must have received a qualification from an eligible university within the last five years. The route also has a yearly application limit; the application service reports if it has been reached.",
+      "Permission is normally two years, or three for a PhD or other doctoral qualification. This visa cannot be extended.",
+      "An HPI visa allows looking for work, working in most jobs and self-employment. It does not itself provide settlement; switching to another route depends on that route’s requirements."
+    ],
+    "evidence": [
+      [
+        "A High Potential Individual ( HPI ) visa gives you permission to stay in the UK for 2 years. To apply, you must have been awarded a qualification by an eligible university in the last 5 years. There is a yearly limit on applications for this visa. The application year runs between 1 November and 31 October. If the limit has been reached, you’ll be told when you apply online."
+      ],
+      [
+        "An HPI visa lasts for 2 years. If you have a PhD or other doctoral qualification, it will last for 3 years. If you want to stay longer in the UK You cannot extend your HPI visa."
+      ],
+      [
+        "With an HPI visa you can: work in most jobs look for work be self-employed",
+        "However, you may be able to switch to a different visa, for example a Skilled Worker visa . You can switch to a different visa before your HPI visa expires. Your time on an HPI visa will not count as time spent in the UK if you apply to settle in the UK. Check you can apply for another type of visa to stay in the UK .",
+        "You cannot: apply for most benefits (‘ public funds ’) work as a professional sportsperson extend this visa apply to settle permanently in the UK"
+      ]
+    ],
+    "action": "Check the eligible-university list for the year your qualification was awarded and the full qualification requirements.",
+    "caveat": "A university’s general reputation or current ranking does not establish eligibility under this route.",
+    "content_hash": "ad763ca011123beca389d3d653c5348f42f6d493bfb2a8c0a37620f8d28959bf",
+    "prepared_at": "2026-10-08"
+  },
+  "global-talent": {
+    "title": "Global Talent: endorsement or an eligible prize",
+    "audience": "Leaders and potential leaders in the listed fields",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "This route covers eligible leaders or potential leaders in academia or research, arts and culture, and digital technology. Applicants must be at least 18.",
+      "Normally you need an endorsement. The prize route applies only when the exact prize is on the eligible list and you are its named winner.",
+      "Permission can last up to five years at a time. Settlement may be possible after three or five years, depending on the field and application route; it is not automatic."
+    ],
+    "evidence": [
+      [
+        "You can apply for a Global Talent visa to work in the UK if you’re a leader or potential leader in one of the following fields: academia or research arts and culture digital technology You must also be at least 18 years old."
+      ],
+      [
+        "If you’ve not won an eligible prestigious prize, you’ll need to get an endorsement first to prove that you’re a leader or potential leader in your field.",
+        "You can apply for the Global Talent visa without an endorsement if you’ve won an eligible prestigious prize . To be eligible for this route: the prize must be named on the list - other prizes awarded by the same institutions are not eligible you must be the named winner of the prize"
+      ],
+      [
+        "You can live and work in the UK for up to 5 years at a time.",
+        "You may be able to get indefinite leave to remain so you can settle in the UK after 3 or 5 years, depending on which field you work in and how you apply."
+      ]
+    ],
+    "action": "Read the requirements for your field and assemble evidence against those criteria before applying for endorsement.",
+    "caveat": "A strong CV, job title or unrelated award does not by itself establish eligibility.",
+    "content_hash": "7357e415c6753d902dc5ee183497c3a849da79c29612884eb23f3f6af6e5b2de",
+    "prepared_at": "2026-10-08"
+  },
+  "expansion": {
+    "title": "UK Expansion Worker: an existing overseas business",
+    "audience": "Senior managers and specialists expanding a business",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "This route is for setting up a UK branch of an overseas business that has not started trading here. You must already work for that business as a senior manager or specialist.",
+      "You need employer sponsorship, relevant overseas employment, an eligible occupation and the required salary.",
+      "The maximum stay on this route is two years, and earlier time on specified business-mobility routes can restrict it further. This route does not itself allow settlement or a second job."
+    ],
+    "evidence": [
+      [
+        "A UK Expansion Worker visa allows you to come to the UK to set up a branch of an overseas business that has not started trading in the UK yet. You must already work for the overseas business as either a senior manager or specialist employee."
+      ],
+      [
+        "To be eligible for a UK Expansion Worker visa you need to: have a valid certificate of sponsorship from your employer have worked for your employer outside the UK do a job that’s on the list of eligible occupations be paid the minimum eligible salary required for your job The specific eligibility depends on your job ."
+      ],
+      [
+        "If you want to stay longer in the UK, you can extend your visa by 12 months. The maximum time you can stay in the UK on a UK Expansion Worker visa is 2 years. If you’ve spent time in the UK on this or another visa, you might not be able to stay on a UK Expansion Worker visa for as long. You can only stay in the UK for a maximum of 5 years in any 6 year period if you’ve spent time on any of these visas:",
+        "You cannot: apply for most benefits ( public funds ), or the State Pension change jobs unless you are eligible and you update your visa have a second job apply to settle permanently in the UK (also known as ‘indefinite leave to remain’)"
+      ]
+    ],
+    "action": "Check the overseas-business, employment and sponsorship requirements before planning a UK branch.",
+    "caveat": "Setting up a new UK company alone does not establish eligibility for this route.",
+    "content_hash": "9465b609f7acec966400122c37c0ccaab2444b3d481d53872b6ca7fd51774392",
+    "prepared_at": "2026-10-08"
+  },
+  "scale-up": {
+    "title": "Scale-up Worker: the first six months matter",
+    "audience": "Applicants with an offer from an approved scale-up sponsor",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "You need an eligible job offer from an approved scale-up business for at least six months, a certificate of sponsorship and the required salary.",
+      "During the first six months, changing employer requires a visa update. After six months, the guide allows changing or stopping the job without an update, or becoming self-employed.",
+      "The initial visa lasts two years. Extensions can be for three years, but the eligibility and earnings requirements still apply."
+    ],
+    "evidence": [
+      [
+        "To qualify for a Scale-up Worker visa, you must: have a confirmed job offer to work for an approved scale-up business for at least 6 months have a ‘certificate of sponsorship’ from your employer with information about the role you’ve been offered in the UK have a job offer to do a job that’s on the list of eligible occupations be paid a minimum salary in your new job Check if your job is eligible ."
+      ],
+      [
+        "During the first 6 months of your stay You cannot change employer unless you apply to update your visa . You do not need to update your visa if you start a different, eligible job with the same employer. After 6 months You can: continue working in your job change or stop doing your job without telling the Home Office be self-employed You do not need to update your visa."
+      ],
+      [
+        "You can stay in the UK with a Scale-up Worker visa for 2 years. You’ll need to apply to extend your visa when it expires. If you want to stay longer in the UK You can extend your visa as many times as you like by 3 years, as long as you still meet the eligibility requirements.",
+        "You can extend your Scale-up Worker visa without a new sponsor when your current visa expires. You must meet the earnings requirements."
+      ]
+    ],
+    "action": "Confirm that the employer has the correct scale-up approval and check the job, salary and later earnings requirements.",
+    "caveat": "A company describing itself as a start-up or fast-growing business is not enough to establish eligibility.",
+    "content_hash": "57f8c782b150bed51dc3d3cc0716179bc3646f82dffacb517fe32e4f0cd2dde4",
+    "prepared_at": "2026-10-08"
+  },
+  "family": {
+    "title": "Family visas and dependant visas are different routes",
+    "audience": "People planning to join family in the UK",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "The overview lists family-visa categories including partners, parents and children. Read the section for your relationship to check its conditions.",
+      "If your family member is temporarily in the UK on a work or Student visa, the guide directs you to the dependant route rather than a family visa.",
+      "Visitors and people with permission of six months or less usually need to apply from outside the UK. The guide lists limited exceptions."
+    ],
+    "evidence": [
+      [
+        "Applying from outside the UK You can apply for a family visa to live with your: spouse or partner fiancé, fiancée or proposed civil partner child parent relative who’ll provide long-term care for you"
+      ],
+      [
+        "Your family member has a work visa or student visa You cannot apply for a family visa if your family member is in the UK temporarily on a work visa or student visa . You can apply to stay with them as a dependant instead."
+      ],
+      [
+        "You have a visitor visa or a visa for 6 months or less You’ll usually need to leave the UK to apply for a family visa if either: you have permission to be in the UK as a visitor your visa is for 6 months or less However, you might be able to switch to a family visa in the UK if you have either: a 6-month family visa as a fiancé, fiancée or proposed civil partner permission to stay in the UK for the outcome of a family court case or divorce"
+      ]
+    ],
+    "action": "Start with your family member’s immigration status and the relevant relationship section, then read the full conditions.",
+    "caveat": "This overview does not determine whether your relationship, finances or circumstances meet the rules.",
+    "content_hash": "ee7dc58b671cb911cbe6577e7b29afc9649e624e2a9e94faf894acb486b928e1",
+    "prepared_at": "2026-10-08"
+  },
+  "ihs": {
+    "title": "Healthcare surcharge: use the visa length",
+    "audience": "Applicants budgeting for the immigration health surcharge",
+    "status": "Current guidance",
+    "effective_date": null,
+    "points": [
+      "The total depends on the length of the visa, which may be longer than the course or employment period.",
+      "The guide lists annual rates of £776 for students, their dependants, Youth Mobility applicants and under-18 applicants, and £1,035 for other applications where the surcharge is payable.",
+      "Part-years are not always charged month by month. The calculation depends on the visa length and whether you apply inside or outside the UK."
+    ],
+    "evidence": [
+      [
+        "The exact amount you pay depends on the length of your visa. A visa may last longer than your course of study or period of employment."
+      ],
+      [
+        "Cost for a year You’ll have to pay: £776 per year for students, their dependants, and those on a Youth Mobility Scheme visa, for example £1,552 for a 2-year visa £776 per year for visa and immigration applicants who are under the age of 18 at time of application £1,035 per year for all other visa and immigration applications, for example £3,105 for a 3-year visa"
+      ],
+      [
+        "Cost for part of a year The amount you have to pay depends on the length of the visa you’re given and where you apply from. 6 months or less You do not need to pay the surcharge if you’re applying from outside the UK for 6 months or less. If you’re applying from inside the UK, you’ll have to pay half the yearly cost. For example: £388 for students, their dependants or under-18 applications £517.50 for any other application More than 6 months but less than one year Wherever you apply from, you’ll have to pay the cost of a full year. Cost for more than one year If your visa is for more than a year, you’ll have to pay: the yearly cost plus half the yearly cost, if it’s for 18 months or less the cost of 2 full years, if it’s for more than 18 months but less than 2 years"
+      ]
+    ],
+    "action": "Check whether you must pay, then use the official calculation for your visa length and any dependants.",
+    "caveat": "These are surcharge rates, not a complete application price or a statement that every applicant must pay.",
+    "content_hash": "6f3fa6778d227e72e3f1f8f15db6405a509b24f42158d68b0d47b5016bc54101",
+    "prepared_at": "2026-10-08"
+  }
+}

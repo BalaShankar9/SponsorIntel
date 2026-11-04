@@ -1,0 +1,15 @@
+# 2.66 — Save edited advert-review dates
+
+13 October 2026. During a real overdue advert review, the date field displayed a new follow-up but the component submitted the previous date. The server rejected that overdue value and preserved the original hold. A local browser fixture reproduced both manually edited date fields reverting when another control updated the form.
+
+Observation and follow-up inputs now synchronize on native input events as well as change events, matching the existing Discovery date control. The saved value therefore follows the visible edit. The existing timestamp conversion, server validation, authenticated access, request replay, revision checks and immutable decisions remain unchanged. No hold is released by this repair.
+
+The reproducible fictional preview in `tests/fixtures/advert-dates-preview.mjs` uses the actual component, review API and isolated SQLite schema. Before the fix it reproduced rejection with one preserved decision. Afterward, the same browser edits saved revision 2 as held, with observed `2026-10-13T11:10:00.000Z` and follow-up `2026-10-15T09:00:00.000Z`; the original revision retained its exact dates. Browser UI confirmed success and the future follow-up; a read-only local HTTP receipt verified UTC persistence. Chrome blocked direct browser navigation to the fixture receipt route, so that route is not claimed as browser-verified.
+
+All **626 tests** pass on pinned Node 24.19.0, including existing invalid-date, release, replay, concurrency and immutable-history guards. TypeScript/build, 17 prerenders and browser budgets pass. Worker dry-run and production verification are recorded in the dated operating receipt. No migration or dependency version change; same-day recovery and dependency-advisory evidence apply. An initial read-only state inspection failed authentication; a later same-scope read succeeded without new permissions.
+
+Rollback is **2.65.0** Worker `183b2925-6806-432e-80d5-305e96ca1d6f`. Preserve all saved decisions and database history. The separate owner actions that reconcile delivered posts and append original-source reviews are evidence-backed operations, not synthetic tests of this release. No model call, forced source refresh or social send is added.
+
+## Live verification
+
+Worker `32aaec5b-081d-4323-8116-a368061e06c8` serves 2.66.0 from commit `6077662bc64eb1f1f5d9a4e4101bfc9436c81c40`. At 11:14:51 UTC, excluded health/jobs requests pass, anonymous review access is 403 and served owner-bundle bytes match the build. Eight protected control/history/budget hashes match before and after deployment; shared AI remains one start/zero calls. Real evidence-backed owner edits then saved three held advert revisions with the intended observation/follow-up times. No synthetic production review was created. All 626 tests and Worker dry-run pass. Code-head checks 115267186967/115267169409 did not start because GitHub reports a billing lock; GitGuardian 115267174230 passed. See `tests/evidence/advert-dates-2026-10-13.json`.

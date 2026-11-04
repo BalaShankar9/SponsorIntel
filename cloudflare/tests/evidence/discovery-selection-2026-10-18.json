@@ -1,0 +1,242 @@
+{
+  "kind": "discovery-known-advert-selection-release",
+  "date": "2026-10-18",
+  "runtime": {
+    "version": "2.84.0",
+    "commit": "846e00cfecc8909ab247192b2a5fc76152ca0be6",
+    "worker": "6fc59940-5dba-4fb0-9204-37072c9e8ca3",
+    "rollback_version": "2.83.1",
+    "rollback_worker": "c800e7c0-6da3-4e18-bf86-06958f2e4140",
+    "schema_changed": false,
+    "dependency_graph_changed": false
+  },
+  "production_diagnosis": {
+    "receipt_source": "Read-only original D1 scout runs and items",
+    "repeated_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+    "repeat_days": [
+      "2026-10-15",
+      "2026-10-16",
+      "2026-10-17",
+      "2026-10-18"
+    ],
+    "original_reason": "school_already_configured",
+    "each_day": {
+      "requests": 2,
+      "reservations": 4,
+      "inspected": 1,
+      "retained": 0,
+      "search_pages": 1
+    },
+    "official_search": {
+      "scope": "Source-filtered browser search, not market coverage or fresh original checks",
+      "visible_results": 5,
+      "next_page_visible": false,
+      "known_results": [
+        {
+          "url": "https://teaching-vacancies.service.gov.uk/jobs/part-time-class-teacher-sussex-road-community-primary-school",
+          "match": "existing_discovery_lead",
+          "first_recorded_at": "2026-10-13T00:46:34.905Z"
+        },
+        {
+          "url": "https://teaching-vacancies.service.gov.uk/jobs/key-stage-1-class-teacher-permanent-part-time",
+          "match": "existing_discovery_lead",
+          "first_recorded_at": "2026-10-10T00:46:05.892Z"
+        },
+        {
+          "url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-in-brickwork",
+          "match": "existing_discovery_lead",
+          "first_recorded_at": "2026-10-12T00:46:35.147Z"
+        },
+        {
+          "url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry",
+          "match": "existing_discovery_lead",
+          "first_recorded_at": "2026-10-14T00:46:41.467Z"
+        },
+        {
+          "url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-of-drama-king-s-lynn-academy",
+          "match": "previously_checked_configured_school",
+          "previous_observation_days": [
+            "2026-10-15",
+            "2026-10-16",
+            "2026-10-17",
+            "2026-10-18"
+          ]
+        }
+      ]
+    }
+  },
+  "before_reproduction": {
+    "scope": "isolated fictional database and public-source fixtures",
+    "new_schools_retained": 1,
+    "expected": 2,
+    "reason": "Known configured advert consumed one of the two original-inspection slots."
+  },
+  "validation": {
+    "node": "24.19.0",
+    "passed": 695,
+    "failed": 0,
+    "duration_ms": 61551.782042,
+    "targeted_passed": 24,
+    "typescript": true,
+    "build": true,
+    "prerenders": 18,
+    "browser_budgets": true,
+    "worker_dry_run": true,
+    "disk_available_gib": 8.4,
+    "actual_isolated_workflow_d1": {
+      "two_day_cases": 2,
+      "second_day_retained_per_case": 2,
+      "second_day_actual_requests_per_case": 3,
+      "second_day_reserved_per_case": 4,
+      "previous_revisions_and_items_unchanged": true,
+      "public_jobs": 0,
+      "external_requests": 0
+    },
+    "additional_cases": [
+      "known-only selection: one search, zero originals, four reservations retained",
+      "changed title, removed configured school or incomplete proof needs fresh original inspection",
+      "pause during skip save prevents write and further original requests",
+      "duplicate across pages, daily allowance, midnight and request limits",
+      "request replay makes no additional fetch; prior controls and reviews retained"
+    ]
+  },
+  "browser": {
+    "scope": "actual owner component, fictional local records",
+    "known_link_skips_distinct_from_original_checks": true,
+    "prior_observation_date_visible": true,
+    "renewed_old_quote_or_deadline": false,
+    "viewport_px": 390,
+    "document_px": 390,
+    "real_device_test": false,
+    "screenshot": "outputs/discovery-selection-2026-10-18.png",
+    "live_owner_dashboard_loaded": true,
+    "live_original_18_oct_receipt_unchanged": true,
+    "development_corrections": [
+      "Fixture owner stylesheet added before final screenshot verification.",
+      "Iframe width read used the supported frame locator after direct contentDocument was unavailable."
+    ]
+  },
+  "live_http": {
+    "observed_at": "2026-10-18T14:03:08.909882+00:00",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "body": {
+          "version": "2.84.0",
+          "ok": true
+        }
+      },
+      {
+        "path": "/api/career/availability?job=manual-59f8222b-1900-4c36-b562-b21e67eb1f8c",
+        "status": 200,
+        "body": {
+          "jobId": "manual-59f8222b-1900-4c36-b562-b21e67eb1f8c",
+          "state": "manual"
+        }
+      },
+      {
+        "path": "/api/admin/business",
+        "status": 403,
+        "body": {
+          "error": "The owner account is required."
+        }
+      }
+    ],
+    "assets": [
+      {
+        "asset": "owner-BbjWK1xZ.js",
+        "bytes": 202757,
+        "sha256": "9442889764b47cff5bbe334adaf179b938996e3169075634b9fbd22f50257b52"
+      }
+    ]
+  },
+  "preservation": {
+    "before": "2026-10-18T13:59:21.943Z",
+    "after": "2026-10-18T14:03:07.719Z",
+    "unchanged_operational_groups": 14,
+    "protected_groups": [
+      {
+        "group": "workspace_metadata",
+        "rows": 1,
+        "sha256": "e65d4561e118ce213be60fc85d780459015ca8eac07caefae23b62e9b7460d68"
+      },
+      {
+        "group": "job_aggregates",
+        "rows": 8,
+        "sha256": "8b693e5276edd32a4395c9cb8e89dce6acd5004d451cf2b8b1c25f55bb737c2b"
+      },
+      {
+        "group": "advert_holds",
+        "rows": 4,
+        "sha256": "a1ebcd91e4042c3c46d0e8be9721397b0f4e9e997de95970cbb82054e99ef1c3"
+      },
+      {
+        "group": "customer_allowance",
+        "rows": 3,
+        "sha256": "7541cb1c90572ed16d573afe97600a419f51c31adf6554b48963f6e187ede715"
+      },
+      {
+        "group": "discovery_lead_identities",
+        "rows": 25,
+        "sha256": "66532001cb672e4bfb524274a6daf15208c0f9ba5e68182599f98dc0ea392b58"
+      },
+      {
+        "group": "discovery_revision_metadata",
+        "rows": 66,
+        "sha256": "c1e63d58b9c027a933c42cb369acb48e1bbf6246a7539bb9145b935ed1df1897"
+      },
+      {
+        "group": "all_scout_runs",
+        "rows": 11,
+        "sha256": "bdb4a7e2ed2852633346db274428a73d5dd6609718e3cfaa2dffdf0c4326897c"
+      },
+      {
+        "group": "all_scout_items",
+        "rows": 16,
+        "sha256": "4c3d4e84976a931ed24b93cb627a9888c1b3c4466d4ee033df6bebbe4c5ade85"
+      }
+    ],
+    "foreign_keys": [],
+    "shared_ai": [
+      {
+        "day": "2026-10-18",
+        "runs": 2,
+        "calls": 8
+      }
+    ],
+    "shared_source_budget": [
+      {
+        "day": "2026-10-18",
+        "requests": 368,
+        "briefs": 0
+      }
+    ]
+  },
+  "runtime_hosted_checks": {
+    "head": "846e00cfecc8909ab247192b2a5fc76152ca0be6",
+    "billing_blocked_before_execution": [
+      117695211126,
+      117695200504
+    ],
+    "original_annotations_inspected": true,
+    "gitguardian_passed": 117695207052
+  },
+  "boundaries": {
+    "new_production_leads": 0,
+    "new_public_jobs": 0,
+    "forced_scout_runs": 0,
+    "operator_ai_calls": 0,
+    "operator_google_calls": 0,
+    "operator_source_api_requests": 0,
+    "public_browser_search_inspections": 1,
+    "operator_social_sends": 0,
+    "operator_email_tests": 0,
+    "controls_changed": false
+  },
+  "open_acceptance": [
+    "First genuine eligible daily production execution on or after 19 October.",
+    "Additional new-employer candidates, separately reviewed source admission and publication, then repeated scheduled refresh.",
+    "Broad sector coverage, independent quality and autonomous growth remain unproven."
+  ]
+}

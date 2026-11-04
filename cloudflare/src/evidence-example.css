@@ -1,0 +1,16 @@
+.evidence-example { margin: 24px 0; padding: 20px; border: 1px solid var(--line, #dce2d7); border-radius: 16px; background: #f6f8f3; }
+.evidence-example summary { cursor: pointer; font-weight: 650; line-height: 1.5; }
+.evidence-example summary:focus-visible { outline: 2px solid var(--ink, #294735); outline-offset: 5px; border-radius: 3px; }
+.evidence-example > p, .evidence-example-result p { line-height: 1.7; font-size: 14px; }
+.evidence-example label { display: block; font-size: 13px; font-weight: 600; margin: 16px 0 8px; }
+.evidence-example select { width: 100%; max-width: 100%; padding: 10px; border: 1px solid #bdc9b9; border-radius: 8px; font: inherit; font-size: 14px; background: white; }
+.evidence-example-sources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 16px 0; }
+.evidence-example-sources section { min-width: 0; background: white; border: 1px solid var(--line, #dce2d7); padding: 16px; border-radius: 10px; }
+.evidence-example h3 { margin: 0 0 10px; font-size: 15px; }
+.evidence-example-sources p, .evidence-example pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: 13px; line-height: 1.7; margin: 0; }
+.evidence-example-sources p { white-space: pre-line; }
+.evidence-example-result { padding-top: 18px; }
+.evidence-example-result details { margin: 18px 0; }
+.evidence-example pre { padding: 16px 0; }
+.evidence-example button { white-space: normal; }
+@media (max-width: 600px) { .evidence-example { padding: 16px; } .evidence-example-sources { grid-template-columns: 1fr; } }

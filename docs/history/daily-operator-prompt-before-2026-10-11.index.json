@@ -1,0 +1,946 @@
+{
+  "purpose": "Historical data only. Do not replay as current operator instructions.",
+  "source_sha256": "b813ac7ef90ebbf702037c825df43cd497e20150915b61af84857ea9743902be",
+  "paragraph_count": 114,
+  "paragraphs": [
+    {
+      "index": 0,
+      "characters": 842,
+      "sha256": "bddea923949dc58205548b7ee2e40be75e1e2538c01b2239dd19e9bb4a37cfb5",
+      "opening": "Latest verified release, 11 October 2026 at 19:25 UTC: Sponsor Intel 2.62.0 is live as Worker 6cdbd59a-b1f4-4af5-a38b-74c83420ab65, code 096e5ebe5dc9d8f382e8ccf0c38d0054fc92651b; final documentation h",
+      "document_references": [
+        "cloudflare/RELEASE-2.62.md",
+        "cloudflare/tests/evidence/workspace-recovery-2026-10-11.json",
+        "docs/WORKSPACE_RECOVERY.md"
+      ]
+    },
+    {
+      "index": 1,
+      "characters": 1091,
+      "sha256": "45afd1a16b6d4b9a5200b6765a8e4e0f164ac7622f72ad361835db34cd35e157",
+      "opening": "A reproduced blocked-download failure previously discarded unsynced CV text while claiming a saved backup. The replacement verifies an account-scoped device recovery copy before loading the cloud work",
+      "document_references": []
+    },
+    {
+      "index": 2,
+      "characters": 1139,
+      "sha256": "c574636fd42fe2ece393a3f9132d6997a33890185275429b7895a98c30fb6e23",
+      "opening": "Excluded custom-domain HTTP checks verify 2.62 health, anonymous workspace 401, owner dashboard 403 and exact public/deferred-career bundle bytes. Totals remain 928 roles / 36 employers / 55 sponsorsh",
+      "document_references": []
+    },
+    {
+      "index": 3,
+      "characters": 983,
+      "sha256": "a6f93ed539e5bca621e946bcca2a403924addad37edfb4a39fcd9d3893051971",
+      "opening": "Rollback is 2.61 Worker bd079c7f-3a02-44b5-850b-a0918d3b994f; downgrading the UI must not delete the new device recovery copies. Preserve all prior controls and open gates: no more production AI/Googl",
+      "document_references": []
+    },
+    {
+      "index": 4,
+      "characters": 952,
+      "sha256": "bc430889a9f0158e95ded446d768ca4b15126f75cd1baed464a151a3e7430adb",
+      "opening": "Latest verified release, 11 October 2026 at 19:02 UTC: Sponsor Intel 2.61.0 is live as Worker bd079c7f-3a02-44b5-850b-a0918d3b994f, code b21419bada3ef3ca1c0d7d5921ed1b52551838b3; final documentation h",
+      "document_references": [
+        "cloudflare/RELEASE-2.61.md",
+        "cloudflare/tests/evidence/teaching-navigation-2026-10-11.json",
+        "docs/EDUCATION_DISCOVERY.md"
+      ]
+    },
+    {
+      "index": 5,
+      "characters": 752,
+      "sha256": "60f163aaf34693ec5643035a93acba55006f533bf90e0b962b9247aa2bd7d921",
+      "opening": "Release 2.61 narrowly normalises only the known official ECT navigation link inside DfE's Job role row, preserving the useful Suitable for early career teachers label while excluding View all, the sit",
+      "document_references": []
+    },
+    {
+      "index": 6,
+      "characters": 990,
+      "sha256": "2e29602811177d7fad754200cbc9d1bc36cb3a93afd28c301f0a53172a71f22e",
+      "opening": "Production health and anonymous owner-dashboard 403 passed. Public counts remain 928 current roles / 36 employers / 55 sponsorship-worded / 887 licence-linked. Before/after read-only hashes match for ",
+      "document_references": []
+    },
+    {
+      "index": 7,
+      "characters": 988,
+      "sha256": "cbf9c6bff8712b791a4d655a95110a30dc69538a047de8e473aa4151912116ab",
+      "opening": "The next genuine 19:45 UTC 11 October business snapshot and eligible new marketing context should be inspected for 2.60's separate browser metric; do not substitute a synthetic scheduled invocation. I",
+      "document_references": []
+    },
+    {
+      "index": 8,
+      "characters": 920,
+      "sha256": "ef67ce3778ff479fbe01f4cb0cb0e2c18468469f1757ddce50fdfdb2070b896f",
+      "opening": "Latest verified checkpoint, 11 October 2026 at 18:51 UTC: Sponsor Intel 2.60.0 is live as Worker 0dda75ee-b323-494d-be95-02bde39c200f, code ea8af1a0f874c05d7a15f8c4a0ac0f76c423b747; final documentatio",
+      "document_references": [
+        "cloudflare/RELEASE-2.60.md",
+        "docs/BROWSER_EVIDENCE_MEASUREMENT.md"
+      ]
+    },
+    {
+      "index": 9,
+      "characters": 963,
+      "sha256": "61c035ed899f47091e73515667a2755bb1dfc625207a28148a70bb3ffba1defa",
+      "opening": "Application Studio's Evidence & gaps runs in the browser and was absent from server preparation counters. Do not infer no prior use from historical zeros. A fixed browser report now has its own aggreg",
+      "document_references": []
+    },
+    {
+      "index": 10,
+      "characters": 846,
+      "sha256": "504cc37a5b89e4bec98483d948054c2717b43f03d7c02a88c52f64a60ef60a7a",
+      "opening": "Genuine scheduled-1791743436000 completed 18:33:16.325 UTC, independently confirmed by Cloudflare: 36 sources published, PortmanDentex skipped under its existing owner pause, 60 reserved requests and ",
+      "document_references": []
+    },
+    {
+      "index": 11,
+      "characters": 837,
+      "sha256": "93fdf6804bbd3ca97830a0359099f4ffea8c2a1e1f3f8088c71d3793f371370a",
+      "opening": "The hourly run flagged the English discovery proof because an unrelated navigation link count changed 812 to 809. Exact comparison found every other pinned field and description character unchanged. T",
+      "document_references": [
+        "docs/KINGS_LYNN_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 12,
+      "characters": 762,
+      "sha256": "e83faa5ab1946359aeccb42575ae7fb855dc77f49eb5af81477e82a55694368a",
+      "opening": "Compared controls/history and both prepared source identities remain unchanged; AI usage is two starts/six calls on 11 October. Both model comparisons remain paused. Preserve every source/model/Google",
+      "document_references": []
+    },
+    {
+      "index": 13,
+      "characters": 407,
+      "sha256": "33fbaae15c5c8568212937b3f43240fb4fa5d1902b9e5e553601febb73f54cb3",
+      "opening": "Latest verified release, 11 October 2026 at 18:16 UTC: Sponsor Intel 2.59.0 is live as Worker 47ef7c6c-a03d-427d-b482-306e9f933f9e, code 0d1f834ee34c551fe48b1b1e56ddc843e9cdd94b, final documentation h",
+      "document_references": [
+        "cloudflare/RELEASE-2.59.md",
+        "docs/ACCOUNT_DATA_BOUNDARIES.md"
+      ]
+    },
+    {
+      "index": 14,
+      "characters": 894,
+      "sha256": "16dd15dac12381b37f1aafa3056619b8f9131397ad360642b5d06be747f13866",
+      "opening": "A fictional actual Worker/auth/D1 test confirmed that a first workspace save or recovery-code write already authenticated before deletion could recreate its row afterward. Both inserts now check accou",
+      "document_references": []
+    },
+    {
+      "index": 15,
+      "characters": 975,
+      "sha256": "a311a6e98222403fab16bbe5ba376f71fd5f84063e61a3b261dd45ea94a545f2",
+      "opening": "QA-excluded live totals remain 928 roles, 36 employers, 55 sponsorship-worded and 887 licence-linked. Anonymous workspace read/save, recovery-code creation and account deletion return 401; owner evalu",
+      "document_references": []
+    },
+    {
+      "index": 16,
+      "characters": 541,
+      "sha256": "1af396602f0d7d0af4b67b39a733a3b636e486cdd1708d86f818bcc1c72f0386",
+      "opening": "The next genuine 18:30 UTC source run and 18:45 business run on 11 October remain unobserved at this checkpoint. Verify their actual original receipts/platform status when due; never force a run or re",
+      "document_references": []
+    },
+    {
+      "index": 17,
+      "characters": 1439,
+      "sha256": "1055e5c96e7e0304c55d6154e9810d9d7f8b2ec20b0c6adf64c45f2b28be1f67",
+      "opening": "Latest verified checkpoint, 11 October 2026 at 18:00 UTC: Sponsor Intel 2.58.0 is live as Worker 6419c7c8-42d1-43d0-a9db-fc3cebee1aab, code ddded30fbbc22d478ebddb60a7a3aae294f96d9f, with live evidence",
+      "document_references": [
+        "cloudflare/RELEASE-2.58.md",
+        "docs/OPERATIONS-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 18,
+      "characters": 1681,
+      "sha256": "0d0d585171e8ba42713022a329c5832ff3b35dbb64b368dcda72f990fb164667",
+      "opening": "Genuine scheduled business-497705 completed at 17:46:08.584 UTC, independently confirmed complete by Cloudflare. Under 2.57 it preserved the research candidate paused at 0/50 and original needs_attent",
+      "document_references": []
+    },
+    {
+      "index": 19,
+      "characters": 819,
+      "sha256": "509c34e3c3698089709b510409e63257a910d86229c64df5a3e7ee948657a153",
+      "opening": "Latest verified checkpoint, 11 October 2026 at 17:35 UTC: Sponsor Intel 2.57.0 is live as Worker 4ffdf0c4-cb79-4a5e-9d20-711f7fc36750, code 0d35a3d221b8766b173858494a4af2a7a854016b. This supersedes ol",
+      "document_references": [
+        "cloudflare/RELEASE-2.57.md",
+        "docs/REFERENCE_EVALUATION.md"
+      ]
+    },
+    {
+      "index": 20,
+      "characters": 877,
+      "sha256": "b6e856a218827d2aacf969579c6aa3bcd718b68c71fa3bdf19913da45b405660",
+      "opening": "The research comparison real-adverts-2026-10-08-compact-v2, policy investigator-v4-compact-reference, was prepared through the owner UI at 17:34:27.618 UTC, revision 1, PAUSED, zero candidate attempts",
+      "document_references": []
+    },
+    {
+      "index": 21,
+      "characters": 740,
+      "sha256": "f566f5fa11f3fb4fc80ce34e9272c3af14cfde6881cafc84cdaf2861e402e8fb",
+      "opening": "The original batch-two failure on 10 October remains unchanged. Cloudflare reports its failure handler completed, not successful analysis. Its retained Model response incomplete message is consistent ",
+      "document_references": []
+    },
+    {
+      "index": 22,
+      "characters": 1033,
+      "sha256": "dfd11abd2edc11b267873b9328816793ccee941c487247838de7f9b2fdd3d8bb",
+      "opening": "Both research and application comparisons stay paused on 11 October. No additional production AI or Google attempt today; shared reservations remain two starts / six calls at this checkpoint. On a lat",
+      "document_references": []
+    },
+    {
+      "index": 23,
+      "characters": 723,
+      "sha256": "749e155bb6dbd022e6317f347ccd59f9acc574f4d6bb3a0eb54797b349e19407",
+      "opening": "Live health, authenticated owner UI and anonymous 403 access checks pass. Public collection remains 928 roles / 36 employers / 55 sponsorship-worded / 887 licence-linked at 17:34 UTC. Before/after has",
+      "document_references": []
+    },
+    {
+      "index": 24,
+      "characters": 689,
+      "sha256": "2786e11fbe90c8251117a43431d253286762dd5e9963e5d9993901c428a94c9d",
+      "opening": "PortmanDentex remains PAUSED. The current original catalogue/detail agreement still does not explain its historical mismatch; do not resume under the older instruction requiring a understood historica",
+      "document_references": []
+    },
+    {
+      "index": 25,
+      "characters": 668,
+      "sha256": "1a4a967927b011d2db1297079d597f7bd4bae15fbc61fe96cc06c0f2d1f7cbf6",
+      "opening": "Latest verified checkpoint, 11 October 2026 at 16:57 UTC: Sponsor Intel 2.56.0 is live as Worker d6bd42a8-0b15-42e3-99ab-219c547a9c8a, code ad56cb78ac2f658922a821157aabeeb970220da2. This supersedes ea",
+      "document_references": [
+        "cloudflare/RELEASE-2.56.md",
+        "docs/PORTMANDENTEX_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 26,
+      "characters": 856,
+      "sha256": "11f1626aa1f621fb3f75bbc4a51aa30d925bf9ea3e05d94db34c2eda74f25cec",
+      "opening": "A trusted source identity, destination, catalogue or parser rejection now ends that source task as Needs review after its first such failure in the run. Safe failure, operational review and terminal t",
+      "document_references": []
+    },
+    {
+      "index": 27,
+      "characters": 715,
+      "sha256": "42610802d414e877f95f7abee4bfa32d4769b55c28a60373e84f0f4387d0d9af",
+      "opening": "PortmanDentex stays paused with zero public jobs. Four manual original-catalogue/detail requests at 16:46 UTC read 251 catalogue summaries and confirmed current agreement for advert 744000145730189. T",
+      "document_references": []
+    },
+    {
+      "index": 28,
+      "characters": 505,
+      "sha256": "23f75e2fcd72034bea4f6902f2009b7a3c99e26964d2a133d9d2d600ac5db9e0",
+      "opening": "Read-only before/after hashes at 16:53/16:57 agree for source pause, cache, progress, 14 task receipts, zero public Portman jobs, source reservations 296/500, application pause, selected comparison an",
+      "document_references": []
+    },
+    {
+      "index": 29,
+      "characters": 722,
+      "sha256": "ec742b37b5d50f4cbf80fe01e1c107fbffdee57da1a33bd2466ba53589ebd455",
+      "opening": "Genuine business-497704 finished at 16:46:13.619 UTC under 2.55, independently confirmed successful by Cloudflare. It retained seven findings including the existing high-priority reference-evaluation ",
+      "document_references": []
+    },
+    {
+      "index": 30,
+      "characters": 971,
+      "sha256": "eba9d6eb1239822aae603955378ffc973e525561460b95e4872890c6769b37af",
+      "opening": "Latest verified release, 11 October 2026 at 16:33 UTC: Sponsor Intel 2.55.0 is live as Worker 24d7ac43-84e6-4d81-8263-6f568a0b244a, code commit 810a647b6056a3ad44d2036e6829505d99bab66c, live-evidence ",
+      "document_references": []
+    },
+    {
+      "index": 31,
+      "characters": 1049,
+      "sha256": "7c4b786267639e4c3ec5a185faebbcf0fde969c7cfb8dc2c88b5c7a8e6366e0d",
+      "opening": "Read cloudflare/RELEASE-2.55.md and docs/APPLICATION_EVALUATION.md. The owner lab now retains agent-assisted reviewed comparison comparison-ab82508c3c1b5ae41fc5add0. It is PAUSED at zero new cases, wi",
+      "document_references": [
+        "cloudflare/RELEASE-2.55.md",
+        "docs/APPLICATION_EVALUATION.md"
+      ]
+    },
+    {
+      "index": 32,
+      "characters": 897,
+      "sha256": "2ad94d1eaa7de8edde78d15fb46f2f0e47ad04a9fa9df42154e6ac9d841660d2",
+      "opening": "No further production AI/Google call on 11 October. Keep application evaluation paused that day. On a later eligible day, inspect the selected reviewed version, preserved prior outcomes, source identi",
+      "document_references": []
+    },
+    {
+      "index": 33,
+      "characters": 919,
+      "sha256": "4e6cb0651a846eedb86573f7e96508b03fe6e9ab6e3116041424fca1add131a6",
+      "opening": "Live public collection is 928 jobs / 36 employers / 55 sponsorship-worded / 887 licence-linked at 16:33 UTC; no new jobs were added in this release. Anonymous campaign writes return 403. The latest ob",
+      "document_references": []
+    },
+    {
+      "index": 34,
+      "characters": 890,
+      "sha256": "b58cd53f6854efa7a097a433c490bb3417e08f67bb6707d3c6eed34806ea2d1a",
+      "opening": "Latest verified checkpoint, 11 October 2026 at 16:02 UTC: Sponsor Intel 2.54.0 is live as Worker c2eee049-7c16-4eda-84f6-374f7cfb946a, code commit d7c3c759f412f8aca4306b15fad9410a5da7b8c6; documentati",
+      "document_references": [
+        "cloudflare/RELEASE-2.54.md",
+        "docs/APPLICATION_CONTRACT_HISTORY.md"
+      ]
+    },
+    {
+      "index": 35,
+      "characters": 1388,
+      "sha256": "1f2fd1e92f43bb48f0660e7dc332f44542b8072276acc08275afec17be2a53b5",
+      "opening": "The full historical 2.52 Worker reproduces the actual retained application profile. Comparing it with full 2.53 proves that esbuild local-variable renaming changed five validator/helper function strin",
+      "document_references": []
+    },
+    {
+      "index": 36,
+      "characters": 1133,
+      "sha256": "9d5b5b1bcb646cde92b564c18e8612d36083c900129417f4c3903e6c58752379",
+      "opening": "Public collection at 16:01 UTC remains 928 jobs, 36 employers, 55 sponsorship-worded and 887 licence-linked roles. Genuine business-497703 finished in D1 at 15:46:10.940 UTC with attention; Cloudflare",
+      "document_references": []
+    },
+    {
+      "index": 37,
+      "characters": 634,
+      "sha256": "dfb2e3372ba0c1c2978ff70082447c43b2e1d4f171c75e66be2093accf3e1e84",
+      "opening": "Latest verified checkpoint, 11 October 2026 at about 15:25 UTC: Sponsor Intel 2.53.0 IS LIVE as Worker 389877c3-9b6e-43b3-a117-245c3a176f09 from code commit 6b57840cd06da3450f11f3ff0d802db2f9fe771e. D",
+      "document_references": []
+    },
+    {
+      "index": 38,
+      "characters": 659,
+      "sha256": "87728297d4151bd7515a5835691c33b1a48dd4540ef3c6144b202320e322d5c3",
+      "opening": "All 550 tests pass on pinned Node 24.19.0 (119.6 seconds); the final focused performance plus isolated Worker/auth/D1 suite has 13 passes. TypeScript/build, 17 prerenders, unchanged browser budgets an",
+      "document_references": [
+        "cloudflare/RELEASE-2.53.md"
+      ]
+    },
+    {
+      "index": 39,
+      "characters": 760,
+      "sha256": "aece0b111a5317531809b5cc2178988f88f256fd63f09a298f4e5055a8890b3e",
+      "opening": "At 15:07 UTC the pre-migration recovery check matched the prior isolated 34-migration baseline and all 141 objects; only 0035_marketing_performance.sql was pending and applied. At 15:10:51 UTC product",
+      "document_references": []
+    },
+    {
+      "index": 40,
+      "characters": 850,
+      "sha256": "1b3f12fff320265d917f0bfe41da388cb1d5616b323d3448bedfdcfaacc91e00",
+      "opening": "Live public health/API and authenticated browsers verify 928 current jobs, 36 employers, 55 sponsorship-worded adverts (21 offered/34 conditional) and 887 licence-linked roles. Eleven existing Callosu",
+      "document_references": []
+    },
+    {
+      "index": 41,
+      "characters": 1357,
+      "sha256": "b44dd7a589d346a80f356664836df7041d5cabf92e2e0f49144c31e1ae632ea4",
+      "opening": "The new owner marketing-performance log is live. One REAL observation b25098d4-c062-4677-9258-f68ee55d9a75, read at 15:14 UTC and saved at 15:16:06 UTC, retains the company LinkedIn welcome 7513668718",
+      "document_references": []
+    },
+    {
+      "index": 42,
+      "characters": 1494,
+      "sha256": "0918c093bcd3408f47413d5bd9b70377defb274a1b7cf3021fb72b2ae5a694bd",
+      "opening": "NEW ACTIONABLE QUALITY LIMIT: the live retained-rejection diagnostic returns configuration_changed on the inspected 9 October graduate-year and 11 October project-provenance cases. All three completed",
+      "document_references": []
+    },
+    {
+      "index": 43,
+      "characters": 609,
+      "sha256": "2269516f1ad9e36e84044caaf1a898c2e5272fceb68eb0ead6d246a4b3dfec0f",
+      "opening": "The existing Facebook preparation guide 390624032 remains Pending for 12 October 10:00 Europe/London, verified in Metricool earlier today; reconcile its original job/public post without duplicate send",
+      "document_references": [
+        "docs/MARKETING_REVIEW-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 44,
+      "characters": 549,
+      "sha256": "60ee6c4ced0bb2e46400dcfd7d122eea439c2a4ce17bfff15ab439ce10530a64",
+      "opening": "Storage fluctuated today. Owner-authorised cleanup removed only regenerable Chrome Cache/Code Cache and Vite cache (494178657 logical bytes); personal/profile files, private .wrangler archive and an a",
+      "document_references": []
+    },
+    {
+      "index": 45,
+      "characters": 290,
+      "sha256": "32010c1644b652ed6171903696095a1f3f187a879a221b8a9d2dd8a7dc3e4fbe",
+      "opening": "Stay quiet on unchanged state. Notify only material verified improvements, actionable failures or a necessary owner decision. The broad autonomy goal remains active and incomplete. Preserve every earl",
+      "document_references": []
+    },
+    {
+      "index": 46,
+      "characters": 1162,
+      "sha256": "398500e7e7ad4e04be1c54b15898595259a903301544fa91e10806c0b11a058a",
+      "opening": "Latest prepared checkpoint, 11 October 2026: commit 692a7b7bbb54305633dd200fa21e110f8813128d is pushed on the existing PR; production remains 2.52.0 Worker 3a133af1-df7d-443c-8ea9-e15e77f2ba5f. Prepar",
+      "document_references": [
+        "cloudflare/RELEASE-2.53.md",
+        "docs/MARKETING_PERFORMANCE.md"
+      ]
+    },
+    {
+      "index": 47,
+      "characters": 949,
+      "sha256": "ee41bf36d232036355e006b7134693bf410f1aca9f94351cc0042d417944efeb",
+      "opening": "IMPORTANT migration change: prepared 0035_marketing_performance.sql adds an append-only table, two indexes and two guards. The local schema is now 35 migrations/146 objects. No production migration wa",
+      "document_references": []
+    },
+    {
+      "index": 48,
+      "characters": 962,
+      "sha256": "10477fe9dba869943b0eb0b210010f747e58ea9ccf3827ee97c56dd5b2968a52",
+      "opening": "Marketing performance is a separate owner-only log at /api/admin/marketing/performance. After deployment, the existing daily Codex routine should inspect history and retain observed public post figure",
+      "document_references": []
+    },
+    {
+      "index": 49,
+      "characters": 1185,
+      "sha256": "167c85d79910f007cbb688e55698416cb7e792901cd629e195bcf001cb31b8e6",
+      "opening": "A new eligible planner context retains at most 20 recent uncorrected observations selected from the latest 100 within seven days, with reporting windows and uncertainty. Private operator notes/identit",
+      "document_references": [
+        "docs/MARKETING_REVIEW-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 50,
+      "characters": 1035,
+      "sha256": "2227693ed20e903edf0cacbc41a1ab3c37748e412f1d715e4b824ef83a94ef89",
+      "opening": "Latest 11 October 2026, approximately 14:20 UTC: prepared 2.53 remains UNDEPLOYED, now commit 2153dd7bf746d64b7ab4bacab234ec80801337df pushed to PR1. All 537 tests, TypeScript/build, 17 prerenders, un",
+      "document_references": [
+        "cloudflare/tests/evidence/prepared-draft-2026-10-11.json"
+      ]
+    },
+    {
+      "index": 51,
+      "characters": 1632,
+      "sha256": "8213db1ccf06577dbe3f50126d81815db898abf8c644561e07cdd8d076b544a0",
+      "opening": "The owner asked whether marketing is world-class. Read docs/MARKETING_REVIEW-2026-10-11.md before further growth work. Fresh native LinkedIn analytics: personal 7 October Sponsor Intel launch 136 impr",
+      "document_references": [
+        "docs/MARKETING_REVIEW-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 52,
+      "characters": 802,
+      "sha256": "f4ff4a63c796a67077b3c66c571a949f548a9b53ad3c565f26420bbffbeb41c6",
+      "opening": "Latest checkpoint, 11 October 2026 at 13:55 UTC: prepared 2.53 now includes commit bf6f88a797c8c10e45efc8df6e66f3aad9c0c98b, pushed to the existing open PR. All 532 tests pass on pinned Node 24.19.0 (",
+      "document_references": []
+    },
+    {
+      "index": 53,
+      "characters": 1199,
+      "sha256": "4677494aa40bc84b243e5aa49f707920e65c1d2d47b638efb7cc96c9ff5dca42",
+      "opening": "Existing North Ridge English TLR lead c40c5567-c617-4047-8f93-af72b9feacaa is saved and read back at agent-assisted revision 2, Held for evidence. GIAS URN 132905 and original school PDF/DfE DOCX/appl",
+      "document_references": [
+        "cloudflare/tests/evidence/north-ridge-review-2026-10-11.json",
+        "docs/SCHOOL_LEAD_REVIEWS-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 54,
+      "characters": 729,
+      "sha256": "d7d7b0d3d0373bb5778cfaf07c6a74beed2dfd684e59c3cb7baf95b5192f9686",
+      "opening": "The reminder repair is for future school candidates only: at most three days from observation and 24 hours before closing where a future interval exists; otherwise within one hour or half the remainin",
+      "document_references": []
+    },
+    {
+      "index": 55,
+      "characters": 949,
+      "sha256": "2b1b78ac7b7eec6b80ed9863c3c4ec9dc442e720bacdcff2fe3f18fec47b8e14",
+      "opening": "Latest existing-employer identity review, 11 October 2026, commit 47fe54c380c66eb16f06e0730e48b6d16e73e57f: undeployed 2.53 now maps the existing Callosum source to Callosum Ltd, exact current Skilled",
+      "document_references": [
+        "cloudflare/tests/evidence/callosum-licence-review-2026-10-11.json",
+        "docs/CALLOSUM_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 56,
+      "characters": 1283,
+      "sha256": "2f9f6716d013deb432c586e7f92f106c697970e5cf94294fc582de193bdb126d",
+      "opening": "All eleven existing Callosum roles already had offered wording. An isolated public-record replay adds eleven licence links with no job/listing/label/observation changes and removes the link if the reg",
+      "document_references": []
+    },
+    {
+      "index": 57,
+      "characters": 919,
+      "sha256": "870a0089285bb4e41bc5687a07e6816df6ce2908d989ae10d61151713b1cccd1",
+      "opening": "Latest prepared research diagnostic, 11 October 2026, commit 7e1550df2ff72ed9f80584b0cf9bc666f2f10763: undeployed 2.53 now preserves finite Cloudflare completion metadata and bounded reported token co",
+      "document_references": [
+        "cloudflare/RELEASE-2.53.md",
+        "cloudflare/tests/evidence/research-completion-2026-10-11.json"
+      ]
+    },
+    {
+      "index": 58,
+      "characters": 1298,
+      "sha256": "97cd78982ecca51d630f9cd63cd91188ee95b37086b26b072cdd99deefc101c3",
+      "opening": "Current combined local validation: all 531 tests pass on pinned Node 24.19.0 in 107.9 seconds; TypeScript/build, 17 prerenders, unchanged browser budgets and deployment dry run pass. The actual isolat",
+      "document_references": []
+    },
+    {
+      "index": 59,
+      "characters": 1754,
+      "sha256": "8d853b6071f8214ae722c42a0eaf616f5262e729a61f927c91a50de3325a96af",
+      "opening": "Latest existing-lead review, 11 October 2026 13:05\u201313:09 UTC, commit 681ed0cc52526b3c210f67233b8b4cb6119d4448: Danu Insights and Lift Kingswood now have agent-assisted revision 2 discovery holds. Danu",
+      "document_references": [
+        "cloudflare/tests/evidence/lift-school-review-2026-10-11.json",
+        "docs/DANU_SOURCE_REVIEW.md",
+        "docs/SCHOOL_LEAD_REVIEWS-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 60,
+      "characters": 762,
+      "sha256": "4081fce838bf13a3f2165a2386d950c878dc2388a68b9d06aabb33f95f5d3021",
+      "opening": "Latest prepared engineering checkpoint, 11 October 2026, commit 2810eb4cbe537f1def6916dbfea7b8b0c83ba7c1: 2.53 now handles an explicit unconditional CV refusal for this application. The public role an",
+      "document_references": [
+        "cloudflare/RELEASE-2.53.md",
+        "cloudflare/tests/evidence/application-format-2026-10-11.json"
+      ]
+    },
+    {
+      "index": 61,
+      "characters": 985,
+      "sha256": "7c6c672e449633711f3791f722ca87c2b80544fed75741c4ef028d7685befce9",
+      "opening": "All 524 tests pass (110.2 seconds) on pinned Node 24.19.0 after fixing a shared-style import failure in the first run. Build/TypeScript, 17 prerenders, unchanged asset budgets and dry-run pass. Actual",
+      "document_references": []
+    },
+    {
+      "index": 62,
+      "characters": 1006,
+      "sha256": "a590d0c59a7618ed9ac786f0e5268990ff784a46eb45be2097d17280609999c3",
+      "opening": "The genuine 12:45 UTC business application receipt business-497700 now captures the earlier school publication: 928 roles, 36 employers, 21 offered/34 conditional, four entries, 54 to 55 mentions, one",
+      "document_references": []
+    },
+    {
+      "index": 63,
+      "characters": 1668,
+      "sha256": "1165c7d10ec47b8b322c771f46e0c1a0cfbc8091c75ec86f006a5c779f28fd5b",
+      "opening": "Latest verified operational checkpoint, 11 October 2026 at 12:38 UTC, documentation commit 1379e65a15378920a0c30c53fbf199ff74b1c488: genuine scheduled-1791721811000 collected all seven King's Lynn Aca",
+      "document_references": [
+        "cloudflare/tests/evidence/kings-lynn-publication-2026-10-11.json",
+        "docs/KINGS_LYNN_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 64,
+      "characters": 683,
+      "sha256": "5f672d7eaf9c7da5f0e810f51ac3b40affc8faebe174b134cda131d7e29c8b2a",
+      "opening": "Direct Google Search Console UI was set to the exact stored final-Web period 10 September\u20137 October. It reports 0 clicks/14 impressions/3.9 position versus the stored scheduled 0/12/3.5. Cause unresol",
+      "document_references": [
+        "docs/SEARCH_CONSOLE_OPERATIONS.md"
+      ]
+    },
+    {
+      "index": 65,
+      "characters": 748,
+      "sha256": "1806b75d895d69ddcb3d9f84635d2435086870b580babd3ae43526c73458f9a1",
+      "opening": "This checkpoint changes documentation/evidence and an existing lead review only. Production stays 2.52.0; prepared 2.53 remains undeployed pending existing Cloudflare agreement approval and fresh reco",
+      "document_references": []
+    },
+    {
+      "index": 66,
+      "characters": 2407,
+      "sha256": "4ff77ae6617e07f4919802dc16a5c1f5ccf3ccb4e6eae6f93182aafa4556a2d8",
+      "opening": "Latest prepared monitoring checkpoint, 2026-10-11 12:23:46 UTC: commit 11822732be85bbbb06d0fa4753ca59ccadf66a82 is pushed on PR1, with release 2.53 still UNDEPLOYED. Live owner inspection found 35 eli",
+      "document_references": [
+        "cloudflare/tests/evidence/job-link-read-limits-2026-10-11.json",
+        "docs/EMPLOYER_LINK_CHECK_REVIEW-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 67,
+      "characters": 2153,
+      "sha256": "69bdca0c3d47c3be1cbf81f00d9bbbc11f27d93296cdfcafd3498262c414efff",
+      "opening": "Latest prepared engineering checkpoint, 11 October 2026 at 12:11 UTC: commit c3a9964bfb23b1fc6497f5699b0057022f2bc4aa keeps release 2.53 UNDEPLOYED and reduces initial public JavaScript from 419,996 t",
+      "document_references": [
+        "cloudflare/RELEASE-2.53.md",
+        "cloudflare/tests/evidence/deferred-workspace-2026-10-11.json"
+      ]
+    },
+    {
+      "index": 68,
+      "characters": 2056,
+      "sha256": "21136a5bacc0bdd49f865c8f938ec4ea7a7c6eb055f3b1020a4bd85965487268",
+      "opening": "Latest operating acceptance, 11 October 2026 at 11:49 UTC, commit 36f8f2c3863f356703e9bffe91bcc6c89265f2b0: six genuine operational messages (five incident notices, one reported-findings-cleared notic",
+      "document_references": [
+        "cloudflare/tests/evidence/email-lifecycle-2026-10-11.json",
+        "docs/OPERATION_ALERTS.md"
+      ]
+    },
+    {
+      "index": 69,
+      "characters": 1629,
+      "sha256": "1837b3b6bffadcac5604b4fafd4fd15e499d0e2bdf00d00019b3035019e77b97",
+      "opening": "Latest prepared engineering checkpoint, 11 October 2026: commit 228519374fe074b9fe5a1643db7b23408779ced7 extends unreleased 2.53 with Application Studio missing-input guidance, direct CV/advert editin",
+      "document_references": [
+        "cloudflare/RELEASE-2.53.md"
+      ]
+    },
+    {
+      "index": 70,
+      "characters": 2360,
+      "sha256": "66e3e90c9bd5949b96010c54d76a16c9f12b218955ee1507d8b24bb4e3d81719",
+      "opening": "Latest existing-school review, 11 October 2026 around 11:26 UTC: commit 08029c230fdcf0d09f27e0265666be48a2d72ad3 is pushed; existing PR updated, documentation/JSON/date/hash checks pass. Runtime uncha",
+      "document_references": [
+        "cloudflare/tests/evidence/school-lead-reviews-2026-10-11.json",
+        "docs/SCHOOL_LEAD_REVIEWS-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 71,
+      "characters": 2367,
+      "sha256": "219589b8550b7575e032756a28dddd1ac624841bb1553530a151a9480783a413",
+      "opening": "Latest LinkedIn discovery checkpoint, 11 October 2026 at 11:14 UTC: production 2.52 owner desk saved three actual browser-assisted records, all agent_assisted revision 1. Danu Insights Biotech Automat",
+      "document_references": [
+        "docs/LINKEDIN_DISCOVERY-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 72,
+      "characters": 1639,
+      "sha256": "4f6b8df85c6ab0c1d351cafbdb85dfd7abfaaaf52388a65de4baa5765d2ebc69",
+      "opening": "Latest source diagnostic checkpoint, 11 October 2026 at 10:58 UTC: commit fd57e439e8b3b42d03403ab3f7f922899cdedaed is pushed to the existing unmerged PR. Prepared 2.53 remains NOT DEPLOYED; production",
+      "document_references": [
+        "cloudflare/RELEASE-2.53.md",
+        "docs/PORTMANDENTEX_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 73,
+      "characters": 1342,
+      "sha256": "95c0adc210b1616717dcb26936c7b5127024ff8066fc6921bb4c0e0d88391570",
+      "opening": "Latest sourcing checkpoint, 11 October 2026 at 10:37 UTC: production remains 2.52.0; the prepared 2.53 diagnostics/reservation code is still NOT deployed and Cloudflare terms confirmation is still pen",
+      "document_references": [
+        "cloudflare/tests/evidence/source-reviews-2026-10-11.json",
+        "docs/KINGS_LYNN_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 74,
+      "characters": 923,
+      "sha256": "991da14286e2fc658e9a2187573e5d92ce552fa2469ff834b6f0263720d8ef71",
+      "opening": "Four unaffected roles are expected, including ONE conditional sponsorship advert (Teacher of English 3600-R0185, degree/QTS required); the three support roles explicitly refuse visa sponsorship. These",
+      "document_references": []
+    },
+    {
+      "index": 75,
+      "characters": 910,
+      "sha256": "7b793a4db4a8dd29ef2e60f8619b499d4828199c37680228ba47020dde6fb1db",
+      "opening": "Existing Argo J1493 lead 4bace142-d560-4ef9-88aa-a7dc7b00c035 is now rejected at revision 3: its exact URL displays Page Not Found; current opening/client remain unverified, no formal closure inferred",
+      "document_references": [
+        "docs/OUTWOOD_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 76,
+      "characters": 1673,
+      "sha256": "f0a2024f917f7605069c8d216908acc6a46062da86b0c71a7fd4072773d86c12",
+      "opening": "Latest verified operating checkpoint, 11 October 2026, superseding conflicting dated observations below: read docs/OPERATIONS-2026-10-11.md and cloudflare/RELEASE-2.52.1.md first. Release 2.53 is test",
+      "document_references": [
+        "cloudflare/RELEASE-2.52.1.md",
+        "cloudflare/RELEASE-2.53.md",
+        "cloudflare/tests/evidence/application-quality-2026-10-11.json",
+        "docs/OPERATIONS-2026-10-11.md"
+      ]
+    },
+    {
+      "index": 77,
+      "characters": 946,
+      "sha256": "9457d48234ed4768ed31dfd027f3811b58b3718387289d77bc401e578a32cab3",
+      "opening": "Cloudflare CLI OAuth renewal failed on 9 October. The browser's Google-linked sign-in explicitly accepts Cloudflare terms; the owner's approval question remains pending and no acceptance occurred. The",
+      "document_references": []
+    },
+    {
+      "index": 78,
+      "characters": 1194,
+      "sha256": "f4cec8fa6cab5feadbc0bc66b0983f7ab24237ef444d993b82c2c3ee8ad9d9f8",
+      "opening": "PortmanDentex was paused through the owner control on 9 October after three genuine scheduled collections repeatedly failed the public catalogue/detail identity comparison for advert 744000145730189. ",
+      "document_references": []
+    },
+    {
+      "index": 79,
+      "characters": 1216,
+      "sha256": "06beb78e0411515002b1c8e127e9211be0dac2e5229a93cffdc3d7c5e4555c25",
+      "opening": "Social reconciliation completed without a new send: the company LinkedIn report version 1 is Published with urn:li:share:7513683557614120964 and https://www.linkedin.com/feed/update/urn:li:share:75136",
+      "document_references": []
+    },
+    {
+      "index": 80,
+      "characters": 713,
+      "sha256": "2f93f6d5ceeacaf16ba8858dd58aeec99d58f8c217ad58a7a9901fbe0b4aea6c",
+      "opening": "Genuine education scouts retained two private candidates on 9 October and two on 11 October within the four-request reservation; inspect current queue and today's retained count before any browser sou",
+      "document_references": []
+    },
+    {
+      "index": 81,
+      "characters": 2680,
+      "sha256": "3773fd5499dc828a945508de182b8cfb69651f9166553e38bbb9f48cfd3db568",
+      "opening": "Research batch one completed on 9 October with three historical adverts/two model calls and provisional three-of-three label agreement. Batch two failed on 10 October; the campaign needs attention at ",
+      "document_references": []
+    },
+    {
+      "index": 82,
+      "characters": 497,
+      "sha256": "71a32872dfb0689d170338f825911f99c19960d683c99c3b2806c21a8ecfdf34",
+      "opening": "Next work: resolve authorized access and deployment/recovery gates, investigate held source/model failures, act on the recorded fictional-output findings with separately reviewed versioning, and revie",
+      "document_references": []
+    },
+    {
+      "index": 83,
+      "characters": 757,
+      "sha256": "88413628d154ee72cee3e14e70f6d41de7403fc83b423cecc112295bec4ddc82",
+      "opening": "Latest verified release, 8 October 2026: Sponsor Intel 2.52.0 is live as Worker 3a133af1-df7d-443c-8ea9-e15e77f2ba5f, commit d8861939886a71b693920bc09150396bf4d4aed5. This supersedes older release/tes",
+      "document_references": []
+    },
+    {
+      "index": 84,
+      "characters": 987,
+      "sha256": "2f15a6e7eba734e86c0e90d0e5c5a06f7cada88b8fc0840731b4f127e7c6c2ec",
+      "opening": "The owner Advert reviews desk now records an evidence-backed hold for a single advert on a configured source. Read docs/ADVERT_REVIEWS.md and cloudflare/RELEASE-2.52.md. Immutable revision/audit histo",
+      "document_references": [
+        "cloudflare/RELEASE-2.52.md",
+        "docs/ADVERT_REVIEWS.md"
+      ]
+    },
+    {
+      "index": 85,
+      "characters": 1004,
+      "sha256": "9570a3af14a0c9b0e6f3218a6827a2b931a6cba4a5cfac66de99c275ff27b3cd",
+      "opening": "Live owner and public browsers verify the desk with ZERO production reviews, 926 current jobs, 55 sponsorship-mentioned adverts and 873 licence-linked roles. Anonymous review access returns 403. The e",
+      "document_references": []
+    },
+    {
+      "index": 86,
+      "characters": 707,
+      "sha256": "48071c369a43b08b186c17e5e1239268f37806a0d72b4d717da276e9747c1561",
+      "opening": "Previous verified checkpoint, 8 October 2026: Sponsor Intel 2.51.0 is live as Worker 86062f83-ce93-4f38-a4b8-3377960af3e0, commit becba0c. This supersedes older version, pending-run and school-review ",
+      "document_references": []
+    },
+    {
+      "index": 87,
+      "characters": 823,
+      "sha256": "b50d596dd70c2f2e22d21aceb2ac1656df77810802aa9d17fc33a8edee866450",
+      "opening": "Public browser verification: 926 current roles, 35 employers, 55 sponsorship-mentioned adverts (21 offered, 34 conditional) and 873 licence-linked roles. The live owner panel now shows the school-iden",
+      "document_references": []
+    },
+    {
+      "index": 88,
+      "characters": 832,
+      "sha256": "d2223634d044a746d01f1c615daeadc735b1da90568507e888ec1c8e6e4d6c3c",
+      "opening": "The daily DfE education scout requires an original advert with future deadline, explicit sponsorship wording and six-digit school identifier. It now deduplicates schools across earlier automatically r",
+      "document_references": []
+    },
+    {
+      "index": 89,
+      "characters": 494,
+      "sha256": "a719a22f14c73eeb70383cbc11f16ff10ef62443b85ec356f78d1c126afcd22e",
+      "opening": "Before daily browser sourcing, inspect scout receipts, the private queue and leads first retained in the current UTC day. Use only remaining slots for LinkedIn job adverts, ordinary recruiting posts a",
+      "document_references": []
+    },
+    {
+      "index": 90,
+      "characters": 659,
+      "sha256": "725dab87845c86b56919a998aae4563052fcf4e6de941051590fb15dcef16396",
+      "opening": "The reviewed employer-feed form supports one DfE school per feed with URN, slug, exact school name and separately reviewed legal sponsor identity. Probe/refresh reservations are 24 requests inside exi",
+      "document_references": []
+    },
+    {
+      "index": 91,
+      "characters": 992,
+      "sha256": "e93e982ddb53f3ba438013970a2f190be25f62f66397593774a2272cb25432c8",
+      "opening": "King's Lynn Academy URN 136202 remains HELD AND UNCONFIGURED. The school-to-Eastern Multi-Academy Trust identity, company 07338780 and current licence record were checked. The DfE Drama advert says 21",
+      "document_references": [
+        "cloudflare/RELEASE-2.51.md",
+        "docs/AUTONOMY_ACCEPTANCE.md",
+        "docs/EDUCATION_DISCOVERY.md",
+        "docs/KINGS_LYNN_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 92,
+      "characters": 559,
+      "sha256": "a84d208c810265e615d63677fd69735d807b856e2ead370ea98b1b97c8ab7b9a",
+      "opening": "PortmanDentex remains a separate 51/249 private description collection with zero public jobs at last verification. Wait for the normal 00:30 UTC 9 October source continuation; do not trigger an extra ",
+      "document_references": []
+    },
+    {
+      "index": 93,
+      "characters": 482,
+      "sha256": "5a48ef885b721cb77615a8b0c2cd616439754cab7d04ec3dc69f5602c4a8122c",
+      "opening": "Continue operating and improving Sponsor Intel in /Users/balabollineni/Documents/Codex/2026-10-04/i-h/work/SponsorIntel. Read docs/BUSINESS_OPERATING_SYSTEM.md and the latest release notes. Check spon",
+      "document_references": [
+        "docs/BUSINESS_OPERATING_SYSTEM.md"
+      ]
+    },
+    {
+      "index": 94,
+      "characters": 596,
+      "sha256": "06f6e85e2e5fc964609b9d84763509f7601495b066ee93f185b023bc33ee58e4",
+      "opening": "Complete the highest-impact bounded engineering or growth improvement supported by evidence. Review dependencies and official security advisories. Preserve unrelated changes; run appropriate tests; co",
+      "document_references": []
+    },
+    {
+      "index": 95,
+      "characters": 484,
+      "sha256": "bb10c8d729c1b1da60164c61ad7e7f4b82527a4a151619fd9e9b857f3d35d55e",
+      "opening": "Improve useful source-backed content and measure its results. Avoid bulk pages and duplicate reports. Verify immigration changes against official sources; personal legal interpretation needs qualified",
+      "document_references": []
+    },
+    {
+      "index": 96,
+      "characters": 316,
+      "sha256": "7175360a86c54ed76339fed675b58763e0329d46c16ff7cd8959e7c25f98a906",
+      "opening": "Revisit blocked connections when new access or evidence allows progress. Stay quiet when nothing meaningful changes. Notify Bala only for a material completed improvement, significant result, new acti",
+      "document_references": []
+    },
+    {
+      "index": 97,
+      "characters": 3467,
+      "sha256": "82c793bd02ebcd856a47f69df539edd4d5da538e9b0dc116bd790e636364249b",
+      "opening": "For social operations, use the connected Metricool tools with Sponsor Intel brand 7294726, timezone Europe/London, and verify that Facebook is Page 1319703417896763 before scheduling. The personal Ins",
+      "document_references": [
+        "cloudflare/RELEASE-2.25.md",
+        "docs/SOCIAL_PUBLISHING.md",
+        "docs/instagram-connection-2026-10-08.json"
+      ]
+    },
+    {
+      "index": 98,
+      "characters": 690,
+      "sha256": "b9a746eb7a6dd154c302e7bdd71035f7127da35ecf20bf46f083931a60a3b2d5",
+      "opening": "Release 2.26 adds 19 checked immigration guidance explanations with per-point official excerpts and two version-specific Student wording comparisons. Inspect source freshness and immigration-explanati",
+      "document_references": [
+        "cloudflare/RELEASE-2.26.md"
+      ]
+    },
+    {
+      "index": 99,
+      "characters": 1104,
+      "sha256": "9394ba13bb3773a11731ed31f44ea3bb53361bacd454c4b439b31155067f8eca",
+      "opening": "For due social posts, follow the original provider job while it is Pending or Publishing for up to 15 minutes when the provider still confirms it is active. Space observations at least 60 seconds apar",
+      "document_references": [
+        "cloudflare/tests/evidence/facebook-delivery-2026-10-08.json"
+      ]
+    },
+    {
+      "index": 100,
+      "characters": 1251,
+      "sha256": "5d927a4508905863275cf5d325b91c15cf0e3f0fed00d1c02f835f3118100871",
+      "opening": "For data recovery, follow docs/RECOVERY_RUNBOOK.md. Once per daily run, and before a schema change, run the read-only cloudflare/scripts/recovery-status.mjs check from the cloudflare directory and ret",
+      "document_references": [
+        "docs/RECOVERY_RUNBOOK.md"
+      ]
+    },
+    {
+      "index": 101,
+      "characters": 1398,
+      "sha256": "b24f6d26acf832d254477043aa36a54573e11341263b7bb666498cab0eee0fe7",
+      "opening": "Before any dependency installation, clean reinstall, build or local runtime, check available disk space. Require at least 2 GiB free before starting a clean install. If storage is insufficient, do not",
+      "document_references": [
+        "docs/TOOLCHAIN_SECURITY.md"
+      ]
+    },
+    {
+      "index": 102,
+      "characters": 996,
+      "sha256": "a79b15b00a7ee0d83d07c1d4f7ec9d1117307fb7da397b0b382a32652f1a4996",
+      "opening": "Release 2.36 groups Cardiff Metropolitan University\u2019s two reviewed UK campus feeds under one employer. Both requests must be reserved inside unchanged source ceilings; both feeds must validate before ",
+      "document_references": [
+        "cloudflare/RELEASE-2.36.md",
+        "docs/SOURCE_COVERAGE.md"
+      ]
+    },
+    {
+      "index": 103,
+      "characters": 1380,
+      "sha256": "42000924abb76dd92847d8dfe5fcd7a73f91449e06cd0fdf519b85859cfb4ecd",
+      "opening": "Release 2.37 establishes a separate aggregate usage baseline with migration 0024_public_measurement.sql, enabled 8 October 2026 at 11:57:33.807 UTC. New page and feature counts exclude authenticated o",
+      "document_references": [
+        "cloudflare/RELEASE-2.37.md",
+        "docs/GROWTH_PLAN.md"
+      ]
+    },
+    {
+      "index": 104,
+      "characters": 1654,
+      "sha256": "b860f0a1a4cdee45eb5e2b92a9bbe27dc39444783fe2dddc9765c2aca9dbd8b9",
+      "opening": "Release 2.38 is live (Worker f9c4508e-4074-4f8f-bd38-4c4d76e135ce, additive migration 0025). The genuine source run scheduled-1791462638000 finished on 8 October at 12:32:38.370 UTC, all 33 sources pu",
+      "document_references": []
+    },
+    {
+      "index": 105,
+      "characters": 2080,
+      "sha256": "a6f13c33658cc86b40de35bfe16d12c3fe4d2edcd110b63e7a819d839d6b7df4",
+      "opening": "Release 2.39 adds a checked-vacancy opportunity editor to the existing daily marketing workflow. Read cloudflare/RELEASE-2.39.md and docs/MARKETING_AGENTS.md before using it. Only current offered/cond",
+      "document_references": [
+        "cloudflare/RELEASE-2.39.md",
+        "docs/MARKETING_AGENTS.md"
+      ]
+    },
+    {
+      "index": 106,
+      "characters": 1600,
+      "sha256": "4395a083ea333cda577558f42bb0d6ecb438c6533c15b9870e3bd887c9cc1ae7",
+      "opening": "Release 2.40 adds owner-recorded application evidence assessments. Read cloudflare/RELEASE-2.40.md. Finished fictional outputs can be judged against six writing criteria, with source/output passages a",
+      "document_references": [
+        "cloudflare/RELEASE-2.40.md"
+      ]
+    },
+    {
+      "index": 107,
+      "characters": 1960,
+      "sha256": "0d9d9cc61b22709bd0c4f55e2c05d3d69c2fe330d235d31dc5258c4fdfaf166c",
+      "opening": "The owner asked on 8 October why sponsorship opportunities remained at 50 and explicitly requested discovery from ordinary LinkedIn recruiting posts as well as LinkedIn job listings. Read docs/SOURCIN",
+      "document_references": [
+        "docs/SOURCING_DISCOVERY.md"
+      ]
+    },
+    {
+      "index": 108,
+      "characters": 3084,
+      "sha256": "74e38ce53ef9554688a4fe7af36fa0402ae19285ec44718a7dc6d52fa9326a9c",
+      "opening": "Release 2.44.1 adds the live private Discovery queue in Admin. Read docs/DISCOVERY_QUEUE.md and cloudflare/RELEASE-2.44.md. Search existing retained leads before scouting and work overdue or changed-e",
+      "document_references": [
+        "cloudflare/RELEASE-2.44.md",
+        "docs/DISCOVERY_QUEUE.md"
+      ]
+    },
+    {
+      "index": 109,
+      "characters": 1710,
+      "sha256": "3e7f68860782fc76ca35b618f2e362b2b92fe785731c52de0f88b237763b836f",
+      "opening": "Latest verified source expansion, 8 October 2026 at 17:20 UTC: live version 2.45.0 adds a narrow, tested direct-employer phrase rule for arranging UK visa sponsorship and approved Lever source reviewe",
+      "document_references": [
+        "cloudflare/RELEASE-2.45.md",
+        "docs/WINTERMUTE_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 110,
+      "characters": 2097,
+      "sha256": "bc87672419859114ff3ee5a6f6326b5cb8ef50fe3db08194143dfd303f176e30",
+      "opening": "Latest quality review on 8 October 2026: live 2.46.0 (Worker 19b5c628-5713-47f2-b6f1-b9e028a2111f) recognizes explicit role-specific sponsorship refusals that omit the word visa. Read docs/CARE_SOURCE",
+      "document_references": [
+        "cloudflare/RELEASE-2.46.md",
+        "docs/CARE_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 111,
+      "characters": 825,
+      "sha256": "3290887bfa3ff7b99b2622264c4a10142b09791416457912a0f883cd33e32f31",
+      "opening": "Latest verified baseline (8 October 2026, 2.47.1; supersedes earlier pending 18:30 source-refresh notes): read cloudflare/RELEASE-2.47.md and docs/PORTMANDENTEX_SOURCE_REVIEW.md. The genuine scheduled",
+      "document_references": [
+        "cloudflare/RELEASE-2.47.md",
+        "docs/PORTMANDENTEX_SOURCE_REVIEW.md"
+      ]
+    },
+    {
+      "index": 112,
+      "characters": 1138,
+      "sha256": "1c1e6a1c7c290227f0644859ade32cc4f20cd16ccf9ce1a7e25f218731835e79",
+      "opening": "PortmanDentex uses a fixed reviewed public SmartRecruiters adapter. The initial three attempts stopped on an alternate company-description layout; 2.47.1 repairs this with all sections preserved and 2",
+      "document_references": []
+    },
+    {
+      "index": 113,
+      "characters": 604,
+      "sha256": "ba442180c51d2e6233b80dd56e24029c2732d22edd4fd899560ecb05675950bc",
+      "opening": "Production is Worker f6193a11-3be4-4870-8e60-195bfbe6d00c. Migration 0031 and all 129 schema objects match, a recovery point is available, and 461 local tests plus build and isolated SourceWorkflow/Bu",
+      "document_references": []
+    }
+  ]
+}

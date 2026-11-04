@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "files": {
+    "tests/fixtures/application-development-20.json": "32264fed4688b48c8ddaf84e53c3f9454886d493b975075f803c8429d0670713",
+    "worker/application-profile.js": "05875a36ce033ce5be2078a6e957af53932b73693d1b8e3702116518476ee5cd",
+    "worker/career-quality.js": "42c202aa6a0012d42cdb9303278e73e28e93a925ffcf562f90dd705ca8dcb4dc",
+    "worker/career-review-candidate.js": "2ac0281f46e79acf9f61cbc68bac35840620b1d9c2194215b058bb7f5549df72",
+    "worker/career-review.js": "17e059015501b7d69d24d6b1a08750f3e2430f227d5bd0de5eabe652a7ab313b",
+    "worker/career-writer.js": "29ce791be9d087d2bea26ab67f5691a90ec4f7658eede6b6ef15bad3f0e84eea"
+  },
+  "sha256": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2"
+}

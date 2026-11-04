@@ -1,0 +1,48 @@
+{
+  "observed_at": "2026-10-15T23:01:14.000Z",
+  "brand_id": 7294726,
+  "account": "1319703417896763",
+  "brief_id": "b0578279-cbb7-40d7-9fd7-cd1135397b7d",
+  "version": 1,
+  "id": 397276739,
+  "uuid": "5376123507090214631",
+  "publicationDate": {
+    "dateTime": "2026-10-16T10:00:00",
+    "timezone": "Europe/London"
+  },
+  "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=7294726&openWithPostUuid=5376123507090214631",
+  "text": "A long list of applications can be hard to maintain. Try a smaller research session: three employers, one role worth investigating and a clear next action.\n\nWrite down two role titles that fit your experience and three skills you can support with examples. Include evidence from study, projects, volunteering or paid work.\n\nCompare the responsibilities, required experience, location, pay if stated and sponsorship wording. Keep unanswered questions beside the role.\n\nRead the guide: https://sponsorintel.london/guides/build-a-shortlist?utm_source=facebook&utm_medium=organic_social&utm_campaign=editorial_guides&utm_content=small_shortlist",
+  "providers": [
+    {
+      "network": "facebook",
+      "status": "PENDING",
+      "detailedStatus": "Pending"
+    }
+  ],
+  "autoPublish": true,
+  "draft": false,
+  "shortener": false,
+  "readback_exact_text": true,
+  "ledger": {
+    "state": "scheduled",
+    "revision": 3,
+    "recorded_at": "2026-10-15T23:02:23.623Z",
+    "scheduled_at": "2026-10-16T09:00:00.000Z",
+    "observed_at": "2026-10-15T23:01:14.000Z"
+  },
+  "preflight": {
+    "source": "https://sponsorintel.london/guides/build-a-shortlist",
+    "source_and_excerpts_browser_checked": true,
+    "expires_at": "2026-10-21T00:47:04.166Z",
+    "reviewed_by_different_model": true,
+    "independent_human_quality_acceptance": false,
+    "prior_rolling_seven_day_company_posts": 2,
+    "company_posts_including_new_schedule": 3,
+    "instagram_analytics_rows": 0,
+    "instagram_welcome_hold_preserved": true,
+    "personal_report_hold_preserved": true
+  },
+  "validation_error_before_creation": "First connector invocation rejected a missing publicationDate field before creation. Corrected that field; one successful create and one exact provider readback. No uncertain provider call was repeated.",
+  "delivery_verified": false,
+  "public_post_url": null
+}

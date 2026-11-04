@@ -1,0 +1,10 @@
+{
+  "observed_at": "2026-11-04T10:55:53.315896+00:00",
+  "path": "/api/health",
+  "status": 500,
+  "body": {
+    "error": "We could not load this right now. Please try again."
+  },
+  "content_type": "application/json",
+  "cf_ray": "a55316c61cc641d6-LHR"
+}
