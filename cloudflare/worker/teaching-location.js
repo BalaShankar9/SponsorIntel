@@ -1,6 +1,6 @@
 import {SourceCheckError} from './source-errors.js';
+import {findTeachingNodes as find} from './teaching-tree.js';
 const norm=s=>String(s||'').normalize('NFKC').replace(/\s+/g,' ').trim();
-const find=(n,f)=>[...(f(n)?[n]:[]),...(n.children||[]).flatMap(c=>find(c,f))];
 const hasClass=(n,c)=>n.attribs?.class?.split(/\s+/).includes(c);
 const text=n=>n.type==='text'?n.data:['script','style','noscript','template'].includes(n.name)?'':(n.children||[]).map(text).join(' ');
 const fail=()=>{throw new SourceCheckError('posting_identity');};

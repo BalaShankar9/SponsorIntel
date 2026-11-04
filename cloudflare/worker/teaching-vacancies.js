@@ -3,11 +3,11 @@ import {boundedText} from './data.js';
 import {SourceCheckError,withSourceContext} from './source-errors.js';
 import {TEACHING_ORIGIN,TEACHING_QUOTE,TEACHING_UNAVAILABLE,teachingJobURL,teachingBoardIdentity} from './teaching-source.js';
 import {teachingAdvertLocation} from './teaching-location.js';
+import {findTeachingNodes as find} from './teaching-tree.js';
 
 export const TEACHING_REQUEST_COST=24; // two catalogues of <=2 pages and <=20 original adverts
 const maxJobs=20,norm=s=>String(s||'').normalize('NFKC').replace(/\s+/g,' ').trim();
 const uuid=s=>typeof s==='string'&&/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(s);
-const find=(n,f)=>[...(f(n)?[n]:[]),...(n.children||[]).flatMap(c=>find(c,f))];
 const hasClass=(n,c)=>n.attribs?.class?.split(/\s+/).includes(c);
 const visibleText=(n,replacements)=>replacements?.has(n)?replacements.get(n):n.type==='text'?n.data:['script','style','noscript','template'].includes(n.name)?'':(n.children||[]).map(c=>visibleText(c,replacements)).join(['p','div','li','section','dl','dt','dd','h1','h2','h3','br'].includes(n.name)?'\n':' ');
 const visible=n=>visibleText(n);

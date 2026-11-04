@@ -1,0 +1,13 @@
+{
+  "observed_at": "2026-11-04T05:03:05.273548+00:00",
+  "path": "/api/health",
+  "status": 200,
+  "version": "2.98.15",
+  "register": {
+    "date": "2026-10-27",
+    "count": 128008,
+    "checked_at": "2026-10-28T07:15:32.207Z"
+  },
+  "metrics_excluded": true,
+  "interpretation": "Public read only, not write/supervisor/capacity acceptance"
+}

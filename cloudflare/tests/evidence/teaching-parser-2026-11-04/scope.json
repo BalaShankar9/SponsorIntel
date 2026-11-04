@@ -1,0 +1,16 @@
+{
+  "equivalent_cases": 45,
+  "local_thread_cpu_reduction_percent": [
+    21.98,
+    34.65,
+    23.57,
+    21.4
+  ],
+  "interpretation": "All four local fictional samples improved. Node thread CPU is not Cloudflare step CPU and cannot prove the historical root cause or platform capacity.",
+  "official_platform_limit_source": "https://developers.cloudflare.com/workflows/reference/limits/",
+  "observed_source_failure_receipt": "../source-dispatch-2026-11-04/scheduled-source-provider.json",
+  "security_review_reused": "../source-dispatch-2026-11-04/security.json",
+  "unchanged_dependency_lock_sha256": "a0064013264829d450682960462ebf1f20fb1f06fb715b9df2b13956081e3842",
+  "new_dependency_install": false,
+  "production_source_fetches": 0
+}

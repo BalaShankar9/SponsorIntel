@@ -1,5 +1,9 @@
 # Source execution and lease waits
 
+## School-page traversal — prepared 2.98.16
+
+The school importer and shared campus reader now use an iterative document-order query. It preserves nested matches and duplicate detection while avoiding repeated subtree-result copies. This is a local performance improvement motivated by the genuine 4 November school CPU failures; it does not identify their exact cause or prove that full collections fit the Free CPU limit. Complete source validation, source/request limits, approvals, holds, pauses and publication transactions remain unchanged. See `cloudflare/RELEASE-2.98.16.md` and its exact local comparison; original scheduled outcomes remain the acceptance source.
+
 ## Dispatch uncertainty — 2.98.15
 
 One new source-run reservation owns one workflow-create attempt. Replaying that ID or requesting a new ID while it remains open cannot call the creator again. A lost reservation response or unconfirmed provider outcome stays held; future scheduled time alone is not recovery evidence. New unconfirmed outcomes remain queued so the original late-starting workflow can initialise, with their original budgets and source decisions intact. An original known terminal status is still required before the existing overdue-run reconciliation permits another run. Missing history is unknown, not proof that nothing happened.
