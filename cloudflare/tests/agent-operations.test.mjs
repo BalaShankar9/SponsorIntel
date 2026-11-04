@@ -442,9 +442,11 @@ test("uncertain dispatch checks the same instance and concurrent owner requests 
   assert.equal(query(env, "SELECT COUNT(*) n FROM agent_runs").n, 1);
 });
 
-test("unconfirmed dispatch remains explicit and retry uses its original ID", async (t) => {
+test("unconfirmed dispatch holds both same-ID retries and new requests without another create", async (t) => {
   const env = database(t);
+  let creates = 0;
   env.SOURCE_WORKFLOW.create = async () => {
+    creates++;
     throw Error("down");
   };
   env.SOURCE_WORKFLOW.get = async () => {
@@ -453,16 +455,96 @@ test("unconfirmed dispatch remains explicit and retry uses its original ID", asy
   await assert.rejects(dispatchSources(env, { id: "recover-id" }));
   assert.equal(
     query(env, "SELECT state FROM agent_runs").state,
-    "dispatch_failed",
+    "queued",
   );
-  env.SOURCE_WORKFLOW.create = async ({ id }) => {
-    assert.equal(id, "recover-id");
-  };
-  assert.equal(
-    (await dispatchSources(env, { id: "recover-id" })).id,
-    "recover-id",
-  );
+  assert.match(query(env, "SELECT summary FROM agent_runs").summary, /unconfirmed/i);
+  // Elapsed time and unavailable history do not prove the original create failed.
+  env.sql.exec("UPDATE agent_runs SET created_at='2020-01-01T00:00:00.000Z'");
+  for (const id of ["recover-id", "new-id"])
+    assert.equal((await dispatchSources(env, { id })).id, "recover-id");
+  assert.equal(creates, 1);
   assert.equal(query(env, "SELECT COUNT(*) n FROM agent_runs").n, 1);
+  assert.equal(query(env, "SELECT COUNT(*) n FROM agent_daily_budget").n, 0);
+});
+
+test("an overlapping same-ID request cannot create a second workflow", async (t) => {
+  const env = database(t);
+  let started, finish, creates = 0;
+  const entered = new Promise(resolve => { started = resolve; });
+  const pending = new Promise(resolve => { finish = resolve; });
+  env.SOURCE_WORKFLOW.create = async () => { creates++; started(); await pending; };
+  const first = dispatchSources(env, { id: "in-flight" });
+  await entered;
+  const replays = Promise.all(["in-flight", "another-id"].map(id => dispatchSources(env, { id })));
+  try {
+    await new Promise(setImmediate);
+    assert.equal(creates, 1);
+    for (const result of await replays) assert.equal(result.id, "in-flight");
+  } finally { finish(); await first; await replays; }
+});
+
+test("legacy unconfirmed dispatch stays held and status inspection never resends it", async (t) => {
+  const env = database(t);
+  await run(env, "legacy-unknown");
+  env.sql.exec("UPDATE agent_runs SET state='dispatch_failed',created_at='2020-01-01T00:00:00.000Z',requests=149");
+  env.sql.exec("INSERT INTO agent_daily_budget(day,requests) VALUES('2026-11-04',499)");
+  let creates = 0;
+  env.SOURCE_WORKFLOW.create = async () => { creates++; };
+  env.SOURCE_WORKFLOW.get = async () => { throw Error("History unavailable"); };
+  for (const id of ["new-id", "legacy-unknown"])
+    assert.equal((await dispatchSources(env, { id })).id, "legacy-unknown");
+  const response = await agentOperationsAPI(new Request("https://sponsorintel.london/api/admin/agents/reconcile", {
+    method: "POST", headers: { Origin: "https://sponsorintel.london", "Content-Type": "application/json" },
+    body: JSON.stringify({ run_id: "legacy-unknown" }),
+  }), env, { user: { id: "fictional-owner" } });
+  assert.equal(response.status, 202);
+  assert.equal(creates, 0);
+  assert.equal(query(env, "SELECT state FROM agent_runs").state, "dispatch_failed");
+  assert.equal(query(env, "SELECT requests FROM agent_runs").requests, 149);
+  assert.equal(query(env, "SELECT requests FROM agent_daily_budget").requests, 499);
+  assert.equal(query(env, "SELECT COUNT(*) n FROM agent_runs").n, 1);
+  env.SOURCE_WORKFLOW.get = async () => ({ status: async () => ({ status: "terminated" }) });
+  assert.equal((await dispatchSources(env, { id: "after-confirmed-end" })).id, "after-confirmed-end");
+  assert.equal(creates, 1);
+  assert.equal(env.sql.prepare("SELECT state,requests FROM agent_runs WHERE id=?").get("legacy-unknown").state, "attention");
+  assert.equal(env.sql.prepare("SELECT requests FROM agent_runs WHERE id=?").get("legacy-unknown").requests, 149);
+  assert.equal(query(env, "SELECT requests FROM agent_daily_budget").requests, 499);
+});
+
+test("a lost database reservation response cannot authorise another create", async (t) => {
+  const env = database(t);
+  const prepare = env.DB.prepare.bind(env.DB);
+  let loseResponse = true, creates = 0;
+  env.DB.prepare = query => {
+    const statement = prepare(query);
+    if (query.startsWith("INSERT INTO agent_runs")) {
+      const first = statement.first.bind(statement);
+      statement.first = async () => {
+        const result = await first();
+        if (loseResponse) { loseResponse = false; throw Error("response lost after commit"); }
+        return result;
+      };
+    }
+    return statement;
+  };
+  env.SOURCE_WORKFLOW.create = async () => { creates++; };
+  await assert.rejects(dispatchSources(env, { id: "lost-reservation" }), /response lost/);
+  for (const id of ["lost-reservation", "replacement"])
+    assert.equal((await dispatchSources(env, { id })).id, "lost-reservation");
+  assert.equal(creates, 0);
+  assert.equal(query(env, "SELECT COUNT(*) n FROM agent_runs").n, 1);
+});
+
+test("the original workflow can initialise after an unconfirmed create without a redispatch", async (t) => {
+  const env = database(t);
+  let creates = 0;
+  env.SOURCE_WORKFLOW.create = async () => { creates++; throw Error("response lost"); };
+  env.SOURCE_WORKFLOW.get = async () => { throw Error("temporarily unavailable"); };
+  await assert.rejects(dispatchSources(env, { id: "late-original", sourceId: board.id }));
+  assert.deepEqual(await initialiseRun(env, "late-original"), [board.id]);
+  assert.equal((await dispatchSources(env, { id: "late-original" })).id, "late-original");
+  assert.equal(query(env, "SELECT state FROM agent_runs").state, "running");
+  assert.equal(creates, 1);
 });
 
 test("saved source reasons reach the owner desk only, without exposing actors or entering coordinator inputs", async (t) => {

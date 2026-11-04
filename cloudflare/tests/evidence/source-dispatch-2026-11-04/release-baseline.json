@@ -1,0 +1,23 @@
+{
+  "prepared_at": "2026-11-04T00:30:31.499862+00:00",
+  "release": "2.98.15",
+  "base_release": "2.98.14",
+  "base_worker": "adfc4d97-45a0-4351-bcb9-e0c07ada4946",
+  "runtime_changes": [
+    "worker/agent-operations.js"
+  ],
+  "migrations": 46,
+  "prepared_import_included": false,
+  "founder_migration_or_flag": false,
+  "dependency_graph_matches_main": true,
+  "main_lock_sha256": "a0064013264829d450682960462ebf1f20fb1f06fb715b9df2b13956081e3842",
+  "release_lock_sha256": "a182371422b2b9e60806f183ee575b7fa39fb414a2eec4fc461e3e44e08b0079",
+  "preparation_check": "Initial raw-lock comparison stopped: only inherited root package release metadata differed (2.98.13 versus prepared main 2.99.0). Full parsed lock matches after root-version normalization; isolated package and lock root versions now both 2.98.15. No dependency install/change.",
+  "isolated_release_directory": "/var/folders/nv/1zpk2cld1nv26b8fv7xtp78w0000gn/T/si-source-dispatch-release-p1dz6_bw/cloudflare",
+  "protected_changes_deferred": [
+    "worker/agent-api.js",
+    "worker/index.js"
+  ],
+  "research_scope_manifest_unchanged": true,
+  "narrowed_at": "2026-11-04T04:19:15.863547+00:00"
+}

@@ -35,7 +35,7 @@ export async function dispatchSources(
     throw Error("Choose an approved source.");
   // One open run keeps manual requests and scheduled dispatch from multiplying work.
   const open = await env.DB.prepare(
-    "SELECT id,state,created_at FROM agent_runs WHERE state IN ('queued','running') LIMIT 1",
+    "SELECT id,state,created_at FROM agent_runs WHERE state IN ('queued','running','dispatch_failed') ORDER BY created_at LIMIT 1",
   ).first();
   if (open && Date.now() - Date.parse(open.created_at) > 2 * 3600000) {
     // Recover bookkeeping only after the platform confirms execution has ended.
@@ -57,23 +57,24 @@ export async function dispatchSources(
     }
   }
   const existing = await env.DB.prepare(
-    "SELECT id,state FROM agent_runs WHERE id=? OR state IN ('queued','running') ORDER BY created_at DESC LIMIT 1",
+    "SELECT id,state FROM agent_runs WHERE id=? OR state IN ('queued','running','dispatch_failed') ORDER BY created_at DESC LIMIT 1",
   )
     .bind(id)
     .first();
-  if (existing && existing.id !== id) return { ...existing, reused: true };
-  if (existing && !["queued", "dispatch_failed"].includes(existing.state))
-    return { ...existing, reused: true };
+  // The durable row owns the one create attempt, including a lost acknowledgement.
+  // Neither an identical request nor a new ID may retry an unconfirmed dispatch.
+  if (existing) return { ...existing, reused: true };
   const now = iso();
   const row = await env.DB.prepare(
-    "INSERT INTO agent_runs(id,trigger_kind,actor,state,created_at,updated_at,source_id) SELECT ?,?,?,'queued',?,?,? WHERE NOT EXISTS(SELECT 1 FROM agent_runs WHERE state IN ('queued','running')) ON CONFLICT(id) DO UPDATE SET state='queued',updated_at=excluded.updated_at WHERE agent_runs.state='dispatch_failed' RETURNING id",
+    "INSERT INTO agent_runs(id,trigger_kind,actor,state,created_at,updated_at,source_id) SELECT ?,?,?,'queued',?,?,? WHERE NOT EXISTS(SELECT 1 FROM agent_runs WHERE state IN ('queued','running','dispatch_failed')) ON CONFLICT(id) DO NOTHING RETURNING id",
   )
     .bind(id, trigger, actor, now, now, sourceId)
     .first();
-  if (!row && !existing) {
+  if (!row) {
     const active = await env.DB.prepare(
-      "SELECT id,state FROM agent_runs WHERE state IN ('queued','running') LIMIT 1",
-    ).first();
+      "SELECT id,state FROM agent_runs WHERE id=? OR state IN ('queued','running','dispatch_failed') ORDER BY created_at DESC LIMIT 1",
+    ).bind(id).first();
+    if (!active) throw Error("Source dispatch reservation could not be confirmed.");
     return { ...active, reused: true };
   }
   try {
@@ -84,12 +85,12 @@ export async function dispatchSources(
       await (await env.SOURCE_WORKFLOW.get(id)).status();
     } catch {
       await env.DB.prepare(
-        "UPDATE agent_runs SET state='dispatch_failed',updated_at=?,summary=? WHERE id=? AND state='queued'",
+        "UPDATE agent_runs SET updated_at=?,summary=? WHERE id=? AND state='queued'",
       )
         .bind(
           iso(),
           JSON.stringify({
-            error: "Workflow dispatch unconfirmed. Retry this run ID.",
+            error: "Workflow dispatch unconfirmed. Check the original execution; do not retry or replace it.",
           }),
           id,
         )
@@ -97,7 +98,7 @@ export async function dispatchSources(
       throw Error("Workflow dispatch could not be confirmed.");
     }
   }
-  return { id, state: "queued", reused: !!existing };
+  return { id, state: "queued", reused: false };
 }
 
 export async function initialiseRun(env, runId) {

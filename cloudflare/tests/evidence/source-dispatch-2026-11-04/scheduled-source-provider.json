@@ -1,0 +1,61 @@
+{
+  "recorded_at": "2026-11-04T04:29:28.577620+00:00",
+  "scope": "Original genuine scheduled source instance, read-only; completed execution is not universal source publication",
+  "id": "scheduled-1793752255003",
+  "versionId": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+  "start": "2026-11-04T00:30:58.648Z",
+  "end": "2026-11-04T00:49:33.846Z",
+  "status": "complete",
+  "success": true,
+  "step_count": 119,
+  "failed_attempts": [
+    {
+      "step": "collect-check-publish-university-southampton-attempt-1-1",
+      "kind": "cpu_limit",
+      "error_name": "Error"
+    },
+    {
+      "step": "collect-check-publish-university-nottingham-attempt-1-1",
+      "kind": "cpu_limit",
+      "error_name": "Error"
+    },
+    {
+      "step": "collect-check-publish-university-nottingham-attempt-2-1",
+      "kind": "cpu_limit",
+      "error_name": "Error"
+    },
+    {
+      "step": "collect-check-publish-university-cardiff-met-attempt-1-1",
+      "kind": "cpu_limit",
+      "error_name": "Error"
+    },
+    {
+      "step": "collect-check-publish-reviewed-ashby-sequence-attempt-1-1",
+      "kind": "cpu_limit",
+      "error_name": "Error"
+    },
+    {
+      "step": "collect-check-publish-reviewed-teaching-vacancies-130418--new-city-college-attempt-1-1",
+      "kind": "cpu_limit",
+      "error_name": "Error"
+    },
+    {
+      "step": "collect-check-publish-reviewed-teaching-vacancies-130418--new-city-college-attempt-2-1",
+      "kind": "cpu_limit",
+      "error_name": "Error"
+    },
+    {
+      "step": "collect-check-publish-reviewed-teaching-vacancies-130418--new-city-college-attempt-3-1",
+      "kind": "cpu_limit",
+      "error_name": "Error"
+    },
+    {
+      "step": "collect-check-publish-reviewed-teaching-vacancies-136202--king-s-lynn-academy-attempt-1-1",
+      "kind": "cpu_limit",
+      "error_name": "Error"
+    }
+  ],
+  "application_receipt": "scheduled-source-application.json",
+  "operator_triggered": false,
+  "new_dispatch_guard_executed": false
+}

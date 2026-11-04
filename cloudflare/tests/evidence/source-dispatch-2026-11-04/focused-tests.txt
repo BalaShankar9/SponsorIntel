@@ -1,0 +1,51 @@
+✔ publication and receipt are atomic; replay does not fetch or duplicate the source run (172.961958ms)
+✔ grouped campus collection reserves every feed request and replay spends nothing (75.761292ms)
+✔ a grouped source cannot fetch when either request ceiling has only one slot left (139.85125ms)
+✔ a failed campus fetch keeps its reservations and the previous publication (67.201541ms)
+✔ reservation transaction failure rolls back both counters before any source call (60.139458ms)
+✔ receipt write failure rolls the entire publication back and a bounded retry can recover (66.307583ms)
+✔ sponsorship claims that disagree with the actual advert are held privately (63.114833ms)
+✔ an unexpected empty feed preserves prior jobs and freshness; a valid later snapshot resolves the hold (81.318084ms)
+✔ failed calls are counted, retries stop at three, and a failed source cools down (68.421875ms)
+✔ daily and per-run budgets stop fetching without automatic resets (70.374125ms)
+✔ pause hides source jobs; resume does not resurrect them before a successful refresh (105.833416ms)
+✔ pause cannot race a held lease and a late fetch cannot overwrite after losing its lease (97.898959ms)
+{"event":"agent_status_unavailable","run_id":"recover-id"}
+{"event":"agent_status_unavailable","run_id":"recover-id"}
+✔ expired runs do not fetch; malformed batches and duplicate IDs do not publish (72.675667ms)
+✔ uncertain dispatch checks the same instance and concurrent owner requests reuse the active run (61.421667ms)
+✔ unconfirmed dispatch holds both same-ID retries and new requests without another create (62.52475ms)
+{"event":"agent_status_unavailable","run_id":"legacy-unknown"}
+{"event":"agent_status_unavailable","run_id":"legacy-unknown"}
+✔ an overlapping same-ID request cannot create a second workflow (84.597708ms)
+✔ legacy unconfirmed dispatch stays held and status inspection never resends it (144.347125ms)
+✔ a lost database reservation response cannot authorise another create (77.534084ms)
+✔ source retention preserves old unknown dispatches and their original task receipts (99.65825ms)
+✔ the original workflow can initialise after an unconfirmed create without a redispatch (173.512375ms)
+✔ saved source reasons reach the owner desk only, without exposing actors or entering coordinator inputs (79.154292ms)
+✔ AI coordinator accepts only existing findings and has no action execution path (147.676458ms)
+✔ private agent endpoints reject anonymous callers and cross-origin owner mutations (109.029292ms)
+✔ recovery keeps the original task set and scheduled dispatch reconciles a confirmed ended run (72.103125ms)
+✔ owner recovery requires a confirmed stopped execution and cannot reset source request budgets (173.340917ms)
+✔ university exclusion decisions are committed with publication and reused on replay (76.650709ms)
+✔ owner health finds an old blocker outside the recent twelve-run history without provider calls or writes (137.067917ms)
+✔ completed and paused receipts do not mask a pending reservation and zero steps never proves no execution (76.881083ms)
+✔ invalid and future times cannot look healthy and the schema prevents overlapping reservations (70.6805ms)
+✔ small clock skew is tolerated and an empty queue does not claim provider or business success (64.794208ms)
+✔ paused controls retain unfinished evidence and diagnostic reads cannot clear an unknown dispatch (60.744959ms)
+✔ actual Worker/auth/D1 enforces source review versions, receipts, owner privacy and rollback guards (5550.683792ms)
+{"event":"agent_status_unavailable","run_id":"different-request"}
+✔ actual Worker/D1 keeps one uncertain dispatch across concurrent requests and read-only reconciliation (2803.995875ms)
+✔ actual Worker/D1 rejects an unaffordable collection without spending the other allowance (2083.074583ms)
+{"fixture":"owned lease wait","requests":1,"task_attempts":1,"delay_ms":1111}
+✔ actual SourceWorkflow waits for another lease without clearing it or fetching early (5564.106959ms)
+{"fixture":"ordinary retry","requests":2,"task_attempts":2,"delay_ms":30326}
+✔ actual SourceWorkflow retains the ordinary retry delay and reservations (34149.485625ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48908.233667

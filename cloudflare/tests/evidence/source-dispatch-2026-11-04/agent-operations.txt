@@ -1,0 +1,37 @@
+✔ publication and receipt are atomic; replay does not fetch or duplicate the source run (118.344167ms)
+✔ grouped campus collection reserves every feed request and replay spends nothing (26.537334ms)
+✔ a grouped source cannot fetch when either request ceiling has only one slot left (57.288583ms)
+✔ a failed campus fetch keeps its reservations and the previous publication (34.152792ms)
+✔ reservation transaction failure rolls back both counters before any source call (21.504167ms)
+✔ receipt write failure rolls the entire publication back and a bounded retry can recover (27.55525ms)
+✔ sponsorship claims that disagree with the actual advert are held privately (23.317875ms)
+✔ an unexpected empty feed preserves prior jobs and freshness; a valid later snapshot resolves the hold (29.853625ms)
+✔ failed calls are counted, retries stop at three, and a failed source cools down (22.470792ms)
+✔ daily and per-run budgets stop fetching without automatic resets (20.542042ms)
+✔ pause hides source jobs; resume does not resurrect them before a successful refresh (26.345792ms)
+✔ pause cannot race a held lease and a late fetch cannot overwrite after losing its lease (20.637292ms)
+{"event":"agent_status_unavailable","run_id":"recover-id"}
+{"event":"agent_status_unavailable","run_id":"recover-id"}
+✔ expired runs do not fetch; malformed batches and duplicate IDs do not publish (20.555125ms)
+✔ uncertain dispatch checks the same instance and concurrent owner requests reuse the active run (19.763042ms)
+✔ unconfirmed dispatch holds both same-ID retries and new requests without another create (19.589666ms)
+{"event":"agent_status_unavailable","run_id":"legacy-unknown"}
+{"event":"agent_status_unavailable","run_id":"legacy-unknown"}
+✔ an overlapping same-ID request cannot create a second workflow (28.672583ms)
+✔ legacy unconfirmed dispatch stays held and status inspection never resends it (67.044208ms)
+✔ a lost database reservation response cannot authorise another create (20.526833ms)
+✔ the original workflow can initialise after an unconfirmed create without a redispatch (20.785292ms)
+✔ saved source reasons reach the owner desk only, without exposing actors or entering coordinator inputs (21.767625ms)
+✔ AI coordinator accepts only existing findings and has no action execution path (20.300875ms)
+✔ private agent endpoints reject anonymous callers and cross-origin owner mutations (20.620875ms)
+✔ recovery keeps the original task set and scheduled dispatch reconciles a confirmed ended run (19.472458ms)
+✔ owner recovery requires a confirmed stopped execution and cannot reset source request budgets (22.73325ms)
+✔ university exclusion decisions are committed with publication and reused on replay (20.914667ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1506.294708

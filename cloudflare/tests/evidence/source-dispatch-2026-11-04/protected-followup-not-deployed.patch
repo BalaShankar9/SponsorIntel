@@ -1,0 +1,64 @@
+diff --git a/cloudflare/worker/agent-api.js b/cloudflare/worker/agent-api.js
+index fcc1b3f..adf6d4d 100644
+--- a/cloudflare/worker/agent-api.js
++++ b/cloudflare/worker/agent-api.js
+@@ -107,7 +107,7 @@ export async function agentOperationsAPI(request, env, owner) {
+         {
+           ...result,
+           message: result.reused
+-            ? "A run is already active. Its progress is shown below."
++            ? "The existing source run was retained. Check its execution status before taking further action."
+             : "Source run queued. Progress will appear below.",
+         },
+         202,
+@@ -169,6 +169,8 @@ export async function agentOperationsAPI(request, env, owner) {
+         throw Error(
+           "Execution has completed. Use Check execution status to reconcile its records.",
+         );
++      if (!["errored", "terminated"].includes(status.status))
++        throw Error("Execution has not been confirmed stopped. Check its status before recovery.");
+       await instance.restart();
+       await env.DB.prepare(
+         "INSERT INTO admin_audit(actor,action,target,created_at) VALUES(?,?,?,?)",
+@@ -185,19 +187,6 @@ export async function agentOperationsAPI(request, env, owner) {
+           "Recovery requested. Completed publications will be reused, and existing request and attempt limits still apply.",
+       });
+     }
+-    if (run.state === "dispatch_failed")
+-      return reply(
+-        {
+-          ...(await dispatchSources(env, {
+-            id: run.id,
+-            actor: run.actor,
+-            sourceId: run.source_id,
+-            trigger: run.trigger_kind,
+-          })),
+-          message: "Dispatch retried using the same run ID.",
+-        },
+-        202,
+-      );
+     const status = await (await env.SOURCE_WORKFLOW.get(run.id)).status();
+     if (["complete", "errored", "terminated"].includes(status.status)) {
+       await env.DB.prepare(
+diff --git a/cloudflare/worker/index.js b/cloudflare/worker/index.js
+index 17c2bec..3d3f7ab 100644
+--- a/cloudflare/worker/index.js
++++ b/cloudflare/worker/index.js
+@@ -5,7 +5,7 @@ import {
+   clean,
+ } from "./data.js";
+ import { jobsAPI } from "./jobs.js";
+-import { dispatchSources } from "./agent-operations.js";
++import { dispatchSources, sourceRunRetentionStatement } from "./agent-operations.js";
+ import { researchRetentionStatement } from './research-reference.js';
+ export { SourceWorkflow } from "./source-workflow.js";
+ export { ResearchWorkflow } from './research-entrypoint.js';
+@@ -310,7 +310,7 @@ export default {
+         env.DB.prepare("DELETE FROM source_runs WHERE checked_at<?").bind(
+           new Date(Date.now() - 30 * 86400000).toISOString(),
+         ),
+-        env.DB.prepare("DELETE FROM agent_runs WHERE state IN ('completed','attention','failed','dispatch_failed') AND created_at<?").bind(new Date(Date.now()-30*86400000).toISOString()),
++        sourceRunRetentionStatement(env.DB,new Date(Date.now()-30*86400000).toISOString()),
+         env.DB.prepare("DELETE FROM agent_reviews WHERE state<>'open' AND resolved_at<?").bind(new Date(Date.now()-90*86400000).toISOString()),
+         env.DB.prepare("DELETE FROM agent_briefs WHERE created_at<?").bind(new Date(Date.now()-30*86400000).toISOString()),
+         env.DB.prepare("DELETE FROM agent_daily_budget WHERE day<?").bind(new Date(Date.now()-30*86400000).toISOString().slice(0,10)),
