@@ -1,0 +1,58 @@
+{
+  "head": "cb1708a96225ffe3c4cf859217c3a1a995fc2eb7",
+  "checks": [
+    {
+      "id": 126389299847,
+      "name": "GitGuardian Security Checks",
+      "status": "completed",
+      "conclusion": "neutral",
+      "head_sha": "cb1708a96225ffe3c4cf859217c3a1a995fc2eb7",
+      "html_url": "https://github.com/BalaShankar9/SponsorIntel/runs/126389299847",
+      "output": {
+        "title": "Could not complete scanning of your commits",
+        "summary": "Pull request too large to scan.\n\nThis pull request exceeds the configured size limit, so GitGuardian skipped its scan to preserve the GitHub API rate limit budget shared with the rest of your organization.",
+        "text": "\ud83e\udd89 [GitGuardian](https://dashboard.gitguardian.com/auth/login/?utm_medium=checkruns&amp;utm_source=github&amp;utm_campaign=cr1) detects secrets in your source code to help developers and security teams secure the modern development process. You are seeing this because you or someone else with access to this repository has authorized GitGuardian to scan your pull request.<br/>\n"
+      }
+    },
+    {
+      "id": 126389291810,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "cb1708a96225ffe3c4cf859217c3a1a995fc2eb7",
+      "html_url": "https://github.com/BalaShankar9/SponsorIntel/actions/runs/41773778487/job/126389291810",
+      "annotations": [
+        {
+          "annotation_level": "failure",
+          "title": "",
+          "message": "The job was not started because your account is locked due to a billing issue."
+        },
+        {
+          "annotation_level": "notice",
+          "title": "",
+          "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+        }
+      ]
+    },
+    {
+      "id": 126389279328,
+      "name": "check",
+      "status": "completed",
+      "conclusion": "failure",
+      "head_sha": "cb1708a96225ffe3c4cf859217c3a1a995fc2eb7",
+      "html_url": "https://github.com/BalaShankar9/SponsorIntel/actions/runs/41773774248/job/126389279328",
+      "annotations": [
+        {
+          "annotation_level": "failure",
+          "title": "",
+          "message": "The job was not started because your account is locked due to a billing issue."
+        },
+        {
+          "annotation_level": "notice",
+          "title": "",
+          "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+        }
+      ]
+    }
+  ]
+}
