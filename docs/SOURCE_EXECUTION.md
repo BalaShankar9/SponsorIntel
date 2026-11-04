@@ -1,8 +1,10 @@
 # Source execution and lease waits
 
-## School-page traversal — prepared 2.98.16
+## School-page traversal — deployed 2.98.16
 
 The school importer and shared campus reader now use an iterative document-order query. It preserves nested matches and duplicate detection while avoiding repeated subtree-result copies. This is a local performance improvement motivated by the genuine 4 November school CPU failures; it does not identify their exact cause or prove that full collections fit the Free CPU limit. Complete source validation, source/request limits, approvals, holds, pauses and publication transactions remain unchanged. See `cloudflare/RELEASE-2.98.16.md` and its exact local comparison; original scheduled outcomes remain the acceptance source.
+
+The 4 November deployment is verified at 100%, but live data acceptance is blocked: the exact deployed jobs request logged an exhausted account D1 daily read allowance. Static assets and occasional health/source-directory success do not establish data recovery. Preserve the failure receipts and existing capacity/supervisor holds; no forced collection or allowance reset follows deployment.
 
 ## Dispatch uncertainty — 2.98.15
 

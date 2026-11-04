@@ -1,0 +1,16 @@
+{
+  "scope": "One QA-header-filtered public health request; captured after initial failures, not their missing error cause",
+  "events": [
+    {
+      "outcome": "ok",
+      "scriptVersion": {
+        "id": "61cc4114-a9a3-4cef-83a2-29ad2b1cbbf5"
+      },
+      "timestamp": 1793789830161,
+      "url": "https://sponsorintel.london/api/health",
+      "status": 200,
+      "logs": [],
+      "exceptions": []
+    }
+  ]
+}

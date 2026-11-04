@@ -1,0 +1,58 @@
+{
+  "observed_at": "2026-11-04T11:02:38.111097+00:00",
+  "head": "a5421e19f38178ba33f1ec577f02363409d2b247",
+  "checks": [
+    {
+      "id": 126533460314,
+      "name": "check",
+      "head_sha": "a5421e19f38178ba33f1ec577f02363409d2b247",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/BalaShankar9/SponsorIntel/actions/runs/41817952946/job/126533460314",
+      "output_title": null,
+      "output_summary": null,
+      "annotations": [
+        {
+          "level": "failure",
+          "message": "The job was not started because your account is locked due to a billing issue."
+        },
+        {
+          "level": "notice",
+          "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+        }
+      ]
+    },
+    {
+      "id": 126532843699,
+      "name": "GitGuardian Security Checks",
+      "head_sha": "a5421e19f38178ba33f1ec577f02363409d2b247",
+      "status": "completed",
+      "conclusion": "neutral",
+      "url": "https://github.com/BalaShankar9/SponsorIntel/runs/126532843699",
+      "output_title": "Could not complete scanning of your commits",
+      "output_summary": "Pull request too large to scan.\n\nThis pull request exceeds the configured size limit, so GitGuardian skipped its scan to preserve the GitHub API rate limit budget shared with the rest of your organization.",
+      "annotations": []
+    },
+    {
+      "id": 126532817440,
+      "name": "check",
+      "head_sha": "a5421e19f38178ba33f1ec577f02363409d2b247",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/BalaShankar9/SponsorIntel/actions/runs/41817769908/job/126532817440",
+      "output_title": null,
+      "output_summary": null,
+      "annotations": [
+        {
+          "level": "failure",
+          "message": "The job was not started because your account is locked due to a billing issue."
+        },
+        {
+          "level": "notice",
+          "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+        }
+      ]
+    }
+  ],
+  "local_validation_separate": true
+}

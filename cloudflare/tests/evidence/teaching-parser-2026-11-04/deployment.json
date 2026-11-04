@@ -1,0 +1,20 @@
+{
+  "id": "3defd1dc-b81b-4c68-96ca-8f93063fcf5e",
+  "source": "wrangler",
+  "strategy": "percentage",
+  "versions": [
+    {
+      "version_id": "61cc4114-a9a3-4cef-83a2-29ad2b1cbbf5",
+      "percentage": 100
+    }
+  ],
+  "created_on": "2026-11-04T10:53:58.13307Z",
+  "runtime_commit": "a5421e19f38178ba33f1ec577f02363409d2b247",
+  "release": "2.98.16",
+  "rollback_version": "0ffc4794-45f2-4aa7-becf-05c40d934db8",
+  "rollback_release": "2.98.15",
+  "schema_changes": false,
+  "trigger_changes": false,
+  "github_push_at_deploy": "rejected_commit_refs_remote_still_58ca3ef",
+  "github_incident": "https://www.githubstatus.com/incidents/smtdswd1h2w4"
+}

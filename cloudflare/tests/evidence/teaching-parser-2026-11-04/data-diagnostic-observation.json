@@ -1,0 +1,28 @@
+{
+  "observed_at": "2026-11-04T10:59:46.873230+00:00",
+  "scope": "Three excluded public reads with own-IP and exclusion-header diagnostic tail attached",
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "sha256": "4104b689440214e576ce934bfe4f988ea5ccc678d1a678aee754dfd42d4787e1",
+      "version": "2.98.16",
+      "register": {
+        "date": "2026-10-27",
+        "count": 128008,
+        "checked_at": "2026-10-28T07:15:32.207Z"
+      }
+    },
+    {
+      "path": "/api/jobs?limit=1",
+      "status": 500,
+      "sha256": "2bd2850e2a98bf093e990b1a87d8c3ebf16dc11f8301a8090d96fb5a0c3557e5"
+    },
+    {
+      "path": "/api/jobs/sources",
+      "status": 200,
+      "sha256": "be371f46970c209cb3bc175713a4477b00cd59a70476814edf6e84bf95a64574",
+      "source_count": 38
+    }
+  ]
+}
