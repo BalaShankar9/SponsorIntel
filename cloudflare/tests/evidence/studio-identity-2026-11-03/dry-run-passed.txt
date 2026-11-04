@@ -1,0 +1,27 @@
+
+ ⛅️ wrangler 4.147.0 (update available 4.157.0)
+───────────────────────────────────────────────
+Total Upload: 3916.68 KiB / gzip: 800.63 KiB
+Your Worker has access to the following bindings:
+Binding                                                                                    Resource                  
+env.SOURCE_WORKFLOW (SourceWorkflow)                                                       Workflow                  
+env.RESEARCH_WORKFLOW (ResearchWorkflow)                                                   Workflow                  
+env.BUSINESS_WORKFLOW (BusinessWorkflow)                                                   Workflow                  
+env.MARKETING_WORKFLOW (MarketingWorkflow)                                                 Workflow                  
+env.APPLICATION_EVAL_WORKFLOW (ApplicationEvaluationWorkflow)                              Workflow                  
+env.EMAIL (unrestricted - senders: accounts@sponsorintel.london)                           Send Email                
+env.EMAIL_EVENT_QUEUE (sponsorintel-email-events)                                          Queue                     
+env.EMAIL_EVENT_DLQ (sponsorintel-email-events-dlq)                                        Queue                     
+env.DB (sponsorintel-db)                                                                   D1 Database               
+env.AI                                                                                     AI                        
+env.ASSETS                                                                                 Assets                    
+env.APP_VERSION ("2.98.14")                                                                Environment Variable      
+env.APP_ORIGIN ("https://sponsorintel.london")                                             Environment Variable      
+env.AI_MODEL ("@cf/zai-org/glm-4.7-flash")                                                 Environment Variable      
+env.AI_DAILY_LIMIT ("40")                                                                  Environment Variable      
+env.AI_REVIEW_MODEL ("@cf/meta/llama-3.3-70b-instruct-fp8-f...")                           Environment Variable      
+env.CHAT_MODEL ("@cf/zai-org/glm-4.7-flash")                                               Environment Variable      
+env.EMAIL_VERIFICATION_ENABLED ("true")                                                    Environment Variable      
+env.EMAIL_EVENT_SUBSCRIPTION ("a103140735cf4e85be5a3896276a00c0")                          Environment Variable      
+
+--dry-run: exiting now.

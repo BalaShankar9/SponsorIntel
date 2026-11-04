@@ -1,0 +1,77 @@
+{
+  "observedAt": "2026-11-04T00:00:54.123260+00:00",
+  "scope": "Metrics-excluded live HTTP service and exact asset checks, not authenticated browser/private-saving proof",
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "bytes": 119,
+      "sha256": "15ec7252c7d726933c85f4dc4e7cd5724f0837de77ae3ee0d831ed81b60eb00e",
+      "version": "2.98.14"
+    },
+    {
+      "path": "/studio",
+      "status": 200,
+      "bytes": 2664,
+      "sha256": "5d489ec68aa46531d2a4408eb36c12a189d941ae2a1c5bcebcd745d4f3fdb631"
+    },
+    {
+      "path": "/about",
+      "status": 200,
+      "bytes": 26502,
+      "sha256": "c794cecacb97efb4128314a46b11723fa96ff93e0017e60d353ae7a74aa56521",
+      "identityCopy": true
+    },
+    {
+      "path": "/browser-extension",
+      "status": 200,
+      "bytes": 23445,
+      "sha256": "3f21f83af88a45157c9c201c970ca79575cb5fbb190fa4e60dfaa8408604afd7"
+    },
+    {
+      "path": "/downloads/sponsor-intel-job-notes-0.2.1.zip",
+      "status": 200,
+      "bytes": 52592,
+      "sha256": "bffe815a988a9f1aed864eb2babb16c8b2ade7cf02b73ea1636cf5c9f442c98f",
+      "unchangedPublicArtifact": true
+    },
+    {
+      "path": "/job-notes-privacy.html",
+      "status": 200,
+      "bytes": 8168,
+      "sha256": "d2a8101c57ab9f816d6ce9f615a0a67bcef650479e79f04b4c768f82d4ed7506",
+      "unchangedPublicArtifact": true
+    },
+    {
+      "path": "/assets/index-DB9jiuYp.js",
+      "status": 200,
+      "bytes": 398297,
+      "sha256": "616a4bcc59818c370a816ea1fdaa224605d3121159aab8ae03d7301253e8c779",
+      "exactBuildMatch": true
+    },
+    {
+      "path": "/assets/index-Ddp5rNlF.css",
+      "status": 200,
+      "bytes": 109950,
+      "sha256": "664f91166933de08769b1618e11d46b483d4715af6d274527fbfee84e294f667",
+      "exactBuildMatch": true
+    },
+    {
+      "path": "/assets/career-C-yF5IFQ.js",
+      "status": 200,
+      "bytes": 104076,
+      "sha256": "9b4220812e65326d9bc2dc3d513568ec3fa57a8867c584e620336166e2718edd",
+      "exactBuildMatch": true
+    },
+    {
+      "path": "/assets/career-2xQkt_JN.css",
+      "status": 200,
+      "bytes": 8707,
+      "sha256": "0aafdd8dc1a2ab9e4376fdd2460e1552e4131146341d3cefa25ea281516dc558",
+      "exactBuildMatch": true
+    }
+  ],
+  "passed": 10,
+  "worker": "adfc4d97-45a0-4351-bcb9-e0c07ada4946",
+  "rollback": "244d81f0-b12f-45e9-97c9-411a663d5aff"
+}

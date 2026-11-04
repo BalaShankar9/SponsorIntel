@@ -1,0 +1,20 @@
+{
+  "id": "aafa916b-e883-49e8-ad3b-3ec165234909",
+  "created_on": "2026-11-04T00:00:05.903683Z",
+  "source": "wrangler",
+  "strategy": "percentage",
+  "versions": [
+    {
+      "version_id": "adfc4d97-45a0-4351-bcb9-e0c07ada4946",
+      "percentage": 100
+    }
+  ],
+  "annotations": {
+    "workers/message": "Release 2.98.14 Application Studio identity",
+    "workers/triggered_by": "deployment"
+  },
+  "release": "2.98.14",
+  "runtimeCommit": "76c32ec46bb4368dac0899adf8db70253dea1d8f",
+  "rollbackWorker": "244d81f0-b12f-45e9-97c9-411a663d5aff",
+  "rollbackRelease": "2.98.13"
+}

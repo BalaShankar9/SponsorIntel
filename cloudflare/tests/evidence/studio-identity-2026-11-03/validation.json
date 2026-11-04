@@ -37,5 +37,8 @@
     "assets/career-C-yF5IFQ.js": "9b4220812e65326d9bc2dc3d513568ec3fa57a8867c584e620336166e2718edd",
     "assets/career-2xQkt_JN.css": "0aafdd8dc1a2ab9e4376fdd2460e1552e4131146341d3cefa25ea281516dc558"
   },
-  "liveBrowserQA": "Owner session is signed out on excluded /admin. App navigation not performed; no repeat sign-in question. Live excluded HTTP asset checks remain to do."
+  "liveBrowserQA": "Owner session signed out on excluded /admin; application navigation skipped. Ten excluded live HTTP checks passed at 4 November 00:00:54 UTC, with exact built assets and unchanged public package/policy. Fictional local rendering is separate.",
+  "temporaryTabsClosed": true,
+  "viewportReset": true,
+  "localServersStopped": true
 }
