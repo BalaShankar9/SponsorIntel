@@ -1,0 +1,23 @@
+{
+  "prepared_at": "2026-11-04T04:59:57.055614+00:00",
+  "release": "2.98.16",
+  "base_release": "2.98.15",
+  "base_worker": "0ffc4794-45f2-4aa7-becf-05c40d934db8",
+  "isolated_release_directory": "/var/folders/nv/1zpk2cld1nv26b8fv7xtp78w0000gn/T/si-teaching-release-locxcpl7/cloudflare",
+  "files_changed_from_base": [
+    "wrangler.jsonc",
+    "package-lock.json",
+    "package.json",
+    "tests/teaching-tree.test.mjs",
+    "scripts/benchmark-teaching-parser.mjs",
+    "worker/teaching-tree.js",
+    "worker/teaching-vacancies.js",
+    "worker/teaching-location.js"
+  ],
+  "migrations": 46,
+  "private_import_or_founder_saving": false,
+  "source_file_count": 374,
+  "source_file_sha256": "a3ff423d08696179694a4f5fb653573ee5b4002e3ed87fa4e21035410746e604",
+  "protected_manifests_unchanged": true,
+  "preparation_stop": "The first read-only preflight named src/app.tsx instead of actual src/main.tsx; it stopped before copying. Corrected after inspecting index.html. No missing source or reconstruction."
+}

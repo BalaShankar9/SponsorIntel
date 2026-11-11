@@ -1,0 +1,140 @@
+{
+  "release": "2.41.0",
+  "checked_at": "2026-10-08T14:42:38.157215+00:00",
+  "tests": {
+    "passed": 418,
+    "failed": 0
+  },
+  "browser": {
+    "environment": "isolated Workerd/D1 and real built browser application; only fictional imported content",
+    "formats": [
+      "DOCX",
+      "PDF",
+      "TXT",
+      "JSON Resume"
+    ],
+    "pdf_source_equality": "complete text equal after whitespace normalization",
+    "word_end_marker": "retained",
+    "discard": "saved CV unchanged",
+    "profile_edit_during_preview": "replacement disabled",
+    "default_details": "existing name retained",
+    "opt_in_details": "name and email updated from fictional source",
+    "guest_reload": "applied name, CV and final source fact retained",
+    "overlong_txt": "rejected; saved CV unchanged",
+    "overlong_docx": "rejected; saved CV unchanged",
+    "sixteen_page_pdf": "rejected; saved CV unchanged",
+    "empty_second_pdf_page": "visible missing-text warning",
+    "viewport_width": 390,
+    "document_width": 390,
+    "navigation": "preview discarded; saved final source fact retained"
+  },
+  "fixture_hashes": {
+    "fictional-resume.json": "b919c31e187ff9a13ee78ab90260fe7726f78a514a8c748bad6884043bce66e5",
+    "fictional-cv.docx": "250102d3834f13ff8e04393a92728cd7b128ccfcd8372fc8bdc09f23183bce42",
+    "overlong-cv.txt": "c1dd4a890b09885de3048dad79652bad7d789be770ab27bc5db77e4a026c5536",
+    "empty-page.pdf": "9bf1de95c5cbf954c97ccc7079d3a4446623d9e6d6dd395896a909089ee376cf",
+    "sixteen-pages.pdf": "4893ac03eae8c5c3feb12e22bd057e4a781ed72b951cc0211950f4f530920215",
+    "overlong-cv.docx": "58c612f2ac8e8e57218f670a1022b4c120c96c9541f16f7995a0328482a8f6e7",
+    "fictional-cv.pdf": "0f43a639d36481a7b84f281b507284c40c7173aca37ff1660d93a2b8bb10325d",
+    "fictional-cv.txt": "c400332db61d7c62d6723a5f364cd6b0eed639230b56d62ffcbe78077035408f"
+  },
+  "limitations": [
+    "No OCR or proof that every real-world document extracts faithfully.",
+    "No model generation or real customer data was used for these tests.",
+    "The existing moderate dependency advisory chain is unchanged."
+  ],
+  "production": {
+    "status": "live HTTP and signed-in owner preview/discard verified",
+    "live_checks": {
+      "checked_at": "2026-10-08T14:44:40.929352+00:00",
+      "worker": "2fc086a9-54b0-47fa-8625-59a0d49a6855",
+      "checks": [
+        {
+          "path": "/api/health",
+          "status": 200,
+          "body": {
+            "ok": true,
+            "version": "2.41.0",
+            "register": {
+              "date": "2026-10-07",
+              "count": 127949,
+              "checked_at": "2026-10-08T07:15:42.693Z"
+            }
+          }
+        },
+        {
+          "path": "/jobs",
+          "status": 200
+        },
+        {
+          "path": "/career-profile",
+          "status": 200
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 200
+        },
+        {
+          "path": "/api/admin/business",
+          "status": 403
+        }
+      ]
+    },
+    "preview_file": "fictional-cv.pdf",
+    "owner_cv_unchanged": true,
+    "owner_replacement_performed": false,
+    "model_generation_performed": false,
+    "schema_change": false,
+    "genuine_scheduled_business": {
+      "id": "business-497630",
+      "state": "completed",
+      "created_at": "2026-10-08T14:45:38.000Z",
+      "finished_at": "2026-10-08T14:45:56.907Z",
+      "trigger_kind": "scheduled",
+      "application_evaluation": {
+        "state": "ready",
+        "completed": 0,
+        "total": 20,
+        "assessments": {
+          "assessable_outputs": 0,
+          "assessed_outputs": 0,
+          "unassessed_outputs": 0,
+          "needs_work": 0,
+          "incomplete": 0,
+          "stale": 0,
+          "groups": [],
+          "limited": false,
+          "automatic_promotion": false,
+          "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+        }
+      },
+      "health": {
+        "findings": 4,
+        "high": 0
+      },
+      "links": [
+        {
+          "id": "a3c9cce724b92a8780254929",
+          "state": "checked",
+          "reason": "title_observed",
+          "requests": 1
+        },
+        {
+          "id": "e3e1a8bd43a124ac3ec15c16",
+          "state": "checked",
+          "reason": "title_observed",
+          "requests": 2
+        }
+      ],
+      "budget": [
+        {
+          "day": "2026-10-08",
+          "runs": 4,
+          "calls": 6
+        }
+      ],
+      "platform_finished_at": "2026-10-08T14:45:57.031Z",
+      "platform_complete": true
+    }
+  }
+}

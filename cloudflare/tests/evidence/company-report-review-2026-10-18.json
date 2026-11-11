@@ -1,0 +1,109 @@
+{
+  "release": "2.81.0",
+  "problem": "Daily marketing did not review existing dated LinkedIn company report templates.",
+  "production_eligibility": {
+    "observed_at": "2026-10-18T01:13:43.545Z",
+    "read_only": true,
+    "queries": 4,
+    "eligible": true,
+    "brief_id": "dafbf66c-90aa-4773-bc1e-c1470b0a9bb1",
+    "base_version": 1,
+    "base_revision": 1,
+    "publication_id": "business-497777",
+    "publication_at": "2026-10-14T17:46:07.946Z",
+    "content_hash": "b616a57a8745a6e56553d737cce48f7ae16f2f22c5940d47f71954dcc903ef10",
+    "source_count": 5,
+    "caption": "55 adverts in our selected UK catalogue contain positive or conditional sponsorship wording, out of 952 roles checked as of 14 October 2026. These are advert signals, not sponsorship guarantees. Our new report shows the evidence, coverage and limits.\n\nhttps://sponsorintel.london/insights/uk-sponsorship-jobs-report?utm_source=linkedin&utm_medium=organic_social&utm_campaign=evidence-report",
+    "expires_at": "2026-10-21T17:46:07.946Z",
+    "model_calls": 0,
+    "versions_written": 0,
+    "external_posts": 0
+  },
+  "provider_observation": {
+    "date": "2026-10-18",
+    "metricool_brand": "7294726",
+    "facebook_page": "1319703417896763",
+    "instagram": "sponsorintellondon",
+    "timezone": "Europe/London",
+    "query_from": "2026-10-11T00:00:00+01:00",
+    "query_to": "2027-10-18T23:59:59+01:00",
+    "rows": [
+      {
+        "id": 390624032,
+        "state": "PUBLISHED",
+        "network": "facebook"
+      },
+      {
+        "id": 397276739,
+        "state": "PUBLISHED",
+        "network": "facebook"
+      }
+    ],
+    "future_pending_rows": 0,
+    "native_linkedin_company": "146710167",
+    "native_company_queue": "No scheduled posts yet",
+    "native_company_published_observed": 2,
+    "personal_linkedin_queue": "Not rechecked this turn",
+    "whatsapp": "No new action; historical state is not a fresh queue check",
+    "external_actions": 0
+  },
+  "validation": {
+    "tests": 689,
+    "failures": 0,
+    "node": "24.19.0",
+    "build": true,
+    "typescript": true,
+    "prerenders": 18,
+    "browser_budgets": true,
+    "worker_dry_run": true,
+    "isolated_actual_workflow": {
+      "calls": 1,
+      "provider_sends": 0,
+      "fictional": true,
+      "independent_quality_acceptance": false
+    },
+    "initial_test_failure": "One stale v6 policy-name assertion; corrected to v7. Final full suite passed. Initial local fixture assertion/queue-ID mistakes were fixed before acceptance.",
+    "recovery_reused_from": "2026-10-18T00:05:57.335Z",
+    "migrations": 40,
+    "schema_objects": 166,
+    "dependency_graph_changed": false,
+    "audit": {
+      "high": 0,
+      "critical": 0,
+      "moderate": 3
+    }
+  },
+  "runtime": {
+    "state": "live",
+    "worker": "c308c706-ec9a-40ce-ba45-26a8c721d0ac",
+    "commit": "3ca60ccc770b85db9bb8b93fc76ab3196a424aff",
+    "verified_at": "2026-10-18T01:17:53.832Z",
+    "health": {
+      "ok": true,
+      "version": "2.81.0",
+      "register": {
+        "date": "2026-10-16",
+        "count": 128007,
+        "checked_at": "2026-10-17T07:15:25.233Z"
+      }
+    },
+    "rollback_worker": "7840cbd7-0c53-443e-b116-69082e1567a2",
+    "operational_groups_unchanged": 14,
+    "foreign_key_errors": 0,
+    "owner_browser": "Updated report explanation visible; same 2/4 starts and 8/32 calls; today action disabled; current report remains unreviewed.",
+    "screenshot": "outputs/company-report-review-2026-10-18.png"
+  },
+  "next_gate": "Next genuine eligible daily MarketingWorkflow, exact completed critic receipt, then separately verified native publishing handoff. Today remains used.",
+  "limits": "No extra marketing run, model call, Google request, source refresh, review mutation, schedule, message, subscription or permission expansion during this change.",
+  "ci_runtime_head": {
+    "linux_ids": [
+      117552372601,
+      117552365848
+    ],
+    "result": "Billing locked before execution; both original annotations read.",
+    "gitguardian": {
+      "id": 117552369557,
+      "result": "success"
+    }
+  }
+}

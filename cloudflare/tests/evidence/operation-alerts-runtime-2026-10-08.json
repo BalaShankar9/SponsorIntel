@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-10-08T07:01:51.757Z",
+  "environment": "Isolated Workerd/D1 with local-only Email binding and fictional owner; no remote AI, database or email binding",
+  "checks": [
+    "Verified owner opt-in through real authenticated API",
+    "Anonymous 403 and cross-origin 403",
+    "One connection test accepted by local email simulator; repeat held",
+    "Actual quarter-hour handler sent one synthetic incident, deduplicated its replay, then sent one recovery",
+    "Provider simulation message IDs retained separately from owner receipt confirmation",
+    "Private responses are no-store"
+  ],
+  "deliveries": [
+    {
+      "id": "283760d8-6bae-4227-ae78-91cbe1b1712a",
+      "kind": "recovery",
+      "state": "accepted",
+      "critical_count": 0,
+      "high_count": 0,
+      "source_run": "fictional-runtime",
+      "created_at": "2026-10-08T07:01:50.707Z",
+      "finished_at": "2026-10-08T07:01:50.716Z",
+      "message_id": "<1lgKZ158D1CijpqmMJBhPbJJFA0rEyQCYHvc@sponsorintel.london>",
+      "received_at": null
+    },
+    {
+      "id": "b4553d04-6304-4623-9b24-286905548543",
+      "kind": "incident",
+      "state": "accepted",
+      "critical_count": 1,
+      "high_count": 0,
+      "source_run": "fictional-runtime",
+      "created_at": "2026-10-08T07:01:46.833Z",
+      "finished_at": "2026-10-08T07:01:46.843Z",
+      "message_id": "<GlGCxIFLGfLNEM8K9QlSqCXPjjuLEh9ZVDaT@sponsorintel.london>",
+      "received_at": null
+    },
+    {
+      "id": "4fe0a404-9be0-4dff-9abf-87144c3a0cf1",
+      "kind": "test",
+      "state": "accepted",
+      "critical_count": 0,
+      "high_count": 0,
+      "source_run": null,
+      "created_at": "2026-10-08T07:01:45.810Z",
+      "finished_at": "2026-10-08T07:01:45.812Z",
+      "message_id": "<WQivUpQDHrQg7tX28IMrPOFyDRSF1y2G42r0@sponsorintel.london>",
+      "received_at": null
+    }
+  ],
+  "last_scan": {
+    "checked_at": "2026-10-08T07:01:50.707Z",
+    "owners": 1,
+    "attempted": 1,
+    "accepted": 1,
+    "held": 0
+  },
+  "tests": 323,
+  "browser": {
+    "owner_signin": "passed with fictional local account",
+    "pause_resume": "saved and reflected by checkbox and test-button state",
+    "mobile_viewport": 390,
+    "document_width": 390
+  },
+  "local_mail_content_checked": true
+}

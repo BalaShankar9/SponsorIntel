@@ -1,0 +1,181 @@
+{
+  "kind": "saved-role-preparation-availability-release",
+  "date": "2026-10-18",
+  "runtime": {
+    "version": "2.83.0",
+    "commit": "466d3a4a38c40c09e48c3c3c1e388663b4711045",
+    "worker": "d675563f-93a4-4dc4-992e-c2bd0e86c83d",
+    "rollback_version": "2.82.0",
+    "rollback_worker": "3b8e7099-3ffd-45b9-b58e-70093065567a",
+    "schema_changed": false,
+    "dependency_graph_changed": false
+  },
+  "before_reproduction": {
+    "scope": "local careerAPI with fictional database/model adapters",
+    "http_status": 200,
+    "model_adapter_calls": 1,
+    "allowance_counter_writes": 3,
+    "production_calls": 0
+  },
+  "validation": {
+    "node": "24.19.0",
+    "full_tests": {
+      "passed": 691,
+      "failed": 0,
+      "duration_ms": 64200.429708
+    },
+    "final_targeted_tests": {
+      "passed": 7,
+      "failed": 0
+    },
+    "typescript": true,
+    "build": true,
+    "prerenders": 18,
+    "browser_budgets_passed": true,
+    "worker_dry_run": true,
+    "application_source_sha256": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2",
+    "source_contract_unchanged": true,
+    "runtime_cases": [
+      "seven preparation kinds rejected before usage for held, released-waiting, expired, removed, stale and missing jobs",
+      "hold during writer stops reviewer and retains reservations",
+      "hold during reviewer withholds returned draft and retains reservations",
+      "current role succeeds; older release does not block newer refresh",
+      "unreadable database returns unavailable without usage",
+      "manual application stays separate; invalid linked identity rejected",
+      "fictional private workspace and revision unchanged"
+    ],
+    "development_corrections": [
+      "Local reproduction syntax corrected before obtaining its result.",
+      "Type narrowing and preparation input declarations corrected.",
+      "Stale notice cleared on explicit status refresh.",
+      "Local metrics mock corrected to the existing exact endpoint."
+    ]
+  },
+  "local_browser": {
+    "actual_studio_and_career_provider": true,
+    "held_draft_remained_editable": true,
+    "hold_after_page_open_blocked_before_generation": true,
+    "current_status_recheck_cleared_notice": true,
+    "current_local_evidence_check_succeeded": true,
+    "unavailable_read_paused_preparation": true,
+    "manual_application_did_not_request_catalogue_status": true,
+    "source_cv_and_notes_preserved": true,
+    "generation_requests": 0,
+    "unexpected_requests_in_final_cases": 0,
+    "narrow_layout": {
+      "viewport_px": 390,
+      "document_px": 390,
+      "horizontal_overflow": false,
+      "real_device_test": false
+    }
+  },
+  "live_http": {
+    "observed_at": "2026-10-18T13:33:20.635626+00:00",
+    "results": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "body": {
+          "ok": true,
+          "version": "2.83.0",
+          "register": {
+            "date": "2026-10-16",
+            "count": 128007,
+            "checked_at": "2026-10-18T07:16:01.015Z"
+          }
+        }
+      },
+      {
+        "path": "/api/career/availability?job=60a4199207ee8422ffe35c80",
+        "status": 200,
+        "body": {
+          "jobId": "60a4199207ee8422ffe35c80",
+          "state": "held"
+        }
+      },
+      {
+        "path": "/api/career/availability?job=8cec3fe7af41e51a3344df76",
+        "status": 200,
+        "body": {
+          "jobId": "8cec3fe7af41e51a3344df76",
+          "state": "removed"
+        }
+      },
+      {
+        "path": "/api/career/availability?job=6e7ca74036beafcb0431c567",
+        "status": 200,
+        "body": {
+          "jobId": "6e7ca74036beafcb0431c567",
+          "state": "current"
+        }
+      },
+      {
+        "path": "/api/career/availability?job=invalid",
+        "status": 200,
+        "body": {
+          "jobId": "invalid",
+          "state": "missing"
+        }
+      },
+      {
+        "path": "/api/career/generate",
+        "status": 409,
+        "kind": "analysis",
+        "body": {
+          "error": "This advert is under review. New preparation is paused; your existing documents remain editable.",
+          "availability": "held"
+        },
+        "fictional_unsaved_input": true
+      }
+    ]
+  },
+  "live_browser": {
+    "url": "https://sponsorintel.london/api/career/availability?job=60a4199207ee8422ffe35c80",
+    "observed_state": "held",
+    "private_workspace_not_opened_for_qa": true
+  },
+  "preservation": {
+    "unchanged_operational_groups": 14,
+    "before": "2026-10-18T13:29:54.083Z",
+    "after": "2026-10-18T13:33:59.082Z",
+    "assets": [
+      {
+        "asset": "career-validation-BFzYC5DA.js",
+        "sha256": "ef57ed4654911b099e8642c2577afb6faaa28901645e1917445d1a21127147b5",
+        "bytes": 1980
+      },
+      {
+        "asset": "career-3rJAURF8.js",
+        "sha256": "dcde5da89d7b665f3dd2030024b7a850882d0d82e9970f91e890036a92dd35c9",
+        "bytes": 68271
+      }
+    ],
+    "workspace_metadata_job_aggregates_holds_unchanged": true,
+    "customer_allowance_unchanged": true
+  },
+  "runtime_hosted_checks": {
+    "head": "466d3a4a38c40c09e48c3c3c1e388663b4711045",
+    "billing_blocked_before_execution": [
+      117688809907,
+      117688797872
+    ],
+    "original_annotations_inspected": true,
+    "gitguardian_passed": 117688801458
+  },
+  "limits": {
+    "operator_model_calls": 0,
+    "new_source_requests": 0,
+    "forced_workflows": 0,
+    "new_social_sends": 0,
+    "shared_ai_starts": 2,
+    "shared_ai_calls": 8,
+    "source_reservations": 360
+  },
+  "limitations": [
+    "This checks stored catalogue availability, not the live employer application page.",
+    "Manual applications have no catalogue identity to verify.",
+    "The final status read cannot prevent a later source change or recall previously exported work.",
+    "Writer/reviewer contracts and retained semantic quality findings remain unchanged.",
+    "Hosted Linux checks did not execute; local and live results are separate."
+  ]
+}

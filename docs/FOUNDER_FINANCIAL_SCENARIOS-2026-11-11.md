@@ -1,0 +1,27 @@
+# Founder cash scenarios — 11 November 2026
+
+Prepared locally for the existing Founder hub; **not deployed**. This is a bounded stage-three planning increment under `INNOVATOR_FOUNDER_HUB_PLAN.md`. It adds no legal guidance, source-review renewal, model call, new dependency, private-saving activation or migration. Production and capacity/recovery holds remain governed by `OPERATOR_CHECKPOINT.md`.
+
+## What the workbench does
+
+The founder enters available opening cash, one-off startup payments, monthly customer receipts, monthly operating payments and a horizon of one to 36 months. Blank amounts stay unknown rather than silently becoming zero. A separate downside applies an explicitly chosen receipts reduction, operating-payment increase and initial receipts delay. Startup payments stay unchanged; delayed receipts do not catch up later. An optional short evidence/uncertainty note remains self-declared.
+
+Calculations use integer pence. Adjusted monthly amounts round half-up once to the nearest penny. The base and downside show closing and minimum cash, the first negative balance and the first exact-zero balance, a zero-line chart and an accessible table of every monthly movement. Month zero includes startup payments. This is a constant-flow scenario, not a forecast: it cannot show shortages within a month and automatically assumes no additional funding, interest, growth, tax or omitted costs.
+
+A dated preview includes the exact assumptions, method, limitations and outcomes. Its generation date is not an evidence observation. Adding the preview to the existing financial-assumptions note is explicit; the original text is preserved, duplicate exact blocks are not added again, and a combined note over 4,000 characters is rejected without truncation. A separate explicit download keeps the exact preview available when it will not fit. Browser delivery must be checked rather than inferred from clicking a download button.
+
+## Private work and replacement
+
+Calculator inputs remain in tab memory, separated by signed-in identity and guest context. Changing routes or workbook stages retains the draft. Switching accounts hides the previous identity's inputs and tab-only workbook, preserving them for that same identity in the current tab. Confirmed account deletion clears that identity's memory. Closing/reloading can still lose tab-only work; an unload warning is best effort, not durable recovery.
+
+Raw scenario fields are not added to workbook JSON, device persistence, API payloads, URLs, analytics or cloud data. Only a summary the user explicitly adds becomes ordinary workbook note text. Export/restore retains that text, not an editable calculator. Existing opt-in workbook saving remains a separate prepared feature with its original guards and activation hold.
+
+Replacing or clearing a workbook retains the calculator inputs but requires an explicit choice to use them with the new workbook. Changing inputs invalidates the prior preview. Appending checks the current identity/context and preserves notes added since preview. Busy actions, incoming conflicts and unreadable device backups block append. A delayed file read cannot offer an old account's replacement after the identity or workbook context changes.
+
+## Validation and release boundary
+
+The final isolated export of tracked head `f049dfb35ec2ce589ece761b3b60622ac3fd5970` plus the scoped files passes **904 full tests**, with zero failures/skips/cancellations, TypeScript/build, **21 prerenders**, browser budgets and deployment dry run on Node **24.19.0**. The 28 new math/context tests include exact penny arithmetic, missing/invalid inputs, bounded summaries, account replacement and cleanup. **15 browser checks** pass against the built application and a clearly labelled actual-provider account shell: exact downloaded text, preserved notes, replacement/adoption, SPA navigation, keyboard/mobile use, A/B/guest isolation and confirmed-deletion cleanup. The latter invokes the real local cleanup callback on fictional identities; it does not call an account deletion endpoint. Desktop and mobile captures were visually inspected.
+
+No external browser requests, business mutation attempts, Founder account-workspace calls or browser exceptions occurred in the final run. Excluded measurement POSTs were fixture no-ops; known Google Fonts links were suppressed only in the fixture, using system-font fallback. The first run exposed a stale-preview render and blocked an existing font request; the second hit an assertion before the intended animation-frame focus change. Both failed receipts are retained. The product now invalidates preview during render, and the harness waits for the exact focus target. All owned browser/fixture processes closed.
+
+The unchanged package/lock hashes reuse the same-day dependency/advisory result. Eight unrelated tracked edits and the private local-state archive are unchanged. Aggregate receipt: `../cloudflare/tests/evidence/founder-finances-2026-11-11.json`; detailed fictional logs/screenshots remain under ignored `cloudflare/data/founder-finance-2026-11-11/`. All fixtures use fictional data and loopback-only services. Existing source fees, status and review expiry remain unchanged, including the overdue 2 November official-source review. This tool cannot establish profitability, viability, endorsement, visa eligibility, funding or independent usefulness.

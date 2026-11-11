@@ -1,0 +1,48 @@
+{
+  "observed_at": "2026-11-11T10:36:08.844969+00:00",
+  "status": "needs_review",
+  "goal_status_observed": "blocked",
+  "initial_recovery_attempt": {
+    "result": "failed",
+    "provider_error_code": 10000,
+    "stage": "database_identity",
+    "retained_as_failure": true
+  },
+  "later_identity": {
+    "started_at": "2026-11-11T10:29:31.351867+00:00",
+    "observed_at": "2026-11-11T10:29:33.860309+00:00",
+    "command": "wrangler d1 info sponsorintel-db --json",
+    "exit_code": 0,
+    "name": "sponsorintel-db",
+    "uuid": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "running_in_region": "WEUR",
+    "database_size": 203132928
+  },
+  "schema_attempt": {
+    "result": "failed",
+    "provider_error_code": 7500,
+    "daily_read_quota_error": true,
+    "receipt": "recovery-status-2026-11-11.json"
+  },
+  "business_application_inspection": {
+    "result": "failed_before_application_rows_returned",
+    "provider_error_code": 7500,
+    "daily_read_quota_error": true,
+    "started_before_schema_failure_result_was_inspected": true,
+    "repeated_after_failure": false
+  },
+  "read_costs_unavailable": true,
+  "last_verified_applied_schema_receipt": "recovery-status-2026-11-04.json",
+  "complete_utc_day_usage_and_incidents_currently_unavailable": true,
+  "owner_controls_not_refreshed": true,
+  "no_runtime_build_install_deployment": true,
+  "no_production_write_restore_or_export": true,
+  "no_budget_reset_permission_expansion_or_question_repetition": true,
+  "provider_checks_after_quota_exception_used_workflow_api_only": true,
+  "platform_status_observation": {
+    "cloudflare_url": "https://www.cloudflarestatus.com/",
+    "cloudflare": "No active incident rendered; certificate provisioning issue shown resolved at 10:07 UTC. Regional maintenance listed. Not account-capacity proof.",
+    "github_url": "https://www.githubstatus.com/",
+    "github": "All Systems Operational at read; not account billing/CI acceptance."
+  }
+}

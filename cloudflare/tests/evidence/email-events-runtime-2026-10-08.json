@@ -1,0 +1,95 @@
+{
+  "checked_at": "2026-10-08T07:42:29.605Z",
+  "environment": "Isolated Workerd/D1/Queues and local-only Email binding; fictional owner, synthetic event envelopes, no remote binding",
+  "checks": [
+    "Native queue consumer processed a synthetic delivered event for the actual local email-simulator message ID",
+    "Duplicate event produced one retained row",
+    "SMTP acceptance remained separate from owner receipt confirmation",
+    "Hard-bounce event held further operational sends without a new email reservation",
+    "Foreign-account event rejected on two local attempts, then dispatched to a local-only dead-letter spy consumer; no delivery record or extra email attempt created"
+  ],
+  "status": {
+    "deliveries": [
+      {
+        "id": "a7763b7c-2298-432d-b669-3083aee1dfba",
+        "kind": "test",
+        "state": "accepted",
+        "critical_count": 0,
+        "high_count": 0,
+        "source_run": null,
+        "created_at": "2026-10-08T07:42:29.474Z",
+        "finished_at": "2026-10-08T07:42:29.478Z",
+        "message_id": "<qXiP3eA303CEOmyEtFrTWQhwbW6zA8Li95J0@sponsorintel.london>",
+        "received_at": null,
+        "provider_event": {
+          "event_type": "bounced",
+          "occurred_at": "2026-10-08T07:42:29.564Z",
+          "bounce_type": "hard"
+        }
+      }
+    ],
+    "block": {
+      "reason": "hard_bounce",
+      "occurred_at": "2026-10-08T07:42:29.564Z",
+      "expires_at": null
+    },
+    "email_health": {
+      "configured": true,
+      "events_7d": 2,
+      "last_received": "2026-10-08T07:42:29.568Z",
+      "failures_7d": 1,
+      "blocked_owners": 1,
+      "queues": {
+        "incoming": {
+          "backlogCount": 0,
+          "backlogBytes": 0,
+          "oldestMessageTimestamp": 0,
+          "checked_at": "2026-10-08T07:42:29.582Z"
+        },
+        "unprocessed": {
+          "backlogCount": 0,
+          "backlogBytes": 0,
+          "oldestMessageTimestamp": 0,
+          "checked_at": "2026-10-08T07:42:29.582Z"
+        }
+      }
+    }
+  },
+  "invalid_event_id": "6f785afb-cc54-4e33-adce-6fcff4e638c6",
+  "latest_health": {
+    "configured": true,
+    "events_7d": 2,
+    "last_received": "2026-10-08T07:42:29.568Z",
+    "failures_7d": 1,
+    "blocked_owners": 1,
+    "queues": {
+      "incoming": {
+        "backlogCount": 0,
+        "backlogBytes": 0,
+        "oldestMessageTimestamp": 0,
+        "checked_at": "2026-10-08T07:44:31.709Z"
+      },
+      "unprocessed": {
+        "backlogCount": 0,
+        "backlogBytes": 0,
+        "oldestMessageTimestamp": 0,
+        "checked_at": "2026-10-08T07:44:31.709Z"
+      }
+    }
+  },
+  "browser": {
+    "sign_in": "passed",
+    "blocked_test_button": true,
+    "mobile_viewport": 390,
+    "document_width": 390
+  },
+  "dead_letter_test_note": "Local-only dead-letter spy consumer records an event ID and acknowledges it, because Miniflare discards messages for queues without a local consumer. Production DLQ has no consumer and uses configured 24-hour retention.",
+  "dead_letter_dispatch_verified": true,
+  "dead_letter_receipt": {
+    "id": "6f785afb-cc54-4e33-adce-6fcff4e638c6",
+    "observed_at": "2026-10-08T07:46:59.801Z"
+  },
+  "tests": 336,
+  "production_transport_proven": false,
+  "timeout_test": "Both hung queue metric calls become unavailable within five seconds; unit verified with mocked time"
+}

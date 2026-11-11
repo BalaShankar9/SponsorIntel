@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-03T22:58:42.879Z",
+  "version": "0.2.3",
+  "bytes": 54760,
+  "sha256": "78d9008aa9633faf66f1cb5687241ea75135d0924b149361d1c24ab0db6e13e8",
+  "sourceBundleMatch": true,
+  "deterministicArchive": true,
+  "existingDestinationRefused": true,
+  "manifestPermissionsAndCspUnchangedFromPublic021": true,
+  "targetedUnitTests": 12,
+  "typeScript": "passed before CSS-selector-only correction",
+  "browserDomTests": 17,
+  "installed": false,
+  "published": false,
+  "public021Unchanged": true,
+  "fullWebsiteBuildRun": false,
+  "dependencyInstallRun": false,
+  "diskPreflight": "3.4 GiB; recovered from earlier 1.9 GiB without cleanup by this agent",
+  "correction": "Candidate 0.2.2 dropped fictional conditions next to an Apply link. Preserved and held; 0.2.3 excludes link controls only and retains surrounding conditions.",
+  "scope": "Prepared local candidate. Installed exact-candidate and real-site acceptance still required."
+}

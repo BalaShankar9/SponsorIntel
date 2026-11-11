@@ -1,0 +1,14 @@
+{
+  "observed_at": "2026-11-11T10:31:24.596Z",
+  "status": "inspection_failed",
+  "stage": "d1 execute sponsorintel-db",
+  "provider_error_codes": [
+    7500
+  ],
+  "daily_read_quota_error": true,
+  "child_runtime_pinned": "24.19.0",
+  "current_recovery_point_verified": false,
+  "production_restore_performed": false,
+  "production_data_exported": false,
+  "initial_attempt_failed": true
+}

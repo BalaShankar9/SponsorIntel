@@ -1,0 +1,69 @@
+
+> sponsorintel-cloudflare@2.98.14 build
+> node scripts/package-extension.mjs && node scripts/publish-job-notes.mjs && node scripts/research-source.mjs && node scripts/research-scope-source.mjs && node scripts/application-source.mjs && node scripts/verify-application-contracts.mjs && node scripts/verify-marketing-media.mjs && tsc -p tsconfig.json && vite build && node scripts/prerender.mjs && node scripts/verify-browser-budget.mjs
+
+{"version":"0.1.6","filename":"sponsor-intel-extension-0.1.6.zip","bytes":28360,"sha256":"564d8d1b6addf305d15194c4eefd72c3f50ccf969045b15c1444e7a7a18ee97f","files":[{"name":"manifest.json","bytes":680,"sha256":"dfb6aadde4e7d22caeedb2c91a8893d6bcd8bd0188a5a0caa87b69933ecd8efd"},{"name":"popup.html","bytes":2364,"sha256":"e7f89c1cfa5913a8927137315903ebc7d59b7b25cad28cd77fd1b546a4436bfd"},{"name":"popup.css","bytes":2211,"sha256":"69f5883f6ffd28bcf21d8c4543fc9665ce11a11feea5f234e98cd5980cde750e"},{"name":"popup.js","bytes":2425,"sha256":"4308e56700c4498b8a0964b43da1ba35ac4a83876ab35b9ca1db83bdf5910f77"},{"name":"analyse.js","bytes":8499,"sha256":"76b200565ea4bcd1ffa5d3a69d5ebaf30c1c9ebec4d907df55a69fb73d9a543a"},{"name":"capture.js","bytes":5075,"sha256":"df8f7290d0b6255d95589ce4a0ea67bcc8fbc96b124ec5c4d54d23fedbc48c26"},{"name":"README.txt","bytes":2357,"sha256":"b4f2366e2b40b848257186e03899bce4eb743c40627eb2fbb70305741e474657"},{"name":"icon-16.png","bytes":409,"sha256":"a786511a2f7ffccd63c022fe19f21ba899e7879b2d625dcad1d8efeccfc953f6"},{"name":"icon-48.png","bytes":1114,"sha256":"3e10c105bffed3f07f0e4ef8af70da0f8b194398dfe5a19d81a8b50d92b38c07"},{"name":"icon-128.png","bytes":2236,"sha256":"435c081453d2615330cbc0b2aec5ad353eed3a0918c6b099d2a86401469df953"}]}
+{"version":"0.2.1","filename":"sponsor-intel-job-notes-0.2.1.zip","bytes":52592,"sha256":"bffe815a988a9f1aed864eb2babb16c8b2ade7cf02b73ea1636cf5c9f442c98f","privacy":"/job-notes-privacy.html","files":[{"name":"manifest.json","bytes":695,"sha256":"a0eb92471d173d7c199917f4dfd722110367d4ae098311cf991725d6b6631d85"},{"name":"popup.html","bytes":1561,"sha256":"0db55d361da6500c8b6c7e28a9717553cca77189a3f40e57dc3c2e68a7b43003"},{"name":"popup.css","bytes":1365,"sha256":"0288d4fc82d92be9e31b8c4f6abfe784bb2b0b3e0eea4104d7ec5063cb81a034"},{"name":"popup.js","bytes":1495,"sha256":"92e10f7d5035ae3f0511e1c077d54526738c618d406a1e37a4a5951b78167a48"},{"name":"companion.js","bytes":41359,"sha256":"f99d70a0ed54ce38b47d5752ed48be79776fd5b11b10d6b331bdbbd8c98f35f2"},{"name":"README.txt","bytes":1878,"sha256":"3fee1e713e9db994b7e0fe4e18871409f1f1a843abcda46229d18f301cd79e59"},{"name":"icon-16.png","bytes":409,"sha256":"a786511a2f7ffccd63c022fe19f21ba899e7879b2d625dcad1d8efeccfc953f6"},{"name":"icon-48.png","bytes":1114,"sha256":"3e10c105bffed3f07f0e4ef8af70da0f8b194398dfe5a19d81a8b50d92b38c07"},{"name":"icon-128.png","bytes":1818,"sha256":"96384a13eda22c8ebc1207aa954cbbfe990b331f880819bc153437348f3c8a6c"}]}
+{"research_source_sha256":"cb02b055aa857d9133094c46a3b1b4deb9663a0ab304fe26205c660895d44489"}
+{"scope_source_sha256":"68dd5c002cda99d4f37e571bb283accce91c5f3b712e0b964226b1bb2158f1d2"}
+{"application_source_sha256":"4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2"}
+{"id":"application-document-contract-20261008-v1","source_sha256":"da205d5d31e11d915938301ce1a67fa48299e8481e9e5ccd536b815e4f35399e","files":3}
+Verified 1 registered marketing image(s).
+vite v6.4.5 building for production...
+transforming...
+✓ 2287 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                2.64 kB │ gzip:   0.97 kB
+dist/.vite/manifest.json                       6.07 kB │ gzip:   0.88 kB
+dist/assets/pdf.worker.min-CjEcRF4W.mjs    1,264.34 kB
+dist/assets/learning-ui-q4f4ni6p.css           2.89 kB │ gzip:   0.95 kB
+dist/assets/extension-page-ogqWS8wP.css        3.43 kB │ gzip:   1.16 kB
+dist/assets/career-2xQkt_JN.css                8.71 kB │ gzip:   2.33 kB
+dist/assets/founder-ui-RHz0l-aq.css            9.84 kB │ gzip:   2.50 kB
+dist/assets/owner-DPxb09Wx.css                34.28 kB │ gzip:   6.61 kB
+dist/assets/index-Ddp5rNlF.css               109.95 kB │ gzip:  22.78 kB
+dist/assets/career-validation-BngCL1u9.js      2.06 kB │ gzip:   0.97 kB
+dist/assets/extension-checker-BTWiaC6u.js      7.35 kB │ gzip:   3.00 kB
+dist/assets/extension-page-Cm6AWk4w.js         8.36 kB │ gzip:   3.22 kB
+dist/assets/learning-ui-DexrfAMf.js           17.16 kB │ gzip:   6.65 kB
+dist/assets/purify.es-CAi2OJFm.js             30.47 kB │ gzip:  11.73 kB
+dist/assets/founder-ui-DOCKsypx.js            34.66 kB │ gzip:  11.46 kB
+dist/assets/career-C-yF5IFQ.js               104.08 kB │ gzip:  33.01 kB
+dist/assets/index.es-9jbxXvHO.js             159.76 kB │ gzip:  53.56 kB
+dist/assets/html2canvas.esm-QH1iLAAe.js      202.38 kB │ gzip:  48.04 kB
+dist/assets/owner-DYJuBpnO.js                223.12 kB │ gzip:  60.58 kB
+dist/assets/index-BLDYCIq9.js                311.03 kB │ gzip:  99.70 kB
+dist/assets/index-CVU9lVAO.js                363.33 kB │ gzip: 106.41 kB
+dist/assets/jspdf.es.min-CVHRzX6R.js         390.77 kB │ gzip: 128.82 kB
+dist/assets/index-DB9jiuYp.js                398.30 kB │ gzip: 121.73 kB
+dist/assets/pdf-BtCWNl9F.js                  483.74 kB │ gzip: 144.80 kB
+✓ built in 16.69s
+Pre-rendered 21 public pages, a private shell and a real 404 page.
+{
+  "initial_javascript": {
+    "files": [
+      {
+        "file": "assets/index-DB9jiuYp.js",
+        "bytes": 398297,
+        "gzip_bytes": 121726
+      }
+    ],
+    "bytes": 398297,
+    "gzip_bytes": 121726
+  },
+  "initial_css": {
+    "files": [
+      {
+        "file": "assets/index-Ddp5rNlF.css",
+        "bytes": 109950,
+        "gzip_bytes": 22776
+      }
+    ],
+    "bytes": 109950,
+    "gzip_bytes": 22776
+  },
+  "deferred_owner": "assets/owner-DYJuBpnO.js",
+  "deferred_application_tools": "assets/career-C-yF5IFQ.js",
+  "public_pages": 21
+}

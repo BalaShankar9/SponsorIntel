@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-03T15:41:29Z",
+  "observer": "Agent-assisted",
+  "owner_instruction": "Create a Chrome Web Store publisher account if needed; owner later reports Done and paid.",
+  "account": {
+    "registration_payment": "Owner-reported complete; not independently verified",
+    "dashboard_tab_title": "Chrome Web Store Developer Dashboard",
+    "publisher_specific_dashboard_url_present": true,
+    "private_account_identifiers_retained": false,
+    "inspection_result": "The extensions gallery cannot be scripted.",
+    "exact_fee_currency": null,
+    "account_activation": null,
+    "terms_acceptance_by_agent": false,
+    "payment_by_agent": false,
+    "repeat_payment_authorized": false
+  },
+  "browser": {
+    "normal_console_navigation_result": "Not allowed",
+    "temporary_blank_tab_closed": true,
+    "user_dashboard_tab_preserved": true,
+    "no_alternate_control_or_credentials": true
+  },
+  "package": {
+    "version": "0.1.1",
+    "path": "cloudflare/public/downloads/sponsor-intel-extension-0.1.1.zip",
+    "bytes": 25407,
+    "sha256": "42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7",
+    "zip_crc": "pass",
+    "entries": 10,
+    "source_bytes_match": true,
+    "changed_since_010": [
+      "manifest.json",
+      "analyse.js",
+      "README.txt"
+    ],
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "new_permissions": false,
+    "fictional_reviewer_examples_checked": 6
+  },
+  "current_stage": "Manual draft upload handoff prepared; no upload, store item, submission or approval observed",
+  "remaining": [
+    "Store-sized genuine installed-extension screenshot",
+    "Icon padding review/update in a new immutable package if changed",
+    "Extension-specific privacy-policy URL and exact data declarations",
+    "Publisher/account identity and required fields",
+    "Current installed 0.1.1 and representative-site acceptance",
+    "Independent semantic accuracy",
+    "Manual store upload/review/publication and consumer installation"
+  ],
+  "limits": "No automatic legal/privacy claim, payment, new API access, model spend, deployment, application data mutation or capacity/supervisor hold change.",
+  "official_sources": [
+    "https://developer.chrome.com/docs/webstore/register",
+    "https://developer.chrome.com/docs/webstore/images",
+    "https://developer.chrome.com/docs/webstore/publish"
+  ],
+  "historical_receipts": [
+    "extension-store-preflight-2026-11-03.json",
+    "extension-2026-11-03/deployment.json",
+    "extension-2026-11-03/live.json"
+  ],
+  "preparation_limit": "Six fictional outputs and package equality do not establish actual installed 0.1.1, store compliance/approval, universal compatibility or independent accuracy."
+}

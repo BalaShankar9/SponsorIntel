@@ -1,0 +1,87 @@
+{
+  "observed_at": "2026-11-03T15:09:10.752580+00:00",
+  "method": "HTTP with X-SI-Metrics: exclude and SponsorIntel-QA/2.98.9",
+  "prior_attempts": [
+    {
+      "status": "assertion_failed",
+      "detail": "First script expected the hydrated Version label in raw HTML; the actual prerender uses Download extension 0.1.1."
+    },
+    {
+      "status": "assertion_failed",
+      "detail": "Second script failed before retaining per-request bodies. Exact cause was not captured. Subsequent explicit inspection found the live HTML, metadata and both archives matched the local release; no redeploy occurred."
+    },
+    {
+      "status": "assertion_failed",
+      "detail": "The per-request receipt confirms all six endpoint checks passed. A later assertion expected one extension-entry-*.js asset, but the build names the deferred chunks extension-checker and extension-page. Actual build filenames were inspected before the follow-up asset reads."
+    }
+  ],
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "bytes": 118,
+      "sha256": "9c26085fa0ea2607b56a9551926668f9e86071e57492d3ae5ac8a7e593c93f6e"
+    },
+    {
+      "path": "/browser-extension",
+      "status": 200,
+      "bytes": 23690,
+      "sha256": "50978963fc7dfba0f888d8398045c6d8407d6a3bd2a90b6826c2784f6a5b2182",
+      "matches_validated_artifact": true
+    },
+    {
+      "path": "/downloads/sponsor-intel-extension.json",
+      "status": 200,
+      "bytes": 1643,
+      "sha256": "add0ecf63e7be1be8c4262f786935c142633dc5a67e6b502ff2c491cf4120f11",
+      "matches_validated_artifact": true
+    },
+    {
+      "path": "/downloads/sponsor-intel-extension-0.1.1.zip",
+      "status": 200,
+      "bytes": 25407,
+      "sha256": "42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7",
+      "matches_validated_artifact": true
+    },
+    {
+      "path": "/downloads/sponsor-intel-extension-0.1.0.zip",
+      "status": 200,
+      "bytes": 23871,
+      "sha256": "db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb",
+      "matches_validated_artifact": true
+    },
+    {
+      "path": "/downloads/private.json",
+      "status": 404,
+      "bytes": 20854,
+      "sha256": "d1fe8b707d350c3348ba805a6e8fa338686c4ee496ecc86f6f7d2459769654dc"
+    },
+    {
+      "path": "/assets/extension-checker-BGpXT61k.js",
+      "status": 200,
+      "bytes": 6948,
+      "sha256": "7cfc1d509c2f85dd39aab9e0be067655ddb8955d2415cfb3e482a72f44afd9f7",
+      "matches_validated_artifact": true
+    },
+    {
+      "path": "/assets/extension-page-DBPeJ-k2.js",
+      "status": 200,
+      "bytes": 7060,
+      "sha256": "9180ff003c59343233090930fd7d79ffa848c99022d6875546db5aa27f46994c",
+      "matches_validated_artifact": true
+    },
+    {
+      "path": "/assets/extension-page-D32H6OY-.css",
+      "status": 200,
+      "bytes": 3055,
+      "sha256": "c9a6f00505d34bf3e28c1f5e5b7b6bfa4698435f5128b11dc2bb64c59bc7e0f3",
+      "matches_validated_artifact": true
+    }
+  ],
+  "live_browser_navigation_performed": false,
+  "browser_limitation": "Network.enable and Network.setExtraHTTPHeaders are unsupported in the connected Chrome CDP capability. Production browser navigation was not performed; local browser acceptance is separate.",
+  "app_version": "2.98.9",
+  "completed_at": "2026-11-03T15:10:31.391157+00:00",
+  "status": "passed",
+  "no_deployment_retry": true
+}

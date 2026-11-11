@@ -1,0 +1,347 @@
+{
+  "started_at": "2026-11-04T00:21:27.434578+00:00",
+  "observed_at": "2026-11-04T00:21:29.595217+00:00",
+  "scope": "SELECT-only operational aggregates; no customer records, workflow dispatch, source fetch or controls changed",
+  "database_name": "sponsorintel-db",
+  "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+  "identity_evidence": "../recovery-status-2026-11-04.json",
+  "results": {
+    "source_states": {
+      "rows": [
+        {
+          "state": "attention",
+          "n": 94
+        },
+        {
+          "state": "completed",
+          "n": 14
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 2.6826
+        },
+        "duration": 2.6826,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 216,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "latest_source_runs": {
+      "rows": [
+        {
+          "id": "scheduled-1793709055003",
+          "state": "attention",
+          "trigger_kind": "scheduled",
+          "created_at": "2026-11-03T12:30:56.587Z",
+          "finished_at": "2026-11-03T12:34:33.338Z",
+          "requests": 85
+        },
+        {
+          "id": "scheduled-1793687455003",
+          "state": "attention",
+          "trigger_kind": "scheduled",
+          "created_at": "2026-11-03T06:30:57.487Z",
+          "finished_at": "2026-11-03T07:35:06.968Z",
+          "requests": 106
+        },
+        {
+          "id": "scheduled-1793665855003",
+          "state": "attention",
+          "trigger_kind": "scheduled",
+          "created_at": "2026-11-03T00:30:57.625Z",
+          "finished_at": "2026-11-03T01:05:03.447Z",
+          "requests": 140
+        },
+        {
+          "id": "scheduled-1793622655003",
+          "state": "attention",
+          "trigger_kind": "scheduled",
+          "created_at": "2026-11-02T12:30:56.620Z",
+          "finished_at": "2026-11-02T13:30:09.292Z",
+          "requests": 54
+        },
+        {
+          "id": "scheduled-1793601055003",
+          "state": "attention",
+          "trigger_kind": "scheduled",
+          "created_at": "2026-11-02T06:30:57.124Z",
+          "finished_at": "2026-11-02T06:34:22.100Z",
+          "requests": 85
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.26
+        },
+        "duration": 0.26,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 5,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "source_budget": {
+      "rows": [
+        {
+          "day": "2026-11-03",
+          "requests": 331
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.3799
+        },
+        "duration": 0.3799,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 1,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "business_controls": {
+      "rows": [
+        {
+          "enabled": 1,
+          "publishing": 1,
+          "research": 1,
+          "discovery": 1,
+          "updated_at": "2026-10-07T16:47:50.104Z"
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.231
+        },
+        "duration": 0.231,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 1,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "source_pauses": {
+      "rows": [
+        {
+          "source_id": "portmandentex",
+          "paused": 1,
+          "control_revision": 0,
+          "updated_at": "2026-10-09T19:01:15.323Z"
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.2094
+        },
+        "duration": 0.2094,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 4,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "advert_holds": {
+      "rows": [
+        {
+          "state": "held",
+          "n": 4
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 1.1914
+        },
+        "duration": 1.1914,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 32,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "discovery_today": {
+      "rows": [
+        {
+          "n": 0
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.3821
+        },
+        "duration": 0.3821,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 29,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "latest_scout": {
+      "rows": [
+        {
+          "day": "2026-10-23",
+          "state": "completed",
+          "started_at": "2026-10-23T00:46:06.765Z",
+          "finished_at": "2026-10-23T00:46:07.504Z",
+          "reserved_requests": 4,
+          "requests": 1,
+          "retained": 0
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.2849
+        },
+        "duration": 0.2849,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 1,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "marketing_states": {
+      "rows": [
+        {
+          "state": "held",
+          "n": 5
+        },
+        {
+          "state": "proposed",
+          "n": 2
+        },
+        {
+          "state": "published",
+          "n": 7
+        },
+        {
+          "state": "reviewed",
+          "n": 1
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.2419
+        },
+        "duration": 0.2419,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 30,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "open_findings": {
+      "rows": [
+        {
+          "severity": "high",
+          "n": 3,
+          "latest_observation": "2026-10-23T14:46:43.925Z"
+        },
+        {
+          "severity": "normal",
+          "n": 8,
+          "latest_observation": "2026-10-23T14:46:43.925Z"
+        }
+      ],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.4992
+        },
+        "duration": 0.4992,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 32,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    },
+    "complete_day_usage": {
+      "rows": [],
+      "meta": {
+        "served_by": "v3-prod",
+        "served_by_region": "WEUR",
+        "served_by_colo": "LHR",
+        "served_by_primary": true,
+        "timings": {
+          "sql_duration_ms": 0.0678
+        },
+        "duration": 0.0678,
+        "changes": 0,
+        "last_row_id": 0,
+        "changed_db": false,
+        "size_after": 202399744,
+        "rows_read": 0,
+        "rows_written": 0,
+        "total_attempts": 1
+      }
+    }
+  }
+}

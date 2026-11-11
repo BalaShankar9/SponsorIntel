@@ -1,0 +1,115 @@
+{
+  "date": "2026-10-30",
+  "review_method": "agent_assisted",
+  "state": "observations_retained_locally_cloud_reviews_not_updated",
+  "sources": [
+    {
+      "url": "https://animaltrust.bamboohr.com/careers/1183",
+      "observed_at": "2026-10-30T14:29:45.007Z",
+      "finding": "Veterinary Surgeon, Dewsbury; Apply visible; exact wording Visa support available. Original posting/deadline unknown. No application started."
+    },
+    {
+      "url": "https://www.animaltrust.org.uk/terms",
+      "observed_at": "2026-10-30T14:30:02.020Z",
+      "finding": "Animal Trust Vets CIC trading as Animal Trust; company 07938025; Cedab Road, Ellesmere Port CH65 4FE. Veterinary service terms do not establish recruitment syndication rights."
+    },
+    {
+      "url": "https://find-and-update.company-information.service.gov.uk/company/07938025",
+      "observed_at": "2026-10-30T14:30:11.770Z",
+      "finding": "Active ANIMAL TRUST VETS C.I.C., company 07938025, SIC 75000 veterinary activities, Cedab Road Ellesmere Port."
+    },
+    {
+      "url": "https://www.cqc.org.uk/provider/1-6118870417/contact",
+      "observed_at": "2026-10-30T14:30:22.953Z",
+      "finding": "Vir Health Limited also known as Numan; Farringdon Point, 33 Farringdon Road, London EC1M 3JF; numan.com linked."
+    },
+    {
+      "url": "https://www.cqc.org.uk/provider/1-6118870417/services",
+      "observed_at": "2026-10-30T14:30:23.785Z",
+      "finding": "Farringdon service shown current; Hatton Garden and Oxford Street services labelled archived."
+    },
+    {
+      "url": "https://www.cqc.org.uk/about-us/our-policies/terms-conditions",
+      "observed_at": "2026-10-30T14:31:35.779Z",
+      "finding": "CQC copyrighted material uses OGL; third-party material and logo rights are separate. No rating/logo or endorsement claim reused."
+    }
+  ],
+  "observation_method": "Fresh Chrome navigation and visible page inspection; cached web extracts were used only to locate primary evidence.",
+  "cloud_identity_rows": [
+    {
+      "identity_id": "6e21407e-9ecc-4ae9-90e8-3f730c6697d9",
+      "revision": 1,
+      "sponsor_id": "251f88c057cdf37907a9c838",
+      "sponsor_name": "Vir Health Limited trading as Numan",
+      "business_name": "Numan",
+      "state": "approved",
+      "observed_at": "2026-10-20T15:18:00.000Z",
+      "review_due_at": "2026-10-27T12:00:00.000Z",
+      "recorded_at": "2026-10-20T15:20:17.272Z"
+    },
+    {
+      "identity_id": "eabb37d1-1772-4980-b771-f1551583d8c5",
+      "revision": 1,
+      "sponsor_id": "34adf03d7603a83c07482d99",
+      "sponsor_name": "Animal Trust Vets CIC",
+      "business_name": "Animal Trust",
+      "state": "approved",
+      "observed_at": "2026-10-23T01:55:17.000Z",
+      "review_due_at": "2026-10-30T12:00:00.000Z",
+      "recorded_at": "2026-10-23T01:56:21.270Z"
+    }
+  ],
+  "cloud_animal_trust_discovery_revisions": [
+    {
+      "lead_id": "d5d34bda-a972-456d-90a7-5bf2fea2a880",
+      "revision": 1,
+      "recorded_at": "2026-10-20T15:45:06.427Z",
+      "state": "held",
+      "follow_up_at": "2026-10-22T11:00:00.000Z"
+    },
+    {
+      "lead_id": "d5d34bda-a972-456d-90a7-5bf2fea2a880",
+      "revision": 2,
+      "recorded_at": "2026-10-23T02:00:54.837Z",
+      "state": "held",
+      "follow_up_at": "2026-10-26T12:00:00.000Z"
+    }
+  ],
+  "discovery": {
+    "total": 29,
+    "retained_today": 0
+  },
+  "register": {
+    "snapshot": "2026-10-27-9fe2b22c",
+    "source_date": "2026-10-27",
+    "checked_at": "2026-10-28T07:15:32.207Z",
+    "employers": 128008
+  },
+  "cloud_review_writes_attempted": 0,
+  "approvals_renewed": 0,
+  "new_leads": 0,
+  "public_jobs_added": 0,
+  "reason": "Current register check is stale and original D1 write-capacity incident remains unresolved. Fresh primary evidence does not bypass either gate. Existing deadlines and revisions remain unchanged.",
+  "next_action": "After capacity/register recovery, reread the exact current record and original evidence within the allowed observation window, then append agent-assisted reviews through the authenticated owner desk. Keep the advert held until exact-role sponsorship, rights and complete-source validation are resolved.",
+  "excluded_public_checks": {
+    "observed_at": "2026-10-30T14:38:34.902468+00:00",
+    "checks": [
+      {
+        "sponsor_id": "251f88c057cdf37907a9c838",
+        "status": 200,
+        "response": {
+          "items": [],
+          "status": "register_unavailable"
+        }
+      },
+      {
+        "sponsor_id": "34adf03d7603a83c07482d99",
+        "status": 200,
+        "response": {
+          "items": [],
+          "status": "register_unavailable"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+export type Workbook={format:string;version:number;notes:Record<string,string>;checks:string[];shortlist:string[];location:string};
+export type DirectoryEntry={id:string;name:string;kind:string;region:string;role:string;url:string;proof:string;availability:string;cost:string};
+export const REVIEWED_AT:string, REVIEW_DUE:string, FORMAT:string, MAX_IMPORT_BYTES:number;
+export const sources:Record<string,{title:string;url:string}>;
+export const stages:{id:string;number:string;title:string;time:string;summary:string;action:string;source:string;fields:{id:string;label:string;hint:string}[];check:string}[];
+export const directory:DirectoryEntry[];
+export function reviewCurrent(now?:number):boolean;
+export function feeIllustration(location:string,now?:number):{visa:number;ihs:number;endorsement:number;meetings:number;total:number;maintenance:number}|null;
+export function emptyWorkbook():Workbook;
+export function hasWork(book:Workbook):boolean;
+export function parseWorkbook(text:string):Workbook;
+export function exportWorkbook(book:Workbook):string;
+export function workbookReport(book:Workbook,now?:number):string;
+export function filterDirectory(query?:string,kind?:string,region?:string):DirectoryEntry[];

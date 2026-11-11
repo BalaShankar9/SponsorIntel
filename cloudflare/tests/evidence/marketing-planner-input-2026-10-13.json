@@ -1,0 +1,155 @@
+{
+  "release": "2.65.0",
+  "worker": "183b2925-6806-432e-80d5-305e96ca1d6f",
+  "code_commit": "a0e9715d490a354febc89c140d0c42867e849a5f",
+  "rollback_worker": "f521603c-e638-44dc-a3c7-55051ccb46c2",
+  "policy": "sourced-guides-eligible-planner-v6",
+  "offline_original_input_replay": {
+    "observed_at": "2026-10-13T10:35:09.275Z",
+    "historical_run": "marketing-2026-10-12",
+    "offline_only": true,
+    "legacy_characters": 14064,
+    "compact_characters": 7325,
+    "reduction_percent": 47.916666666666664,
+    "candidates": 1,
+    "non_candidates": 5,
+    "eligible_facts_preserved": true,
+    "queue_measurements_performance_preserved": true,
+    "legacy_sha256": "63414ed41e5a193c2771946d12ea138aca756099fc4227a7056f6a1acd147585",
+    "compact_sha256": "2fa86165f00827be26fbc7a3eeb47b0dd525fb84f393578d62d054c46b4239f4",
+    "latency_or_quality_proven": false
+  },
+  "live": {
+    "observed_at": "2026-10-13T10:43:23.100Z",
+    "http": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "body": {
+          "ok": true,
+          "version": "2.65.0",
+          "register": {
+            "date": "2026-10-12",
+            "count": 127982,
+            "checked_at": "2026-10-13T07:15:42.984Z"
+          }
+        }
+      },
+      {
+        "path": "/jobs",
+        "status": 200
+      },
+      {
+        "path": "/api/admin/marketing/agents",
+        "status": 403
+      },
+      {
+        "path": "/api/admin/marketing/agents/history",
+        "status": 403
+      }
+    ],
+    "original_runs": [
+      {
+        "id": "marketing-2026-10-12",
+        "before_sha256": "10ee3950ae3ec939230aac3b678452a46febf559e4c9cf059dead3205849123c",
+        "after_sha256": "10ee3950ae3ec939230aac3b678452a46febf559e4c9cf059dead3205849123c",
+        "policy": "sourced-guides-and-browser-evidence-v5",
+        "calls": 1,
+        "state": "held"
+      },
+      {
+        "id": "marketing-2026-10-13",
+        "before_sha256": "84c583922bf7545582607cb17bfe90a5f4b13d56d9d18f64b3770ab2510fefd7",
+        "after_sha256": "84c583922bf7545582607cb17bfe90a5f4b13d56d9d18f64b3770ab2510fefd7",
+        "policy": "sourced-guides-and-browser-evidence-v5",
+        "calls": 0,
+        "state": "no_post"
+      }
+    ],
+    "no_forced_ai_call": true
+  },
+  "validation": {
+    "tests": 626,
+    "pass": 626,
+    "node": "24.19.0",
+    "typescript_build": true,
+    "prerenders": 17,
+    "browser_budgets": true,
+    "dry_run": true,
+    "isolated_worker_d1": true,
+    "isolated_external_io": 0,
+    "first_focused_failure": "Concurrent completed-result replay can legitimately fulfill both callers; revised assertion retains one provider call and one reservation.",
+    "first_full_suite": "625 passed; one stale v5 suffix assertion updated to v6 with measurement assertions retained."
+  },
+  "unchanged": {
+    "before_at": "2026-10-13T10:31:28.515Z",
+    "after_at": "2026-10-13T10:43:21.794Z",
+    "before_hashes": {
+      "research": "360e4f87e5a90e635d28f23ac63771e0427f5efcaeeb0e4ea84c55b01a3484c0",
+      "application": "7bf46ede07c48d909623c3a9f2f3300cd018166821c798d5c1a2cc97bcd354bd",
+      "application_campaign": "bfc0e8d2d2da800b2349c86b962877e6eb50e8fe80d15bb10e314d91af4b1f5a",
+      "source": "7a7d1bf85a5b52df1b0e2a6c0c726135baf172f1c7be0455df68ef29ca6c20a7",
+      "marketing": "f72f71f25548b3d63b906398a71709daef0e1210b189bb92723b042d4509eba9",
+      "briefs": "78a3fdc4c1f8ae9482d4fd72f53b27d98f1ab1ebc3bfd02f34a7ed752e605708",
+      "steps": "68f591064dd3458bfe5604ba0c3ab6bf860196bcb74a99cfc56f561907039207",
+      "ai": "c1c45061e5d4a067ecb56e0e24384a5f30ca1fa45a9c233634a08435f149293b"
+    },
+    "after_hashes": {
+      "research": "360e4f87e5a90e635d28f23ac63771e0427f5efcaeeb0e4ea84c55b01a3484c0",
+      "application": "7bf46ede07c48d909623c3a9f2f3300cd018166821c798d5c1a2cc97bcd354bd",
+      "application_campaign": "bfc0e8d2d2da800b2349c86b962877e6eb50e8fe80d15bb10e314d91af4b1f5a",
+      "source": "7a7d1bf85a5b52df1b0e2a6c0c726135baf172f1c7be0455df68ef29ca6c20a7",
+      "marketing": "f72f71f25548b3d63b906398a71709daef0e1210b189bb92723b042d4509eba9",
+      "briefs": "78a3fdc4c1f8ae9482d4fd72f53b27d98f1ab1ebc3bfd02f34a7ed752e605708",
+      "steps": "68f591064dd3458bfe5604ba0c3ab6bf860196bcb74a99cfc56f561907039207",
+      "ai": "c1c45061e5d4a067ecb56e0e24384a5f30ca1fa45a9c233634a08435f149293b"
+    },
+    "ai_allowance": [
+      {
+        "day": "2026-10-13",
+        "runs": 1,
+        "calls": 0
+      }
+    ],
+    "model": "@cf/zai-org/glm-4.7-flash",
+    "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "thinking": true,
+    "max_tokens": 8192,
+    "temperature": 0.1,
+    "format": "json_object",
+    "step_timeout_seconds": 120,
+    "model_retries": 0
+  },
+  "hosted_ci": {
+    "head": "a0e9715d490a354febc89c140d0c42867e849a5f",
+    "not_started_checks": [
+      115255015414,
+      115254995290
+    ],
+    "reason": "The job was not started because your account is locked due to a billing issue.",
+    "gitguardian": {
+      "id": 115254998948,
+      "conclusion": "success"
+    }
+  },
+  "same_day_checks_reused": {
+    "recovery_at": "2026-10-13T09:04:10.506Z",
+    "schema_objects": 162,
+    "migrations": 38,
+    "dependency_audit": "0 high/critical; 3 existing moderate; dependency content unchanged"
+  },
+  "unproven": [
+    "Actual v6 scheduled context capture, eligible model completion, independent editorial quality, latency, cost savings, publication and growth.",
+    "Authenticated live controls remain unverified after earlier browser block; owner asked to confirm admin access."
+  ],
+  "external_effects": {
+    "new_model_calls": 0,
+    "forced_google_calls": 0,
+    "forced_source_runs": 0,
+    "new_social_schedules": 0,
+    "email_sends": 0,
+    "new_leads": 0,
+    "permission_changes": 0,
+    "migrations": 0
+  }
+}

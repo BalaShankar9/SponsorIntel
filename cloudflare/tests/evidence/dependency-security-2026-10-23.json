@@ -1,0 +1,312 @@
+{
+  "observed_on": "2026-10-23",
+  "release": "2.92.0",
+  "runtime_commit": "d3967508780b35c4f4a596d1c7270acb1135cb36",
+  "scope": "Dependency security patch plus separately recorded existing-lead expiry review. No applicant data in this receipt.",
+  "dependencies": {
+    "changed_versions": [
+      {
+        "name": "dompurify",
+        "from": "3.4.16",
+        "to": "3.4.17"
+      },
+      {
+        "name": "vite",
+        "from": "6.4.3",
+        "to": "6.4.5"
+      }
+    ],
+    "other_package_versions_changed": false,
+    "install": "incremental; scripts disabled",
+    "disk_before_install_gib": 2.2,
+    "known_vulnerabilities_after": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "production_exploit_established": false,
+    "pdf_affected_html_modes_used_by_application": false
+  },
+  "validation": {
+    "node": "24.19.0",
+    "tests_passed": 737,
+    "tests_failed": 0,
+    "real_document_export_tests_pass": true,
+    "typescript_build": true,
+    "prerenders": 19,
+    "browser_budgets": true,
+    "worker_dry_run": true,
+    "live_pdf_export_exercised": false
+  },
+  "deployment": {
+    "worker_version": "0d64d45e-5f65-417e-ba08-913b4334ca00",
+    "deployment_id": "dacd0e69-30e5-4f9a-ab30-292d51b18cab",
+    "created_at": "2026-10-23T01:13:48.866785Z",
+    "traffic_percent": 100,
+    "excluded_health_status": 200,
+    "health_version": "2.92.0",
+    "asset": "assets/purify.es-CAi2OJFm.js",
+    "local_and_live_sha256": "8e143ee7bcdf076d62676183aacc62568c9adb8042c57d4fef7d62e1ca7c345a",
+    "disk_before_deploy_gib": 2.3,
+    "rollback_worker": "2ef44b92-944f-4a78-8316-23be998100c3",
+    "rollback_contains_older_dependencies": true
+  },
+  "recovery": {
+    "observed_at": "2026-10-23T01:11:11.652Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "a199987f674119bdcd441e1eff87244e6873ef69cdd329730b6647a6c98d285f",
+    "database_size_bytes": 128974848,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 182,
+      "actual_objects": 182,
+      "migration_files": 43,
+      "expected_sha256": "9fa4fb58b04ede1e19619a64ec1f41cd03aebdb43b181ddb177f7372a59e85d3",
+      "actual_sha256": "9fa4fb58b04ede1e19619a64ec1f41cd03aebdb43b181ddb177f7372a59e85d3",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "access": {
+    "initial_d1_error": 7403,
+    "first_same_scope_oauth_callback": "timed out; terminal outcome retained",
+    "later_same_scope_renewal": "successful",
+    "scopes_expanded": false,
+    "current_d1_blocker": false
+  },
+  "release_operational_comparison": {
+    "before_at": "2026-10-23T01:11:10.098Z",
+    "after_at": "2026-10-23T01:14:16.812Z",
+    "all_groups_equal": true,
+    "groups": {
+      "business_controls": {
+        "rows": 1,
+        "unchanged": true,
+        "sha256": "19600147b597694f685efa625f83db9431481e538b2e0c0ef2102f16be98bffd"
+      },
+      "marketing_controls": {
+        "rows": 1,
+        "unchanged": true,
+        "sha256": "cd19324b7aedb466a72f6d4a16604a75d45d4c84d4903e9a7262b5d3dd045388"
+      },
+      "research_control": {
+        "rows": 1,
+        "unchanged": true,
+        "sha256": "edc9916cca9d925193c9af4941e9eb7d41e82f7508e6aac535f7cc84f2533c4e"
+      },
+      "application_controls": {
+        "rows": 1,
+        "unchanged": true,
+        "sha256": "c3ccee2e92a4ca02c84097a4c4a4ce78d9e69ff55558f54c65422e1668e74854"
+      },
+      "source_controls": {
+        "rows": 2,
+        "unchanged": true,
+        "sha256": "c0aba70deaeb9ad1a0e45be96fa9e792dc3d7d3b0812fa5b92e5d9e79c032cdc"
+      },
+      "marketing_briefs": {
+        "rows": 15,
+        "unchanged": true,
+        "sha256": "65b6a0745fd86c3e633d42977fd88828d4a566b800d4d946947d19509c14fd4f"
+      },
+      "marketing_receipts": {
+        "rows": 12,
+        "unchanged": true,
+        "sha256": "d930a98daca313489c2895474dd1d0d639fbbb7acdc7207976668617274b9337"
+      },
+      "source_budget": {
+        "rows": 1,
+        "unchanged": true,
+        "sha256": "960bbe9eeb35e6436d0ccfc93f30889977117d8975e077503b0346236a65f616"
+      },
+      "ai_budget": {
+        "rows": 1,
+        "unchanged": true,
+        "sha256": "d65c2e382528dde0f7c1035df4d97626a7bbecfe7b866239dd33c717a23c5c4b"
+      },
+      "business_runs": {
+        "rows": 2,
+        "unchanged": true,
+        "sha256": "8b8d50d664b07dad27a051a254da5f42d8b1afc0cb28ca3218dc9c0e809cb9a2"
+      },
+      "source_runs": {
+        "rows": 2,
+        "unchanged": true,
+        "sha256": "8a4945e957be6985b24e72eee06d5304c5727600e5263fe97a794f9f0736bd30"
+      },
+      "marketing_runs": {
+        "rows": 2,
+        "unchanged": true,
+        "sha256": "7b3a6c5f43b2a67564be8ae565d4e8f65a64817a78dee3f1b95d8445ee0e7f31"
+      },
+      "issues": {
+        "rows": 5,
+        "unchanged": true,
+        "sha256": "3165891ac783db3a2009422ee4d18deee1cd3851e2d9e3c73a7ef23c604f1b7e"
+      },
+      "foreign_keys": {
+        "rows": 0,
+        "unchanged": true,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    "ai_starts": 1,
+    "ai_calls": 2,
+    "source_reservations": 96,
+    "foreign_key_errors": 0
+  },
+  "existing_discovery_review": {
+    "lead_id": "d0e6e2f3-59ed-4330-855b-bbe327bbe31c",
+    "revision": 2,
+    "source_url": "https://teaching-vacancies.service.gov.uk/jobs/maths-teacher-50a66033-ac36-4fd1-b48a-8ee9b38f9d48",
+    "employer": "Outwood Academy Hemsworth",
+    "role": "Maths Teacher",
+    "decision": "rejected",
+    "reason_category": "Original DfE page explicitly expired; no current application route",
+    "method": "agent_assisted",
+    "source_observed_at": "2026-10-23T01:14:25.071Z",
+    "saved_at": "2026-10-23T01:19:37.338Z",
+    "read_back_at": "2026-10-23T01:19:57.007Z",
+    "posting_time": null,
+    "source_posting_date": "2026-10-20",
+    "deadline": "2026-10-21T08:00:00.000Z",
+    "follow_up_at": null,
+    "historical_positive_quote_preserved": true,
+    "all_prior_rows_preserved": true,
+    "counts_before_after": {
+      "leads": [
+        28,
+        28
+      ],
+      "revisions": [
+        73,
+        74
+      ],
+      "audits": [
+        62,
+        63
+      ]
+    },
+    "new_leads_added": 0,
+    "public_jobs_changed": 0,
+    "overdue_discovery_before_after": [
+      6,
+      5
+    ],
+    "unresolved_before_after": [
+      8,
+      7
+    ]
+  },
+  "cloud_observations": {
+    "business": {
+      "id": "business-497976",
+      "trigger": "scheduled",
+      "application_state": "attention",
+      "finished_at": "2026-10-23T00:46:13.639Z",
+      "platform": "Completed/Success",
+      "open_findings": 10,
+      "high_findings": 2
+    },
+    "sources": {
+      "id": "scheduled-1792715455003",
+      "finished_at": "2026-10-23T00:31:57.850Z",
+      "platform": "Completed/Success",
+      "published_sources": 37,
+      "paused_skips": 1,
+      "reservations": 84
+    },
+    "company_report_review": {
+      "id": "marketing-2026-10-22",
+      "policy": "sourced-guides-report-schema-v8",
+      "calls": 1,
+      "brief_id": "bbbfd315-3bd4-4d64-b992-9af9d8d8a695",
+      "brief_version": 2,
+      "brief_revision": 3,
+      "finished_at": "2026-10-22T00:46:16.280Z",
+      "platform": "Completed/Success",
+      "last_step": "recheck-company-report-review-1",
+      "critic_checks": 2,
+      "critic_publishable": true,
+      "publication": "none",
+      "acceptance": "Real schema-constrained report review executed; no native delivery or independent human quality acceptance"
+    },
+    "vacancy_review": {
+      "id": "marketing-2026-10-23",
+      "calls": 2,
+      "brief_id": "1a0e0cc2-f7b7-4f76-832e-95c3572c94ad",
+      "state": "reviewed",
+      "platform": "Completed/Success",
+      "publication": "none",
+      "future_slot_is_not_schedule": true
+    }
+  },
+  "public_catalogue": {
+    "observed_at": "2026-10-23T01:09:10.581Z",
+    "roles": 1025,
+    "employers": 37,
+    "sponsorship_mentions": 52,
+    "offered": 20,
+    "conditional": 32,
+    "licence_linked": 983,
+    "early_career": 75,
+    "salary_stated": 186
+  },
+  "marketing_provider": {
+    "brand_id": 7294726,
+    "timezone": "Europe/London",
+    "facebook_page_id": "1319703417896763",
+    "instagram": "sponsorintellondon",
+    "range_from": "2026-10-16T00:00:00+01:00",
+    "range_to": "2026-11-06T23:59:59+00:00",
+    "returned_published_facebook_ids": [
+      "397276739",
+      "398874739"
+    ],
+    "pending_rows": 0,
+    "instagram_rows": 0,
+    "native_linkedin_queue_rechecked": false,
+    "whatsapp_queue_rechecked": false,
+    "new_schedules": 0
+  },
+  "runtime_head_checks": {
+    "head": "d3967508780b35c4f4a596d1c7270acb1135cb36",
+    "linux_ids": [
+      "120183802407",
+      "120183789159"
+    ],
+    "linux": "Both blocked before execution by account billing; annotations inspected",
+    "gitguardian_id": "120183803066",
+    "gitguardian": "Neutral; scan skipped because PR exceeds configured size limit"
+  },
+  "manual_external_actions": {
+    "production_ai_calls": 0,
+    "google_calls": 0,
+    "forced_source_workflows": 0,
+    "social_schedules_or_sends": 0,
+    "email_tests": 0,
+    "applications": 0,
+    "purchases": 0,
+    "budget_resets": 0,
+    "source_approvals": 0,
+    "source_resumes": 0
+  },
+  "limitations": [
+    "Tests and schema checks are not customer disaster recovery.",
+    "Review model agreement is not independent semantic quality or verified publication.",
+    "Application comparison has 20 of 20 cases executed, 57 completed outputs, 40 assessed and 17 unassessed; no promotion.",
+    "Selected-catalogue counts are not market coverage or personal eligibility.",
+    "Complete-day usage has 153 page events and one account-created event, not unique-user or conversion evidence."
+  ]
+}

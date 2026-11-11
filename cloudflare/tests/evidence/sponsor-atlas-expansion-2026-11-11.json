@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-11T19:04:38.576283+00:00",
+  "operation": "offline_atlas_retained_research_expansion",
+  "base_head": "c84dd7c93ccbb78abfe94195a0b6693ce2e64918",
+  "status": "locally_verified_delivered_not_deployed",
+  "source": {
+    "schema_version": 1,
+    "operation": "offline_register_research_pack",
+    "source_date": "2026-11-11",
+    "observed_at": "2026-11-11T15:46:45.099861+00:00",
+    "source_url": "https://assets.publishing.service.gov.uk/media/6af4446004988992d226eb76/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-11-11.csv",
+    "source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+    "source_rows": 143009,
+    "grouped_entries": 127873,
+    "distinct_names": 127310,
+    "row_reconciliation": "all_source_records_retained",
+    "network_requests_by_builder": 0,
+    "production_writes": 0,
+    "business_enrichment": "retained_evidence_requires_review",
+    "retained_evidence_entries": 10,
+    "retained_evidence_claims": 39,
+    "retained_evidence_observations": 25,
+    "newly_verified_businesses": 0,
+    "evidence_packet_sha256": "44be39f7d6a32204263a6f66d44fe7f021e93050503928df41f0d24c7ede05a2",
+    "files": {
+      "data.json": {
+        "bytes": 69549321,
+        "sha256": "dea5ef660db88d5e2eb87ad785fa8ddff909077d7ca21e987dc947a6a2a3614f"
+      },
+      "index.html": {
+        "bytes": 69756269,
+        "sha256": "71650caea8099ca2c283d28180ce78560b0efe97eae00778950b2d11cb3d2149"
+      },
+      "register-entries.csv": {
+        "bytes": 25300506,
+        "sha256": "f9299103aead641b0f7c4cd555a6c8df6227ad7c33c1cc66dbd7cad551b28d3f"
+      },
+      "README.md": {
+        "bytes": 6449,
+        "sha256": "ce5c18053d2dd950c2ae9e5f96b3280a36895d3350ecc1a75cc4cf72c62a99c3"
+      },
+      "register-comparison.csv": {
+        "bytes": 72910297,
+        "sha256": "626c6fedb88032238ab1b70d5c7d47b26b886026cb777271d277571fe6e9ead3"
+      }
+    },
+    "comparison": {
+      "schema_version": 1,
+      "match_basis": "normalized_name_city_county_exact",
+      "earlier_source_url": "https://assets.publishing.service.gov.uk/media/6abf628355bc01d752a7f28a/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-02.csv",
+      "earlier_source_date": "2026-10-02",
+      "earlier_observed_at": "2026-10-04T07:58:43.247144+00:00",
+      "earlier_source_sha256": "67a7bcb01f31570fa906584ee429ed4d5a5fabf17e5b914b9bc42656c8743ac1",
+      "current_source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "counts": {
+        "present_both": 125951,
+        "current_only": 1922,
+        "earlier_only": 1951,
+        "matched_pairs_changed": 97,
+        "matched_variants_changed": 67,
+        "changed_matched": 160,
+        "unchanged_matched": 125791,
+        "matched_source_row_count_changed": 219,
+        "matched_duplicate_count_changed": 182,
+        "matched_pairs_added": 90,
+        "matched_pairs_removed": 59,
+        "union_entries": 129824,
+        "earlier_source_rows": 143138,
+        "earlier_grouped_entries": 127902,
+        "earlier_duplicate_source_rows": 689,
+        "current_source_rows": 143009,
+        "current_grouped_entries": 127873,
+        "current_duplicate_source_rows": 624
+      },
+      "row_reconciliation": "all_records_retained_in_each_snapshot",
+      "business_evidence_carried_forward": 0
+    }
+  },
+  "evidence_packet": {
+    "path": "docs/data/sponsor-atlas-expanded-evidence-2026-11-11.json",
+    "sha256": "44be39f7d6a32204263a6f66d44fe7f021e93050503928df41f0d24c7ede05a2",
+    "schema_version": 2,
+    "subjects": 10,
+    "claims": 39,
+    "records": 25,
+    "original_exact_observations": 6,
+    "added_date_only_reviews": 19,
+    "newly_verified_businesses": 0,
+    "field_claim_counts": {
+      "business_name": 9,
+      "relationship": 8,
+      "website": 3,
+      "activity": 2,
+      "locations": 2,
+      "official_identifier": 8,
+      "careers_url": 7
+    }
+  },
+  "code_sha256": {
+    "cloudflare/scripts/build-sponsor-dossiers.py": "df5eb0fe2b2d13b2114f79539a627b44185d395fe0460409307476c842160a95",
+    "cloudflare/scripts/sponsor-dossiers-template.html": "eae4a8bf2b8968673b4bfe43da011bc9a6cee80a47d03ca5839ab54536741d21",
+    "cloudflare/tests/test_sponsor_dossiers.py": "7a41adbfced8b455154d0574904c8dbf383406bc4110517c9a453a4951aaa73c",
+    "cloudflare/tests/sponsor-dossier-review-date-browser.mjs": "010b492c17bdb7541778631545b2539036897bfba910528a26eca77eecc1c58f",
+    "cloudflare/tests/sponsor-dossiers-browser.mjs": "283a45fdf1bf943056c6da77a9122f37e37610de9a605e83eade07cac4279386"
+  },
+  "validation": {
+    "python": {
+      "operation": "retained_review_date_schema2_validation",
+      "tests": {
+        "passed": 43,
+        "failed": 0,
+        "log": "/tmp/si-review-date-unit-20261111-01.log"
+      },
+      "schema1_byte_compatibility": [
+        {
+          "case": "evidence-False-comparison-False",
+          "all_files_byte_identical": true,
+          "files": {
+            "index.html": "404ee5e4cd187abc2b056e21415ed2866868334c2f7eab8eed55b8bc991f1f74",
+            "data.json": "5c80bbd8608f8138a69e1ac5214771db34573536027fc87725ac3e590c7e5da0",
+            "README.md": "00596984545b8f462e7539b799ac2524c45832db8e179f79f6a3ad54a7a798e6",
+            "register-entries.csv": "36c087012bfb85e48828e5ff1bc09ab1a1f4a973ee46d68b174647b7f53be2d3",
+            "receipt.json": "ff92104136a3d74ffcc110ec7b5ae129592238b996571d19a8ee78df3bf925ea"
+          }
+        },
+        {
+          "case": "evidence-False-comparison-True",
+          "all_files_byte_identical": true,
+          "files": {
+            "index.html": "6952596dac2009ca66a9f18b3b83f0b73c9bba30f64bb72bfcaa3b551c214069",
+            "data.json": "8ac56b93044b1e446f25de4dd86b800c3d768a10a8fa1d3dfb15e6beb4b7a896",
+            "README.md": "0225e08cc8c123edac726c985abe7ed0420db41a965a13bc6e9b3f6cd633bdf8",
+            "register-comparison.csv": "c9d394bdfc07dd8f10263ac2682f48e63c6689841f492d0d36f5edcc15b40a7a",
+            "register-entries.csv": "36c087012bfb85e48828e5ff1bc09ab1a1f4a973ee46d68b174647b7f53be2d3",
+            "receipt.json": "5c3b996895364391f8074bffd581da7f1c3d9b45fcd33f4cd0e88b934f6aa441"
+          }
+        },
+        {
+          "case": "evidence-True-comparison-False",
+          "all_files_byte_identical": true,
+          "files": {
+            "index.html": "4259182a51cc03fe58c5d420f61d7cf98930c576daad4437f7fd2afe611b9115",
+            "data.json": "b5ef5c7e6dd19ad5fb02cd15e152f32acb6541295ef2818f5421d2b565af3e18",
+            "README.md": "2ae8641b92deae47570a97f85546efb10bf2240f97ee7c7987f6d2feadf89639",
+            "register-entries.csv": "4348d9998e73382eec7df3a53622a2fe2c6b08237b29d43ff272cd3e2dcfebb5",
+            "receipt.json": "316e2d88c0022351d37362bc301277da6d97c988360daf1f637441a70829c783"
+          }
+        },
+        {
+          "case": "evidence-True-comparison-True",
+          "all_files_byte_identical": true,
+          "files": {
+            "index.html": "72e89fc9ce4f8fb693edb6917be74549fb8e77bafbb87a3e5edfdf47c96df965",
+            "data.json": "631c34804d3738fef469f39952c2f2082648f4eb82d07af944a85aa7aa105c49",
+            "README.md": "cb7b8d89e67bc2b59f55abb3e9932540d6be3392bfb87c246a8f5d0b1007b7f3",
+            "register-comparison.csv": "c9d394bdfc07dd8f10263ac2682f48e63c6689841f492d0d36f5edcc15b40a7a",
+            "register-entries.csv": "4348d9998e73382eec7df3a53622a2fe2c6b08237b29d43ff272cd3e2dcfebb5",
+            "receipt.json": "251c59e770239336ed0e1340932dffb3ae103ea1cadc7c83661623e37234d461"
+          }
+        }
+      ],
+      "builder_sha256": "df5eb0fe2b2d13b2114f79539a627b44185d395fe0460409307476c842160a95",
+      "tests_sha256": "7a41adbfced8b455154d0574904c8dbf383406bc4110517c9a453a4951aaa73c",
+      "network_requests": 0,
+      "production_writes": 0
+    },
+    "real_pack_browser": {
+      "observed_at": "2026-11-11T18:59:58.176Z",
+      "scope": "local offline generated register pack",
+      "source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "entries": 127873,
+      "historical_subjects": 10,
+      "historical_claims": 39,
+      "newly_verified_businesses": 0,
+      "load_ms_local": 3585,
+      "checks": [
+        "complete embedded entry count",
+        "only one page rendered",
+        "paired source row denominator shown",
+        "pagination changes entries",
+        "pagination restores first page",
+        "combined filters match independent data calculation",
+        "selected dossier names exact entry",
+        "route-rating pairs survive display",
+        "unverified business fields stay unknown",
+        "research plan uses exact organisation",
+        "actual saved dossier export retains source and unknown state",
+        "Escape closes dialog and restores focus",
+        "empty results are explicit",
+        "clear restores directory",
+        "historical filter count matches supplied subjects",
+        "every real historical dossier displays all claims and exports exact source/date/follow-up evidence without current-job claims",
+        "mobile page has no horizontal overflow",
+        "mobile dossier fits viewport",
+        "real historical mobile dossier fits viewport",
+        "no page errors",
+        "no background network requests"
+      ],
+      "errors": [],
+      "unexpected_requests": [],
+      "production_requests": 0
+    },
+    "review_date_browser": {
+      "observed_at": "2026-11-11T18:59:46.618Z",
+      "scope": "fictional offline review-date versus observation-timestamp UI",
+      "success": true,
+      "checks": [
+        "Mixed-kind claim summary distinguishes the exact observation from the unchanged calendar review date, without time-zone or midnight invention",
+        "Expanded evidence uses the correct review label and exact calendar date; timestamped evidence remains exact",
+        "Hostile review summaries and claim text remain literal; unsafe source URL is not linked",
+        "Actual saved schema 2 download preserves null/date/kind, old due date and every evidence reference without promoting business fields",
+        "390px mixed evidence has no horizontal overflow and Escape restores trigger focus",
+        "Schema 1 retains its original observation display and exact timestamp-only saved payload",
+        "No-evidence baseline remains uncollected and usable",
+        "No external page requests or browser errors"
+      ],
+      "error": null,
+      "template_sha256": "eae4a8bf2b8968673b4bfe43da011bc9a6cee80a47d03ca5839ab54536741d21",
+      "artifacts": "/var/folders/nv/1zpk2cld1nv26b8fv7xtp78w0000gn/T/si-review-date-browser-sOhKAK",
+      "browser_timezone": "Pacific/Honolulu",
+      "external_requests": [],
+      "browser_errors": [],
+      "production_reads": 0,
+      "production_writes": 0
+    },
+    "full_data": {
+      "verified_at": "2026-11-11T18:59:52.984430+00:00",
+      "status": "passed",
+      "checks": {
+        "all_127873_latest_entries_exact": true,
+        "entire_129824_key_comparison_exact": true,
+        "all_source_metadata_exact": true,
+        "comparison_csv_byte_identical": true,
+        "all_latest_csv_register_columns_exact": true,
+        "csv_changed_subject_rows": 10,
+        "csv_original_two_subject_rows_change_only_packet_digest": true,
+        "csv_eight_added_subject_rows_match_exact_selected_claims": true,
+        "original_two_subjects_six_observations_and_due_dates_exact": true,
+        "all_10_subject_bindings_and_39_claims_exact": true,
+        "all_25_retained_receipt_hashes_match": true,
+        "date_only_records_keep_null_observation_times": 19,
+        "original_timestamped_observations_preserved": 6,
+        "all_output_hashes_and_build_code_hashes_match": true,
+        "newly_verified_businesses": 0
+      },
+      "field_claim_counts": {
+        "business_name": 9,
+        "relationship": 8,
+        "website": 3,
+        "activity": 2,
+        "locations": 2,
+        "official_identifier": 8,
+        "careers_url": 7
+      },
+      "prior_independent_full_register_validation": "cloudflare/data/atlas-comparison-2026-11-11/evidence/si-atlas-comparison-full-verification-20261111.json",
+      "all_source_and_comparison_rows_inherit_that_acceptance_by_exact_equality": true,
+      "network_calls": 0,
+      "production_calls": 0,
+      "verifier_sha256": "b310baaed85f10bcfc6f088f4a7b31461a8964b133ec7c1e757bc473094dde38"
+    },
+    "semantic_review": {
+      "observed_at": "2026-11-11T19:03:09.639398+00:00",
+      "scope": "independent retained packet review",
+      "subjects": 10,
+      "claims": 39,
+      "evidence_records": 25,
+      "distinct_receipt_files": 13,
+      "status": "no_material_issue",
+      "checks": [
+        "exact snapshot/key/name/town/county/source-row binding",
+        "all distinct retained receipt hashes match actual bytes",
+        "Eucalyptus and Callosum remain group relationships",
+        "Callosum parent operator and licensed subsidiary identifiers stay distinct",
+        "Sequence and Wintermute operating relationships supported by retained identity chains",
+        "Eastern MAT identifier only, no school or advert authority inferred",
+        "date-only records retain null observation time",
+        "all currentness and production holds preserved"
+      ],
+      "external_calls": 0,
+      "files_changed_by_reviewer": 0,
+      "attribution": "Agent-assisted independent review; not independent human or fresh primary-source verification"
+    },
+    "screenshots_visually_inspected": true,
+    "initial_findings": {
+      "first_pack": "pack-01",
+      "data_assertion_failure": "Latest register CSV includes evidence columns: expansion legitimately changes eight new subject rows and only packet digest on two preserved pilot rows. Comparing the entire file byte-for-byte was too broad; register fields and comparison CSV must remain exact.",
+      "browser_assertion_failure": "Browser serializes https://www.wintermute.com with a trailing slash; the saved source string remains exact. Harness now compares parsed URL href; downloaded evidence comparison remains byte/value exact.",
+      "presentation_refinement": "Business / brand name label includes group-context brands without implying they are trading names. No current business approval added.",
+      "first_failed_browser_log": "baseline-browser.log",
+      "first_verifier_exit_code": 1
+    },
+    "initial_fictional_screenshot_selector_failure_retained": true
+  },
+  "delivery": {
+    "delivered_at": "2026-11-11T19:03:17.920149+00:00",
+    "folder": "/Users/balabollineni/Documents/ChatGPT/Sponsor Intel/Sponsor company atlas 2026-11-11 expanded",
+    "zip": "/Users/balabollineni/Documents/ChatGPT/Sponsor Intel/Sponsor company atlas 2026-11-11 expanded.zip",
+    "zip_bytes": 65568551,
+    "zip_sha256": "13bbd4c6c9956e66e37aec0e81f9276e26fa226ce044e22fcf91715e887603d7",
+    "files": {
+      "index.html": {
+        "bytes": 69756269,
+        "sha256": "71650caea8099ca2c283d28180ce78560b0efe97eae00778950b2d11cb3d2149"
+      },
+      "data.json": {
+        "bytes": 69549321,
+        "sha256": "dea5ef660db88d5e2eb87ad785fa8ddff909077d7ca21e987dc947a6a2a3614f"
+      },
+      "register-entries.csv": {
+        "bytes": 25300506,
+        "sha256": "f9299103aead641b0f7c4cd555a6c8df6227ad7c33c1cc66dbd7cad551b28d3f"
+      },
+      "register-comparison.csv": {
+        "bytes": 72910297,
+        "sha256": "626c6fedb88032238ab1b70d5c7d47b26b886026cb777271d277571fe6e9ead3"
+      },
+      "README.md": {
+        "bytes": 6449,
+        "sha256": "ce5c18053d2dd950c2ae9e5f96b3280a36895d3350ecc1a75cc4cf72c62a99c3"
+      },
+      "receipt.json": {
+        "bytes": 2967,
+        "sha256": "3336b1b5b8aec61a9b25d258a0f28e11e92421b66d9b370cf7ec7b214b50603e"
+      }
+    },
+    "all_copied_files_match": true,
+    "all_zip_member_hashes_match": true,
+    "zip_crc_pass": true,
+    "prior_editions_preserved": true
+  },
+  "bounds": {
+    "network_enrichment_requests": 0,
+    "production_requests": 0,
+    "new_leads": 0,
+    "model_calls": 0,
+    "google_calls": 0,
+    "sends": 0,
+    "migrations": 0,
+    "deployments": 0,
+    "current_owner_controls": "unavailable_after_previously_observed_quota_exhaustion",
+    "identity_desk_limit": 500,
+    "goal": "active",
+    "capacity_and_original_supervisor_holds": "unchanged",
+    "newly_verified_businesses": 0
+  },
+  "raw_evidence_directory": "cloudflare/data/atlas-expanded-2026-11-11",
+  "hosted_ci": "inspect_exact_pushed_head_and_preserve_billing_block_distinction",
+  "pull_request": "existing_1_draft_open_unmerged",
+  "preservation_audit": {
+    "path": "cloudflare/data/atlas-expanded-2026-11-11/preservation-audit.json",
+    "sha256": "99ca03a7671fdca060bd4d9e548ea048ef7bd7ef89f998c91417dd2f0fada90c",
+    "result": "all_eight_unrelated_tracked_files_package_lock_and_private_archive_match",
+    "scope": "before_acceptance_documentation_edits; those later edits are atlas records only"
+  }
+}

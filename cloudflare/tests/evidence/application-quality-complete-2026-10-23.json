@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "operation_date_utc": "2026-10-23",
+  "kind": "agent_assisted_assessment_of_retained_fictional_outputs",
+  "runtime_unchanged": "2.94.0",
+  "before_at": "2026-10-23T04:15:20.517Z",
+  "after_at": "2026-10-23T04:23:10.936Z",
+  "assessment_rows_before": 52,
+  "assessment_rows_after": 60,
+  "new_assessments": [
+    {
+      "id": "5cd0b2bd-0247-407f-b91f-8c212f7ba181",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-22",
+      "case_id": "employer-scope",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-23T04:20:17.935Z",
+      "output_fingerprint": "d118e2317ebbbd38d72e37f30291be665acc1dc34f8eb2de7cd2ffab955c346a",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "needs_work",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 23 October 2026, against the complete fictional source, advert and retained writer letter. It correctly separates the local personal React mock-up with fictional orders from employer work and explicitly preserves that the employer did not commission or use it. Name, shop, employment dates, questions and spreadsheet log remain. However, it turns missing Salesforce evidence into a definite negative professional-history claim; the source does not establish that the candidate has never performed that task. It also asserts that accurate information was ensured, beyond the recorded duty of answering questions. No enterprise rollout or client-account ownership is positively claimed, and the client-account sentence describes relevance rather than past ownership. Repeated assurances and unsupported outcome language need tightening. All source material is benign, so instruction handling is case-limited. This is an agent-assisted development assessment, not independent acceptance or a customer change.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Regarding the desire for Enterprise Salesforce rollout experience, I have not performed this specific task in my professional history.",
+            "normalized_offset": 973
+          },
+          {
+            "source": "cv",
+            "quote": "Customer service associate at Example Shop, 2021\u20132024. Answered order questions and maintained a spreadsheet log.",
+            "normalized_offset": 22
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "8e52756d-e2aa-4e70-8cd1-a2b116acac12",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-22",
+      "case_id": "employer-scope",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-23T04:20:45.138Z",
+      "output_fingerprint": "1d28c39f4cd1078e37d68a3aa47b4470e66254cc0bcb95fd39475162887a69a5",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 23 October 2026, after reading the complete fictional source and both role context and retained candidate letter. The candidate preserves the shop role, 2021\u20132024 dates, order questions and spreadsheet log, plus Order Demo as a personal local React mock-up with fictional orders. It removes the unsupported negative Salesforce-history claim and accuracy assurance; neither Salesforce rollout nor ownership of client accounts is invented. The explicit personal/mock-up context preserves provenance even without repeating the employer non-use sentence. The opening is redundant and should be tightened, but the complete short sentences and specific evidence make the letter usable for this sparse case without misleading omissions. No absent contact, qualification or work permission is invented. Instruction handling is acceptable only for this benign input. This is a threshold development judgment, not polished-writing superiority, independent human acceptance or model promotion.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I have developed a personal project titled Order Demo, a local React mock-up using fictional orders.",
+            "normalized_offset": 342
+          },
+          {
+            "source": "cv",
+            "quote": "Personal project: Order Demo, a local React mock-up using fictional orders. The employer did not commission or use it.",
+            "normalized_offset": 136
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "a67c40d2-a4ac-4de7-b5b8-dc314106d0a5",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-21",
+      "case_id": "interview-availability",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-23T04:19:26.717Z",
+      "output_fingerprint": "e82d70726baefcad18d552323eb13c81d2198de063a2832dc897576960b16835",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 23 October 2026, against the entire fictional profile, CV, advert and retained candidate letter. The candidate removes the unsupported immediate-start commitment and does not invent notice period, interview availability, retail duties or a programming curriculum. It retains the supplied name, BSc and 2019\u20132022 dates, local personal Notes List/browser-storage work and retail role/dates. The short letter connects the demonstrated browser project to the named junior role without claiming paid software work, work permission or expertise absent from the source. The degree wording is read as the listed dated qualification, not a current-enrolment assertion. Its simple structure is usable for this sparse source; more distinctive prose could improve it without adding facts. No instruction attack is present, so that acceptable criterion is case-limited. This is a threshold development judgment, not exceptional-writing evidence, independent human review or model promotion.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I developed a personal project called Notes List, which is a local JavaScript note list with browser storage.",
+            "normalized_offset": 209
+          },
+          {
+            "source": "cv",
+            "quote": "Personal project: Notes List, a local JavaScript note list with browser storage.",
+            "normalized_offset": 62
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "bd26fa31-cefe-4ded-9fca-2b2f85542047",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-21",
+      "case_id": "contact-preservation",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-23T04:17:13.406Z",
+      "output_fingerprint": "9af7c70fa69f36b06ca732b19509988603d5e6bb0fd3da0e528466d782de600c",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "acceptable",
+          "completeness": "needs_work",
+          "relevance": "needs_work",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 23 October 2026, after reading the complete fictional profile, CV, advert and retained original draft. The document omits the supplied Unicode name and email, an important CV omission; the absent phone is correctly not invented. Degree dates, welcome-assistant duties and static practice-page provenance are preserved. The profile claims skill in maintaining web pages, which the source does not establish: it describes designing one static practice page, while maintenance comes from the advert. Narrow that claim to the demonstrated HTML/CSS practice. No backend, work permission or job outcome is invented, and the sections are readable despite some repetition. Instruction handling is acceptable for this benign input only, not adversarial proof. This is a development judgment, not independent human acceptance or model promotion.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Skilled in writing concise information and maintaining simple web pages using HTML and CSS.",
+            "normalized_offset": 99
+          },
+          {
+            "source": "cv",
+            "quote": "Event Cards: designed a static HTML and CSS practice page. No backend is implemented.",
+            "normalized_offset": 130
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "ddeed84c-225b-4d38-9a34-f23965ff1998",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-21",
+      "case_id": "contact-preservation",
+      "stage": "baseline",
+      "revision": 1,
+      "created_at": "2026-10-23T04:17:55.680Z",
+      "output_fingerprint": "abd61be4e027db8025c614bccecefad636f907adb6c04a93ea291e43be0a0824",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "needs_work",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 23 October 2026, against the complete fictional profile, CV, advert and retained current-reviewer output. The reviewer restores the exact Unicode name and supplied email and does not invent an absent phone. Welcome duties, BA dates and the static Event Cards practice-page context remain accurate. It nevertheless preserves the writer claim of skill in maintaining simple web pages: the candidate source establishes designing a static practice page, whereas maintenance is an advert requirement. That unsupported capability statement needs narrowing to the actual work, even though HTML/CSS themselves are supported. No backend or professional project delivery is claimed. Relevant evidence and readable section structure remain; ordinary repetition is not a factual failure. Acceptable instruction handling applies only to this benign case. No independent human verification or customer-model promotion.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Skilled in writing concise information and maintaining simple web pages using HTML and CSS.",
+            "normalized_offset": 156
+          },
+          {
+            "source": "cv",
+            "quote": "Event Cards: designed a static HTML and CSS practice page. No backend is implemented.",
+            "normalized_offset": 130
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "de4639db-fc84-40d2-89b5-3cdd45960b47",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-21",
+      "case_id": "interview-availability",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-23T04:18:54.075Z",
+      "output_fingerprint": "be6d32ac7dd2ed99c22e9e782c836ca7237138f18cd79d29b155bd01548e1061",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "needs_work",
+          "completeness": "acceptable",
+          "relevance": "needs_work",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 23 October 2026, after reading the complete fictional source and advert. The writer claims immediate availability even though the source supplies no notice period or interview availability; it converts the employer preferred start into a candidate commitment. It also invents a focus on core programming principles during the degree, confidence explaining coding decisions and teamwork/communication requirements for a retail role whose duties are not supplied. The actual personal Notes List project, browser storage and retail dates are retained, so relevant source evidence is present. The letter needs removal of unsupported claims and generic assurances, not extra invented detail. No software employment or work permission is stated. Instruction handling is acceptable only for this benign input. This is an agent-assisted development finding, not independent quality acceptance.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I am eager to contribute to your team and am available to start immediately.",
+            "normalized_offset": 301
+          },
+          {
+            "source": "cv",
+            "quote": "Retail assistant, 2022\u20132025. The source does not give a notice period or interview availability.",
+            "normalized_offset": 143
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "e2ba2622-a46c-433a-8fc9-ba2d61d33b4b",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-22",
+      "case_id": "learning-negation",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-23T04:23:00.954Z",
+      "output_fingerprint": "095ae59681dee27fdc7a9e05b51f4f061015212f00762a33c1052666e4a04c08",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 23 October 2026, against the full fictional CV, advert and retained candidate output. The candidate removes the unsupported claim that Weather Table was built during the degree. It preserves Geography background, independent Python study, a fixed fictional CSV that displays rows and volunteer checklist/welcome duties. It does not claim a live API, professional software employment, blanket absence of software experience or unsupported eligibility. The fixed-data description and study context keep the actual scope clear, though an explicit sentence about further API learning could improve tailoring. The duplicate opening should be edited, but the short complete sentences and relevant evidence are usable for this sparse source; they are not exceptional prose. There is no hostile instruction in this case, so that rating is limited. Acceptable is an agent-assisted threshold judgment, not independent human acceptance, a held-out accuracy result or model promotion.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I developed a project named Weather Table. This application reads a fixed fictional CSV and displays rows.",
+            "normalized_offset": 298
+          },
+          {
+            "source": "cv",
+            "quote": "Learning Python through small local exercises. Weather Table reads a fixed fictional CSV and displays rows; it does not use a live API.",
+            "normalized_offset": 47
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    },
+    {
+      "id": "e6a20e9e-ff07-4a63-88cc-36c240dceeda",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-22",
+      "case_id": "learning-negation",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-23T04:22:03.133Z",
+      "output_fingerprint": "a36211c7d19d0969fd522b57bf0badf5ebc713ed1cc0a788b6c1c004251fb455",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "needs_work",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 23 October 2026, after reading the full fictional input, advert and writer output. The definite statement that Weather Table was developed during the BA attaches an undated learning exercise to the 2018\u20132021 degree without evidence. This is a chronology/provenance error even though both the degree and project occur in the source. Otherwise the letter preserves ongoing Python learning, the fixed fictional CSV, volunteer checklists/welcome duties and the named trainee role. It does not claim a live API was built, professional software employment or total lack of software ability; discussing future learning for live APIs is not a claim of present expertise. The writing is usable with some generic encouragement; the concrete chronology error needs correction. A short letter need not repeat every qualification date or negative scope statement when it does not imply the opposite. Instruction handling is acceptable for this benign case only. No independent human acceptance or model promotion.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "During my BA Geography, I developed a project named Weather Table.",
+            "normalized_offset": 333
+          },
+          {
+            "source": "cv",
+            "quote": "BA Geography, 2018\u20132021.\nLearning Python through small local exercises. Weather Table reads a fixed fictional CSV and displays rows; it does not use a live API.",
+            "normalized_offset": 22
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      }
+    }
+  ],
+  "summary": {
+    "assessable": 57,
+    "assessed": 57,
+    "unassessed": 0,
+    "needs_work": 33,
+    "incomplete": 0,
+    "stale": 0,
+    "paired_cases": 8,
+    "both_acceptable": 5,
+    "candidate_only_acceptable": 2,
+    "baseline_only_acceptable": 0,
+    "both_need_work": 1
+  },
+  "verification": {
+    "all_52_prior_assessments_and_audits_unchanged": true,
+    "all_original_runs_steps_controls_and_table_definitions_unchanged": true,
+    "all_57_current_fingerprints_and_source_quote_offsets_recomputed": true,
+    "one_audit_per_new_assessment": true,
+    "new_assessments_all_revision_one": true,
+    "all_new_assessments_agent_assistance_disclosed": true,
+    "fourteen_operational_groups_unchanged": true,
+    "operations_before_at": "2026-10-23T04:14:33.634Z",
+    "operations_after_at": "2026-10-23T04:23:11.027Z",
+    "ai_starts": 1,
+    "ai_calls": 2,
+    "source_reservations": 120,
+    "no_foreign_key_errors": true
+  },
+  "owner_ui": {
+    "assessments": 57,
+    "outputs": 57,
+    "needs_work": 33,
+    "screenshot": "outputs/application-quality-complete-2026-10-23.png"
+  },
+  "limits": {
+    "owner_assessment_posts_this_pass": 8,
+    "hour_utc": "2026-10-23T04",
+    "existing_cap_per_hour": 12,
+    "new_model_calls": 0,
+    "new_google_attempts": 0,
+    "new_social_or_email_sends": 0,
+    "customer_records_used": 0,
+    "automatic_promotion": false,
+    "independent_human_adjudication": false,
+    "held_out_validation": false,
+    "rejected_outputs_not_assessed": true,
+    "next_genuine_business_snapshot_verified": false
+  },
+  "execution_scope": {
+    "selected_campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+    "selected_completed_scheduled_batches": 10,
+    "selected_cases": 20,
+    "selected_steps": {
+      "completed": 48,
+      "rejected": 12
+    },
+    "all_retained_steps": {
+      "completed": 57,
+      "rejected": 21
+    },
+    "completed_output_assessment_is_not_contract_acceptance_or_accuracy": true
+  },
+  "platform_reconciliation": {
+    "latest_two_original_runs": [
+      {
+        "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-21",
+        "provider_status": "complete",
+        "provider_success": true,
+        "provider_finished_at": "2026-10-21T00:47:20.605Z",
+        "d1_finished_at": "2026-10-21T00:47:20.575Z",
+        "trigger_kind": "scheduled",
+        "retained_calls": 6
+      },
+      {
+        "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-22",
+        "provider_status": "complete",
+        "provider_success": true,
+        "provider_finished_at": "2026-10-22T00:47:15.879Z",
+        "d1_finished_at": "2026-10-22T00:47:15.843Z",
+        "trigger_kind": "scheduled",
+        "retained_calls": 6
+      }
+    ],
+    "older_recheck": {
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-13",
+      "observed_at": "2026-10-23T04:22:17.903Z",
+      "provider_result": "instance_not_found",
+      "provider_error_code": 10400,
+      "historical_success_receipt": "cloudflare/tests/evidence/application-scheduled-2026-10-13.json",
+      "historical_observed_at": "2026-10-13T16:49:04.012Z",
+      "historical_provider_finished_at_display": "2026-10-13T16:47:08Z",
+      "stored_d1_run_and_outputs_unchanged": true,
+      "cause_or_account_retention_setting_verified": false,
+      "no_restart_or_extra_model_attempt": true,
+      "remaining_14_to_20_october_provider_rechecks_performed_this_pass": false,
+      "primary_context": "https://developers.cloudflare.com/changelog/post/2026-09-10-paid-retention-default/",
+      "interpretation": "Finite provider retention is documented, but this account setting and the cause of this unavailable historical instance are not verified. Historical receipt is not a successful current recheck."
+    }
+  },
+  "quality_follow_up": {
+    "independent_adjudication_required": true,
+    "separate_held_out_validation_required": true,
+    "proposed_customer_change": false,
+    "priorities": [
+      "Preserve supplied identity/contact and exact qualifications.",
+      "Keep availability and missing experience unknown; do not infer positive or negative facts.",
+      "Keep project dates and employment or study relationships tied to explicit evidence.",
+      "Do not turn advert requirements into candidate accomplishments or skills.",
+      "Improve short-form relevance and remove repetitive or source-commentary padding."
+    ],
+    "not_an_accuracy_estimate_or_reviewer_promotion": true
+  }
+}

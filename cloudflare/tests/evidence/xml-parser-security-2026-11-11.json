@@ -1,0 +1,131 @@
+{
+  "observed_at": "2026-11-11T16:28:08.004309+00:00",
+  "node": "24.19.0",
+  "npm": "11.8.0",
+  "install": {
+    "exit_code": 0,
+    "packages_added": 206,
+    "stdout_duration": "10m",
+    "log_started_at": "2026-11-11T16:09:04.648000+00:00",
+    "log_finished_at": "2026-11-11T16:18:39.006207+00:00",
+    "log_duration_seconds": 574.358207,
+    "scripts_disabled": true
+  },
+  "changed_lock_entries": [
+    "",
+    "node_modules/fast-xml-parser",
+    "node_modules/is-unsafe",
+    "node_modules/strnum"
+  ],
+  "installed_versions": {
+    "fast-xml-parser": "5.12.0",
+    "strnum": "2.5.1",
+    "is-unsafe": "2.0.3",
+    "anynum": "1.0.1"
+  },
+  "package_hashes": {
+    "package.json": "51238ebe138a5d815f380f577d0d7698178998ffb70d31486347c1cae9691f5f",
+    "package-lock.json": "c8b04e869026958060f0d0549e3b5371737287d2f153aa25e258da29224b9bf0"
+  },
+  "protected_manifests_unchanged": true,
+  "focused_tests": {
+    "passed": 17,
+    "failed": 0,
+    "log": "focused-tests-final.txt"
+  },
+  "audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "registry_integrity": "sha512-/pXxRBtwxY9w8z7YbgsvIPPcPvFDsTbIkWwTQJhzNJPokj+TbN6ftmcv4j/pEQDvOCNnKGDzuk5Bo2oogIOiFg==",
+  "operation_counts": {
+    "unpatched_5_11_2": {
+      "32_fragments": 1584,
+      "128_fragments": 24768
+    },
+    "patched_5_12_0": {
+      "32_fragments": 96,
+      "128_fragments": 384,
+      "512_fragments": 1536
+    }
+  },
+  "no_production_requests_or_deployment": true,
+  "kind": "local_prepared_branch_dependency_patch",
+  "source_baseline": "a6973b12fda8f879e6ec997ae44da480432fad6c",
+  "validation_scope": "Tracked prepared 2.99.0 source plus package/lock/security test only; not reconstructed deployed 2.98.16",
+  "advisory": "https://github.com/NaturalIntelligence/fast-xml-parser/security/advisories/GHSA-474x-hrwr-fgx4",
+  "severity": "low",
+  "application_exposure": "Only inspected application XMLParser call validates XML and does not enable the non-default stopNodes option. No exploitation established.",
+  "full_validation": {
+    "test_files": 135,
+    "passed": 869,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "build": true,
+    "typescript": true,
+    "prerenders": 21,
+    "browser_budgets": true,
+    "deployment_dry_run": true,
+    "steps": [
+      {
+        "name": "full-tests",
+        "exit_code": 0,
+        "duration_seconds": 127.363,
+        "log_sha256": "ea8af598fd4a70855be7092b83bcc79e33ef6bcbfad1446f289ecc2bf23eab6a"
+      },
+      {
+        "name": "build",
+        "exit_code": 0,
+        "duration_seconds": 14.474,
+        "log_sha256": "146551f2d94530915ee3e5958030ba92e5d4deba4dcfd8babfec86ae14975f89"
+      },
+      {
+        "name": "dry-run",
+        "exit_code": 0,
+        "duration_seconds": 44.226,
+        "log_sha256": "12b5ff93dc984e606c336262d47578352fd28062911c31d1d4a92c82223dd686"
+      }
+    ]
+  },
+  "independent_review": "Agent-assisted read-only regression review; no blockers. Not independent business or live-runtime acceptance.",
+  "original_install": {
+    "outcome": "terminated_after_filesystem_blockage_on_existing_duplicate_directory",
+    "package_and_lock_unchanged": true,
+    "exact_process_confirmed_absent": true,
+    "logs_preserved_locally": true
+  },
+  "root_dependency_replacement": {
+    "performed": true,
+    "method": "copied_validated_clean_install_with_symlinks",
+    "original_whole_directory_preserved": true,
+    "focused_after_copy": {
+      "passed": 17,
+      "failed": 0,
+      "duration_ms": 692.717333
+    }
+  },
+  "production": {
+    "deployed": false,
+    "migrations": false,
+    "queries": false,
+    "known_version": "2.98.16",
+    "capacity_and_original_supervisor_holds_unchanged": true
+  },
+  "provenance_limit": "Retained release-baseline aggregate hash and commit are not a complete reconstructible live 2.98.16 source bundle. Future runtime qualification must recover the exact release before deployment.",
+  "test_hash": "837e36c79d5d0bc9891904a44e1e55fa288f548aff0f055f217e4a05a28339f5",
+  "retained_log_hashes": {
+    "original-install-debug.log": "90f8d7c9103e9d4747b8f351883368cc657f239da58727c28840bbece7edc930",
+    "install-termination.json": "3851885ebfe23be03e9cec7708a2484615c86da4f26a53f4e373f3d65687971c",
+    "clean-install-debug.log": "2bbaed2f9aeb2bf836db20a1a89ffb75e7c239df4795641abb4dabe091107ce0",
+    "baseline-regression.txt": "f483f2a958e6afd7c62863169af2466af9d86e6f2ef2589ef58d64bf6379dfc2",
+    "focused-tests-final.txt": "192119839b6ba23b9602857680ce5a520652a929c4c3f90ad6003c51aa075b85",
+    "patched-audit.json": "356b576ec8378a94d965a6e017ff767dede9e2a007241fcbd6e7607d94d26f35"
+  },
+  "unrelated_tracked_hashes_preserved": true,
+  "final_review": "Separate agent-assisted read-only review of package/lock/test/evidence/docs found no blockers; no independent business or live-runtime acceptance."
+}

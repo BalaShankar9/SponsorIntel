@@ -1,0 +1,118 @@
+{
+  "checked_at": "2026-10-11T13:39:41.740753+00:00",
+  "prepared_version": "2.53.0",
+  "deployed": false,
+  "production_version": "2.52.0",
+  "review_kind": "Agent-assisted review of an existing approved employer; no new discovery lead",
+  "identity": {
+    "brand": "Callosum",
+    "website_legal_entity": "Callosum Technologies Ltd",
+    "website_company_number": "16646869",
+    "licensed_group_entity": "Callosum Ltd",
+    "licensed_company_number": "16076949",
+    "previous_licensed_entity_name": "Sernn Ltd",
+    "relationship": "Companies House control record identifies Callosum Technologies Ltd, 16646869, with at least 75 percent ownership and voting rights",
+    "relationship_notified_on": "2025-08-26",
+    "limitation": "Group link only; exact employing and sponsoring entity for each applicant remains to be confirmed",
+    "street_number_discrepancy": "Employer terms: 54 Leman Street. Companies House: 56 Leman Street. The mapping relies on exact company-number control evidence, not street-number equivalence."
+  },
+  "sources": {
+    "employer_privacy": "https://www.callosum.com/privacy-policy",
+    "employer_careers": "https://www.callosum.com/join-us",
+    "employer_terms": "https://www.callosum.com/terms-of-service",
+    "parent_company": "https://find-and-update.company-information.service.gov.uk/company/16646869",
+    "licensed_company": "https://find-and-update.company-information.service.gov.uk/company/16076949",
+    "relationship": "https://find-and-update.company-information.service.gov.uk/company/16076949/persons-with-significant-control",
+    "original_advert": "https://jobs.ashbyhq.com/callosum/e33ede97-fee9-4c0a-8063-9944923fa36b"
+  },
+  "register": {
+    "checked_at": "2026-10-11T13:33:27.983064+00:00",
+    "source_url": "https://assets.publishing.service.gov.uk/media/6ac8b5bfab368efeb4c93428/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-09.csv",
+    "bytes": 10957360,
+    "sha256": "956b7f0ec014756b6a3221be652e8878416ca87bff2629f00b94fc475df16569",
+    "rows": 143206,
+    "matching_rows": [
+      {
+        "Organisation Name": "Callosum Ltd",
+        "Town/City": "London",
+        "County": "",
+        "Type & Rating": "Worker (A rating)",
+        "Route": "Skilled Worker"
+      }
+    ]
+  },
+  "replay": {
+    "checked_at": "2026-10-11T13:35:59.944Z",
+    "source_observed_at": "2026-10-11T13:34:59.126800+00:00",
+    "public_listing_records": 11,
+    "full_detail_records": 1,
+    "isolated_local_database": true,
+    "production_writes": 0,
+    "model_calls": 0,
+    "external_calls": 0,
+    "licence_matches_before": 0,
+    "licence_matches_after": 11,
+    "sponsorship_mentions_before": 11,
+    "sponsorship_mentions_after": 11,
+    "listing_fields_unchanged": true,
+    "job_rows_unchanged": true,
+    "job_rows_sha256": "25b49f14773278bc2dcb89f577ea6cc7dfded54ae3611d20182ce3d3399db64c",
+    "withdrawn_register_removes_link": true,
+    "sponsor": {
+      "id": "8e372714a5ad44efd9cb5186",
+      "name": "Callosum Ltd",
+      "city": "London",
+      "routes": [
+        "Skilled Worker"
+      ],
+      "ratings": [
+        "Worker (A rating)"
+      ],
+      "source_date": "2026-10-09",
+      "checked_at": "2026-10-11T07:15:39.995Z",
+      "evidence_url": "https://find-and-update.company-information.service.gov.uk/company/16076949/persons-with-significant-control",
+      "reviewed_at": "2026-10-11"
+    },
+    "job_ids": [
+      "8cec3fe7af41e51a3344df76",
+      "c42ca85272bbbadb123b1037",
+      "608b05f07ba04735379b2ef1",
+      "c55a0e9bdbd32d788e6844c8",
+      "3f0d1372eed8619f43e34c82",
+      "8a62791b9787f4d814b75e45",
+      "601d3af714d0630c47ee0e37",
+      "782bb8ca0d085e20be75e063",
+      "3cd5be21a640483e3b0b6412",
+      "12e2ffa6760ac658a8367004",
+      "b0e3909344abbf27568dc7da"
+    ]
+  },
+  "validation": {
+    "runtime": "Node 24.19.0",
+    "focused_tests": 28,
+    "focused_failures": 0,
+    "worker_dry_run": true,
+    "last_full_suite_commit": "7e1550df2ff72ed9f80584b0cf9bc666f2f10763",
+    "last_full_suite_tests": 531,
+    "full_suite_repeated_for_mapping_only": false,
+    "schema_changed": false,
+    "browser_desktop": true,
+    "browser_mobile_viewport": 390,
+    "browser_mobile_page_width": 390,
+    "browser_viewport_reset": true,
+    "preview_stopped": true,
+    "preview_external_calls": 0,
+    "preview_writes": 0
+  },
+  "production_mutations": 0,
+  "new_leads": 0,
+  "new_employers": 0,
+  "forced_source_runs": 0,
+  "model_calls": 0,
+  "external_messages": 0,
+  "live_verification_pending": true,
+  "screenshots": [
+    "../outputs/sponsorintel-callosum-licence-2026-10-11.png",
+    "../outputs/sponsorintel-callosum-licence-mobile-2026-10-11.png"
+  ]
+}

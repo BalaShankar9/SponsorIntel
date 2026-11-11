@@ -1,0 +1,131 @@
+{
+  "observed_at": "2026-11-11T17:56:01.050027+00:00",
+  "scope": "Prepared Founder cash scenario workbench and tab-only account isolation; fictional local QA",
+  "prepared_version": "2.99.0",
+  "base_head": "f049dfb35ec2ce589ece761b3b60622ac3fd5970",
+  "source_sha256": {
+    "shared/founder-finances.js": "2b383b8657d4b53dc88592752a3df45a8fa0deebe33884f5bba75c0925de35f0",
+    "shared/founder-finances.d.ts": "bf418c97ea0297f4f0e84b0678fb444ec4590d3b087fad669e27a425ba44e181",
+    "shared/founder-workspace.js": "10af0bfd1f6374269cb53e1e5487f0e4389445474d80c359504ab9c10736d057",
+    "shared/founder-workspace.d.ts": "7b55e8aa557d3a471da79cb145530117737873d8965242df58159e24cb28c3d7",
+    "src/founder-finance-data.ts": "ee988e4646b79f5a3a5eb7ac73ecb8d5bff337ac3d4e6e4f052c2c99f2a26f5f",
+    "src/founder-finances.tsx": "d2369e7e76e5e3911d8f460c9dbea61afdacb9dd3c1f4a6ebd87327872d013bf",
+    "src/founder-finances.css": "80c4e59174afc1aaf6488bc7889ecca5afa93349c7ea054034880a03e88a4c53",
+    "src/founder-ui.tsx": "33bfacee026f0fcbaa0a8aa9a7289d68c45cf28be0f6cab65cbd10493fcbc1a2",
+    "tests/founder-finances.test.mjs": "5d87f1e141741a5afd9d6116bde7216c8ce95976d8024a21ba2cdea90b4b6da9",
+    "tests/founder-finance-context.test.mjs": "4f5f4f0946945a00473d1ae0f3406a4300a04973bd27c8cdbec798bbac2ef69d",
+    "src/founder-data.ts": "6b9961910cbd9ae285f60a1d816db663ce71c2be84f0f387a4caae68eb5eae70",
+    "tests/founder-finances-browser.mjs": "0430af97c287b7ac79657b60459b2a2ade4b77149c8370e810e878f99c4dac19",
+    "tests/fixtures/founder-finances-preview.mjs": "1088f749b83fefcd8db2196943c87040b5dd133020949c03b74d12e6cb2cc94b"
+  },
+  "runtime": "Node 24.19.0",
+  "validation": {
+    "new_math_tests": 15,
+    "new_context_and_identity_tests": 13,
+    "full_suite": {
+      "tests": 904,
+      "passed": 904,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 69785.423458
+    },
+    "typescript": true,
+    "build": true,
+    "prerenders": 21,
+    "browser_budgets": true,
+    "deployment_dry_run": true,
+    "browser": {
+      "passed": true,
+      "checks": [
+        "Blank required assumptions remain unknown; comparison and preview stay unavailable.",
+        "Independent hand calculations match both cards and every exact monthly cash movement.",
+        "Keyboard-focusable preview pins exact dated text; double activation preserves the original note and adds one summary, then disables repeat.",
+        "Changing an input invalidates its old preview; the new downside first becomes negative in month 2 and does not rewrite saved notes.",
+        "An oversized append leaves the entire existing note and pinned preview intact; the separate downloaded text file matches the preview byte-for-byte.",
+        "Restore cancellation preserves current notes; confirmed workbook replacement keeps raw scenario inputs and requires explicit keyboard adoption before another summary.",
+        "Workbook clear cancellation is harmless; confirmed clear does not erase the scenario and requires explicit adoption.",
+        "Raw scenario inputs survive stage changes and genuine in-app route navigation without reloading the document.",
+        "Calculator clear requires confirmation, supports cancellation and restores blank/default inputs while preserving workbook notes.",
+        "390px layout has no page/calculator overflow; the exact-values table scrolls within a focusable region and keyboard preview remains operable.",
+        "Actual provider identity switches isolate raw inputs and appended tab-only notes; A and B recover only their own work and require adoption.",
+        "Switching to a guest hides both accounts, and returning to B preserves B without copying the guest draft or note.",
+        "The actual confirmed-deletion exit callback clears B raw inputs and appended notes only; same-ID B is empty, A remains intact, and the guest draft survives. No deletion API is invoked.",
+        "No account or guest scenario/appended-note content enters localStorage or sessionStorage during the observed tab-only flows.",
+        "No external request, Founder account-workspace request, business mutation attempt or browser exception; measurement POSTs are explicit excluded no-ops and known Google font links use a recorded fixture-only system-font fallback."
+      ],
+      "check_count": 15,
+      "unexpected_external_requests": [],
+      "browser_errors": [],
+      "api_business_mutation_attempts": 0,
+      "founder_account_requests": 0,
+      "excluded_measurement_posts": 4,
+      "fixture_font_suppressions": 6,
+      "download_content_verified": true,
+      "mobile_width": 390,
+      "account_deletion": "Actual local exit/cleanup callback only; no deletion API",
+      "owned_browsers_and_fixture_closed": true
+    }
+  },
+  "corrected_findings": [
+    "Tab-only account summary could cross identities; now separate memory per identity including guest.",
+    "Identity listener ordering could bind first calculator edit to stale context; layout subscription precedes identity change.",
+    "Workbook replacement displayed old preview before effect cleanup; now invalidated during render."
+  ],
+  "retained_failed_attempts": [
+    {
+      "attempt": "01",
+      "checks_completed": 5,
+      "finding": "Stale preview still visible during context-change render. Existing Google Fonts stylesheet attempt was blocked by the browser fixture."
+    },
+    {
+      "attempt": "02",
+      "checks_completed": 2,
+      "finding": "Focus assertion ran before the intentional animation-frame callback; harness now waits for the exact focus target."
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "desktop-cash-plan.png",
+      "sha256": "97ab5eb38405ad8891d5a8a5b01556370a3601fb3104a2b61da57f23c48c4d45"
+    },
+    {
+      "file": "mobile-cash-plan.png",
+      "sha256": "1c3b085aa41ef138b0177c3850d48ab4753a02e7d21bf8ba7e9ab6d62c40251e"
+    }
+  ],
+  "raw_evidence": {
+    "si-finance-suite-20261111-01.log": "703ea4c746bf2454049bb327b80cbc9b5c57ad91b82f006aa4b00ea5aaabf080",
+    "si-finance-suite-20261111-02.log": "f1b604ffcd316792cafdf814de42895d49565577d67ab03c687d290f906fbf3b",
+    "si-finance-build-20261111-01.log": "e358850ddf16957b2306cfe74856aa3476c24c553a2301b58affb825f98f77e6",
+    "si-finance-build-20261111-02.log": "411850c054c4d1bdf6860415509ec393c230bc677a0e13e628e3b407862088f7",
+    "si-finance-dryrun-20261111-01.log": "91d58993dc461e27607f6083be90434837d108a1513b60d93794eb08534197cc",
+    "si-finance-browser-20261111-01.json": "953ef7fca552a5f6e2d515f972eccb6a2c242b3e9f385e113641ef83651615da",
+    "si-finance-browser-20261111-02.json": "364406637e45b66d1f3ab51fc0815718e78f031580fc620b94c90a655878bd37",
+    "si-finance-browser-20261111-03.json": "21435662af18460143ad2e95bc03acb8ee389562213fa2f80c850f0e73661b82"
+  },
+  "raw_evidence_location": "cloudflare/data/founder-finance-2026-11-11/ (ignored local evidence)",
+  "dependencies": {
+    "changed": false,
+    "same_day_review": "docs/XML_PARSER_PATCH-2026-11-11.md",
+    "package_sha256": "51238ebe138a5d815f380f577d0d7698178998ffb70d31486347c1cae9691f5f",
+    "lock_sha256": "c8b04e869026958060f0d0549e3b5371737287d2f153aa25e258da29224b9bf0"
+  },
+  "unrelated_tracked_changes_preserved": 8,
+  "private_archive_bytes": 41184059,
+  "production": {
+    "deployed": false,
+    "last_verified_version": "2.98.16",
+    "worker": "61cc4114-a9a3-4cef-83a2-29ad2b1cbbf5",
+    "rollback": "0ffc4794-45f2-4aa7-becf-05c40d934db8",
+    "schema_change": false,
+    "saving_activation": false,
+    "new_database_inspection": false,
+    "new_source_requests": 0,
+    "model_calls": 0,
+    "google_requests": 0,
+    "messages_or_sends": 0,
+    "legal_source_review_renewal": false,
+    "capacity_and_original_supervisor_holds_preserved": true
+  }
+}

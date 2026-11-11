@@ -1,0 +1,190 @@
+{
+  "observed_at": "2026-10-20T15:21:19.675678+00:00",
+  "release": "2.88.0",
+  "worker_version": "4014c52f-ecdb-420d-9ab3-418e4386db43",
+  "runtime_commit": "c2393cb4c72fc5cb63fd3a68b757623ff5272fe6",
+  "rollback_worker": "b38a770d-04ea-4918-b130-91456805b6b6",
+  "pre_schema_recovery": {
+    "observed_at": "2026-10-20T14:53:47.232Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "b343bd421717405f42cba610f731e8d3a6b66c21d5ef0b5859c92a06798ea19b",
+    "database_size_bytes": 123363328,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 172,
+      "actual_objects": 172,
+      "migration_files": 41,
+      "expected_sha256": "e9d4fc341ea91960f3378ab0f81164ff3db86ffce5542e75aa56041dd2ce6d6f",
+      "actual_sha256": "e9d4fc341ea91960f3378ab0f81164ff3db86ffce5542e75aa56041dd2ce6d6f",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "post_schema_recovery": {
+    "observed_at": "2026-10-20T15:17:16.694Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "458964717505ba94497c43135c24cbe648c63efe38df388bcf3f87cc2ba74a54",
+    "database_size_bytes": 123387904,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 177,
+      "actual_objects": 177,
+      "migration_files": 42,
+      "expected_sha256": "3cb0194e993c139218637bb940e32492b122ac578ed7c3515bf75f605c29d1da",
+      "actual_sha256": "3cb0194e993c139218637bb940e32492b122ac578ed7c3515bf75f605c29d1da",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "review": {
+    "identity_id": "6e21407e-9ecc-4ae9-90e8-3f730c6697d9",
+    "revision": 1,
+    "sponsor_id": "251f88c057cdf37907a9c838",
+    "sponsor_name": "Vir Health Limited trading as Numan",
+    "business_name": "Numan",
+    "relationship": "trading_name",
+    "state": "approved",
+    "review_method": "agent_assisted",
+    "observed_at": "2026-10-20T15:18:00.000Z",
+    "review_due_at": "2026-10-27T12:00:00.000Z",
+    "recorded_at": "2026-10-20T15:20:17.272Z"
+  },
+  "history_rows": 1,
+  "audit_rows": 1,
+  "foreign_key_errors": 0,
+  "public_record": {
+    "identity_id": "6e21407e-9ecc-4ae9-90e8-3f730c6697d9",
+    "revision": 1,
+    "sponsor_id": "251f88c057cdf37907a9c838",
+    "sponsor_name": "Vir Health Limited trading as Numan",
+    "business_name": "Numan",
+    "relationship": "trading_name",
+    "website": "https://www.numan.com/",
+    "careers_url": "",
+    "activity": "Healthcare service provider listed by the Care Quality Commission.",
+    "locations": "",
+    "official_identifier": "CQC provider 1-6118870417",
+    "evidence_url": "https://www.cqc.org.uk/provider/1-6118870417/contact",
+    "evidence_summary": "CQC lists Vir Health Limited as also known as Numan and provides numan.com as its website. This connects the healthcare brand to the legal name; it does not establish the employing entity for every vacancy. Source: Care Quality Commission, Open Government Licence v3.0.",
+    "observed_at": "2026-10-20T15:18:00.000Z",
+    "review_due_at": "2026-10-27T12:00:00.000Z",
+    "review_method": "agent_assisted",
+    "recorded_at": "2026-10-20T15:20:17.272Z"
+  },
+  "anonymous_owner_api_status": 403,
+  "public_http_statuses": {
+    "/api/health": 200,
+    "/api/business-identities?sponsor_id=251f88c057cdf37907a9c838": 200,
+    "/api/sponsors?q=Numan": 200,
+    "/api/jobs?q=Numan&licence=matched": 200,
+    "/api/admin/business-identities": 403
+  },
+  "review_saved_through": "authenticated owner browser form",
+  "attribution": "agent_assisted",
+  "production_review_independent_human_acceptance": false,
+  "job_browser_verified": "04689a40a700e2456fc59c4d",
+  "business_profile_url": "https://sponsorintel.london/?employer=251f88c057cdf37907a9c838",
+  "production_new_alias_only_match_proven": false,
+  "alias_note": "Numan already occurs in the legal register name. Distinct-name alias expansion is proven by isolated tests, not this pilot.",
+  "browser_qa": {
+    "fictional_approved_then_withdrawn_revisions": [
+      1,
+      2
+    ],
+    "mobile_owner_viewport": 390,
+    "mobile_owner_document": 390,
+    "mobile_owner_form_client_and_scroll_width": 368,
+    "live_job_mobile_viewport": 390,
+    "live_job_document": 390,
+    "live_job_card_client_and_scroll_width": 306
+  },
+  "validation": {
+    "full_suite_pass": 723,
+    "full_suite_fail": 0,
+    "final_focused_tests_pass": 11,
+    "additional_stale_withdrawal_case_after_full_suite": true,
+    "build": true,
+    "prerenders": 18,
+    "dry_run": true,
+    "initial_js_bytes": 388076,
+    "initial_js_gzip_bytes": 118426,
+    "initial_css_bytes": 109950,
+    "initial_css_gzip_bytes": 22776,
+    "dependency_audit": {
+      "high": 0,
+      "critical": 0,
+      "moderate": 3
+    }
+  },
+  "unchanged_operational_groups": {
+    "business_controls": true,
+    "marketing_controls": true,
+    "research_control": true,
+    "application_controls": true,
+    "source_controls": true,
+    "marketing_briefs": true,
+    "marketing_receipts": true,
+    "source_budget": true,
+    "ai_budget": true,
+    "business_runs": true,
+    "source_runs": true,
+    "marketing_runs": true,
+    "issues": true,
+    "foreign_keys": true
+  },
+  "source_budget": [
+    {
+      "day": "2026-10-20",
+      "requests": 376,
+      "briefs": 0
+    }
+  ],
+  "ai_budget": [
+    {
+      "day": "2026-10-20",
+      "runs": 2,
+      "calls": 8
+    }
+  ],
+  "real_scheduled_business": {
+    "id": "business-497918",
+    "application_state": "attention",
+    "application_finished_at": "2026-10-20T14:46:16.374Z",
+    "cloudflare_status": "Completed",
+    "cloudflare_success": true,
+    "findings": 8,
+    "high": 2
+  },
+  "runtime_head_ci": {
+    "linux_billing_blocked": [
+      118711362635,
+      118711334230
+    ],
+    "gitguardian_passed": 118711340069
+  },
+  "external_effects": {
+    "new_jobs": 0,
+    "source_refreshes": 0,
+    "model_calls": 0,
+    "google_reads": 0,
+    "messages_or_posts": 0,
+    "applications": 0
+  },
+  "next_gate": "Observe the next genuine register refresh retaining the exact reviewed identity; overdue business reviews remain owner-desk checks, not hourly findings."
+}

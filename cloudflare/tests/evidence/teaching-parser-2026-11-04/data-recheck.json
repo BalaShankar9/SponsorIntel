@@ -1,0 +1,31 @@
+{
+  "observed_at": "2026-11-04T10:58:07.204079+00:00",
+  "finished_at": "2026-11-04T10:58:08.427211+00:00",
+  "scope": "Recheck only the three initial failed endpoints after a successful QA-filtered health observation; no deployment or data change between observations",
+  "all_passed": false,
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 500,
+      "bytes": 63,
+      "sha256": "2bd2850e2a98bf093e990b1a87d8c3ebf16dc11f8301a8090d96fb5a0c3557e5",
+      "passed": false
+    },
+    {
+      "path": "/api/jobs?limit=1",
+      "status": 500,
+      "bytes": 63,
+      "sha256": "2bd2850e2a98bf093e990b1a87d8c3ebf16dc11f8301a8090d96fb5a0c3557e5",
+      "passed": false
+    },
+    {
+      "path": "/api/jobs/sources",
+      "status": 500,
+      "bytes": 63,
+      "sha256": "2bd2850e2a98bf093e990b1a87d8c3ebf16dc11f8301a8090d96fb5a0c3557e5",
+      "passed": false
+    }
+  ],
+  "initial_failure_retained": "live-after.json",
+  "root_cause": "unresolved; no error captured during the initial failure"
+}

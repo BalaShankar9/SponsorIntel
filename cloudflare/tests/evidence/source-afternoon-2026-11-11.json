@@ -1,0 +1,35 @@
+{
+  "recorded_at": "2026-11-11T17:14:53.022874+00:00",
+  "observation": "Afternoon provider-only source workflow listing after the scheduled 12:30 UTC window",
+  "workflow": "sponsorintel-sources",
+  "filter": {
+    "date_start": "2026-11-11",
+    "date_end": "2026-11-11",
+    "per_page": 20
+  },
+  "provider_request_exit_code": 0,
+  "raw_response_sha256": "812f8c2da08959e6c93ac50d609e05c64dbed591ef707ded8e5b6114dcd664f7",
+  "original_provider_rows": [
+    {
+      "id": "scheduled-1794357055003",
+      "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+      "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+      "status": "complete",
+      "created_on": "2026-11-11T00:30:56.795Z",
+      "modified_on": "2026-11-11T00:37:39.965Z",
+      "started_on": "2026-11-11T00:30:58.000Z",
+      "ended_on": "2026-11-11T00:37:39.000Z",
+      "trigger_source": "binding"
+    }
+  ],
+  "latest_returned_id": "scheduled-1794357055003",
+  "afternoon_instance_returned": false,
+  "absence_cause": "unknown; absence from this listing does not prove that a trigger was not invoked",
+  "d1_queries": 0,
+  "source_requests": 0,
+  "workflow_mutations": 0,
+  "new_enrichment_requests": 0,
+  "capacity_or_supervisor_hold_cleared": false,
+  "interpretation": "No new original source execution is available from this read to establish afternoon recovery. Existing overnight completion remains historical and current public inventory, owner controls and reservation totals remain unavailable.",
+  "company_data_gate": "Fresh enrichment requires current owner controls and remaining shared allowance. The capacity decision and original supervisor evidence remain unresolved."
+}

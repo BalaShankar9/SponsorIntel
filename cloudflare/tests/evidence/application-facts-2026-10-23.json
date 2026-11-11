@@ -1,0 +1,188 @@
+{
+  "release": "2.93.0",
+  "scope": "Applicant-confirmed facts and routine answers, preparation only",
+  "validation": {
+    "tests_passed": 741,
+    "tests_failed": 0,
+    "concurrency": 2,
+    "node": "24.19.0",
+    "initial_full_suite": {
+      "passed": 739,
+      "total": 740,
+      "failure": "SmartRecruiters runtime returned non-JSON database response during low disk"
+    },
+    "targeted_initial_repairs": [
+      "Race harness held batch transaction instead of new single-statement insert; corrected",
+      "Added missing TypeScript declaration"
+    ],
+    "typescript_build": true,
+    "prerenders": 19,
+    "browser_budgets": true,
+    "worker_dry_run": true,
+    "isolated_browser": [
+      "Complete fictional profile visible",
+      "Optional unanswered values remain unknown",
+      "Lost saved reply recovered on reload without duplicate",
+      "Revocation visible",
+      "Changed profile immediately requires review"
+    ],
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "page_width": 390,
+      "horizontal_overflow": false
+    }
+  },
+  "privacy": {
+    "production_test_records_created": false,
+    "model_calls_added": 0,
+    "employer_submissions": 0,
+    "private_answers_in_browser_request_recovery": false
+  },
+  "recovery_before": {
+    "observed_at": "2026-10-23T02:38:54.312Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "fc573ef9ab61a86b3bc0bde567708e245b50ed4e1c7a233ef7b60c5ac8602102",
+    "database_size_bytes": 129122304,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 182,
+      "actual_objects": 182,
+      "migration_files": 43,
+      "expected_sha256": "9fa4fb58b04ede1e19619a64ec1f41cd03aebdb43b181ddb177f7372a59e85d3",
+      "actual_sha256": "9fa4fb58b04ede1e19619a64ec1f41cd03aebdb43b181ddb177f7372a59e85d3",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "deployment": {
+    "state": "live",
+    "runtime_commit": "16b754577f03481189afdebf19d1e653a813dfb3",
+    "worker_version": "30114f08-77d2-4d06-8001-924ba101af68",
+    "deployment_id": "7d86d595-e7ea-4fc2-a697-9a8de6884182",
+    "created_at": "2026-10-23T02:49:36.021554Z",
+    "traffic_percent": 100,
+    "rollback_worker": "0d64d45e-5f65-417e-ba08-913b4334ca00",
+    "migration": "0044_application_fact_packs.sql"
+  },
+  "recovery_after": {
+    "observed_at": "2026-10-23T02:49:19.827Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "765db32c2d9ef7a05d78c39b36f71d7c9285b3f7dac908b1f37eddb235062a33",
+    "database_size_bytes": 129224704,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 186,
+      "actual_objects": 186,
+      "migration_files": 44,
+      "expected_sha256": "b46dda29eaba35192fa1c7cd72efffa473d109974eafa9e178dbf2e9d176fc56",
+      "actual_sha256": "b46dda29eaba35192fa1c7cd72efffa473d109974eafa9e178dbf2e9d176fc56",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "live_verification": {
+    "observed_at": "2026-10-23T02:50:57.155Z",
+    "asset": "career-Cu8Glif4.js",
+    "status": 200,
+    "local_sha256": "08f29710cb1572766746d42b7a575fb0e39d9088595a5bd008801e8053a98e20",
+    "live_sha256": "08f29710cb1572766746d42b7a575fb0e39d9088595a5bd008801e8053a98e20",
+    "identical": true,
+    "facts_ui_present": true,
+    "anonymous_batches_status": 401,
+    "owner_entry_verified": true,
+    "production_confirmation_created": false,
+    "production_private_counts": {
+      "batches": 0,
+      "facts": 0,
+      "revocations": 0
+    }
+  },
+  "operations": {
+    "before": "2026-10-23T02:38:55.669Z",
+    "after": "2026-10-23T02:50:57.303Z",
+    "unchanged_groups": [
+      "business_controls",
+      "marketing_controls",
+      "research_control",
+      "application_controls",
+      "source_controls",
+      "marketing_briefs",
+      "marketing_receipts",
+      "ai_budget",
+      "source_runs",
+      "marketing_runs",
+      "issues",
+      "foreign_keys"
+    ],
+    "changed_groups": [
+      "source_budget",
+      "business_runs"
+    ],
+    "source_requests_before": 104,
+    "source_requests_after": 112,
+    "reason": "Original hourly business workflow performed its normal two employer-link samples, with eight reserved requests; no forced run",
+    "ai_runs": 1,
+    "ai_calls": 2,
+    "foreign_key_errors": 0,
+    "scheduled_business": {
+      "id": "business-497978",
+      "status": "complete",
+      "success": true,
+      "platform_finished_at": "2026-10-23T02:45:59.024Z",
+      "snapshot_at": "2026-10-23T02:45:47.214Z",
+      "application_assessments": {
+        "assessable_outputs": 57,
+        "assessed_outputs": 49,
+        "unassessed_outputs": 8,
+        "needs_work": 28,
+        "incomplete": 0,
+        "stale": 0,
+        "groups": [
+          {
+            "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+            "writer": "@cf/zai-org/glm-4.7-flash",
+            "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+            "policy": "paired-application-schema-v2",
+            "paired_cases": 8,
+            "both_acceptable": 5,
+            "candidate_only_acceptable": 2,
+            "baseline_only_acceptable": 0,
+            "both_need_work": 1
+          }
+        ],
+        "limited": false,
+        "automatic_promotion": false,
+        "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+      },
+      "discovery_overdue": 3,
+      "new_leads_today": 0
+    }
+  },
+  "ci": {
+    "runtime_head": "16b754577f03481189afdebf19d1e653a813dfb3",
+    "linux_checks": [
+      120212322843,
+      120212311177
+    ],
+    "linux_state": "billing blocked before execution; annotations inspected",
+    "gitguardian_check": 120212314753,
+    "gitguardian_state": "neutral; scan skipped because PR exceeds configured size"
+  }
+}

@@ -1,0 +1,384 @@
+{
+  "observed_at": "2026-10-08",
+  "scope": "Two fixed UK campus feeds; not whole-university or national coverage",
+  "rules": "university-campus-v2",
+  "sources": [
+    {
+      "id": "university-southampton",
+      "review": {
+        "policy": "university-campus-v2",
+        "url": "https://jobs.soton.ac.uk/RSS/rss.aspx?cat=282&type=9",
+        "channel": "Recruitment at the University of Southampton | Highfield Campus",
+        "received": 27,
+        "accepted": 27,
+        "excluded": []
+      },
+      "normalised": 27,
+      "sponsorship_worded": 0,
+      "early_career": 2,
+      "bytes_sha256": "35cef96f631f83314f8561ca236865e9fb4fb9771a23ed56cf46d02ef99a1c52",
+      "discovery_url": "https://jobs.soton.ac.uk/RSS/",
+      "public_ids": [
+        "33e634e956b830a8381dc832",
+        "eca976abcffc6e9f449e5a42",
+        "9e3554406bf30436588c808e",
+        "ed6e28378245bd051bd137e4",
+        "c3a5828ca1937c588251c191",
+        "01d6dc93ed3932aec09227c0",
+        "e720e1c833d93f75460b1df4",
+        "2ee32bb498954a06cfc02b99",
+        "f09601f242970af4c380ab0b",
+        "028d73ab405ab180b9de12ec",
+        "cbad0b51d458d504b27a041b",
+        "1c596bcf517b23c40ff4b745",
+        "2e85a581304d077139a2a0ef",
+        "caa9eec96fff6a1a53bae7cb",
+        "6db13764c80a23724764f5c3",
+        "85e8573afe79e23ddec9dda7",
+        "8aa977c7f4240ff32e1641c5",
+        "4a3f43cbde639000a282757a",
+        "137cf2b47cdf6b1eec2a3382",
+        "51fac62fdbf94169f00231d1",
+        "7b414ec825cc1b35dbf5e62b",
+        "2b38cc6e7ac30471cb67e955",
+        "c0916ad35e8a3c633b200e4d",
+        "7eaf2e3323c4ba05eacc3698",
+        "6695d69330ef9d9ea6fb8381",
+        "76f1505e074c1a9657de370f",
+        "9782d3b866b754946c852231"
+      ]
+    },
+    {
+      "id": "university-nottingham",
+      "review": {
+        "policy": "university-campus-v2",
+        "url": "https://jobs.nottingham.ac.uk/RSS/rss.aspx?cat=220&type=9",
+        "channel": "Jobs at the University of Nottingham | University Park",
+        "received": 35,
+        "accepted": 14,
+        "excluded": [
+          {
+            "ref": "SCI2145426",
+            "reason": "unreviewed_distribution_marker"
+          },
+          {
+            "ref": "REG235526",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "ARTS6527026",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "REG2502726",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "REG2503126",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "MED2134326",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "MED943026",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "NHE8668026",
+            "reason": "closing_date_passed",
+            "closing_date": "2026-09-28"
+          },
+          {
+            "ref": "NHE4664026",
+            "reason": "closing_date_passed",
+            "closing_date": "2026-09-28"
+          },
+          {
+            "ref": "REG2118526X1",
+            "reason": "closing_date_passed",
+            "closing_date": "2026-09-25"
+          },
+          {
+            "ref": "MED1896526",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "RAA416626",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "ENG2241326",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "REG4546526X1",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "REG2374326",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "REG976726",
+            "reason": "internal_only"
+          },
+          {
+            "ref": "NHE164526X2",
+            "reason": "closing_date_passed",
+            "closing_date": "2026-09-01"
+          },
+          {
+            "ref": "NHE722126",
+            "reason": "closing_date_passed",
+            "closing_date": "2026-07-29"
+          },
+          {
+            "ref": "NHE271426",
+            "reason": "closing_date_passed",
+            "closing_date": "2026-07-22"
+          },
+          {
+            "ref": "NHE893426",
+            "reason": "closing_date_passed",
+            "closing_date": "2026-07-02"
+          },
+          {
+            "ref": "REG6312526X2",
+            "reason": "closing_date_passed",
+            "closing_date": "2026-06-17"
+          }
+        ]
+      },
+      "normalised": 14,
+      "sponsorship_worded": 0,
+      "early_career": 0,
+      "bytes_sha256": "05b7ec516b9dcbe74dd44ec9278f77053981fab7def3f007bad3baad6e57abb2",
+      "discovery_url": "https://jobs.nottingham.ac.uk/RSS/",
+      "public_ids": [
+        "413e9219af5df15b324e9293",
+        "b92be8e940adefede20fab7d",
+        "8d6a8f63032c4fcb4d0d0712",
+        "b299da2a711774eaa44179ec",
+        "b75ca5f3804c916b4efb4dbf",
+        "1a6493eb11ea5edc1ecb91f5",
+        "6f6e7b77842ae629eaaba86b",
+        "7fc28040522a971c2f586a2d",
+        "54153248197fd8f86a8dc101",
+        "0ba7e250afa1ed106ab2890f",
+        "374c7a0bfd6f43d13abd7661",
+        "621408498e78c5bd54a58122",
+        "251a0ceea7e1bda4a2e04cef",
+        "791910ff208f0d043a30ec1f"
+      ]
+    }
+  ],
+  "register_matches": [
+    {
+      "id": "6ef3de9d8fb9c471146bd4fc",
+      "name": "University of Nottingham",
+      "city": "Nottingham",
+      "county": "",
+      "ratings": "[\"Temporary Worker (A rating)\",\"Worker (A rating)\"]",
+      "routes": "[\"Creative Worker\",\"Government Authorised Exchange\",\"International Sportsperson\",\"Skilled Worker\"]"
+    },
+    {
+      "id": "2a75ac7e351da13cba8ddb10",
+      "name": "University of Southampton",
+      "city": "Southampton",
+      "county": "Hampshire",
+      "ratings": "[\"Temporary Worker (A rating)\",\"Worker (A rating)\"]",
+      "routes": "[\"Creative Worker\",\"Government Authorised Exchange\",\"Skilled Worker\"]"
+    }
+  ],
+  "publication": {
+    "worker_version": "2d112601-4d21-4f21-8d79-9d1eab84fcfd",
+    "app_version": "2.22.0",
+    "runs": [
+      {
+        "id": "owner-38c7db59-d7fd-402c-b9a6-5f51c538ead6",
+        "state": "completed",
+        "trigger_kind": "owner",
+        "source_id": "university-nottingham",
+        "requests": 1,
+        "created_at": "2026-10-08T03:25:27.682Z",
+        "finished_at": "2026-10-08T03:25:28.775Z",
+        "count": 14,
+        "evidence": {
+          "policy": "sources-v1",
+          "checked_at": "2026-10-08T03:25:28.307Z",
+          "received": 14,
+          "sponsorship_worded": 0,
+          "register_available": true,
+          "licence_id": "6ef3de9d8fb9c471146bd4fc",
+          "licence_is_not_vacancy_sponsorship": true,
+          "duplicate_ids": 0,
+          "duplicate_links": 0,
+          "feed_review": {
+            "policy": "university-campus-v2",
+            "url": "https://jobs.nottingham.ac.uk/RSS/rss.aspx?cat=220&type=9",
+            "channel": "Jobs at the University of Nottingham | University Park",
+            "received": 35,
+            "accepted": 14,
+            "excluded": [
+              {
+                "ref": "SCI2145426",
+                "reason": "unreviewed_distribution_marker"
+              },
+              {
+                "ref": "REG235526",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "ARTS6527026",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "REG2502726",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "REG2503126",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "MED2134326",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "MED943026",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "NHE8668026",
+                "reason": "closing_date_passed",
+                "closing_date": "2026-09-28"
+              },
+              {
+                "ref": "NHE4664026",
+                "reason": "closing_date_passed",
+                "closing_date": "2026-09-28"
+              },
+              {
+                "ref": "REG2118526X1",
+                "reason": "closing_date_passed",
+                "closing_date": "2026-09-25"
+              },
+              {
+                "ref": "MED1896526",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "RAA416626",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "ENG2241326",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "REG4546526X1",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "REG2374326",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "REG976726",
+                "reason": "internal_only"
+              },
+              {
+                "ref": "NHE164526X2",
+                "reason": "closing_date_passed",
+                "closing_date": "2026-09-01"
+              },
+              {
+                "ref": "NHE722126",
+                "reason": "closing_date_passed",
+                "closing_date": "2026-07-29"
+              },
+              {
+                "ref": "NHE271426",
+                "reason": "closing_date_passed",
+                "closing_date": "2026-07-22"
+              },
+              {
+                "ref": "NHE893426",
+                "reason": "closing_date_passed",
+                "closing_date": "2026-07-02"
+              },
+              {
+                "ref": "REG6312526X2",
+                "reason": "closing_date_passed",
+                "closing_date": "2026-06-17"
+              }
+            ],
+            "normalised": 14
+          }
+        }
+      },
+      {
+        "id": "owner-db79bf6f-2a03-4296-89b8-1668729c3f9d",
+        "state": "completed",
+        "trigger_kind": "owner",
+        "source_id": "university-southampton",
+        "requests": 1,
+        "created_at": "2026-10-08T03:24:49.914Z",
+        "finished_at": "2026-10-08T03:24:53.488Z",
+        "count": 27,
+        "evidence": {
+          "policy": "sources-v1",
+          "checked_at": "2026-10-08T03:24:52.945Z",
+          "received": 27,
+          "sponsorship_worded": 0,
+          "register_available": true,
+          "licence_id": "2a75ac7e351da13cba8ddb10",
+          "licence_is_not_vacancy_sponsorship": true,
+          "duplicate_ids": 0,
+          "duplicate_links": 0,
+          "feed_review": {
+            "policy": "university-campus-v2",
+            "url": "https://jobs.soton.ac.uk/RSS/rss.aspx?cat=282&type=9",
+            "channel": "Recruitment at the University of Southampton | Highfield Campus",
+            "received": 27,
+            "accepted": 27,
+            "excluded": [],
+            "normalised": 27
+          }
+        }
+      }
+    ],
+    "before_catalogue": 846,
+    "after_catalogue": 887,
+    "source_requests_today": 32,
+    "agent_starts_today": 4,
+    "agent_calls_today": 6,
+    "origin": "owner acceptance; new-source scheduled execution not yet observed"
+  },
+  "public_acceptance": {
+    "checked_at": "2026-10-08T03:27:05.039Z",
+    "reports": [
+      {
+        "board_id": "university-southampton",
+        "total": 27,
+        "sponsorship_worded": 0,
+        "sample_id": "33e634e956b830a8381dc832",
+        "sample_url": "https://sponsorintel.london/jobs/33e634e956b830a8381dc832",
+        "licence_id": "2a75ac7e351da13cba8ddb10",
+        "source_link": "https://jobs.soton.ac.uk/rss/click.aspx?ref=3514526NP"
+      },
+      {
+        "board_id": "university-nottingham",
+        "total": 14,
+        "sponsorship_worded": 0,
+        "sample_id": "413e9219af5df15b324e9293",
+        "sample_url": "https://sponsorintel.london/jobs/413e9219af5df15b324e9293",
+        "licence_id": "6ef3de9d8fb9c471146bd4fc",
+        "source_link": "https://jobs.nottingham.ac.uk/rss/click.aspx?ref=MED2572126"
+      }
+    ],
+    "all_pages_verified": true
+  }
+}

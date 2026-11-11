@@ -1,0 +1,22 @@
+{
+  "id": "e6dc62ab-f08f-41eb-8cbe-1e3ba2c12bbf",
+  "created_on": "2026-11-04T04:37:45.923239Z",
+  "source": "wrangler",
+  "strategy": "percentage",
+  "versions": [
+    {
+      "version_id": "0ffc4794-45f2-4aa7-becf-05c40d934db8",
+      "percentage": 100
+    }
+  ],
+  "annotations": {
+    "workers/message": "Release 2.98.15 guarded source dispatch; rollback adfc4d97",
+    "workers/triggered_by": "deployment"
+  },
+  "release": "2.98.15",
+  "runtime_commit": "cb1708a96225ffe3c4cf859217c3a1a995fc2eb7",
+  "rollback_worker": "adfc4d97-45a0-4351-bcb9-e0c07ada4946",
+  "rollback_release": "2.98.14",
+  "migrations": 46,
+  "schema_or_trigger_submission": false
+}

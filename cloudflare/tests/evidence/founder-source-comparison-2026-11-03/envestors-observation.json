@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "observed_at": "2026-11-03T19:24:52.206Z",
+  "url": "https://envestors-visa-endorsement.co.uk/apply",
+  "method": "Read-only Chrome DOM and screenshot, after following the public Programmes link",
+  "observed_controls": [
+    "Apply as a founder now",
+    "Innovator business founder"
+  ],
+  "finding": "The homepage and public programme-choice page render and expose a Founder application entry. This resolves the earlier Loading-only observation for that entry only.",
+  "provider_process_summary": "The public help describes registration, agreement and fee stages, a business presentation, a business plan and identity checks, then an endorsement decision or refusal feedback.",
+  "not_verified": [
+    "Current intake capacity",
+    "Decision timing",
+    "Complete fees and VAT",
+    "Individual acceptance",
+    "Named professional status or independent service quality"
+  ],
+  "boundaries": {
+    "account_created": false,
+    "form_submitted": false,
+    "terms_accepted": false,
+    "payment": false,
+    "contact": false,
+    "chatbot_message": false
+  },
+  "screenshot": "envestors-programmes.jpg",
+  "reviewer": "Agent-assisted observation; not independent legal review"
+}

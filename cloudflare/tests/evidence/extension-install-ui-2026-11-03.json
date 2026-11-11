@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-11-03T14:46:40.859252+00:00",
+  "status": "manual_installation_not_verified",
+  "package_version": "0.1.0",
+  "package_sha256": "db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb",
+  "disk_preflight_gib": 8.7,
+  "isolation": "Fresh temporary browser profile and extracted copy of the unchanged package.",
+  "observations": [
+    "The first detached browser launch had exited before the next process inspection.",
+    "The direct second launch was confirmed running in the exact temporary profile.",
+    "The native UI control exposed the normal Chrome window, not the isolated test window; no Load unpacked action or extension installation was performed.",
+    "The exact isolated process was terminated only after its command line and test-profile identity were verified; the original process handle then returned exit 0.",
+    "No remaining process used the exact temporary profile before its created directory and extracted copy were removed."
+  ],
+  "consumer_installation_verified": false,
+  "extension_installed_in_normal_profile": false,
+  "normal_profile_settings_changed": false,
+  "temporary_profile_removed": true,
+  "live_package_changed": false,
+  "store_assets_changed": false,
+  "limitations": [
+    "The earlier protocol-loaded package acceptance remains separate from a consumer installation UI.",
+    "This result does not prove an installation defect or a successful manual installation.",
+    "Store assets, publisher access, policy declarations and broad compatibility remain open."
+  ]
+}

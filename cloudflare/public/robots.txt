@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+# Public reads are needed to render current results. Authenticated APIs never
+# expose personal data to crawlers. Workspace HTML carries noindex at the server.
+Disallow: /api/auth/
+Disallow: /api/career/
+Disallow: /api/admin/
+Disallow: /api/recover
+Disallow: /api/feedback
+Disallow: /api/chat
+Disallow: /api/metrics
+
+Sitemap: https://sponsorintel.london/sitemap.xml

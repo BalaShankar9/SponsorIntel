@@ -1,0 +1,23 @@
+{
+  "id": "19235112-42c7-40a1-95da-33f5405117cb",
+  "source": "wrangler",
+  "strategy": "percentage",
+  "annotations": {
+    "workers/message": "Release 2.98.13 Job notes preview and approved privacy",
+    "workers/triggered_by": "deployment"
+  },
+  "versions": [
+    {
+      "version_id": "244d81f0-b12f-45e9-97c9-411a663d5aff",
+      "percentage": 100
+    }
+  ],
+  "created_on": "2026-11-03T22:18:37.334896Z",
+  "release": "2.98.13",
+  "featureCommit": "2826edfa4a4c3024454d782fe5c08c47e28886b8",
+  "rollbackWorker": "ac955e96-9ed7-4efb-8f56-5cb91eaf2abf",
+  "inheritedQueuesPreserved": true,
+  "triggersSubmitted": false,
+  "schemaChanged": false,
+  "privateImportDeployed": false
+}

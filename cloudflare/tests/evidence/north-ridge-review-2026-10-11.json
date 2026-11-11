@@ -1,0 +1,166 @@
+{
+  "checked_at": "2026-10-11T13:51:07.885Z",
+  "lead_id": "c40c5567-c617-4047-8f93-af72b9feacaa",
+  "revision": 2,
+  "verified_from": "saved owner review form and append-only history",
+  "fields": [
+    {
+      "label": "Source type",
+      "type": "select-one",
+      "value": "teaching_vacancy"
+    },
+    {
+      "label": "Individual source link",
+      "type": "url",
+      "value": "https://teaching-vacancies.service.gov.uk/jobs/teacher-english-tlr-teaching-and-leadership-role"
+    },
+    {
+      "label": "Role or lead title",
+      "type": "text",
+      "value": "Teacher, English TLR (Teaching and Leadership Role)"
+    },
+    {
+      "label": "Employer name, if established",
+      "type": "text",
+      "value": "North Ridge High School"
+    },
+    {
+      "label": "Location, if established",
+      "type": "text",
+      "value": "Manchester, North West, M9 0RP"
+    },
+    {
+      "label": "Source observed at (your local time)",
+      "type": "datetime-local",
+      "value": "2026-10-11T14:47"
+    },
+    {
+      "label": "Exact sponsorship wording, if present",
+      "type": "textarea",
+      "value": "Skilled Worker visas can be sponsored"
+    },
+    {
+      "label": "Original employer application link",
+      "type": "url",
+      "value": "https://northridge.manchester.sch.uk/student-page/recruitment/"
+    },
+    {
+      "label": "Employer identity evidence link",
+      "type": "url",
+      "value": "https://www.get-information-schools.service.gov.uk/Establishments/Establishment/Details/132905"
+    },
+    {
+      "label": "Employer identity evidence",
+      "type": "textarea",
+      "value": "Agent-assisted primary-source review. GIAS confirms open North Ridge High School, URN 132905, community special school, Alworth Road/Blackley/Manchester M9 0RP, local authority Manchester, last confirmed 17 September 2026. Its school-designated English TLR PDF and DfE DOCX agree on title, 13 October noon deadline, permanent full-time role and emailed school application form with supporting letter. The current 9 October sponsor-register snapshot has no North Ridge match and lists Manchester City Council, Skilled Worker, Worker (A rating), ID 04f9defcb050f9262df01d95. The school publishes an MCC model recruitment policy, but no inspected source explicitly establishes this vacancy\u2019s employing/sponsoring entity or council licence coverage. No council licence is attached by inference."
+    },
+    {
+      "label": "Original posting time, only if known",
+      "type": "datetime-local",
+      "value": ""
+    },
+    {
+      "label": "Posting-date source wording",
+      "type": "textarea",
+      "value": "Teaching Vacancies datePosted: 2026-10-06. Publication time is not supplied."
+    },
+    {
+      "label": "Closing time, only if known",
+      "type": "datetime-local",
+      "value": "2026-10-13T12:00"
+    },
+    {
+      "label": "Closing-date source wording",
+      "type": "textarea",
+      "value": "Teaching Vacancies validThrough: 2026-10-13T12:00:00+01:00. School-designated English TLR PDF and the matching DfE DOCX both state application closing date 13 October 2026, noon."
+    },
+    {
+      "label": "Decision",
+      "type": "select-one",
+      "value": "held"
+    },
+    {
+      "label": "How this review was recorded",
+      "type": "select-one",
+      "value": "agent_assisted"
+    },
+    {
+      "label": "Review again by (within 30 days)",
+      "type": "datetime-local",
+      "value": "2026-10-12T12:00"
+    },
+    {
+      "label": "Decision reason and evidence still needed",
+      "type": "textarea",
+      "value": "Agent-assisted review through owner account. Hold source admission until the exact legal-employer and role-specific sponsor relationship is evidenced. DfE explicitly permits Skilled Worker sponsorship for this English leadership role; its separate Qualified Teacher 1 SEN point advert explicitly refuses sponsorship, so do not transfer the claim across the school. School PDF and DfE DOCX agree on permanent full-time work, January 2027 start and 13 October noon BST deadline. Requires at least three years teaching/leading English and two years with SEN pupils; not suitable for ECTs. The blank school application form and supporting letter are required; the letter is limited to three A4 sides. DfE rejects CV-only applications. The form asks about existing right to work, which alone does not negate the role\u2019s sponsorship wording. Follow-up moved earlier to 12 October noon BST because the original automated reminder coincided with the closing deadline. Next review must establish the role\u2019s employing/sponsoring entity and complete source catalogue/admission checks. GIAS identity is verified; there is no direct North Ridge register match, which is not proof of sponsorship refusal. No applicant information, consent, upload, email, source configuration or public job was created. Preserve the original automated revision and unknown precise posting time."
+    }
+  ],
+  "original_revision_preserved": true,
+  "recorded_at": "2026-10-11T13:47:57Z",
+  "new_leads": 0,
+  "new_sources": 0,
+  "public_jobs_added": 0,
+  "model_calls": 0,
+  "outreach": 0,
+  "screenshot": "../outputs/sponsorintel-north-ridge-review-2026-10-11.png",
+  "documents": [
+    {
+      "file": "north-ridge-job.docx",
+      "source_url": "https://teaching-vacancies.service.gov.uk/jobs/teacher-english-tlr-teaching-and-leadership-role/documents/e0d3c9c6-6133-4ba2-ae23-1f23270deab9",
+      "bytes": 67667,
+      "sha256": "08ca064a0621a363879b7306b08eb7aed92712b32ec44b181288c862a5f1c614",
+      "public_blank_source_document": true
+    },
+    {
+      "file": "north-ridge-application.docx",
+      "source_url": "https://northridge.manchester.sch.uk/wp-content/uploads/2019/02/Application-Form-4.docx",
+      "bytes": 174107,
+      "sha256": "2a3543e664b9ff74be9b541b39246f4e31aaa3d74192950d370d4b088a41776e",
+      "public_blank_source_document": true
+    }
+  ],
+  "school_original_pdf": "https://northridge.manchester.sch.uk/wp-content/uploads/2019/02/English-TLR-advert-and-job-description-1.pdf",
+  "register": {
+    "checked_at": "2026-10-11T13:47:01Z",
+    "source_date": "2026-10-09",
+    "north_ridge_matches": 0,
+    "council_match": {
+      "name": "Manchester City Council",
+      "id": "04f9defcb050f9262df01d95",
+      "route": "Skilled Worker",
+      "rating": "Worker (A rating)"
+    },
+    "relationship_to_role_established": false
+  },
+  "queue": {
+    "retained": 14,
+    "unresolved": 7,
+    "overdue": 0,
+    "changed_links": 0,
+    "current_linked_jobs": 3
+  },
+  "engineering": {
+    "prepared_version": "2.53.0",
+    "deployed": false,
+    "scope": "Future school candidate reminders; existing reviews are not rewritten",
+    "runtime": "Node 24.19.0",
+    "focused_tests": 28,
+    "full_tests": 532,
+    "full_test_failures": 0,
+    "full_test_duration_ms": 109622.069667,
+    "actual_isolated_workflow_d1": true,
+    "typescript": true,
+    "build": true,
+    "prerenders": 17,
+    "unchanged_asset_budgets": true,
+    "worker_dry_run": true,
+    "schema_changed": false,
+    "production_model_calls": 0,
+    "genuine_scheduled_acceptance_pending": true,
+    "tested_files_sha256": {
+      "cloudflare/worker/teaching-discovery.js": "2bbe7aca11ea0b5f23daabeee0f89348553a9255ee6f75ac8ccd1f628ae118e4",
+      "cloudflare/tests/discovery-scout.test.mjs": "ce558aaa263278effe97e476202a4a9bf3c8d5f868a213756d4cfb5ba2d76cbf",
+      "cloudflare/tests/discovery-scout-runtime.test.mjs": "9723ef52424998486216841a4585e42683a7e2a5e716f9d71316321e98895ba2"
+    }
+  }
+}

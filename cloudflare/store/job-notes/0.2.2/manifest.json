@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Sponsor Intel — Job notes",
+  "version": "0.2.2",
+  "description": "Read sponsorship evidence beside the jobs you browse. Enable one tab, inspect a complete advert and keep unknowns visible.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Sponsor Intel job notes"
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"
+  }
+}

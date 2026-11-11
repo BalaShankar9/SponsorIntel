@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "reviewed_on": "2026-10-26",
+  "review_due": "2026-11-02T00:00:00Z",
+  "reviewer_kind": "agent-assisted primary-source review, not independent legal opinion",
+  "scope": "Initial curated Innovator Founder hub only; no refresh of existing legal baselines",
+  "content_sha256": "6fbed16e6927802cf6b6a52465f0db18ba75dc3d8875eca659eedbe4a5a62126",
+  "sources": [
+    {
+      "url": "https://www.gov.uk/innovator-founder-visa",
+      "sections": [
+        "Overview",
+        "How long you can stay",
+        "Fees"
+      ],
+      "findings": [
+        "Business endorsement and immigration decision are separate",
+        "Outside fee 1357 GBP; inside switch/extension 1693 GBP",
+        "Endorsement 1000 GBP; minimum two 500 GBP meetings",
+        "Three-year route; meetings after 12 and 24 months; later permission/settlement conditional"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/innovator-founder-visa/eligibility",
+      "sections": [
+        "If you want to set up a new business",
+        "Supporting yourself"
+      ],
+      "findings": [
+        "Explain enough business funding and its source",
+        "Personal maintenance separate from investment funds"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/guidance/immigration-rules/immigration-rules-appendix-innovator-founder",
+      "sections": [
+        "INNF 1",
+        "INNF 8",
+        "INNF 11",
+        "INNF 12"
+      ],
+      "findings": [
+        "Endorsement within three months and not withdrawn; switching conditions need individual review",
+        "Innovation, viability and scalability criteria",
+        "English B2 unless exemption",
+        "Maintenance 1270 GBP/28 days; permission-to-stay exemption after at least 12 months with UK permission"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/healthcare-immigration-application/how-much-pay",
+      "sections": [
+        "Cost for a year",
+        "Cost for part of a year"
+      ],
+      "findings": [
+        "Adult other-application IHS 1035 GBP/year; three-year illustration 3105 GBP",
+        "Actual duration/circumstances affect charge"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/innovator-founder-visa/documents-youll-need-to-apply",
+      "sections": [
+        "Documents you will need to apply"
+      ],
+      "findings": [
+        "Endorsement, identity/passport, finance and English evidence, TB where applicable, certified translations if needed; additional circumstances can require more"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/government/publications/scale-up-and-innovator-founder-visa-endorsing-bodies-guidance/innovator-founder-and-scale-up-visas-guidance-for-endorsing-bodies-accessible",
+      "sections": [
+        "Innovator Founder Endorsement Criteria: New Business Criteria"
+      ],
+      "findings": [
+        "Core business innovation; realistic resources and founder skills; evidence-backed growth planning; generic app/AI claims insufficient by themselves"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/government/publications/endorsing-bodies-innovator-founder-and-scale-up-visas/innovator-founder-and-scale-up-visas-endorsing-bodies",
+      "sections": [
+        "Before contacting an Endorsing Body",
+        "Business Endorsing Bodies",
+        "Legacy Innovator Endorsing Bodies"
+      ],
+      "findings": [
+        "UK Endorsing Services, Innovator International and Envestors Limited listed for new applications",
+        "GEP only for already invited programme founders",
+        "Legacy bodies not available for general new applicants"
+      ]
+    },
+    {
+      "url": "https://www.ukesapp.co.uk/",
+      "findings": [
+        "New-business Apply Now link observed; actual intake capacity and outcome unknown"
+      ]
+    },
+    {
+      "url": "https://www.innovatorinternational.com/",
+      "findings": [
+        "Endorsement application link observed; actual intake capacity and outcome unknown"
+      ]
+    },
+    {
+      "url": "https://envestors-visa-endorsement.co.uk/",
+      "findings": [
+        "Destination observed via GOV.UK; insufficient readable content for provider intake claims"
+      ]
+    },
+    {
+      "url": "https://www.business.gov.uk/invest-in-uk/expand-your-business-in-the-uk/",
+      "findings": [
+        "Redirected destination from GOV.UK GEP link; invitation restriction sourced to authoritative endorsers list"
+      ]
+    },
+    {
+      "url": "https://businesswales.gov.wales/business-wales-service",
+      "findings": [
+        "Government support for aspiring entrepreneurs and businesses in Wales; not treated as an endorser"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/get-business-support",
+      "findings": [
+        "Official national support/contact signposts; no confirmed appointment or programme acceptance"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/business-finance-support/innovate-uk-business-growth",
+      "findings": [
+        "Funded support, English regions and business stages as listed; not a grant award"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/find-an-immigration-adviser",
+      "findings": [
+        "IAA and legal professional search routes; not a named practitioner endorsement"
+      ]
+    },
+    {
+      "url": "https://www.gov.uk/guidance/information-for-advice-seekers",
+      "findings": [
+        "Regulator finder/register and authorisation levels; IAA not itself an immigration adviser"
+      ]
+    }
+  ],
+  "limitations": [
+    "No independent legal review",
+    "No provider appointment, intake capacity, quality rating, VAT quote or private terms accepted",
+    "No private chat contents retained in public evidence",
+    "Curated review expiry is not automated legal change monitoring"
+  ]
+}

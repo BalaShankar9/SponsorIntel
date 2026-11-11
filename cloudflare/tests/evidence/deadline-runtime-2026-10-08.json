@@ -1,0 +1,91 @@
+{
+  "release": "2.23.0",
+  "test_scope": "Isolated local Workerd, synthetic public advert, no remote services or model bindings",
+  "deadline": "2026-10-08T03:44:21.804Z",
+  "before": {
+    "observed_at": "2026-10-08T03:42:52.069Z",
+    "jobs": {
+      "items": [
+        {
+          "id": "dddddddddddddddddddd0223",
+          "board_id": "monzo",
+          "company": "LOCAL QA employer",
+          "title": "Local deadline acceptance role",
+          "location": "London",
+          "apply_url": "https://example.com/jobs/test",
+          "provider": "greenhouse",
+          "sponsorship": "not_stated",
+          "evidence": "",
+          "level": "early_career",
+          "first_seen": "2026-10-08T03:42:21.803Z",
+          "last_seen": "2026-10-08T03:42:21.803Z",
+          "source_updated_at": null,
+          "application_deadline": "2026-10-08T03:44:21.804Z",
+          "closes_at": "2026-10-08T03:44:21.804Z",
+          "salary_excerpt": "",
+          "employment_type": "",
+          "workplace": "",
+          "sector": "finance",
+          "sector_label": "Finance & fintech",
+          "employer_licence": null
+        }
+      ],
+      "total": 1,
+      "catalog_total": 1,
+      "collections": {
+        "total": 1,
+        "employers": 1,
+        "early_career": 1,
+        "sponsorship": 0,
+        "licensed": 0,
+        "salary": 0
+      },
+      "next_deadline": "2026-10-08T03:44:21.804Z",
+      "licence_register": {
+        "available": false,
+        "source_date": null,
+        "checked_at": null
+      },
+      "sectors": {
+        "technology": "Technology",
+        "finance": "Finance & fintech",
+        "engineering": "Engineering",
+        "healthcare": "Healthcare & life sciences",
+        "energy": "Energy & climate",
+        "education": "Education",
+        "commerce": "Commerce & delivery"
+      },
+      "page": 1,
+      "pages": 1,
+      "sources": [
+        {
+          "id": "monzo",
+          "company": "LOCAL QA employer",
+          "careers_url": "https://example.com/careers",
+          "checked_at": "2026-10-08T03:42:21.803Z",
+          "last_success": "2026-10-08T03:42:21.803Z",
+          "count": 1,
+          "error": null
+        }
+      ]
+    },
+    "sitemap_included": true
+  },
+  "after": {
+    "observed_at": "2026-10-08T03:44:34.375Z",
+    "job_count": 0,
+    "sitemap_removed": true,
+    "page_noindex": true,
+    "page_deadline_notice": true,
+    "observations_unchanged": true,
+    "source_refreshes": 0
+  },
+  "browser": {
+    "without_reload": true,
+    "prepare_before_enabled": true,
+    "prepare_after_enabled": false,
+    "save_after_enabled": false,
+    "deadline_notice": true
+  },
+  "backfill_prepared": 75
+}

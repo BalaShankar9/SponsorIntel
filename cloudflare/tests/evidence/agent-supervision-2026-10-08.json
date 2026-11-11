@@ -1,0 +1,119 @@
+{
+  "release": "2.16.0",
+  "recorded_at": "2026-10-07T23:56:05.522874+00:00",
+  "worker_version": "1e1afb18-2d91-4574-8655-2d77daf743a3",
+  "tests": {
+    "passed": 185,
+    "failed": 0,
+    "targeted_passed": 65,
+    "build": "passed",
+    "prerendered_public_pages": 17,
+    "types": "passed",
+    "dry_run": "passed"
+  },
+  "isolated_runtime": {
+    "synthetic": true,
+    "production_bindings": false,
+    "platform_status": "complete",
+    "supervision": {
+      "checked_at": "2026-10-07T23:53:10.648Z",
+      "checks": [
+        {
+          "kind": "research",
+          "run_id": "local-research",
+          "action": "reconciled",
+          "platform_status": "complete",
+          "draft": "none",
+          "reason": "Confirmed stopped workflow; closed its unfinished application record. Existing evidence, call reservations and owner decisions are retained. No paid call was repeated."
+        },
+        {
+          "kind": "marketing",
+          "action": "idle"
+        }
+      ],
+      "reconciled": 1,
+      "needs_attention": 0,
+      "model_calls": 0,
+      "external_posts": 0
+    },
+    "receipt": {
+      "run": {
+        "id": "local-research",
+        "state": "failed",
+        "calls": 0,
+        "error": "Confirmed stopped workflow; closed its unfinished application record. Existing evidence, call reservations and owner decisions are retained. No paid call was repeated."
+      },
+      "steps": [
+        {
+          "name": "agent-supervision",
+          "result": "{\"checked_at\":\"2026-10-07T23:53:10.648Z\",\"checks\":[{\"kind\":\"research\",\"run_id\":\"local-research\",\"action\":\"reconciled\",\"platform_status\":\"complete\",\"draft\":\"none\",\"reason\":\"Confirmed stopped workflow; closed its unfinished application record. Existing evidence, call reservations and owner decisions are retained. No paid call was repeated.\"},{\"kind\":\"marketing\",\"action\":\"idle\"}],\"reconciled\":1,\"needs_attention\":0,\"model_calls\":0,\"external_posts\":0}"
+        },
+        {
+          "name": "supervise:marketing",
+          "result": "{\"kind\":\"marketing\",\"action\":\"idle\"}"
+        },
+        {
+          "name": "supervise:research",
+          "result": "{\"kind\":\"research\",\"run_id\":\"local-research\",\"action\":\"reconciled\",\"platform_status\":\"complete\",\"draft\":\"none\",\"reason\":\"Confirmed stopped workflow; closed its unfinished application record. Existing evidence, call reservations and owner decisions are retained. No paid call was repeated.\"}"
+        }
+      ]
+    }
+  },
+  "live": {
+    "health_version": "2.16.0",
+    "anonymous_business_api": 403,
+    "latest_business_runs": [
+      {
+        "id": "business-497615",
+        "state": "completed",
+        "trigger_kind": "unknown",
+        "created_at": "2026-10-07T23:45:34.000Z",
+        "finished_at": "2026-10-07T23:45:39.477Z"
+      },
+      {
+        "id": "business-497614",
+        "state": "completed",
+        "trigger_kind": "unknown",
+        "created_at": "2026-10-07T22:05:16.861Z",
+        "finished_at": "2026-10-07T22:05:21.207Z"
+      },
+      {
+        "id": "business-497613",
+        "state": "completed",
+        "trigger_kind": "unknown",
+        "created_at": "2026-10-07T21:33:01.838Z",
+        "finished_at": "2026-10-07T21:33:07.241Z"
+      }
+    ],
+    "budget": [
+      {
+        "day": "2026-10-07",
+        "runs": 4,
+        "calls": 13
+      }
+    ],
+    "marketing": [
+      {
+        "id": "marketing-2026-10-07",
+        "state": "held",
+        "calls": 0
+      }
+    ],
+    "active_research": 0,
+    "supervision_receipts": 0,
+    "scheduled_supervision_verified": false,
+    "manual_business_run_started": false,
+    "new_model_calls": 0,
+    "new_social_posts": 0,
+    "mobile": {
+      "viewport": 390,
+      "document_width": 390
+    }
+  },
+  "recovery_bookmark": "0000027f-00000000-000050fd-9ad1d54fd27310d54cfc25f83f840dcf",
+  "limitations": [
+    "Terminal recovery verified in isolated local Workerd, not manufactured in production.",
+    "The next naturally scheduled business run must confirm live supervision execution.",
+    "Research accuracy, real marketing output and external delivery are separate acceptance gates."
+  ]
+}

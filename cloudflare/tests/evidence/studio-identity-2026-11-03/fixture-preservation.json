@@ -1,0 +1,12 @@
+{
+  "observedAt": "2026-11-03T23:55:47.329040+00:00",
+  "scope": "fictional_local_isolated_release",
+  "roles": 1,
+  "apiWrites": 1,
+  "preparationRequests": 0,
+  "existingCVUnchanged": true,
+  "existingLetterUnchanged": true,
+  "privateNoteUnchanged": true,
+  "stageUnchanged": true,
+  "masterProfileSHA256": "089d3dbd938d2e6460cd57b2e418eaecc7a20115ecd38b3c06dc9222cb8dba8c"
+}

@@ -1,0 +1,37 @@
+{
+  "recorded_on_utc": "2026-10-30",
+  "account_plan_observation": {
+    "method": "existing authenticated Cloudflare Workers plans tab; deliberate reload followed by rendered UI inspection",
+    "observation_window_start": "2026-10-30T14:43:39Z",
+    "observation_window_end": "2026-10-30T14:49:16Z",
+    "exact_observation_timestamp_recorded": false,
+    "current_plan": "Free",
+    "current_plan_button_disabled": true,
+    "paid_offer_displayed": "$5 / month + usage",
+    "upgrade_clicked": false,
+    "billing_information_retained": false
+  },
+  "official_sources_rechecked": [
+    "https://developers.cloudflare.com/d1/platform/pricing/",
+    "https://developers.cloudflare.com/workflows/reference/limits/",
+    "https://developers.cloudflare.com/workers/platform/pricing/"
+  ],
+  "known_capacity_comparison": {
+    "retained_worker_register_rows": 128008,
+    "free_daily_d1_written_rows": 100000,
+    "one_insert_per_register_row_exceeds_daily_allowance": true,
+    "additional_index_cleanup_and_other_service_writes_included": false,
+    "free_workflow_cpu_ms_per_step": 10,
+    "paid_default_workflow_cpu_seconds_per_step": 30,
+    "total_monthly_cost_established": false
+  },
+  "original_receipt_reference": "business-status-2026-10-30.json",
+  "original_business_instance": "business-497989",
+  "missing_instance_outcome": "unknown",
+  "support_draft": "docs/CAPACITY_AND_SUPERVISOR_HANDOFF.md",
+  "support_request_sent": false,
+  "new_sponsorintel_runtime_requests_or_writes": false,
+  "account_changes": [],
+  "holds_cleared": [],
+  "purchase_or_permission_granted": false
+}

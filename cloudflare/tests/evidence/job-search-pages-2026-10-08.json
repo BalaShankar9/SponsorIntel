@@ -1,0 +1,360 @@
+{
+  "assembled_at": "2026-10-08T08:56:54.175Z",
+  "version": "2.32.0",
+  "worker": "fb2e847d-2f3c-4346-9431-3fba9c4f1957",
+  "rollback_worker": "4ba65df7-691c-42c8-a4d6-20888f234489",
+  "migration": null,
+  "tests": {
+    "passed": 345,
+    "failed": 0,
+    "build": true,
+    "worker_dry_run": true
+  },
+  "before": {
+    "initial_html_bytes": 30554,
+    "initial_role_links": 0,
+    "loading_placeholder": true
+  },
+  "live": {
+    "checked_at": "2026-10-08T08:54:31.503Z",
+    "origin": "https://sponsorintel.london",
+    "checks": [
+      {
+        "path": "/jobs",
+        "status": 200,
+        "total": 885,
+        "visible_roles": 12,
+        "page": 1,
+        "canonical": "https://sponsorintel.london/jobs",
+        "cache": "no-store",
+        "html_api_agree": true
+      },
+      {
+        "path": "/jobs?page=2",
+        "status": 200,
+        "total": 885,
+        "visible_roles": 12,
+        "page": 2,
+        "canonical": "https://sponsorintel.london/jobs?page=2",
+        "cache": "no-store",
+        "html_api_agree": true
+      },
+      {
+        "path": "/jobs?sponsorship=mentioned",
+        "status": 200,
+        "total": 50,
+        "visible_roles": 12,
+        "page": 1,
+        "canonical": "https://sponsorintel.london/jobs?sponsorship=mentioned",
+        "cache": "no-store",
+        "html_api_agree": true
+      },
+      {
+        "path": "/jobs?q=SponsorIntelNoMatchingRoleQA",
+        "status": 200,
+        "total": 0,
+        "visible_roles": 0,
+        "page": 1,
+        "canonical": "https://sponsorintel.london/jobs?q=SponsorIntelNoMatchingRoleQA",
+        "cache": "no-store",
+        "html_api_agree": true
+      }
+    ]
+  },
+  "local": {
+    "checked_at": "2026-10-08T08:53:35.738Z",
+    "origin": "http://127.0.0.1:8799",
+    "checks": [
+      {
+        "path": "/jobs",
+        "status": 200,
+        "total": 14,
+        "visible_roles": 12,
+        "page": 1,
+        "canonical": "https://sponsorintel.london/jobs",
+        "cache": "no-store",
+        "html_api_agree": true
+      },
+      {
+        "path": "/jobs?page=2",
+        "status": 200,
+        "total": 14,
+        "visible_roles": 2,
+        "page": 2,
+        "canonical": "https://sponsorintel.london/jobs?page=2",
+        "cache": "no-store",
+        "html_api_agree": true
+      },
+      {
+        "path": "/jobs?sponsorship=mentioned",
+        "status": 200,
+        "total": 7,
+        "visible_roles": 7,
+        "page": 1,
+        "canonical": "https://sponsorintel.london/jobs?sponsorship=mentioned",
+        "cache": "no-store",
+        "html_api_agree": true
+      },
+      {
+        "path": "/jobs?q=SponsorIntelNoMatchingRoleQA",
+        "status": 200,
+        "total": 0,
+        "visible_roles": 0,
+        "page": 1,
+        "canonical": "https://sponsorintel.london/jobs?q=SponsorIntelNoMatchingRoleQA",
+        "cache": "no-store",
+        "html_api_agree": true
+      }
+    ]
+  },
+  "local_native_form_runtime": {
+    "at": "2026-10-08T08:40:46.667Z",
+    "fixture": "Local Workerd/D1; module script stripped by local-only asset wrapper to exercise native forms",
+    "checks": [
+      {
+        "path": "/jobs",
+        "status": 200,
+        "location": null,
+        "cards": 12,
+        "robots": null,
+        "canonical": "https://sponsorintel.london/jobs",
+        "cache": "no-store",
+        "etag": null,
+        "retry": null,
+        "scripts": 0,
+        "total": 15
+      },
+      {
+        "path": "/jobs?page=2",
+        "status": 200,
+        "location": null,
+        "cards": 3,
+        "robots": null,
+        "canonical": "https://sponsorintel.london/jobs?page=2",
+        "cache": "no-store",
+        "etag": null,
+        "retry": null,
+        "scripts": 0,
+        "total": 15
+      },
+      {
+        "path": "/jobs?sponsorship=mentioned",
+        "status": 200,
+        "location": null,
+        "cards": 8,
+        "robots": "noindex, follow",
+        "canonical": "https://sponsorintel.london/jobs?sponsorship=mentioned",
+        "cache": "no-store",
+        "etag": null,
+        "retry": null,
+        "scripts": 0,
+        "total": 8
+      },
+      {
+        "path": "/jobs?q=absent",
+        "status": 200,
+        "location": null,
+        "cards": 0,
+        "robots": "noindex, follow",
+        "canonical": "https://sponsorintel.london/jobs?q=absent",
+        "cache": "no-store",
+        "etag": null,
+        "retry": null,
+        "scripts": 0,
+        "total": 0
+      },
+      {
+        "path": "/jobs?page=999",
+        "status": 302,
+        "location": "http://127.0.0.1:8799/jobs?page=2",
+        "cards": 0,
+        "robots": null,
+        "cache": "no-store",
+        "etag": null,
+        "retry": null,
+        "scripts": 0
+      },
+      {
+        "path": "/jobs?__local_fail=1",
+        "status": 503,
+        "location": null,
+        "cards": 0,
+        "robots": "noindex",
+        "cache": "no-store",
+        "etag": null,
+        "retry": "60",
+        "scripts": 0
+      }
+    ],
+    "deadline_after": {
+      "observed_at": "2026-10-08T08:43:00.132Z",
+      "total": 0,
+      "cards": 0
+    }
+  },
+  "browser": {
+    "local_only_fixture": true,
+    "local_native_form_module_scripts": 0,
+    "local_native_form_pagination": true,
+    "deadline": {
+      "closes_at": "2026-10-08T08:42:34.143Z",
+      "before_observed_at": "2026-10-08T08:42:19.976Z",
+      "before_visible": 1,
+      "after_observed_at": "2026-10-08T08:43:09.053Z",
+      "after_visible": 0,
+      "without_reload": true,
+      "observation_dates_unchanged": true
+    },
+    "live_filter": {
+      "canonical": "https://sponsorintel.london/jobs?sponsorship=mentioned",
+      "matching_roles": 50,
+      "visible_roles": 12,
+      "robots": "noindex,follow"
+    },
+    "live_mobile": {
+      "viewport_width": 390,
+      "document_width": 390,
+      "visible_roles": 12,
+      "override_reset": true
+    }
+  },
+  "scheduled_business_observation": {
+    "id": "business-497624",
+    "trigger": "scheduled",
+    "state": "completed",
+    "created_at": "2026-10-08T08:45:38.000Z",
+    "finished_at": "2026-10-08T08:45:51.261Z",
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/jobs",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/insights",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/api/admin/session",
+        "status": 403,
+        "ok": true,
+        "security": true
+      }
+    ],
+    "email_delivery": {
+      "configured": true,
+      "events_7d": 0,
+      "last_received": null,
+      "failures_7d": 0,
+      "blocked_owners": 0,
+      "queues": {
+        "incoming": {
+          "backlogCount": 0,
+          "backlogBytes": 0,
+          "oldestMessageTimestamp": 0,
+          "checked_at": "2026-10-08T08:45:45.112Z"
+        },
+        "unprocessed": {
+          "backlogCount": 0,
+          "backlogBytes": 0,
+          "oldestMessageTimestamp": 0,
+          "checked_at": "2026-10-08T08:45:45.112Z"
+        }
+      }
+    },
+    "result": {
+      "health": {
+        "findings": 3,
+        "high": 0
+      },
+      "supervision": {
+        "checked_at": "2026-10-08T08:45:42.130Z",
+        "checks": [
+          {
+            "kind": "research",
+            "action": "idle"
+          },
+          {
+            "kind": "marketing",
+            "action": "idle"
+          },
+          {
+            "kind": "applications",
+            "action": "idle"
+          }
+        ],
+        "reconciled": 0,
+        "needs_attention": 0,
+        "model_calls": 0,
+        "external_posts": 0
+      },
+      "search": {
+        "day": "2026-10-08",
+        "state": "failed",
+        "requests": 1,
+        "reused": true
+      },
+      "cleanup": {
+        "state": "completed",
+        "stale_roles": 0,
+        "policy": "Hide records last observed over 72 hours ago; retain the records, feedback and customer workspaces."
+      },
+      "publication": {
+        "state": "not_due",
+        "next_due": "2026-10-14T16:50:43.330Z"
+      },
+      "marketing": {
+        "prepared": 0,
+        "external_posts_sent": 0
+      },
+      "editorial": {
+        "id": "marketing-2026-10-08",
+        "state": "no_post",
+        "result": {
+          "decision": "no_post",
+          "source_id": "",
+          "reason": "No eligible slot: the queue is full, expired or needs delivery reconciliation.",
+          "ranked": [],
+          "timing_reason": "Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first."
+        },
+        "reused": true
+      },
+      "research": {
+        "state": "held",
+        "research_id": null,
+        "detail": "Research was held by its availability or budget controls. No automatic retry today."
+      },
+      "applications": {
+        "id": "application-eval-2026-10-08",
+        "state": "held",
+        "reused": true
+      }
+    }
+  },
+  "provider_events": 0,
+  "new_email_sends": 0,
+  "new_production_model_calls": 0,
+  "google_retries": 0,
+  "new_social_schedules": 0,
+  "limits": [
+    "Initial HTML accessibility and crawlable navigation do not establish Google indexing or ranking gains.",
+    "The new initial-content monitor passed read-only live checks; its first genuine scheduled run remains due.",
+    "Email queue health was collected on a genuine schedule; no native lifecycle event has arrived and reliable Inbox delivery remains unproven.",
+    "Hosted CI requires current-head verification separately from local tests."
+  ]
+}

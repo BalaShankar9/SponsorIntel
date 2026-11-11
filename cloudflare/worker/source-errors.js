@@ -1,0 +1,26 @@
+import {safeSourceDiagnostic} from '../shared/source-diagnostics.js';
+// A private WeakMap prevents an arbitrary exception's fields/body being retained.
+const checked=new WeakMap();
+export class SourceCheckError extends Error {
+  constructor(code, context={}, message='Source check could not be completed') {
+    super(message);this.name='SourceCheckError';
+    checked.set(this,Object.freeze(safeSourceDiagnostic({...context,code})));
+  }
+}
+export function sourceDiagnostic(error){
+  return checked.get(error)||safeSourceDiagnostic({code:error?.name==='TimeoutError'||error?.name==='AbortError'?'request_timeout':'unclassified'});
+}
+// Repeating a known identity/parser rejection inside the same run spends the
+// source allowance without establishing that the rejected batch became sound.
+// Transport, storage and unclassified failures keep their existing retry path.
+const reviewCodes=new Set(['unreviewed_source','redirected','invalid_payload','oversized_payload',
+  'incomplete_catalogue','duplicate_posting','posting_identity','posting_changed',
+  'invalid_destination','invalid_sections','oversized_advert']);
+export function sourceFailureNeedsReview(error){
+  return reviewCodes.has(checked.get(error)?.code);
+}
+export function withSourceContext(error,context){
+  const diagnostic=sourceDiagnostic(error);
+  // Preserve the more specific inner phase, adding the caller's current count.
+  return new SourceCheckError(diagnostic.code,{...context,...diagnostic,requests:context.requests??diagnostic.requests});
+}

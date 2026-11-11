@@ -1,0 +1,747 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-11T19:34:12.053533+00:00",
+  "operation": "offline_retained_directory_candidate_join",
+  "status": "locally_verified_delivered_not_deployed",
+  "base_head": "d430c795fdf6c284b0268a7547d662e3b0234e4b",
+  "source_files": {
+    "cloudflare/worker/advisers-data.json": {
+      "bytes": 297808,
+      "sha256": "b50f47ba28674d740a3631169be1b74eb106d79cd42e7369005336648131fb66"
+    },
+    "docs/data/sponsor-atlas-expanded-evidence-2026-11-11.json": {
+      "bytes": 30840,
+      "sha256": "44be39f7d6a32204263a6f66d44fe7f021e93050503928df41f0d24c7ede05a2"
+    },
+    "cloudflare/data/research-register-2026-11-11.csv": {
+      "bytes": 10939788,
+      "sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682"
+    },
+    "cloudflare/package.json": {
+      "bytes": 1552,
+      "sha256": "51238ebe138a5d815f380f577d0d7698178998ffb70d31486347c1cae9691f5f"
+    },
+    "cloudflare/package-lock.json": {
+      "bytes": 162028,
+      "sha256": "c8b04e869026958060f0d0549e3b5371737287d2f153aa25e258da29224b9bf0"
+    },
+    "cloudflare/.wrangler/local-state-before-toolchain-20261008.tar.gz": {
+      "bytes": 41184059,
+      "sha256": "69ebe9302aa1f9d3dabbde00bac797bd0a90a487e750bd1cd3cad4494191fc61"
+    }
+  },
+  "pack_receipt": {
+    "schema_version": 1,
+    "operation": "offline_register_research_pack",
+    "source_date": "2026-11-11",
+    "observed_at": "2026-11-11T15:46:45.099861+00:00",
+    "source_url": "https://assets.publishing.service.gov.uk/media/6af4446004988992d226eb76/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-11-11.csv",
+    "source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+    "source_rows": 143009,
+    "grouped_entries": 127873,
+    "distinct_names": 127310,
+    "row_reconciliation": "all_source_records_retained",
+    "network_requests_by_builder": 0,
+    "production_writes": 0,
+    "business_enrichment": "retained_evidence_requires_review",
+    "retained_evidence_entries": 10,
+    "retained_evidence_claims": 39,
+    "retained_evidence_observations": 25,
+    "newly_verified_businesses": 0,
+    "evidence_packet_sha256": "44be39f7d6a32204263a6f66d44fe7f021e93050503928df41f0d24c7ede05a2",
+    "files": {
+      "data.json": {
+        "bytes": 69668823,
+        "sha256": "63f1a96af608bfa9805ab89060b7019a3a0ae2a07a585f217f813e4346b8b810"
+      },
+      "index.html": {
+        "bytes": 69889124,
+        "sha256": "a6c94b1addaf9c5ebec30294a4284a8d0b6da419deda7c63781288ffe1f5454a"
+      },
+      "register-entries.csv": {
+        "bytes": 25300506,
+        "sha256": "f9299103aead641b0f7c4cd555a6c8df6227ad7c33c1cc66dbd7cad551b28d3f"
+      },
+      "README.md": {
+        "bytes": 9167,
+        "sha256": "860eb547551e508bb41c599818db6c099047bfd5b9a68692add3d385433655be"
+      },
+      "register-comparison.csv": {
+        "bytes": 72910297,
+        "sha256": "626c6fedb88032238ab1b70d5c7d47b26b886026cb777271d277571fe6e9ead3"
+      }
+    },
+    "comparison": {
+      "schema_version": 1,
+      "match_basis": "normalized_name_city_county_exact",
+      "earlier_source_url": "https://assets.publishing.service.gov.uk/media/6abf628355bc01d752a7f28a/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-02.csv",
+      "earlier_source_date": "2026-10-02",
+      "earlier_observed_at": "2026-10-04T07:58:43.247144+00:00",
+      "earlier_source_sha256": "67a7bcb01f31570fa906584ee429ed4d5a5fabf17e5b914b9bc42656c8743ac1",
+      "current_source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "counts": {
+        "present_both": 125951,
+        "current_only": 1922,
+        "earlier_only": 1951,
+        "matched_pairs_changed": 97,
+        "matched_variants_changed": 67,
+        "changed_matched": 160,
+        "unchanged_matched": 125791,
+        "matched_source_row_count_changed": 219,
+        "matched_duplicate_count_changed": 182,
+        "matched_pairs_added": 90,
+        "matched_pairs_removed": 59,
+        "union_entries": 129824,
+        "earlier_source_rows": 143138,
+        "earlier_grouped_entries": 127902,
+        "earlier_duplicate_source_rows": 689,
+        "current_source_rows": 143009,
+        "current_grouped_entries": 127873,
+        "current_duplicate_source_rows": 624
+      },
+      "row_reconciliation": "all_records_retained_in_each_snapshot",
+      "business_evidence_carried_forward": 0
+    },
+    "candidate_sources": {
+      "schema_version": 1,
+      "register_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "matching_method": "whitespace_normalized_casefolded_full_name_only",
+      "sources": [
+        {
+          "id": "iaa-b65bb995531efd522729dfde7c2a49c8c875c83ba2ec30ea435fd48aaf0d5674",
+          "kind": "retained_public_directory",
+          "source_url": "https://www.gov.uk/government/publications/register-of-currently-registered-immigration-advice-organisations",
+          "attachment_url": "https://assets.publishing.service.gov.uk/media/6a8821dcebba21482c58cc18/FOI_IAA_regulated_organisations_09.07.26.xlsx",
+          "as_of": "2026-07-09",
+          "published_on": "2026-09-25",
+          "imported_on": "2026-10-05",
+          "retained_file_sha256": "b50f47ba28674d740a3631169be1b74eb106d79cd42e7369005336648131fb66",
+          "declared_attachment_sha256": "2f05291601b653fd312091dc9a2aa7cfc12f9e6489b331f1194aeae38884c45f",
+          "verified_attachment_sha256": "2f05291601b653fd312091dc9a2aa7cfc12f9e6489b331f1194aeae38884c45f",
+          "worksheet_name": "IAA Registered Organisations",
+          "worksheet_data_rows": 2276,
+          "unnamed_worksheet_rows": 2,
+          "licence": "Contains public sector information licensed under the Open Government Licence v3.0."
+        }
+      ],
+      "counts": {
+        "source_records": 2274,
+        "matched_source_records": 147,
+        "matched_register_entries": 149,
+        "multiple_entry_source_records": 2,
+        "unmatched_source_records": 2127,
+        "newly_verified_businesses": 0
+      },
+      "business_fields_populated": 0,
+      "regulatory_status_inferred": false,
+      "directory_requests": 0
+    }
+  },
+  "code_sha256": {
+    "cloudflare/scripts/build-sponsor-dossiers.py": "6eae440068b5e0a8bb34d289b041de86f2a78bfe42e4bfd707b68a234d900e9b",
+    "cloudflare/scripts/sponsor-dossiers-template.html": "301ca3fae0ee52a5b6ecc09e8f5df9e897ddcc10eb6169cff9507f0488f60db9",
+    "cloudflare/tests/test_sponsor_dossiers.py": "3627fa4e73f777e92abd1310fa620ca03cd1f4aee48bf61850523ff7ee5a70cc"
+  },
+  "browser_harness_sha256": {
+    "cloudflare/tests/sponsor-dossier-candidates-browser.mjs": "131e033d3d5dff42b66175ddf6facbafe0d8fc9089de026ab9fbbad5ebcf14c1",
+    "cloudflare/tests/sponsor-dossiers-browser.mjs": "283a45fdf1bf943056c6da77a9122f37e37610de9a605e83eade07cac4279386",
+    "cloudflare/tests/sponsor-dossier-comparison-browser.mjs": "60ee5db0a7ec934ec777c5b17e95d5c1351e6d9c8f5ed08833771779dac2ca55"
+  },
+  "validation": {
+    "python_tests": 60,
+    "python_runtime": "3.14.7",
+    "node_runtime": "24.19.0",
+    "qualification": {
+      "operation": "offline_IAA_candidate_source_qualification",
+      "register_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "retained_json_sha256": "b50f47ba28674d740a3631169be1b74eb106d79cd42e7369005336648131fb66",
+      "original_xlsx_sha256": "2f05291601b653fd312091dc9a2aa7cfc12f9e6489b331f1194aeae38884c45f",
+      "counts": {
+        "source_records": 2274,
+        "matched_source_records": 147,
+        "matched_register_entries": 149,
+        "multiple_entry_source_records": 2,
+        "unmatched_source_records": 2127,
+        "newly_verified_businesses": 0
+      },
+      "source_metadata": {
+        "id": "iaa-b65bb995531efd522729dfde7c2a49c8c875c83ba2ec30ea435fd48aaf0d5674",
+        "kind": "retained_public_directory",
+        "source_url": "https://www.gov.uk/government/publications/register-of-currently-registered-immigration-advice-organisations",
+        "attachment_url": "https://assets.publishing.service.gov.uk/media/6a8821dcebba21482c58cc18/FOI_IAA_regulated_organisations_09.07.26.xlsx",
+        "as_of": "2026-07-09",
+        "published_on": "2026-09-25",
+        "imported_on": "2026-10-05",
+        "retained_file_sha256": "b50f47ba28674d740a3631169be1b74eb106d79cd42e7369005336648131fb66",
+        "declared_attachment_sha256": "2f05291601b653fd312091dc9a2aa7cfc12f9e6489b331f1194aeae38884c45f",
+        "verified_attachment_sha256": "2f05291601b653fd312091dc9a2aa7cfc12f9e6489b331f1194aeae38884c45f",
+        "worksheet_name": "IAA Registered Organisations",
+        "worksheet_data_rows": 2276,
+        "unnamed_worksheet_rows": 2,
+        "licence": "Contains public sector information licensed under the Open Government Licence v3.0."
+      },
+      "original_literal_checks": 147,
+      "previously_transformed_websites_restored": 34,
+      "safe_original_https_links": 21,
+      "existing_dataset_preserved": true,
+      "no_candidate_options_byte_compatibility": [
+        {
+          "mode": "baseline",
+          "identical_files": [
+            "README.md",
+            "data.json",
+            "index.html",
+            "receipt.json",
+            "register-entries.csv"
+          ]
+        },
+        {
+          "mode": "schema1",
+          "identical_files": [
+            "README.md",
+            "data.json",
+            "index.html",
+            "receipt.json",
+            "register-entries.csv"
+          ]
+        },
+        {
+          "mode": "schema2",
+          "identical_files": [
+            "README.md",
+            "data.json",
+            "index.html",
+            "receipt.json",
+            "register-entries.csv"
+          ]
+        },
+        {
+          "mode": "schema2_comparison",
+          "identical_files": [
+            "README.md",
+            "data.json",
+            "index.html",
+            "receipt.json",
+            "register-comparison.csv",
+            "register-entries.csv"
+          ]
+        }
+      ],
+      "new_network_requests": 0,
+      "production_writes": 0,
+      "files": {
+        "cloudflare/scripts/build-sponsor-dossiers.py": {
+          "sha256": "6eae440068b5e0a8bb34d289b041de86f2a78bfe42e4bfd707b68a234d900e9b"
+        },
+        "cloudflare/tests/test_sponsor_dossiers.py": {
+          "sha256": "3627fa4e73f777e92abd1310fa620ca03cd1f4aee48bf61850523ff7ee5a70cc"
+        }
+      },
+      "unit_tests": {
+        "count": 60,
+        "log": "/tmp/si-iaa-candidates-unit-20261111-03.log",
+        "result": "passed"
+      }
+    },
+    "candidate_browser": {
+      "observed_at": "2026-11-11T19:30:24.609Z",
+      "scope": "offline historical-directory candidate-source UI",
+      "success": true,
+      "checks": [
+        "Candidate filter narrows existing register rows; candidate website and directory identifier do not expand normal search",
+        "Two-location ambiguity and three distinct historical dates are explicit; saved pointers stay separate from historical claims and business fields",
+        "Exact source date precision and digest meanings survive the source trail; 390px layout and Escape focus pass",
+        "Raw HTTP remains exact non-clickable text and exact exported data; a single name match remains unverified",
+        "Hostile candidate text stays literal and javascript website text never becomes a link",
+        "Candidate and historical filters intersect the selected snapshot view; same-name earlier-only row inherits no pointers or claims",
+        "Bare original worksheet website stays exact text and is never upgraded to HTTPS",
+        "Credential, query, fragment, private-host, IP and private-protocol candidate records are omitted entirely from display and saved exports, including a secret-bearing optional link",
+        "Malformed record and foreign subject are omitted safely; unrelated website target is refused; wrong register binding disables all pointers",
+        "No-candidate baseline preserves existing historical evidence and register comparison",
+        "Actual DENASS malformed original website survives the privacy guard as exact non-clickable worksheet text and saved data",
+        "Actual pack candidate counts, multi-entry ambiguity and selected exact export agree; raw HTTP pointer remains non-clickable",
+        "No external requests or browser errors"
+      ],
+      "error": null,
+      "template_sha256": "301ca3fae0ee52a5b6ecc09e8f5df9e897ddcc10eb6169cff9507f0488f60db9",
+      "artifacts": "/var/folders/nv/1zpk2cld1nv26b8fv7xtp78w0000gn/T/si-candidate-source-browser-oeL3us",
+      "real_pack": {
+        "register_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+        "counts": {
+          "source_records": 2274,
+          "matched_source_records": 147,
+          "matched_register_entries": 149,
+          "multiple_entry_source_records": 2,
+          "unmatched_source_records": 2127,
+          "newly_verified_businesses": 0
+        }
+      },
+      "external_requests": [],
+      "browser_errors": [],
+      "production_reads": 0,
+      "production_writes": 0
+    },
+    "baseline_browser": {
+      "observed_at": "2026-11-11T19:30:23.003Z",
+      "scope": "local offline generated register pack",
+      "source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "entries": 127873,
+      "historical_subjects": 10,
+      "historical_claims": 39,
+      "newly_verified_businesses": 0,
+      "load_ms_local": 1379,
+      "checks": [
+        "complete embedded entry count",
+        "only one page rendered",
+        "paired source row denominator shown",
+        "pagination changes entries",
+        "pagination restores first page",
+        "combined filters match independent data calculation",
+        "selected dossier names exact entry",
+        "route-rating pairs survive display",
+        "unverified business fields stay unknown",
+        "research plan uses exact organisation",
+        "actual saved dossier export retains source and unknown state",
+        "Escape closes dialog and restores focus",
+        "empty results are explicit",
+        "clear restores directory",
+        "historical filter count matches supplied subjects",
+        "every real historical dossier displays all claims and exports exact source/date/follow-up evidence without current-job claims",
+        "mobile page has no horizontal overflow",
+        "mobile dossier fits viewport",
+        "real historical mobile dossier fits viewport",
+        "no page errors",
+        "no background network requests"
+      ],
+      "errors": [],
+      "unexpected_requests": [],
+      "production_requests": 0
+    },
+    "comparison_browser": {
+      "observed_at": "2026-11-11T19:30:23.561Z",
+      "scope": "offline supplied-register comparison UI plus fictional edge cases",
+      "success": true,
+      "checks": [
+        "Latest supplied snapshot remains the default with unchanged baseline denominators and only one rendered page",
+        "Changed, latest-only and earlier-only views match independent comparison counts without changing latest totals",
+        "Real paired route/rating differences, isolated primary pair class and complete two-source download agree with source rows",
+        "Both exact recorded spelling sets are retained for a real variant difference",
+        "Recording-count-only differences stay outside changed view and remain separately inspectable/exportable",
+        "Earlier-only historical dossier uses its original source, excludes current evidence and preserves export, mobile layout and Escape focus",
+        "Latest-only dossier preserves an absent earlier row without inventing a licence issue event",
+        "Historical search, exact-town variants and route filter use the earlier-only view denominator",
+        "Fictional row ordering and duplicate-only changes do not become content changes",
+        "Same-named records in different towns remain two one-sided entries without inferred relocation",
+        "Hostile earlier name stays text; blank location and no-Skilled-Worker caution survive source-correct export",
+        "Optional-comparison absence preserves the baseline directory and dossier",
+        "No external page requests or browser errors across real pack and fictional fixtures"
+      ],
+      "error": null,
+      "source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "earlier_source_sha256": "67a7bcb01f31570fa906584ee429ed4d5a5fabf17e5b914b9bc42656c8743ac1",
+      "counts": {
+        "present_both": 125951,
+        "current_only": 1922,
+        "earlier_only": 1951,
+        "matched_pairs_changed": 97,
+        "matched_variants_changed": 67,
+        "changed_matched": 160,
+        "unchanged_matched": 125791,
+        "matched_source_row_count_changed": 219,
+        "matched_duplicate_count_changed": 182,
+        "matched_pairs_added": 90,
+        "matched_pairs_removed": 59,
+        "union_entries": 129824,
+        "earlier_source_rows": 143138,
+        "earlier_grouped_entries": 127902,
+        "earlier_duplicate_source_rows": 689,
+        "current_source_rows": 143009,
+        "current_grouped_entries": 127873,
+        "current_duplicate_source_rows": 624
+      },
+      "html_sha256": "a6c94b1addaf9c5ebec30294a4284a8d0b6da419deda7c63781288ffe1f5454a",
+      "artifacts": "/var/folders/nv/1zpk2cld1nv26b8fv7xtp78w0000gn/T/si-register-comparison-browser-oYHAPj",
+      "external_requests": [],
+      "browser_errors": [],
+      "production_reads": 0,
+      "production_writes": 0
+    },
+    "full_data": {
+      "verified_at": "2026-11-11T19:30:12.674442+00:00",
+      "status": "passed",
+      "all_prior_data_exact": true,
+      "all_127873_latest_entries_exact": true,
+      "all_129824_comparison_keys_exact": true,
+      "both_csv_files_byte_identical": true,
+      "historical_10_subjects_39_claims_25_records_exact": true,
+      "all_147_candidate_records_and_149_subjects_match_independent_oracle": true,
+      "original_raw_website_values_preserved": true,
+      "actual_clickable_https_website_count": 21,
+      "matched_records_with_previously_transformed_websites": 34,
+      "source_json_and_original_workbook_digests_verified": true,
+      "all_output_and_code_hashes_match": true,
+      "counts": {
+        "source_records": 2274,
+        "matched_source_records": 147,
+        "matched_register_entries": 149,
+        "multiple_entry_source_records": 2,
+        "unmatched_source_records": 2127,
+        "newly_verified_businesses": 0
+      },
+      "network_or_production_calls": 0,
+      "newly_verified_businesses": 0,
+      "verifier_sha256": "22ca69cd33df0dc08c1ca99c96ae5f28d733583da009526515dc1057736a51bd"
+    },
+    "independent_oracle": {
+      "path": "cloudflare/data/atlas-candidates-2026-11-11/independent-candidate-oracle.json",
+      "sha256": "cff42da02f7c585e489281bbd6c8be1ad6a9becf995fecb874ead339a96e9b70",
+      "method": {
+        "builder_imported_or_executed": false,
+        "external_requests": 0,
+        "join": "Whitespace normalization (split/join), then Unicode casefold of the complete organisation name; no punctuation removal, suffix removal, token, address, website, fuzzy or company-number join.",
+        "source_row_semantics": "One-based item position in retained advisers-data.json; original_worksheet_row is separately retained.",
+        "privacy_fields_selected": [
+          "organisation name",
+          "organisation identifier",
+          "organisation website text"
+        ],
+        "excluded_source_fields": [
+          "level",
+          "approved"
+        ],
+        "unproven": [
+          "same legal entity",
+          "same business",
+          "current IAA registration",
+          "current website ownership or availability",
+          "licence coverage",
+          "advice quality",
+          "services offered",
+          "current hiring or sponsorship availability"
+        ],
+        "website_semantics": "Original worksheet website text is the source value. Retained JSON website is separately shown to expose transformations. No inferred protocol or clickability is certified."
+      },
+      "counts": {
+        "retained_adviser_records": 2274,
+        "register_source_rows": 143009,
+        "register_entries": 127873,
+        "matched_adviser_records": 147,
+        "matched_register_entries": 149,
+        "join_edges": 149,
+        "unmatched_adviser_records": 2127,
+        "unmatched_register_entries": 127724,
+        "adviser_records_matching_multiple_register_entries": 2,
+        "register_entries_matching_multiple_adviser_records": 0,
+        "matched_distinct_normalized_names": 147
+      },
+      "original_to_retained_reconciliation": {
+        "named_workbook_rows": 2274,
+        "retained_rows": 2274,
+        "all_name_identifier_pairs_equal_after_boundary_trim": true,
+        "all_named_rows_in_original_order": true,
+        "all_websites_accounted_for": true,
+        "website_relationship_counts": {
+          "unchanged": 1834,
+          "https_prefix_added": 437,
+          "unsuitable_value_omitted": 3
+        },
+        "website_omission_exceptions": [
+          {
+            "source_row": 648,
+            "worksheet_row": 649,
+            "reason": "malformed_http_scheme"
+          },
+          {
+            "source_row": 823,
+            "worksheet_row": 825,
+            "reason": "email_in_website_column"
+          },
+          {
+            "source_row": 1071,
+            "worksheet_row": 1073,
+            "reason": "organisation_name_in_website_column"
+          }
+        ],
+        "boundary_trim_counts": {
+          "name": 1,
+          "identifier": 0,
+          "website": 0
+        },
+        "non_name_rows_omitted": [
+          {
+            "worksheet_row": 740,
+            "reason": "empty organisation name"
+          },
+          {
+            "worksheet_row": 2169,
+            "reason": "empty organisation name"
+          }
+        ],
+        "selected_cells_with_formulas": 0,
+        "original_named_name_identifier_projection_sha256": "8d1afbbee39d2315816a373b5323d914d8f3c6a32df0913e24908ae7247e1332",
+        "retained_name_identifier_projection_sha256": "8d1afbbee39d2315816a373b5323d914d8f3c6a32df0913e24908ae7247e1332",
+        "retained_name_identifier_website_projection_sha256": "1ac228db88b4a86afc8a71393c682af4efe78f378407cbe19c749ecf9da8ee78",
+        "importer_source_found": false,
+        "interpretation": "These are independently observed field relationships, not a claim about undocumented original importer code. Original worksheet website text is authoritative for this retained-pointer comparison; JSON added https:// to some values and omitted three unsuitable values. No workbook metadata, other columns or private/customer records are exported.",
+        "matched_record_website_relationship_counts": {
+          "https_prefix_added": 33,
+          "unchanged": 113,
+          "unsuitable_value_omitted": 1
+        },
+        "matched_unsuitable_website_rows": [
+          {
+            "source_row": 648,
+            "original_worksheet_row": 649
+          }
+        ]
+      }
+    },
+    "independent_agent_assisted_audit": {
+      "path": "cloudflare/data/atlas-candidates-2026-11-11/independent-preservation-source-audit.json",
+      "sha256": "1a5d1d810d7e85ec8d3ee3a9c03d20646b27820e2d4ec8c2925dc81f4b89d895",
+      "status": "passed",
+      "checks": [
+        {
+          "check": "eight unrelated tracked file hashes unchanged",
+          "passed": true,
+          "details": {
+            "count": 8
+          }
+        },
+        {
+          "check": "six turn-preflight inputs and protected package/archive files unchanged",
+          "passed": true,
+          "details": {
+            "count": 6
+          }
+        },
+        {
+          "check": "package lock and private archive equal earlier preservation baseline",
+          "passed": true,
+          "details": [
+            {
+              "path": "cloudflare/package.json",
+              "passed": true
+            },
+            {
+              "path": "cloudflare/package-lock.json",
+              "passed": true
+            },
+            {
+              "path": "cloudflare/.wrangler/local-state-before-toolchain-20261008.tar.gz",
+              "passed": true
+            }
+          ]
+        },
+        {
+          "check": "original workbook equals independent oracle",
+          "passed": true,
+          "details": {
+            "path": "/Users/balabollineni/Documents/Codex/2026-10-04/i-h/work/iaa-organisations.xlsx",
+            "bytes": 128133,
+            "sha256": "2f05291601b653fd312091dc9a2aa7cfc12f9e6489b331f1194aeae38884c45f"
+          }
+        },
+        {
+          "check": "advisers source equals independent oracle",
+          "passed": true,
+          "details": null
+        },
+        {
+          "check": "register source equals independent oracle",
+          "passed": true,
+          "details": null
+        },
+        {
+          "check": "all matched source positions match independent oracle",
+          "passed": true,
+          "details": null
+        },
+        {
+          "check": "every candidate original name identifier website row and name-match set matches oracle",
+          "passed": true,
+          "details": {
+            "compared_records": 147,
+            "errors": []
+          }
+        },
+        {
+          "check": "three raw date-only dataset dates retained exactly",
+          "passed": true,
+          "details": {
+            "as_of": "2026-07-09",
+            "published_on": "2026-09-25",
+            "imported_on": "2026-10-05"
+          }
+        },
+        {
+          "check": "retained JSON and original XLSX digests distinguished",
+          "passed": true,
+          "details": null
+        },
+        {
+          "check": "candidate field projection excludes levels approval dates and private/current approval state",
+          "passed": true,
+          "details": null
+        },
+        {
+          "check": "candidate subjects exact current snapshot bound",
+          "passed": true,
+          "details": null
+        },
+        {
+          "check": "all149 candidate subject exact tuple and source rows match oracle",
+          "passed": true,
+          "details": {
+            "errors": []
+          }
+        },
+        {
+          "check": "zero newly verified businesses and unchanged ten-subject historical packet coverage",
+          "passed": true,
+          "details": null
+        },
+        {
+          "check": "receipt claims zero candidate business field population",
+          "passed": true,
+          "details": null
+        },
+        {
+          "check": "explicit unverified and historical-source UI/export boundaries present",
+          "passed": true,
+          "details": null
+        },
+        {
+          "check": "no unexpected tracked runtime schema or hold-control changes beyond preserved eight",
+          "passed": true,
+          "details": {
+            "changed_tracked_paths": [
+              "cloudflare/scripts/build-sponsor-dossiers.py",
+              "cloudflare/scripts/sponsor-dossiers-template.html",
+              "cloudflare/shared/admin-navigation.js",
+              "cloudflare/src/owner.tsx",
+              "cloudflare/tests/sponsor-cities.test.mjs",
+              "cloudflare/tests/test_sponsor_dossiers.py",
+              "cloudflare/worker/admin.js",
+              "cloudflare/worker/auth.js",
+              "cloudflare/worker/index.js",
+              "cloudflare/worker/research-scope-source.json",
+              "cloudflare/worker/sponsor-cities.js",
+              "docs/SPONSOR_COMPANY_ATLAS_PLAN.md"
+            ],
+            "unexpected": []
+          }
+        }
+      ],
+      "not_independent_human_review": true
+    },
+    "real_visual": {
+      "observed_at": "2026-11-11T19:32:44.318Z",
+      "scope": "Supplementary visual inspection of actual retained Holy Trinity Church research pointer; no source visits or current verification",
+      "success": true,
+      "error": null,
+      "pack": "/Users/balabollineni/Documents/Codex/2026-10-04/i-h/work/SponsorIntel/cloudflare/data/atlas-candidates-2026-11-11/pack-01",
+      "register_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "candidate_id": "bbeb62e5920c4f838b8140f821e5bfcfb64234085a585db3566c203d422d1603",
+      "selected_entry_key": "9681ddc9d2b682dd3848b65512cec8761d170d98c31be56d47c079c8bb5762cc",
+      "candidate_subject_count": 149,
+      "matching_method": "whitespace_normalized_casefolded_full_name_only",
+      "images": [
+        {
+          "file": "holy-trinity-desktop.png",
+          "width": 1360,
+          "height": 960,
+          "sha256": "8db1aad093e715211329cd59fe2d871a7b2152dede660d20a8fa42995a33d1c2",
+          "locations": [
+            "Holy Trinity Church \u00b7 Leicester \u00b7 Leicestershire (this entry)",
+            "Holy Trinity Church \u00b7 Eastbourne \u00b7 East Sussex"
+          ],
+          "source_website_text": "https://hthounslow.org.uk"
+        },
+        {
+          "file": "holy-trinity-mobile.png",
+          "width": 390,
+          "height": 844,
+          "sha256": "cab698d140f662431553d963e25ef08551efae9dd21eff11c19a51a172febe29",
+          "locations": [
+            "Holy Trinity Church \u00b7 Leicester \u00b7 Leicestershire (this entry)",
+            "Holy Trinity Church \u00b7 Eastbourne \u00b7 East Sussex"
+          ],
+          "source_website_text": "https://hthounslow.org.uk"
+        }
+      ],
+      "external_requests": [],
+      "browser_errors": [],
+      "production_reads": 0,
+      "production_writes": 0,
+      "browser_closed": true
+    },
+    "screenshots_visually_inspected": true,
+    "retained_initial_qualification_failure": "Harness used earlier_csv instead of earlier_csv_path; corrected without product changes. Both logs retained."
+  },
+  "delivery": {
+    "delivered_at": "2026-11-11T19:31:21.503264+00:00",
+    "folder": "/Users/balabollineni/Documents/ChatGPT/Sponsor Intel/Sponsor company atlas 2026-11-11 research sources",
+    "zip": "/Users/balabollineni/Documents/ChatGPT/Sponsor Intel/Sponsor company atlas 2026-11-11 research sources.zip",
+    "zip_bytes": 65641326,
+    "zip_sha256": "4e42c14b57f64387a839c4cff740d3d5a744f2319515291051c111357f374ec3",
+    "files": {
+      "index.html": {
+        "bytes": 69889124,
+        "sha256": "a6c94b1addaf9c5ebec30294a4284a8d0b6da419deda7c63781288ffe1f5454a"
+      },
+      "data.json": {
+        "bytes": 69668823,
+        "sha256": "63f1a96af608bfa9805ab89060b7019a3a0ae2a07a585f217f813e4346b8b810"
+      },
+      "register-entries.csv": {
+        "bytes": 25300506,
+        "sha256": "f9299103aead641b0f7c4cd555a6c8df6227ad7c33c1cc66dbd7cad551b28d3f"
+      },
+      "register-comparison.csv": {
+        "bytes": 72910297,
+        "sha256": "626c6fedb88032238ab1b70d5c7d47b26b886026cb777271d277571fe6e9ead3"
+      },
+      "README.md": {
+        "bytes": 9167,
+        "sha256": "860eb547551e508bb41c599818db6c099047bfd5b9a68692add3d385433655be"
+      },
+      "receipt.json": {
+        "bytes": 4647,
+        "sha256": "32a95a9a0a6db24ccd47b402fc70b557d8c896b5d6c24cbf09165c4ebfcb5bc1"
+      }
+    },
+    "all_copied_files_match": true,
+    "all_zip_member_hashes_match": true,
+    "zip_crc_pass": true,
+    "prior_editions_preserved": true
+  },
+  "bounds": {
+    "network_enrichment_requests": 0,
+    "production_reads": 0,
+    "production_writes": 0,
+    "new_leads": 0,
+    "model_calls": 0,
+    "google_calls": 0,
+    "sends": 0,
+    "applications": 0,
+    "migrations": 0,
+    "deployments": 0,
+    "source_or_identity_approvals": 0,
+    "newly_verified_businesses": 0,
+    "business_fields_populated": 0,
+    "goal": "active",
+    "current_owner_controls": "unavailable_after_previously_observed_quota_failure",
+    "capacity_original_supervisor_and_private_saving_holds": "unchanged",
+    "live_identity_desk_ceiling": 500
+  },
+  "deferred_local_curation": {
+    "path": "cloudflare/data/atlas-candidates-2026-11-11/deferred-four-subject-research.json",
+    "sha256": "8664b6f3e3567502850eb5e5bbd9d520ce96c941cd79c1eefb59b42893782360",
+    "subjects": 4,
+    "imported": false
+  },
+  "raw_evidence_directory": "cloudflare/data/atlas-candidates-2026-11-11",
+  "hosted_ci": "inspect_exact_pushed_head_separately_without_rerun",
+  "pull_request": "existing_1_draft_open_unmerged"
+}

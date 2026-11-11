@@ -1,0 +1,111 @@
+{
+  "observed_at": "2026-10-26T02:23:29.256902+00:00",
+  "job_collection": {
+    "generated_at": "2026-10-26T02:13:29.038Z",
+    "collections": {
+      "total": 1002,
+      "employers": 37,
+      "early_career": 75,
+      "sponsorship": 53,
+      "licensed": 960,
+      "salary": 182
+    },
+    "licence_register": {
+      "available": true,
+      "source_date": "2026-10-23",
+      "checked_at": "2026-10-25T07:15:33.741Z"
+    }
+  },
+  "latest_source_run": {
+    "id": "scheduled-1792974655003",
+    "status": "complete",
+    "start": "2026-10-26T00:31:01.919Z",
+    "end": "2026-10-26T00:32:07.853Z",
+    "success": true,
+    "output": {
+      "state": "attention",
+      "counts": {
+        "published": 37,
+        "skipped": 1
+      }
+    }
+  },
+  "business": {
+    "last_receipt": "business-497990",
+    "last_receipt_finished_at": "2026-10-23T14:46:54.646Z",
+    "last_platform_completed_at": "2026-10-23T14:46:55.000Z",
+    "blocking_receipt": "business-497989",
+    "blocking_state": "queued",
+    "blocking_created_at": "2026-10-23T13:45:30.093Z",
+    "recorded_steps": 0,
+    "provider_inspection": "instance_not_found",
+    "provider_error_code": 10400,
+    "outcome": "uncertain; not retried or cleared"
+  },
+  "complete_utc_day_metrics": {
+    "from": "2026-10-09",
+    "through": "2026-10-25",
+    "days": 17,
+    "events": [
+      {
+        "event": "account_created",
+        "count": 1
+      },
+      {
+        "event": "campaign_page_view",
+        "count": 24
+      },
+      {
+        "event": "page_view",
+        "count": 177
+      }
+    ],
+    "unique_people": false,
+    "causal_conversions": false
+  },
+  "source_budget": [
+    {
+      "day": "2026-10-26",
+      "requests": 84,
+      "briefs": 0
+    }
+  ],
+  "discovery": {
+    "retained": 29,
+    "new_today": 0,
+    "unresolved": 8,
+    "overdue": 4
+  },
+  "advert_reviews": {
+    "held": 4,
+    "overdue": 3,
+    "records": [
+      {
+        "title": "Science Technician \u2014 King's Lynn Academy",
+        "state": "held",
+        "follow_up_at": "2026-10-24T09:00:00.000Z"
+      },
+      {
+        "title": "Lecturer Plumbing \u2014 New City College \u2014 R003642",
+        "state": "held",
+        "follow_up_at": "2026-10-23T09:00:00.000Z"
+      },
+      {
+        "title": "Teacher of Drama \u2014 King's Lynn Academy \u2014 3600-R0174",
+        "state": "held",
+        "follow_up_at": "2026-10-24T09:00:00.000Z"
+      },
+      {
+        "title": "Senior Exam Invigilator \u2014 King's Lynn Academy",
+        "state": "held",
+        "follow_up_at": "2026-10-27T10:00:00.000Z"
+      }
+    ]
+  },
+  "production_ai_started_by_operator": 0,
+  "google_requests_forced": 0,
+  "applications_sent": 0,
+  "new_social_schedules": 0,
+  "email_sent_by_operator": 0,
+  "holds_cleared": 0
+}

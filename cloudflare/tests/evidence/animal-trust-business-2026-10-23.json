@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "operation_date_utc": "2026-10-23",
+  "kind": "reviewed_business_identity_and_existing_vacancy_review",
+  "runtime_unchanged": "2.92.0",
+  "business_identity": {
+    "identity_id": "eabb37d1-1772-4980-b771-f1551583d8c5",
+    "revision": 1,
+    "sponsor_id": "34adf03d7603a83c07482d99",
+    "sponsor_name": "Animal Trust Vets CIC",
+    "business_name": "Animal Trust",
+    "relationship": "trading_name",
+    "website": "https://www.animaltrust.org.uk/",
+    "careers_url": "https://www.animaltrust.org.uk/careers/vacancies",
+    "activity": "Veterinary care; Companies House records SIC 75000 (Veterinary activities).",
+    "locations": "The careers website lists practices including Dewsbury, Barnsley and Wrexham. These examples do not establish licence coverage for every workplace.",
+    "official_identifier": "Companies House 07938025",
+    "evidence_url": "https://www.animaltrust.org.uk/terms",
+    "evidence_summary": "Animal Trust’s own business terms identify Animal Trust as the trading name of Animal Trust Vets CIC, company 07938025, at Cedab Road in Ellesmere Port. Companies House corroborates the company number, active CIC status and veterinary activity. The current sponsor register separately lists Animal Trust Vets CIC in Ellesmere Port. This relationship does not confirm sponsorship or the employing entity for any particular vacancy.",
+    "observed_at": "2026-10-23T01:55:17.000Z",
+    "review_due_at": "2026-10-30T12:00:00.000Z",
+    "review_method": "agent_assisted",
+    "recorded_at": "2026-10-23T01:56:21.270Z"
+  },
+  "evidence_observations": [
+    {
+      "url": "https://www.animaltrust.org.uk/careers/vacancies",
+      "observed_at": "2026-10-23T01:54:00.317Z",
+      "supports": "Primary careers site links BambooHR; footer states trading name, company number and business address; location examples are not all-workplace licence coverage."
+    },
+    {
+      "url": "https://find-and-update.company-information.service.gov.uk/company/07938025",
+      "observed_at": "2026-10-23T01:54:42.134Z",
+      "supports": "ANIMAL TRUST VETS C.I.C., company 07938025, active CIC, Cedab Road Ellesmere Port, SIC 75000 veterinary activities."
+    },
+    {
+      "url": "https://www.animaltrust.org.uk/terms",
+      "observed_at": "2026-10-23T01:55:17.534Z",
+      "supports": "Primary terms explicitly identify Animal Trust Vets CIC trading as Animal Trust, company 07938025."
+    },
+    {
+      "url": "https://animaltrust.bamboohr.com/careers/1183",
+      "observed_at": "2026-10-23T01:56:20.734Z",
+      "supports": "Dewsbury Veterinary Surgeon advert still visible with Apply button and Visa support available; original posting/deadline unknown. No application started."
+    }
+  ],
+  "register": {
+    "snapshot": "2026-10-21-28e1d924",
+    "source_date": "2026-10-21",
+    "checked_at": "2026-10-22T07:15:39.699Z",
+    "imported_at": "2026-10-22T07:17:59.083Z",
+    "entry_id": "34adf03d7603a83c07482d99",
+    "entry_name": "Animal Trust Vets CIC",
+    "city": "Ellesmere Port",
+    "county": "Cheshire",
+    "route": "Skilled Worker",
+    "rating": "Worker (A rating)"
+  },
+  "public_verification": {
+    "url": "https://sponsorintel.london/?employer=34adf03d7603a83c07482d99",
+    "api": "https://sponsorintel.london/api/business-identities?sponsor_id=34adf03d7603a83c07482d99",
+    "excluded_http_qa": true,
+    "browser_signed_in_as_owner": true,
+    "exact_profile_and_source_links_verified": true,
+    "private_fields_absent": true,
+    "screenshot": "outputs/animal-trust-business-evidence-2026-10-23.png"
+  },
+  "business_preservation": {
+    "read_after_at": "2026-10-23T02:02:04.553Z",
+    "revisions_before": 1,
+    "revisions_after": 2,
+    "audits_before": 1,
+    "audits_after": 2,
+    "all_prior_revisions_and_audits_exact": true,
+    "numan_revision_unchanged": true,
+    "current_register_metadata_and_two_selected_entries_unchanged": true
+  },
+  "existing_discovery_review": {
+    "lead_id": "d5d34bda-a972-456d-90a7-5bf2fea2a880",
+    "revision": 2,
+    "recorded_at": "2026-10-23T02:00:54.837Z",
+    "state": "held",
+    "method": "agent_assisted",
+    "observed_at": "2026-10-23T01:56:20.000Z",
+    "posted_at": null,
+    "deadline": null,
+    "follow_up_at": "2026-10-26T12:00:00.000Z",
+    "quote": "Visa support available",
+    "original_url": "https://animaltrust.bamboohr.com/careers/1183",
+    "job_id": null,
+    "new_information": "Separate trading-name relationship is published; exact role sponsorship, recruitment redistribution rights and complete BambooHR adapter remain unverified.",
+    "preservation": {
+      "before_at": "2026-10-23T01:56:40.144Z",
+      "after_at": "2026-10-23T02:01:01.904Z",
+      "lead_rows_before_and_after": 28,
+      "lead_rows_exact": true,
+      "prior_revisions_preserved": 75,
+      "prior_audits_preserved": 64,
+      "added_revisions": 1,
+      "added_audits": 1
+    },
+    "queue_after": {
+      "retained": 28,
+      "unresolved": 7,
+      "overdue": 3,
+      "current_linked": 3,
+      "changed_links": 0,
+      "new_leads_today": 0
+    }
+  },
+  "operational_preservation": {
+    "before_at": "2026-10-23T01:47:11.613Z",
+    "after_at": "2026-10-23T02:02:12.183Z",
+    "fourteen_groups_exact": true,
+    "source_reserved_requests": 104,
+    "ai_starts": 1,
+    "ai_calls": 2,
+    "foreign_key_errors": 0,
+    "portmandentex_pause_unchanged": true
+  },
+  "limits": [
+    "Agent-assisted owner review is not independent human validation.",
+    "This adds one business relationship, no public job, source configuration or sponsorship label.",
+    "Both reviewed brands already occur in their register names; no incremental alias-only discovery demonstrated.",
+    "No automatic enrichment or next genuine register-refresh acceptance is established.",
+    "Factual identity summary and source links do not approve recruitment feed redistribution.",
+    "No new model call, Google read, email, social schedule, application, permission, purchase, schema or runtime change."
+  ]
+}

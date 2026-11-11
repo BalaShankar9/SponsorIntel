@@ -1,0 +1,60 @@
+{
+  "observed_at": "2026-10-18T02:19:07.931Z",
+  "scope": "Agent-assisted follow-up of an existing private discovery lead; no publication or source approval",
+  "lead_id": "95029621-3186-46a6-9d6f-1d4e4ef104cf",
+  "revision": 2,
+  "revision_id": "1aab79a1-a18a-43d3-a9e3-8b535f7bb3af",
+  "recorded_at": "2026-10-18T02:18:49.469Z",
+  "state": "held",
+  "method": "agent_assisted",
+  "original_observed_at": "2026-10-18T01:29:00.000Z",
+  "follow_up_at": "2026-10-20T11:00:00.000Z",
+  "sources": [
+    {
+      "url": "https://data.fca.org.uk/artefacts/NSM/DirectUpload/NI-000146412/NI-000146412.pdf",
+      "title": "Pets at Home Annual Report and Financial Statements 2026",
+      "pages": [
+        142,
+        145
+      ],
+      "fact": "At 26 March 2026, Bangor Wales Vets4Pets Limited 08314827 is listed at 100% indirect ownership; the separately named Bangor Vets4Pets Limited at 50%. Dated ownership does not prove the hiring entity or licence coverage."
+    },
+    {
+      "url": "https://find-and-update.company-information.service.gov.uk/company/08314827",
+      "fact": "Active company; previous name Companion Care (Bangor) Limited. A previous name/shared registered office does not prove a relationship to Companion Care (Services) Ltd sponsorship."
+    },
+    {
+      "url": "https://www.vets4pets.com/about-us/privacy-policy/",
+      "document_updated": "2026-06-19",
+      "fact": "Covers several group and affiliated practice entities and names a website operator; does not identify this role\u2019s employer."
+    },
+    {
+      "url": "https://www.vets4petscareers.com/our-graduate-programme/",
+      "fact": "Graduate sponsorship benefits are practice-dependent. This separate programme does not impose a new condition/refusal on nursing requisition 41178."
+    }
+  ],
+  "verification": {
+    "unchanged_prior_discovery_revisions": 61,
+    "unchanged_lead_identities": 23,
+    "only_content_fields_changed": [
+      "identity_note",
+      "reason"
+    ],
+    "unchanged_operational_groups": 14,
+    "foreign_key_errors": 0,
+    "daily_new_leads": 2,
+    "daily_lead_slots_remaining": 3,
+    "source_reservations": 104,
+    "shared_ai_starts": 2,
+    "shared_ai_calls": 8
+  },
+  "limits": [
+    "Role-specific employing entity and licence relationship remain unconfirmed",
+    "Reuse review and bounded collection adapter remain open",
+    "No fresh application-route or advert recheck in this identity-only follow-up",
+    "No public vacancy, source configuration, new lead, contact, application, model call, Google request or social/email action",
+    "Companies House 06504379 direct web-tool fetch failed; no new status conclusion taken from that attempt",
+    "PDF text tables read; screenshot calls returned no image bytes and were not treated as visual verification"
+  ],
+  "validation": "Documentation/evidence-only change; original immutable rows and selected operational groups compared directly. Existing same-day recovery/security receipts reused; no runtime deploy."
+}

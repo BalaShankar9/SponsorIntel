@@ -1,0 +1,486 @@
+{
+  "observed_at": "2026-10-20T17:12:26.511Z",
+  "runtime": "2.90.0",
+  "method": "Agent-assisted owner-UI assessments of complete fictional profiles, CVs, adverts and retained outputs; read-only D1 verification. No direct database write.",
+  "source_fixture_sha256": "5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3",
+  "application_source_sha256": "4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2",
+  "newly_assessed_outputs": 8,
+  "new_assessment_rows": 8,
+  "new_outcomes": {
+    "acceptable": 5,
+    "needs_work": 3
+  },
+  "preexisting_assessment_rows_unchanged": {
+    "count": 35,
+    "sha256": "936cb9e11c4aa36b35261b78d4a31eafbd95e691982c37eb2b9fb6d612142efd"
+  },
+  "preexisting_assessment_audits_unchanged": {
+    "count": 35,
+    "sha256": "37c8854db79d0a6d158620877f3fe6d2523a797c21b420e97740d0395adc0256"
+  },
+  "protected_application_groups": {
+    "runs": {
+      "unchanged": true,
+      "rows": 12,
+      "sha256": "ecae711dd94f474fa21968564dcb3bb84c2ee260fffaf575e620b40ad0779405"
+    },
+    "steps": {
+      "unchanged": true,
+      "rows": 66,
+      "sha256": "e7d9c12cfd37f02026d9fda21c8f7d197147c90e8999c64a6d71ee793a2dad29"
+    },
+    "control": {
+      "unchanged": true,
+      "rows": 1,
+      "sha256": "f901f7bf9ab6305d9c7abafa0d0035763ef415d1bc35a3bc5d3095be35d34741"
+    },
+    "campaigns": {
+      "unchanged": true,
+      "rows": 6,
+      "sha256": "0654917cf378a441c7d0f599724838ce70d6f1845c2d4de1727f5f1c3f53bd12",
+      "scope": "Table definitions only; not campaign or control-review row contents."
+    }
+  },
+  "assessments": [
+    {
+      "id": "3efee100-8ede-4a04-bf72-eddb66200153",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-15",
+      "case_id": "project-provenance",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-20T17:09:41.113Z",
+      "output_fingerprint": "99fd18f2e36ca6b498edd9f794c742e63381e9635673bc259cca46eacd7257c9",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 20 October 2026. Compared the complete fictional profile, CV, advert and retained candidate text. Task Board stays an explicitly personal local Vue prototype from 2025, separate from 2017–2020 education and 2021–2024 hotel work; it is not promoted into a degree assignment, commercial deployment or workplace project. The Vue skill is grounded in that limited project. Qualification, supplied name/email, employer, dates and enquiry duty remain. The name is in the profile rather than a heading and the education is repetitive, but the document is usable and relevant to explaining frontend ownership. No visa, quantified outcome or unrelated advert qualification is added. This benign input contains no hostile instructions; that criterion does not establish adversarial robustness. This is a development judgment, not independent human adjudication or model-promotion approval.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Task Board was a personal project built in 2025 as a local Vue prototype.",
+            "normalized_offset": 176
+          },
+          {
+            "source": "cv",
+            "quote": "Separate personal project, built in 2025: Task Board, a local Vue prototype. The project was not part of the degree or hotel employment.",
+            "normalized_offset": 138
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "56d71191-677a-4d46-a2b1-49f82a8a5327",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-15",
+      "case_id": "project-provenance",
+      "stage": "baseline",
+      "revision": 1,
+      "created_at": "2026-10-20T17:09:57.227Z",
+      "output_fingerprint": "d92ea3cf7261a6f51c02a1357bb66b3ffda786c0d813b59fde8b6e8880e6dab2",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 20 October 2026. Complete fictional profile/CV, advert and retained current-reviewer text compared. The profile explicitly identifies a personal Vue project and the separate Projects, Experience and Education sections retain its 2025 date, the hotel 2021–2024 period and BSc 2017–2020 period. Read as a whole, the local Task Board prototype is not attributed to the college or hotel. The supplied name/email, qualification, employer, enquiry duty and limited Vue experience remain accurate and relevant. Repeating the personal qualifier beside the project could improve clarity, but its presence in the profile and separation/date evidence are sufficient here. No invented result, deployment, work permission or additional technical responsibility appears. No hostile instruction is present, so the instruction judgment is limited to this benign case. This is an agent-assisted development assessment, not independent acceptance or approval to change customer generation.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "BSc Computing graduate with experience in guest services and a personal project involving Vue development.",
+            "normalized_offset": 61
+          },
+          {
+            "source": "cv",
+            "quote": "Separate personal project, built in 2025: Task Board, a local Vue prototype. The project was not part of the degree or hotel employment.",
+            "normalized_offset": 138
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "9bfa1e10-7979-4144-89e2-26617c29ef16",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-15",
+      "case_id": "project-provenance",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-20T17:10:12.529Z",
+      "output_fingerprint": "aefc7eed0fbe0961ef78e41f632f0805ca0857bc51946abc86b5ac9b10d8c5a3",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 20 October 2026. Compared the complete fictional profile, CV, advert and writer draft. It retains the supplied identity/email, BSc and 2017–2020 dates, hotel enquiry role and 2021–2024 dates, and Task Board as a local Vue prototype built in 2025. The profile calls the project personal and the three separate sections keep it apart from education and employment. Vue.js and guest-services skills are supported at this limited level; no production deployment, employer project, quantified result or visa status is claimed. The writing is concise and usable for the stated frontend role. Repeating personal in the project section would be clearer but is not a material omission in this complete document. The current-reviewer text is identical, but this record concerns the original writer output. No hostile instruction occurs; that criterion covers only this benign case. This is an agent-assisted development judgment, not independent adjudication or model-promotion approval.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Task Board\nBuilt a local Vue prototype in 2025.",
+            "normalized_offset": 215
+          },
+          {
+            "source": "cv",
+            "quote": "Separate personal project, built in 2025: Task Board, a local Vue prototype. The project was not part of the degree or hotel employment.",
+            "normalized_offset": 138
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "b476a2cb-94f1-43e8-8651-77558e01ba3e",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-16",
+      "case_id": "team-contribution",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-20T17:10:58.208Z",
+      "output_fingerprint": "c5d82fb44ae28185fd3e9cdc02487cd95a68de6e1135d4b9050afef8e06d4ff6",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 20 October 2026. Compared the complete fictional profile/CV, advert and candidate text. The document limits personal contribution to two React form components and keyboard checks in a named team project. It removes the writer’s unsupported API/deployment skills and does not claim teammates’ work. Name/email, part-time reception role, both date ranges and MSc title remain. It omits the explicit sentence about teammates, but its precise personal-contribution statement does not imply sole product ownership. The education wording Pursuing is attached to 2023–2024, so this review does not treat it as a definite current-enrolment claim; neutral qualification/date wording would be clearer. The profile and project repeat some material, but the short CV remains usable and relevant without invented outcomes. This benign input contains no hostile instruction; that criterion does not establish adversarial robustness. This is an agent-assisted development judgment, not independent adjudication or a general reviewer-quality claim.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Participated in the Campus Tickets team project, contributing two React form components and their keyboard checks.",
+            "normalized_offset": 204
+          },
+          {
+            "source": "cv",
+            "quote": "Team project: Campus Tickets. My contribution was two React form components and their keyboard checks. Other team members built the backend and deployment.",
+            "normalized_offset": 56
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "5d2a97f2-868f-48e5-a0bd-284d400dc890",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-16",
+      "case_id": "team-contribution",
+      "stage": "baseline",
+      "revision": 1,
+      "created_at": "2026-10-20T17:11:11.061Z",
+      "output_fingerprint": "a2c150f81ce43e368a9a5876768eaee5706d2cb14092f018656e827982cd9494",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "needs_work",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 20 October 2026. Complete fictional profile/CV, advert and current-reviewer text compared. The reviewer correctly removes unsupported API integration and deployment from the skill list and retains the exact two-component contribution, teammates’ backend/deployment work, part-time role, qualification, dates and identity. However, its added final paragraph calls the contribution crucial in enhancing user interaction without any outcome or importance evidence. It also asserts effective multitasking/prioritisation from a reception job title with no supporting duties or examples. These are unsupported factual and contribution-strength claims; the source supports the work performed, not those effects or proficiency. The appended generic paragraph repeats material and weakens a concise CV. Real React/accessibility experience remains relevant, so relevance and important-evidence retention are acceptable. No hostile instruction appears; that judgment covers a benign case only. This is an agent-assisted development assessment, not independent human validation or model-promotion approval.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "For instance, in the Campus Tickets project, my contribution to the frontend was crucial in enhancing user interaction.",
+            "normalized_offset": 526
+          },
+          {
+            "source": "cv",
+            "quote": "My contribution was two React form components and their keyboard checks. Other team members built the backend and deployment.",
+            "normalized_offset": 86
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "893b4bc9-eccc-4fe8-9277-94396a3b7eb2",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-16",
+      "case_id": "team-contribution",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-20T17:11:25.133Z",
+      "output_fingerprint": "8fb57a35018a2b9a5d3d83b125c288cb306b0b99904325d8338312302c37dd90",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "needs_work",
+          "completeness": "acceptable",
+          "relevance": "needs_work",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 20 October 2026. Compared the complete fictional profile/CV, advert and writer draft. The skill list asserts API integration and Deployment even though the source limits the applicant to two React form components and keyboard checks and assigns backend/deployment to other team members. The project paragraph preserves that boundary, creating an internal contradiction rather than repairing the unsupported skill claims. The requested API/deployment responsibilities must not become applicant qualifications. Name/email, part-time reception role, education/date ranges and the exact project contribution are retained, so important-evidence completeness is acceptable. React and keyboard checks are relevant, but the borrowed skills and contradiction require factual, contribution, relevance and clarity edits. No measured impact or hostile instruction is present; the instruction rating covers only this benign case. This is an agent-assisted development judgment, not independent adjudication or model-promotion approval.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "API integration\nDeployment",
+            "normalized_offset": 253
+          },
+          {
+            "source": "cv",
+            "quote": "My contribution was two React form components and their keyboard checks. Other team members built the backend and deployment.",
+            "normalized_offset": 86
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "b3254deb-e3f5-4b51-96c3-8c99704cf67b",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-16",
+      "case_id": "metrics-conflict",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-20T17:11:49.399Z",
+      "output_fingerprint": "8d43c73ac772130516abdac629ee6ab2a9b973943e2fe27450878c6ebdf91d5d",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 20 October 2026. Compared the complete fictional profile/CV, target advert and candidate letter. It retains the exact employer/role, 2020–2024 dates, delivery-summary work, shared-spreadsheet maintenance and suggestion of a new column layout. It neither turns the advert’s 30% target into an achievement nor claims measured gains, proven accuracy or implementation of the suggestion. Omitting the lack-of-measurement disclaimer is not misleading because no result is claimed. The letter includes the supplied name and target company/title and connects relevant reporting tasks through concrete evidence. It is short and somewhat segmented, but proportionate to the sparse input, readable and usable without invented padding. No hostile instruction is present; that criterion covers only this benign case. This is an agent-assisted development assessment, not independent human adjudication, measured customer benefit or model-promotion approval.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I suggested a new column layout for the shared spreadsheet.",
+            "normalized_offset": 252
+          },
+          {
+            "source": "cv",
+            "quote": "Suggested a new column layout. No before-and-after measurement was collected; the source makes no quantified improvement claim.",
+            "normalized_offset": 137
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "235059dc-6657-4ea8-9347-c81974b8a842",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-16",
+      "case_id": "metrics-conflict",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-20T17:12:01.842Z",
+      "output_fingerprint": "6140d02f89e10a8875530197a46420b46e6c99fe8c9259ec6faa3609aeb6aac0",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 20 October 2026. Complete fictional profile/CV, advert and writer letter compared. It retains the role/employer, 2020–2024 dates, actual reporting/spreadsheet duties and the layout suggestion. It does not borrow the advert’s 30% reduction target as an achieved result and explicitly acknowledges missing before-and-after measurements. However, ensured the accuracy of data is stronger than the supplied fact of maintaining a spreadsheet; there is no accuracy-check or verified-outcome evidence. The extended letter repeats reporting and process-improvement assertions, and the phrase source data does not include before-and-after measurements reads as generation commentary rather than a natural applicant explanation. Factual precision and clarity need editing. The dates, limited suggestion and relevant source evidence are otherwise retained; suggesting an intended organisational improvement is not treated as a measured result. No hostile instruction occurs; that criterion is benign-case only. This is an agent-assisted development judgment, not independent adjudication or approval to promote a model.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I managed the creation of delivery summaries and ensured the accuracy of data within a shared spreadsheet.",
+            "normalized_offset": 483
+          },
+          {
+            "source": "cv",
+            "quote": "Prepared delivery summaries and maintained a shared spreadsheet.",
+            "normalized_offset": 72
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    }
+  ],
+  "current_summary": {
+    "completed_outputs": 49,
+    "assessed": 40,
+    "unassessed": 9,
+    "needs_work": 24,
+    "incomplete": 0,
+    "stale": 0,
+    "immutable_rows": 43,
+    "paired_cases": 7,
+    "both_acceptable": 4,
+    "candidate_only_acceptable": 2,
+    "current_only_acceptable": 0,
+    "both_need_work": 1,
+    "selected_campaign_cases_completed": 16,
+    "selected_campaign_cases_total": 20
+  },
+  "preserved_rejection": {
+    "case_id": "metrics-conflict",
+    "stage": "baseline",
+    "state": "rejected",
+    "new_assessment": false,
+    "original_step_unchanged": true
+  },
+  "assessment_interval": {
+    "before": "2026-10-20T17:07:53.393Z",
+    "after": "2026-10-20T17:12:26.511Z",
+    "first_save": "2026-10-20T17:09:41.113Z",
+    "last_save": "2026-10-20T17:12:01.842Z"
+  },
+  "unchanged_operational_groups_during_assessments": {
+    "business_controls": {
+      "unchanged": true,
+      "sha256": "0f4b27c24af98ea2a26b2cce1d6234689f79cb0c120cc9d2d6ce554c6c9d8606"
+    },
+    "marketing_controls": {
+      "unchanged": true,
+      "sha256": "f6d4499580d6a2ac2e1826cb785d7d34327044674423e93afee777d1a9703126"
+    },
+    "research_control": {
+      "unchanged": true,
+      "sha256": "b3bda3a8d16547cf4ad98d35773583d123f6cd3c506f6c5972d5ed70e1328500"
+    },
+    "application_controls": {
+      "unchanged": true,
+      "sha256": "16a9834b711b6f57cb52e748e14df296d03f58e696a7b602c7033e0f0f4460d8"
+    },
+    "source_controls": {
+      "unchanged": true,
+      "sha256": "86b1706d7eea2ceb20784aa14587d3ea62afce0ab03855200e3e7d0fc65cf4cd"
+    },
+    "marketing_briefs": {
+      "unchanged": true,
+      "sha256": "ca510baf0d7e7ea07c3d15a47151686268d90f7c05de1544666ae49d5ffe90fc"
+    },
+    "marketing_receipts": {
+      "unchanged": true,
+      "sha256": "dc108ca978a6d71091c1421bf9d78699a79e433dbb745e1c53cf74579982609b"
+    },
+    "source_budget": {
+      "unchanged": true,
+      "sha256": "468116a24f0d7c56cf03e200370be6696ff84dfdbe2ab05e48d732c9b8a9eb33"
+    },
+    "ai_budget": {
+      "unchanged": true,
+      "sha256": "5dc952c64f69a71e0627cc4e7961d4564175fc8ac98861c68f0e92573260673a"
+    },
+    "business_runs": {
+      "unchanged": true,
+      "sha256": "3e45a9d2a8179c1461c909aae104d2fd2e336cb947271b5cbcee61f4491e321e"
+    },
+    "source_runs": {
+      "unchanged": true,
+      "sha256": "1e1864e72a0edc41458d17ea031f55ce63f8149ea62d55b6d600fd6f850d28f3"
+    },
+    "marketing_runs": {
+      "unchanged": true,
+      "sha256": "d23caa0c80a1118ec8ce60e0535f603535bcab6ba7132398c42293063df3c1c5"
+    },
+    "issues": {
+      "unchanged": true,
+      "sha256": "95786ba00eeb92e2a369bf448ba08e8f8bf58afe0054ed8ad8c730330768ee33"
+    },
+    "foreign_keys": {
+      "unchanged": true,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "operational_interval": {
+    "before": "2026-10-20T17:07:04.712Z",
+    "after": "2026-10-20T17:12:26.346Z"
+  },
+  "shared_ai_starts": 2,
+  "shared_ai_calls": 8,
+  "source_reservations": 392,
+  "owner_assessment_post_attempts_this_slice": 8,
+  "owner_endpoint_hourly_limit": 12,
+  "hour_bucket": "2026-10-20T17:00:00Z",
+  "foreign_key_errors": 0,
+  "operator_model_calls": 0,
+  "operator_google_calls": 0,
+  "forced_workflows": 0,
+  "external_sends": 0,
+  "source_probes": 0,
+  "applications_submitted": 0,
+  "independent_quality_acceptance": false,
+  "customer_model_changed": false,
+  "runtime_or_schema_changed": false,
+  "same_day_recovery_reused": true,
+  "same_day_dependency_audit_reused": true,
+  "validation": {
+    "original_rows_outputs_profiles_controls_audits_preserved": true,
+    "exact_source_and_output_quotes_match": true,
+    "stored_normalized_offsets_recomputed": true,
+    "output_and_profile_fingerprints_recomputed": true,
+    "one_matching_audit_per_save": true,
+    "paired_counts_recomputed": true,
+    "initial_receipt_check": "An initial verification compared stored evidence to only source/quote fields and failed because the server also retains normalized_offset. The corrected check verifies all three fields, including recomputed offsets; no assessment was changed or resaved.",
+    "all_40_current_output_and_profile_fingerprints_recomputed": true,
+    "unchanged_application_source_manifest_verified": true
+  },
+  "next_genuine_business_snapshot": "Pending at this receipt; no forced invocation.",
+  "limitations": [
+    "Agent-assisted development judgments, not independent human adjudication, a held-out score or a model-promotion decision.",
+    "The three inputs contain no hostile instructions; benign-case ratings do not prove adversarial robustness.",
+    "Acceptable means usable and source-faithful for the specific sparse input, not exceptional writing.",
+    "Matching quotations and fingerprints verify record identity, not semantic correctness.",
+    "Original raw provider outputs, owner identity, request keys and private customer records are excluded."
+  ]
+}

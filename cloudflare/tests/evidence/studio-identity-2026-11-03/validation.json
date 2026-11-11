@@ -1,0 +1,44 @@
+{
+  "observedAt": "2026-11-03T23:57:24.101725+00:00",
+  "candidateVersion": "2.98.14",
+  "rollbackVersion": "2.98.13",
+  "rollbackWorker": "244d81f0-b12f-45e9-97c9-411a663d5aff",
+  "combinedTests": 7,
+  "isolatedTests": 7,
+  "typeScript": true,
+  "isolatedBuild": true,
+  "prerenders": 21,
+  "browserBudgets": true,
+  "dryRun": true,
+  "fullSuiteRun": false,
+  "initialBuild": "Failed 110813-byte initial CSS against unchanged 110000 limit; moved private Studio styling into lazy application entry. Original failure retained.",
+  "styleDeferred": true,
+  "contrast": {
+    "headingAndSignature": 10.94,
+    "body": 6.26
+  },
+  "dependencyLockSHA256": "a0064013264829d450682960462ebf1f20fb1f06fb715b9df2b13956081e3842",
+  "securityBasis": "Unchanged lockfile, same-day recovery-monitor-2026-11-03.json npm/official advisory observations. No independent security acceptance.",
+  "recoveryBasis": "Existing daily 204-object/46-migration production baseline; prepared 0047 absent; no schema change or repeated recovery probe.",
+  "preparedImportPresentInRelease": false,
+  "migrations": 46,
+  "files": {
+    "src/career-ui.tsx": "e736b6a9dc9ed5531c50f314bf146d2abab5e9c1305aef3fcc751322e1961d95",
+    "src/career.tsx": "a9aa731096539963c02233ed09611fc0aecf97fcc90b8211e4adab7e0eabbdef",
+    "src/studio.css": "91debf9031212751a88251b36ed98dd934b8a474759b8c139d93adfa792d2ce8",
+    "src/main.tsx": "7a6063947bb4cde62785d249998ad23e50edba04a7b58dd378c9e17a6691e3ff",
+    "src/resources.tsx": "b38b931046e287098cda48ee52917d9cf8a0fff668e61d486f5c9d5e45277588",
+    "package.json": "be3fbe0647ddc3c80a9e665edeb328c5b3305f9a8bf4541c11cf02caf55b6c71",
+    "wrangler.jsonc": "685f681ebb5b1cad681d0f18057247f028a1c069f7077ef0a6caafc9e2322fc4"
+  },
+  "assets": {
+    "assets/index-DB9jiuYp.js": "616a4bcc59818c370a816ea1fdaa224605d3121159aab8ae03d7301253e8c779",
+    "assets/index-Ddp5rNlF.css": "664f91166933de08769b1618e11d46b483d4715af6d274527fbfee84e294f667",
+    "assets/career-C-yF5IFQ.js": "9b4220812e65326d9bc2dc3d513568ec3fa57a8867c584e620336166e2718edd",
+    "assets/career-2xQkt_JN.css": "0aafdd8dc1a2ab9e4376fdd2460e1552e4131146341d3cefa25ea281516dc558"
+  },
+  "liveBrowserQA": "Owner session signed out on excluded /admin; application navigation skipped. Ten excluded live HTTP checks passed at 4 November 00:00:54 UTC, with exact built assets and unchanged public package/policy. Fictional local rendering is separate.",
+  "temporaryTabsClosed": true,
+  "viewportReset": true,
+  "localServersStopped": true
+}

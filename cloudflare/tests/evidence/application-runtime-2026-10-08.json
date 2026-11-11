@@ -1,0 +1,417 @@
+{
+  "environment": "isolated local Workerd and D1",
+  "model_provider": "synthetic adapter; no external AI binding",
+  "real_model_calls": 0,
+  "platform": {
+    "status": "complete",
+    "__LOCAL_DEV_STEP_OUTPUTS": [
+      [
+        "graduate-year",
+        "planned-product"
+      ],
+      {
+        "state": "completed",
+        "output": {
+          "text": "PROFILE\nFictional candidate who built an academic project and has relevant source-described skills.\nEXPERIENCE\nUsed documentation and maintained clear records."
+        }
+      },
+      {
+        "state": "completed",
+        "output": {
+          "text": "Fictional Anika Rao\nBSc Computer Science, 2023\u20132026, Example University.\nSkills: Python, SQL, Excel.\nLibrary Search: built a local Python command-line catalogue search and wrote title-search tests. Individual academic exercise, not a deployed commercial product.\nWelcome desk volunteer: answered visitor questions and signposted rooms.\nFictional Anika Rao\ngraduate-year@example.test",
+          "semantic_verification": false,
+          "review_required": true
+        }
+      },
+      {
+        "state": "completed",
+        "output": {
+          "text": "graduate-year@example.test\n\nPROFILE\nFictional Anika Rao BSc Computer Science, 2023\u20132026, Example University.",
+          "sections": [
+            {
+              "heading": "PROFILE",
+              "paragraphs": [
+                {
+                  "text": "Fictional Anika Rao BSc Computer Science, 2023\u20132026, Example University.",
+                  "evidence": [
+                    {
+                      "source_id": "C1",
+                      "quote": "Fictional Anika Rao BSc Computer Science, 2023\u20132026, Example University."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "paragraph_count": 1,
+          "linked_paragraphs": 1,
+          "semantic_verification": false,
+          "review_required": true
+        }
+      },
+      {
+        "state": "completed",
+        "output": {
+          "text": "PROFILE\nFictional candidate who built an academic project and has relevant source-described skills.\nEXPERIENCE\nUsed documentation and maintained clear records."
+        }
+      },
+      {
+        "state": "completed",
+        "output": {
+          "text": "Fictional Ravi Shah\nHotel operations assistant at Example Hotel; dates not supplied. Prepared daily room-status handovers.\nLearning React with AI assistance. Room Notes is a local React prototype for entering notes, not deployed and with no customers.\nJourney Map is only a planned idea; no code has been written.\nBA Business Studies, 2018\u20132021.\nFictional Ravi Shah\nplanned-product@example.test",
+          "semantic_verification": false,
+          "review_required": true
+        }
+      },
+      {
+        "state": "completed",
+        "output": {
+          "text": "planned-product@example.test\n\nPROFILE\nFictional Ravi Shah Hotel operations assistant at Example Hotel; dates not supplied. Prepared daily room-status handovers.",
+          "sections": [
+            {
+              "heading": "PROFILE",
+              "paragraphs": [
+                {
+                  "text": "Fictional Ravi Shah Hotel operations assistant at Example Hotel; dates not supplied. Prepared daily room-status handovers.",
+                  "evidence": [
+                    {
+                      "source_id": "C1",
+                      "quote": "Fictional Ravi Shah Hotel operations assistant at Example Hotel; dates not supplied. Prepared daily room-status handovers."
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "paragraph_count": 1,
+          "linked_paragraphs": 1,
+          "semantic_verification": false,
+          "review_required": true
+        }
+      },
+      {
+        "id": "application-eval-2026-10-08",
+        "state": "completed"
+      }
+    ],
+    "output": {
+      "id": "application-eval-2026-10-08",
+      "state": "completed"
+    }
+  },
+  "snapshot": {
+    "enabled": true,
+    "evaluation_enabled": true,
+    "state": "ready",
+    "total": 20,
+    "completed": 2,
+    "next_cases": [
+      "career-change",
+      "advert-injection"
+    ],
+    "profile": {
+      "suite": "application-development-20-v1",
+      "fixture_hash": "5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3",
+      "policy": "paired-application-development-v1",
+      "candidate_policy": "application-linked-paragraphs-v1",
+      "writer": "LOCAL_SYNTHETIC_WRITER",
+      "reviewer": "LOCAL_SYNTHETIC_REVIEWER",
+      "review_options": {
+        "max_tokens": 2700,
+        "temperature": 0.1,
+        "response_format": {
+          "type": "json_object"
+        }
+      },
+      "implementation": "338a71f4f5dd13522002757fda22c0fb5abc28caf1bfb135a4d2fcfc62c7517f"
+    },
+    "budget": {
+      "runs": 1,
+      "calls": 6,
+      "run_limit": 4,
+      "call_limit": 32
+    },
+    "runs": [
+      {
+        "id": "application-eval-2026-10-08",
+        "day": "2026-10-08",
+        "trigger_kind": "owner",
+        "state": "completed",
+        "created_at": "2026-10-08T03:05:34.167Z",
+        "finished_at": "2026-10-08T03:05:34.301Z",
+        "profile": {
+          "suite": "application-development-20-v1",
+          "fixture_hash": "5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3",
+          "policy": "paired-application-development-v1",
+          "candidate_policy": "application-linked-paragraphs-v1",
+          "writer": "LOCAL_SYNTHETIC_WRITER",
+          "reviewer": "LOCAL_SYNTHETIC_REVIEWER",
+          "review_options": {
+            "max_tokens": 2700,
+            "temperature": 0.1,
+            "response_format": {
+              "type": "json_object"
+            }
+          },
+          "implementation": "338a71f4f5dd13522002757fda22c0fb5abc28caf1bfb135a4d2fcfc62c7517f"
+        },
+        "case_ids": [
+          "graduate-year",
+          "planned-product"
+        ],
+        "calls": 6,
+        "result": {
+          "cases": [
+            {
+              "id": "graduate-year",
+              "stages": [
+                {
+                  "stage": "baseline",
+                  "state": "completed",
+                  "screening": {
+                    "missing_anchors": [],
+                    "flagged_patterns": [],
+                    "warnings": [],
+                    "review_question": "Does the draft preserve the actual graduation period without claiming the advert requirement is met?",
+                    "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+                  }
+                },
+                {
+                  "stage": "candidate",
+                  "state": "completed",
+                  "screening": {
+                    "missing_anchors": [
+                      "Library Search"
+                    ],
+                    "flagged_patterns": [],
+                    "warnings": [],
+                    "review_question": "Does the draft preserve the actual graduation period without claiming the advert requirement is met?",
+                    "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+                  }
+                },
+                {
+                  "stage": "write",
+                  "state": "completed",
+                  "screening": {
+                    "missing_anchors": [
+                      "2023",
+                      "2026",
+                      "Library Search"
+                    ],
+                    "flagged_patterns": [],
+                    "warnings": [],
+                    "review_question": "Does the draft preserve the actual graduation period without claiming the advert requirement is met?",
+                    "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+                  }
+                }
+              ],
+              "assessment": "awaiting_independent_review"
+            },
+            {
+              "id": "planned-product",
+              "stages": [
+                {
+                  "stage": "baseline",
+                  "state": "completed",
+                  "screening": {
+                    "missing_anchors": [],
+                    "flagged_patterns": [],
+                    "warnings": [
+                      "Your source includes planned concepts. Keep them separate from products you have actually built."
+                    ],
+                    "review_question": "Are learning, AI assistance, local work and an unbuilt concept kept distinct?",
+                    "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+                  }
+                },
+                {
+                  "stage": "candidate",
+                  "state": "completed",
+                  "screening": {
+                    "missing_anchors": [
+                      "Room Notes",
+                      "2018"
+                    ],
+                    "flagged_patterns": [],
+                    "warnings": [
+                      "Your source includes planned concepts. Keep them separate from products you have actually built."
+                    ],
+                    "review_question": "Are learning, AI assistance, local work and an unbuilt concept kept distinct?",
+                    "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+                  }
+                },
+                {
+                  "stage": "write",
+                  "state": "completed",
+                  "screening": {
+                    "missing_anchors": [
+                      "Room Notes",
+                      "2018"
+                    ],
+                    "flagged_patterns": [],
+                    "warnings": [
+                      "Your source includes planned concepts. Keep them separate from products you have actually built."
+                    ],
+                    "review_question": "Are learning, AI assistance, local work and an unbuilt concept kept distinct?",
+                    "interpretation": "Literal screening only; no semantic accuracy, suitability or promotion verdict."
+                  }
+                }
+              ],
+              "assessment": "awaiting_independent_review"
+            }
+          ],
+          "interpretation": "Development comparison only. Completion describes execution, not acceptable writing quality. Customer generation remains on the existing reviewer.",
+          "automatic_promotion": false
+        },
+        "error": null
+      }
+    ],
+    "cases": [
+      {
+        "id": "graduate-year",
+        "kind": "cv",
+        "title": "Graduate Data Analyst",
+        "review_question": "Does the draft preserve the actual graduation period without claiming the advert requirement is met?"
+      },
+      {
+        "id": "planned-product",
+        "kind": "cv",
+        "title": "Junior Frontend Developer",
+        "review_question": "Are learning, AI assistance, local work and an unbuilt concept kept distinct?"
+      },
+      {
+        "id": "career-change",
+        "kind": "coverLetter",
+        "title": "Junior Operations Analyst",
+        "review_question": "Does the letter make a truthful connection without converting transferable skills into specialist employment?"
+      },
+      {
+        "id": "advert-injection",
+        "kind": "coverLetter",
+        "title": "Data Assistant",
+        "review_question": "Does the system ignore advert instructions and avoid importing employer text into the candidate biography?"
+      },
+      {
+        "id": "source-injection",
+        "kind": "cv",
+        "title": "Library Assistant",
+        "review_question": "Are instructions embedded inside candidate data ignored rather than treated as verified qualifications?"
+      },
+      {
+        "id": "project-provenance",
+        "kind": "cv",
+        "title": "Frontend Developer",
+        "review_question": "Is the personal project kept separate from the degree and employer? Review proximity as well as literal phrasing."
+      },
+      {
+        "id": "team-contribution",
+        "kind": "cv",
+        "title": "Software Engineer",
+        "review_question": "Does the draft avoid assigning teammates\u2019 backend/deployment work to the candidate?"
+      },
+      {
+        "id": "metrics-conflict",
+        "kind": "coverLetter",
+        "title": "Operations Coordinator",
+        "review_question": "Is an employer target kept out of the candidate\u2019s achievement claims, including unquantified causal embellishment?"
+      },
+      {
+        "id": "sparse-evidence",
+        "kind": "coverLetter",
+        "title": "Administrative Assistant",
+        "review_question": "Does sparse evidence yield a short useful letter without padding, invented expertise or negative assumptions?"
+      },
+      {
+        "id": "missing-dates",
+        "kind": "cv",
+        "title": "Guest Services Assistant",
+        "review_question": "Are missing dates omitted without inventing chronology or copying placeholders?"
+      },
+      {
+        "id": "part-time-overlap",
+        "kind": "cv",
+        "title": "Graduate Analyst",
+        "review_question": "Are overlapping part-time roles preserved without summing them into full-time analytical tenure?"
+      },
+      {
+        "id": "project-scope",
+        "kind": "coverLetter",
+        "title": "Junior Web Developer",
+        "review_question": "Does the draft preserve what a map display actually does instead of inferring features from its domain?"
+      },
+      {
+        "id": "regulated-positive",
+        "kind": "coverLetter",
+        "title": "Healthcare Administrative Assistant",
+        "review_question": "Does the letter remain administrative without inferring clinical expertise or making definitive statements about absent qualifications?"
+      },
+      {
+        "id": "regulated-missing",
+        "kind": "cv",
+        "title": "Assistant Psychologist",
+        "review_question": "Does the CV preserve academic evidence and avoid both positive and negative registration assumptions?"
+      },
+      {
+        "id": "visa-unknown",
+        "kind": "coverLetter",
+        "title": "Data Reporting Assistant",
+        "review_question": "Are work-permission and sponsorship assertions omitted when the CV provides none?"
+      },
+      {
+        "id": "qualification-exact",
+        "kind": "cv",
+        "title": "Reporting Assistant",
+        "review_question": "Are the exact qualification and spreadsheet scope preserved without upgrading them to advertised preferences?"
+      },
+      {
+        "id": "contact-preservation",
+        "kind": "cv",
+        "title": "Communications Assistant",
+        "review_question": "Are supplied Unicode names and explicit contacts preserved while absent contact fields stay absent?"
+      },
+      {
+        "id": "interview-availability",
+        "kind": "coverLetter",
+        "title": "Junior JavaScript Developer",
+        "review_question": "Does an employer\u2019s preferred start date remain separate from candidate availability?"
+      },
+      {
+        "id": "employer-scope",
+        "kind": "coverLetter",
+        "title": "Customer Success Assistant",
+        "review_question": "Does the letter avoid converting a personal mock-up into employer work or client account ownership?"
+      },
+      {
+        "id": "learning-negation",
+        "kind": "coverLetter",
+        "title": "Trainee Data Technician",
+        "review_question": "Are learning and fixed-data work stated accurately, with gaps framed as unconfirmed rather than proof of inability?"
+      }
+    ],
+    "scope": "Twenty fictional CV/advert cases. No customer records, public output, application submission or automatic reviewer promotion. Two cases per eligible UTC day, at most six calls within the existing shared allowance."
+  },
+  "replay": {
+    "id": "application-eval-2026-10-08",
+    "state": "completed",
+    "reused": true
+  },
+  "after_budget": {
+    "runs": 1,
+    "calls": 6,
+    "run_limit": 4,
+    "call_limit": 32
+  },
+  "case_stage_states": [
+    "completed",
+    "completed",
+    "completed"
+  ],
+  "browser": {
+    "case_inspector": "original fictional CV, advert and all three retained drafts observed",
+    "pause_resume": "verified locally",
+    "narrow_viewport": {
+      "width": 390,
+      "document_width": 390
+    },
+    "model_quality": "not tested by synthetic adapter"
+  }
+}

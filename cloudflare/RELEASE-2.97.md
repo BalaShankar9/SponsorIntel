@@ -1,0 +1,18 @@
+# 2.97.0 — show the business dispatch blocker
+
+26 October 2026. The owner desk previously summarised the latest business receipt and twelve recent runs. A newer completed receipt could obscure an older queued reservation that still prevents dispatch. Production has this condition: `business-497989` is queued, while the newer `business-497990` completed. Its exact provider lookup at 10:01 UTC returned Cloudflare internal-server error 10001; the earlier 02:07 lookup returned instance-not-found 10400. Neither establishes a terminal outcome.
+
+The existing authenticated business read now independently inspects unfinished application receipts. Overview shows a prominent warning and a link to Operations. Operations shows the exact original run, recorded time, age and saved-step count, with safe investigation guidance. The redundant Run checks control is disabled while any unfinished reservation remains. Paused controls retain the warning. A newer completion, invalid time or time more than five minutes ahead cannot hide the unresolved receipt. This is a read-only diagnostic; it does not query Cloudflare status, repair the dispatcher, resume work, create an incident or send an alert.
+
+No database migration or permission is required. Existing dispatch, terminal-only reconciliation, holds, request ceilings and unknown-outcome policy are unchanged. Zero saved steps is explicitly not proof that no work ran. Results are owner-only; this is not a customer-facing incident page.
+
+## Validation
+
+- 770/770 full local tests pass on pinned Node 24.19.0, concurrency two, 364.9 seconds. Five new database tests cover an older blocker outside twelve recent receipts, timing boundaries, invalid/future dates, the existing unique active-run constraint, paused controls and preservation of an unknown dispatch. Existing anonymous owner access tests pass.
+- TypeScript/build, nineteen prerenders, registered contracts/media, browser budgets and Worker dry run pass.
+- Fictional actual owner components: Overview warning navigates to Operations, Run checks is disabled, the investigation disclosure opens. At 390 pixels, document width is 390 and the visible warning is 304 pixels wide, without horizontal overflow. No provider call or production write occurs in this fixture.
+- Initial build correctly stopped on the changed pinned integration file. The two local source manifests were explicitly reviewed and regenerated; stored production campaign profiles are not overwritten. Research comparison logic, source adverts, models and budgets are unchanged. The old paused campaign retains its original identity and cannot silently adopt this integration digest. Scope-v3 remains unprepared; future preparation must review this release and current supervisor state.
+- Research integration digest: `cb02b055aa857d9133094c46a3b1b4deb9663a0ab304fe26205c660895d44489`; scope digest: `68dd5c002cda99d4f37e571bb283accce91c5f3b712e0b964226b1bb2158f1d2`. Application identity is unchanged.
+- Recovery at 10:05:54.166 UTC: exact production D1 identity, current recovery point, 46 migrations and 204 schema objects agree. No restore, export, retention-window proof or customer recovery test. Disk had 18 GiB before runtime/build. The same-day dependency audit remains applicable: only release version changed in the lockfile; dependency versions are unchanged.
+
+Deployment, live checks, control comparison and exact-head hosted outcomes are recorded in `docs/OPERATIONS-2026-10-26.md` and the dated supervisor evidence. Rollback target is 2.96 Worker `919b7553-81df-4287-9595-e83248f0a2c7`; there is no schema rollback. Do not use rollback or this diagnostic to clear the unresolved run or any campaign hold.

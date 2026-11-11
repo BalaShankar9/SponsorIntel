@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-11-02T19:47:22.453717+00:00",
+  "version": "2.98.8",
+  "worker_id": "d2ab60fa-fc96-4e54-8048-89ad6e01c83f",
+  "deployment_id": "4e0b50d5-360d-4050-86fe-2675a98b64b0",
+  "deployed_at": "2026-11-02T19:44:11.999194Z",
+  "percentage": 100,
+  "feature_commit": "e47b379396a6ef84d0104b3f2df526d989a7df74",
+  "runtime_base": "9bf8a1ebcf612c47380c0809d3ba765587f99d50",
+  "rollback": {
+    "version": "2.98.7",
+    "worker_id": "5718ecde-d683-43dc-b5ef-91936abbb5d2",
+    "deployment_id": "5f8d4751-07cd-42de-8621-39beb6202a4a"
+  },
+  "separate_versions_upload_and_deploy": true,
+  "triggers_resubmitted": false,
+  "prepared_founder_saving_included": false,
+  "migration_applied": false,
+  "model_calls": 0,
+  "source_refreshes": 0,
+  "external_sends": 0
+}

@@ -1,0 +1,312 @@
+{
+  "run_id": "business-497753",
+  "created_at": "2026-10-13T17:45:36.000Z",
+  "finished_at": "2026-10-13T17:46:11.162Z",
+  "state": "attention",
+  "platform": {
+    "workflow": "sponsorintel-business",
+    "instance": "business-497753",
+    "version": "a9e487ac-22da-4570-a472-4022ee3b7f19",
+    "status": "complete",
+    "success": true,
+    "end_utc_display_precision_seconds": "2026-10-13T17:46:11Z",
+    "last_successful_step": "record-completion-1"
+  },
+  "measured_at": "2026-10-13T17:45:54.930Z",
+  "jobs": {
+    "total": 935,
+    "employers": 36,
+    "offered": 21,
+    "conditional": 33,
+    "unavailable": 97,
+    "not_stated": 784,
+    "early_career": 49,
+    "salary": 147
+  },
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "ok": true,
+      "security": true
+    },
+    {
+      "path": "/jobs",
+      "status": 200,
+      "ok": true,
+      "security": true,
+      "content": {
+        "ok": true,
+        "visible_roles": 12,
+        "matching_roles": 935,
+        "generated_at": "2026-10-13T17:45:56.139Z"
+      }
+    },
+    {
+      "path": "/insights",
+      "status": 200,
+      "ok": true,
+      "security": true
+    },
+    {
+      "path": "/sitemap.xml",
+      "status": 200,
+      "ok": true,
+      "security": true
+    },
+    {
+      "path": "/api/admin/session",
+      "status": 403,
+      "ok": true,
+      "security": true
+    }
+  ],
+  "application_evaluation": {
+    "state": "ready",
+    "operation_state": "enabled",
+    "progress_state": "ready",
+    "enabled": true,
+    "business_enabled": true,
+    "evaluation_enabled": true,
+    "pause_reason": null,
+    "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+    "completed": 2,
+    "total": 20,
+    "assessments": {
+      "assessable_outputs": 15,
+      "assessed_outputs": 15,
+      "unassessed_outputs": 0,
+      "needs_work": 10,
+      "incomplete": 0,
+      "stale": 0,
+      "groups": [
+        {
+          "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+          "writer": "@cf/zai-org/glm-4.7-flash",
+          "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "policy": "paired-application-schema-v2",
+          "paired_cases": 2,
+          "both_acceptable": 1,
+          "candidate_only_acceptable": 0,
+          "baseline_only_acceptable": 0,
+          "both_need_work": 1
+        }
+      ],
+      "limited": false,
+      "automatic_promotion": false,
+      "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+    }
+  },
+  "discovery": {
+    "checked_at": "2026-10-13T17:45:54.930Z",
+    "total": 19,
+    "unresolved": 8,
+    "overdue": 0,
+    "changed_links": 0,
+    "current_linked_jobs": 3,
+    "last_recorded_at": "2026-10-13T17:38:16.837Z",
+    "counts": [
+      {
+        "source_kind": "employer",
+        "state": "linked",
+        "total": 1
+      },
+      {
+        "source_kind": "employer",
+        "state": "rejected",
+        "total": 1
+      },
+      {
+        "source_kind": "linkedin_job",
+        "state": "held",
+        "total": 2
+      },
+      {
+        "source_kind": "linkedin_job",
+        "state": "linked",
+        "total": 1
+      },
+      {
+        "source_kind": "linkedin_job",
+        "state": "rejected",
+        "total": 2
+      },
+      {
+        "source_kind": "linkedin_post",
+        "state": "rejected",
+        "total": 3
+      },
+      {
+        "source_kind": "recruiter",
+        "state": "rejected",
+        "total": 1
+      },
+      {
+        "source_kind": "teaching_vacancy",
+        "state": "held",
+        "total": 6
+      },
+      {
+        "source_kind": "teaching_vacancy",
+        "state": "linked",
+        "total": 1
+      },
+      {
+        "source_kind": "teaching_vacancy",
+        "state": "rejected",
+        "total": 1
+      }
+    ],
+    "limitation": "Private sourcing records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Automated source candidates are identified separately from agent-assisted and owner reviews."
+  },
+  "measurement": {
+    "version": 2,
+    "enabled_at": "2026-10-08T11:57:33.807Z",
+    "first_full_day": "2026-10-09",
+    "completed_days": 4,
+    "from": "2026-10-09",
+    "to": "2026-10-13",
+    "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+    "browser_evidence": {
+      "version": 1,
+      "kind": "browser_reported",
+      "state": "collecting",
+      "enabled_at": "2026-10-11T18:44:54.941Z",
+      "first_full_day": "2026-10-12",
+      "from": "2026-10-12",
+      "to": "2026-10-13",
+      "completed_days": 1,
+      "evidence_checks": 0,
+      "campaigns": [],
+      "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+    }
+  },
+  "complete_day_metrics": [
+    {
+      "day": "2026-10-09",
+      "event": "campaign_page_view",
+      "count": 1
+    },
+    {
+      "day": "2026-10-09",
+      "event": "page_view",
+      "count": 24
+    },
+    {
+      "day": "2026-10-10",
+      "event": "campaign_page_view",
+      "count": 9
+    },
+    {
+      "day": "2026-10-10",
+      "event": "page_view",
+      "count": 35
+    },
+    {
+      "day": "2026-10-11",
+      "event": "page_view",
+      "count": 7
+    },
+    {
+      "day": "2026-10-12",
+      "event": "campaign_page_view",
+      "count": 10
+    },
+    {
+      "day": "2026-10-12",
+      "event": "page_view",
+      "count": 26
+    }
+  ],
+  "support": {
+    "total": 0,
+    "open": 0,
+    "new": 0,
+    "in_progress": 0,
+    "resolved": 0,
+    "closed": 0,
+    "overdue": 0,
+    "overdue_quality": 0
+  },
+  "health": {
+    "findings": 7,
+    "high": 1
+  },
+  "supervision": {
+    "checked_at": "2026-10-13T17:45:42.685Z",
+    "checks": [
+      {
+        "kind": "research",
+        "action": "idle"
+      },
+      {
+        "kind": "marketing",
+        "action": "idle"
+      },
+      {
+        "kind": "applications",
+        "action": "idle"
+      }
+    ],
+    "reconciled": 0,
+    "needs_attention": 0,
+    "model_calls": 0,
+    "external_posts": 0
+  },
+  "applications": {
+    "id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-13",
+    "state": "completed",
+    "reused": true,
+    "other_campaign": false
+  },
+  "search": {
+    "day": "2026-10-13",
+    "state": "completed",
+    "requests": 10,
+    "reused": true
+  },
+  "source_requests_reserved": 328,
+  "job_link_summary": {
+    "eligible_sources": 36,
+    "sampled_sources": 36,
+    "matched": 29,
+    "needs_attention": 7,
+    "awaiting": 0,
+    "overdue": 0
+  },
+  "job_link_attention": [
+    {
+      "source_id": "invinity",
+      "reason": "request_or_read_unavailable"
+    },
+    {
+      "source_id": "numan",
+      "reason": "response_body_limit"
+    },
+    {
+      "source_id": "octopus-energy",
+      "reason": "response_body_limit"
+    },
+    {
+      "source_id": "reviewed-lever-wintermute-trading",
+      "reason": "response_body_limit"
+    },
+    {
+      "source_id": "wep-clinical",
+      "reason": "response_body_limit"
+    },
+    {
+      "source_id": "zeeco",
+      "reason": "response_body_limit"
+    },
+    {
+      "source_id": "zopa",
+      "reason": "response_body_limit"
+    }
+  ],
+  "limitations": [
+    "Application judgments remain agent-assisted development evidence, not independently adjudicated quality.",
+    "Platform completion is not all-clear: seven findings, including the retained historical reference-test hold.",
+    "The 17:45 run predates deployment of the new discovery allowance display; its later inclusion requires a new genuine receipt."
+  ]
+}

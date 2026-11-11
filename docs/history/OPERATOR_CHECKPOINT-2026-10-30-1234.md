@@ -1,0 +1,57 @@
+# Sponsor Intel operator checkpoint
+
+Updated **30 October 2026, 12:34 UTC**. Read `DAILY_OPERATOR.md` first. This dated state does not clear any hold. Prior checkpoint: `history/OPERATOR_CHECKPOINT-2026-10-30-1219.md`. Detailed receipt: `OPERATIONS-2026-10-30.md`. Broad goal is **active**, not complete; other projects remain paused.
+
+## Current release and service
+
+**2.98.5 live**, runtime `24260aa01a43a2ab813e2ce085b056f3bde250e8`, Worker `7307c8e5-3743-4140-ab2f-a33741e5112b`, deployment `76cd4009-0ab2-4555-959e-34c7a933fdbd`, 100% since 12:17:19.467788 UTC. Read `cloudflare/RELEASE-2.98.5.md` and `cloudflare/tests/evidence/student-reuse-2026-10-30.json`.
+
+Student checks now reuse an identical retained snapshot only after a complete original-source download, validation and every-field comparison. New content still stages/verifies a complete snapshot. Activation/failure/cleanup guards prevent stale-owner overwrites and rollback after lost acknowledgement. Actual local D1: 501 fictional sponsors cost 2,009 writes on initial import, four on a repeated identical check. Production reuse/savings are **not yet observed**; no check was forced.
+
+Included 2.98.4 indexed worker-register cleanup locally reduced reads from 256,000 to four with no obsolete rows. Its production execution/savings remain unobserved. Neither repair establishes sustainable Free-plan capacity, fixes full worker-register write cost or clears source CPU failures.
+
+Excluded live health/jobs/student-directory checks return 200. Current jobs: **1,019 / 37 employers / 54 sponsorship-mentioned adverts** (66 early-career, 212 salary). Register is dated **27 October**, last checked **28 October 07:15:32.207 UTC**, 128,008 records. Its two-day freshness gate now withholds licence links; the zero licensed count means unavailable evidence, not licence revocations. Service is only partly recovered. Do not renew freshness without a real complete check.
+
+Today's read-only recovery at **11:42:37.069 UTC** verifies exact production database `f51fb6a9-1278-4643-a49f-30c2e52c6313`, a current recovery point and **46 migrations / 204 matching objects**. No restore/export/customer-recovery or retention-window proof. No schema change. Do not repeat a successful same-day check for documentation edits.
+
+Rollback: **2.98.4 / edc38235-3127-4ba6-bcdf-b6aa561ccef7**. Upload/deploy were separate, both exit 0, triggers not resubmitted. Original four cron schedules remain the baseline; no trigger quota retry or schedule removal.
+
+## Active capacity and supervision blockers
+
+**Daily D1 writes exhausted:** original invocation `ea1d3d6f05148840893c133eb616aa0b`, 30 October 10:00:32.530 UTC, explicitly reports the account daily row-write limit. It is the `*/15` guidance-refresh source `student-money` (Worker 2.98.3), not the student-directory importer. Readable jobs do not establish successful saves/updates. No production write was manufactured to test the failure.
+
+Student-directory metadata independently confirms success at **07:15:30.564 UTC today**, 937 sponsors/1,289 rows, source dated 29 October. That step was not the worker-register blocker suspected during investigation. The original worker-register termination point remains unproven; sampled logs cannot prove absent execution.
+
+Original source **scheduled-1793341855003** completed at 07:20:26.193 UTC (D1 07:20:25.877), provider version `5f1fdc10-c828-4902-a001-3e5f93c0e63b`: **ten published, 28 failed**. Original attempts include **22 CPU-limit errors and 68 source-operation-lock errors**. Completion is not successful publication of every source. Earlier 00:30 run published 28/failed ten. Consumed source reservations at inspection: **138 on 30 October**, unchanged. Do not force a refresh or clear a lock/uncertain receipt. Next scheduled source/register runs need independent provider and application evidence.
+
+Cloudflare documents 10 ms CPU/Workflow step on Free, five million D1 reads and 100,000 writes/day. The actual account-plan inspection on 28 October showed Free; today’s original write-limit error and Observability Free-plan banner corroborate a continuing Free constraint. Owner capacity/plan decision remains unanswered; no purchase, billing action or limit increase here. The cleanup repair cannot fix CPU termination or make full-register import writes fit that ceiling. No billing or plan change was made.
+
+Original **business-497989** remains D1 queued since 23 October 13:45:30.093; exact provider lookup still returns **10400 missing**, not terminal execution proof. Latest completed business receipt is **business-497990**, 23 October 14:46:54.646. No row cleared/failed/replaced. Hourly supervision, link rotation, scout, daily research/marketing/Google remain unproven after that receipt. The three high/eight normal stored findings are dated 23 October; reconcile with later original receipts, not their stale summary alone.
+
+## Controls, quality and remaining product scope
+
+Current business enabled/research/publishing/discovery flags are on. **Scope-v3 unprepared/disabled/revision 0**. Application evaluator enabled=1 (setting dated 13 October); legacy reference enabled=1/revision 2. These flags do not clear campaign/source-identity/unknown-outcome holds. No model call or control change today. Read `REFERENCE_EVALUATION.md`, `APPLICATION_EVALUATION.md` and `RESEARCH_SCOPE_OPERATIONS.md` before any review or resume. Never overwrite profiles to clear compatibility.
+
+Reviewed source digests remain research `cb02b055aa857d9133094c46a3b1b4deb9663a0ab304fe26205c660895d44489`, scope `68dd5c002cda99d4f37e571bb283accce91c5f3b712e0b964226b1bb2158f1d2`, application `4c1c455035d4298a4afb24da8cb3604298a7b62e5328a755d9dc7aec121e09b2`. Application comparison last independently inspected 23 October: 20 cases/57 agent-assessed outputs, 33 needing work; independent adjudication/held-out validation/promotion open. Compact research 8/50 with retained false-refusal/timeout evidence. No model agreement or tests establish independent quality.
+
+Applicant tools remain preparation-only pending permitted route, exact applicant-approved batch/content/attachments and truthful screening. Follow `APPLICATION_AND_SPONSOR_GROWTH_PLAN.md`. Learning 17 topics/15 resources due 20 November; links are not qualifications/eligibility. Founder foundation at `/innovator-founder`: six stages/15 prompts/eight directory entries, shortlist, fee illustration and JSON/text export/guarded restore. **Notes are tab memory only**, lost on reload/close. Sources reviewed 26 October, due **2 November**; expiry hides fees/marks facts historical. Follow `INNOVATOR_FOUNDER_HUB_PLAN.md` for private account saving/recovery, validation/financial tools, verified directory expansion and milestones. No legal acceptance, outcome guarantee or AI monitor. Existing consolidated project/chats must not be duplicated.
+
+## Reviews, marketing and measurement
+
+29 retained discovery leads at last aggregate; **zero first retained today**. Last scout: 23 October completed, zero retained/one request, links already known. Eight unresolved historical follow-ups (Bangor, Revolut, Danu, NHS Children in Care, Animal Trust, Arctic Lake, Nu Quantum, Neudata) and four advert holds (New City College Plumbing; King's Lynn Drama, Science Technician, Senior Exam Invigilator) need fresh evidence and append-only review. No elapsed date releases anything. Numan identity review was due 27 October noon; Animal Trust is due **30 October noon**. Preserve original identifiers/evidence from employer docs and archived checkpoints.
+
+**PortmanDentex explicitly paused** by 9 October 19:01:15.323 review; zero public jobs at last verification, old 51/249 cache historical. Neudata/Arctic Lake permission drafts remain unsent, owner approval pending. No new lead/source configured during capacity investigation.
+
+Today's internal marketing ledger: **seven Published, zero Scheduled/uncertain** (five Facebook, two LinkedIn company). Fresh 12:24–12:34 UTC provider audit: **zero queued Facebook/Instagram items** in the checked 23 October–30 November range; native company and personal LinkedIn queues both empty. WhatsApp has no connected scheduler; current manual sends were not inspected. Read `MARKETING_REVIEW-2026-10-30.md` and its sanitized receipt. Six substantive Facebook posts report four cumulative link-click events through 29 October; the newer LinkedIn report has 102 organic impressions/one general click, company two followers; Instagram last populated follower day 28 October has four, with zero content for 23–29 October. No unique-user, conversion or format-winner inference. These new observations are **repository evidence only**, not saved cloud performance records or a new planner context. Read-only history still has five observations, latest 17 October. No production write probe or provider mutation. LinkedIn report `bbbfd315-3bd4-4d64-b992-9af9d8d8a695` v2/r5 was independently verified 26 October at https://www.linkedin.com/feed/update/urn:li:activity:7519322228237381632 (native 23 October; exact time unknown). The old supervisor overdue-social finding predates that reconciliation. Instagram welcome v2/r3 and personal/company/Monzo holds remain. Sequence brief `1a0e0cc2-f7b7-4f76-832e-95c3572c94ad` v1/r2 has an expired unscheduled 23 October slot; fresh evidence/review needed, no unattended vacancy send.
+
+Complete UTC days 26–29 October retain **15 page events and no other event rows**; missing counts during outage are not zero customer activity. Historical 9–25 October: 177 page/24 campaign/one account-created/zero CV-letter-guidance completions. Not unique people, causal growth or revenue. Google last verified 23 October: 119 impressions/zero clicks through 19 October, four inspections. No AI/Google/email/social send, extra alert test or incident fabrication today. Provider/native queue and performance audit is now completed with the limits above; fresh cloud retention, planner use and real alert delivery remain separate.
+
+## Validation and next evidence
+
+**790/790 local tests**, build/TypeScript, **20 prerenders**, browser budgets and version-upload dry run pass on pinned Node 24.19.0. npm audit zero known advisories; dependencies and research/application manifests unchanged. 7.4 GiB free before the new runtime checks and 8.0 GiB before build; protected archive/personal files/unrelated outputs preserved.
+
+Exact runtime-head GitHub jobs **124057034249 / 124057009194** did not start because account billing is locked (annotations inspected). GitGuardian **124057100365** is neutral/skipped for PR size. Prior-head hosted results cannot establish acceptance for this head. PR #1 stays open/unmerged; inspect each final pushed head separately. No global pause/resume or automation schedule change.
+
+At the 12:32–12:34 UTC inspection, latest source application/provider receipts still ended at the 06:30 run; no new 12:30 receipt was visible. Missing observation is not proof of absent cron execution. No forced run.
+
+Next: verify genuine register/source outcomes and capacity; reconcile the original supervisor using authoritative evidence; work overdue reviews; inspect actual provider delivery/performance; implement private Founder persistence without loss. Autonomous operation, independent quality and sustained business outcomes remain incomplete. Keep the full goal active and all standing limits/holds intact.

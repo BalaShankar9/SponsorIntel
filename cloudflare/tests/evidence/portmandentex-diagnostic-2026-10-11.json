@@ -1,0 +1,116 @@
+{
+  "observed_at": "2026-10-11T10:47:43.387304+00:00",
+  "kind": "manual_public_diagnostic",
+  "production_collection_triggered": false,
+  "production_reservations_changed": false,
+  "requests": [
+    {
+      "url": "https://api.smartrecruiters.com/v1/companies/PortmanDentex/postings/744000145730189",
+      "status": 200,
+      "totalFound": null,
+      "offset": null,
+      "limit": null,
+      "row_count": 1,
+      "matched": [
+        {
+          "id": "744000145730189",
+          "uuid": "c72614fa-e792-4970-916c-08fe68add9f5",
+          "jobAdId": "ba37a17d-2c15-4a72-8293-cd334c504137",
+          "name": "Associate Dentist",
+          "releasedDate": "2026-08-26T12:36:56.558Z",
+          "visibility": "PUBLIC",
+          "active": true,
+          "company": {
+            "name": "PortmanDentex",
+            "identifier": "PortmanDentex"
+          },
+          "location": {
+            "city": "East Kilbride",
+            "country": "gb",
+            "address": "High Commons Rd",
+            "postalCode": "G74 2AU",
+            "remote": false,
+            "hybrid": false
+          },
+          "typeOfEmployment": {
+            "id": "part-time",
+            "label": "Part-time"
+          },
+          "postingUrl": "https://jobs.smartrecruiters.com/PortmanDentex/744000145730189-associate-dentist"
+        }
+      ]
+    },
+    {
+      "url": "https://api.smartrecruiters.com/v1/companies/PortmanDentex/postings?limit=100&offset=0&destination=PUBLIC&country=gb&q=East+Kilbride",
+      "status": 200,
+      "totalFound": 10,
+      "offset": 0,
+      "limit": 100,
+      "row_count": 10,
+      "matched": [
+        {
+          "id": "744000145730189",
+          "uuid": "c72614fa-e792-4970-916c-08fe68add9f5",
+          "jobAdId": "ba37a17d-2c15-4a72-8293-cd334c504137",
+          "name": "Associate Dentist",
+          "releasedDate": "2026-08-26T12:36:56.558Z",
+          "visibility": "PUBLIC",
+          "company": {
+            "identifier": "PortmanDentex",
+            "name": "PortmanDentex"
+          },
+          "location": {
+            "city": "East Kilbride",
+            "country": "gb",
+            "address": "High Commons Rd",
+            "postalCode": "G74 2AU",
+            "remote": false,
+            "hybrid": false
+          },
+          "typeOfEmployment": {
+            "id": "part-time",
+            "label": "Part-time"
+          }
+        }
+      ]
+    }
+  ],
+  "public_original": "https://jobs.smartrecruiters.com/PortmanDentex/744000145730189",
+  "current_compared_fields_match": true,
+  "detail_active": true,
+  "original_browser_observation": {
+    "title": "Associate Dentist",
+    "location": "High Commons Rd, East Kilbride, United Kingdom",
+    "employment_type": "Part-time",
+    "registration_requirement": "GDC registered Dentist",
+    "sponsorship_mentioned": false
+  },
+  "production_before_and_after": {
+    "source_paused": true,
+    "public_portmandentex_jobs": 0,
+    "source_reservations_observed": 180,
+    "daily_source_cap": 500,
+    "manual_diagnostic_api_requests": 2,
+    "new_publication": false,
+    "new_discovery_lead": false
+  },
+  "limitations": [
+    "Two targeted public API reads and one browser original review, not a complete catalogue or a production source run.",
+    "The 9 October differing fields were not retained; current agreement does not reconstruct the cause.",
+    "No collection, source resume, publication, model call, migration or production counter reset.",
+    "The source remains held pending reviewed recovery; prepared diagnostics do not relax identity comparison."
+  ],
+  "prepared_validation": {
+    "version": "2.53.0",
+    "deployed": false,
+    "full_tests": 517,
+    "failed": 0,
+    "node": "24.19.0",
+    "actual_isolated_source_workflow": true,
+    "final_focused_tests": 8,
+    "build_prerenders": 17,
+    "build_typecheck_asset_budgets_dry_run": "passed",
+    "browser_preview": "fictional local component, new and legacy receipts verified",
+    "schema_change": false
+  }
+}

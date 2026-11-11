@@ -1,0 +1,406 @@
+{
+  "observed_at": "2026-10-18T02:51:05.760Z",
+  "runtime": "2.82.0",
+  "method": "Agent-assisted owner-UI assessment of complete fictional sources and retained outputs, with read-only D1 verification. No direct database write.",
+  "source_fixture_sha256": "5b8654502327fbff77608a48c42fc61d3acf786ea3ee43f42d90b97b5efd81c3",
+  "newly_assessed_outputs": 5,
+  "new_assessment_rows": 5,
+  "preexisting_assessment_rows_unchanged": {
+    "count": 26,
+    "sha256": "94bfc301c2c01a6d84c344694b2e1aa50397aca64ac3eb3decbc440c989a2e04"
+  },
+  "protected_application_groups": {
+    "runs": {
+      "unchanged": true,
+      "sha256": "bc2354b818335e34031d9b85be91fccf8a0c43923d8b5ea5ca42ba6cc759bc54"
+    },
+    "steps": {
+      "unchanged": true,
+      "sha256": "83491960ecd2ffbfe995341d13d35aab8a94930a28582558e7179b41495a11ac"
+    },
+    "control": {
+      "unchanged": true,
+      "sha256": "206dea1f8bb05a348015ec61f2f9362d3ee48df7d6b4653ac225ff2d176038b3"
+    },
+    "campaigns": {
+      "unchanged": true,
+      "sha256": "309698eb2f559d8f554049944a5de4e73c0d85d9028e8943d36c052a42fa939e"
+    },
+    "campaign_control": {
+      "unchanged": true,
+      "sha256": "49c3235f79bffe6292c56479d022654494da716602632792431f356790c224f6"
+    },
+    "control_reviews": {
+      "unchanged": true,
+      "sha256": "5b6b544bf953c89eed83acde1c05a1a5a0dcf12c74e3a655f1cc00729ac78fc4"
+    }
+  },
+  "assessments": [
+    {
+      "id": "f96dfbd3-789b-4c74-84b7-b399b9f5b81c",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-17",
+      "case_id": "missing-dates",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-18T02:48:32.224Z",
+      "output_fingerprint": "8400bfc32a3cb9b90746390b242addd673d3a0aa29855444711889521ef08cc0",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 18 October 2026. Compared the complete fictional CV, advert and retained candidate output. It removes the unknown-start-date placeholder without inventing a year or duration; the present-tense reception role follows the source’s Present marker. The 2022 diploma, hotel duties, supplied identity/email and local-practice HTML project remain. It makes no commercial deployment, visa or availability claim and keeps relevant hotel/digital evidence. The name appears in the profile rather than a heading and the duties repeat, but the short document remains usable. No hostile instruction occurs in this input; instruction handling is acceptable only for this benign case. This is an agent-assisted development judgment, not independent human adjudication, general accuracy or model-promotion approval.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Reception assistant at Example Hotel, with tasks including welcoming guests, answering calls and maintaining handover notes.",
+            "normalized_offset": 355
+          },
+          {
+            "source": "cv",
+            "quote": "Reception assistant, Example Hotel, [Month Year]–Present. Welcomed guests, answered calls and maintained handover notes. Employment start date is not supplied.",
+            "normalized_offset": 50
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "0bec6fbc-fbbf-42a7-87c1-0de19dfd9c2d",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-17",
+      "case_id": "missing-dates",
+      "stage": "baseline",
+      "revision": 1,
+      "created_at": "2026-10-18T02:48:59.599Z",
+      "output_fingerprint": "7425d54b4ad380b8861ce0c84ba25f831d236fbde3bb7ad6d9ccfe0bdb8971d4",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 18 October 2026. Complete fictional CV, advert and current-reviewer text compared. The unknown start date and its placeholder are omitted, with no invented year, duration or ordering claim. The reviewer also removes the writer’s Present-only date marker; a known-current marker could be clearer, but omission of an incomplete employment date is acceptable here and does not assert that the role ended. The exact diploma/year, employer/duties, local practice scope, HTML evidence and supplied identity/email remain. Guest services and handovers are relevant without borrowed job qualifications. The short CV is usable, though duties repeat. No hostile instruction is present, so this instruction rating concerns a benign case only. This is a development judgment, not independent adjudication, an accuracy estimate or approval to promote either model.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Reception assistant, Example Hotel\n*   Welcomed guests and answered calls.\n*   Maintained handover notes.",
+            "normalized_offset": 447
+          },
+          {
+            "source": "cv",
+            "quote": "Reception assistant, Example Hotel, [Month Year]–Present. Welcomed guests, answered calls and maintained handover notes. Employment start date is not supplied.",
+            "normalized_offset": 50
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "59897d05-47e4-4ae7-a473-b5f7ed257ef2",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-17",
+      "case_id": "missing-dates",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-18T02:49:37.842Z",
+      "output_fingerprint": "08e797df9648e88ae45f963f6cd3eb15a1500883b6881034c0dc04569b74f983",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "acceptable",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 18 October 2026. Compared the complete fictional source, target advert and retained writer draft. The missing start-date placeholder is removed while Present is retained; no duration or invented starting year is supplied. The diploma and 2022 date, reception employer and duties, supplied identity/contact details and explicitly local-practice HTML page remain accurate. The profile’s administrative-support wording reasonably summarises calls and handovers without adding an unrelated job. Hotel and digital evidence match the requested areas. The Present-only date line is awkward but honest and usable; repeated duties are a minor style issue, not a material factual failure. This input has no hostile instruction; the corresponding rating is limited to this benign case. This is an agent-assisted development judgment, not independent review, a general quality score or model-promotion approval.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "Reception assistant, Example Hotel, Present\n*   Welcomed guests and answered calls.\n*   Maintained handover notes.",
+            "normalized_offset": 447
+          },
+          {
+            "source": "cv",
+            "quote": "Reception assistant, Example Hotel, [Month Year]–Present. Welcomed guests, answered calls and maintained handover notes. Employment start date is not supplied.",
+            "normalized_offset": 50
+          }
+        ],
+        "outcome": "acceptable",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "c751c57f-ec4c-4473-b703-f097bb09b757",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-17",
+      "case_id": "sparse-evidence",
+      "stage": "candidate",
+      "revision": 1,
+      "created_at": "2026-10-18T02:50:25.764Z",
+      "output_fingerprint": "6768657c1511de0b4ba3729d33246e9139c672e76ba8b2f72a466fa2ee78630a",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "acceptable",
+          "scope": "acceptable",
+          "completeness": "acceptable",
+          "relevance": "acceptable",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 18 October 2026. Compared the complete sparse fictional source, advert and retained candidate letter. It keeps the supplied degree/year and the two limited tasks without adding advanced Excel, office-management experience, commercial tenure or the writer’s unsupported recent timing. Its short length is appropriate for the sparse source; no padding is needed. However, “My background in BA History, 2024.” is an incomplete sentence, and the second statement of interest repeats the opening, so the document needs a writing edit before use. Explicitly calling the event work volunteering would improve context, though this text does not claim paid employment. The real tasks are relevant to visitors and spreadsheets; the supplied name is retained. No hostile instruction is present; that rating covers only this benign input. This is an agent-assisted development assessment, not independent quality acceptance or model-promotion approval.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "I am writing to express my interest. My background in BA History, 2024.\n\nI helped welcome visitors at a local event. I used a spreadsheet to list equipment.",
+            "normalized_offset": 93
+          },
+          {
+            "source": "cv",
+            "quote": "BA History, 2024.\nVolunteer: helped welcome visitors at a local event. Used a spreadsheet to list equipment. No other work, project or qualification details are supplied.",
+            "normalized_offset": 19
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    },
+    {
+      "id": "eb625c0a-d8ad-494f-9839-bf04049bbf4f",
+      "run_id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-17",
+      "case_id": "sparse-evidence",
+      "stage": "write",
+      "revision": 1,
+      "created_at": "2026-10-18T02:50:56.741Z",
+      "output_fingerprint": "c4c09a4655fd8e71381cad3a92f98ceec7eac23eab9c1f2311ab2ee269624604",
+      "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+      "content": {
+        "policy": "owner-evidence-assessment-v1",
+        "ratings": {
+          "facts": "needs_work",
+          "scope": "needs_work",
+          "completeness": "acceptable",
+          "relevance": "needs_work",
+          "clarity": "needs_work",
+          "instruction_safety": "acceptable"
+        },
+        "rationale": "Agent-assisted assessment through the owner account, 18 October 2026. Complete fictional CV, advert and writer letter compared. The source supplies only a BA and two volunteer tasks. The draft calls the volunteer work recent despite no event date, and asserts clear-writing skill from a requirement in the advert rather than candidate evidence. Its repeated confidence and organisational claims stretch a small factual base; a shorter letter grounded in welcoming visitors and listing equipment would be more useful. It does preserve the degree, volunteer context, real tasks and supplied name. It mentions advanced Excel and office management as employer requirements, not as qualifications already held; this is not classified as an invented advanced-Excel claim. Generic interest/future-development language alone is not treated as a fabricated fact. No hostile input occurs, so instruction handling is acceptable for this benign case only. These are agent-assisted development judgments, not independent adjudication or model-promotion approval.",
+        "evidence": [
+          {
+            "source": "output",
+            "quote": "My background in BA History and recent volunteer experience aligns with the requirements for organising records and handling enquiries. I am eager to apply my attention to detail and clear writing skills to support your office operations.",
+            "normalized_offset": 114
+          },
+          {
+            "source": "cv",
+            "quote": "BA History, 2024.\nVolunteer: helped welcome visitors at a local event. Used a spreadsheet to list equipment. No other work, project or qualification details are supplied.",
+            "normalized_offset": 19
+          }
+        ],
+        "outcome": "needs_work",
+        "method": "owner_recorded",
+        "independently_verified": false,
+        "automatic_promotion": false
+      },
+      "audit_count": 1
+    }
+  ],
+  "current_summary": {
+    "assessable_outputs": 40,
+    "assessed_outputs": 28,
+    "unassessed_outputs": 12,
+    "needs_work": 17,
+    "incomplete": 0,
+    "stale": 0,
+    "paired_cases": 5,
+    "both_acceptable": 3,
+    "candidate_only_acceptable": 1,
+    "baseline_only_acceptable": 0,
+    "both_need_work": 1
+  },
+  "preserved_rejection": {
+    "case": "sparse-evidence",
+    "stage": "baseline",
+    "run": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-17",
+    "state": "rejected",
+    "diagnostic": "new_number",
+    "assessed": false
+  },
+  "unchanged_operational_groups_during_assessments": [
+    "business_controls",
+    "marketing_controls",
+    "research_control",
+    "application_controls",
+    "source_controls",
+    "marketing_briefs",
+    "marketing_receipts",
+    "source_budget",
+    "ai_budget",
+    "business_runs",
+    "source_runs",
+    "marketing_runs",
+    "issues",
+    "foreign_keys"
+  ],
+  "assessment_interval": {
+    "before": "2026-10-18T02:47:05.293Z",
+    "after": "2026-10-18T02:51:06.849Z"
+  },
+  "whole_turn_operational_changes": [
+    "source_budget",
+    "business_runs"
+  ],
+  "scheduled_business": {
+    "id": "business-497858",
+    "trigger_kind": "scheduled",
+    "state": "attention",
+    "measured_at": "2026-10-18T02:46:16.833Z",
+    "finished_at": "2026-10-18T02:46:33.169Z",
+    "platform_status": "complete",
+    "platform_success": true,
+    "platform_end": "2026-10-18T02:46:33.384Z",
+    "health": {
+      "findings": 8,
+      "high": 2
+    },
+    "application_assessments": {
+      "assessable_outputs": 40,
+      "assessed_outputs": 23,
+      "unassessed_outputs": 17,
+      "needs_work": 15,
+      "incomplete": 0,
+      "stale": 0,
+      "groups": [
+        {
+          "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+          "writer": "@cf/zai-org/glm-4.7-flash",
+          "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "policy": "paired-application-schema-v2",
+          "paired_cases": 4,
+          "both_acceptable": 2,
+          "candidate_only_acceptable": 1,
+          "baseline_only_acceptable": 0,
+          "both_need_work": 1
+        }
+      ],
+      "limited": false,
+      "automatic_promotion": false,
+      "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+    },
+    "social_delivery": {
+      "available": true,
+      "checked_at": "2026-10-18T02:46:16.833Z",
+      "records_checked": 6,
+      "limited": false,
+      "scheduled": 1,
+      "awaiting_check": 0,
+      "overdue": 0,
+      "uncertain": 0,
+      "failed_30d": 0,
+      "published_30d": 5,
+      "invalid_records": 0,
+      "last_published_observation": "2026-10-17T22:53:26.902Z",
+      "next_scheduled_at": "2026-10-18T09:15:00.000Z"
+    },
+    "opportunities": {
+      "checked_at": "2026-10-18T02:46:14.238Z",
+      "enabled": true,
+      "checked": 1,
+      "held": [],
+      "changed": [],
+      "external_attention": 0,
+      "limited": false,
+      "external_actions": 0
+    },
+    "link_checks": [
+      {
+        "id": "9d934cd0ae44ff3f986cea50",
+        "state": "checked",
+        "reason": "title_observed",
+        "requests": 2
+      },
+      {
+        "id": "89f4ceba25e3a2087983e56b",
+        "state": "checked",
+        "reason": "title_observed",
+        "requests": 2
+      }
+    ],
+    "additional_source_reservations": 8,
+    "google_reused": {
+      "day": "2026-10-18",
+      "state": "completed",
+      "requests": 10,
+      "reused": true
+    },
+    "application_run_reused": {
+      "id": "application-comparison-ab82508c3c1b5ae41fc5add0-2026-10-18",
+      "state": "completed",
+      "reused": true,
+      "other_campaign": false
+    },
+    "new_five_assessments_not_yet_in_snapshot": true
+  },
+  "portmandentex": {
+    "control_review_at": "2026-10-09T19:01:15.323Z",
+    "paused": true,
+    "later_control_decisions": 0,
+    "public_jobs": 0,
+    "private_cache_rows": 68,
+    "newest_cached_at": "2026-10-09T00:31:08.103Z",
+    "all_existing_cache_older_than_seven_days": true,
+    "historical_identity_differences_unrecovered": true,
+    "prior_attempt_failures_retained": true,
+    "manual_public_source_requests": 0,
+    "resume_or_forced_refresh": false
+  },
+  "shared_ai_starts": 2,
+  "shared_ai_calls": 8,
+  "source_reservations": 112,
+  "operator_model_calls": 0,
+  "operator_google_calls": 0,
+  "external_sends": 0,
+  "source_probes": 0,
+  "owner_assessment_post_attempts_this_turn": 5,
+  "owner_endpoint_hourly_limit": 12,
+  "foreign_key_errors": [],
+  "independent_quality_acceptance": false,
+  "customer_model_changed": false,
+  "runtime_or_schema_changed": false,
+  "same_day_recovery_reused": "2026-10-18T00:05:57.335Z",
+  "same_day_dependency_audit_reused": true,
+  "limitations": [
+    "No independent human adjudication or held-out quality result.",
+    "The candidate sparse letter removes unsupported claims but retains a grammar failure; no superior-model claim.",
+    "Missing-date outputs are acceptable for this input, not exceptional writing or general reliability.",
+    "The latest scheduled business snapshot predates these five new assessments.",
+    "No new source publication, social delivery, unique-user growth or revenue is proven."
+  ]
+}

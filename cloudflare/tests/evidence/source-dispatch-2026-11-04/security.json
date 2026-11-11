@@ -1,0 +1,20 @@
+{
+  "observed_day": "2026-11-04",
+  "npm_audit_exit": 0,
+  "vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "lock_sha256": "a0064013264829d450682960462ebf1f20fb1f06fb715b9df2b13956081e3842",
+  "dependency_changes": false,
+  "official_sources": [
+    "https://github.com/nodejs/undici/security/advisories",
+    "https://github.com/colinhacks/zod/security/advisories",
+    "https://github.com/advisories/GHSA-mrhx-c7xc-m3w5"
+  ],
+  "interpretation": "Zero known npm advisories for this dependency graph; maintainer indexes inspected today. Not an independent or exhaustive security assessment. Isolated root version metadata differs but dependency graph is identical."
+}

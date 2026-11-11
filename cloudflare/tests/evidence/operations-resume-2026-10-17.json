@@ -1,0 +1,509 @@
+{
+  "date_utc": "2026-10-17",
+  "kind": "operator_resume_and_delivery_reconciliation",
+  "runtime": {
+    "version": "2.77.0",
+    "worker": "e817b561-301c-4975-9dcd-f0d3a63504fc",
+    "code": "b52db78e75a4a5e6f14c68797147f679e7b9708a",
+    "deployed_this_run": false
+  },
+  "authorization": {
+    "human_instruction": "go-ahead",
+    "scope": "Sponsor Intel only; other project automations remain paused",
+    "automation": "sponsor-intel-daily-improvement",
+    "automation_status": "ACTIVE",
+    "goal_tool_status": "paused",
+    "goal_tool_cannot_resume": true
+  },
+  "observed_at": "2026-10-17T22:55:49.452Z",
+  "register": {
+    "snapshot": "2026-10-16-7c8b2b3d",
+    "source_date": "2026-10-16",
+    "source_url": "https://assets.publishing.service.gov.uk/media/6ad1d58449ba86d6c953ca9d/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-16.csv",
+    "publication_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+    "checked_at": "2026-10-17T07:15:25.233Z",
+    "imported_at": "2026-10-17T07:16:12.594Z",
+    "employers": 128007,
+    "source_rows": 143211,
+    "skilled_worker": 122594,
+    "cities": 6348,
+    "routes": [
+      {
+        "name": "Skilled Worker",
+        "count": 122594
+      },
+      {
+        "name": "Creative Worker",
+        "count": 1578
+      },
+      {
+        "name": "Tier 2 Ministers of Religion",
+        "count": 1959
+      },
+      {
+        "name": "Global Business Mobility: UK Expansion Worker",
+        "count": 435
+      },
+      {
+        "name": "Global Business Mobility: Senior or Specialist Worker",
+        "count": 10383
+      },
+      {
+        "name": "International Agreement",
+        "count": 134
+      },
+      {
+        "name": "Scale-up",
+        "count": 93
+      },
+      {
+        "name": "Global Business Mobility: Graduate Trainee",
+        "count": 621
+      },
+      {
+        "name": "Global Business Mobility: Service Supplier",
+        "count": 56
+      },
+      {
+        "name": "Charity Worker",
+        "count": 1531
+      },
+      {
+        "name": "Religious Worker",
+        "count": 1433
+      },
+      {
+        "name": "International Sportsperson",
+        "count": 1466
+      },
+      {
+        "name": "Government Authorised Exchange",
+        "count": 246
+      },
+      {
+        "name": "Seasonal Worker",
+        "count": 6
+      },
+      {
+        "name": "Global Business Mobility: Secondment Worker",
+        "count": 6
+      },
+      {
+        "name": "Intra-company Routes",
+        "count": 1
+      },
+      {
+        "name": "Intra Company Transfers (ICT)",
+        "count": 1
+      },
+      {
+        "name": "Tier 2 General",
+        "count": 5
+      }
+    ],
+    "refresh_error": null,
+    "refresh_failure": null
+  },
+  "register_counts": [
+    {
+      "entries": 128007,
+      "locations": 6348,
+      "missing_city": 1
+    }
+  ],
+  "city_samples": [
+    {
+      "city": "CARDIFF",
+      "listings": 618,
+      "skilled": 583
+    },
+    {
+      "city": "MANCHESTER",
+      "listings": 2869,
+      "skilled": 2750
+    },
+    {
+      "city": "SHEFFIELD",
+      "listings": 689,
+      "skilled": 652
+    }
+  ],
+  "register_incident": [
+    {
+      "id": "register-freshness",
+      "state": "resolved",
+      "first_seen": "2026-10-15T23:45:32.914Z",
+      "last_seen": "2026-10-16T06:45:31.935Z",
+      "resolved_at": "2026-10-16T07:45:32.811Z"
+    }
+  ],
+  "provider_platform": [
+    {
+      "id": "business-497854",
+      "queued": "2026-10-17T22:45:56.052Z",
+      "start": "2026-10-17T22:45:58.531Z",
+      "end": "2026-10-17T22:46:21.827Z",
+      "success": true,
+      "error": null,
+      "status": "complete",
+      "application_state": "attention"
+    },
+    {
+      "id": "scheduled-1792261853000",
+      "queued": "2026-10-17T18:30:56.672Z",
+      "start": "2026-10-17T18:30:59.208Z",
+      "end": "2026-10-17T18:32:55.860Z",
+      "success": true,
+      "error": null,
+      "status": "complete",
+      "application_state": "attention"
+    }
+  ],
+  "business_snapshot_time": "2026-10-17T22:46:05.940Z",
+  "jobs": {
+    "total": 971,
+    "employers": 36,
+    "offered": 21,
+    "conditional": 33,
+    "unavailable": 95,
+    "not_stated": 822,
+    "early_career": 49,
+    "salary": 160
+  },
+  "source_results": {
+    "published": 36,
+    "skipped": 1,
+    "requests": 60,
+    "paused_source": "portmandentex"
+  },
+  "discovery": {
+    "checked_at": "2026-10-17T22:46:05.940Z",
+    "total": 21,
+    "unresolved": 10,
+    "overdue": 10,
+    "changed_links": 1,
+    "current_linked_jobs": 2,
+    "last_recorded_at": "2026-10-14T00:46:43.518Z",
+    "counts": [
+      {
+        "source_kind": "employer",
+        "state": "linked",
+        "total": 1
+      },
+      {
+        "source_kind": "employer",
+        "state": "rejected",
+        "total": 1
+      },
+      {
+        "source_kind": "linkedin_job",
+        "state": "held",
+        "total": 2
+      },
+      {
+        "source_kind": "linkedin_job",
+        "state": "linked",
+        "total": 1
+      },
+      {
+        "source_kind": "linkedin_job",
+        "state": "rejected",
+        "total": 2
+      },
+      {
+        "source_kind": "linkedin_post",
+        "state": "rejected",
+        "total": 3
+      },
+      {
+        "source_kind": "recruiter",
+        "state": "rejected",
+        "total": 1
+      },
+      {
+        "source_kind": "teaching_vacancy",
+        "state": "held",
+        "total": 6
+      },
+      {
+        "source_kind": "teaching_vacancy",
+        "state": "linked",
+        "total": 1
+      },
+      {
+        "source_kind": "teaching_vacancy",
+        "state": "pending",
+        "total": 2
+      },
+      {
+        "source_kind": "teaching_vacancy",
+        "state": "rejected",
+        "total": 1
+      }
+    ],
+    "allowance": {
+      "day": "2026-10-17",
+      "limit": 5,
+      "used": 0,
+      "remaining": 5,
+      "next_day": "2026-10-18T00:00:00.000Z"
+    },
+    "limitation": "Private sourcing records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Automated source candidates are identified separately from agent-assisted and owner reviews."
+  },
+  "advert_reviews": {
+    "total": 3,
+    "held": 3,
+    "overdue": 3
+  },
+  "reference": {
+    "state": "needs_attention",
+    "dataset": "real-adverts-2026-10-08-compact-v2",
+    "original_state": "needs_attention",
+    "evaluated_adverts": 8,
+    "total_adverts": 50,
+    "dangerous_false_positives": 0,
+    "unsupported_refusals": 1,
+    "disputed_items": 0
+  },
+  "application_evaluation": {
+    "state": "ready",
+    "operation_state": "enabled",
+    "progress_state": "ready",
+    "enabled": true,
+    "business_enabled": true,
+    "evaluation_enabled": true,
+    "pause_reason": null,
+    "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+    "completed": 10,
+    "total": 20,
+    "assessments": {
+      "assessable_outputs": 35,
+      "assessed_outputs": 15,
+      "unassessed_outputs": 20,
+      "needs_work": 10,
+      "incomplete": 0,
+      "stale": 0,
+      "groups": [
+        {
+          "profile_fingerprint": "ab82508c3c1b5ae41fc5add0d85630ad23a2317da96b8081a05861854da5e29b",
+          "writer": "@cf/zai-org/glm-4.7-flash",
+          "reviewer": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+          "policy": "paired-application-schema-v2",
+          "paired_cases": 2,
+          "both_acceptable": 1,
+          "candidate_only_acceptable": 0,
+          "baseline_only_acceptable": 0,
+          "both_need_work": 1
+        }
+      ],
+      "limited": false,
+      "automatic_promotion": false,
+      "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+    }
+  },
+  "measurement": {
+    "version": 2,
+    "enabled_at": "2026-10-08T11:57:33.807Z",
+    "first_full_day": "2026-10-09",
+    "completed_days": 8,
+    "from": "2026-10-09",
+    "to": "2026-10-17",
+    "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+    "browser_evidence": {
+      "version": 1,
+      "kind": "browser_reported",
+      "state": "collecting",
+      "enabled_at": "2026-10-11T18:44:54.941Z",
+      "first_full_day": "2026-10-12",
+      "from": "2026-10-12",
+      "to": "2026-10-17",
+      "completed_days": 5,
+      "evidence_checks": 0,
+      "campaigns": [],
+      "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+    }
+  },
+  "metric_totals": {
+    "campaign_page_view": 22,
+    "page_view": 132
+  },
+  "delivery": {
+    "provider": "metricool",
+    "brand": 7294726,
+    "timezone": "Europe/London",
+    "account": "1319703417896763",
+    "original_job": "397276739",
+    "uuid": "5376123507090214631",
+    "provider_status": "PUBLISHED",
+    "external_post_id": "1319703417896763_122099309745512994",
+    "post_url": "https://www.facebook.com/122093616117512994/posts/122099309745512994",
+    "browser_verified": [
+      "Sponsor Intel author",
+      "Public audience",
+      "complete three-paragraph v1 copy",
+      "guide preview",
+      "exact campaign destination",
+      "matching first-party guide"
+    ],
+    "actual_publication_time": null,
+    "brief": {
+      "id": "b0578279-cbb7-40d7-9fd7-cd1135397b7d",
+      "destination": "facebook-company",
+      "state": "published",
+      "version": 1,
+      "revision": 4,
+      "updated_at": "2026-10-17T22:53:27.068Z"
+    },
+    "receipts": [
+      {
+        "id": "43f01d54-0e5b-4b83-bc6b-900b6ea0c579",
+        "brief_id": "b0578279-cbb7-40d7-9fd7-cd1135397b7d",
+        "version": 1,
+        "provider": "metricool",
+        "external_id": "397276739",
+        "state": "scheduled",
+        "scheduled_at": "2026-10-16T09:00:00.000Z",
+        "observed_at": "2026-10-15T23:01:14.000Z"
+      },
+      {
+        "id": "7bc1af47-e935-4980-9538-7aaa6f164c8a",
+        "brief_id": "b0578279-cbb7-40d7-9fd7-cd1135397b7d",
+        "version": 1,
+        "provider": "metricool",
+        "external_id": "1319703417896763_122099309745512994",
+        "state": "published",
+        "scheduled_at": null,
+        "observed_at": "2026-10-17T22:53:26.902Z"
+      }
+    ],
+    "new_send_or_schedule": false
+  },
+  "performance": {
+    "id": "7c1cf7e3-6f85-4ab5-be31-8a9c4855f28f",
+    "destination": "facebook-company",
+    "post_url": "https://www.facebook.com/122093616117512994/posts/122099309745512994/",
+    "observed_at": "2026-10-17T22:56:27.000Z",
+    "created_at": "2026-10-17T22:56:28.599Z",
+    "payload": {
+      "version": 1,
+      "destination": "facebook-company",
+      "account": "1319703417896763",
+      "provider": "metricool",
+      "post_url": "https://www.facebook.com/122093616117512994/posts/122099309745512994/",
+      "title": "Facebook shortlist guide \u2014 17 October performance",
+      "observed_at": "2026-10-17T22:56:27.000Z",
+      "window_type": "lifetime",
+      "window_start": null,
+      "window_end": "2026-10-16T22:59:59.000Z",
+      "timezone": "Europe/London",
+      "published_at": null,
+      "availability": "reported",
+      "metrics": {
+        "impressions": null,
+        "views": null,
+        "reach": 1,
+        "clicks": 1,
+        "link_clicks": 1,
+        "reactions": 0,
+        "comments": 0,
+        "shares": 0,
+        "saves": null
+      },
+      "campaign_id": "fb-shortlist",
+      "campaign_url": "https://sponsorintel.london/guides/build-a-shortlist?utm_source=facebook&utm_medium=organic_social&utm_campaign=editorial_guides&utm_content=small_shortlist",
+      "assessment_type": "agent_assisted",
+      "evidence_url": "https://app.metricool.com/evolution/facebookPage?blogId=7294726",
+      "note": "Agent-assisted Metricool connector observation for verified Facebook Page 1319703417896763 and post 1319703417896763_122099309745512994. Requested fields FBPO12 reach=1, FBPO23 all clicks=1, FBPO09 link clicks=1; FBPO13/08/14 reactions/comments/shares each explicitly zero. The 16\u201317 October query selects posts, not an activity interval. Official Metricool Facebook metrics documentation states cumulative post performance through yesterday; retained end is the 16 October Europe/London calendar-day boundary. Exact provider synchronization is unknown. Raw created value 20261016090317 has no returned timezone, so exact publication time stays blank. Impressions, views and saves were not supplied and stay unknown. Operator Facebook visits and campaign-link checks on 16 and 17 October may contribute to these small figures; this is not evidence of customer acquisition or conversion. No budget, destination or hold changes."
+    }
+  },
+  "performance_definition_source": "https://help.metricool.com/facebook-metrics-8gdta",
+  "performance_raw_created": "20261016090317",
+  "performance_limitations": [
+    "Post selection window differs from lifetime metric window.",
+    "Provider documents cumulative figures through yesterday; exact synchronization unknown.",
+    "Raw publication field has no timezone; published_at remains null.",
+    "Operator visits and link checks may contribute; no customer-growth or conversion conclusion."
+  ],
+  "recovery": {
+    "observed_at": "2026-10-17T22:53:15.986Z",
+    "database": "sponsorintel-db",
+    "database_id": "f51fb6a9-1278-4643-a49f-30c2e52c6313",
+    "status": "available",
+    "current_recovery_point_available": true,
+    "bookmark_sha256": "a72840972408b8a2ef696f6e484556f56e1104524202d3472787cebd9ca708eb",
+    "database_size_bytes": 116912128,
+    "region": "WEUR",
+    "schema": {
+      "expected_objects": 166,
+      "actual_objects": 166,
+      "migration_files": 40,
+      "expected_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+      "actual_sha256": "68bfee7afecc6dbcf7f404ca4d9703a810a8bf9a8cc5854d44cb56a52a0c1890",
+      "missing": [],
+      "extra": [],
+      "changed": []
+    },
+    "production_data_exported": false,
+    "production_restore_performed": false,
+    "retention_window_verified": false,
+    "customer_data_restoration_verified": false
+  },
+  "protected_groups_before_delivery": "2026-10-17T22:52:18.285Z",
+  "protected_groups_after_delivery": "2026-10-17T22:53:35.178Z",
+  "unchanged_groups": [
+    "business_controls",
+    "marketing_controls",
+    "research_control",
+    "application_controls",
+    "source_controls",
+    "source_budget",
+    "ai_budget",
+    "business_runs",
+    "source_runs",
+    "marketing_runs",
+    "issues",
+    "foreign_keys"
+  ],
+  "budgets": {
+    "ai": [
+      {
+        "day": "2026-10-17",
+        "runs": 3,
+        "calls": 7
+      }
+    ],
+    "source": [
+      {
+        "day": "2026-10-17",
+        "requests": 388,
+        "briefs": 0
+      }
+    ]
+  },
+  "dependency_audit": {
+    "critical": 0,
+    "high": 0,
+    "moderate": 3,
+    "chain": "Mammoth / argparse / sprintf-js",
+    "official_advisory": "https://github.com/advisories/GHSA-hp3w-g68c-fv3c",
+    "install_or_upgrade": false
+  },
+  "boundaries": {
+    "new_model_calls": 0,
+    "forced_workflows": 0,
+    "new_google_reads": 0,
+    "new_source_fetches": 0,
+    "new_leads": 0,
+    "new_email_sends": 0,
+    "owner_holds_cleared": 0,
+    "customer_data_exported": false,
+    "database_restored": false,
+    "permissions_expanded": false
+  },
+  "remaining": [
+    "Next genuine business snapshot must incorporate delivery/performance, without forcing it.",
+    "Ten overdue unresolved discovery reviews, one changed link and three overdue advert holds.",
+    "Reference needs_attention and 20 unassessed fictional application outputs require evidence review.",
+    "Independent quality, acquisition, retention, revenue and direct cloud publishing remain unproven."
+  ]
+}

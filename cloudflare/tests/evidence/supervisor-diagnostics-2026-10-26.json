@@ -1,0 +1,199 @@
+{
+  "observed_at": "2026-10-26T10:22:01.201050+00:00",
+  "release": "2.97.0",
+  "runtime_commit": "962f0c535928afc9d72f746ed9523bdc9f43737f",
+  "worker_version": "20772457-5698-4722-8d03-56f164d7a695",
+  "deployment": {
+    "id": "94336f82-f362-4625-bb06-198c02f5638c",
+    "created_on": "2026-10-26T10:18:16.596349Z",
+    "percentage": 100
+  },
+  "rollback": "919b7553-81df-4287-9595-e83248f0a2c7",
+  "tests": {
+    "passed": 770,
+    "failed": 0,
+    "duration_ms": 364874.074542,
+    "node": "24.19.0",
+    "build": true,
+    "prerenders": 19,
+    "browser_budgets": true,
+    "dry_run": true
+  },
+  "live": {
+    "observed_at": "2026-10-26T10:19:08.207631+00:00",
+    "checks": {
+      "/api/health": {
+        "status": 200,
+        "body": {
+          "ok": true,
+          "version": "2.97.0",
+          "register": {
+            "date": "2026-10-23",
+            "count": 128023,
+            "checked_at": "2026-10-26T07:15:32.801Z"
+          }
+        }
+      },
+      "/api/admin/business": {
+        "status": 403
+      }
+    },
+    "asset": {
+      "name": "owner-CPcqOFNO.js",
+      "match": true,
+      "sha256": "77ecec26aa80a029e63f5aa4838b2352d9ea36dcdd1f1a6ba533898adfa0630d"
+    }
+  },
+  "browser": {
+    "owner_authenticated": true,
+    "overview_warning": true,
+    "operations_run_id": "business-497989",
+    "run_checks_disabled": true,
+    "local_mobile": {
+      "viewport": 390,
+      "document_width": 390,
+      "warning_width": 304
+    },
+    "qa_traffic": "Admin route excluded by trackPage; authenticated owner after account load. Raw CDP header setup was unavailable and was not relied upon."
+  },
+  "controls": {
+    "before": {
+      "observed_at": "2026-10-26T10:14:53.132777+00:00",
+      "groups": {
+        "business_controls": {
+          "rows": 1,
+          "sha256": "cace8ad4345a85438942f5fe84622db6c991d22f53312384cf5fe032b964762e"
+        },
+        "blocked_run": {
+          "rows": 1,
+          "sha256": "e91ba3a57b83d8a032e074a4133c11dc4704048d52ef57100a3e1c4fe9168496"
+        },
+        "blocked_steps": {
+          "rows": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "research_control": {
+          "rows": 1,
+          "sha256": "39538747c45991f870d37ee2b49a70b54b05a0ab89da481aad3b6d1615c2c806"
+        },
+        "scope_control": {
+          "rows": 1,
+          "sha256": "003f35b4717b572ad6d3035fd6c4712bb16160694a1e6bae80c8699d1721ab64"
+        },
+        "application_control": {
+          "rows": 1,
+          "sha256": "f901f7bf9ab6305d9c7abafa0d0035763ef415d1bc35a3bc5d3095be35d34741"
+        },
+        "source_controls": {
+          "rows": 3,
+          "sha256": "a1e625b57dc19205073ea06488a6297bdcc455d092eeb6eb7ac76940ec738aa4"
+        },
+        "research_budgets": {
+          "rows": 17,
+          "sha256": "4ad58166f5d0e2f257426f995a67aa4af8340f4eea7598151e958a4e74e0c88d"
+        },
+        "daily_research": {
+          "rows": 17,
+          "sha256": "f6022fe6be8b432ab095abd08d958e8c3a83642fad0120b72dc2d05b1fe1229e"
+        },
+        "advert_holds": {
+          "rows": 4,
+          "sha256": "90f3a3dbd7c15719c270bd22a618a6ca6e2b570cbcd49896ad6c18e4b1f12e55"
+        }
+      }
+    },
+    "after": {
+      "observed_at": "2026-10-26T10:19:08.336824+00:00",
+      "groups": {
+        "business_controls": {
+          "rows": 1,
+          "sha256": "cace8ad4345a85438942f5fe84622db6c991d22f53312384cf5fe032b964762e"
+        },
+        "blocked_run": {
+          "rows": 1,
+          "sha256": "e91ba3a57b83d8a032e074a4133c11dc4704048d52ef57100a3e1c4fe9168496"
+        },
+        "blocked_steps": {
+          "rows": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "research_control": {
+          "rows": 1,
+          "sha256": "39538747c45991f870d37ee2b49a70b54b05a0ab89da481aad3b6d1615c2c806"
+        },
+        "scope_control": {
+          "rows": 1,
+          "sha256": "003f35b4717b572ad6d3035fd6c4712bb16160694a1e6bae80c8699d1721ab64"
+        },
+        "application_control": {
+          "rows": 1,
+          "sha256": "f901f7bf9ab6305d9c7abafa0d0035763ef415d1bc35a3bc5d3095be35d34741"
+        },
+        "source_controls": {
+          "rows": 3,
+          "sha256": "a1e625b57dc19205073ea06488a6297bdcc455d092eeb6eb7ac76940ec738aa4"
+        },
+        "research_budgets": {
+          "rows": 17,
+          "sha256": "4ad58166f5d0e2f257426f995a67aa4af8340f4eea7598151e958a4e74e0c88d"
+        },
+        "daily_research": {
+          "rows": 17,
+          "sha256": "f6022fe6be8b432ab095abd08d958e8c3a83642fad0120b72dc2d05b1fe1229e"
+        },
+        "advert_holds": {
+          "rows": 4,
+          "sha256": "90f3a3dbd7c15719c270bd22a618a6ca6e2b570cbcd49896ad6c18e4b1f12e55"
+        }
+      }
+    },
+    "equal": true
+  },
+  "source_run": {
+    "id": "scheduled-1792996255003",
+    "status": "complete",
+    "success": true,
+    "start": "2026-10-26T06:32:37.423Z",
+    "end": "2026-10-26T06:36:19.641Z"
+  },
+  "public_jobs": {
+    "observed_at": "2026-10-26T10:13:54.656Z",
+    "total": 1002,
+    "employers": 37,
+    "sponsorship_worded": 53,
+    "licence_linked": 960
+  },
+  "business_blocker": {
+    "id": "business-497989",
+    "state": "queued",
+    "created_at": "2026-10-23T13:45:30.093Z",
+    "saved_steps": 0,
+    "provider_lookup_at": "2026-10-26T10:01:21Z",
+    "provider_error_code": 10001,
+    "outcome": "unknown",
+    "reconciled": false
+  },
+  "hosted_runtime_checks": {
+    "head": "962f0c535928afc9d72f746ed9523bdc9f43737f",
+    "billing_blocked": [
+      121515998982,
+      121515973032
+    ],
+    "annotations_inspected": true,
+    "gitguardian": {
+      "id": 121515983864,
+      "conclusion": "neutral"
+    }
+  },
+  "actions": {
+    "production_model_calls": 0,
+    "forced_google_reads": 0,
+    "forced_workflows": 0,
+    "new_social_schedules": 0,
+    "new_sends": 0,
+    "real_applications": 0,
+    "new_leads": 0,
+    "production_restore": false,
+    "schema_change": false
+  }
+}

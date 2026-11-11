@@ -1,0 +1,74 @@
+{
+  "release": "2.34.0",
+  "worker": "6c610352-adac-4bed-bc16-8c4200c1af60",
+  "rollback_worker": "8347567d-57a8-4d61-a34e-70d22d4b0f7f",
+  "tests": {
+    "passed": 355,
+    "failed": 0,
+    "document_cases": 4
+  },
+  "build": {
+    "public_prerenders": 17,
+    "initial_javascript_bytes": 407751,
+    "initial_javascript_gzip_bytes": 124463,
+    "css_bytes": 103542,
+    "css_gzip_bytes": 21792,
+    "typecheck": true,
+    "worker_dry_run": true
+  },
+  "fixture": {
+    "path": "tests/fixtures/export-document.txt",
+    "sha256": "30e1ff30f6c256d06cd7959f015d11706d785b9184ba49653ca43fe0d68b2533",
+    "fictional": true
+  },
+  "files": [
+    {
+      "format": "pdf",
+      "bytes": 114455,
+      "sha256": "fb98896cd6ffac10c03057d1760da448ff608a431ed0b1b46fd4a5097104f1ee",
+      "generated_by": "actual application createDocument function",
+      "browser_download_receipt": false
+    },
+    {
+      "format": "docx",
+      "bytes": 10320,
+      "sha256": "090b4c3d8879064481f3646851fc7fdf568870621eabf7e5036743e6167ea992",
+      "generated_by": "actual application createDocument function",
+      "browser_download_receipt": false
+    }
+  ],
+  "local_browser": {
+    "word_ready": true,
+    "pdf_ready": true,
+    "edit_removed_previous_link": true,
+    "unsupported_pdf_characters_warned": true,
+    "plain_text_fallback_ready": true,
+    "phone_width": 390,
+    "phone_document_scroll_width": 390,
+    "viewport_reset": true
+  },
+  "production_browser": {
+    "existing_owner_draft_word_file_ready": true,
+    "draft_content_edited": false,
+    "ai_called": false,
+    "cv_content_copied_to_evidence": false
+  },
+  "download_observation": {
+    "old_word_button": "timeout_20000ms",
+    "new_explicit_word_link": "timeout_20000ms",
+    "saved_file_confirmed": false,
+    "interpretation": "Tool timeouts do not prove browser save failure. Actual browser-to-filesystem receipt remains unverified.",
+    "blocked_internal_downloads_inspection_retried": false
+  },
+  "rendering": {
+    "pdf_pages_inspected": 2,
+    "word_pages_inspected": 2,
+    "word_renderer": "bundled LibreOffice",
+    "clipping_or_missing_paragraphs_observed": false
+  },
+  "screenshots": [
+    "sponsorintel-download-mobile-234.png",
+    "sponsorintel-download-live-234.jpg"
+  ],
+  "production_data_fixtures_created": false
+}

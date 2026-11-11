@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-10-11T11:40:00Z",
+  "release": "2.53.0",
+  "deployment": "prepared_only",
+  "production_version": "2.52.0",
+  "baseline": {"completed_utc_days": 2, "page_events": 59, "successful_preparations": 0, "unique_people_or_causality_established": false},
+  "finding": "The initial evidence-check action was disabled for missing inputs without explaining the gap; the description editor was collapsed.",
+  "fixture": {"employer": "Fictional Practice Company", "role": "Fictional QA — Support Coordinator", "customer_data": false, "local_only": true},
+  "browser_checks": {
+    "missing_cv_has_profile_action": true,
+    "profile_returns_to_selected_application": true,
+    "short_advert_blocks_preparation": true,
+    "advert_action_opens_and_focuses_editor": true,
+    "browser_only_evidence_generated": true,
+    "evidence_to_tailored_cv_action": true,
+    "ai_action_requires_consent": true,
+    "document_change_resets_consent": true,
+    "company_brief_does_not_require_cv": true,
+    "simulated_failure_preserves_inputs_and_evidence": true,
+    "mobile_viewport_width": 390,
+    "mobile_document_width": 390,
+    "viewport_reset": true
+  },
+  "requests": {"local_stub_preparation_requests": 1, "external_calls": 0, "production_ai_calls": 0, "production_customer_events": 0},
+  "validation": {"node": "24.19.0", "full_tests_passed": 518, "full_tests_failed": 0, "duration_ms": 108579.230667, "focused_test_after_final_copy": "passed", "typescript": "passed", "build": "passed", "prerenders": 17, "browser_budget": "passed", "initial_javascript_bytes": 419996, "initial_javascript_gzip_bytes": 128998, "budget_increased": false, "deployment_dry_run": "passed", "first_build_failure": "Initial JavaScript exceeded the unchanged byte budget by 184 bytes; concise copy fixed this.", "disk_available_gib": 6.1},
+  "screenshots": ["outputs/sponsorintel-studio-readiness-2026-10-11.png", "outputs/sponsorintel-studio-readiness-mobile-2026-10-11.png"],
+  "limitations": ["No successful production AI generation or customer conversion result is established.", "Deployment awaits the existing Cloudflare sign-in agreement approval and fresh recovery check.", "Application evaluator, research, source and marketing holds remain unchanged.", "Hosted CI must be checked on the pushed head and is separate from local acceptance."]
+}

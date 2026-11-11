@@ -1,0 +1,519 @@
+{
+  "observed_at": "2026-10-17T23:57:46.632Z",
+  "runtime": {
+    "version": "2.78.0",
+    "worker": "6e78a4ae-f61a-4299-a86b-97fcefdb8ce9",
+    "new_runtime_deployment": false
+  },
+  "method": "Agent-assisted owner review of an existing automatically retained lead; browser originals, owner UI mutations and read-only D1/platform verification.",
+  "source": {
+    "id": "reviewed-teaching-vacancies-130418--new-city-college",
+    "company": "New City College",
+    "provider": "teaching-vacancies",
+    "board": "130418--new-city-college",
+    "sponsor_id": "a14b6db81975f5a3899b5751",
+    "state": "approved",
+    "created_at": "2026-10-17T23:53:04.534Z",
+    "reviewed_at": "2026-10-17T23:54:58.457Z",
+    "evidence_length": 1143
+  },
+  "rights": {
+    "url": "https://teaching-vacancies.service.gov.uk/pages/terms-and-conditions",
+    "version": "2026-07-09",
+    "reviewed_at": "2026-10-17",
+    "rules": [
+      "OGL listing data with attribution",
+      "Free links",
+      "No recruitment or hiring fees/commission",
+      "No applicant data or employer logo reuse"
+    ]
+  },
+  "governance_url": "https://www.ncclondon.ac.uk/governance/",
+  "careers_url": "https://www.ncclondon.ac.uk/working-for-us/",
+  "catalogue": {
+    "originals_reviewed": 13,
+    "application_destinations_reviewed": 13,
+    "positive": 1,
+    "unavailable": 12,
+    "plumbing_held_before_approval": true,
+    "group_campus_limitation": "Four employer entries are Group Role; DfE names an advertised campus base, not an exclusive worksite. CTEC package names Hackney and Rainham, HRBP all campuses."
+  },
+  "adverts": [
+    {
+      "title": "Project Manager - Higher Education Advisory Service 3 years Fixed Term",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/project-manager-higher-education-advisory-service-3-years-fixed-term",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=905007DzWK&WVID=6189473dpc&LANG=USA",
+      "employer_reference": "R003663",
+      "employer_posted_date_only": "21/09/2026",
+      "employer_closes_date_only": "18/10/2026",
+      "employer_location": "Hackney Campus",
+      "dfe_location": "New City College, New City College - Hackney Campus, Falkirk Street, London, N1 6HQ",
+      "dfe_closing_wording": "18 October 2026 at 11:59pm",
+      "dfe_posted_wording": "1 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:49:44.318Z",
+      "dfe_text_sha256": "556f96c5aa7ebeba79068fa9b14359c7eed17bff507272755e39952045a139d4",
+      "employer_text_sha256": "59356db7ac77c41c164b8d23b086a30ef2dd28a31fe5fa33cf250ab4b4fdf209"
+    },
+    {
+      "title": "Assistive Technology Coordinator 3 Year Fixed-Term",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/assistive-technology-coordinator-3-year-fixed-term",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=957709DzUP&WVID=6189473dpc&LANG=USA",
+      "employer_reference": "R003662",
+      "employer_posted_date_only": "21/09/2026",
+      "employer_closes_date_only": "18/10/2026",
+      "employer_location": "Group Role",
+      "dfe_location": "New City College, New City College - Hackney Campus, Falkirk Street, London, N1 6HQ",
+      "dfe_closing_wording": "18 October 2026 at 11:59pm",
+      "dfe_posted_wording": "1 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:49:45.820Z",
+      "dfe_text_sha256": "a1d281bfdcf3787ba1fdcb327daba91de188de44f3cee8cf52664c5e49c96aa2",
+      "employer_text_sha256": "2df9c53fba273e6b527cea29942da15009543277376b1be5c6d41e030340e6d1"
+    },
+    {
+      "title": "Project Manager - Inclusive Mainstream 3 Year Fixed-Term",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/project-manager-inclusive-mainstream-3-year-fixed-term",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=064164DQfh&WVID=6189473dpc&LANG=USA",
+      "employer_reference": "R003487",
+      "employer_posted_date_only": "19/08/2026",
+      "employer_closes_date_only": "18/10/2026",
+      "employer_location": "Hackney Campus",
+      "dfe_location": "New City College, New City College - Hackney Campus, Falkirk Street, Hackney, N1 6HQ",
+      "dfe_closing_wording": "18 October 2026 at 11:59pm",
+      "dfe_posted_wording": "30 September 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:49:47.300Z",
+      "dfe_text_sha256": "28aebc72622642a92b7d69f20fa900948aeb5bb90d8faf60815a74a41c7eb4b8",
+      "employer_text_sha256": "2914054c08b9f81e3686e3c6605f4f2e7b70de09a3bef576119739b88957815a"
+    },
+    {
+      "title": "Deputy Group Curriculum Director - Leadership & Management",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/deputy-group-curriculum-director-leadership-management",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=707914Dr8A&WVID=6189473dpc&LANG=USA",
+      "employer_reference": "R003622",
+      "employer_posted_date_only": "01/10/2026",
+      "employer_closes_date_only": "25/10/2026",
+      "employer_location": "Group Role",
+      "dfe_location": "New City College, New City College - Hackney Campus, Falkirk Street, London, N1 6HQ",
+      "dfe_closing_wording": "25 October 2026 at 11:59pm",
+      "dfe_posted_wording": "7 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:49:49.230Z",
+      "dfe_text_sha256": "8cd5844564f737405166eb977c34d03df1e2eea590923058f007a7cfde1e8ca6",
+      "employer_text_sha256": "13be5dbe405e1189c7772ba5b31ea3b3661577838dbc44e26c3ce5bfb000d002"
+    },
+    {
+      "title": "Lecturer Maths (0.8 FTE)",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-maths-0-8-fte",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=471364E2A4&WVID=6189473dpc&LANG=USA",
+      "employer_reference": "R003673",
+      "employer_posted_date_only": "05/10/2026",
+      "employer_closes_date_only": "25/10/2026",
+      "employer_location": "Ardleigh Green Campus",
+      "dfe_location": "New City College, New City College Ardleigh Campus, 42 Ardleigh Green Rd,, Hornchurch, Essex, RM11 2LL",
+      "dfe_closing_wording": "25 October 2026 at 11:59pm",
+      "dfe_posted_wording": "5 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:49:50.511Z",
+      "dfe_text_sha256": "e64f7d1122cd1d0989ed9aff483c856cd7db16f412e8dbffd66ef9343d44131f",
+      "employer_text_sha256": "fd26bdcb7cda838a0eae8e2c2b43464d659390f2ec809f248ebe283da6776706"
+    },
+    {
+      "title": "Pastoral Tutor (ESOL) 0.7 FTE",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/pastoral-tutor-esol-0-7-fte",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=757353E1eu&WVID=6189473dpc&LANG=USA",
+      "employer_reference": "R003670",
+      "employer_posted_date_only": "05/10/2026",
+      "employer_closes_date_only": "25/10/2026",
+      "employer_location": "Redbridge Campus",
+      "dfe_location": "New City College, Chadwell Heath Ln, Romford, London, RM6 4XT",
+      "dfe_closing_wording": "25 October 2026 at 11:59pm",
+      "dfe_posted_wording": "8 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:50:03.053Z",
+      "dfe_text_sha256": "1a8557b206af6a2688df0b5b3d6167e8a532ab5509c9dfce1de4139d61d3e6cf",
+      "employer_text_sha256": "3b97274c6fb0c80bf9cee25861bd0f3d3866df8406f9ffaf967ae75fe985b332"
+    },
+    {
+      "title": "Lecturer Plumbing",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-plumbing-new-city-college-london",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=346559DvrT&WVID=6189473dpc",
+      "employer_reference": "R003642",
+      "employer_posted_date_only": "14/09/2026",
+      "employer_closes_date_only": "04/10/2026",
+      "employer_location": "Rainham Construction & Engineering Campus",
+      "dfe_location": "New City College, 48 New Road, South Hornchurch, London, RM13 8GP",
+      "dfe_closing_wording": "1 November 2026 at 11:59pm",
+      "dfe_posted_wording": "12 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": "Unfortunately, this vacancy has now closed. Other suitable opportunities may be available, please use the 'Search for jobs' page to see a list of our current vacancies.",
+      "apply_online_visible": false,
+      "observed_at": "2026-10-17T23:50:25.121Z",
+      "dfe_text_sha256": "71b1754d8bd6925edc9397e092f29540af1704b87ebb51729ffbf13d9ca83664",
+      "employer_text_sha256": "71d6b6ee89806972d8275b5511d11b904d05738608a653b7ff44c8774367128b"
+    },
+    {
+      "title": "Lecturer Engineering",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-engineering-new-city-college-london",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=955308DF1A&WVID=6189473dpc",
+      "employer_reference": "R003373",
+      "employer_posted_date_only": "15/10/2026",
+      "employer_closes_date_only": "01/11/2026",
+      "employer_location": "Rainham Construction & Engineering Campus",
+      "dfe_location": "New City College, 48 New Road, South Hornchurch, London, RM13 8GP",
+      "dfe_closing_wording": "1 November 2026 at 11:59pm",
+      "dfe_posted_wording": "15 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:50:27.071Z",
+      "dfe_text_sha256": "e77bfc94850c613902d5737107c86b2a8f715b92a6d1fcc6d2f5b590650e3fff",
+      "employer_text_sha256": "7f97476452ce8cbbce29903e4b19593d98eca60c3600c49824153d653a4b541b"
+    },
+    {
+      "title": "Technician Construction 0.88 FTE",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/technician-construction-0-88-fte",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=456128DF1A&WVID=6189473dpc",
+      "employer_reference": "R003368",
+      "employer_posted_date_only": "27/05/2026",
+      "employer_closes_date_only": "01/11/2026",
+      "employer_location": "Rainham Construction & Engineering Campus",
+      "dfe_location": "New City College, New City College Rainham Campus, New Road, Rainham, Essex, RM13 8GP",
+      "dfe_closing_wording": "1 November 2026 at 11:59pm",
+      "dfe_posted_wording": "5 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:50:28.771Z",
+      "dfe_text_sha256": "92b4635bbad9a3e7a72eed346f3419bfc9f9943f5597eafd04b02c2ecefdc57a",
+      "employer_text_sha256": "716ba2addecfab8e61f3e24a2f189770bbb5b06fa2a943ea4a95f98b2b8e63da"
+    },
+    {
+      "title": "CTEC Administrator",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/ctec-administrator",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=701417E9V1&WVID=6189473dpc",
+      "employer_reference": "R003697",
+      "employer_posted_date_only": "02/10/2026",
+      "employer_closes_date_only": "01/11/2026",
+      "employer_location": "Group Role",
+      "dfe_location": "New City College, New City College Hackney Campus, Falkirk Street, London, N1 6HQ",
+      "dfe_closing_wording": "1 November 2026 at 11:59pm",
+      "dfe_posted_wording": "8 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:50:30.253Z",
+      "dfe_text_sha256": "96351cfc307e1ad08f53004dea31046e6af5a4649996003a0f9345a8628413d4",
+      "employer_text_sha256": "045e5b385efee6a474cc620e949600b194dd5e76f8782657bf5c998316bf7907"
+    },
+    {
+      "title": "Lecturer Carpentry",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/lecturer-carpentry",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=585142Bxvd&WVID=6189473dpc",
+      "employer_reference": "R002978",
+      "employer_posted_date_only": "03/10/2025",
+      "employer_closes_date_only": "01/11/2026",
+      "employer_location": "Rainham Construction & Engineering Campus",
+      "dfe_location": "New City College, New City College Rainham Campus, New Road, Rainham, Essex, RM13 8GP",
+      "dfe_closing_wording": "1 November 2026 at 11:59pm",
+      "dfe_posted_wording": "5 October 2026",
+      "dfe_visa_wording": "Skilled Worker visas can be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:50:42.365Z",
+      "dfe_text_sha256": "65cf13952c41b44fdb4c58a4fe2a0e1f0dd00dcf601746178efd1f7e12fdf948",
+      "employer_text_sha256": "a031b996dd90ccaf833daad9db230d507c9d28de37825ad6a8d312c9383454fa"
+    },
+    {
+      "title": "Human Resources Business Partner",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/human-resources-business-partner-new-city-college",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=190444EDk7&WVID=6189473dpc",
+      "employer_reference": "R003717",
+      "employer_posted_date_only": "13/10/2026",
+      "employer_closes_date_only": "01/11/2026",
+      "employer_location": "Group Role",
+      "dfe_location": "New City College, New City College Hackney Campus, Falkirk Street, London, N1 6HQ",
+      "dfe_closing_wording": "1 November 2026 at 11:59pm",
+      "dfe_posted_wording": "14 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:50:44.108Z",
+      "dfe_text_sha256": "53c48ffde9a2a72ac73f678f25fe4fc81535426405dfe862526141beb22823ca",
+      "employer_text_sha256": "20ca9e00ba6d2b8f368d3fd946378cc32d1c04ff3cdc69d3da3b8d090348d6e0"
+    },
+    {
+      "title": "Business Analyst",
+      "dfe_url": "https://teaching-vacancies.service.gov.uk/jobs/business-analyst-new-city-college",
+      "employer_url": "https://redcoli.webitrent.com/redcoli_webrecruitment/wrd/run/ETREC107GF.open?VACANCY_ID=685676E29l&WVID=6189473dpc",
+      "employer_reference": "R003672",
+      "employer_posted_date_only": "17/09/2026",
+      "employer_closes_date_only": "01/11/2026",
+      "employer_location": "Hackney Campus",
+      "dfe_location": "New City College, New City College Hackney Campus, Falkirk Street, London, N1 6HQ",
+      "dfe_closing_wording": "1 November 2026 at 11:59pm",
+      "dfe_posted_wording": "12 October 2026",
+      "dfe_visa_wording": "Visas cannot be sponsored",
+      "employer_closed_notice": null,
+      "apply_online_visible": true,
+      "observed_at": "2026-10-17T23:50:45.531Z",
+      "dfe_text_sha256": "88ff3d5882b4a17afd557b601f0bce7acb861a9fc75ac8c60f1ca9e7bcc078f3",
+      "employer_text_sha256": "71ee9f5461aff37b00c6fd63e37e819b7154c8e5c2e823a761ec0d2dd02fddc9"
+    }
+  ],
+  "probe": {
+    "result": "Approved after complete read-only probe",
+    "reserved_requests": 24,
+    "actual_request_count": "Not retained separately by approval endpoint; no invented count.",
+    "daily_before": 388,
+    "daily_after": 412,
+    "daily_limit": 500,
+    "public_college_jobs": 0
+  },
+  "lead_revisions": [
+    {
+      "revision": 1,
+      "recorded_at": "2026-10-14T00:46:41.467Z",
+      "state": "pending",
+      "follow_up_at": "2026-10-17T00:46:40.959Z"
+    },
+    {
+      "revision": 2,
+      "recorded_at": "2026-10-17T23:34:43.515Z",
+      "state": "held",
+      "follow_up_at": "2026-10-19T09:00:00.000Z"
+    },
+    {
+      "revision": 3,
+      "recorded_at": "2026-10-17T23:56:36.768Z",
+      "state": "held",
+      "follow_up_at": "2026-10-18T09:00:00.000Z"
+    }
+  ],
+  "hold": [
+    {
+      "id": "a633e5a7-df5a-4078-b71e-b460fbe4c665",
+      "source_id": "reviewed-teaching-vacancies-130418--new-city-college",
+      "revision": 1,
+      "state": "held",
+      "observed_at": "2026-10-17T23:50:00.000Z",
+      "follow_up_at": "2026-10-20T09:00:00.000Z",
+      "recorded_at": "2026-10-17T23:54:27.654Z"
+    }
+  ],
+  "audit": [
+    {
+      "action": "source_added",
+      "target": "reviewed-teaching-vacancies-130418--new-city-college",
+      "created_at": "2026-10-17T23:53:04.556Z"
+    },
+    {
+      "action": "job-evidence-review",
+      "target": "a633e5a7-df5a-4078-b71e-b460fbe4c665",
+      "created_at": "2026-10-17T23:54:27.654Z"
+    },
+    {
+      "action": "source_approve",
+      "target": "reviewed-teaching-vacancies-130418--new-city-college",
+      "created_at": "2026-10-17T23:54:58.481Z"
+    },
+    {
+      "action": "discovery-review",
+      "target": "b33c7472-8dc8-490e-a8ca-300cdf67f11d",
+      "created_at": "2026-10-17T23:56:36.768Z"
+    }
+  ],
+  "business": {
+    "id": "business-497855",
+    "trigger": "scheduled D1 receipt; binding platform trigger",
+    "d1_finished_at": "2026-10-17T23:46:20.342Z",
+    "platform_finished_at": "2026-10-17T23:46:20.598Z",
+    "platform_status": "complete",
+    "platform_success": true,
+    "application_state": "attention",
+    "health": {
+      "findings": 9,
+      "high": 2
+    },
+    "resolved_issues": [
+      {
+        "id": "social-delivery-overdue",
+        "category": "distribution",
+        "severity": "high",
+        "state": "resolved",
+        "resolved_at": "2026-10-17T23:46:15.150Z"
+      },
+      {
+        "id": "discovery-changed-links",
+        "category": "quality",
+        "severity": "normal",
+        "state": "resolved",
+        "resolved_at": "2026-10-17T23:46:15.150Z"
+      },
+      {
+        "id": "job-review-overdue",
+        "category": "quality",
+        "severity": "normal",
+        "state": "resolved",
+        "resolved_at": "2026-10-17T23:46:15.150Z"
+      }
+    ],
+    "social_delivery": {
+      "available": true,
+      "checked_at": "2026-10-17T23:46:05.000Z",
+      "records_checked": 5,
+      "limited": false,
+      "scheduled": 0,
+      "awaiting_check": 0,
+      "overdue": 0,
+      "uncertain": 0,
+      "failed_30d": 0,
+      "published_30d": 5,
+      "invalid_records": 0,
+      "last_published_observation": "2026-10-17T22:53:26.902Z",
+      "next_scheduled_at": null
+    },
+    "discovery": {
+      "checked_at": "2026-10-17T23:46:05.000Z",
+      "total": 21,
+      "unresolved": 7,
+      "overdue": 6,
+      "changed_links": 0,
+      "current_linked_jobs": 2,
+      "last_recorded_at": "2026-10-17T23:34:43.515Z",
+      "counts": [
+        {
+          "source_kind": "employer",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "employer",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "held",
+          "total": 2
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "rejected",
+          "total": 2
+        },
+        {
+          "source_kind": "linkedin_post",
+          "state": "rejected",
+          "total": 3
+        },
+        {
+          "source_kind": "recruiter",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "held",
+          "total": 5
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "rejected",
+          "total": 5
+        }
+      ],
+      "allowance": {
+        "day": "2026-10-17",
+        "limit": 5,
+        "used": 0,
+        "remaining": 5,
+        "next_day": "2026-10-18T00:00:00.000Z"
+      },
+      "limitation": "Private sourcing records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Automated source candidates are identified separately from agent-assisted and owner reviews."
+    },
+    "job_reviews": {
+      "total": 3,
+      "held": 3,
+      "overdue": 0
+    }
+  },
+  "unchanged_groups": [
+    {
+      "group": "business_controls",
+      "unchanged": true
+    },
+    {
+      "group": "marketing_controls",
+      "unchanged": true
+    },
+    {
+      "group": "research_control",
+      "unchanged": true
+    },
+    {
+      "group": "application_controls",
+      "unchanged": true
+    },
+    {
+      "group": "source_controls",
+      "unchanged": true
+    },
+    {
+      "group": "marketing_briefs",
+      "unchanged": true
+    },
+    {
+      "group": "marketing_receipts",
+      "unchanged": true
+    },
+    {
+      "group": "ai_budget",
+      "unchanged": true
+    },
+    {
+      "group": "source_runs",
+      "unchanged": true
+    },
+    {
+      "group": "marketing_runs",
+      "unchanged": true
+    }
+  ],
+  "foreign_key_errors": [],
+  "limits": {
+    "new_leads": 0,
+    "new_model_calls": 0,
+    "new_google_calls": 0,
+    "new_external_sends": 0,
+    "forced_source_runs": 0
+  },
+  "observed_limitations": [
+    "Pending source required full dashboard reload to appear in advert source selector; ordinary Refresh did not refresh that child list.",
+    "Evidence-link validator rejected the clean iTrent query URL; saved the exact DfE application route, which was followed to the original, instead. No query allowlist was weakened.",
+    "An initial read-only SQL inspection used an invalid JSON path and failed; corrected inspection succeeded. No write was issued by that diagnostic."
+  ],
+  "next": [
+    "Verify first genuine 18 October 00:30 UTC source receipt, public roles and Plumbing inactive hold.",
+    "Link retained Carpentry lead only after exact published evidence exists; follow-up 18 October 10:00 BST.",
+    "Observe later unattended refresh and marketing-context uptake separately."
+  ]
+}

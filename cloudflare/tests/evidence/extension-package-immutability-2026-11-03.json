@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-11-03T15:52:19Z",
+  "scope": "Local build-tool repair; no extension/website runtime change or deployment",
+  "original_reproduction": {
+    "observed_at": "2026-11-03T15:49:00.256Z",
+    "temporary_copy_only": true,
+    "version": "0.1.1",
+    "same_filename": true,
+    "before_sha256": "42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7",
+    "after_sha256": "afee96fd8d8484dc80b4e2302f195f494a2e1092284ce3e5e82d28beaad393d1",
+    "overwrote_existing_version": true,
+    "prior_failed_fixture": "Copied module CLI path alias did not enter its main guard, so output parsing failed. Fixture removed; exported function then reproduced overwrite. No repository archive was altered."
+  },
+  "repair": {
+    "entry_point": "cloudflare/scripts/package-extension.mjs",
+    "existing_identical_archive": "Reused without replacing its inode/bytes",
+    "existing_different_archive": "Rejected with version-bump instruction; metadata untouched",
+    "new_archive": "Complete staged bytes linked into the version path without replacement",
+    "metadata": "Renamed from a complete staged file after archive success",
+    "cleanup": "Only the invocation-created temporary directory removed",
+    "concurrency_scope": "Two different contents competing for the same version: exactly one winner and matching receipt. No claim about ordering different version builds or power-loss recovery."
+  },
+  "validation": {
+    "node": "24.19.0",
+    "platform": "macOS arm64",
+    "targeted_tests_passed": 13,
+    "targeted_tests_failed": 0,
+    "command": "node --test tests/package-extension.test.mjs tests/browser-extension.test.mjs",
+    "cases": [
+      "Identical rebuild preserves archive identity and all output bytes",
+      "Same-version changed content cannot alter archive or metadata",
+      "New version retains old archive and updates current metadata",
+      "Concurrent different same-version builds retain one complete archive and matching metadata",
+      "Existing nine wording/archive/source-permission/download-route checks"
+    ],
+    "normal_packaging_command": "node scripts/package-extension.mjs",
+    "normal_packaging_exit_code": 0,
+    "normal_packaging_bytes": 25407,
+    "published_artifact_hashes_unchanged": true,
+    "full_runtime_suite_rerun": false,
+    "website_build_or_deploy": false
+  },
+  "unchanged": {
+    "archive_010": "db6c36d9612fe14fab7eef0b8d9d2487e11e78977bbccad0f977e4542e0acacb",
+    "archive_011": "42fec9e8d1b3cc0935dd14f1954cc0a1bbde84cd6e38b3b30ce3473d66cd44b7",
+    "metadata": "add0ecf63e7be1be8c4262f786935c142633dc5a67e6b502ff2c491cf4120f11",
+    "dependency_lock": "a0064013264829d450682960462ebf1f20fb1f06fb715b9df2b13956081e3842",
+    "permissions": [
+      "activeTab",
+      "scripting"
+    ],
+    "live_site": "2.98.9",
+    "live_extension": "0.1.1"
+  },
+  "controls": {
+    "disk_preflight_gib": 8.5,
+    "new_dependencies": false,
+    "production_reads_or_writes": false,
+    "new_model_or_google_calls": false,
+    "store_action_or_payment": false,
+    "owner_holds_changed": false,
+    "daily_recovery_business_security_receipts": "Reused same-day evidence; no repeated inspection or new security claim"
+  },
+  "remaining": "Store images/privacy/account fields, manual draft upload and review, installed 0.1.1 and independent semantic/site acceptance remain open. Capacity/supervisor/private-saving holds unchanged."
+}

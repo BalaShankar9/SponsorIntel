@@ -1,0 +1,15 @@
+# Release 2.52.1 — source reservation admission
+
+Prepared and locally verified on 9–11 October 2026; **not deployed**. Production still reports 2.52.0. Cloudflare CLI access expired, automatic renewal failed, and the browser sign-in explicitly requires accepting terms. Owner confirmation is pending. No migration is required.
+
+Source collections previously updated the daily and per-run request counters independently. If one ceiling rejected a collection, the other counter could still increase even though no provider request started. The regression reproduces this with a two-request feed and only one remaining slot. Admission now checks both ceilings in one D1 transaction, and the second update depends on the first update succeeding. Rejected work spends neither counter. Already admitted, failed and uncertain attempts retain their full reservations. Existing historical budgets are not recalculated or refunded.
+
+The owner collection label also stops promising that the next scheduled pass will continue a paused or budget-blocked collection. Source identity, complete-catalogue checks, retry/cooldown policy, 150/run and 500/day ceilings, source approval and publication rules are unchanged.
+
+All 509 tests pass on Node 24.19.0. The actual isolated Worker/D1 regression verifies each ceiling, replay, and an ordinary one-request feed using the remaining slot after a costly collection is rejected. A simulated database failure rolls back both reservations before any fetch. Existing failed-fetch tests retain consumed allowance. TypeScript, production build, 17 prerenders, browser asset budgets and the final deployment dry-run pass. A full test run preceded only the final owner-label copy change; the final build/typecheck/dry-run include that copy. No customer records or live provider calls were used by these tests.
+
+This fixes a demonstrated admission defect; it does not explain or resolve PortmanDentex's separate catalogue/detail mismatch. That source was paused through the existing owner control on 9 October after repeated failures on advert `744000145730189`, with zero public jobs. On 11 October the genuine `scheduled-1791700211000` run published all 35 enabled sources and skipped PortmanDentex. Its platform status was independently read as complete through the authenticated owner control. Previous failures, cache and reservations remain retained. See [the dated operating receipt](../docs/OPERATIONS-2026-10-11.md).
+
+Before deployment, restore authorized Cloudflare access and obtain a fresh read-only recovery receipt. The code rollback reference remains 2.52.0 Worker `3a133af1-df7d-443c-8ea9-e15e77f2ba5f`, commit `d8861939886a71b693920bc09150396bf4d4aed5`. No database restore is required or authorized. Verify the first eligible genuine source run after deployment without forcing a refresh or resetting allowance.
+
+Implementation follows Cloudflare's [transactional D1 batch semantics](https://developers.cloudflare.com/d1/worker-api/d1-database/#batch). The isolated runtime test additionally verifies the `changes()` dependency on the real local D1 binding.

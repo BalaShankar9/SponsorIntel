@@ -1,0 +1,40 @@
+{
+  "observedAt": "2026-11-03T23:55:18.074Z",
+  "scope": "Fictional local QA, no model or application submission",
+  "desktop": {
+    "background": "rgb(248, 246, 237)",
+    "bodyColor": "rgb(79, 95, 85)",
+    "consentChecked": false,
+    "document": 1384,
+    "draft": "FICTIONAL EXISTING LETTER — keep this exact text.",
+    "focusRole": "tab",
+    "headingColor": "rgb(32, 61, 49)",
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "oldBrandVisible": false,
+    "signature": "Sponsor Intel Application Studio",
+    "viewport": 1384
+  },
+  "mobile": {
+    "document": 390,
+    "heading": "Make this application yours.",
+    "headingWidth": 312,
+    "viewport": 390
+  },
+  "keyboard": {
+    "documentTabEnter": true,
+    "consentSpace": true,
+    "prepareDisabledBeforeConsent": true,
+    "prepareEnabledAfterConsent": true,
+    "consentResetOnOtherDocument": true,
+    "prepareDisabledAfterSwitch": true
+  },
+  "isolatedRelease": {
+    "headingFont": "Georgia, \"Times New Roman\", serif",
+    "mobileWidth": 390,
+    "documentWidth": 390,
+    "priorDraftPreserved": true,
+    "consentInitiallyUnchecked": true
+  },
+  "initialFixtureCorrection": "First reused import fixture omitted the actual career wrapper; final fixture uses CareerWorkspace.",
+  "interactions": "Delayed first mouse navigation was reconciled before proceeding; unsupported focus on heading/body was not retried. Keyboard control focus captured final screens."
+}

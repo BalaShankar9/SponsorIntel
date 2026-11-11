@@ -1,0 +1,86 @@
+{
+  "observed_on": "2026-10-28",
+  "release": "2.98.3",
+  "scope": "Public loading states and optional request reduction; not quota recovery",
+  "node": "24.19.0",
+  "validation": {
+    "tests": 780,
+    "passed": 780,
+    "failed": 0,
+    "typecheck": "passed",
+    "production_build": "passed",
+    "prerendered_pages": 20,
+    "browser_budgets": "passed",
+    "version_upload_dry_run": "passed",
+    "source_manifests": "unchanged and verified"
+  },
+  "browser_fixture": "tests/fixtures/public-loading-preview.mjs",
+  "browser_cases": [
+    "partial failure preserves successful register metadata",
+    "suggestions load only on input focus",
+    "featured and suggestions retry independently",
+    "total failure stops loading and can recover",
+    "15-second stalled read times out while other records remain",
+    "failed employer search is unavailable rather than zero results",
+    "search retry restores one fictional employer"
+  ],
+  "local_request_counts": {
+    "initial_discover": {
+      "meta": 1,
+      "featured": 1,
+      "cities": 0
+    },
+    "guide_page": {
+      "meta": 1,
+      "featured": 0,
+      "cities": 0
+    }
+  },
+  "live_incident": {
+    "checked_approximately_utc": "2026-10-28T19:16:00Z",
+    "carpool_database_actual_row_read": "D1 free daily row read limit exceeded, code 7500",
+    "sponsor_metadata_one_row_read": "succeeded",
+    "constant_query_with_zero_rows_read": "succeeded on both databases; not service health evidence",
+    "sponsor_job_search": "500 during this review",
+    "full_service_recovery": "unverified",
+    "production_read_savings": "unmeasured"
+  },
+  "deployment": {
+    "runtime_commit": "33f23ee49f0dd4c1b8ab75cdd80a068577cc4612",
+    "worker_version": "c32a41a1-f0dd-4925-8d5d-cd459934cce1",
+    "deployment_id": "c63a593d-e5b1-43b0-87b2-0767acaf696d",
+    "created_on": "2026-10-28T19:24:29.946389Z",
+    "traffic_percent": 100,
+    "upload_exit": 0,
+    "deploy_exit": 0,
+    "triggers_resubmitted": false
+  },
+  "rollback_worker_version": "c9d2f6b2-353f-408d-a828-7376bd24e878",
+  "boundaries": [
+    "No schema or data changes",
+    "No spending or quota increase",
+    "No schedule or owner-hold changes",
+    "No model, source collection, application or marketing action"
+  ],
+  "live_verification": {
+    "health_version": "2.98.3",
+    "jobs_http_status": 500,
+    "browser_entry_asset": "/assets/index-CBbN8ajF.js",
+    "browser_entry_matches_local_build": true,
+    "browser_entry_sha256": "c1f0c1522cd81e8fce0d93a40bed1a17783215190fa186edf0853a2f585efda1",
+    "carpool_signed_in_cardiff_feed_after_retry": "Rides could not be loaded",
+    "production_browser_qa": "not performed: owner session endpoint failed; connector cannot apply QA headers",
+    "browser_acceptance": "local built app with fictional responses"
+  },
+  "hosted_checks": {
+    "head": "33f23ee49f0dd4c1b8ab75cdd80a068577cc4612",
+    "success": [
+      123047898408,
+      123047843723
+    ],
+    "gitguardian": {
+      "id": 123048221357,
+      "status": "neutral: PR too large to scan"
+    }
+  }
+}

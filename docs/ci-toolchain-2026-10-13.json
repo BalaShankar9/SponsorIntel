@@ -1,0 +1,60 @@
+{
+  "head": "a5e6a8caca6b2d6875281a04770ded738674c6bc",
+  "node": "24.19.0",
+  "npm": "11.8.0",
+  "checks": [
+    {
+      "id": 115353799583,
+      "name": "GitGuardian Security Checks",
+      "head_sha": "a5e6a8caca6b2d6875281a04770ded738674c6bc",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-13T14:31:33Z",
+      "completed_at": "2026-10-13T14:32:22Z",
+      "details_url": "https://dashboard.gitguardian.com"
+    },
+    {
+      "id": 115353798089,
+      "name": "check",
+      "head_sha": "a5e6a8caca6b2d6875281a04770ded738674c6bc",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-13T14:31:36Z",
+      "completed_at": "2026-10-13T14:33:35Z",
+      "details_url": "https://github.com/BalaShankar9/SponsorIntel/actions/runs/38414104489/job/115353798089"
+    },
+    {
+      "id": 115353765345,
+      "name": "check",
+      "head_sha": "a5e6a8caca6b2d6875281a04770ded738674c6bc",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-13T14:31:31Z",
+      "completed_at": "2026-10-13T14:33:13Z",
+      "details_url": "https://github.com/BalaShankar9/SponsorIntel/actions/runs/38414094684/job/115353765345"
+    }
+  ],
+  "inspected_push_log": {
+    "run_id": 38414094684,
+    "tests": 627,
+    "pass": 627,
+    "fail": 0,
+    "skipped": 0,
+    "duration_ms": 63723.223278,
+    "build": "passed",
+    "typescript": "passed as part of build",
+    "prerendered_public_pages": 17,
+    "browser_budgets": "passed",
+    "worker_deployment_dry_run": "passed"
+  },
+  "previous_failure": {
+    "head": "e6f34665b5526c00e7f3506ff660c06fac140d4b",
+    "jobs": [
+      115351700595,
+      115351730909
+    ],
+    "stage": "npm ci",
+    "finding": "Old Node-22 CI resolver rejected the sharp override lockfile. Not a billing-blocked job."
+  },
+  "scope": "Hosted Linux validation of existing tests/build/dry-run. No Worker deployment, production request, model call or owner control change. Independent quality/security/business outcomes remain separate."
+}

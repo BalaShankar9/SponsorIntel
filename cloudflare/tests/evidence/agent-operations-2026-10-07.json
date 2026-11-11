@@ -1,0 +1,606 @@
+{
+  "checked_at": "2026-10-07T12:20:25.422Z",
+  "app_version": "2.10.0",
+  "worker_version": "d49f5f7d-787f-4d5a-8f15-facaf3e25d01",
+  "workflow": "sponsorintel-sources",
+  "run": {
+    "id": "owner-ccabcd17-8ce6-4860-be67-ed487f5b0aea",
+    "state": "completed",
+    "requests": 30,
+    "summary": {
+      "published": 30
+    },
+    "created_at": "2026-10-07T12:15:53.210Z",
+    "finished_at": "2026-10-07T12:16:24.032Z",
+    "policy_version": "sources-v1"
+  },
+  "tasks": [
+    {
+      "source_id": "allica-bank",
+      "company": "Allica Bank",
+      "state": "published",
+      "attempts": 1,
+      "count": 31,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:17.932Z",
+        "received": 31,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "c35e7085232c95e3d50e2d99",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "apothecom",
+      "company": "ApotheCom",
+      "state": "published",
+      "attempts": 1,
+      "count": 2,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:14.750Z",
+        "received": 2,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "axon",
+      "company": "AXON",
+      "state": "published",
+      "attempts": 1,
+      "count": 4,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:15.693Z",
+        "received": 4,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "9df83e5777ab2d551ba89677",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "bakerhicks",
+      "company": "BakerHicks",
+      "state": "published",
+      "attempts": 1,
+      "count": 97,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:16.797Z",
+        "received": 97,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "15f4e702e4bf277db585f025",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "callosum",
+      "company": "Callosum",
+      "state": "published",
+      "attempts": 1,
+      "count": 10,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:19.369Z",
+        "received": 10,
+        "sponsorship_worded": 10,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "cloudflare",
+      "company": "Cloudflare",
+      "state": "published",
+      "attempts": 1,
+      "count": 58,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:15:57.363Z",
+        "received": 58,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "f836d0c9dd3bae29019003a4",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "deliveroo",
+      "company": "Deliveroo",
+      "state": "published",
+      "attempts": 1,
+      "count": 134,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:15:58.710Z",
+        "received": 134,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "ef82b77104d718b9c266786a",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "eucalyptus",
+      "company": "Eucalyptus",
+      "state": "published",
+      "attempts": 1,
+      "count": 34,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:22.099Z",
+        "received": 34,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "figma",
+      "company": "Figma",
+      "state": "published",
+      "attempts": 1,
+      "count": 19,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:00.398Z",
+        "received": 19,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "dc5e5b0f2185b97f8f8e48c6",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "funding-circle",
+      "company": "Funding Circle",
+      "state": "published",
+      "attempts": 1,
+      "count": 19,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:04.634Z",
+        "received": 19,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "4ac667c52c9a0a4dbc3c6604",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "gocardless",
+      "company": "GoCardless",
+      "state": "published",
+      "attempts": 1,
+      "count": 8,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:15:58.151Z",
+        "received": 8,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "bd18e6ef03cf6d98416ecb59",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "graphcore",
+      "company": "Graphcore",
+      "state": "published",
+      "attempts": 1,
+      "count": 85,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:16.198Z",
+        "received": 85,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "f2ff8516c38862d935974912",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "hr-wallingford",
+      "company": "HR Wallingford",
+      "state": "published",
+      "attempts": 1,
+      "count": 4,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:17.390Z",
+        "received": 4,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "2b50a3b31eb0a6cb8348780d",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "invinity",
+      "company": "Invinity Energy Systems",
+      "state": "published",
+      "attempts": 1,
+      "count": 1,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:13.056Z",
+        "received": 1,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "89325f0cfb4d4758510a45aa",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "maven",
+      "company": "Maven Securities",
+      "state": "published",
+      "attempts": 1,
+      "count": 16,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:21.028Z",
+        "received": 16,
+        "sponsorship_worded": 2,
+        "register_available": true,
+        "licence_id": "17b565a57b9527eeb262e8cb",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "monzo",
+      "company": "Monzo",
+      "state": "published",
+      "attempts": 1,
+      "count": 55,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:15:56.743Z",
+        "received": 55,
+        "sponsorship_worded": 32,
+        "register_available": true,
+        "licence_id": "fffc1b73b4b4d6d0acebbab8",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "multiverse",
+      "company": "Multiverse",
+      "state": "published",
+      "attempts": 1,
+      "count": 22,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:18.929Z",
+        "received": 22,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "a59d4845eaf070b6d5b23bf1",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "nucleus",
+      "company": "Nucleus Global",
+      "state": "published",
+      "attempts": 1,
+      "count": 16,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:14.331Z",
+        "received": 16,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "numan",
+      "company": "Numan",
+      "state": "published",
+      "attempts": 1,
+      "count": 8,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:21.496Z",
+        "received": 8,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "251f88c057cdf37907a9c838",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "octopus-energy",
+      "company": "Octopus Energy",
+      "state": "published",
+      "attempts": 1,
+      "count": 75,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:01.129Z",
+        "received": 75,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "1b963b6bb4838b96938a96f4",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "precision-aq",
+      "company": "Precision AQ",
+      "state": "published",
+      "attempts": 1,
+      "count": 2,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:15.236Z",
+        "received": 2,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "sampura",
+      "company": "Sampura Research",
+      "state": "published",
+      "attempts": 1,
+      "count": 1,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:19.905Z",
+        "received": 1,
+        "sponsorship_worded": 1,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "seamflow",
+      "company": "Seamflow",
+      "state": "published",
+      "attempts": 1,
+      "count": 7,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:20.552Z",
+        "received": 7,
+        "sponsorship_worded": 5,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "stripe",
+      "company": "Stripe",
+      "state": "published",
+      "attempts": 1,
+      "count": 53,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:15:59.486Z",
+        "received": 53,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "a4c1ffd864c2e3e38a892774",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "university-bath",
+      "company": "University of Bath",
+      "state": "published",
+      "attempts": 1,
+      "count": 28,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:22.657Z",
+        "received": 28,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "172ea1ba3df39d083228ae40",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "university-greater-manchester",
+      "company": "University of Greater Manchester",
+      "state": "published",
+      "attempts": 1,
+      "count": 6,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:23.424Z",
+        "received": 6,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "f30b3f2408fe12130a3c4b24",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "voleon",
+      "company": "The Voleon Group",
+      "state": "published",
+      "attempts": 1,
+      "count": 10,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:18.444Z",
+        "received": 10,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "wep-clinical",
+      "company": "WEP Clinical",
+      "state": "published",
+      "attempts": 1,
+      "count": 4,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:13.771Z",
+        "received": 4,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": null,
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "zeeco",
+      "company": "Zeeco",
+      "state": "published",
+      "attempts": 1,
+      "count": 4,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:10.366Z",
+        "received": 4,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "d4272f5f1029b6c7acec8818",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    },
+    {
+      "source_id": "zopa",
+      "company": "Zopa",
+      "state": "published",
+      "attempts": 1,
+      "count": 32,
+      "evidence": {
+        "policy": "sources-v1",
+        "checked_at": "2026-10-07T12:16:05.099Z",
+        "received": 32,
+        "sponsorship_worded": 0,
+        "register_available": true,
+        "licence_id": "8032bd0aad08e26ea0b49eaf",
+        "licence_is_not_vacancy_sponsorship": true,
+        "duplicate_ids": 0,
+        "duplicate_links": 0
+      },
+      "error_code": null
+    }
+  ],
+  "catalogue": {
+    "total": 845,
+    "employers": 30,
+    "early_career": 49,
+    "sponsorship": 50,
+    "licensed": 759,
+    "salary": 102
+  },
+  "open_reviews": 0,
+  "automated_tests": 99,
+  "anonymous_admin_endpoints": "403",
+  "mobile": {
+    "viewport": 390,
+    "document_width": 390
+  },
+  "scheduled_run_observed": false,
+  "linkedin_connected": false
+}

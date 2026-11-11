@@ -1,0 +1,349 @@
+{
+  "observed_at": "2026-11-04T04:38:38.835112+00:00",
+  "scope": "Metrics-excluded public HTTP and exact assets; no forced source or private write",
+  "checks": [
+    {
+      "path": "/api/health",
+      "status": 200,
+      "bytes": 119,
+      "sha256": "e32dcfc73d6625365c4720a2812d9f9553d8025b2db772552dc35042dd315532",
+      "version": "2.98.15",
+      "register": {
+        "date": "2026-10-27",
+        "count": 128008,
+        "checked_at": "2026-10-28T07:15:32.207Z"
+      }
+    },
+    {
+      "path": "/api/jobs?limit=1",
+      "status": 200,
+      "bytes": 16437,
+      "sha256": "cf5232c04b1d90d6547300691dcf4b5cfcb74a9955ddd6ecf4b5b41bff01d965",
+      "collections": {
+        "total": 975,
+        "employers": 37,
+        "early_career": 64,
+        "sponsorship": 50,
+        "licensed": 0,
+        "salary": 189
+      },
+      "licence_register": {
+        "available": false,
+        "source_date": "2026-10-27",
+        "checked_at": "2026-10-28T07:15:32.207Z"
+      },
+      "generated_at": "2026-11-04T04:38:37.060Z"
+    },
+    {
+      "path": "/api/jobs/sources",
+      "status": 200,
+      "bytes": 7945,
+      "sha256": "23c4114746745935a10f7b5815f979096081725c10b96c2f478f90e72ca9b5ee",
+      "sources": [
+        {
+          "id": "axon",
+          "last_success": "2026-11-04T00:31:15.176Z",
+          "count": 4,
+          "error": null
+        },
+        {
+          "id": "allica-bank",
+          "last_success": "2026-11-04T00:31:16.935Z",
+          "count": 25,
+          "error": null
+        },
+        {
+          "id": "apothecom",
+          "last_success": "2026-11-04T00:31:14.502Z",
+          "count": 2,
+          "error": null
+        },
+        {
+          "id": "bakerhicks",
+          "last_success": "2026-11-04T00:31:15.999Z",
+          "count": 96,
+          "error": null
+        },
+        {
+          "id": "callosum",
+          "last_success": "2026-11-04T00:31:18.007Z",
+          "count": 10,
+          "error": null
+        },
+        {
+          "id": "university-cardiff-met",
+          "last_success": "2026-11-04T00:39:26.217Z",
+          "count": 10,
+          "error": null
+        },
+        {
+          "id": "cloudflare",
+          "last_success": "2026-11-04T00:30:59.436Z",
+          "count": 66,
+          "error": null
+        },
+        {
+          "id": "deliveroo",
+          "last_success": "2026-11-04T00:31:00.632Z",
+          "count": 124,
+          "error": null
+        },
+        {
+          "id": "eucalyptus",
+          "last_success": "2026-11-04T00:31:19.799Z",
+          "count": 30,
+          "error": null
+        },
+        {
+          "id": "figma",
+          "last_success": "2026-11-04T00:31:01.994Z",
+          "count": 20,
+          "error": null
+        },
+        {
+          "id": "funding-circle",
+          "last_success": "2026-11-04T00:31:04.764Z",
+          "count": 29,
+          "error": null
+        },
+        {
+          "id": "gocardless",
+          "last_success": "2026-11-04T00:31:00.178Z",
+          "count": 7,
+          "error": null
+        },
+        {
+          "id": "graphcore",
+          "last_success": "2026-11-04T00:31:15.509Z",
+          "count": 115,
+          "error": null
+        },
+        {
+          "id": "hr-wallingford",
+          "last_success": "2026-11-04T00:31:16.497Z",
+          "count": 6,
+          "error": null
+        },
+        {
+          "id": "invinity",
+          "last_success": "2026-11-04T00:31:11.992Z",
+          "count": 1,
+          "error": null
+        },
+        {
+          "id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+          "last_success": "2026-11-03T12:34:27.861Z",
+          "count": 8,
+          "error": null
+        },
+        {
+          "id": "maven",
+          "last_success": "2026-11-04T00:31:18.963Z",
+          "count": 13,
+          "error": null
+        },
+        {
+          "id": "monzo",
+          "last_success": "2026-11-04T00:30:58.953Z",
+          "count": 46,
+          "error": null
+        },
+        {
+          "id": "multiverse",
+          "last_success": "2026-11-04T00:31:17.629Z",
+          "count": 28,
+          "error": null
+        },
+        {
+          "id": "reviewed-teaching-vacancies-130418--new-city-college",
+          "last_success": "2026-11-03T12:34:23.329Z",
+          "count": 5,
+          "error": null
+        },
+        {
+          "id": "nucleus",
+          "last_success": "2026-11-04T00:31:14.179Z",
+          "count": 14,
+          "error": null
+        },
+        {
+          "id": "numan",
+          "last_success": "2026-11-04T00:31:19.387Z",
+          "count": 13,
+          "error": null
+        },
+        {
+          "id": "octopus-energy",
+          "last_success": "2026-11-04T00:31:02.511Z",
+          "count": 82,
+          "error": null
+        },
+        {
+          "id": "portmandentex",
+          "last_success": null,
+          "count": 0,
+          "error": "Paused by owner. Vacancies hidden."
+        },
+        {
+          "id": "precision-aq",
+          "last_success": "2026-11-04T00:31:14.822Z",
+          "count": 2,
+          "error": null
+        },
+        {
+          "id": "sampura",
+          "last_success": "2026-11-04T00:31:18.260Z",
+          "count": 1,
+          "error": null
+        },
+        {
+          "id": "seamflow",
+          "last_success": "2026-11-04T00:31:18.619Z",
+          "count": 8,
+          "error": null
+        },
+        {
+          "id": "reviewed-ashby-sequence",
+          "last_success": "2026-11-04T00:39:26.678Z",
+          "count": 4,
+          "error": null
+        },
+        {
+          "id": "stripe",
+          "last_success": "2026-11-04T00:31:01.247Z",
+          "count": 55,
+          "error": null
+        },
+        {
+          "id": "voleon",
+          "last_success": "2026-11-04T00:31:17.242Z",
+          "count": 11,
+          "error": null
+        },
+        {
+          "id": "university-bath",
+          "last_success": "2026-11-04T00:31:20.214Z",
+          "count": 34,
+          "error": null
+        },
+        {
+          "id": "university-greater-manchester",
+          "last_success": "2026-11-04T00:31:21.008Z",
+          "count": 6,
+          "error": null
+        },
+        {
+          "id": "university-nottingham",
+          "last_success": "2026-11-04T00:37:24.796Z",
+          "count": 22,
+          "error": null
+        },
+        {
+          "id": "university-southampton",
+          "last_success": "2026-11-04T00:31:21.551Z",
+          "count": 23,
+          "error": null
+        },
+        {
+          "id": "wep-clinical",
+          "last_success": "2026-11-04T00:31:12.450Z",
+          "count": 3,
+          "error": null
+        },
+        {
+          "id": "reviewed-lever-wintermute-trading",
+          "last_success": "2026-11-04T00:41:27.781Z",
+          "count": 15,
+          "error": null
+        },
+        {
+          "id": "zeeco",
+          "last_success": "2026-11-04T00:31:06.764Z",
+          "count": 4,
+          "error": null
+        },
+        {
+          "id": "zopa",
+          "last_success": "2026-11-04T00:31:05.021Z",
+          "count": 33,
+          "error": null
+        }
+      ]
+    },
+    {
+      "path": "/api/admin/agents",
+      "status": 403,
+      "bytes": 42,
+      "sha256": "df49dca94ad131c85924a3869e55275ee8ce8de6d4b20ce2ba2e1ea2a8dbcacd"
+    },
+    {
+      "path": "/downloads/sponsor-intel-job-notes-0.2.3.zip",
+      "status": 404,
+      "bytes": 20466,
+      "sha256": "2dd4afd561ede2d2a5f1b2aa3f31484469bb88ad2e3d9dafe589c88c7e91835c"
+    },
+    {
+      "path": "/downloads/sponsor-intel-job-notes-0.2.1.zip",
+      "status": 200,
+      "bytes": 52592,
+      "sha256": "bffe815a988a9f1aed864eb2babb16c8b2ade7cf02b73ea1636cf5c9f442c98f",
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/job-notes-privacy.html",
+      "status": 200,
+      "bytes": 8168,
+      "sha256": "d2a8101c57ab9f816d6ce9f615a0a67bcef650479e79f04b4c768f82d4ed7506",
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/assets/index-DB9jiuYp.js",
+      "status": 200,
+      "bytes": 398297,
+      "sha256": "616a4bcc59818c370a816ea1fdaa224605d3121159aab8ae03d7301253e8c779",
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/assets/index-Ddp5rNlF.css",
+      "status": 200,
+      "bytes": 109950,
+      "sha256": "664f91166933de08769b1618e11d46b483d4715af6d274527fbfee84e294f667",
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/assets/career-C-yF5IFQ.js",
+      "status": 200,
+      "bytes": 104076,
+      "sha256": "9b4220812e65326d9bc2dc3d513568ec3fa57a8867c584e620336166e2718edd",
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/assets/career-2xQkt_JN.css",
+      "status": 200,
+      "bytes": 8707,
+      "sha256": "0aafdd8dc1a2ab9e4376fdd2460e1552e4131146341d3cefa25ea281516dc558",
+      "unchanged_public_bytes": true
+    },
+    {
+      "path": "/innovator-founder",
+      "status": 200,
+      "bytes": 22816,
+      "sha256": "8cde409b6943e567980f00f8c24f6d9bf2d1c5141687f79acbc7d796cc6b18c7",
+      "exact_build_match": true
+    },
+    {
+      "path": "/browser-extension",
+      "status": 200,
+      "bytes": 23451,
+      "sha256": "88ba785dcea46b3933b0f3d117b5b307836662d877e44815a4d43488435ff2d7",
+      "exact_build_match": true
+    },
+    {
+      "path": "/skills",
+      "status": 200,
+      "bytes": 23664,
+      "sha256": "aecd9ce6c4f86c503363cfe04e489c17995797c0b60acc52472682b1cb51d854",
+      "exact_build_match": true
+    }
+  ]
+}

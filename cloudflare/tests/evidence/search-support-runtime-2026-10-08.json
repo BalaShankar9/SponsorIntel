@@ -1,0 +1,214 @@
+{
+  "evidence": "Synthetic local Workerd only; no outbound Google or model requests",
+  "run": {
+    "day": "2026-10-08",
+    "state": "completed",
+    "errors": 0
+  },
+  "replay": {
+    "day": "2026-10-08",
+    "state": "completed",
+    "requests": 10,
+    "reused": true
+  },
+  "calls": [
+    {
+      "method": "POST",
+      "redirect": "manual",
+      "phase": "token"
+    },
+    {
+      "method": "GET",
+      "redirect": "manual",
+      "phase": "report"
+    },
+    {
+      "method": "POST",
+      "redirect": "manual",
+      "phase": "report"
+    },
+    {
+      "method": "POST",
+      "redirect": "manual",
+      "phase": "report"
+    },
+    {
+      "method": "POST",
+      "redirect": "manual",
+      "phase": "report"
+    },
+    {
+      "method": "GET",
+      "redirect": "manual",
+      "phase": "report"
+    },
+    {
+      "method": "POST",
+      "redirect": "manual",
+      "phase": "report"
+    },
+    {
+      "method": "POST",
+      "redirect": "manual",
+      "phase": "report"
+    },
+    {
+      "method": "POST",
+      "redirect": "manual",
+      "phase": "report"
+    },
+    {
+      "method": "POST",
+      "redirect": "manual",
+      "phase": "report"
+    }
+  ],
+  "snapshot": {
+    "property": "https://sponsorintel.london/",
+    "enabled": true,
+    "reading_enabled": true,
+    "business_enabled": true,
+    "configured": true,
+    "status": "completed",
+    "latest": {
+      "day": "2026-10-08",
+      "state": "completed",
+      "trigger_kind": "scheduled",
+      "created_at": "2026-10-08T02:30:00.000Z",
+      "finished_at": "2026-10-08T02:27:58.681Z",
+      "requests": 10,
+      "result": {
+        "property": "https://sponsorintel.london/",
+        "observed_at": "2026-10-08T02:30:00.000Z",
+        "window": {
+          "startDate": "2026-09-07",
+          "endDate": "2026-10-04",
+          "timeZone": "America/Los_Angeles",
+          "dataState": "final"
+        },
+        "permission": "siteRestrictedUser",
+        "parts": {
+          "total": {
+            "state": "no_data",
+            "rows": [],
+            "returned_rows": 0,
+            "excluded_rows": 0,
+            "row_limit_reached": false,
+            "coverage": "Missing dates are not filled with zero."
+          },
+          "dates": {
+            "state": "no_data",
+            "rows": [],
+            "returned_rows": 0,
+            "excluded_rows": 0,
+            "row_limit_reached": false,
+            "coverage": "Missing dates are not filled with zero."
+          },
+          "pages": {
+            "state": "no_data",
+            "rows": [],
+            "returned_rows": 0,
+            "excluded_rows": 0,
+            "row_limit_reached": false,
+            "coverage": "Top returned pages only; not exhaustive. Unsafe or private URLs are excluded."
+          },
+          "sitemaps": {
+            "state": "no_data",
+            "rows": []
+          }
+        },
+        "inspections": [
+          {
+            "url": "https://sponsorintel.london/",
+            "state": "available",
+            "verdict": "NEUTRAL",
+            "coverage": null,
+            "indexing_state": null,
+            "fetch_state": null,
+            "robots_state": null,
+            "last_crawl": null,
+            "google_canonical": null,
+            "user_canonical": null
+          },
+          {
+            "url": "https://sponsorintel.london/jobs",
+            "state": "available",
+            "verdict": "NEUTRAL",
+            "coverage": null,
+            "indexing_state": null,
+            "fetch_state": null,
+            "robots_state": null,
+            "last_crawl": null,
+            "google_canonical": null,
+            "user_canonical": null
+          },
+          {
+            "url": "https://sponsorintel.london/updates",
+            "state": "available",
+            "verdict": "NEUTRAL",
+            "coverage": null,
+            "indexing_state": null,
+            "fetch_state": null,
+            "robots_state": null,
+            "last_crawl": null,
+            "google_canonical": null,
+            "user_canonical": null
+          },
+          {
+            "url": "https://sponsorintel.london/guides/check-uk-sponsor",
+            "state": "available",
+            "verdict": "NEUTRAL",
+            "coverage": null,
+            "indexing_state": null,
+            "fetch_state": null,
+            "robots_state": null,
+            "last_crawl": null,
+            "google_canonical": null,
+            "user_canonical": null
+          }
+        ]
+      }
+    },
+    "runs": [
+      {
+        "day": "2026-10-08",
+        "state": "completed",
+        "trigger_kind": "scheduled",
+        "created_at": "2026-10-08T02:30:00.000Z",
+        "finished_at": "2026-10-08T02:27:58.681Z",
+        "requests": 10
+      }
+    ],
+    "schedule": "Once per UTC day through the hourly business workflow.",
+    "scope": "Read-only Google search data for this property; no raw search queries or customer records.",
+    "limits": {
+      "requests_daily": 10,
+      "inspection_urls": 4,
+      "page_rows": 100
+    },
+    "connected": true
+  },
+  "regression": {
+    "before": "Workerd Request construction rejects redirect:error",
+    "after": "manual mode constructed successfully; non-2xx is rejected",
+    "real_google_calls_in_local_test": 0,
+    "production_2026_10_08": "failed owner attempt retained; 1 request reserved; not retried"
+  },
+  "support_ui": {
+    "environment": "isolated local D1 with synthetic reports",
+    "before": {
+      "unresolved": 3,
+      "overdue": 2
+    },
+    "after_synthetic_review": {
+      "unresolved": 2,
+      "overdue": 1,
+      "resolved": 1
+    },
+    "history_retained": true,
+    "original_message_retained": true,
+    "viewport_width": 390,
+    "document_width": 390,
+    "production_report_mutations": 0
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "release": "2.91.0",
+  "runtime_commit": "b7f3639dff3788347c73fef3bc3dc2f671cf46a1",
+  "deployed_at": "2026-10-20T17:37:01.004196Z",
+  "worker_version": "2ef44b92-944f-4a78-8316-23be998100c3",
+  "deployment_id": "2db003ee-6f18-4442-8e87-7c62cab4b81e",
+  "validation": {
+    "tests_passed": 737,
+    "build": true,
+    "prerenders": 19,
+    "browser_budget": true,
+    "dry_run": true,
+    "local_browser": "fictional real form/API/D1, precision/history, lost acknowledgement replay, 390px no overflow"
+  },
+  "unchanged_discovery": {
+    "before": "2026-10-20T17:34:30.268Z",
+    "after": "2026-10-20T17:37:38.451Z",
+    "all_groups_exactly_equal": true,
+    "counts": {
+      "leads": 27,
+      "revisions": 72,
+      "audits": 62
+    }
+  },
+  "unchanged_operations": {
+    "before": "2026-10-20T17:22:32.573Z",
+    "after": "2026-10-20T17:37:37.426Z",
+    "groups": 14,
+    "all_groups_exactly_equal": true
+  },
+  "live_owner_browser": {
+    "observed_at": "2026-10-23T01:08:37.782Z",
+    "authenticated": true,
+    "new_observation_blank": true,
+    "utc_fields": 4,
+    "step": "0.001",
+    "unknown_dates_blank": true,
+    "production_save": false,
+    "screenshot": "outputs/discovery-time-live-2026-10-23.png"
+  },
+  "limitations": [
+    "Production date-edit/save was not tested with fabricated records.",
+    "Current job outcomes and autonomous-company acceptance remain separate."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-03T22:16:34.434394+00:00",
+  "release": "2.98.13",
+  "extension": "0.2.1",
+  "status": "live, 13 excluded HTTP checks pass",
+  "node": "24.19.0",
+  "combinedTargetedTests": 26,
+  "isolatedTargetedTests": 18,
+  "typecheck": true,
+  "build": true,
+  "prerenders": 21,
+  "browserBudgets": true,
+  "dryRun": true,
+  "approvedPolicyArticleUnchanged": true,
+  "oldArchivesAndOldPolicyUnchanged": true,
+  "codeEqualToInstalled020": true,
+  "onlyPackageChanges": [
+    "manifest.version",
+    "README.txt"
+  ],
+  "migrations": 46,
+  "newPrivateImportExcluded": true,
+  "newAICalls": 0,
+  "originalEmployerPageBrowserVisits": 1,
+  "productionDataMutation": false,
+  "sameDayRecoveryAndSecurityReused": true,
+  "lockfileDependenciesUnchanged": true,
+  "localPreviewFirstAttempt": "Generic static server redirected to unsupported trailing slash; replaced local fixture routing, then exact /browser-extension rendered. No product change for this fixture issue.",
+  "livePolicyBrowserVerified": true,
+  "liveAppBrowserVerification": "Not run: raw header-setting capability unsupported before app navigation; no operator event fabricated. Exact live landing/package/policy bytes verified by excluded HTTP, visual page checks local."
+}

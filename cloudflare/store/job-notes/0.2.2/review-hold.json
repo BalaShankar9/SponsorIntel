@@ -1,0 +1,8 @@
+{
+  "recordedAt": "2026-11-03T22:58:42.893Z",
+  "status": "held_do_not_install_or_publish",
+  "reason": "Candidate 0.2.2 dropped fictional conditions next to an Apply link. Preserved and held; 0.2.3 excludes link controls only and retains surrounding conditions.",
+  "proof": "tests/evidence/job-notes-layouts-2026-11-03/final-condition-before.json",
+  "supersedingCandidate": "0.2.3",
+  "installationRequest": "obsolete; an approval for 0.2.2 must not be used to install 0.2.3"
+}

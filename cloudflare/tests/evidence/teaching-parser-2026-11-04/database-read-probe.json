@@ -1,0 +1,12 @@
+{
+  "query": "SELECT 1 AS read_probe",
+  "success": true,
+  "result": [
+    {
+      "read_probe": 1
+    }
+  ],
+  "rows_read": 0,
+  "rows_written": 0,
+  "scope": "Constant probe; does not prove capacity or customer table reads"
+}

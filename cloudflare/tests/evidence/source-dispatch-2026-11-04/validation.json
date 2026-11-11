@@ -1,0 +1,31 @@
+{
+  "verified_at": "2026-11-04T04:31:39.744566+00:00",
+  "release": "2.98.15",
+  "node": "24.19.0",
+  "focused_tests": {
+    "passed": 35,
+    "failed": 0,
+    "full_suite_run": false,
+    "actual_worker_d1_concurrency": true,
+    "source_budget_and_lease_regressions": true
+  },
+  "typescript": true,
+  "build": true,
+  "prerenders": 21,
+  "browser_budgets": true,
+  "dry_run": true,
+  "source_manifests_unchanged": {
+    "research-source.json": "2ce6707e2b9adcf83d952c937e48572c4a7922f91fbdc85b831806f05c902445",
+    "research-scope-source.json": "bfe7e5eec93be9a4bfce3d335f0127357d953325bd07b18545dece07b8052f35",
+    "application-source.json": "0eaa2ba9c2a55a415f09a20534e8e2af1c6f4a4b8b5eeccfe94165a261e33c25"
+  },
+  "runtime_file": "worker/agent-operations.js",
+  "runtime_file_sha256": "78c90d1568a46dfe8ad53c7fe9966ce06ba0cb817e9fa33ca290788ff7842bf3",
+  "migration_count": 46,
+  "new_production_dispatches": 0,
+  "new_production_model_calls": 0,
+  "temporary_extension_installation": false,
+  "public_ui_assets_unchanged": true,
+  "owner_api_and_legacy_cleanup_changes_deferred": true,
+  "operational_holds_cleared": false
+}

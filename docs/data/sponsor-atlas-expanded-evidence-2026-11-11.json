@@ -1,0 +1,678 @@
+{
+  "schema_version": 2,
+  "kind": "sponsor_intel_retained_business_evidence",
+  "register_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+  "prepared_at": "2026-11-11T18:56:25.823592+00:00",
+  "observations": [
+    {
+      "id": "animal_terms",
+      "url": "https://www.animaltrust.org.uk/terms",
+      "observed_at": "2026-10-30T14:30:02.020Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Animal Trust Vets CIC trading as Animal Trust; company 07938025; Cedab Road, Ellesmere Port CH65 4FE. Veterinary service terms do not establish recruitment syndication rights.",
+      "receipt_reference": "cloudflare/tests/evidence/employer-identity-review-2026-10-30.json",
+      "receipt_sha256": "a1e2f4dfbee23db31a927ac5d52f55c52442014fcb2b16ebe866147dba6a5a79",
+      "attribution": "Animal Trust business terms; retained agent-assisted observation."
+    },
+    {
+      "id": "animal_registry",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/07938025",
+      "observed_at": "2026-10-30T14:30:11.770Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Active ANIMAL TRUST VETS C.I.C., company 07938025, SIC 75000 veterinary activities, Cedab Road Ellesmere Port.",
+      "receipt_reference": "cloudflare/tests/evidence/employer-identity-review-2026-10-30.json",
+      "receipt_sha256": "a1e2f4dfbee23db31a927ac5d52f55c52442014fcb2b16ebe866147dba6a5a79",
+      "attribution": "Companies House; retained agent-assisted observation."
+    },
+    {
+      "id": "numan_contact",
+      "url": "https://www.cqc.org.uk/provider/1-6118870417/contact",
+      "observed_at": "2026-10-30T14:30:22.953Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Vir Health Limited also known as Numan; Farringdon Point, 33 Farringdon Road, London EC1M 3JF; numan.com linked.",
+      "receipt_reference": "cloudflare/tests/evidence/employer-identity-review-2026-10-30.json",
+      "receipt_sha256": "a1e2f4dfbee23db31a927ac5d52f55c52442014fcb2b16ebe866147dba6a5a79",
+      "attribution": "Care Quality Commission; retained agent-assisted observation. Public-sector attribution: OGL v3.0; no logo, rating or endorsement."
+    },
+    {
+      "id": "numan_services",
+      "url": "https://www.cqc.org.uk/provider/1-6118870417/services",
+      "observed_at": "2026-10-30T14:30:23.785Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Farringdon service shown current; Hatton Garden and Oxford Street services labelled archived.",
+      "receipt_reference": "cloudflare/tests/evidence/employer-identity-review-2026-10-30.json",
+      "receipt_sha256": "a1e2f4dfbee23db31a927ac5d52f55c52442014fcb2b16ebe866147dba6a5a79",
+      "attribution": "Care Quality Commission; retained agent-assisted observation. Public-sector attribution: OGL v3.0; no logo, rating or endorsement."
+    },
+    {
+      "id": "animal_careers",
+      "url": "https://www.animaltrust.org.uk/careers/vacancies",
+      "observed_at": "2026-10-23T01:54:00.317Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Primary careers site links BambooHR; footer states trading name, company number and business address; location examples are not all-workplace licence coverage. Retained location examples: Dewsbury, Barnsley and Wrexham.",
+      "receipt_reference": "cloudflare/tests/evidence/animal-trust-business-2026-10-23.json",
+      "receipt_sha256": "937ed1afe5afe3e5a9827c6625bc92e108b15aa0f7dc818f0fd328d2055b8759",
+      "attribution": "Animal Trust careers page; retained agent-assisted observation. Recruitment syndication rights were not established."
+    },
+    {
+      "id": "numan_profile",
+      "url": "https://www.cqc.org.uk/provider/1-6118870417/contact",
+      "observed_at": "2026-10-20T15:18:00.000Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "CQC lists Vir Health Limited as also known as Numan and provides numan.com as its website. This connects the healthcare brand to the legal name; it does not establish the employing entity for every vacancy. Source: Care Quality Commission, Open Government Licence v3.0. Retained public fields: website https://www.numan.com/; CQC provider 1-6118870417; Healthcare service provider listed by the Care Quality Commission.",
+      "receipt_reference": "cloudflare/tests/evidence/business-identities-2026-10-20.json",
+      "receipt_sha256": "3c16599dd17e5caf176ea4ec84f79a85bbb61083bf11e72f3b1a0d5fe7480c70",
+      "attribution": "Care Quality Commission; retained agent-assisted observation. Public-sector attribution: OGL v3.0; no logo, rating or endorsement."
+    },
+    {
+      "id": "eucalyptus_uk_group_review_20261008",
+      "url": "https://www.eucalyptus.health/privacy-policy",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained review of the privacy notice, Annex B for the United Kingdom, names Fill Function UK Limited for employment and other UK contracts. The review connects the Eucalyptus group to register-named Fill Function UK Ltd using the Limited/Ltd suffix, and expressly leaves each vacancy employer unresolved.",
+      "receipt_reference": "cloudflare/tests/evidence/eucalyptus-identity-2026-10-08.json",
+      "receipt_sha256": "94064ae28128738b27bfcfe1c2c790c06fe0ccd885e4e281c5ba1eff51e8db6a",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-08"
+    },
+    {
+      "id": "sequence_legal_review_20261008",
+      "url": "https://docs.sequencehq.com/compliance/privacy-policy",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained employer review identifies Sequence HQ Ltd and company number 13585168 in the privacy policy. Its exact legal/register chain selects the Canterbury company and excludes the similarly named Sequence International Limited.",
+      "receipt_reference": "docs/SEQUENCE_SOURCE_REVIEW.md",
+      "receipt_sha256": "6ca6c36ef4e6b76a8a600a81a19802587ca8e2e9f337e1c939b2514df527e3d3",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-08"
+    },
+    {
+      "id": "sequence_careers_review_20261008",
+      "url": "https://www.sequencehq.com/about",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained review records the employer careers page linking directly to its Ashby board. This preserves the route as an October research lead without asserting a current opening or current board contents.",
+      "receipt_reference": "docs/SEQUENCE_SOURCE_REVIEW.md",
+      "receipt_sha256": "6ca6c36ef4e6b76a8a600a81a19802587ca8e2e9f337e1c939b2514df527e3d3",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-08"
+    },
+    {
+      "id": "wintermute_site_review_20261008",
+      "url": "https://www.wintermute.com",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained review reports the official site footer naming Wintermute Trading Ltd and company 10882520. The source is preserved as the historical website/operating-name connection, with no current-content certification.",
+      "receipt_reference": "docs/WINTERMUTE_SOURCE_REVIEW.md",
+      "receipt_sha256": "251f8ac61a675444f96d01873797c8344ed7fd39c25c9bcf53c8bc6591d15cdf",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-08"
+    },
+    {
+      "id": "wintermute_company_review_20261008",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/10882520",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained Companies House review identifies company 10882520 as the legal entity in the employer chain. The company number is retained; its October active-status observation is not presented as current status.",
+      "receipt_reference": "docs/WINTERMUTE_SOURCE_REVIEW.md",
+      "receipt_sha256": "251f8ac61a675444f96d01873797c8344ed7fd39c25c9bcf53c8bc6591d15cdf",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-08"
+    },
+    {
+      "id": "wintermute_filing_review_20261008",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/10882520/filing-history",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained review records a filing dated 29 January 2025 moving the registered office from Altrincham in Cheshire to London. It uses that dated corporate filing to explain the legal-identity chain while preserving the different register location; no present address equivalence or register relocation is inferred.",
+      "receipt_reference": "docs/WINTERMUTE_SOURCE_REVIEW.md",
+      "receipt_sha256": "251f8ac61a675444f96d01873797c8344ed7fd39c25c9bcf53c8bc6591d15cdf",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-08"
+    },
+    {
+      "id": "wintermute_careers_review_20261008",
+      "url": "https://www.wintermute.com/company/opportunities",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained employer review records this official opportunities page as the route to the public Lever postings. No vacancy count, job wording or current intake is carried into this company dossier.",
+      "receipt_reference": "docs/WINTERMUTE_SOURCE_REVIEW.md",
+      "receipt_sha256": "251f8ac61a675444f96d01873797c8344ed7fd39c25c9bcf53c8bc6591d15cdf",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-08"
+    },
+    {
+      "id": "callosum_privacy_review_20261011",
+      "url": "https://www.callosum.com/privacy-policy",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained employer review identifies the Callosum website operator as Callosum Technologies Ltd, company 16646869. This is the group website, not proof that the separately licensed Callosum Ltd operates it.",
+      "receipt_reference": "cloudflare/tests/evidence/callosum-licence-review-2026-10-11.json",
+      "receipt_sha256": "c7a9ce4ce8e7f2049b060fdecfb003358d3f402c019530b74c34053fff8c9dbc",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-11"
+    },
+    {
+      "id": "callosum_control_review_20261011",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/16076949/persons-with-significant-control",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained corporate control review connects Callosum Ltd, company 16076949, to Callosum Technologies Ltd, company 16646869, through reported ownership and voting rights of at least 75 percent, notified 26 August 2025. The connection is corporate group evidence, not a transfer of sponsor status or proof of a vacancy employer.",
+      "receipt_reference": "cloudflare/tests/evidence/callosum-licence-review-2026-10-11.json",
+      "receipt_sha256": "c7a9ce4ce8e7f2049b060fdecfb003358d3f402c019530b74c34053fff8c9dbc",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-11"
+    },
+    {
+      "id": "callosum_company_review_20261011",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/16076949",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained review identifies the registered Callosum Ltd as company 16076949, formerly Sernn Ltd. The licensed subsidiary identifier is separate from parent company 16646869; current company status is not asserted.",
+      "receipt_reference": "cloudflare/tests/evidence/callosum-licence-review-2026-10-11.json",
+      "receipt_sha256": "c7a9ce4ce8e7f2049b060fdecfb003358d3f402c019530b74c34053fff8c9dbc",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-11"
+    },
+    {
+      "id": "callosum_careers_review_20261011",
+      "url": "https://www.callosum.com/join-us",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained review records the Callosum group careers page linking to its existing Ashby board. This is a group-level careers route, not proof that Callosum Ltd is the employer of every listed role.",
+      "receipt_reference": "docs/CALLOSUM_SOURCE_REVIEW.md",
+      "receipt_sha256": "fdd3e9c289bfc33519e6c490288bc88f41d40161494efa149835e16a3e515f67",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-11"
+    },
+    {
+      "id": "neudata_legal_review_20261018",
+      "url": "https://www.neudata.co/privacy-statement",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained review records the employer privacy statement identifying Neudata Limited and company 09942593. It supports the historical brand/legal-company chain; later advert follow-ups did not renew this identity evidence.",
+      "receipt_reference": "cloudflare/tests/evidence/neudata-review-2026-10-18.json",
+      "receipt_sha256": "87137d9013650754a47ce2283728298c69a1afd798eb9d7ed6fb41d4b5810eac",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-18"
+    },
+    {
+      "id": "neudata_company_review_20261018",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/09942593",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained Companies House check identifies company 09942593 as Neudata Limited. Only the identifier is proposed, with no current company-status claim.",
+      "receipt_reference": "cloudflare/tests/evidence/neudata-review-2026-10-18.json",
+      "receipt_sha256": "87137d9013650754a47ce2283728298c69a1afd798eb9d7ed6fb41d4b5810eac",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-18"
+    },
+    {
+      "id": "neudata_careers_review_20261018",
+      "url": "https://www.neudata.co/careers",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained review records this official careers page and its link to the original employer advert. The route is preserved without carrying historical vacancy counts, availability or role wording.",
+      "receipt_reference": "cloudflare/tests/evidence/neudata-review-2026-10-18.json",
+      "receipt_sha256": "87137d9013650754a47ce2283728298c69a1afd798eb9d7ed6fb41d4b5810eac",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-18"
+    },
+    {
+      "id": "eastern_mat_company_review_20261008",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/07338780",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained school review names Eastern Multi-Academy Trust as the legal organisation and records Companies House number 07338780, alongside the same trust name, town and county. Only the public legal identifier is proposed.",
+      "receipt_reference": "cloudflare/tests/evidence/kings-lynn-source-review-2026-10-08.json",
+      "receipt_sha256": "f462436f9857d39f657343fefbf1b7623821c98670bd1ec514b6733850b49579",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-08"
+    },
+    {
+      "id": "new_city_governance_review_20261017",
+      "url": "https://www.ncclondon.ac.uk/governance/",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained 17 October admission review records the college governance page identifying New City College Corporation and describing the college mergers. It supports the college/corporation operating relationship without importing job or approval state.",
+      "receipt_reference": "docs/NEW_CITY_COLLEGE_SOURCE_REVIEW.md",
+      "receipt_sha256": "a8b6f112d8b8b961dc093c5890dad4cd221267b94cb0fa37f783f8ad775a3895",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-17"
+    },
+    {
+      "id": "new_city_careers_review_20261017",
+      "url": "https://www.ncclondon.ac.uk/working-for-us/",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained review records this official careers page linking to the college recruitment portal. Only the unchanged public careers-page URL is proposed; no session or query-bearing portal URL is copied.",
+      "receipt_reference": "docs/NEW_CITY_COLLEGE_SOURCE_REVIEW.md",
+      "receipt_sha256": "a8b6f112d8b8b961dc093c5890dad4cd221267b94cb0fa37f783f8ad775a3895",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-17"
+    },
+    {
+      "id": "danu_company_review_20261011",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/SC788592",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The public identity portion of the retained 11 October review connects the employer name Danu Insights to Danu Insights Limited, company SC788592. This is retained identity history; the LinkedIn observation clock and later advert checks are not used as a legal-source observation.",
+      "receipt_reference": "cloudflare/tests/evidence/danu-source-review-2026-10-11.json",
+      "receipt_sha256": "4bd41d7354e58f56f133244c4d4b1ea8b9029b71c52ee0120b388bc47ec7c02e",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-11"
+    },
+    {
+      "id": "danu_careers_review_20261011",
+      "url": "https://www.danu-insights.com/careers",
+      "observed_at": null,
+      "evidence_kind": "retained_operator_review",
+      "summary": "The retained 11 October employer-page review records this official careers catalogue. The link is retained as a research route without importing a historical role, deadline, application form or sponsorship statement.",
+      "receipt_reference": "docs/DANU_SOURCE_REVIEW.md",
+      "receipt_sha256": "b8ddd8f810baac2d7b247f4a01cccd1bd21ce5da28da01bdc771668c965706cc",
+      "attribution": "Retained agent-assisted operator review of the named original source; not a new source visit or independent approval.",
+      "reviewed_on": "2026-10-11"
+    }
+  ],
+  "subjects": [
+    {
+      "entry_key": "e374b5c18b25d97f8f923944ae3ad225c5a5f3cb63cb4375748fccb91b781e3e",
+      "name": "Animal Trust Vets CIC",
+      "city": "Ellesmere Port",
+      "county": "Cheshire",
+      "source_rows": [
+        8671
+      ],
+      "prior_review_due_at": "2026-10-30T12:00:00.000Z",
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Animal Trust",
+          "observation_ids": [
+            "animal_terms"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "trading_name",
+          "observation_ids": [
+            "animal_terms"
+          ]
+        },
+        {
+          "field": "website",
+          "value": "https://www.animaltrust.org.uk/",
+          "observation_ids": [
+            "animal_terms",
+            "animal_careers"
+          ]
+        },
+        {
+          "field": "activity",
+          "value": "Veterinary care; Companies House records SIC 75000 (Veterinary activities).",
+          "observation_ids": [
+            "animal_registry"
+          ]
+        },
+        {
+          "field": "locations",
+          "value": "Historical practice examples: Dewsbury, Barnsley and Wrexham. This is not a complete workplace list or a licence-coverage finding.",
+          "observation_ids": [
+            "animal_careers"
+          ]
+        },
+        {
+          "field": "official_identifier",
+          "value": "Companies House 07938025",
+          "observation_ids": [
+            "animal_registry",
+            "animal_terms"
+          ]
+        },
+        {
+          "field": "careers_url",
+          "value": "https://www.animaltrust.org.uk/careers/vacancies",
+          "observation_ids": [
+            "animal_careers"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "073f7efac12783824d1e6d06c955969214a528132ddc5f7c3d7a693c9f9c7b79",
+      "name": "Vir Health Limited trading as Numan",
+      "city": "London",
+      "county": "",
+      "source_rows": [
+        135982
+      ],
+      "prior_review_due_at": "2026-10-27T12:00:00.000Z",
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Numan",
+          "observation_ids": [
+            "numan_contact"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "trading_name",
+          "observation_ids": [
+            "numan_profile",
+            "numan_contact"
+          ]
+        },
+        {
+          "field": "website",
+          "value": "https://www.numan.com/",
+          "observation_ids": [
+            "numan_profile"
+          ]
+        },
+        {
+          "field": "activity",
+          "value": "Healthcare service provider listed by the Care Quality Commission.",
+          "observation_ids": [
+            "numan_profile"
+          ]
+        },
+        {
+          "field": "locations",
+          "value": "CQC service location observed on 30 October: Farringdon Point, 33 Farringdon Road, London EC1M 3JF. Hatton Garden and Oxford Street were labelled archived.",
+          "observation_ids": [
+            "numan_contact",
+            "numan_services"
+          ]
+        },
+        {
+          "field": "official_identifier",
+          "value": "CQC provider 1-6118870417",
+          "observation_ids": [
+            "numan_profile"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "966b09b9971f03fd359502d7a9b4bb0b1860ca41585537bcff8fcedb9aa44c8a",
+      "name": "Fill Function UK Ltd",
+      "city": "London",
+      "county": "",
+      "source_rows": [
+        45200
+      ],
+      "prior_review_due_at": null,
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Eucalyptus",
+          "observation_ids": [
+            "eucalyptus_uk_group_review_20261008"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "group_relationship",
+          "observation_ids": [
+            "eucalyptus_uk_group_review_20261008"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "c8b8b4011465474a89068e8eebef2de908fdb858626d22e8fd7a275f03d4e0f3",
+      "name": "Sequence HQ Ltd",
+      "city": "Canterbury",
+      "county": "",
+      "source_rows": [
+        110994
+      ],
+      "prior_review_due_at": null,
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Sequence",
+          "observation_ids": [
+            "sequence_legal_review_20261008"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "operating_organisation",
+          "observation_ids": [
+            "sequence_legal_review_20261008"
+          ]
+        },
+        {
+          "field": "official_identifier",
+          "value": "Companies House 13585168",
+          "observation_ids": [
+            "sequence_legal_review_20261008"
+          ]
+        },
+        {
+          "field": "careers_url",
+          "value": "https://www.sequencehq.com/about",
+          "observation_ids": [
+            "sequence_careers_review_20261008"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "9daa3c2746be60bcba5247f5fd09c97977a1e2831e4d8acb3933f08e1f5e1e85",
+      "name": "Wintermute Trading Limited",
+      "city": "Cheshire",
+      "county": "",
+      "source_rows": [
+        139690
+      ],
+      "prior_review_due_at": null,
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Wintermute",
+          "observation_ids": [
+            "wintermute_site_review_20261008"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "operating_organisation",
+          "observation_ids": [
+            "wintermute_site_review_20261008"
+          ]
+        },
+        {
+          "field": "official_identifier",
+          "value": "Companies House 10882520",
+          "observation_ids": [
+            "wintermute_company_review_20261008",
+            "wintermute_filing_review_20261008"
+          ]
+        },
+        {
+          "field": "website",
+          "value": "https://www.wintermute.com",
+          "observation_ids": [
+            "wintermute_site_review_20261008"
+          ]
+        },
+        {
+          "field": "careers_url",
+          "value": "https://www.wintermute.com/company/opportunities",
+          "observation_ids": [
+            "wintermute_careers_review_20261008"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "018dce55444bc4e94b9210a4caa00a829a1b72605244a71052a4f8121ac57f6b",
+      "name": "Callosum Ltd",
+      "city": "London",
+      "county": "",
+      "source_rows": [
+        22659
+      ],
+      "prior_review_due_at": null,
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Callosum",
+          "observation_ids": [
+            "callosum_privacy_review_20261011",
+            "callosum_control_review_20261011"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "group_relationship",
+          "observation_ids": [
+            "callosum_control_review_20261011"
+          ]
+        },
+        {
+          "field": "official_identifier",
+          "value": "Companies House 16076949",
+          "observation_ids": [
+            "callosum_company_review_20261011"
+          ]
+        },
+        {
+          "field": "careers_url",
+          "value": "https://www.callosum.com/join-us",
+          "observation_ids": [
+            "callosum_careers_review_20261011"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "7290f99438586a33877dabb19e6c23647e1b59d9176cae136e4cdb75a2eb61b7",
+      "name": "Neudata Limited",
+      "city": "London",
+      "county": "",
+      "source_rows": [
+        86964
+      ],
+      "prior_review_due_at": null,
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Neudata",
+          "observation_ids": [
+            "neudata_legal_review_20261018"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "operating_organisation",
+          "observation_ids": [
+            "neudata_legal_review_20261018"
+          ]
+        },
+        {
+          "field": "official_identifier",
+          "value": "Companies House 09942593",
+          "observation_ids": [
+            "neudata_company_review_20261018"
+          ]
+        },
+        {
+          "field": "careers_url",
+          "value": "https://www.neudata.co/careers",
+          "observation_ids": [
+            "neudata_careers_review_20261018"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "a217b6543f773f7b424475b3bda3a766983fa3cc5d13806d67f46d1c477896df",
+      "name": "Eastern Multi-Academy Trust",
+      "city": "King's Lynn",
+      "county": "Norfolk",
+      "source_rows": [
+        38557
+      ],
+      "prior_review_due_at": null,
+      "claims": [
+        {
+          "field": "official_identifier",
+          "value": "Companies House 07338780",
+          "observation_ids": [
+            "eastern_mat_company_review_20261008"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "c8e55a80d4fb1e34fedd299d6ab4d6e99f527d6d32c31d281fe1aa7e9e1f4346",
+      "name": "New City College Corporation",
+      "city": "London",
+      "county": "",
+      "source_rows": [
+        87072
+      ],
+      "prior_review_due_at": null,
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "New City College",
+          "observation_ids": [
+            "new_city_governance_review_20261017"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "operating_organisation",
+          "observation_ids": [
+            "new_city_governance_review_20261017"
+          ]
+        },
+        {
+          "field": "careers_url",
+          "value": "https://www.ncclondon.ac.uk/working-for-us/",
+          "observation_ids": [
+            "new_city_careers_review_20261017"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "ab359883697fdb2428e203a14845c8b914e0bf3f886b30bb7e750275092b17f9",
+      "name": "Danu Insights Limited",
+      "city": "Edinburgh",
+      "county": "Midlothian",
+      "source_rows": [
+        33205
+      ],
+      "prior_review_due_at": null,
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Danu Insights",
+          "observation_ids": [
+            "danu_company_review_20261011"
+          ]
+        },
+        {
+          "field": "official_identifier",
+          "value": "Companies House SC788592",
+          "observation_ids": [
+            "danu_company_review_20261011"
+          ]
+        },
+        {
+          "field": "careers_url",
+          "value": "https://www.danu-insights.com/careers",
+          "observation_ids": [
+            "danu_careers_review_20261011"
+          ]
+        }
+      ]
+    }
+  ]
+}

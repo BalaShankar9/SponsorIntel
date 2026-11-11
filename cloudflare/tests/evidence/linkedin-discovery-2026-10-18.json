@@ -1,0 +1,123 @@
+{
+  "reviewed_at": "2026-10-18T01:33:09.146Z",
+  "runtime": "2.81.0",
+  "scope": "Agent-assisted browser discovery; no public job or source admission",
+  "new_leads": [
+    {
+      "id": "48f27003-2b67-49d4-8f35-5852ab895fbd",
+      "source_kind": "linkedin_job",
+      "source_url": "https://www.linkedin.com/jobs/view/4335223028/",
+      "first_recorded_at": "2026-10-18T01:28:02.917Z",
+      "revision": 1,
+      "recorded_at": "2026-10-18T01:28:02.917Z",
+      "state": "rejected",
+      "method": "agent_assisted",
+      "observed_at": "2026-10-18T01:26:00.000Z",
+      "posted_at": null,
+      "deadline": null,
+      "follow_up_at": null,
+      "audit_count": 1
+    },
+    {
+      "id": "95029621-3186-46a6-9d6f-1d4e4ef104cf",
+      "source_kind": "linkedin_post",
+      "source_url": "https://www.linkedin.com/feed/update/urn:li:activity:7517335153204154368/",
+      "first_recorded_at": "2026-10-18T01:32:30.381Z",
+      "revision": 1,
+      "recorded_at": "2026-10-18T01:32:30.381Z",
+      "state": "held",
+      "method": "agent_assisted",
+      "observed_at": "2026-10-18T01:29:00.000Z",
+      "posted_at": null,
+      "deadline": null,
+      "follow_up_at": "2026-10-20T11:00:00.000Z",
+      "audit_count": 1
+    }
+  ],
+  "queue": {
+    "total": 23,
+    "held": 5,
+    "linked": 3,
+    "rejected": 15,
+    "overdue": 0,
+    "changed_links": 0,
+    "daily_new": 2,
+    "daily_limit": 5,
+    "daily_remaining": 3
+  },
+  "source_evidence": {
+    "barbary": {
+      "url": "https://www.linkedin.com/jobs/view/4335223028/",
+      "observed_at": "2026-10-18T01:26:54.596Z",
+      "text_sha256": "2d03242fa59d32dd10a579c4f02df91cb39a67f8fd5c0cafaff704ab4e464927",
+      "finding": "Live listing explicitly no longer accepting applications; cached relative age was stale. No employer-wide refusal inferred."
+    },
+    "bangor_post": {
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7517335153204154368/",
+      "text_sha256": "5ae05a835f71c5d3001bdfada150e325f791efa2255588685237b7265e66159d",
+      "relative_label": "4h at observation; not a precise original posting timestamp"
+    },
+    "bangor_original": {
+      "url": "https://www.vets4petscareers.com/job-vacancies/41178-registered-veterinary-nurse/",
+      "observed_at": "2026-10-18T01:29:49.540Z",
+      "text_sha256": "6c82d9e8f2e7ec99fbbfd163faa13104ed27ee800bb780d7e82654f51425ec65",
+      "explicit_sponsorship_wording": true,
+      "legal_employer_licence_confirmed": false,
+      "original_posting_time": null,
+      "deadline": null,
+      "pay_qualification": "Up to GBP30000 pro rata, dependent on experience",
+      "application_entry": "SuccessFactors sign-in, Pets at Home, requisition 41178",
+      "application_submitted": false
+    },
+    "bangor_identity": {
+      "practice_url": "https://www.vets4pets.com/practices/vets4pets-bangor-north-wales/",
+      "privacy_url": "https://www.vets4petscareers.com/life-at-vets4pets/candidate-privacy-notice/",
+      "register_snapshot": "2026-10-16-7c8b2b3d",
+      "candidate_group_licence": "ab8a8aea91f278c9d4c0150f",
+      "relationship_verified": false,
+      "company_name_search_is_not_identity_proof": true
+    },
+    "whitchurch": {
+      "lead_id": "22eb0cdf-824c-4d53-bddc-0d916f88feda",
+      "revision_unchanged": 4,
+      "follow_up_at": "2026-10-18T11:00:00.000Z",
+      "download_timeout_ms": 30000,
+      "usable_artifact_verified": false,
+      "blank_result_tab_policy_blocked": true,
+      "workaround_attempted": false,
+      "new_http_status_claimed": null,
+      "source_configured": false
+    }
+  },
+  "unchanged_operational_groups": [
+    "business_controls",
+    "marketing_controls",
+    "research_control",
+    "application_controls",
+    "source_controls",
+    "marketing_briefs",
+    "marketing_receipts",
+    "source_budget",
+    "ai_budget",
+    "business_runs",
+    "source_runs",
+    "marketing_runs",
+    "issues",
+    "foreign_keys"
+  ],
+  "source_reserved": 96,
+  "shared_ai_starts": 2,
+  "shared_ai_calls": 8,
+  "operator_model_calls": 0,
+  "operator_google_calls": 0,
+  "operator_social_sends": 0,
+  "operator_emails": 0,
+  "source_probes": 0,
+  "public_jobs_added": 0,
+  "foreign_key_errors": [],
+  "next_genuine_business_observation_pending": true,
+  "recovery_check_reused": "2026-10-18T00:05:57.335Z",
+  "dependency_audit_reused": true,
+  "runtime_or_schema_changed": false,
+  "full_source_captures_committed": false
+}

@@ -1,0 +1,206 @@
+{
+  "release": "2.56.0",
+  "worker": "d6bd42a8-0b15-42e3-99ab-219c547a9c8a",
+  "code_commit": "ad56cb78ac2f658922a821157aabeeb970220da2",
+  "rollback_worker": "24d7ac43-84e6-4d81-8263-6f568a0b244a",
+  "tests": {
+    "passed": 568,
+    "failed": 0,
+    "runtime": "Node 24.19.0",
+    "duration_ms": 65880.107166,
+    "isolated_source_workflow": "passed",
+    "production_forced_failure": false
+  },
+  "build": {
+    "typescript": "passed",
+    "prerenders": 17,
+    "browser_budgets": "passed",
+    "dry_run": "passed"
+  },
+  "preservation": {
+    "before": {
+      "observed_at": "2026-10-11T16:53:20.495Z",
+      "phase": "before",
+      "items": [
+        {
+          "table": "source_control",
+          "rows": 1,
+          "sha256": "13159c7ff9c606ab374f96f120e1437c8ba23ac39ec8e3fead24fd57097cddbf"
+        },
+        {
+          "table": "completed_progress",
+          "rows": 1,
+          "sha256": "b1d17c6a14a69453d6deaa015e64cbeecbccf143d5fe08781fcce6a1706424ff"
+        },
+        {
+          "table": "private_source_cache",
+          "rows": 68,
+          "sha256": "617f544b557200bc239a43077fb7e9f5a4e34e689aef5c7cd3be6ad1a5621288"
+        },
+        {
+          "table": "source_tasks",
+          "rows": 14,
+          "sha256": "b7d5645fc3255f86170fadd78a6b4a1c51e6ba9c6771606a6cb3734282325822"
+        },
+        {
+          "table": "source_jobs",
+          "rows": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "table": "source_budget",
+          "rows": 1,
+          "sha256": "a90351fca57ae998675cdec3d139c853fe61a639468ff1ad84641919a4380706"
+        },
+        {
+          "table": "application_controls",
+          "rows": 1,
+          "sha256": "87ded263de1203b116af8cf50af94350348a26df13a78765c9ec4ddf1004b737"
+        },
+        {
+          "table": "shared_AI_budget",
+          "rows": 1,
+          "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13"
+        },
+        {
+          "table": "selected_comparison",
+          "rows": 1,
+          "sha256": "49c3235f79bffe6292c56479d022654494da716602632792431f356790c224f6"
+        },
+        {
+          "table": "foreign_keys",
+          "rows": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "source_requests": 296,
+      "source_paused": 1
+    },
+    "after": {
+      "observed_at": "2026-10-11T16:57:12.094Z",
+      "phase": "after",
+      "items": [
+        {
+          "table": "source_control",
+          "rows": 1,
+          "sha256": "13159c7ff9c606ab374f96f120e1437c8ba23ac39ec8e3fead24fd57097cddbf"
+        },
+        {
+          "table": "completed_progress",
+          "rows": 1,
+          "sha256": "b1d17c6a14a69453d6deaa015e64cbeecbccf143d5fe08781fcce6a1706424ff"
+        },
+        {
+          "table": "private_source_cache",
+          "rows": 68,
+          "sha256": "617f544b557200bc239a43077fb7e9f5a4e34e689aef5c7cd3be6ad1a5621288"
+        },
+        {
+          "table": "source_tasks",
+          "rows": 14,
+          "sha256": "b7d5645fc3255f86170fadd78a6b4a1c51e6ba9c6771606a6cb3734282325822"
+        },
+        {
+          "table": "source_jobs",
+          "rows": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "table": "source_budget",
+          "rows": 1,
+          "sha256": "a90351fca57ae998675cdec3d139c853fe61a639468ff1ad84641919a4380706"
+        },
+        {
+          "table": "application_controls",
+          "rows": 1,
+          "sha256": "87ded263de1203b116af8cf50af94350348a26df13a78765c9ec4ddf1004b737"
+        },
+        {
+          "table": "shared_AI_budget",
+          "rows": 1,
+          "sha256": "c5b7fbbce24d0c8fcde1880567050e09bc88851ee065cb157e7f1d3e3e295a13"
+        },
+        {
+          "table": "selected_comparison",
+          "rows": 1,
+          "sha256": "49c3235f79bffe6292c56479d022654494da716602632792431f356790c224f6"
+        },
+        {
+          "table": "foreign_keys",
+          "rows": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "source_requests": 296,
+      "source_paused": 1,
+      "matches_before": true
+    }
+  },
+  "public": {
+    "observed_at": "2026-10-11T16:57:12.514302+00:00",
+    "health": {
+      "ok": true,
+      "version": "2.56.0",
+      "register": {
+        "date": "2026-10-09",
+        "count": 127981,
+        "checked_at": "2026-10-11T07:15:39.995Z"
+      }
+    },
+    "collections": {
+      "total": 928,
+      "employers": 36,
+      "early_career": 51,
+      "sponsorship": 55,
+      "licensed": 887,
+      "salary": 144
+    }
+  },
+  "scheduled_business": {
+    "id": "business-497704",
+    "state": "attention",
+    "created_at": "2026-10-11T16:45:36.000Z",
+    "finished_at": "2026-10-11T16:46:13.619Z",
+    "trigger_kind": "scheduled",
+    "platform_status": "complete",
+    "platform_success": true,
+    "platform_workflow_version": "3abc63fe-f1fb-4392-b64b-48517243ab4a",
+    "health": {
+      "findings": 7,
+      "high": 1
+    },
+    "applications": {
+      "state": "paused"
+    },
+    "links": [
+      {
+        "id": "48edd8a09fff1ad8772fda42",
+        "state": "checked",
+        "reason": "title_observed",
+        "requests": 1
+      },
+      {
+        "id": "3952fe1ae635c91795a95e6d",
+        "state": "checked",
+        "reason": "title_observed",
+        "requests": 1
+      }
+    ],
+    "release_at_run": "2.55.0"
+  },
+  "limits": [
+    "No forced source run or source resume. The first ordinary 2.56 source run remains unobserved.",
+    "No new production AI, Google, email or social action.",
+    "No schema change. The earlier 16:33 daily recovery inspection remains the recovery evidence; no extra restore/export/drill was performed.",
+    "The PortmanDentex historical mismatch remains unresolved. Its 251 catalogue summaries and 68 private cache rows are not public jobs."
+  ],
+  "hosted_ci": {
+    "commit": "ad56cb78ac2f658922a821157aabeeb970220da2",
+    "checks": [
+      114523211693,
+      114523204640
+    ],
+    "outcome": "not started: account billing lock",
+    "gitguardian": "passed"
+  }
+}

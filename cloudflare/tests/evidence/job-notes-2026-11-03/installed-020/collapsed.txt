@@ -1,0 +1,125 @@
+Window: "Sponsor Intel / Job notes — fictional browsing preview", App: Google Chrome.
+0 standard window URL: 127.0.0.1:49274/, Secondary Actions: Raise, Sponsor Intel / Job notes — fictional browsing preview - Google Chrome - Sponsor Intel Temporary QA 017
+	1 container URL: 127.0.0.1:49274/, Sponsor Intel / Job notes — fictional browsing preview - Google Chrome - Sponsor Intel Temporary QA 017
+		2 container
+			3 toolbar
+				4 button Back
+				5 button (disabled) Forward
+				6 button Reload
+				7 container
+					8 pop up button View site information
+					9 text field (settable) Address and search bar, Value: 127.0.0.1:49274, Placeholder: Ask Google or type a URL
+					10 button Bookmark this tab
+				11 container
+					12 pop up button Sponsor Intel job notes
+Has access to this site
+					13 pop up button Extensions
+				14 button Sponsor Intel Temporary QA 017
+				15 pop up button New Chrome available
+			16 container
+				17 scroll area
+					18 HTML content Sponsor Intel / Job notes — fictional browsing preview, URL: 127.0.0.1:49274/
+						19 container
+							20 text Sponsor Intel / a closer reading Fictional job board · working design preview · no vacancies or applications
+						21 button Enable Job notes
+						22 button Load another card
+						23 button Change this advert’s wording
+						24 button Recycle first card
+						25 button Check removal
+						26 container
+							27 text THREE DIFFERENT SITUATIONS
+							28 content list
+								29 container
+									30 link Product engineer, Value: linkedin.com/jobs/view/900000001/
+									31 text Example Studio · London Build thoughtful tools with a small product team.
+									32 button Sponsorship notes for Product engineer
+								33 container
+									34 link Research analyst, Value: linkedin.com/jobs/view/900000002/
+									35 text Example Research · Manchester A card preview deliberately omits sponsorship conditions.
+									36 button Sponsorship notes for Research analyst
+								37 container
+									38 link Operations manager, Value: linkedin.com/jobs/view/900000003/
+									39 text Example Works · Bristol Help a growing team improve its operations.
+									40 button Sponsorship notes for Operations manager
+							41 text COMPLETE FICTIONAL ADVERT
+							42 heading Product engineer, Value: 1
+								43 text Product engineer
+							44 text Example Studio · London, UK
+							45 container
+								46 heading About the role, Value: 2
+									47 text About the role
+								48 text Build and test software with designers and engineers. Explain technical choices, review code and improve accessible services for a small product team.
+								49 heading What you will bring, Value: 2
+									50 text What you will bring
+								51 text Experience building reliable software, collaborating across disciplines and documenting decisions clearly.
+								52 heading Sponsorship, Value: 2
+									53 text Sponsorship
+								54 text We may provide visa sponsorship, subject to eligibility.
+								55 disclosure triangle Additional conditions
+									56 text Additional conditions
+								57 text HIDDEN: We cannot offer visa sponsorship.
+								58 container
+									59 text Fictional application field
+									60 text field Fictional application field, Value: PRIVATE FICTIONAL ANSWER
+								61 heading Next step, Value: 2
+									62 text Next step
+								63 text This entire role is fictional demonstration material. No employer, opening or application is represented.
+						64 container
+							65 button Open Sponsor Intel job notes
+							66 button Off
+							67 container Sponsor Intel job notes
+								68 container
+									69 text Sponsor Intel JOB NOTES / BROWSING COMPANION
+									70 button Close job notes
+								71 text A CLOSER READING
+								72 heading Product engineer, Value: 1
+									73 text Product engineer
+								74 text 127.0.0.1 · enabled in this tab
+								75 text Expand the closed sections before reading this advert.
+								76 button Read full description
+								77 link Open this job ↗, Value: linkedin.com/jobs/view/900000001/
+								78 container
+									79 disclosure triangle Review the full advert
+										80 text Review the full advert
+									81 text The advert you are checking
+									82 text entry area (settable) The advert you are checking, Placeholder: Or paste the complete public advert here. Leave out CVs and application answers.
+									83 checkbox I have checked this is the complete advert for the role above, including its conditions., Value: 0
+									84 text I have checked this is the complete advert for the role above, including its conditions.
+									85 button Read the wording
+									86 button Clear
+								87 text 02
+								88 heading Sponsor licence, Value: 3
+									89 text Sponsor licence
+								90 text Not checked here. The exact legal employer needs a current register match. A trading name or licence alone does not confirm sponsorship for this job.
+								91 text 03
+								92 heading Vacancy & personal eligibility, Value: 3
+									93 text Vacancy & personal eligibility
+								94 text Not verified. Check the employer’s original advert, closing date and your circumstances before applying.
+								95 disclosure triangle Take this role to your workspace
+									96 text Take this role to your workspace
+								97 container
+									98 disclosure triangle How these notes work
+										99 text How these notes work
+									100 link Sponsor Intel / help & current release ↗, Value: sponsorintel.london/browser-extension
+			101 pop up button Tab search
+			102 container
+				103 tab group
+					104 tab (selected, settable, boolean) Sponsor Intel / Job notes — fictional browsing preview, Value: on
+						105 button Close
+			106 button New Tab
+	107 close button
+	108 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	109 minimize button
+110 menu bar
+	111 Chrome
+	112 File
+	113 Edit
+	114 View
+	115 History
+	116 Bookmarks
+	117 Profiles
+	118 Tab
+	119 Window
+	120 Help
+
+The focused UI element is 76 button Read full description

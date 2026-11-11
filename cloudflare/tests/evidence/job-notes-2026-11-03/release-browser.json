@@ -1,0 +1,19 @@
+{
+  "observedAt": "2026-11-03T22:13:39.324Z",
+  "stage": "isolated 2.98.13 build",
+  "mobilePage": {
+    "width": 390,
+    "scrollWidth": 390
+  },
+  "mobilePolicy": {
+    "scrollWidth": 390,
+    "width": 390
+  },
+  "desktop": {
+    "scrollWidth": 1384,
+    "width": 1384
+  },
+  "download": "/downloads/sponsor-intel-job-notes-0.2.1.zip",
+  "profileImportLive": false,
+  "temporaryViewportReset": true
+}

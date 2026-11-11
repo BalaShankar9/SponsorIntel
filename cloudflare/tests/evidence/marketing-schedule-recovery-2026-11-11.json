@@ -1,0 +1,137 @@
+{
+  "observed_at": "2026-11-11T18:12:46.382120+00:00",
+  "scope": "Prepared schedule-record recovery in actual MarketingDesk and isolated ledger; fictional local QA",
+  "prepared_version": "2.99.0",
+  "base_head": "ebf035776875fb58e455683eb12b3f6174223fd5",
+  "source_sha256": {
+    "src/marketing-desk.tsx": "ab7e7f0017ccff9a7cf0a89db6c288cdc748790807b8c90d91968bd587f73dce",
+    "src/marketing-schedule.tsx": "e5cf6c34c7e4167559989714b98952243de068a26ea11801ff1034152bfd2078",
+    "tests/marketing-schedule-recovery.test.mjs": "183e4e1bfa32823b90d067ed33d5ae59dadd5b2628e9abf6d2fc844370ee509f",
+    "tests/marketing-schedule-recovery-browser.mjs": "9fc757b1ea31b78cbe06e9b9354158715d230875300be1b9fe5d4a17ec19b64c",
+    "tests/fixtures/marketing-schedule-recovery-preview.mjs": "69bdf7f45c4aeeed9ed3398e1a6750bed1004f8b741cfcfee4c2fb1468ba8144",
+    "tests/marketing-decision-browser.mjs": "64a6863dbfcf9743d15a7446332d8650f0717a0190f8d1247ebc632f8ac46a95"
+  },
+  "runtime": "Node 24.19.0",
+  "validation": {
+    "new_ledger_tests": 2,
+    "full_suite": {
+      "tests": 906,
+      "passed": 906,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "duration_ms": 75428.417042
+    },
+    "typescript": true,
+    "build": true,
+    "prerenders": 21,
+    "browser_budgets": true,
+    "deployment_dry_run": true,
+    "schedule_browser": {
+      "passed": true,
+      "checks": [
+        "Committed schedule with lost acknowledgement keeps its exact body, original times and locked snapshot through global refresh; keyboard replay adds no duplicate.",
+        "A latest-50 omission retains the pending card and identical replay until acknowledgement plus a fresh read.",
+        "403: a later retry rejection does not erase the original unknown save or unlock editing; eventual exact replay records one receipt.",
+        "429: a later retry rejection does not erase the original unknown save or unlock editing; eventual exact replay records one receipt.",
+        "Replaying the original schedule after a newer published observation preserves both receipts and displays the newer published state without downgrade.",
+        "A definitive first rejection permits correction, clears account/content and artwork attestations, and requires renewed checks before a fresh key.",
+        "A later reviewed version without artwork cannot replace the pending snapshot or ordered media hashes; a real stale-revision rejection preserves the exact uncertain request and locked attestations.",
+        "Acknowledged save plus failed GET offers Refresh saved schedule only; keyboard refresh releases the record without another POST.",
+        "A changed reviewed revision still resets an unsent schedule form and both attestations, without creating a schedule receipt.",
+        "scheduled first: same-turn schedule submit and editorial hold acquire one synchronous lock, dispatch one request and make one ledger decision.",
+        "held first: same-turn schedule submit and editorial hold acquire one synchronous lock, dispatch one request and make one ledger decision.",
+        "390px pending schedule remains visible after refresh with no horizontal overflow and a working keyboard retry.",
+        "No external page/server requests, real provider calls or browser exceptions."
+      ],
+      "check_count": 13,
+      "scenario_count": 12,
+      "external_requests": [],
+      "browser_errors": [],
+      "provider_calls": 0,
+      "injected_access_and_rate_limit_faults": true,
+      "owned_browser_and_fixture_closed": true
+    },
+    "decision_regression": {
+      "passed": true,
+      "check_count": 15,
+      "scenario_count": 14,
+      "checks": [
+        "held: committed lost acknowledgement retains exact request through global refresh, keyboard retry creates one event/receipt and preserves original observation",
+        "reviewed: committed lost acknowledgement retains exact request through global refresh, keyboard retry creates one event/receipt and preserves original observation",
+        "published: committed lost acknowledgement retains exact request through global refresh, keyboard retry creates one event/receipt and preserves original observation",
+        "uncertain: committed lost acknowledgement retains exact request through global refresh, keyboard retry creates one event/receipt and preserves original observation",
+        "Pending decision remains available when refreshed latest-50 results omit its brief, and exact replay creates no duplicate",
+        "403: rejection of a later retry does not clear the earlier uncertain request; eventual replay retains the same bytes and one receipt",
+        "429: rejection of a later retry does not clear the earlier uncertain request; eventual replay retains the same bytes and one receipt",
+        "Acknowledged write plus failed GET offers only refresh; refresh sends no second POST",
+        "Real self-review rejection unlocks editing and a new corrected decision key",
+        "Rapid double activation sends one in-flight request and one event",
+        "Acknowledged replay resets inputs from the latest receipt, preserves a concurrent newer observation and clears stale URL/outcome",
+        "Existing schedule save transitions to enabled delivery controls and a distinct observation receipt",
+        "A changed reviewed revision clears unsent schedule input and attestations without recording a schedule",
+        "390px pending decision has no horizontal overflow and the retry remains keyboard-focusable and operable",
+        "No external page/server requests or browser exceptions"
+      ],
+      "owned_browser_and_fixture_closed": true
+    }
+  },
+  "retained_initial_failures": [
+    {
+      "attempt": "schedule-01",
+      "finding": "Exact label-text selector included React textarea contents; original value survived refresh. Fixed harness to use exact accessible textbox name."
+    },
+    {
+      "attempt": "decision-regression-01",
+      "finding": "Chromium normalized :00 seconds and Playwright rejected the unnormalized input. Both harnesses omit trailing zero seconds without changing the intended instant."
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "mobile-pending-schedule.png",
+      "sha256": "6bcdee61a1fee685c46b5acf05f6d382b1f8224a60aa32b02df556dc7e79cd1e"
+    }
+  ],
+  "raw_evidence": {
+    "si-schedule-browser-20261111-01.json": "2d9f7fb66578ce97bb1ea3efe0391648bc232fc0f7336f0eb373a27a458691a2",
+    "si-schedule-browser-20261111-01.log": "2f51bce530693412aefa797427798ca96b16dd8893c4d841b01648c9d9bbfdc6",
+    "si-schedule-browser-20261111-02.json": "2b63c4fc523fd7a25f2e1630890334e98aa128eaad4fb1a5ed96db821fa1189c",
+    "si-schedule-browser-20261111-02.log": "0c8750440cb9ec8a3790d7e49b3401166d153dccba34c63aef2e63cb9cb2234a",
+    "si-schedule-browser-20261111-03.json": "cca7d072417c2367a6f2dd1d72fa8c5f43ed4739442c850901a5bf48c2678ecc",
+    "si-schedule-browser-20261111-03.log": "dc38144e862850987311b34e4b8eb706d56614f5f92d35ad780e215d5342b0b0",
+    "si-schedule-build-20261111-01.log": "e9d70adb52a5b9318a63f6b93799a5f39d720257ebc901c221894393dd74f205",
+    "si-schedule-decision-regression-20261111-01.json": "5606c2a5d6378002dcb0bfd769f7fd9428bba890fe5ad1ab19dd521ad7804921",
+    "si-schedule-decision-regression-20261111-01.log": "7209e1f091dcd20d9af2cc5322232f813f9200aa94dc8d123b9fe2703eda6707",
+    "si-schedule-decision-regression-20261111-02.json": "1663979353dd0e708dfacd77f78a47843a7d92d555dcf379ccb2048ead050378",
+    "si-schedule-decision-regression-20261111-02.log": "f561767ea09bff3aece75c9983664f187dc6b7c7315163e616ad00596f094f39",
+    "si-schedule-dryrun-20261111-01.log": "ecb2b83029ebfc23df6e6f6a400faa321439a5935c7886bb69389df6d6dde429",
+    "si-schedule-focused-20261111-01.log": "384eeb44e6fa2908d1802ada3ca12298ceaa8d755932d4ece145627786971c2d",
+    "si-schedule-release-20261111.json": "a9bed777ef9425d74a04a1f2c0464681803d19d6e04be75aa379be46138f0c71",
+    "si-schedule-selector-diagnostic-20261111.json": "5ccd5810b42578049f590e8fe5d4791329aa67228336fa2147ea159c8dfaea74",
+    "si-schedule-selector-diagnostic-20261111.png": "cde478c8593f18d2fb8a9094ef86221dd7b28c2058cd910b1592c168a1777ee6",
+    "si-schedule-suite-20261111-01.log": "9c8d2b6039f333f5da426d2c7989c6dc6d14d634077bf48d4284a7ecd58a1601"
+  },
+  "raw_evidence_location": "cloudflare/data/marketing-schedule-recovery-2026-11-11/ (ignored local evidence)",
+  "dependencies": {
+    "changed": false,
+    "same_day_review": "docs/XML_PARSER_PATCH-2026-11-11.md",
+    "package_sha256": "51238ebe138a5d815f380f577d0d7698178998ffb70d31486347c1cae9691f5f",
+    "lock_sha256": "c8b04e869026958060f0d0549e3b5371737287d2f153aa25e258da29224b9bf0"
+  },
+  "unrelated_tracked_changes_preserved": 8,
+  "private_archive_bytes": 41184059,
+  "production": {
+    "deployed": false,
+    "last_verified_version": "2.98.16",
+    "worker": "61cc4114-a9a3-4cef-83a2-29ad2b1cbbf5",
+    "rollback": "0ffc4794-45f2-4aa7-becf-05c40d934db8",
+    "schema_change": false,
+    "new_database_inspection": false,
+    "new_source_requests": 0,
+    "model_calls": 0,
+    "google_requests": 0,
+    "messages_or_sends": 0,
+    "private_saving_activation": false,
+    "capacity_and_original_supervisor_holds_preserved": true
+  }
+}

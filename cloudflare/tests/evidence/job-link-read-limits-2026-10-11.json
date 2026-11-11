@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-11",
+  "production_version": "2.52.0",
+  "prepared_version": "2.53.0",
+  "deployed": false,
+  "live_samples": {
+    "eligible": 35,
+    "matched": 28,
+    "needs_review": 7,
+    "awaiting": 0,
+    "items": [
+      {
+        "company": "Invinity Energy Systems",
+        "receipt_id": "a191917223911e755764e8d9",
+        "url": "https://jobs.lever.co/invinity/57248770-cd29-426c-a7a8-02fad6d8199b",
+        "http_status": 200,
+        "reason": "request_or_read_unavailable",
+        "historical_cause_confirmed": false
+      },
+      {
+        "company": "Numan",
+        "receipt_id": "17b0f6fa602056d530615cd1",
+        "url": "https://jobs.eu.lever.co/numan/1fc67d80-6a73-431b-8f7e-60d974e36e0a",
+        "http_status": 200,
+        "reason": "request_or_read_unavailable",
+        "historical_cause_confirmed": false
+      },
+      {
+        "company": "Octopus Energy",
+        "receipt_id": "af1709fd460e75e8372a7067",
+        "url": "https://jobs.lever.co/octoenergy/dd8fc42f-9c31-4bf0-9c18-a17965d611f3",
+        "http_status": 200,
+        "reason": "request_or_read_unavailable",
+        "historical_cause_confirmed": false
+      },
+      {
+        "company": "Wintermute",
+        "receipt_id": "56b54f1be86b835ca1077d40",
+        "url": "https://jobs.lever.co/wintermute-trading/cbc68e87-442f-4724-b3c5-c1f0bb3da80c",
+        "http_status": 200,
+        "reason": "request_or_read_unavailable",
+        "historical_cause_confirmed": false
+      },
+      {
+        "company": "WEP Clinical",
+        "receipt_id": "d4fbbce120f0412c894e7fc2",
+        "url": "https://jobs.lever.co/wepclinical/d20d4dab-cd89-4ef3-a93c-a1c4193d23bb",
+        "http_status": 200,
+        "reason": "request_or_read_unavailable",
+        "historical_cause_confirmed": false
+      },
+      {
+        "company": "Zeeco",
+        "receipt_id": "16408e3ea77224db279bacb5",
+        "url": "https://jobs.lever.co/zeeco/894201ea-d63b-4135-a0d2-1820d2c1c7a1",
+        "http_status": 200,
+        "reason": "request_or_read_unavailable",
+        "historical_cause_confirmed": false
+      },
+      {
+        "company": "Zopa",
+        "receipt_id": "f673862852a04e174aebe1d0",
+        "url": "https://jobs.lever.co/zopa/2126949a-ebe9-4308-a1bc-f3fa3effd57b",
+        "http_status": 200,
+        "reason": "request_or_read_unavailable",
+        "historical_cause_confirmed": false
+      }
+    ]
+  },
+  "manual_observation": {
+    "at": "2026-10-11T12:14:21.387Z",
+    "url": "https://jobs.lever.co/invinity/57248770-cd29-426c-a7a8-02fad6d8199b",
+    "http_status": 200,
+    "content_type": "text/html; charset=utf-8",
+    "content_length_header": null,
+    "byte_limit": 500000,
+    "crossing_chunk_observed_bytes": 507904,
+    "result": "over_500000_byte_limit",
+    "full_body_retained": false,
+    "browser_original_title_matches": true,
+    "browser_original_refuses_sponsorship": true,
+    "application_submitted": false,
+    "scope": "One new bounded read and original browser inspection; not an explanation of historical failures or a scheduled check."
+  },
+  "validation": {
+    "node": "24.19.0",
+    "tests": 521,
+    "failed": 0,
+    "duration_ms": 107030.8765,
+    "typescript": "passed",
+    "production_build": "passed",
+    "public_prerenders": 17,
+    "asset_budgets": "passed",
+    "deployment_dry_run": "passed",
+    "actual_isolated_workerd_d1": {
+      "size_reason_preserved": true,
+      "cancelled_stream": true,
+      "job_unchanged": true,
+      "allowances_retained": true,
+      "replay_no_fetch": true,
+      "external_network_calls": 0
+    },
+    "browser": {
+      "exact_owner_component": true,
+      "fictional_receipts": true,
+      "new_limit_and_unknown_legacy_distinct": true,
+      "viewport_width": 390,
+      "document_width": 390,
+      "override_reset": true
+    },
+    "initial_js_bytes": 363654,
+    "initial_js_gzip": 111013,
+    "disk_gib_before_suite": 4.0,
+    "dependency_install": false
+  },
+  "production_mutations": {
+    "jobs": 0,
+    "reviews": 0,
+    "sources": 0,
+    "forced_refreshes": 0,
+    "model_calls": 0,
+    "social_sends": 0,
+    "emails": 0,
+    "budget_resets": 0
+  },
+  "remaining": [
+    "Existing seven sample findings remain unresolved.",
+    "No response ceiling, timeout, redirect, approval, pause or replay control changed.",
+    "Existing Cloudflare renewal approval, fresh recovery inspection, deployment and new genuine scheduled receipts remain pending."
+  ],
+  "source_sha256": {
+    "cloudflare/worker/job-link-checks.js": "eb71f1edad14da3c1eb676344d57cf9954e6923bed6cc548d6648d84083d9586",
+    "cloudflare/src/job-link-health.tsx": "065e0e03d952d82e64e437b993be2cb2d30e652d9e088e9e3b0c76d453bf1c0b",
+    "cloudflare/tests/job-link-checks.test.mjs": "a0f525903deb6a7142da63c06086d6e16385a135d7106c81c19963e420a0c80f",
+    "cloudflare/tests/job-link-body-runtime.test.mjs": "da27431b46ffaa9bea7ba55ac73420e9cae4485e78c344d68bc897df256432ac",
+    "cloudflare/tests/job-link-health-view.test.mjs": "78a31568a54cfb4ad5d4090652ada6b6c220b2c73789d8171c23fcff6a97c646"
+  }
+}

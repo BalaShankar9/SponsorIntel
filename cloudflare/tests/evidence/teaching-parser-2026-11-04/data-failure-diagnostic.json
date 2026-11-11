@@ -1,0 +1,56 @@
+{
+  "scope": "Filtered GET reads using own IP, QA exclusion header and exact deployed version; no private requests",
+  "events": [
+    {
+      "timestamp": 1793789944533,
+      "outcome": "ok",
+      "script_version": {
+        "id": "61cc4114-a9a3-4cef-83a2-29ad2b1cbbf5"
+      },
+      "path": "/api/health",
+      "status": 200,
+      "logs": [],
+      "exceptions": []
+    },
+    {
+      "timestamp": 1793789986958,
+      "outcome": "ok",
+      "script_version": {
+        "id": "61cc4114-a9a3-4cef-83a2-29ad2b1cbbf5"
+      },
+      "path": "/api/jobs?limit=1",
+      "status": 500,
+      "logs": [
+        {
+          "level": "error",
+          "message": [
+            "{\"event\":\"request_failed\",\"message\":\"D1_ERROR: Your account has exceeded D1's free tier daily row read limit. Upgrade to a paid plan or wait until tomorrow (midnight UTC) to continue. See https://developers.cloudflare.com/d1/platform/limits/ for more details.\"}"
+          ]
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "timestamp": 1793789986960,
+      "outcome": "ok",
+      "script_version": {
+        "id": "61cc4114-a9a3-4cef-83a2-29ad2b1cbbf5"
+      },
+      "path": "/api/health",
+      "status": 200,
+      "logs": [],
+      "exceptions": []
+    },
+    {
+      "timestamp": 1793789986950,
+      "outcome": "ok",
+      "script_version": {
+        "id": "61cc4114-a9a3-4cef-83a2-29ad2b1cbbf5"
+      },
+      "path": "/api/jobs/sources",
+      "status": 200,
+      "logs": [],
+      "exceptions": []
+    }
+  ]
+}

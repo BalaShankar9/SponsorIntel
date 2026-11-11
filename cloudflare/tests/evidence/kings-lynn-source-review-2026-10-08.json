@@ -1,0 +1,48 @@
+{
+  "observed_date": "2026-10-08",
+  "school": {
+    "name": "King's Lynn Academy",
+    "urn": "136202",
+    "organisation_slug": "king-s-lynn-academy"
+  },
+  "legal_employer": {
+    "name": "Eastern Multi-Academy Trust",
+    "company_number": "07338780",
+    "source": "https://find-and-update.company-information.service.gov.uk/company/07338780",
+    "register": {
+      "id": "117def56da94d6962dbec248",
+      "name": "Eastern Multi-Academy Trust",
+      "city": "King's Lynn",
+      "county": "Norfolk",
+      "ratings": "[\"Worker (A rating)\"]",
+      "routes": "[\"Skilled Worker\"]",
+      "skilled": 1,
+      "source_date": "2026-10-07",
+      "checked_at": "2026-10-08T07:15:42.693Z"
+    }
+  },
+  "source_admission": "held_unconfigured",
+  "reason": "Drama role closing dates conflict between DfE and the linked employer portal",
+  "roles": [
+    {
+      "title": "Teacher of English",
+      "employer_reference": "3600-R0185",
+      "dfe_deadline": "2026-10-19T23:59:00+01:00",
+      "employer_closing_date": "2026-10-19",
+      "screening_viewed": true,
+      "screening_answers_entered": false,
+      "application_submitted": false
+    },
+    {
+      "title": "Teacher of Drama",
+      "employer_reference": "3600-R0174",
+      "dfe_deadline": "2026-10-21T23:59:00+01:00",
+      "employer_closing_date": "2026-10-16",
+      "dfe_application_link_followed": true,
+      "redirected_role_identity_observed": true
+    }
+  ],
+  "production_records_created": 0,
+  "personal_data_submitted": false,
+  "portal_session_identifiers_retained": false
+}

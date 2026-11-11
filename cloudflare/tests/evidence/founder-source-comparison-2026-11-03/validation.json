@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "checked_at": "2026-11-03T19:26:21.099Z",
+  "node": "v24.19.0",
+  "checks": {
+    "two_response_byte_hashes": true,
+    "baseline_file_hash": true,
+    "three_reextracted_bodies": true,
+    "three_exact_body_title_withdrawal_matches": true,
+    "six_recomputed_content_hashes": true,
+    "founder_module_unchanged": true,
+    "expiry_unchanged": true,
+    "inside_outside_fees_hidden": true
+  },
+  "founder_module_sha256": "6fbed16e6927802cf6b6a52465f0db18ba75dc3d8875eca659eedbe4a5a62126",
+  "files": {
+    "README.md": {
+      "bytes": 2015,
+      "sha256": "1081de7e30d3b7651e4882bf44aa11d76c184c4fa4228fb540d4df6bc0e229f0"
+    },
+    "comparison.json": {
+      "bytes": 3879,
+      "sha256": "855473ec7a40839bad40e07a6352a7bb59b91445a88f0bf96014772c14f3e502"
+    },
+    "envestors-observation.json": {
+      "bytes": 1205,
+      "sha256": "1e169eab751d6ef322f10b5bd30138505322e58019c96bc315deb8daa13a4fba"
+    },
+    "envestors-programmes.jpg": {
+      "bytes": 66684,
+      "sha256": "b0340f53f450239d8f6670418aa41d1ddb524e812e766cbe6e4cd2ecd4548d1c"
+    },
+    "founder-current.json": {
+      "bytes": 4999,
+      "sha256": "c4c01df67c99bfef7ecb3bf614e8cbc2589343451921ad1b0c933da0ca594c53"
+    },
+    "founder-eligibility-current.json": {
+      "bytes": 1764,
+      "sha256": "1f39f336e44a0dc6f1991384824a09877a89e8f5c700df0fb9c8ac0cecaaaf19"
+    },
+    "founder-guide.json": {
+      "bytes": 57154,
+      "sha256": "938e1baa8ec3e2527b292318650bb9035ff579a57b08e8255e7cfa68857d0057"
+    },
+    "healthcare-guide.json": {
+      "bytes": 29562,
+      "sha256": "adaba816a1bb7105a9d5a77f8404b8ff4f1f94311d806b3a43f207009e971b06"
+    },
+    "ihs-current.json": {
+      "bytes": 2476,
+      "sha256": "d5c6cabb14a4a4296352ee455bcda5536b8d91f5cb83bc858902d295079ba2ba"
+    }
+  },
+  "limitations": [
+    "No independent legal review",
+    "Not a complete sixteen-source renewal",
+    "No build, deployment, production change or browser expiry verification"
+  ],
+  "existing_founder_tests": {
+    "passed": 5,
+    "failed": 0,
+    "skipped": 0,
+    "duration_ms": 106.979166,
+    "scope": "Existing local expiry, fee, workbook and directory checks; not live browser or independent legal validation"
+  }
+}

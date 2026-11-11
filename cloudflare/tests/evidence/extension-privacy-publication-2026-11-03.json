@@ -1,0 +1,71 @@
+{
+  "recorded_at": "2026-11-03T16:13:46.302404+00:00",
+  "owner_authorization": "Approve this policy for publication",
+  "scope": "Exact text between rules in docs/EXTENSION_PRIVACY_DRAFT.md at fc5256f011405fef434a4ad78a995df2163c5f6d; policy only, not store submission",
+  "approved_draft_sha256": "8fbd60620bf58b834d6d129ac3491965c8d43e86585e7d79770b10d6d1628b60",
+  "approved_copy_sha256": "cc7506518a525e50716b17c4079e03473809f261f2191008b423846910094a73",
+  "candidate_html_sha256": "8ee6f2e586c6421bfa9f380faf75a73d48970394325c89b4bd4690ad492fcc46",
+  "public_path": "/extension-privacy.html",
+  "state": "published_and_http_verified",
+  "extension_archive_unchanged": true,
+  "schema_changed": false,
+  "store_submission": false,
+  "validation": {
+    "targeted_tests": 18,
+    "targeted_pass": 18,
+    "targeted_fail": 0,
+    "initial_test_invocation": "wrong working directory; no tests found; corrected cloudflare directory passed",
+    "typecheck_build_prerenders_browser_budgets": "passed; 21 prerenders; static policy copied by Vite",
+    "approved_copy_elements_match": 21,
+    "policy_scripts": 0,
+    "mobile_width": 390,
+    "mobile_scroll_width": 390,
+    "browser_scope": "local static policy, not installed extension or live browser",
+    "isolated_targeted_pass": 18,
+    "dry_run": "passed",
+    "desktop_width": 1384,
+    "desktop_scroll_width": 1384,
+    "mobile_anchor": "#limited-use",
+    "mobile_anchor_heading_top": 23.96875,
+    "static_layout_refinement": "contents moved after title/intro; public and built asset copied identically and locally reloaded/rechecked",
+    "screenshot_paths": [
+      "extension-privacy-2026-11-03/desktop-final.png",
+      "extension-privacy-2026-11-03/mobile-final.png"
+    ]
+  },
+  "isolation": {
+    "base_worker": "3ca5be9e-3c75-4c6e-8d9c-5f96297dcf41",
+    "release_version": "2.98.10",
+    "changed_existing_paths": [
+      "wrangler.jsonc",
+      "package-lock.json",
+      "package.json",
+      "tests/browser-extension.test.mjs",
+      "scripts/package-extension.mjs",
+      "worker/pages.js",
+      "src/extension-page.tsx",
+      "src/extension-entry.tsx"
+    ],
+    "migration_count": 46,
+    "founder_activation": false,
+    "archive_metadata_bytes_unchanged": true,
+    "rollback_worker": "3ca5be9e-3c75-4c6e-8d9c-5f96297dcf41"
+  },
+  "deployment": {
+    "id": "558139de-8ef2-4f19-8768-b78608bd0c24",
+    "versions": [
+      {
+        "version_id": "c64fe70f-4c83-4a6f-92ba-62cdcc598fe0",
+        "percentage": 100
+      }
+    ],
+    "created_on": "2026-11-03T16:21:59.179437Z",
+    "strategy": "percentage",
+    "rollback_worker": "3ca5be9e-3c75-4c6e-8d9c-5f96297dcf41",
+    "schema_changed": false,
+    "trigger_submission": false,
+    "queues_inherited": true,
+    "feature_commit": "2d87fa8f11656f0a132247917dd291b4d22729ea"
+  },
+  "live_verification": "extension-privacy-2026-11-03/live.json"
+}

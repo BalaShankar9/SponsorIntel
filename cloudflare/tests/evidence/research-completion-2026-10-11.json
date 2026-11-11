@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-10-11T13:25:51.600325+00:00",
+  "prepared_version": "2.53.0",
+  "production_version": "2.52.0",
+  "deployed": false,
+  "changes": {
+    "future_cloudflare_completion_receipt": true,
+    "raw_partial_text_or_thinking_retained": false,
+    "older_failure_backfill": false,
+    "model_request_options_changed": false,
+    "retries_added": false,
+    "limits_changed": false,
+    "schema_changed": false
+  },
+  "validation": {
+    "runtime": "Node 24.19.0",
+    "full_suite": {
+      "pass": 531,
+      "fail": 0,
+      "duration_ms": 107919.095958
+    },
+    "focused_research_tests": 48,
+    "typescript": true,
+    "build": true,
+    "prerendered_public_pages": 17,
+    "asset_budgets_unchanged": true,
+    "initial_javascript_bytes": 365180,
+    "initial_javascript_gzip_bytes": 111635,
+    "initial_css_bytes": 105467,
+    "initial_css_gzip_bytes": 22020,
+    "deployment_dry_run": true
+  },
+  "isolated_worker_d1": {
+    "fictional_response": true,
+    "one_synthetic_call": true,
+    "repeat_request_calls": 1,
+    "failed_receipt_unchanged": true,
+    "reserved_calls": 1,
+    "public_reports": 0,
+    "learned_observations": 0,
+    "outbound_services": 0
+  },
+  "browser": {
+    "fixture": "actual Research lab component with synthetic local API data and built base/owner CSS",
+    "mutations": 0,
+    "external_calls": 0,
+    "mobile_viewport": 390,
+    "mobile_page_width": 390,
+    "viewport_reset": true,
+    "preview_server_stopped": true,
+    "desktop_screenshot": "../outputs/sponsorintel-research-completion-2026-10-11.png",
+    "mobile_screenshot": "../outputs/sponsorintel-research-completion-mobile-2026-10-11.png"
+  },
+  "remaining": [
+    "Existing 10 October failure lacks original completion metadata; cause not reconstructed.",
+    "Research hold and development evaluator pause remain.",
+    "Cloudflare agreement approval and fresh recovery inspection before deployment.",
+    "Future genuine production receipt unobserved.",
+    "Hosted CI needs exact-head verification and remains subject to the account billing lock."
+  ]
+}

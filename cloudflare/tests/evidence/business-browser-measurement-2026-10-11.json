@@ -1,0 +1,328 @@
+{
+  "observed_at": "2026-10-11T19:52:17.374094+00:00",
+  "application_receipt": {
+    "id": "business-497707",
+    "state": "attention",
+    "trigger_kind": "scheduled",
+    "created_at": "2026-10-11T19:45:36.000Z",
+    "finished_at": "2026-10-11T19:46:05.253Z",
+    "measured_at": "2026-10-11T19:45:49.037Z",
+    "measurement": {
+      "version": 2,
+      "enabled_at": "2026-10-08T11:57:33.807Z",
+      "first_full_day": "2026-10-09",
+      "completed_days": 2,
+      "from": "2026-10-09",
+      "to": "2026-10-11",
+      "limitation": "Known signed-in owners and declared QA requests are excluded. Signed-out operators, repeat visits and bots may still be included. Counts are not unique people, conversions, saved files, submitted applications or job outcomes.",
+      "browser_evidence": {
+        "version": 1,
+        "kind": "browser_reported",
+        "state": "waiting_for_complete_day",
+        "enabled_at": "2026-10-11T18:44:54.941Z",
+        "first_full_day": "2026-10-12",
+        "from": "2026-10-11",
+        "to": "2026-10-11",
+        "completed_days": 0,
+        "evidence_checks": null,
+        "campaigns": [],
+        "limitation": "Browser-reported evidence checks, collected separately from server preparation responses. Known signed-in owners and declared QA are excluded. Delivery may fail; repeated actions, signed-out operators and bots may remain. These are not unique people, cloud saves, AI quality judgments, downloads, applications or conversions. Earlier local use was not collected."
+      }
+    },
+    "reference": {
+      "state": "paused",
+      "dataset": "real-adverts-2026-10-08-compact-v2",
+      "original_state": "needs_attention",
+      "evaluated_adverts": 0,
+      "total_adverts": 50,
+      "dangerous_false_positives": 0,
+      "unsupported_refusals": 0,
+      "disputed_items": 0
+    },
+    "application_evaluation": {
+      "state": "paused",
+      "operation_state": "paused",
+      "progress_state": "ready",
+      "enabled": false,
+      "business_enabled": true,
+      "evaluation_enabled": false,
+      "pause_reason": "evaluation",
+      "campaign_id": "comparison-ab82508c3c1b5ae41fc5add0",
+      "completed": 0,
+      "total": 20,
+      "assessments": {
+        "assessable_outputs": 9,
+        "assessed_outputs": 9,
+        "unassessed_outputs": 0,
+        "needs_work": 6,
+        "incomplete": 0,
+        "stale": 0,
+        "groups": [],
+        "limited": false,
+        "automatic_promotion": false,
+        "limitation": "These are recorded owner assessments of fictional development outputs. Matching quotations do not prove support. They are not independently verified human judgments, a held-out accuracy score or approval to change customer generation."
+      }
+    },
+    "discovery": {
+      "checked_at": "2026-10-11T19:45:49.037Z",
+      "total": 14,
+      "unresolved": 7,
+      "overdue": 0,
+      "changed_links": 0,
+      "current_linked_jobs": 3,
+      "last_recorded_at": "2026-10-11T18:49:36.868Z",
+      "counts": [
+        {
+          "source_kind": "employer",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "employer",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "held",
+          "total": 2
+        },
+        {
+          "source_kind": "linkedin_job",
+          "state": "linked",
+          "total": 1
+        },
+        {
+          "source_kind": "linkedin_post",
+          "state": "rejected",
+          "total": 2
+        },
+        {
+          "source_kind": "recruiter",
+          "state": "rejected",
+          "total": 1
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "held",
+          "total": 5
+        },
+        {
+          "source_kind": "teaching_vacancy",
+          "state": "linked",
+          "total": 1
+        }
+      ],
+      "limitation": "Private sourcing records. A LinkedIn post, licence match or recorded judgment does not establish sponsorship eligibility. Linking a lead verifies its match to an existing current job; it neither publishes a job nor proves the lead caused a new discovery. Automated source candidates are identified separately from agent-assisted and owner reviews."
+    },
+    "jobs": {
+      "total": 928,
+      "employers": 36,
+      "offered": 21,
+      "conditional": 34,
+      "unavailable": 96,
+      "not_stated": 777,
+      "early_career": 51,
+      "salary": 144
+    },
+    "checks": [
+      {
+        "path": "/api/health",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/jobs",
+        "status": 200,
+        "ok": true,
+        "security": true,
+        "content": {
+          "ok": true,
+          "visible_roles": 12,
+          "matching_roles": 928,
+          "generated_at": "2026-10-11T19:45:50.062Z"
+        }
+      },
+      {
+        "path": "/insights",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 200,
+        "ok": true,
+        "security": true
+      },
+      {
+        "path": "/api/admin/session",
+        "status": 403,
+        "ok": true,
+        "security": true
+      }
+    ],
+    "result": {
+      "health": {
+        "findings": 7,
+        "high": 1
+      },
+      "supervision": {
+        "checked_at": "2026-10-11T19:45:41.525Z",
+        "checks": [
+          {
+            "kind": "research",
+            "action": "idle"
+          },
+          {
+            "kind": "marketing",
+            "action": "idle"
+          },
+          {
+            "kind": "applications",
+            "action": "paused"
+          }
+        ],
+        "reconciled": 0,
+        "needs_attention": 0,
+        "model_calls": 0,
+        "external_posts": 0
+      },
+      "search": {
+        "day": "2026-10-11",
+        "state": "completed",
+        "requests": 10,
+        "reused": true
+      },
+      "links": [],
+      "discovery": {
+        "day": "2026-10-11",
+        "run_id": "business-497688",
+        "claim": "c63e8a5b-0057-41b7-8803-854b5245a503",
+        "state": "completed",
+        "reason": "bounded_search_finished",
+        "started_at": "2026-10-11T00:46:04.638Z",
+        "finished_at": "2026-10-11T00:46:05.909Z",
+        "capacity": 2,
+        "reserved_requests": 4,
+        "requests": 3,
+        "retained": 2,
+        "inspected": 2,
+        "search_pages": 1,
+        "replayed": true
+      },
+      "opportunities": {
+        "checked_at": "2026-10-11T19:45:48.058Z",
+        "enabled": true,
+        "checked": 0,
+        "held": [],
+        "changed": [],
+        "external_attention": 0,
+        "limited": false,
+        "external_actions": 0
+      },
+      "cleanup": {
+        "state": "completed",
+        "stale_roles": 0,
+        "policy": "Hide records last observed over 72 hours ago; retain the records, feedback and customer workspaces."
+      },
+      "publication": {
+        "state": "not_due",
+        "next_due": "2026-10-14T16:50:43.330Z"
+      },
+      "marketing": {
+        "prepared": 0,
+        "external_posts_sent": 0
+      },
+      "editorial": {
+        "id": "marketing-2026-10-11",
+        "state": "no_post",
+        "result": {
+          "decision": "no_post",
+          "source_id": "",
+          "reason": "No fresh, non-duplicate source has a slot within its evidence expiry.",
+          "ranked": [],
+          "timing_reason": "Preserve the existing three-post rolling weekly limit and resolve delivery uncertainty first."
+        },
+        "reused": true
+      },
+      "research": {
+        "state": "held",
+        "research_id": null,
+        "detail": "Research was held by its availability or budget controls. No automatic retry today."
+      },
+      "applications": {
+        "state": "paused"
+      }
+    }
+  },
+  "platform_receipt": {
+    "id": "business-497707",
+    "versionId": "c28548d3-1c25-4617-abcd-cfa7f26cd9a8",
+    "queued": "2026-10-11T19:45:38.200Z",
+    "start": "2026-10-11T19:45:41.111Z",
+    "end": "2026-10-11T19:46:05.442Z",
+    "success": true,
+    "error": null,
+    "status": "complete",
+    "step_count": 15
+  },
+  "platform_snapshot_step": {
+    "name": "check-site-and-sources-1",
+    "success": true,
+    "returned_characters": 1042,
+    "full_output_available": false,
+    "full_measurement_cross_comparison": "unavailable: returned step output ends with [truncated output], including with a larger CLI output limit"
+  },
+  "source_budget": [
+    {
+      "day": "2026-10-11",
+      "requests": 364
+    }
+  ],
+  "AI_budget": [
+    {
+      "day": "2026-10-11",
+      "runs": 2,
+      "calls": 6
+    }
+  ],
+  "research_control": [
+    {
+      "campaign": "real-adverts-2026-10-08-compact-v2",
+      "enabled": 0,
+      "revision": 1
+    }
+  ],
+  "application_control": [
+    {
+      "enabled": 0
+    }
+  ],
+  "portman_control": [
+    {
+      "source_id": "portmandentex",
+      "paused": 1
+    }
+  ],
+  "excluded_health": {
+    "ok": true,
+    "version": "2.62.0",
+    "register": {
+      "date": "2026-10-09",
+      "count": 127981,
+      "checked_at": "2026-10-11T07:15:39.995Z"
+    }
+  },
+  "operator_triggered_workflows": 0,
+  "operator_production_writes": false,
+  "limitations": [
+    "Original D1 snapshot supplies measurement evidence; Cloudflare independently confirms the same run completed and its check step succeeded, not a full snapshot comparison.",
+    "First genuine scheduled business use of the new browser measurement boundary only.",
+    "The run remains attention for existing findings; provider completion is not all-clear.",
+    "First complete browser day is 12 October, available 13 October UTC.",
+    "Marketing reused its old daily context; new eligible planner context/performance use still unobserved.",
+    "No independent model quality, customer growth, new source publication or daily Codex instruction execution is established."
+  ]
+}

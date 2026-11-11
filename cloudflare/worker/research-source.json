@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "files": {
+    "migrations/0037_research_comparison.sql": "7e099a9818ddbe16da92c98235c4c62ebed811392d93b94b4cf98f822c04feb6",
+    "shared/research-completion.js": "9655d13b371677322bd346c98fc6bc581bcccec6b08b45d2803e4afe59cc1331",
+    "worker/agent-research.js": "1afab1cb96812c97cf98415386036f44185103b00a7bd05aa695918e2a23092d",
+    "worker/business-operations.js": "66879f1f854ec022721ff2e57da00d5759174d1097700f33839ae05b9be6d9e1",
+    "worker/reference-manifest.js": "3fea83cd376ec66c1af7ff4ea58cb9f9e5aa18a61d9434a6d3854adb0411817e",
+    "worker/research-candidate.js": "d84cca90ffe9a9c5d14ad99fa4040375c25bf1272044a212c531a05c83663a39",
+    "worker/research-contract.js": "4bbf6f014818d69f3336a2fa06e9b2177e7ce31f6edebdae8af963f058ae3abe",
+    "worker/research-model.js": "dbd8121e1c8231e4f3d9402351cf1ce92f3a8028566a7f3e2705f985aa4524e2",
+    "worker/research-reference-controls.js": "4186b5541d5578a28c3230638c7bddaf1502297083678ef7acde4730997233c2",
+    "worker/research-reference.js": "d4cd521ed7520166372470c0a848783faf9ccfe4e17bf3fcf6243a26fae89500",
+    "worker/research-workflow.js": "e9b0c7a1afe490139d20aec79d5dca6bb75efdf717d2a5a8f288fc360756fcc6"
+  },
+  "sha256": "cb02b055aa857d9133094c46a3b1b4deb9663a0ab304fe26205c660895d44489"
+}
