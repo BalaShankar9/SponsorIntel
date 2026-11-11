@@ -1,0 +1,18 @@
+{
+  "observed_at": "2026-11-11T10:29:00Z",
+  "observation_time_precision": "minute; tool responses observed in this minute",
+  "brand": {
+    "id": 7294726,
+    "label": "Sponsor Intel",
+    "timezone": "Europe/London",
+    "facebook_page": "1319703417896763",
+    "instagram": "sponsorintellondon"
+  },
+  "range": {
+    "from": "2026-11-03T00:00:00+00:00",
+    "to": "2026-12-11T23:59:59+00:00"
+  },
+  "pending_rows": 0,
+  "scope": "Metricool scheduled-only response; not native LinkedIn, WhatsApp or publication proof",
+  "mutations_performed": []
+}

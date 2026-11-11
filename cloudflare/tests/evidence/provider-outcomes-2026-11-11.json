@@ -1,0 +1,71 @@
+{
+  "observed_at": "2026-11-11T10:33:27.005429+00:00",
+  "provider_only": true,
+  "production_sql_executed": false,
+  "instances": [
+    {
+      "observed_at": "2026-11-11T10:33:21.517530+00:00",
+      "workflow": "sponsorintel-sources",
+      "id": "scheduled-1794357055003",
+      "exit_code": 0,
+      "lookup": "found",
+      "provider_keys": [
+        "id",
+        "params",
+        "trigger",
+        "versionId",
+        "queued",
+        "start",
+        "end",
+        "success",
+        "error",
+        "output",
+        "rollback",
+        "status",
+        "step_count",
+        "steps"
+      ],
+      "identity_matches": true,
+      "receipt": {
+        "id": "scheduled-1794357055003",
+        "versionId": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+        "queued": "2026-11-11T00:30:56.468Z",
+        "start": "2026-11-11T00:30:58.300Z",
+        "end": "2026-11-11T00:37:39.884Z",
+        "success": true
+      },
+      "output_keys": [
+        "state",
+        "counts"
+      ],
+      "output": {
+        "state": "attention"
+      },
+      "steps_returned": 91
+    },
+    {
+      "observed_at": "2026-11-11T10:33:23.588986+00:00",
+      "workflow": "sponsorintel-business",
+      "id": "business-497989",
+      "exit_code": 1,
+      "provider_error_codes": [
+        "10400"
+      ],
+      "lookup": "not_found",
+      "execution_outcome": "unknown"
+    },
+    {
+      "observed_at": "2026-11-11T10:33:25.292931+00:00",
+      "workflow": "sponsorintel-business",
+      "id": "business-497990",
+      "exit_code": 1,
+      "provider_error_codes": [
+        "10400"
+      ],
+      "lookup": "not_found",
+      "execution_outcome": "unknown"
+    }
+  ],
+  "actions_performed": [],
+  "missing_is_terminal_proof": false
+}

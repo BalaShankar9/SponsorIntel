@@ -1,0 +1,278 @@
+{
+  "observed_at": "2026-11-11T10:36:08.844969+00:00",
+  "workflow": "sponsorintel-sources",
+  "id": "scheduled-1794357055003",
+  "provider_status": "complete",
+  "success": true,
+  "started_at": "2026-11-11T00:30:58.300Z",
+  "ended_at": "2026-11-11T00:37:39.884Z",
+  "application_output": {
+    "state": "attention",
+    "counts": {
+      "failed": 1,
+      "published": 36,
+      "skipped": 1
+    }
+  },
+  "provider_step_count": 91,
+  "failed_attempts": [
+    {
+      "step": "collect-check-publish-university-nottingham-attempt-1-1",
+      "started_at": "2026-11-11T00:31:28.351Z",
+      "ended_at": "2026-11-11T00:31:29.459Z",
+      "error_kind": "cpu_limit"
+    },
+    {
+      "step": "collect-check-publish-university-nottingham-attempt-2-1",
+      "started_at": "2026-11-11T00:33:29.439Z",
+      "ended_at": "2026-11-11T00:33:29.920Z",
+      "error_kind": "cpu_limit"
+    },
+    {
+      "step": "collect-check-publish-university-nottingham-attempt-3-1",
+      "started_at": "2026-11-11T00:35:30.527Z",
+      "ended_at": "2026-11-11T00:35:31.009Z",
+      "error_kind": "cpu_limit"
+    }
+  ],
+  "published_source_results": [
+    {
+      "source_id": "monzo",
+      "state": "published",
+      "count": 54
+    },
+    {
+      "source_id": "cloudflare",
+      "state": "published",
+      "count": 63
+    },
+    {
+      "source_id": "gocardless",
+      "state": "published",
+      "count": 9
+    },
+    {
+      "source_id": "deliveroo",
+      "state": "published",
+      "count": 125
+    },
+    {
+      "source_id": "stripe",
+      "state": "published",
+      "count": 54
+    },
+    {
+      "source_id": "figma",
+      "state": "published",
+      "count": 20
+    },
+    {
+      "source_id": "octopus-energy",
+      "state": "published",
+      "count": 71
+    },
+    {
+      "source_id": "funding-circle",
+      "state": "published",
+      "count": 28
+    },
+    {
+      "source_id": "zopa",
+      "state": "published",
+      "count": 29
+    },
+    {
+      "source_id": "zeeco",
+      "state": "published",
+      "count": 3
+    },
+    {
+      "source_id": "invinity",
+      "state": "published",
+      "count": 1
+    },
+    {
+      "source_id": "wep-clinical",
+      "state": "published",
+      "count": 2
+    },
+    {
+      "source_id": "nucleus",
+      "state": "published",
+      "count": 13
+    },
+    {
+      "source_id": "apothecom",
+      "state": "published",
+      "count": 2
+    },
+    {
+      "source_id": "precision-aq",
+      "state": "published",
+      "count": 2
+    },
+    {
+      "source_id": "axon",
+      "state": "published",
+      "count": 4
+    },
+    {
+      "source_id": "graphcore",
+      "state": "published",
+      "count": 117
+    },
+    {
+      "source_id": "bakerhicks",
+      "state": "published",
+      "count": 97
+    },
+    {
+      "source_id": "hr-wallingford",
+      "state": "published",
+      "count": 8
+    },
+    {
+      "source_id": "allica-bank",
+      "state": "published",
+      "count": 30
+    },
+    {
+      "source_id": "voleon",
+      "state": "published",
+      "count": 10
+    },
+    {
+      "source_id": "multiverse",
+      "state": "published",
+      "count": 25
+    },
+    {
+      "source_id": "callosum",
+      "state": "published",
+      "count": 10
+    },
+    {
+      "source_id": "sampura",
+      "state": "published",
+      "count": 1
+    },
+    {
+      "source_id": "seamflow",
+      "state": "published",
+      "count": 8
+    },
+    {
+      "source_id": "maven",
+      "state": "published",
+      "count": 13
+    },
+    {
+      "source_id": "numan",
+      "state": "published",
+      "count": 13
+    },
+    {
+      "source_id": "eucalyptus",
+      "state": "published",
+      "count": 29
+    },
+    {
+      "source_id": "university-bath",
+      "state": "published",
+      "count": 35
+    },
+    {
+      "source_id": "university-greater-manchester",
+      "state": "published",
+      "count": 3
+    },
+    {
+      "source_id": "university-southampton",
+      "state": "published",
+      "count": 17
+    },
+    {
+      "source_id": "university-cardiff-met",
+      "state": "published",
+      "count": 11
+    },
+    {
+      "source_id": "reviewed-ashby-sequence",
+      "state": "published",
+      "count": 5
+    },
+    {
+      "source_id": "reviewed-lever-wintermute-trading",
+      "state": "published",
+      "count": 14
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-130418--new-city-college",
+      "state": "published",
+      "count": 10
+    },
+    {
+      "source_id": "reviewed-teaching-vacancies-136202--king-s-lynn-academy",
+      "state": "published",
+      "count": 9
+    }
+  ],
+  "skipped_source_results": [
+    {
+      "source_id": "portmandentex",
+      "state": "skipped",
+      "error_code": "owner_paused"
+    }
+  ],
+  "source_list_observation": [
+    {
+      "id": "scheduled-1794357055003",
+      "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+      "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+      "status": "complete",
+      "created_on": "2026-11-11T00:30:56.795Z",
+      "modified_on": "2026-11-11T00:37:39.965Z",
+      "started_on": "2026-11-11T00:30:58.000Z",
+      "ended_on": "2026-11-11T00:37:39.000Z",
+      "trigger_source": "binding"
+    },
+    {
+      "id": "scheduled-1794270655003",
+      "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+      "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+      "status": "complete",
+      "created_on": "2026-11-10T00:30:57.956Z",
+      "modified_on": "2026-11-10T00:45:46.862Z",
+      "started_on": "2026-11-10T00:30:59.000Z",
+      "ended_on": "2026-11-10T00:45:46.000Z",
+      "trigger_source": "binding"
+    },
+    {
+      "id": "scheduled-1794184255003",
+      "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+      "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+      "status": "complete",
+      "created_on": "2026-11-09T00:30:58.694Z",
+      "modified_on": "2026-11-09T00:38:57.682Z",
+      "started_on": "2026-11-09T00:31:00.000Z",
+      "ended_on": "2026-11-09T00:38:57.000Z",
+      "trigger_source": "binding"
+    },
+    {
+      "id": "scheduled-1794141055003",
+      "version_id": "5f1fdc10-c828-4902-a001-3e5f93c0e63b",
+      "workflow_id": "d7cb8f8f-83e4-4e77-ba02-768f5fb30423",
+      "status": "complete",
+      "created_on": "2026-11-08T12:30:57.665Z",
+      "modified_on": "2026-11-08T12:33:38.543Z",
+      "started_on": "2026-11-08T12:30:59.000Z",
+      "ended_on": "2026-11-08T12:33:38.000Z",
+      "trigger_source": "binding"
+    }
+  ],
+  "application_database_receipts_available": false,
+  "source_reservations_currently_verified": false,
+  "public_current_job_counts_verified": false,
+  "scheduled_run_forced": false,
+  "interpretation": "Original provider outputs show publication at the overnight run, not present endpoint availability, later refreshes or sustainable capacity. No 06:30 instance appears in the returned current list; the absence cause is unknown."
+}

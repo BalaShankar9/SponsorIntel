@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-11-11T10:28:48.816440+00:00",
+  "metrics_excluded": true,
+  "requests": [
+    {
+      "path": "/api/health",
+      "observed_at": "2026-11-11T10:28:47.494432+00:00",
+      "http_status": 200,
+      "response_keys": [
+        "ok",
+        "version",
+        "register"
+      ],
+      "aggregate": {
+        "ok": true,
+        "version": "2.98.16",
+        "register": {
+          "date": "2026-10-27",
+          "count": 128008,
+          "checked_at": "2026-10-28T07:15:32.207Z"
+        }
+      }
+    },
+    {
+      "path": "/api/jobs?limit=1",
+      "observed_at": "2026-11-11T10:28:48.168556+00:00",
+      "http_status": 500,
+      "error_kind": "http_error"
+    },
+    {
+      "path": "/api/jobs/sources",
+      "observed_at": "2026-11-11T10:28:48.586506+00:00",
+      "http_status": 500,
+      "error_kind": "http_error"
+    }
+  ],
+  "production_write_attempted": false,
+  "source_refresh_forced": false
+}
