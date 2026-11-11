@@ -56,6 +56,8 @@ Always report separate counts for source rows, grouped register entries, distinc
 
 The first local release has complete baseline coverage of its supplied 11 November CSV and **no newly reviewed business enrichment**. The two historical production pilots are not imported as current approvals. Live register recovery, broad identity verification, company website/sector/careers coverage and integration remain open.
 
+The optional historical-evidence format in [SPONSOR_DOSSIER_EVIDENCE.md](SPONSOR_DOSSIER_EVIDENCE.md) attaches retained public observations to exact snapshot-bound entries. The initial packet selects 13 historical field claims for Numan and Animal Trust while preserving their original October observations and overdue follow-ups. It contributes **zero newly verified businesses**, does not copy production approvals and does not complete Stage B. Source summaries, receipt provenance and missing fields must remain visible; competing values cannot be silently resolved by an import.
+
 ## Reproduce Stage A
 
 Use `cloudflare/scripts/build-sponsor-dossiers.py` with an already downloaded CSV, exact HTTPS source URL, explicit source date, actual timezone-bearing observation time and a new output directory. It makes no network or database calls, refuses output replacement and uses only the Python standard library. `index.html` works locally; `data.json`, `register-entries.csv` and `receipt.json` retain the evidence boundaries. The CSV is spreadsheet-safe and is not a lossless replacement for the retained raw CSV/JSON.

@@ -1,0 +1,94 @@
+{
+  "observed_at": "2026-11-11T17:01:47.042405+00:00",
+  "kind": "offline_atlas_with_historical_business_evidence",
+  "source_baseline_commit": "e0bde84732a60467b35623502f9ee8424e546859",
+  "source": {
+    "source_date": "2026-11-11",
+    "observed_at": "2026-11-11T15:46:45.099861+00:00",
+    "source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+    "source_rows": 143009,
+    "grouped_entries": 127873,
+    "distinct_names": 127310
+  },
+  "coverage": {
+    "retained_evidence_entries": 2,
+    "retained_evidence_claims": 13,
+    "retained_evidence_observations": 6,
+    "newly_verified_businesses": 0
+  },
+  "evidence_packet_sha256": "ccb04d48ea8814fe91b0be2793ff70bdc6b6c2c24aa9883b6cf0555b79aaefb6",
+  "source_observations": "Original 20, 23 and 30 October times unchanged; no source revisited.",
+  "old_followups": [
+    "2026-10-27T12:00:00.000Z",
+    "2026-10-30T12:00:00.000Z"
+  ],
+  "code_hashes": {
+    "cloudflare/scripts/build-sponsor-dossiers.py": "f9c02d33480735c2e9d18b97d6755521199eb35ef463557db98016b48486b027",
+    "cloudflare/scripts/sponsor-dossiers-template.html": "50fa9ef99968ebe0e778bead1dc7cc2a044452657d4269ca85d56d9cce305ce5",
+    "cloudflare/tests/test_sponsor_dossiers.py": "16b1be53540f1d8000a97250dd477188877c404e3b89f9c97dc4bb152b362a88",
+    "cloudflare/tests/sponsor-dossiers-browser.mjs": "bfd879991ea0174402131a05f2c8ee46cf9b970f9e8eac9adb5b6f43be79ed8c",
+    "cloudflare/tests/sponsor-dossier-evidence-browser.mjs": "5506b2ae23b2bbe31a97918e39c9cf9ba28232f8104a218f162393ec21540414",
+    "docs/data/sponsor-atlas-historical-evidence-2026-11-11.json": "ccb04d48ea8814fe91b0be2793ff70bdc6b6c2c24aa9883b6cf0555b79aaefb6"
+  },
+  "generated_files": {
+    "data.json": {
+      "bytes": 28439137,
+      "sha256": "519648df1a16edc101d51acd31c393a7acff5e8e4c49cb88a6752bb529ff683f"
+    },
+    "index.html": {
+      "bytes": 28555629,
+      "sha256": "98ebcd709be0d860cc4aa8a044988a2fa316fc1afc48495ca9da24b18cd20645"
+    },
+    "register-entries.csv": {
+      "bytes": 25296217,
+      "sha256": "847571fe84cf01841ff03bc535e3291c8fb68eef80cfbcea9b7cf43f3cd20f3e"
+    },
+    "README.md": {
+      "bytes": 3728,
+      "sha256": "3e2e05a39cddcd3be034e7f60f8171acea3383408e09d0a143a6333eb0ad54fa"
+    }
+  },
+  "validation": {
+    "python_tests_passed": 24,
+    "full_register_browser_checks_passed": 21,
+    "fictional_browser_check_groups_passed": 9,
+    "all_baseline_entries_exactly_unchanged": true,
+    "all_source_rows_reconciled": true,
+    "selected_claims_observations_followups_exact": true,
+    "receipt_hashes_match": true,
+    "real_dossier_downloads_saved_and_compared": 2,
+    "desktop_mobile_visually_inspected": true,
+    "external_page_requests": 0,
+    "browser_errors": 0,
+    "independent_agent_assisted_review": "No blockers in exact two-subject evidence/receipt binding and final validator. Not current business approval."
+  },
+  "preserved_diagnostics": {
+    "initial_fictional_harness": "Incorrect zero-count assertion corrected; failed first-attempt receipt retained locally.",
+    "first_resize_capture": "Duplicate header in resize capture was not reproduced in fresh contexts; one DOM dialog/header verified; final captures use a fresh desktop page."
+  },
+  "delivery": {
+    "folder_name": "Sponsor company atlas 2026-11-11 evidence",
+    "zip_name": "Sponsor company atlas 2026-11-11 evidence.zip",
+    "zip_bytes": 26173911,
+    "zip_sha256": "5410b0d97ed157163e5de57cd4af2929bc1d8633137724657971c20a7799363f",
+    "zip_integrity_test": "passed",
+    "prior_baseline_artifact_preserved": true
+  },
+  "effects": {
+    "new_network_research_requests": 0,
+    "production_queries": 0,
+    "production_writes": 0,
+    "runtime_deployments": 0,
+    "new_leads": 0,
+    "new_jobs": 0,
+    "applications": 0,
+    "new_dependencies": 0
+  },
+  "limitations": [
+    "Historical research only; Stage B fresh identity approval and all-company enrichment remain open.",
+    "The source register snapshot is not a count of independently verified legal companies.",
+    "No account saving, current vacancy verification, owner-desk mutation or public website integration.",
+    "Production capacity, current recovery/schema and original business workflow gates remain unchanged."
+  ],
+  "unrelated_tracked_hashes_preserved": true
+}

@@ -2,6 +2,8 @@
 
 The 11 November owner request expands coverage to every worker-register organisation. Follow [SPONSOR_COMPANY_ATLAS_PLAN.md](SPONSOR_COMPANY_ATLAS_PLAN.md). The current reviewed desk remains a bounded pilot with a 500-record insertion ceiling; neither an offline atlas entry nor a candidate match is an approved business identity. Do not seed or raise that ceiling to satisfy a coverage headline.
 
+The local dossier format can retain selected public historical observations from the two pilots, as described in [SPONSOR_DOSSIER_EVIDENCE.md](SPONSOR_DOSSIER_EVIDENCE.md). These records remain explicitly unapproved for current use, with original dates and recheck notices. They do not supply current production IDs or concurrency state, renew a review, widen alias search, clear vacancy holds or replace this authenticated review procedure.
+
 ## 30 October follow-up — evidence retained, approvals not renewed
 
 Fresh browser checks at **14:30 UTC** still corroborate the two relationships: Animal Trust's primary terms name Animal Trust Vets CIC/company 07938025 and Companies House lists the active CIC; CQC identifies Vir Health Limited as also known as Numan and links numan.com. The CQC services page still distinguishes current Farringdon from archived Hatton Garden/Oxford Street locations. Its reuse terms continue to distinguish OGL material from third-party and logo rights. No endorsement/rating/logo is reused.

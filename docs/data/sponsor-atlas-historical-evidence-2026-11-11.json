@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "kind": "sponsor_intel_retained_business_evidence",
+  "register_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+  "prepared_at": "2026-11-11T16:46:13.445625+00:00",
+  "observations": [
+    {
+      "id": "animal_terms",
+      "url": "https://www.animaltrust.org.uk/terms",
+      "observed_at": "2026-10-30T14:30:02.020Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Animal Trust Vets CIC trading as Animal Trust; company 07938025; Cedab Road, Ellesmere Port CH65 4FE. Veterinary service terms do not establish recruitment syndication rights.",
+      "receipt_reference": "cloudflare/tests/evidence/employer-identity-review-2026-10-30.json",
+      "receipt_sha256": "a1e2f4dfbee23db31a927ac5d52f55c52442014fcb2b16ebe866147dba6a5a79",
+      "attribution": "Animal Trust business terms; retained agent-assisted observation."
+    },
+    {
+      "id": "animal_registry",
+      "url": "https://find-and-update.company-information.service.gov.uk/company/07938025",
+      "observed_at": "2026-10-30T14:30:11.770Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Active ANIMAL TRUST VETS C.I.C., company 07938025, SIC 75000 veterinary activities, Cedab Road Ellesmere Port.",
+      "receipt_reference": "cloudflare/tests/evidence/employer-identity-review-2026-10-30.json",
+      "receipt_sha256": "a1e2f4dfbee23db31a927ac5d52f55c52442014fcb2b16ebe866147dba6a5a79",
+      "attribution": "Companies House; retained agent-assisted observation."
+    },
+    {
+      "id": "numan_contact",
+      "url": "https://www.cqc.org.uk/provider/1-6118870417/contact",
+      "observed_at": "2026-10-30T14:30:22.953Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Vir Health Limited also known as Numan; Farringdon Point, 33 Farringdon Road, London EC1M 3JF; numan.com linked.",
+      "receipt_reference": "cloudflare/tests/evidence/employer-identity-review-2026-10-30.json",
+      "receipt_sha256": "a1e2f4dfbee23db31a927ac5d52f55c52442014fcb2b16ebe866147dba6a5a79",
+      "attribution": "Care Quality Commission; retained agent-assisted observation. Public-sector attribution: OGL v3.0; no logo, rating or endorsement."
+    },
+    {
+      "id": "numan_services",
+      "url": "https://www.cqc.org.uk/provider/1-6118870417/services",
+      "observed_at": "2026-10-30T14:30:23.785Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Farringdon service shown current; Hatton Garden and Oxford Street services labelled archived.",
+      "receipt_reference": "cloudflare/tests/evidence/employer-identity-review-2026-10-30.json",
+      "receipt_sha256": "a1e2f4dfbee23db31a927ac5d52f55c52442014fcb2b16ebe866147dba6a5a79",
+      "attribution": "Care Quality Commission; retained agent-assisted observation. Public-sector attribution: OGL v3.0; no logo, rating or endorsement."
+    },
+    {
+      "id": "animal_careers",
+      "url": "https://www.animaltrust.org.uk/careers/vacancies",
+      "observed_at": "2026-10-23T01:54:00.317Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "Primary careers site links BambooHR; footer states trading name, company number and business address; location examples are not all-workplace licence coverage. Retained location examples: Dewsbury, Barnsley and Wrexham.",
+      "receipt_reference": "cloudflare/tests/evidence/animal-trust-business-2026-10-23.json",
+      "receipt_sha256": "937ed1afe5afe3e5a9827c6625bc92e108b15aa0f7dc818f0fd328d2055b8759",
+      "attribution": "Animal Trust careers page; retained agent-assisted observation. Recruitment syndication rights were not established."
+    },
+    {
+      "id": "numan_profile",
+      "url": "https://www.cqc.org.uk/provider/1-6118870417/contact",
+      "observed_at": "2026-10-20T15:18:00.000Z",
+      "evidence_kind": "retained_operator_observation",
+      "summary": "CQC lists Vir Health Limited as also known as Numan and provides numan.com as its website. This connects the healthcare brand to the legal name; it does not establish the employing entity for every vacancy. Source: Care Quality Commission, Open Government Licence v3.0. Retained public fields: website https://www.numan.com/; CQC provider 1-6118870417; Healthcare service provider listed by the Care Quality Commission.",
+      "receipt_reference": "cloudflare/tests/evidence/business-identities-2026-10-20.json",
+      "receipt_sha256": "3c16599dd17e5caf176ea4ec84f79a85bbb61083bf11e72f3b1a0d5fe7480c70",
+      "attribution": "Care Quality Commission; retained agent-assisted observation. Public-sector attribution: OGL v3.0; no logo, rating or endorsement."
+    }
+  ],
+  "subjects": [
+    {
+      "entry_key": "e374b5c18b25d97f8f923944ae3ad225c5a5f3cb63cb4375748fccb91b781e3e",
+      "name": "Animal Trust Vets CIC",
+      "city": "Ellesmere Port",
+      "county": "Cheshire",
+      "source_rows": [
+        8671
+      ],
+      "prior_review_due_at": "2026-10-30T12:00:00.000Z",
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Animal Trust",
+          "observation_ids": [
+            "animal_terms"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "trading_name",
+          "observation_ids": [
+            "animal_terms"
+          ]
+        },
+        {
+          "field": "website",
+          "value": "https://www.animaltrust.org.uk/",
+          "observation_ids": [
+            "animal_terms",
+            "animal_careers"
+          ]
+        },
+        {
+          "field": "activity",
+          "value": "Veterinary care; Companies House records SIC 75000 (Veterinary activities).",
+          "observation_ids": [
+            "animal_registry"
+          ]
+        },
+        {
+          "field": "locations",
+          "value": "Historical practice examples: Dewsbury, Barnsley and Wrexham. This is not a complete workplace list or a licence-coverage finding.",
+          "observation_ids": [
+            "animal_careers"
+          ]
+        },
+        {
+          "field": "official_identifier",
+          "value": "Companies House 07938025",
+          "observation_ids": [
+            "animal_registry",
+            "animal_terms"
+          ]
+        },
+        {
+          "field": "careers_url",
+          "value": "https://www.animaltrust.org.uk/careers/vacancies",
+          "observation_ids": [
+            "animal_careers"
+          ]
+        }
+      ]
+    },
+    {
+      "entry_key": "073f7efac12783824d1e6d06c955969214a528132ddc5f7c3d7a693c9f9c7b79",
+      "name": "Vir Health Limited trading as Numan",
+      "city": "London",
+      "county": "",
+      "source_rows": [
+        135982
+      ],
+      "prior_review_due_at": "2026-10-27T12:00:00.000Z",
+      "claims": [
+        {
+          "field": "business_name",
+          "value": "Numan",
+          "observation_ids": [
+            "numan_contact"
+          ]
+        },
+        {
+          "field": "relationship",
+          "value": "trading_name",
+          "observation_ids": [
+            "numan_profile",
+            "numan_contact"
+          ]
+        },
+        {
+          "field": "website",
+          "value": "https://www.numan.com/",
+          "observation_ids": [
+            "numan_profile"
+          ]
+        },
+        {
+          "field": "activity",
+          "value": "Healthcare service provider listed by the Care Quality Commission.",
+          "observation_ids": [
+            "numan_profile"
+          ]
+        },
+        {
+          "field": "locations",
+          "value": "CQC service location observed on 30 October: Farringdon Point, 33 Farringdon Road, London EC1M 3JF. Hatton Garden and Oxford Street were labelled archived.",
+          "observation_ids": [
+            "numan_contact",
+            "numan_services"
+          ]
+        },
+        {
+          "field": "official_identifier",
+          "value": "CQC provider 1-6118870417",
+          "observation_ids": [
+            "numan_profile"
+          ]
+        }
+      ]
+    }
+  ]
+}
