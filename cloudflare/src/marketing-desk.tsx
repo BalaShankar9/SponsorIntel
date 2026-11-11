@@ -21,13 +21,32 @@ function BriefCard({brief,destination,onSaved,onRetain}:{brief:Brief;destination
  const[note,setNote]=useState(''),[checked,setChecked]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[mediaChecked,setMediaChecked]=useState(false);
  const[outcome,setOutcome]=useState<DecisionKind>('uncertain'),[postURL,setPostURL]=useState(''),[external,setExternal]=useState(b.receipts[0]?.external_id||'');
  const[scheduleLocked,setScheduleLocked]=useState(false),[pending,setPending]=useState(false),[saved,setSaved]=useState(false);
- const request=useRef<string|null>(null),sending=useRef(false);
+ const request=useRef<string|null>(null),sending=useRef(false),scheduleLock=useRef(false),latestBrief=useRef(brief);
+ latestBrief.current=brief;
  const receipt=b.receipts[0],editable=['proposed','held','reviewed'].includes(b.state),locked=busy||pending||saved||scheduleLocked;
  useEffect(()=>{
+  if(scheduleLock.current)return;
   setScheduleLocked(false);
   if(request.current||sending.current)return;
   setNote('');setChecked(false);setMediaChecked(false);setPostURL('');setOutcome('uncertain');setExternal(brief.receipts[0]?.external_id||'');setError('');
  },[brief.id,brief.revision,brief.state]);
+ function acquireSchedule(){
+  if(request.current||sending.current)return false;
+  if(scheduleLock.current)return true;
+  scheduleLock.current=true;setScheduleLocked(true);
+  setSnapshot(current=>current||{brief:b,destination:d});onRetain(b);
+  return true;
+ }
+ function finishSchedule(next:Brief|undefined){
+  if(!scheduleLock.current)return;
+  scheduleLock.current=false;setScheduleLocked(false);setSnapshot(null);onRetain(null);
+  setNote('');setChecked(false);setMediaChecked(false);setPostURL('');setOutcome('uncertain');setExternal(next?.receipts[0]?.external_id||'');setError('');
+ }
+ function releaseSchedule(){finishSchedule(latestBrief.current);}
+ async function refreshScheduleSaved(){
+  const latest=await onSaved();
+  finishSchedule(latest.items.find(item=>item.id===b.id));
+ }
  async function refreshSaved(){
   setBusy(true);setError('');
   try{const latest=await onSaved();request.current=null;setSnapshot(null);onRetain(null);setSaved(false);setPending(false);setNote('');setChecked(false);setMediaChecked(false);setPostURL('');setOutcome('uncertain');setExternal(latest.items.find(item=>item.id===b.id)?.receipts[0]?.external_id||'');}
@@ -35,7 +54,7 @@ function BriefCard({brief,destination,onSaved,onRetain}:{brief:Brief;destination
   finally{setBusy(false);}
  }
  async function decide(kind:DecisionKind){
-  if(scheduleLocked||saved||sending.current)return;
+  if(scheduleLock.current||scheduleLocked||saved||sending.current)return;
   const retrying=request.current!==null;
   sending.current=true;setBusy(true);setError('');
   try{
@@ -71,7 +90,7 @@ function BriefCard({brief,destination,onSaved,onRetain}:{brief:Brief;destination
    {saved?<div role="status"><p>Decision saved. No post was sent. Only the desk refresh remains.</p><button disabled={busy} onClick={()=>void refreshSaved()}>Refresh saved decision</button></div>:pending?<button disabled={busy||scheduleLocked} onClick={()=>void decide(outcome)}>{busy?'Confirming decision…':'Retry this same decision'}</button>:<div className="business-actions">{editable?<><button disabled={locked||note.trim().length<20} onClick={()=>void decide('held')}>Hold with reason</button>{b.state!=='reviewed'&&<button disabled={locked||!checked||(b.media.length>0&&!mediaChecked)||note.trim().length<20} onClick={()=>void decide('reviewed')}>Record review</button>}</>:<button disabled={locked||note.trim().length<20||(outcome==='published'&&(!postURL||(b.media.length>0&&!mediaChecked)))} onClick={()=>void decide(outcome)}>Save delivery observation</button>}</div>}
    {error&&<p className="career-error" role="alert">{error}</p>}
   </form>}
-  {b.state==='reviewed'&&<MarketingSchedule key={b.id+':'+b.revision} brief={b} destination={d} onSaved={async()=>{await onSaved();}} onLockChange={setScheduleLocked} disabled={busy||pending||saved}/>}
+  {b.state==='reviewed'&&<MarketingSchedule key={b.id+':'+b.revision} brief={b} destination={d} onSaved={refreshScheduleSaved} onAcquire={acquireSchedule} onRelease={releaseSchedule} disabled={busy||pending||saved}/>}
   <details className="marketing-history"><summary>Decision history · {b.events.length} recent records</summary>{b.events.map(e=><div key={e.revision}><strong>{e.kind.replaceAll('_',' ')} · v{e.version}</strong><small>{stamp(e.created_at)} · {e.actor.startsWith('owner:')?'Owner review':e.actor}</small><p>{detail(e.detail)}</p></div>)}</details>
  </details>;
 }

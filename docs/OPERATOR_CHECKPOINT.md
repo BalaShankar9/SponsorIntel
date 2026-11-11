@@ -1,6 +1,6 @@
 # Sponsor Intel operator checkpoint
 
-Updated **11 November 2026, 17:55 UTC**. Read `DAILY_OPERATOR.md` first. This records observations and open gates; it never clears a hold. The morning checkpoint is preserved in `history/OPERATOR_CHECKPOINT-2026-11-11-1036.md`. Current details: `OPERATIONS-2026-11-11.md`, `SPONSOR_ATLAS-2026-11-11.md`, `SPONSOR_ATLAS_EVIDENCE-2026-11-11.md`, `XML_PARSER_PATCH-2026-11-11.md`, `MARKETING_DECISION_RECOVERY-2026-11-11.md`, `FOUNDER_FINANCIAL_SCENARIOS-2026-11-11.md` and the dated receipts linked below.
+Updated **11 November 2026, 18:12 UTC**. Read `DAILY_OPERATOR.md` first. This records observations and open gates; it never clears a hold. The morning checkpoint is preserved in `history/OPERATOR_CHECKPOINT-2026-11-11-1036.md`. Current details: `OPERATIONS-2026-11-11.md`, `SPONSOR_ATLAS-2026-11-11.md`, `SPONSOR_ATLAS_EVIDENCE-2026-11-11.md`, `XML_PARSER_PATCH-2026-11-11.md`, `MARKETING_DECISION_RECOVERY-2026-11-11.md`, `MARKETING_SCHEDULE_RECOVERY-2026-11-11.md`, `FOUNDER_FINANCIAL_SCENARIOS-2026-11-11.md` and the dated receipts linked below.
 
 ## Authority and current service failure
 
@@ -69,6 +69,8 @@ Disk preflight: **25 GiB**; approximately **20.6 GiB** remained after preserving
 ## Prepared decision-save recovery
 
 The non-schedule Marketing desk form now preserves one exact uncertain hold/review/delivery request across retries, desk refreshes and omission from the latest-50 list. A later access/rate-limit rejection retains the earlier unknown request; acknowledgement followed by a failed read offers refresh only. Freshly read receipt fields replace old form values, and schedule revision resets remain intact. Seven focused tests, **876 full tracked-source tests**, build/21 prerenders/browser budgets/dry run and **15 browser checks / 14 fictional scenarios** pass. All original unknown outcomes and review/permission limits remain. This is local prepared **2.99.0**, **not deployed**; it establishes no real provider delivery. See `MARKETING_DECISION_RECOVERY-2026-11-11.md`. The active goal has concrete local progress; wider verified company enrichment still needs readable controls/capacity, and live integration retains its recovery gates.
+
+The separate schedule form now retains its reviewed snapshot, artwork and exact uncertain request through refresh/revision/latest-50 omission, preserves uncertainty after later rejected retries, and prevents simultaneous editorial/schedule writes. A saved record with a failed follow-up read offers refresh only. Two new ledger tests, **906 full tests**, build/21 prerenders/browser budgets/dry run, **13 schedule browser checks / 12 scenarios** and the existing **15 decision browser checks / 14 scenarios** pass. Two initial harness failures and their corrections are retained. This is prepared **2.99.0, not deployed**, with no provider action or production read/write. See `MARKETING_SCHEDULE_RECOVERY-2026-11-11.md`. The same eight unrelated edits and private archive remain preserved; package/lock hashes retain today's security review.
 
 ## Prepared Founder cash workbench
 

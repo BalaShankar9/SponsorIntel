@@ -120,7 +120,9 @@ try{
 
  await setup('reviewed','normal');await card().locator('.marketing-schedule > summary').click();
  const schedule=card().locator('.marketing-schedule');
- const at=Date.now(),localDate=value=>new Date(value).toISOString().slice(0,19);
+ // Chromium normalises zero seconds away; Playwright fill rejects a value that
+ // differs from the resulting input string. Omit only :00, preserving the instant.
+ const at=Date.now(),localDate=value=>new Date(value).toISOString().slice(0,19).replace(/:00$/,'');
  await schedule.getByLabel('Provider schedule reference').fill('fictional-saved-then-delivery');
  await schedule.getByLabel('Provider inspected at').fill(localDate(at-5000));await schedule.getByLabel('Provider scheduled for').fill(localDate(at+86400000));
  await schedule.getByLabel('Provider evidence and limitations').fill(note);await schedule.getByLabel('I checked the exact account, reviewed copy, evidence freshness, provider queue and posting allowance.').check();

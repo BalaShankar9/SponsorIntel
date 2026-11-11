@@ -1,27 +1,43 @@
 import React,{useRef,useState} from 'react';
 import {prepareScheduleSave,sendScheduleSave,ScheduleSaveError,type ScheduleBrief,type ScheduleDestination,type ScheduleForm} from '../shared/marketing-schedule-save.js';
 
-export function MarketingSchedule({brief,destination,onSaved,onLockChange,disabled=false}:{brief:ScheduleBrief;destination:ScheduleDestination;onSaved:()=>Promise<void>;onLockChange:(locked:boolean)=>void;disabled?:boolean}){
+export function MarketingSchedule({brief,destination,onSaved,onAcquire,onRelease,disabled=false}:{brief:ScheduleBrief;destination:ScheduleDestination;onSaved:()=>Promise<void>;onAcquire:()=>boolean;onRelease:()=>void;disabled?:boolean}){
  const[form,setForm]=useState<ScheduleForm>({external:'',observed:'',scheduled:'',note:'',observer:'agent_assisted',checked:false,mediaChecked:false});
  const[busy,setBusy]=useState(false),[pending,setPending]=useState(false),[saved,setSaved]=useState(false),[error,setError]=useState('');
  const request=useRef<string|null>(null),sending=useRef(false);
  const locked=pending||saved||busy,timezone=Intl.DateTimeFormat().resolvedOptions().timeZone;
  const update=(key:keyof ScheduleForm,value:string|boolean)=>setForm(f=>({...f,[key]:value}));
+ async function refreshSaved(){
+  if(sending.current)return;
+  sending.current=true;setBusy(true);setError('');
+  try{await onSaved();}
+  catch{setError('The schedule record was saved, but the desk could not refresh. Refresh this saved schedule below; do not record it again.');}
+  finally{sending.current=false;setBusy(false);}
+ }
  async function save(event:React.FormEvent){
   event.preventDefault();if(sending.current||saved||disabled)return;
+  const retrying=request.current!==null;
   sending.current=true;setBusy(true);setError('');
   try{
-   request.current??=prepareScheduleSave(brief,destination,form);
-   setPending(true);onLockChange(true);
+   const candidate=request.current??prepareScheduleSave(brief,destination,form);
+   // A parent-owned synchronous lock prevents a schedule and an editorial
+   // decision from both starting before React has rendered their disabled state.
+   if(!onAcquire()){setError('Another ledger decision is pending for this brief. Reconcile that record before saving this schedule observation.');return;}
+   request.current=candidate;
+   setPending(true);
    await sendScheduleSave(request.current);
    setSaved(true);setPending(false);
   }catch(e){
    setError((e as Error).message);
-   if(!request.current||(e instanceof ScheduleSaveError&&!e.uncertain)){request.current=null;setPending(false);onLockChange(false);}
+   // Rejecting a later retry says nothing about the earlier unknown outcome.
+   if(!request.current||(!retrying&&e instanceof ScheduleSaveError&&!e.uncertain)){
+    request.current=null;setPending(false);setForm(current=>({...current,checked:false,mediaChecked:false}));onRelease();
+   }
    return;
   }finally{sending.current=false;setBusy(false);}
-  // A failed read after an acknowledged write must never offer another save.
-  try{await onSaved();}catch{setError('The record was saved, but the desk could not refresh. Refresh the desk to view it; do not schedule or save another post.');}
+  // The parent releases its lock only after this acknowledged write has a fresh
+  // desk read. A failed read leaves the saved state intact and offers GET only.
+  await refreshSaved();
  }
  function date(key:'observed'|'scheduled',label:string){return <label>{label}<input type="datetime-local" step="1" required value={form[key]} onInput={e=>update(key,e.currentTarget.value)} onChange={e=>update(key,e.target.value)}/></label>;}
  return <details className="marketing-schedule">
@@ -39,8 +55,8 @@ export function MarketingSchedule({brief,destination,onSaved,onLockChange,disabl
     <label className="marketing-check"><input type="checkbox" checked={form.checked} onChange={e=>update('checked',e.target.checked)}/>I checked the exact account, reviewed copy, evidence freshness, provider queue and posting allowance.</label>
     {!!brief.media.length&&<label className="marketing-check"><input type="checkbox" checked={form.mediaChecked} onChange={e=>update('mediaChecked',e.target.checked)}/>I verified the ordered images and accessibility text match this reviewed version.</label>}
    </fieldset>
-   {pending&&!busy&&<p className="marketing-attention" role="status">Save outcome uncertain. The fields and original request are retained in this open page. Check the existing job; the retry below only repeats this ledger request. Reloading or leaving the page loses the pending request, so reconcile the saved ledger before starting again.</p>}
-   {saved?<p role="status">Schedule record saved. No post was sent. Refresh the marketing desk to inspect its retained receipt.</p>:<button type="submit" disabled={busy||disabled||(!pending&&(!form.checked||(!!brief.media.length&&!form.mediaChecked)))}>{busy?'Saving schedule record…':pending?'Retry this same ledger record':'Save schedule record'}</button>}
+   {pending&&!busy&&<p className="marketing-attention" role="status">Save outcome uncertain. The fields, original request and observation time are retained in this open page, including after a desk refresh. Check the existing job; the retry below only repeats this ledger request. Reloading or leaving the page loses the pending request, so reconcile the saved ledger before starting again.</p>}
+   {saved?<div role="status"><p>Schedule record saved. No post was sent. Only the desk refresh remains.</p><button type="button" disabled={busy||disabled} onClick={()=>void refreshSaved()}>Refresh saved schedule</button></div>:<button type="submit" disabled={busy||disabled||(!pending&&(!form.checked||(!!brief.media.length&&!form.mediaChecked)))}>{busy?'Saving schedule record…':pending?'Retry this same ledger record':'Save schedule record'}</button>}
    {error&&<p className="career-error" role="alert">{error}</p>}
   </form>
  </details>;
