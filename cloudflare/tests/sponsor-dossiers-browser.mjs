@@ -84,7 +84,7 @@ try {
       const sourceIds=new Set(subject.claims.flatMap(claim=>claim.observation_ids));
       const expectedObservations=data.evidence.observations.filter(observation=>sourceIds.has(observation.id));
       const links=await page.locator('#historical-panel a').evaluateAll(nodes=>nodes.map(node=>node.href));
-      for (const observation of expectedObservations) assert.ok(links.includes(observation.url),'original source link retained');
+      for (const observation of expectedObservations) assert.ok(links.includes(new URL(observation.url).href),'original source link retained after browser URL serialization');
       await page.locator('.claim-evidence').first().locator('summary').first().click();
       const pending=page.waitForEvent('download'); await page.locator('#export-dossier').click();
       const saved=join(qa,'historical-dossier-'+key.slice(0,16)+'.json'); await (await pending).saveAs(saved);

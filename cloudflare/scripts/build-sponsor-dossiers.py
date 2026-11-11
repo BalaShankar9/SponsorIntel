@@ -254,6 +254,15 @@ def evidence_stamp(value, label):
         raise ValueError(f"Invalid {label}") from error
 
 
+def retained_review_date(value):
+    if not isinstance(value, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value):
+        raise ValueError("Retained review date must be YYYY-MM-DD without an inferred time")
+    try:
+        return dt.date.fromisoformat(value)
+    except ValueError as error:
+        raise ValueError("Invalid retained review date") from error
+
+
 def public_evidence_url(value):
     evidence_text(value, 1, 1500, "Public evidence URL")
     if value != value.strip() or re.search(r"[\s\\]", value):
@@ -296,7 +305,7 @@ def add_retained_evidence(dataset, raw, validation_at=None):
     except (UnicodeDecodeError, json.JSONDecodeError, RecursionError) as error:
         raise ValueError("Evidence packet must be valid UTF-8 JSON") from error
     exact_keys(packet, ["schema_version", "kind", "register_sha256", "prepared_at", "observations", "subjects"], "Evidence packet")
-    if type(packet["schema_version"]) is not int or packet["schema_version"] != 1 or packet["kind"] != "sponsor_intel_retained_business_evidence":
+    if type(packet["schema_version"]) is not int or packet["schema_version"] not in {1, 2} or packet["kind"] != "sponsor_intel_retained_business_evidence":
         raise ValueError("Unsupported retained-evidence schema")
     if packet["register_sha256"] != dataset["meta"]["source_sha256"]:
         raise ValueError("Evidence packet does not match these exact register bytes")
@@ -312,8 +321,12 @@ def add_retained_evidence(dataset, raw, validation_at=None):
     if not isinstance(subjects, list) or not 1 <= len(subjects) <= MAX_EVIDENCE_SUBJECTS:
         raise ValueError("Evidence packet requires 1 to 500 subjects")
     observation_ids, observation_values, retained_observations = set(), set(), []
-    observation_keys = ["id", "url", "observed_at", "evidence_kind", "summary", "receipt_reference", "receipt_sha256", "attribution"]
+    common_observation_keys = ["id", "url", "observed_at", "evidence_kind", "summary", "receipt_reference", "receipt_sha256", "attribution"]
     for observation in observations:
+        is_review = isinstance(observation, dict) and observation.get("evidence_kind") == "retained_operator_review"
+        if is_review and packet["schema_version"] != 2:
+            raise ValueError("Retained review dates require evidence schema 2")
+        observation_keys = common_observation_keys + (["reviewed_on"] if is_review else [])
         exact_keys(observation, observation_keys, "Retained observation")
         ident = observation["id"]
         if (not isinstance(ident, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.:-]{0,79}", ident)
@@ -321,9 +334,17 @@ def add_retained_evidence(dataset, raw, validation_at=None):
             raise ValueError("Observation identifiers must be unique bounded public references")
         observation_ids.add(ident)
         public_evidence_url(observation["url"])
-        if evidence_stamp(observation["observed_at"], "Source observation time") > prepared:
-            raise ValueError("A retained observation cannot be later than packet preparation")
-        if observation["evidence_kind"] != "retained_operator_observation":
+        if is_review:
+            if observation["observed_at"] is not None:
+                raise ValueError("Retained review dates require observed_at null; source observation time is unknown")
+            # Compare calendar dates only. The date belongs to the retained
+            # review; it does not supply an observation clock or timezone.
+            if retained_review_date(observation["reviewed_on"]) > prepared.date():
+                raise ValueError("A retained review date cannot be later than packet preparation date")
+        elif observation["evidence_kind"] == "retained_operator_observation":
+            if evidence_stamp(observation["observed_at"], "Source observation time") > prepared:
+                raise ValueError("A retained observation cannot be later than packet preparation")
+        else:
             raise ValueError("Only retained operator observations are accepted; not fresh primary quotations")
         evidence_text(observation["summary"], 10, 2000, "Retained observation summary")
         evidence_text(observation["attribution"], 1, 300, "Source attribution")
@@ -388,7 +409,7 @@ def add_retained_evidence(dataset, raw, validation_at=None):
     if used_observations != observation_ids:
         raise ValueError("Every retained observation must support a claim; remove dangling observations")
     # Mutate only after the entire packet validates, leaving rejected input inert.
-    dataset["evidence"] = {"schema_version": 1, "prepared_at": packet["prepared_at"], "packet_sha256": sha256(raw),
+    dataset["evidence"] = {"schema_version": packet["schema_version"], "prepared_at": packet["prepared_at"], "packet_sha256": sha256(raw),
                            "observations": retained_observations, "subjects": retained_subjects}
     coverage = dataset["meta"]["coverage"]
     coverage.update(retained_evidence_entries=len(retained_subjects), retained_evidence_claims=claim_count,
@@ -402,6 +423,11 @@ def add_retained_evidence(dataset, raw, validation_at=None):
         "Retained summaries are not verbatim source quotations. Receipt hashes are declarations identifying retained files, not independent validation of their claims.",
         "All imported claims require owner review. Competing values remain unresolved; historical follow-up dates are preserved without renewal. No production state or approval is imported.",
     ])
+    if any(observation["evidence_kind"] == "retained_operator_review" for observation in retained_observations):
+        dataset["meta"]["limitations"].append(
+            "Date-only retained reviews identify when a review was recorded, not when an original source page was observed. "
+            "Their observed_at remains null: no source-observation time or timezone is inferred."
+        )
     return dataset
 
 
@@ -528,6 +554,11 @@ def build_pack(csv_path, source_url, source_date, observed_at, out, template_pat
            "Historical source observations, supporting receipt declarations and prior follow-up dates remain unchanged. "
            "Summaries are retained operator observations, not newly checked sources or verbatim quotations. "
            "Competing claims are unresolved; no current company/job verification or production approval is imported.\n\n" if enriched else "")
+        + ("Some retained records supply only a review date (`reviewed_on`) under schema 2. "
+           "This is the recorded review date, not an original source-page observation date. "
+           "Their `observed_at` is null; the original source-observation time is not recorded, and no midnight or timezone is inferred. "
+           "These records remain historical candidate evidence requiring owner review.\n\n"
+           if any(item["evidence_kind"] == "retained_operator_review" for item in retained.get("observations", [])) else "")
         + comparison_note
         + "\n".join(f"- {item}" for item in meta["limitations"])
         + f"\n\n{meta['attribution']} [OGL v3.0]({meta['licence_url']}).\n"

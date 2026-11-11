@@ -65,6 +65,13 @@ def packet_bytes(packet):
     return json.dumps(packet, ensure_ascii=False, indent=2).encode("utf-8")
 
 
+def review_packet(dataset):
+    packet = evidence_packet(dataset)
+    packet["schema_version"] = 2
+    packet["observations"][0].update(evidence_kind="retained_operator_review", observed_at=None, reviewed_on="2026-10-08")
+    return packet
+
+
 class RegisterDossiersTests(unittest.TestCase):
     def test_grouping_preserves_pairs_variants_and_every_source_record(self):
         result = data([
@@ -573,6 +580,159 @@ class RetainedEvidenceTests(unittest.TestCase):
             self.assertEqual(rows[1][9], packet["subjects"][0]["prior_review_due_at"])
             self.assertIn("zero newly verified businesses", (root / "valid/README.md").read_text())
             packet["register_sha256"] = "b" * 64; evidence.write_bytes(packet_bytes(packet))
+            with self.assertRaises(ValueError):
+                builder.build_pack(source, URL, DAY, OBSERVED, root / "invalid", template, evidence)
+            self.assertFalse((root / "invalid").exists())
+
+
+class RetainedReviewDateTests(unittest.TestCase):
+    def baseline(self):
+        return data([["Fictional Limited", "Cardiff", "", "A", "Skilled Worker"]])
+
+    def reject(self, mutate):
+        result = self.baseline(); original = copy.deepcopy(result); packet = review_packet(result)
+        mutate(packet)
+        with self.assertRaises(ValueError):
+            builder.add_retained_evidence(result, packet_bytes(packet), validation_at="2026-11-11T16:00:00Z")
+        self.assertEqual(result, original)
+
+    def test_review_date_is_preserved_without_source_observation_time_or_approval(self):
+        result = self.baseline(); baseline = copy.deepcopy(result); packet = review_packet(result); raw = packet_bytes(packet)
+        builder.add_retained_evidence(result, raw, validation_at="2026-11-11T16:00:00Z")
+        retained = result["evidence"]
+        self.assertEqual(retained["schema_version"], 2)
+        self.assertEqual(retained["packet_sha256"], hashlib.sha256(raw).hexdigest())
+        self.assertEqual(retained["observations"], packet["observations"])
+        self.assertIsNone(retained["observations"][0]["observed_at"])
+        self.assertEqual(retained["observations"][0]["reviewed_on"], "2026-10-08")
+        self.assertEqual(retained["subjects"][result["entries"][0][0]]["review_status"], "owner_review_required")
+        self.assertEqual(result["entries"], baseline["entries"])
+        self.assertEqual(result["meta"]["coverage"]["newly_verified_businesses"], 0)
+        self.assertEqual(result["meta"]["coverage"]["jobs"], "not_collected")
+        self.assertTrue(any("no source-observation time or timezone is inferred" in text for text in result["meta"]["limitations"]))
+        unchanged = copy.deepcopy(result)
+        with self.assertRaises(ValueError):
+            builder.add_retained_evidence(result, raw)
+        self.assertEqual(result, unchanged)
+
+    def test_schema_two_timestamped_records_keep_schema_one_payload_and_date_rules(self):
+        one, two = self.baseline(), self.baseline()
+        packet_one = evidence_packet(one); packet_two = copy.deepcopy(packet_one); packet_two["schema_version"] = 2
+        builder.add_retained_evidence(one, packet_bytes(packet_one))
+        builder.add_retained_evidence(two, packet_bytes(packet_two))
+        evidence_one, evidence_two = one.pop("evidence"), two.pop("evidence")
+        self.assertEqual(one, two)
+        self.assertEqual(evidence_one["schema_version"], 1)
+        self.assertEqual(evidence_two["schema_version"], 2)
+        for key in ["prepared_at", "subjects", "observations"]:
+            self.assertEqual(evidence_one[key], evidence_two[key])
+        for bad in [None, "2026-10-08", "2026-10-08T12:00:00", "2026-11-12T00:00:00Z"]:
+            packet = copy.deepcopy(packet_two); packet["observations"][0]["observed_at"] = bad
+            with self.subTest(observed_at=bad), self.assertRaises(ValueError):
+                builder.add_retained_evidence(self.baseline(), packet_bytes(packet))
+
+    def test_date_only_review_requires_schema_two_null_observation_and_exact_kind_fields(self):
+        mutations = [lambda p: p.update(schema_version=1), lambda p: p.update(schema_version=True),
+                     lambda p: p.update(schema_version=2.0), lambda p: p.update(schema_version=3),
+                     lambda p: p["observations"][0].pop("reviewed_on"),
+                     lambda p: p["observations"][0].pop("observed_at"),
+                     lambda p: p["observations"][0].update(evidence_kind="retained_operator_observation"),
+                     lambda p: p["observations"][0].update(evidence_kind="primary_source_quote")]
+        for mutate in mutations:
+            self.reject(mutate)
+        for nonnull in ["2026-10-08T00:00:00Z", "2026-10-08", "", False, 0, [], {}]:
+            with self.subTest(observed_at=nonnull):
+                self.reject(lambda p: p["observations"][0].update(observed_at=nonnull))
+        # A timestamped observation must not acquire a date-only review field,
+        # even when its observed_at remains valid and the extra value is null.
+        for version in [1, 2]:
+            for reviewed_on in [None, "2026-10-08"]:
+                packet = evidence_packet(self.baseline()); packet["schema_version"] = version
+                packet["observations"][0]["reviewed_on"] = reviewed_on
+                with self.assertRaises(ValueError):
+                    builder.add_retained_evidence(self.baseline(), packet_bytes(packet))
+
+    def test_review_dates_are_calendar_valid_and_never_later_than_preparation_date(self):
+        for bad in [None, True, 20261008, "", "2026-2-08", "2026-10-8", "2026-02-29", "2026-02-30", "0000-01-01",
+                    "2026-13-01", "2026-10-08T00:00:00Z", " 2026-10-08", "2026-10-08\n", "2026-11-12"]:
+            with self.subTest(reviewed_on=bad):
+                self.reject(lambda p: p["observations"][0].update(reviewed_on=bad))
+        for valid in ["2024-02-29", "2026-11-11"]:
+            result = self.baseline(); packet = review_packet(result); packet["observations"][0]["reviewed_on"] = valid
+            packet["prepared_at"] = "2026-11-11T00:00:00Z"
+            builder.add_retained_evidence(result, packet_bytes(packet), validation_at="2026-11-11T00:00:00Z")
+            self.assertEqual(result["evidence"]["observations"][0]["reviewed_on"], valid)
+            self.assertIsNone(result["evidence"]["observations"][0]["observed_at"])
+        self.reject(lambda p: p.update(prepared_at="2026-11-12T16:00:00Z"))
+
+    def test_mixed_review_and_observation_support_more_than_two_exact_subjects(self):
+        rows = [[name, "Cardiff", "", "A", "SW"] for name in ["Fictional One", "Fictional Two", "Fictional Three"]]
+        result = data(rows); packet = review_packet(result)
+        precise = evidence_packet(result)["observations"][0]; precise["id"] = "precise_source"
+        packet["observations"].append(precise)
+        original_subject = packet["subjects"][0]
+        for row in result["entries"][1:]:
+            subject = copy.deepcopy(original_subject)
+            subject.update(entry_key=row[0], name=row[1], city=row[2], county=row[3], source_rows=row[5])
+            packet["subjects"].append(subject)
+        packet["subjects"][1]["claims"][0]["observation_ids"].append("precise_source")
+        packet["subjects"][2]["claims"][0]["observation_ids"] = ["precise_source"]
+        builder.add_retained_evidence(result, packet_bytes(packet))
+        self.assertEqual(result["evidence"]["observations"], packet["observations"])
+        self.assertEqual(result["meta"]["coverage"]["retained_evidence_entries"], 3)
+        self.assertEqual(result["meta"]["coverage"]["retained_evidence_claims"], 9)
+        self.assertTrue(all(subject["review_status"] == "owner_review_required" for subject in result["evidence"]["subjects"].values()))
+
+    def test_schema_two_keeps_duplicate_private_binding_url_and_size_guards(self):
+        mutations = [lambda p: p["observations"][0].update(approval="approved"),
+                     lambda p: p["observations"][0].update(source_observed_at="2026-10-08T00:00:00Z"),
+                     lambda p: p["observations"][0].update(url="https://example.org/?token=secret"),
+                     lambda p: p["observations"][0].update(receipt_reference="docs/../private.json"),
+                     lambda p: p["observations"][0].update(summary="x" * 2001),
+                     lambda p: p["subjects"][0].update(source_rows=[True]),
+                     lambda p: p.update(register_sha256="b" * 64),
+                     lambda p: p["observations"].append({**p["observations"][0], "id": "duplicate_new_id"}),
+                     lambda p: p["subjects"][0]["claims"][0].update(observation_ids=["missing"])]
+        for mutate in mutations:
+            self.reject(mutate)
+        result = self.baseline(); raw = packet_bytes(review_packet(result))
+        repeated_date = raw.replace(b'"reviewed_on": "2026-10-08"', b'"reviewed_on": "2026-10-08", "reviewed_on": "2026-10-09"')
+        with self.assertRaisesRegex(ValueError, "Duplicate JSON"):
+            builder.add_retained_evidence(result, repeated_date)
+        with patch.object(builder, "MAX_EVIDENCE_BYTES", len(raw) - 1), self.assertRaises(ValueError):
+            builder.add_retained_evidence(result, raw)
+        for constant in ["MAX_EVIDENCE_SUBJECTS", "MAX_EVIDENCE_OBSERVATIONS"]:
+            with patch.object(builder, constant, 0), self.assertRaises(ValueError):
+                builder.add_retained_evidence(result, raw)
+
+    def test_review_dates_remain_distinct_historical_records_without_selected_winner(self):
+        result = self.baseline(); packet = review_packet(result)
+        other = {**packet["observations"][0], "id": "later_review", "reviewed_on": "2026-10-09"}
+        packet["observations"].append(other)
+        packet["subjects"][0]["claims"][0]["observation_ids"].append(other["id"])
+        builder.add_retained_evidence(result, packet_bytes(packet))
+        self.assertEqual(result["evidence"]["observations"], packet["observations"])
+        self.assertEqual(result["evidence"]["subjects"][result["entries"][0][0]]["prior_review_due_at"], "2026-10-27T12:00:00.000Z")
+        self.assertNotIn("selected", result["evidence"])
+
+    def test_review_pack_preserves_null_and_date_and_invalid_date_leaves_output_absent(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder); source = root / "source.csv"; template = root / "template.html"; evidence = root / "evidence.json"
+            source.write_bytes(csv_bytes([["Fictional Limited", "Cardiff", "", "A", "Skilled Worker"]]))
+            template.write_text(TEMPLATE, encoding="utf-8")
+            packet = review_packet(self.baseline()); evidence.write_bytes(packet_bytes(packet))
+            receipt = builder.build_pack(source, URL, DAY, OBSERVED, root / "valid", template, evidence)
+            actual = json.loads((root / "valid/data.json").read_text())
+            self.assertEqual(actual["evidence"]["schema_version"], 2)
+            self.assertEqual(actual["evidence"]["observations"], packet["observations"])
+            readme = (root / "valid/README.md").read_text()
+            self.assertIn("recorded review date, not an original source-page observation date", readme)
+            self.assertIn("no midnight or timezone is inferred", readme)
+            self.assertEqual(receipt["newly_verified_businesses"], 0)
+            for filename, integrity in receipt["files"].items():
+                self.assertEqual(hashlib.sha256((root / "valid" / filename).read_bytes()).hexdigest(), integrity["sha256"])
+            packet["observations"][0]["observed_at"] = "2026-10-08T00:00:00Z"
+            evidence.write_bytes(packet_bytes(packet))
             with self.assertRaises(ValueError):
                 builder.build_pack(source, URL, DAY, OBSERVED, root / "invalid", template, evidence)
             self.assertFalse((root / "invalid").exists())
