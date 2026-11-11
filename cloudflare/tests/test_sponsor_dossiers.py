@@ -19,6 +19,9 @@ SPEC.loader.exec_module(builder)
 URL = "https://assets.publishing.service.gov.uk/media/fictional/Worker_2026-11-11.csv"
 DAY = "2026-11-11"
 OBSERVED = "2026-11-11T12:00:00Z"
+EARLIER_URL = "https://assets.publishing.service.gov.uk/media/fictional/Worker_2026-10-02.csv"
+EARLIER_DAY = "2026-10-02"
+EARLIER_OBSERVED = "2026-10-04T07:58:43.247144+00:00"
 TEMPLATE = '<!doctype html><script type="application/json" id="data">__DOSSIER_DATA__</script>'
 
 
@@ -32,6 +35,12 @@ def csv_bytes(rows, headers=None):
 
 def data(rows):
     return builder.build_dataset(csv_bytes(rows), URL, DAY, OBSERVED)
+
+
+def compared(earlier_rows, current_rows):
+    result = data(current_rows)
+    builder.add_register_comparison(result, csv_bytes(earlier_rows), EARLIER_URL, EARLIER_DAY, EARLIER_OBSERVED)
+    return result
 
 
 def evidence_packet(dataset):
@@ -190,6 +199,198 @@ class RegisterDossiersTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     builder.build_pack(source, URL, DAY, OBSERVED, out, template)
                 self.assertFalse(out.exists())
+
+
+class RegisterComparisonTests(unittest.TestCase):
+    def test_complete_union_preserves_earlier_only_records_without_changing_current(self):
+        old = [["Both", "Cardiff", "", "A", "Skilled Worker"], ["Earlier only", "Leeds", "County", "A", "Creative Worker"]]
+        new = [["Both", "Cardiff", "", "A", "Skilled Worker"], ["Later only", "Bath", "", "B", "Skilled Worker"]]
+        baseline = data(new)
+        result = compared(old, new)
+        comparison = result.pop("comparison")
+        self.assertEqual(result, baseline)
+        self.assertEqual(result["columns"], builder.COLUMNS)
+        self.assertTrue(all(len(row) == 7 for row in result["entries"]))
+        self.assertEqual(comparison["columns"], ["id", "status", "added_pairs", "removed_pairs", "variants_changed"])
+        self.assertEqual(comparison["match_basis"], "normalized_name_city_county_exact")
+        self.assertEqual(comparison["current_source_sha256"], hashlib.sha256(csv_bytes(new)).hexdigest())
+        earlier = comparison["earlier"]
+        self.assertEqual(earlier["meta"]["source_sha256"], hashlib.sha256(csv_bytes(old)).hexdigest())
+        self.assertEqual(earlier["meta"]["observed_at"], EARLIER_OBSERVED)
+        self.assertEqual(sum(len(row[5]) for row in earlier["entries"]), len(old))
+        self.assertEqual(len(comparison["entries"]), 3)
+        self.assertEqual([row[0] for row in comparison["entries"]], sorted(row[0] for row in comparison["entries"]))
+        counts = comparison["counts"]
+        for field in ["present_both", "earlier_only", "current_only", "unchanged_matched"]:
+            self.assertEqual(counts[field], 1)
+        self.assertEqual(counts["changed_matched"], 0)
+        for row in comparison["entries"]:
+            if row[1] == "earlier_only":
+                self.assertEqual(row[2:], [[], [("Creative Worker", "A")], False])
+            elif row[1] == "current_only":
+                self.assertEqual(row[2:], [[("Skilled Worker", "B")], [], False])
+
+    def test_pair_differences_do_not_cross_routes_and_ratings(self):
+        old = [["Pair Co", "", "", "A", "Route One"], ["Pair Co", "", "", "B", "Route Two"]]
+        new = [["Pair Co", "", "", "B", "Route One"], ["Pair Co", "", "", "A", "Route Two"]]
+        comparison = compared(old, new)["comparison"]
+        self.assertEqual(comparison["entries"][0][2], [("Route One", "B"), ("Route Two", "A")])
+        self.assertEqual(comparison["entries"][0][3], [("Route One", "A"), ("Route Two", "B")])
+        self.assertEqual(comparison["counts"]["matched_pairs_changed"], 1)
+        self.assertEqual(comparison["counts"]["matched_pairs_added"], 2)
+        self.assertEqual(comparison["counts"]["matched_pairs_removed"], 2)
+        self.assertEqual(comparison["counts"]["changed_matched"], 1)
+        self.assertEqual(comparison["counts"]["matched_duplicate_count_changed"], 0)
+
+    def test_variant_changes_and_normalization_remain_explicit(self):
+        old = [["  EXAMPLE  Ltd ", "  Cardiff  ", "", "A", "Skilled Worker"],
+               ["Space   Name", "New  Town", "", "A", "Skilled Worker"],
+               ["Straße Ltd", "Bonn", "", "A", "Skilled Worker"]]
+        new = [["Example Ltd", "Cardiff", "", "A", "Skilled Worker"],
+               ["Space Name", "New Town", "", "A", "Skilled Worker"],
+               ["STRASSE LTD", "Bonn", "", "A", "Skilled Worker"]]
+        result = compared(old, new)
+        counts = result["comparison"]["counts"]
+        self.assertEqual(counts["present_both"], 3)
+        self.assertEqual(counts["matched_variants_changed"], 2)
+        self.assertEqual(counts["changed_matched"], 2)
+        self.assertEqual(counts["unchanged_matched"], 1)
+        self.assertEqual(counts["matched_pairs_changed"], 0)
+
+    def test_name_location_punctuation_and_unicode_changes_are_not_remapped(self):
+        old = [["Name Ltd", "Cardiff", "", "A", "SW"], ["Town Ltd", "London", "", "A", "SW"],
+               ["County Ltd", "Bath", "County One", "A", "SW"], ["A-B Ltd", "York", "", "A", "SW"],
+               ["Café", "Leeds", "", "A", "SW"], ["Same Ltd", "Oxford", "", "A", "SW"]]
+        new = [["New Name Ltd", "Cardiff", "", "A", "SW"], ["Town Ltd", "Ilford", "", "A", "SW"],
+               ["County Ltd", "Bath", "County Two", "A", "SW"], ["A B Ltd", "York", "", "A", "SW"],
+               ["Cafe\u0301", "Leeds", "", "A", "SW"], ["Same Ltd", "Cambridge", "", "A", "SW"]]
+        comparison = compared(old, new)["comparison"]
+        self.assertEqual(comparison["counts"]["present_both"], 0)
+        self.assertEqual(comparison["counts"]["earlier_only"], len(old))
+        self.assertEqual(comparison["counts"]["current_only"], len(new))
+        self.assertTrue(all(row[4] is False for row in comparison["entries"]))
+
+    def test_reordered_records_and_duplicate_only_differences_are_not_primary_changes(self):
+        a, b = ["A Ltd", "", "", "A", "SW"], ["B Ltd", "", "", "A", "SW"]
+        reordered = compared([a, b], [b, a])["comparison"]
+        self.assertEqual(reordered["counts"]["unchanged_matched"], 2)
+        self.assertEqual(reordered["counts"]["matched_source_row_count_changed"], 0)
+        self.assertNotEqual(reordered["earlier"]["entries"][0][5], data([b, a])["entries"][0][5])
+        comparison = compared([a, a, a, b], [b, a])["comparison"]
+        self.assertEqual(comparison["counts"]["changed_matched"], 0)
+        self.assertEqual(comparison["counts"]["unchanged_matched"], 2)
+        self.assertEqual(comparison["counts"]["matched_source_row_count_changed"], 1)
+        self.assertEqual(comparison["counts"]["matched_duplicate_count_changed"], 1)
+        self.assertEqual(comparison["counts"]["earlier_duplicate_source_rows"], 2)
+        self.assertEqual(comparison["counts"]["current_duplicate_source_rows"], 0)
+        self.assertEqual(sum(len(row[5]) for row in comparison["earlier"]["entries"]), 4)
+
+    def test_recording_difference_counts_are_independent_and_may_overlap_primary_changes(self):
+        old = [["Added pair", "", "", "A", "SW"], ["Replaced duplicate", "", "", "A", "SW"],
+               ["Replaced duplicate", "", "", "A", "SW"], ["TEXT", "", "", "A", "SW"]]
+        new = [["Added pair", "", "", "A", "SW"], ["Added pair", "", "", "A", "Creative"],
+               ["Replaced duplicate", "", "", "A", "SW"], ["Replaced duplicate", "", "", "A", "Creative"],
+               ["Text", "", "", "B", "SW"]]
+        counts = compared(old, new)["comparison"]["counts"]
+        self.assertEqual(counts["changed_matched"], 3)
+        self.assertEqual(counts["matched_pairs_changed"], 3)
+        self.assertEqual(counts["matched_variants_changed"], 1)
+        self.assertEqual(counts["matched_source_row_count_changed"], 1)
+        self.assertEqual(counts["matched_duplicate_count_changed"], 1)
+
+    def test_comparison_does_not_carry_or_renew_current_historical_evidence(self):
+        rows = [["Fictional Limited", "Cardiff", "", "A", "Skilled Worker"]]
+        result = data(rows)
+        builder.add_retained_evidence(result, packet_bytes(evidence_packet(result)))
+        expected = copy.deepcopy(result)
+        builder.add_register_comparison(result, csv_bytes(rows * 2), EARLIER_URL, EARLIER_DAY, EARLIER_OBSERVED)
+        comparison = result.pop("comparison")
+        self.assertEqual(result, expected)
+        self.assertNotIn("evidence", comparison["earlier"])
+        self.assertEqual(comparison["earlier"]["meta"]["coverage"]["retained_evidence_entries"], 0)
+        self.assertEqual(result["meta"]["coverage"]["newly_verified_businesses"], 0)
+        self.assertEqual(result["evidence"]["subjects"][result["entries"][0][0]]["prior_review_due_at"], "2026-10-27T12:00:00.000Z")
+
+    def test_invalid_earlier_input_and_dates_leave_dataset_unchanged(self):
+        rows = [["Example", "", "", "A", "SW"]]
+        args = [(b"", EARLIER_URL, EARLIER_DAY, EARLIER_OBSERVED),
+                (csv_bytes(rows, list(reversed(builder.HEADERS))), EARLIER_URL, EARLIER_DAY, EARLIER_OBSERVED),
+                (csv_bytes(rows), URL, DAY, OBSERVED),
+                (csv_bytes(rows), URL.replace(DAY, "2026-11-12"), "2026-11-12", "2026-11-12T12:00:00Z"),
+                (csv_bytes(rows), EARLIER_URL, EARLIER_DAY, "2026-10-01T00:00:00Z"),
+                (csv_bytes(rows), EARLIER_URL, EARLIER_DAY, "2026-10-04T00:00:00"),
+                (csv_bytes(rows), EARLIER_URL.replace("https:", "http:"), EARLIER_DAY, EARLIER_OBSERVED)]
+        for values in args:
+            result = data(rows); original = copy.deepcopy(result)
+            with self.subTest(values=values[1:]), self.assertRaises(ValueError):
+                builder.add_register_comparison(result, *values)
+            self.assertEqual(result, original)
+        # Collection time is separate from source chronology: an older source
+        # downloaded later must keep its actual supplied observation timestamp.
+        result = data(rows)
+        builder.add_register_comparison(result, csv_bytes(rows), EARLIER_URL, EARLIER_DAY, "2026-11-11T13:00:00Z")
+        self.assertEqual(result["comparison"]["earlier"]["meta"]["observed_at"], "2026-11-11T13:00:00Z")
+        original = copy.deepcopy(result)
+        with self.assertRaises(ValueError):
+            builder.add_register_comparison(result, csv_bytes(rows), EARLIER_URL, EARLIER_DAY, EARLIER_OBSERVED)
+        self.assertEqual(result, original)
+
+    def test_cross_snapshot_key_collision_fails_closed(self):
+        with patch.object(builder, "sha256", return_value="a" * 64):
+            result = data([["Different current name", "", "", "A", "SW"]]); original = copy.deepcopy(result)
+            with self.assertRaisesRegex(ValueError, "collision"):
+                builder.add_register_comparison(result, csv_bytes([["Earlier name", "", "", "A", "SW"]]), EARLIER_URL, EARLIER_DAY, EARLIER_OBSERVED)
+            self.assertEqual(result, original)
+
+    def test_optional_arguments_and_invalid_comparison_never_create_output(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder); source = root / "source.csv"; earlier = root / "earlier.csv"; template = root / "template.html"
+            source.write_bytes(csv_bytes([["Example", "", "", "A", "SW"]])); earlier.write_bytes(source.read_bytes())
+            template.write_text(TEMPLATE, encoding="utf-8")
+            values = dict(earlier_csv_path=earlier, earlier_source_url=EARLIER_URL, earlier_source_date=EARLIER_DAY, earlier_observed_at=EARLIER_OBSERVED)
+            for mask in range(1, 15):
+                partial = {key: value for index, (key, value) in enumerate(values.items()) if mask & (1 << index)}
+                out = root / str(mask)
+                with self.subTest(mask=mask), self.assertRaisesRegex(ValueError, "four"):
+                    builder.build_pack(source, URL, DAY, OBSERVED, out, template, **partial)
+                self.assertFalse(out.exists())
+            earlier.write_bytes(b"bad header\n")
+            with self.assertRaises(ValueError):
+                builder.build_pack(source, URL, DAY, OBSERVED, root / "invalid", template, **values)
+            self.assertFalse((root / "invalid").exists())
+
+    def test_comparison_exports_safe_complete_data_hashes_and_refuses_replay(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder); source = root / "source.csv"; earlier = root / "earlier.csv"; template = root / "template.html"; out = root / "pack"
+            source.write_bytes(csv_bytes([["Current", "", "", "A", "SW"]]))
+            name = '=TEST </script><img src=x onerror="alert(1)">'
+            earlier.write_bytes(csv_bytes([[name, "@CITY", "", "A", "SW"]])); template.write_text(TEMPLATE, encoding="utf-8")
+            values = dict(earlier_csv_path=earlier, earlier_source_url=EARLIER_URL, earlier_source_date=EARLIER_DAY, earlier_observed_at=EARLIER_OBSERVED)
+            receipt = builder.build_pack(source, URL, DAY, OBSERVED, out, template, **values)
+            self.assertEqual(receipt["comparison"]["business_evidence_carried_forward"], 0)
+            self.assertEqual(receipt["comparison"]["counts"]["earlier_only"], 1)
+            self.assertIn("register-comparison.csv", receipt["files"])
+            for filename, expected in receipt["files"].items():
+                raw = (out / filename).read_bytes()
+                self.assertEqual(len(raw), expected["bytes"])
+                self.assertEqual(hashlib.sha256(raw).hexdigest(), expected["sha256"])
+            payload = json.loads((out / "data.json").read_text())
+            self.assertEqual(payload["comparison"]["earlier"]["entries"][0][1], name)
+            self.assertNotIn("<img", (out / "index.html").read_text())
+            rows = list(csv.DictReader(io.StringIO((out / "register-comparison.csv").read_text())))
+            old = next(row for row in rows if row["Snapshot presence"] == "earlier_only")
+            self.assertEqual(old["Earlier register name"], "'" + name)
+            self.assertEqual(old["Earlier town/city"], "'@CITY")
+            self.assertEqual(json.loads(old["Earlier source CSV records (JSON)"]), [2])
+            self.assertEqual(old["Current register name"], "")
+            self.assertEqual(json.loads(old["Route/rating pairs only in earlier supplied record (JSON)"]), [["SW", "A"]])
+            readme = (out / "README.md").read_text()
+            self.assertIn("does not establish the reason", readme)
+            self.assertIn("not added to the current register totals", readme)
+            original = (out / "receipt.json").read_bytes()
+            with self.assertRaises(ValueError):
+                builder.build_pack(source, URL, DAY, OBSERVED, out, template, **values)
+            self.assertEqual((out / "receipt.json").read_bytes(), original)
 
 
 class RetainedEvidenceTests(unittest.TestCase):

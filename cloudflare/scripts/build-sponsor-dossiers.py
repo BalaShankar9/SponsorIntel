@@ -18,6 +18,7 @@ from urllib.parse import urlsplit
 
 HEADERS = ["Organisation Name", "Town/City", "County", "Type & Rating", "Route"]
 COLUMNS = ["id", "name", "city", "county", "licences", "source_rows", "variants"]
+COMPARISON_COLUMNS = ["id", "status", "added_pairs", "removed_pairs", "variants_changed"]
 MAX_BYTES = 25_000_000
 MAX_ROWS = 500_000
 MAX_FIELD = 4_096
@@ -165,6 +166,71 @@ def build_dataset(raw, source_url, source_date, observed_at):
         "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
     }
     return {"schema_version": 1, "columns": COLUMNS, "meta": meta, "entries": entries}
+
+
+def add_register_comparison(dataset, earlier_raw, earlier_source_url, earlier_source_date, earlier_observed_at):
+    """Attach exact snapshot differences without assigning a cause or an entity.
+
+    The earlier snapshot is parsed independently. Its source rows are local to
+    that file, not stable identifiers. No business evidence is carried across.
+    """
+    if "comparison" in dataset:
+        raise ValueError("This dataset already has a register comparison; build a new edition")
+    earlier = build_dataset(earlier_raw, earlier_source_url, earlier_source_date, earlier_observed_at)
+    if earlier_source_date >= dataset["meta"]["source_date"]:
+        raise ValueError("Earlier source date must be strictly before the current source date")
+    before = {row[0]: row for row in earlier["entries"]}
+    after = {row[0]: row for row in dataset["entries"]}
+    counts = {name: 0 for name in [
+        "present_both", "current_only", "earlier_only", "matched_pairs_changed", "matched_variants_changed",
+        "changed_matched", "unchanged_matched", "matched_source_row_count_changed", "matched_duplicate_count_changed",
+        "matched_pairs_added", "matched_pairs_removed",
+    ]}
+    rows = []
+    for key in sorted(before.keys() | after.keys()):
+        old, new = before.get(key), after.get(key)
+        old_pairs = set(map(tuple, old[4])) if old else set()
+        new_pairs = set(map(tuple, new[4])) if new else set()
+        added, removed = sorted(new_pairs - old_pairs), sorted(old_pairs - new_pairs)
+        variants_changed = False
+        if old is not None and new is not None:
+            # A digest collision must fail closed rather than attach another
+            # name or location to this research entry, even across snapshots.
+            if tuple(value.casefold() for value in old[1:4]) != tuple(value.casefold() for value in new[1:4]):
+                raise ValueError("Cross-snapshot register-entry key collision")
+            status = "present_both"
+            variants_changed = old[6] != new[6]
+            pairs_changed = bool(added or removed)
+            counts["matched_pairs_changed"] += pairs_changed
+            counts["matched_variants_changed"] += variants_changed
+            counts["changed_matched" if pairs_changed or variants_changed else "unchanged_matched"] += 1
+            counts["matched_source_row_count_changed"] += len(old[5]) != len(new[5])
+            counts["matched_duplicate_count_changed"] += (len(old[5]) - len(old_pairs)) != (len(new[5]) - len(new_pairs))
+            counts["matched_pairs_added"] += len(added)
+            counts["matched_pairs_removed"] += len(removed)
+        else:
+            status = "current_only" if new is not None else "earlier_only"
+        counts[status] += 1
+        rows.append([key, status, added, removed, variants_changed])
+    counts["union_entries"] = len(rows)
+    for prefix, source in [("earlier", earlier), ("current", dataset)]:
+        for field in ["source_rows", "grouped_entries", "duplicate_source_rows"]:
+            counts[f"{prefix}_{field}"] = source["meta"][field]
+    if (counts["present_both"] + counts["current_only"] != len(after)
+            or counts["present_both"] + counts["earlier_only"] != len(before)
+            or counts["changed_matched"] + counts["unchanged_matched"] != counts["present_both"]):
+        raise ValueError("Register comparison reconciliation failed")
+    # The full older rows remain separate from the current register and from
+    # any exact-current-snapshot retained evidence. Mutate only after validation.
+    dataset["comparison"] = {
+        "schema_version": 1,
+        "match_basis": "normalized_name_city_county_exact",
+        "columns": COMPARISON_COLUMNS,
+        "earlier": {"meta": earlier["meta"], "entries": earlier["entries"]},
+        "current_source_sha256": dataset["meta"]["source_sha256"],
+        "counts": counts,
+        "entries": rows,
+    }
 
 
 def exact_keys(value, keys, label):
@@ -351,22 +417,30 @@ def spreadsheet_cell(value):
     return "'" + text if text.lstrip().startswith(("=", "+", "-", "@")) else text
 
 
-def build_pack(csv_path, source_url, source_date, observed_at, out, template_path=None, evidence_path=None):
+def build_pack(csv_path, source_url, source_date, observed_at, out, template_path=None, evidence_path=None,
+               earlier_csv_path=None, earlier_source_url=None, earlier_source_date=None, earlier_observed_at=None):
     out = Path(out)
     if out.exists():
         raise ValueError("Output directory already exists; choose a new path to preserve prior evidence")
+    earlier_args = [earlier_csv_path, earlier_source_url, earlier_source_date, earlier_observed_at]
+    if any(value is not None for value in earlier_args) and not all(value is not None for value in earlier_args):
+        raise ValueError("All four earlier snapshot arguments must be supplied together")
     with Path(csv_path).open("rb") as handle:
         raw = handle.read(MAX_BYTES + 1)
     dataset = build_dataset(raw, source_url, source_date, observed_at)
     if evidence_path is not None:
         with Path(evidence_path).open("rb") as handle:
             add_retained_evidence(dataset, handle.read(MAX_EVIDENCE_BYTES + 1))
+    if earlier_csv_path is not None:
+        with Path(earlier_csv_path).open("rb") as handle:
+            add_register_comparison(dataset, handle.read(MAX_BYTES + 1), earlier_source_url, earlier_source_date, earlier_observed_at)
     template = Path(template_path or Path(__file__).with_name("sponsor-dossiers-template.html")).read_text(encoding="utf-8")
     if template.count(PLACEHOLDER) != 1:
         raise ValueError("HTML template must have exactly one dossier-data placeholder")
     rendered = template.replace(PLACEHOLDER, safe_embedded_json(dataset))
     meta = dataset["meta"]
     retained = dataset.get("evidence", {})
+    comparison = dataset.get("comparison")
     coverage = meta["coverage"]
     enriched = coverage["retained_evidence_entries"] > 0
     enrichment_status = "retained_evidence_requires_review" if enriched else "not_collected"
@@ -386,6 +460,54 @@ def build_pack(csv_path, source_url, source_date, observed_at, out, template_pat
             writer.writerow(map(spreadsheet_cell, [ident, name, city, county, compact_json(licences), compact_json(source_rows), source_date, status,
                                                    compact_json(subject["claims"]) if subject else "", subject["prior_review_due_at"] or "" if subject else "",
                                                    retained["packet_sha256"] if subject else ""]))
+    if comparison:
+        previous = {row[0]: row for row in comparison["earlier"]["entries"]}
+        current = {row[0]: row for row in dataset["entries"]}
+        with (out / "register-comparison.csv").open("w", encoding="utf-8", newline="") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(["Research key", "Snapshot presence", "Earlier register name", "Earlier town/city", "Earlier county",
+                             "Current register name", "Current town/city", "Current county", "Route/rating pairs only in later supplied record (JSON)",
+                             "Route/rating pairs only in earlier supplied record (JSON)", "Recorded spelling variants changed", "Earlier source CSV records (JSON)",
+                             "Current source CSV records (JSON)", "Earlier route/rating pairs (JSON)", "Current route/rating pairs (JSON)",
+                             "Earlier spelling variants (JSON)", "Current spelling variants (JSON)", "Earlier duplicate records",
+                             "Current duplicate records", "Earlier source date", "Current source date", "Earlier source SHA-256", "Current source SHA-256"])
+            for ident, status, added, removed, variants_changed in comparison["entries"]:
+                old, new = previous.get(ident), current.get(ident)
+                writer.writerow(map(spreadsheet_cell, [ident, status, *(old[1:4] if old else ["", "", ""]),
+                    *(new[1:4] if new else ["", "", ""]), compact_json(added), compact_json(removed),
+                    "yes" if variants_changed else "no", compact_json(old[5]) if old else "", compact_json(new[5]) if new else "",
+                    compact_json(old[4]) if old else "", compact_json(new[4]) if new else "",
+                    compact_json(old[6]) if old else "", compact_json(new[6]) if new else "",
+                    len(old[5]) - len(old[4]) if old else "", len(new[5]) - len(new[4]) if new else "",
+                    earlier_source_date, source_date, comparison["earlier"]["meta"]["source_sha256"], meta["source_sha256"]]))
+    comparison_note = ""
+    if comparison:
+        older, counts = comparison["earlier"]["meta"], comparison["counts"]
+        comparison_note = (
+            f"## Supplied register snapshot comparison\n\n"
+            f"Earlier source date: **{older['source_date']}**; actual supplied observation: **{older['observed_at']}**. "
+            f"[Earlier official CSV]({older['source_url']}); SHA-256 `{older['source_sha256']}`. "
+            f"Later source date: **{source_date}**; SHA-256 `{meta['source_sha256']}`.\n\n"
+            f"- Present in both supplied snapshots: **{counts['present_both']:,}**\n"
+            f"- Only in the later snapshot: **{counts['current_only']:,}**\n"
+            f"- Only in the earlier snapshot: **{counts['earlier_only']:,}**\n"
+            f"- Matched entries with changed route/rating pairs or recorded spelling variants: **{counts['changed_matched']:,}**\n"
+            f"- Matched entries with unchanged pairs and variants: **{counts['unchanged_matched']:,}**\n"
+            f"- Matched source-record count differences: **{counts['matched_source_row_count_changed']:,}**; "
+            f"duplicate-record count differences: **{counts['matched_duplicate_count_changed']:,}** (overlapping recording differences, not additional primary changes)\n\n"
+            "Matching uses the exact existing whitespace-normalized, casefolded name/town/county tuple. "
+            "Changed names or locations remain separate unmatched entries; there is no fuzzy remapping. "
+            "Route and rating remain paired. Source-row numbers and row order are local to each file; "
+            "row-order or duplicate-count differences alone do not mark an entry as changed. "
+            "Spelling-variant changes are recorded text differences, not proof of a different organisation. "
+            "Presence or absence between these two snapshots does not establish the reason, a licence grant/revocation, "
+            "business opening/closure, current licence status, or current job sponsorship. No business evidence or approval is inherited from the earlier snapshot.\n\n"
+            f"`comparison.entries` uses `{compact_json(COMPARISON_COLUMNS)}`. Each union key has one comparison row; "
+            "one-sided rows include their complete added/removed pair set and have `variants_changed: false`. "
+            "`comparison.earlier.entries` retains every earlier seven-column row, including earlier-only entries; "
+            "these are not added to the current register totals. `register-comparison.csv` exports both sides with safe spreadsheet cells. "
+            "Full source metadata and hashes remain in `data.json`.\n\n"
+        )
     (out / "README.md").write_text(
         f"# Sponsor Intel — register research pack\n\n"
         f"Open `index.html` directly in a browser. Search and filters work locally; no server is needed.\n\n"
@@ -406,13 +528,14 @@ def build_pack(csv_path, source_url, source_date, observed_at, out, template_pat
            "Historical source observations, supporting receipt declarations and prior follow-up dates remain unchanged. "
            "Summaries are retained operator observations, not newly checked sources or verbatim quotations. "
            "Competing claims are unresolved; no current company/job verification or production approval is imported.\n\n" if enriched else "")
+        + comparison_note
         + "\n".join(f"- {item}" for item in meta["limitations"])
         + f"\n\n{meta['attribution']} [OGL v3.0]({meta['licence_url']}).\n"
         + "\nThis local pack does not publish profiles, renew approvals, fetch websites, create discovery leads, write production data, or submit applications.\n",
         encoding="utf-8",
     )
     files = {}
-    for name in ["data.json", "index.html", "register-entries.csv", "README.md"]:
+    for name in ["data.json", "index.html", "register-entries.csv", "README.md"] + (["register-comparison.csv"] if comparison else []):
         content = (out / name).read_bytes()
         files[name] = {"bytes": len(content), "sha256": sha256(content)}
     receipt = {
@@ -436,6 +559,15 @@ def build_pack(csv_path, source_url, source_date, observed_at, out, template_pat
         "evidence_packet_sha256": retained.get("packet_sha256"),
         "files": files,
     }
+    if comparison:
+        receipt["comparison"] = {
+            "schema_version": 1, "match_basis": comparison["match_basis"],
+            "earlier_source_url": earlier_source_url, "earlier_source_date": earlier_source_date,
+            "earlier_observed_at": earlier_observed_at, "earlier_source_sha256": comparison["earlier"]["meta"]["source_sha256"],
+            "current_source_sha256": meta["source_sha256"], "counts": comparison["counts"],
+            "row_reconciliation": "all_records_retained_in_each_snapshot",
+            "business_evidence_carried_forward": 0,
+        }
     (out / "receipt.json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
     return receipt
 
@@ -448,9 +580,15 @@ def main():
     parser.add_argument("--observed-at", required=True)
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--evidence", type=Path, help="Optional bounded retained-observation JSON; never imports approval")
+    parser.add_argument("--earlier-csv", type=Path, help="Optional earlier local register CSV; requires its three provenance arguments")
+    parser.add_argument("--earlier-source-url")
+    parser.add_argument("--earlier-source-date")
+    parser.add_argument("--earlier-observed-at")
     args = parser.parse_args()
     try:
-        receipt = build_pack(args.csv, args.source_url, args.source_date, args.observed_at, args.out, evidence_path=args.evidence)
+        receipt = build_pack(args.csv, args.source_url, args.source_date, args.observed_at, args.out, evidence_path=args.evidence,
+                             earlier_csv_path=args.earlier_csv, earlier_source_url=args.earlier_source_url,
+                             earlier_source_date=args.earlier_source_date, earlier_observed_at=args.earlier_observed_at)
     except (ValueError, OSError) as error:
         parser.exit(1, f"No completed pack: {error}\n")
     print(json.dumps(receipt, indent=2))

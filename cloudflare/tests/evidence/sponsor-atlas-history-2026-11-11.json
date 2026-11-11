@@ -1,0 +1,271 @@
+{
+  "recorded_at": "2026-11-11T18:46:25.127208+00:00",
+  "scope": "Optional offline exact-key register history across two retained official CSVs; local delivery, not production publication or fresh business verification",
+  "base_head": "bd1ba951288c0320ac09fa3f1c8270d976ad6433",
+  "status": "implemented_tested_and_locally_delivered",
+  "source_code_sha256": {
+    "cloudflare/scripts/build-sponsor-dossiers.py": "f9c340e281812fbb1dad4bb1675e92daa29bbe0facfdff296b1883d70b0022ee",
+    "cloudflare/scripts/sponsor-dossiers-template.html": "1f73e56544c2408d5a48f47f2b6dccd42cce3d80cb650209f0b12f1dcf2bfe6f",
+    "cloudflare/tests/test_sponsor_dossiers.py": "7581b6c4089a0721ddfe78ab03c1ac4b02d440bd8a5015fc5a8e928b5ff3c6aa",
+    "cloudflare/tests/sponsor-dossier-comparison-browser.mjs": "60ee5db0a7ec934ec777c5b17e95d5c1351e6d9c8f5ed08833771779dac2ca55"
+  },
+  "sources": {
+    "earlier": {
+      "raw_csv_path": "/Users/balabollineni/Documents/Codex/2026-10-04/i-h/work/register.csv",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6abf628355bc01d752a7f28a/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-10-02.csv",
+      "source_date": "2026-10-02",
+      "observed_at": "2026-10-04T07:58:43.247144+00:00",
+      "source_sha256": "67a7bcb01f31570fa906584ee429ed4d5a5fabf17e5b914b9bc42656c8743ac1",
+      "source_bytes": 10953698,
+      "receipt_path": "/Users/balabollineni/Documents/Codex/2026-10-04/i-h/work/register-source.json",
+      "receipt_sha256": "d6bd5b600e7990e9c231003a36f5cd2286dc7fdaa42295cd2ad826d14b0a9074"
+    },
+    "current": {
+      "raw_csv_path": "/Users/balabollineni/Documents/Codex/2026-10-04/i-h/work/SponsorIntel/cloudflare/data/research-register-2026-11-11.csv",
+      "source_url": "https://assets.publishing.service.gov.uk/media/6af4446004988992d226eb76/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-11-11.csv",
+      "source_date": "2026-11-11",
+      "observed_at": "2026-11-11T15:46:45.099861+00:00",
+      "source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "source_bytes": 10939788,
+      "receipt_path": "/Users/balabollineni/Documents/Codex/2026-10-04/i-h/work/SponsorIntel/cloudflare/data/research-register-2026-11-11.receipt.json",
+      "receipt_sha256": "1c0cf18f75d720a1404ac689662db42bc12e2edd6ca4a5d5b735aeb534b17bd2"
+    }
+  },
+  "counts": {
+    "matched_pairs_changed": 97,
+    "matched_variants_changed": 67,
+    "unchanged_matched": 125791,
+    "matched_source_row_count_changed": 219,
+    "matched_duplicate_count_changed": 182,
+    "matched_pairs_added": 90,
+    "matched_pairs_removed": 59,
+    "present_both": 125951,
+    "earlier_only": 1951,
+    "current_only": 1922,
+    "changed_matched": 160,
+    "union_entries": 129824,
+    "earlier_source_rows": 143138,
+    "earlier_grouped_entries": 127902,
+    "earlier_duplicate_source_rows": 689,
+    "current_source_rows": 143009,
+    "current_grouped_entries": 127873,
+    "current_duplicate_source_rows": 624
+  },
+  "independent_oracle_counts": {
+    "common_keys": 125951,
+    "primary_pair_and_variant_unchanged": 125791,
+    "matched_unchanged_including_multiplicity": 125667,
+    "pair_set_changes": 97,
+    "pair_values_removed_on_common_keys": 59,
+    "pair_values_added_on_common_keys": 90,
+    "spelling_variant_changes": 67,
+    "source_row_count_changes": 219,
+    "duplicate_source_count_changes": 182,
+    "source_count_only_changes": 124,
+    "earlier_only_unmatched": 1951,
+    "current_only_unmatched": 1922,
+    "matched_changed_including_multiplicity": 284,
+    "primary_pair_or_variant_changed": 160
+  },
+  "historical_business_evidence": {
+    "subjects": 2,
+    "claims": 13,
+    "observations": 6,
+    "newly_verified_businesses": 0,
+    "old_observation_and_followup_dates_preserved": true
+  },
+  "validation": {
+    "python_tests": {
+      "passed": 35,
+      "failed": 0,
+      "log": {
+        "bytes": 6130,
+        "sha256": "654394af0ce883c83d9fd552bd4503032abbb75b74dddcf342643da62d6304ec"
+      }
+    },
+    "independent_full_raw_csv_verification": {
+      "status": "passed",
+      "checked": {
+        "current_entries_full_rows": 127873,
+        "earlier_entries_full_rows": 127902,
+        "comparison_union_full_rows": 129824,
+        "comparison_csv_full_rows": 129824,
+        "current_source_records": 143009,
+        "earlier_source_records": 143138,
+        "current_entries_meta_and_evidence_unchanged": true,
+        "current_register_csv_byte_identical": true,
+        "all_source_row_references_pairs_variants_exact": true,
+        "every_output_file_hash_matches_receipt": true,
+        "historical_earlier_data_has_no_evidence": true,
+        "no_fuzzy_matching": true
+      },
+      "receipt": {
+        "bytes": 5592,
+        "sha256": "099435d599fcdc773a8483b97d90e2f3c7c0cd988fe7b0ad1dd674800f84387a"
+      },
+      "verifier": {
+        "path": "/private/tmp/si-verify-atlas-comparison-20261111.py",
+        "bytes": 22331,
+        "sha256": "c8625827711559eb492cdfd8bb47cdb9a56ea0c087fe2f18804e6122799099b6"
+      },
+      "oracle": {
+        "path": "/tmp/si-atlas-comparison-oracle-20261111.json",
+        "bytes": 25340,
+        "sha256": "0d037b4244a9388832ba4f4deb5024fb3104cacd57a7c049285ad13b4b6487b9"
+      }
+    },
+    "comparison_browser": {
+      "checks_passed": 13,
+      "checks": [
+        "Latest supplied snapshot remains the default with unchanged baseline denominators and only one rendered page",
+        "Changed, latest-only and earlier-only views match independent comparison counts without changing latest totals",
+        "Real paired route/rating differences, isolated primary pair class and complete two-source download agree with source rows",
+        "Both exact recorded spelling sets are retained for a real variant difference",
+        "Recording-count-only differences stay outside changed view and remain separately inspectable/exportable",
+        "Earlier-only historical dossier uses its original source, excludes current evidence and preserves export, mobile layout and Escape focus",
+        "Latest-only dossier preserves an absent earlier row without inventing a licence issue event",
+        "Historical search, exact-town variants and route filter use the earlier-only view denominator",
+        "Fictional row ordering and duplicate-only changes do not become content changes",
+        "Same-named records in different towns remain two one-sided entries without inferred relocation",
+        "Hostile earlier name stays text; blank location and no-Skilled-Worker caution survive source-correct export",
+        "Optional-comparison absence preserves the baseline directory and dossier",
+        "No external page requests or browser errors across real pack and fictional fixtures"
+      ],
+      "external_requests": 0,
+      "browser_errors": 0,
+      "receipt": {
+        "bytes": 2675,
+        "sha256": "c360cdf0e7667b21e207def4cb651fdc028377587837ad8d4712cd0b728fd3fc"
+      }
+    },
+    "existing_complete_register_browser": {
+      "checks_passed": 21,
+      "checks": [
+        "complete embedded entry count",
+        "only one page rendered",
+        "paired source row denominator shown",
+        "pagination changes entries",
+        "pagination restores first page",
+        "combined filters match independent data calculation",
+        "selected dossier names exact entry",
+        "route-rating pairs survive display",
+        "unverified business fields stay unknown",
+        "research plan uses exact organisation",
+        "actual saved dossier export retains source and unknown state",
+        "Escape closes dialog and restores focus",
+        "empty results are explicit",
+        "clear restores directory",
+        "historical filter count matches supplied subjects",
+        "every real historical dossier displays all claims and exports exact source/date/follow-up evidence without current-job claims",
+        "mobile page has no horizontal overflow",
+        "mobile dossier fits viewport",
+        "real historical mobile dossier fits viewport",
+        "no page errors",
+        "no background network requests"
+      ],
+      "external_requests": 0,
+      "browser_errors": 0,
+      "receipt": {
+        "bytes": 1394,
+        "sha256": "17c4ded9832947360036f40136dff4e53842df2a3d17f20aa476e3371969c6f3"
+      }
+    },
+    "desktop_and_mobile_screenshots_visually_inspected": true,
+    "agent_assisted_source_and_contract_review": "no material issues found; not independent human business review",
+    "archive_crc_and_all_member_hashes_verified": true
+  },
+  "delivery": {
+    "packaged_at": "2026-11-11T18:44:49.272915+00:00",
+    "directory": "/Users/balabollineni/Documents/ChatGPT/Sponsor Intel/Sponsor company atlas 2026-11-11 history",
+    "files": {
+      "index.html": {
+        "bytes": 69736757,
+        "sha256": "76ecfb4bdb6f780637a4939c01f33408c5e56ecd51685cd234afe042574981e1"
+      },
+      "data.json": {
+        "bytes": 69531107,
+        "sha256": "730a92f5b854896ea4db064d5e9b524253a423059ef498cf0cea806b30ebb5b2"
+      },
+      "register-entries.csv": {
+        "bytes": 25296217,
+        "sha256": "847571fe84cf01841ff03bc535e3291c8fb68eef80cfbcea9b7cf43f3cd20f3e"
+      },
+      "register-comparison.csv": {
+        "bytes": 72910297,
+        "sha256": "626c6fedb88032238ab1b70d5c7d47b26b886026cb777271d277571fe6e9ead3"
+      },
+      "README.md": {
+        "bytes": 5891,
+        "sha256": "ddb8185d7a20b325feec006b2cbcc076cab5ed1f4dd8d2eb26e8273a290dc5b9"
+      },
+      "receipt.json": {
+        "bytes": 2965,
+        "sha256": "27c217109e41e089eb00a84d1df3461ced515fd2ba3fc292e9abd1fd6be7d725"
+      }
+    },
+    "archive": {
+      "path": "/Users/balabollineni/Documents/ChatGPT/Sponsor Intel/Sponsor company atlas 2026-11-11 history.zip",
+      "bytes": 65559500,
+      "sha256": "6cc8a51ff0d99744f7375c1449ed90a7d7cbbdbaae216e800db622755f3a700d"
+    },
+    "archive_crc_and_each_member_hash_verified": true,
+    "prior_editions_preserved": true
+  },
+  "preservation": {
+    "eight_unrelated_tracked_files_unchanged": {
+      "cloudflare/shared/admin-navigation.js": "5a10b0a1309895cd15db047bb89313cb7903afce42720ea7c077fa2327384fad",
+      "cloudflare/src/owner.tsx": "d165ae21cda6642efa2e9a94f20f5b9e2fa3762680cc0e4a4fa7cf21f6dff765",
+      "cloudflare/tests/sponsor-cities.test.mjs": "66f751da1bb322bed67908935fa8128caa321353a8c15dab0bf1e664292641a2",
+      "cloudflare/worker/admin.js": "818604b6c5cad6bd844cee5df12b8d7f1687b0832d7fc62fe2e9f3ed6a9772d0",
+      "cloudflare/worker/auth.js": "64f26d37a76028232732d6c6c5b4d01a282e6fa49e0e440bc947d994485cc055",
+      "cloudflare/worker/index.js": "ae41a33619a6b55959458fde2ca451887929e18e62060ac98fbcf31384fa2b56",
+      "cloudflare/worker/research-scope-source.json": "bf0f50d5245a5f165fc4720f3a2c15f5e4364930c7fcea815553c979154a701e",
+      "cloudflare/worker/sponsor-cities.js": "1e04f0ace439920c72e251cd0fdb95115ad315a3baa050fb1b54c82f89c2de69"
+    },
+    "package_lock_and_private_archive_unchanged": {
+      "cloudflare/package.json": {
+        "bytes": 1552,
+        "sha256": "51238ebe138a5d815f380f577d0d7698178998ffb70d31486347c1cae9691f5f"
+      },
+      "cloudflare/package-lock.json": {
+        "bytes": 162028,
+        "sha256": "c8b04e869026958060f0d0549e3b5371737287d2f153aa25e258da29224b9bf0"
+      },
+      "cloudflare/.wrangler/local-state-before-toolchain-20261008.tar.gz": {
+        "bytes": 41184059,
+        "sha256": "69ebe9302aa1f9d3dabbde00bac797bd0a90a487e750bd1cd3cad4494191fc61"
+      }
+    },
+    "prior_editions_preserved": true
+  },
+  "local_evidence_directory": "cloudflare/data/atlas-comparison-2026-11-11/evidence",
+  "actions": {
+    "new_source_fetches": 0,
+    "d1_queries": 0,
+    "new_business_verifications": 0,
+    "production_mutations": 0,
+    "model_calls": 0,
+    "google_calls": 0,
+    "new_leads": 0,
+    "applications": 0,
+    "social_or_email_sends": 0,
+    "deployments": 0,
+    "migrations": 0
+  },
+  "provider_observation": "Separate provider-only evening source list retained in source-evening-2026-11-11.json; missing evening instance remains unknown.",
+  "remaining_gates": [
+    "Current readable owner controls and source capacity before network enrichment",
+    "Fresh exact entity/operating-business/website/careers evidence",
+    "Sustainable production capacity and current recovery/schema acceptance",
+    "Original business-workflow reconciliation",
+    "Separate live integration and private-saving acceptance"
+  ],
+  "not_inferred": [
+    "licence grants or revocations",
+    "business closures or relocations",
+    "legal-company identity from register key",
+    "current vacancies or sponsorship offers",
+    "fresh business approval from unchanged register records"
+  ],
+  "hosted_ci": "Check exact pushed head after commit; local acceptance does not resolve GitHub account billing lock; retain original annotations separately."
+}
