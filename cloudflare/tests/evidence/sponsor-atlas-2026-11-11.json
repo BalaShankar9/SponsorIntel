@@ -1,0 +1,141 @@
+{
+  "recorded_at": "2026-11-11T15:55:56.011851+00:00",
+  "scope": "Owner-requested local complete register atlas; no production deployment",
+  "source_download": {
+    "source_url": "https://assets.publishing.service.gov.uk/media/6af4446004988992d226eb76/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-11-11.csv",
+    "publication_url": "https://www.gov.uk/government/publications/register-of-licensed-sponsors-workers",
+    "source_date": "2026-11-11",
+    "observed_at": "2026-11-11T15:46:45.099861+00:00",
+    "bytes": 10939788,
+    "sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+    "content_type": "text/csv",
+    "scope": "One owner-requested official register research download; local only, no production import, no job discovery or source approval"
+  },
+  "pack": {
+    "schema_version": 1,
+    "operation": "offline_register_research_pack",
+    "source_date": "2026-11-11",
+    "observed_at": "2026-11-11T15:46:45.099861+00:00",
+    "source_url": "https://assets.publishing.service.gov.uk/media/6af4446004988992d226eb76/SP_-_Worker_and_Temporary_Worker_Web_Register_-_2026-11-11.csv",
+    "source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+    "source_rows": 143009,
+    "grouped_entries": 127873,
+    "distinct_names": 127310,
+    "row_reconciliation": "all_source_records_retained",
+    "network_requests_by_builder": 0,
+    "production_writes": 0,
+    "business_enrichment": "not_collected",
+    "files": {
+      "data.json": {
+        "bytes": 28432435,
+        "sha256": "5d236a49a8c5e0c6b93eb9d133f999a97e352035fb871a39524324900b187e89"
+      },
+      "index.html": {
+        "bytes": 28538839,
+        "sha256": "940e0e88fda538261afada26b309ddadb365e298df1a8c946f647faf8fc50c7e"
+      },
+      "register-entries.csv": {
+        "bytes": 24910470,
+        "sha256": "5823894ec5c4a0f79581254957324b44e5b74e2118c41c62dc935f5f424beb7e"
+      },
+      "README.md": {
+        "bytes": 2706,
+        "sha256": "2ce4b279e89e79903766a27884df77a8fb7e53791c588ae5bcaa4b20e1de8b10"
+      }
+    }
+  },
+  "local_validation": {
+    "python_version": "3.14.7",
+    "node_version": "24.19.0",
+    "unit_tests_passed": 12,
+    "full_register_browser": {
+      "observed_at": "2026-11-11T15:53:13.705Z",
+      "scope": "local offline generated register pack",
+      "source_sha256": "b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682",
+      "entries": 127873,
+      "load_ms_local": 1004,
+      "checks": [
+        "complete embedded entry count",
+        "only one page rendered",
+        "paired source row denominator shown",
+        "pagination changes entries",
+        "pagination restores first page",
+        "combined filters match independent data calculation",
+        "selected dossier names exact entry",
+        "route-rating pairs survive display",
+        "unverified business fields stay unknown",
+        "research plan uses exact organisation",
+        "actual saved dossier export retains source and unknown state",
+        "Escape closes dialog and restores focus",
+        "empty results are explicit",
+        "clear restores directory",
+        "mobile page has no horizontal overflow",
+        "mobile dossier fits viewport",
+        "no page errors",
+        "no background network requests"
+      ],
+      "errors": [],
+      "unexpected_requests": [],
+      "production_requests": 0
+    },
+    "fictional_browser": {
+      "observed_at": "2026-11-11T15:53:54.404Z",
+      "scope": "fictional offline template browser QA",
+      "fixture_count": 3,
+      "template": "cloudflare/scripts/sponsor-dossiers-template.html",
+      "success": true,
+      "checks": [
+        "Three fictional entries rendered from embedded data",
+        "ASCII STRASSE variant search immediately returns grouped Stra\u00dfe entry on Enter",
+        "Both casefold-equivalent recorded town variants return the entry",
+        "Two route/rating pairs preserved without false missing-Skilled-Worker warning",
+        "Escape closes modal and restores triggering button focus",
+        "Malicious script/image name remains literal text; no image node or script execution",
+        "Blank town/county explicit and no-Skilled-Worker caution tailored to Charity Worker record",
+        "390px page and open dossier have no horizontal overflow",
+        "Zero attempted external page requests and zero browser errors"
+      ],
+      "external_page_requests": [],
+      "browser_errors": [],
+      "error": null,
+      "production_mutation": false
+    },
+    "independent_source_row_reconciliation": "every CSV record 2..143010 exactly once",
+    "independent_review": "agent-assisted code/data review; not employer identity adjudication",
+    "initial_browser_failure": "Enter in multi-input form did not force immediate filtering; empty-state assertion failed before debounce. Added immediate Enter handler; final run passed."
+  },
+  "security": {
+    "npm_audit": {
+      "info": 0,
+      "low": 1,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 1
+    },
+    "advisories": [
+      {
+        "package": "fast-xml-parser",
+        "installed": "5.11.2",
+        "patched": "5.12.0",
+        "severity": "low",
+        "url": "https://github.com/NaturalIntelligence/fast-xml-parser/security/advisories/GHSA-474x-hrwr-fgx4",
+        "exposure_review": "Only inspected application XMLParser call in jobs.js does not configure required stopNodes option; dependency patch follow-up remains, no deployed patch claimed."
+      }
+    ],
+    "new_dependencies": 0
+  },
+  "boundaries": {
+    "goal": "active; expanded durable requirements",
+    "production_reads_after_morning_quota_failure": 0,
+    "production_writes": 0,
+    "deployments": 0,
+    "new_vacancy_leads": 0,
+    "model_calls": 0,
+    "company_enrichment": "not_collected",
+    "private_saving": "not_activated",
+    "existing_identity_ceiling": 500,
+    "existing_tracked_edits_unchanged": true,
+    "whole_branch_deployment": "prohibited"
+  }
+}

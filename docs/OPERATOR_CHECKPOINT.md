@@ -1,10 +1,18 @@
 # Sponsor Intel operator checkpoint
 
-Updated **11 November 2026, 10:36 UTC**. Read `DAILY_OPERATOR.md` first. This records observations and open gates; it never clears a hold. The previous checkpoint is preserved in `history/OPERATOR_CHECKPOINT-2026-11-04-1104.md`. Current details: `OPERATIONS-2026-11-11.md` and the dated receipts linked below.
+Updated **11 November 2026, 15:55 UTC**. Read `DAILY_OPERATOR.md` first. This records observations and open gates; it never clears a hold. The morning checkpoint is preserved in `history/OPERATOR_CHECKPOINT-2026-11-11-1036.md`. Current details: `OPERATIONS-2026-11-11.md`, `SPONSOR_ATLAS-2026-11-11.md` and the dated receipts linked below.
 
 ## Authority and current service failure
 
-The actual Codex goal is **blocked**. The heartbeat permits bounded recovery/source/provider observations and dated evidence retention. It does not resume the goal, any other project, private saving, model comparisons, sources or publishing. The owner capacity decision and original business-workflow evidence remain unresolved. No unanswered capacity, installation or sign-in question was repeated.
+The actual Codex goal is now **active**, following the owner's resume and direct company-directory expansion. Its durable requirements now include `SPONSOR_COMPANY_ATLAS_PLAN.md`. This permits independent local development and the requested official register research; capacity, original business-workflow evidence, private saving, model comparisons, sources and publishing retain their gates. No other project or unanswered approval was resumed. The morning blocked observation remains in its original receipt/archive.
+
+## Complete local register atlas
+
+One official **11 November** CSV was downloaded at **15:46:45 UTC** for the owner's directory request. It contains **143,009 source rows**, **127,873 grouped entries**, **127,310 distinct normalized name strings** and **6,345 reported town strings**. These are separate denominators, not a count of verified legal companies or current sponsorship jobs. SHA-256: `b47added0ad52e51af64b32319b7b8b463dddd0f04ce101eeb3ab427c0571682`. The public production register was not imported, renewed or rechecked.
+
+The offline atlas includes all entries, paired routes/ratings, source references, search/location/route filters, downloadable dossiers and an entry-specific evidence-research plan. Business identities, websites, sectors, careers and jobs remain **not collected** in this edition. The existing live identity desk's **500-record insertion ceiling** is unchanged. Local validation: 12 Python tests, 18 full-register browser checks, independent fixture browser review and full source-row/hash reconciliation. No network requests from the atlas, new production records, migration, deployment, model call or new discovery lead.
+
+The deliverable is in the Sponsor Intel project folder as **Sponsor company atlas 2026-11-11 final**; code, requirements and aggregate evidence are retained in the repository. See `SPONSOR_ATLAS-2026-11-11.md`. The complete register baseline is implemented locally; broad enrichment and live integration remain open.
 
 At **10:28 UTC**, `/api/health` returns **200 / 2.98.16**, but `/api/jobs?limit=1` and `/api/jobs/sources` both return **500**. Current job totals and source freshness cannot be verified. Health still reports the **27 October register / 128,008 entries**, last checked **28 October 07:15:32.207 UTC**. A health response is not data-service recovery. HTTP QA was excluded from measurement.
 
@@ -52,4 +60,4 @@ Learning: 17 topics/15 resources, review due **20 November**. Founder foundation
 
 Actual post-limit data recovery; a complete current recovery/schema observation; owner capacity decision and authoritative original-supervisor evidence; genuine scheduled source outcomes; current register and authenticated overdue reviews; exact extension permission and separate store acceptance. Keep requests, model calls, sends and source ceilings unchanged. No subsequent owner decision may be overridden by this checkpoint.
 
-Disk preflight: **25 GiB**. No build/install/test, cleanup or production mutation occurred. The private local-state archive and unrelated `outputs/` are preserved. GitHub's account billing lock was last verified at the prior exact head; current documentation-head checks are recorded on open/draft/unmerged PR #1 after push. Platform status pages do not prove account capacity or hosted CI acceptance. No continuous-work goal was resumed.
+Disk preflight: **25 GiB**. The afternoon local atlas build/tests added no dependencies or production mutation. The private local-state archive, unrelated code and `outputs/` are preserved. Current npm audit reports one low fast-xml-parser advisory requiring non-default `stopNodes`, which the inspected application call does not enable; see `TOOLCHAIN_SECURITY.md`. GitHub exact-head evidence is recorded on open/draft/unmerged PR #1 after push; local checks cannot clear its billing lock. Sustainable capacity, current recovery/schema and original-supervisor acceptance remain unresolved despite the owner-resumed development goal.

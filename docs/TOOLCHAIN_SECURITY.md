@@ -1,5 +1,11 @@
 # Development-tool security and local recovery
 
+## Dependency review — 11 November 2026
+
+The atlas work adds no dependency or application-runtime change. A fresh npm audit reports **one low advisory**, not zero: fast-xml-parser 5.11.2 is in [GHSA-474x-hrwr-fgx4](https://github.com/NaturalIntelligence/fast-xml-parser/security/advisories/GHSA-474x-hrwr-fgx4), published 3 November, patched in 5.12.0. The maintainer describes excess CPU on malformed input with the non-default `stopNodes` option. The only inspected application `XMLParser` construction, in `worker/jobs.js`'s university reader, does not enable `stopNodes` and rejects invalid XML first. This is a configuration/exposure assessment, not a claim that the package has no vulnerabilities or that a patch is deployed. Retain a bounded dependency-update follow-up with feed-regression and release validation; do not deploy the combined prepared branch to remove an audit warning.
+
+The offline atlas uses Python's standard library and browser-native DOM only. Its tests ran under Python 3.14.7 and its optional browser harness under pinned Node 24.19.0 with the existing Chrome/Playwright installation. No install or account/permission change occurred. An initial npm command used a nonexistent Homebrew-resolved CLI path and failed before audit; the corrected existing `/opt/homebrew/lib/node_modules/npm/bin/npm-cli.js` produced the finding above. Source/code and aggregate audit evidence are in `tests/evidence/sponsor-atlas-2026-11-11.json`.
+
 ## Runtime verification — 28 October 2026
 
 The bundled `codex-primary-runtime` Node path now reports 24.22.1; it is no longer the project's exact 24.19.0 pin. Final release 2.98.2 validation uses `~/.cache/sponsorintel/node-v24.19.0-darwin-arm64/bin/node`, downloaded from the official nodejs.org distribution with SHA256 `8294b7aa9b03997481c06babf1e8b270c859358f27da57a11509afe537ac381d` verified against its official checksum list. Check actual version and disk before use; do not assume a mutable bundled path remains pinned. 776 tests/build/dry-run pass, zero known npm advisories, dependency versions unchanged. Current recovery is unavailable under database capacity failure; these local results do not clear that incident or hosted CI billing lock.

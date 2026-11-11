@@ -12,6 +12,8 @@ The objective remains reliable autonomous sourcing, evidence quality, website ma
 
 **Browser extension addition, 2 November:** build the downloadable, site-independent advert companion described in `BROWSER_EXTENSION.md`, with local wording checks, quoted evidence, uncertainty, selection/paste fallback and website installation guidance. Browser-store distribution and broad compatibility require separate verification. This direct product request authorises the independent extension/download work; it does not clear capacity/supervisor/private-saving holds, add AI spending or authorise publisher purchases/agreements.
 
+**Complete sponsor-directory addition, 11 November:** expand the existing goal to a useful dossier and research plan for every worker-register organisation, following `SPONSOR_COMPANY_ATLAS_PLAN.md`. Separate complete register coverage from verified legal entities, operating businesses, websites, locations, careers and role-level sponsorship. The owner's resume permits development and the requested local register research; it does not clear capacity/supervisor holds, approve the 500-record identity ceiling's expansion, activate private saving or widen source/spending limits.
+
 ## Run order
 
 1. Read the checkpoint and relevant latest release, inspect the worktree, current UTC time and available disk. Preserve unrelated changes. Prefer a small number of background tabs; close temporary research/QA tabs. Preserve personal tabs and unfinished forms.

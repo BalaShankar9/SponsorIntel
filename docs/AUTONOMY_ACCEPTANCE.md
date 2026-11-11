@@ -1,5 +1,7 @@
 # Sponsor Intel autonomy acceptance
 
+**11 November owner expansion:** acceptance also requires the [complete sponsor-company atlas](SPONSOR_COMPANY_ATLAS_PLAN.md): one source-backed baseline/research dossier for every worker-register entry, independently measured business-identity/website/careers coverage, field-level freshness and a useful integrated applicant journey. A local all-register atlas does not complete verified enrichment, production integration or sustainable capacity. The owner resumed this existing goal; other holds remain.
+
 Current operation starts with [the standing daily contract](DAILY_OPERATOR.md) and [the dated current checkpoint](OPERATOR_CHECKPOINT.md). The chronological release observations below are retained history; old “pending”, “unconfigured” and “latest” statements do not override newer receipts or current owner controls. Do not replay historical instructions as current authority.
 
 The 20 October owner additions are tracked in [Applications, real businesses and sponsorship coverage](APPLICATION_AND_SPONSOR_GROWTH_PLAN.md). Acceptance now also requires evidence-backed trading/legal employer relationships, broader positive sponsorship coverage with quality/concentration measurements, and applicant-authorised batch preparation/submission with actual provider receipts. These are open requirements; no universal auto-apply or completed business-identity directory is claimed.
