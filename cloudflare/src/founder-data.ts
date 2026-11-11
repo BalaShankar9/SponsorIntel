@@ -1,6 +1,7 @@
-import {useEffect,useLayoutEffect,useState} from 'react';
+import {useLayoutEffect,useState} from 'react';
 import {emptyWorkbook,hasWork} from '../shared/founder.js';
 import {createFounderWorkspace,founderDirty} from '../shared/founder-workspace.js';
+import {clearFounderFinanceDraft} from './founder-finance-data';
 
 const listeners=new Set<()=>void>();
 // Created only when the Founder hub is opened. Access to browser storage and
@@ -8,6 +9,7 @@ const listeners=new Set<()=>void>();
 export const founderStore=createFounderWorkspace({
  storage:{getItem:k=>localStorage.getItem(k),setItem:(k,v)=>localStorage.setItem(k,v),removeItem:k=>localStorage.removeItem(k)},
  notify:()=>listeners.forEach(fn=>fn()),
+ onDeleteIdentity:clearFounderFinanceDraft,
  request:async(method,body)=>{
   const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000);
   try{
@@ -25,9 +27,9 @@ if(typeof window!=='undefined')window.addEventListener('beforeunload',event=>{
 });
 export function useFounderWorkspace(accountId:string|null){
  const [,render]=useState(0);
- useEffect(()=>{const fn=()=>render(n=>n+1);listeners.add(fn);return()=>{listeners.delete(fn);};},[]);
+ useLayoutEffect(()=>{const fn=()=>render(n=>n+1);listeners.add(fn);return()=>{listeners.delete(fn);};},[]);
  useLayoutEffect(()=>{founderStore.setIdentity(accountId);},[accountId]);
  const s=founderStore.state;
  // Do not paint one account's notes while the identity effect is pending.
- return s.accountId&&s.accountId!==accountId?{...s,book:emptyWorkbook(),base:emptyWorkbook(),recovery:null,incoming:null,rawBackup:null,pending:null,accountId:null}:s;
+ return founderStore.identity!==accountId||s.accountId&&s.accountId!==accountId?{...s,book:emptyWorkbook(),base:emptyWorkbook(),recovery:null,incoming:null,rawBackup:null,pending:null,accountId:null,known:false,revision:0,busy:false,leaving:false,error:'',status:'Held in this tab only'}:s;
 }

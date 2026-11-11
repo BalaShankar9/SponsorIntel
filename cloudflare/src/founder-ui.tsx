@@ -5,6 +5,9 @@ import './founder.css';
 import {useCareer} from './career-data';
 import {founderStore,useFounderWorkspace} from './founder-data';
 import {FounderStorage} from './founder-storage';
+import {FounderFinances} from './founder-finances';
+import {useFounderFinanceDraft} from './founder-finance-data';
+import {appendFinancialSummary} from '../shared/founder-finances.js';
 const external={target:'_blank',rel:'noopener noreferrer'};
 const money=(n:number)=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP',maximumFractionDigits:0}).format(n);
 const tabs=['Journey','Workbook','Costs','Find support','Sources'] as const;
@@ -13,13 +16,27 @@ function SourceLink({id}:{id:string}){const s=sources[id];return <a className="f
 export function FounderHub(){
   const[tab,setTab]=useState<Tab>('Journey'),[stageId,setStageId]=useState('fit');
   const {user}=useCareer(),saved=useFounderWorkspace(user?.id||null),book=saved.book;
+  const financialScope=user?.id||null,financialContext=founderStore.contextToken;
+  const finance=useFounderFinanceDraft(financialScope,financialContext);
+  const latestScope=useRef(financialScope);latestScope.current=financialScope;
   const[message,setMessage]=useState(''),[pending,setPending]=useState<Workbook|null>(null),[reset,setReset]=useState(false);
   const[now,setNow]=useState(Date.now),[query,setQuery]=useState(''),[kind,setKind]=useState('All'),[region,setRegion]=useState('All'),[onlySelected,setOnlySelected]=useState(false);
   const file=useRef<HTMLInputElement>(null),panel=useRef<HTMLElement>(null);
   const current=reviewCurrent(now),fees=feeIllustration(book.location,now),stage=stages.find(s=>s.id===stageId)!;
   useEffect(()=>{setPending(null);setReset(false);setMessage('');},[user?.id]);
   useEffect(()=>{const timer=window.setInterval(()=>setNow(Date.now()),30000);const wake=()=>setNow(Date.now());window.addEventListener('focus',wake);return()=>{clearInterval(timer);window.removeEventListener('focus',wake);};},[]);
-  function change(next:Workbook){try{founderStore.change(next);setMessage('');}catch(error){setMessage((error as Error).message);}}
+  function change(next:Workbook,replace=false){try{if(replace)founderStore.replace(next);else founderStore.change(next);setMessage('');return true;}catch(error){setMessage((error as Error).message);return false;}}
+  function appendScenario(summary:string){
+    const current=founderStore.state,draft=finance.current();
+    if(latestScope.current!==financialScope||founderStore.identity!==financialScope||founderStore.contextToken!==financialContext||draft.contextToken!==financialContext||current.accountId&&current.accountId!==financialScope)throw Error('The account or workbook changed. Review the current workbook before adding this scenario.');
+    if(current.busy||current.leaving||current.incoming||current.rawBackup)throw Error('Finish the current workbook action or comparison before adding a scenario. Your inputs remain in this tab.');
+    const note=appendFinancialSummary(current.book.notes.finances,summary);
+    founderStore.change({...current.book,notes:{...current.book.notes,finances:note}});
+    const result=founderStore.state;
+    if(result.book.notes.finances!==note)throw Error('The finance note update could not be confirmed. Your scenario remains in this tab.');
+    if(result.error)throw Error('The summary is in this tab, but the workbook reports: '+result.error);
+    setMessage('Scenario summary added to your financial assumptions. Account saving remains a separate action.');
+  }
   function choose(next:Tab){setTab(next);setMessage('');requestAnimationFrame(()=>panel.current?.focus());}
   function toggle(key:'checks'|'shortlist',id:string){change({...book,[key]:book[key].includes(id)?book[key].filter(x=>x!==id):[...book[key],id]});}
   function download(kind:'json'|'txt'){
@@ -27,7 +44,8 @@ export function FounderHub(){
   }
   async function importFile(event:React.ChangeEvent<HTMLInputElement>){
     const selected=event.target.files?.[0];event.target.value='';if(!selected)return;
-    try{if(selected.size>MAX_IMPORT_BYTES)throw Error('Choose a workbook smaller than 300 KB.');const parsed=parseWorkbook(await selected.text());setPending(parsed);setMessage('File checked. Review the replacement prompt below; your current notes have not changed.');}catch(error){setPending(null);setMessage(error instanceof Error?error.message:'The workbook could not be read. Existing notes have not changed.');}
+    const scope=financialScope,context=founderStore.contextToken;
+    try{if(selected.size>MAX_IMPORT_BYTES)throw Error('Choose a workbook smaller than 300 KB.');const parsed=parseWorkbook(await selected.text());if(latestScope.current!==scope||founderStore.contextToken!==context)return;setPending(parsed);setMessage('File checked. Review the replacement prompt below; your current notes have not changed.');}catch(error){if(latestScope.current!==scope||founderStore.contextToken!==context)return;setPending(null);setMessage(error instanceof Error?error.message:'The workbook could not be read. Existing notes have not changed.');}
   }
   const matches=filterDirectory(query,kind,region).filter(d=>!onlySelected||book.shortlist.includes(d.id));
   return <div className="founder-hub">
@@ -54,9 +72,9 @@ export function FounderHub(){
         <div className="founder-privacy"><ShieldCheck size={20}/><div><strong>{saved.accountId?'Device copy open. Save explicitly to update your account.':'Held in this tab until you open a private workspace.'}</strong><p>{saved.accountId?'Unsaved notes and uncertain-save references are kept on this browser when storage is available. Browser-data removal can erase them. Account saves can fail or conflict; check the status below.':'Closing or reloading can lose these notes. Export them, or explicitly open your private founder workspace below.'} Notes are never sent to AI. Avoid sensitive documents and personal customer data. Your marks record preparation, not verified evidence or visa readiness.</p></div></div>
         <FounderStorage key={user?.id||'guest'} state={saved} user={user}/><div className="founder-tools"><button onClick={()=>download('json')}><Download size={16}/> Download workbook</button><button onClick={()=>download('txt')}><FileText size={16}/> Export readable pack</button><button onClick={()=>file.current?.click()}><Upload size={16}/> Restore workbook</button><button onClick={()=>setReset(true)}>Clear current notes</button><input style={{display:'none'}} ref={file} type="file" accept=".json,application/json" onChange={importFile}/></div>
         {message&&<p className="founder-message" role="status">{message}</p>}
-        {pending&&<div className="founder-confirm" role="region" aria-label="Confirm workbook replacement"><h3>Replace the current workbook?</h3><p>The file contains {Object.values(pending.notes).filter(x=>x.trim()).length} filled notes and {pending.shortlist.length} shortlisted organisations. This replaces the current notes, marks and shortlist. It does not save to your account automatically. Download or copy the current workbook first if you need it.</p><button onClick={()=>{change(pending);setPending(null);setMessage('Workbook restored locally. Save explicitly if you want to update your account.');}}>Replace with this workbook</button><button onClick={()=>{setPending(null);setMessage('Restore cancelled. Your existing notes remain.');}}>Keep current work</button></div>}
-        {reset&&<div className="founder-confirm" role="region" aria-label="Confirm clearing"><p>Clear the current notes, checklist marks and shortlist? Export or copy them first if needed. Your account copy changes only if you subsequently save the empty workbook.</p><button onClick={()=>{change(emptyWorkbook());setReset(false);setPending(null);setMessage('Current workbook cleared locally. The account copy and downloaded files are unchanged until you explicitly save.');}}>Clear this workbook</button><button onClick={()=>setReset(false)}>Keep my work</button></div>}
-        <div className="founder-workspace"><nav aria-label="Workbook stages">{stages.map(s=><button key={s.id} aria-current={stageId===s.id?'step':undefined} onClick={()=>setStageId(s.id)}><span>{book.checks.includes(s.id)?<Check size={16}/>:s.number}</span>{s.title}</button>)}</nav><section className="founder-editor" aria-labelledby="founder-stage-title"><p className="eyebrow">STAGE {stage.number}</p><h3 id="founder-stage-title">{stage.title}</h3><p>{stage.action}</p>{stage.fields.map(f=><label className="founder-field" key={f.id}><strong>{f.label}</strong><span id={'hint-'+f.id}>{f.hint}</span><textarea aria-label={f.label} maxLength={4000} rows={5} value={book.notes[f.id]} aria-describedby={'hint-'+f.id} onChange={e=>change({...book,notes:{...book.notes,[f.id]:e.target.value}})}/><small>{book.notes[f.id].length}/4,000 characters</small></label>)}<label className="founder-check"><input type="checkbox" checked={book.checks.includes(stage.id)} onChange={()=>toggle('checks',stage.id)}/>{stage.check}</label><SourceLink id={stage.source}/></section></div>
+        {pending&&<div className="founder-confirm" role="region" aria-label="Confirm workbook replacement"><h3>Replace the current workbook?</h3><p>The file contains {Object.values(pending.notes).filter(x=>x.trim()).length} filled notes and {pending.shortlist.length} shortlisted organisations. This replaces the current notes, marks and shortlist. It does not save to your account automatically. Download or copy the current workbook first if you need it.</p><button onClick={()=>{if(change(pending,true)){setPending(null);setMessage('Workbook restored locally. Scenario inputs remain separate; review them before adding to these notes. Save explicitly if you want to update your account.');}}}>Replace with this workbook</button><button onClick={()=>{setPending(null);setMessage('Restore cancelled. Your existing notes remain.');}}>Keep current work</button></div>}
+        {reset&&<div className="founder-confirm" role="region" aria-label="Confirm clearing"><p>Clear the current notes, checklist marks and shortlist? Export or copy them first if needed. Your account copy changes only if you subsequently save the empty workbook.</p><button onClick={()=>{if(change(emptyWorkbook(),true)){setReset(false);setPending(null);setMessage('Current workbook cleared locally. Scenario inputs remain separate. The account copy and downloaded files are unchanged until you explicitly save.');}}}>Clear this workbook</button><button onClick={()=>setReset(false)}>Keep my work</button></div>}
+        <div className="founder-workspace"><nav aria-label="Workbook stages">{stages.map(s=><button key={s.id} aria-current={stageId===s.id?'step':undefined} onClick={()=>setStageId(s.id)}><span>{book.checks.includes(s.id)?<Check size={16}/>:s.number}</span>{s.title}</button>)}</nav><section className="founder-editor" aria-labelledby="founder-stage-title"><p className="eyebrow">STAGE {stage.number}</p><h3 id="founder-stage-title">{stage.title}</h3><p>{stage.action}</p>{stage.fields.map(f=><label className="founder-field" key={f.id}><strong>{f.label}</strong><span id={'hint-'+f.id}>{f.hint}</span><textarea aria-label={f.label} maxLength={4000} rows={5} value={book.notes[f.id]} aria-describedby={'hint-'+f.id} onChange={e=>change({...book,notes:{...book.notes,[f.id]:e.target.value}})}/><small>{book.notes[f.id].length}/4,000 characters</small></label>)}{stage.id==='case'&&<FounderFinances key={financialScope||'guest'} inputs={finance.inputs} onChange={finance.change} onAppend={appendScenario} disabled={founderStore.identity!==financialScope||saved.busy||saved.leaving||!!saved.incoming||!!saved.rawBackup} contextChanged={finance.contextChanged} onAdoptContext={finance.adoptContext}/>}<label className="founder-check"><input type="checkbox" checked={book.checks.includes(stage.id)} onChange={()=>toggle('checks',stage.id)}/>{stage.check}</label><SourceLink id={stage.source}/></section></div>
       </>}
       {tab==='Costs'&&<>
         <div className="founder-section-title"><div><p className="eyebrow">SEPARATE FEES FROM RUNWAY</p><h2>Make room for the real costs.</h2></div><p>One adult, an assumed three-year initial permission and two contact meetings. An illustration, not a quote or eligibility decision.</p></div>

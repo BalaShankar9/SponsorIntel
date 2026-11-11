@@ -20,9 +20,9 @@ function parseDevice(raw,id){
 }
 function encoded(s){return JSON.stringify({format:'si-founder-device-v1',accountId:s.accountId,book:s.book,base:s.base,revision:s.revision,known:s.known,pending:s.pending,recovery:s.recovery});}
 export const founderDirty=s=>!!s.pending||!same(s.book,s.base);
-export function createFounderWorkspace({storage,request,uuid=()=>crypto.randomUUID(),notify=()=>{}}){
- let s=blank(),identity=null,raw=null,epoch=0;
- const suspended=new Map();
+export function createFounderWorkspace({storage,request,uuid=()=>crypto.randomUUID(),notify=()=>{},onDeleteIdentity=()=>{}}){
+ let s=blank(),identity=null,raw=null,epoch=0,contextToken=0;
+ const suspended=new Map(),tabWorkbooks=new Map();
  const emit=()=>notify({...s});
  const persist=()=>{
   if(!s.accountId)return;
@@ -43,6 +43,7 @@ export function createFounderWorkspace({storage,request,uuid=()=>crypto.randomUU
   if((s.known&&remote.revision===s.revision&&same(remote.book,s.base))||same(s.book,remote.book)||(!hasWork(s.book)&&!founderDirty(s))){
    // Matching bases permit unsynced edits to survive a cloud read.
    const keep=s.known&&remote.revision===s.revision&&same(remote.book,s.base)&&founderDirty(s);
+   if(!keep&&!same(s.book,remote.book))contextToken++;
    s={...s,book:keep?s.book:remote.book,base:remote.book,revision:remote.revision,known:true,incoming:null,status:keep?'Unsaved changes recovered on this device':'Saved account copy opened'};
   }else s={...s,incoming:remote,status:'Two copies need your choice. Neither has been overwritten.'};
   persist();emit();
@@ -56,14 +57,21 @@ export function createFounderWorkspace({storage,request,uuid=()=>crypto.randomUU
  }
  const api={
   get state(){return {...s};},
-  get hasHiddenWork(){return [...suspended.values()].some(x=>founderDirty(x.state)||x.state.recovery||x.state.error);},
+  // Tab-memory only: consumers can notice workbook changes without storing drafts.
+  get contextToken(){return contextToken;},
+  get identity(){return identity;},
+  get hasHiddenWork(){return [...suspended.values()].some(x=>founderDirty(x.state)||x.state.recovery||x.state.error)||[...tabWorkbooks.values()].some(x=>hasWork(x.book)||x.recovery||x.error);},
   setIdentity(id){
    if(identity===id)return;
-   identity=id;epoch++;
+   const previous=identity;identity=id;epoch++;contextToken++;
    if(s.accountId&&s.accountId!==id){
     // A session can expire even when browser storage has failed. Hide the
     // notes from other identities but retain this tab copy for the same owner.
-    suspended.set(s.accountId,{state:{...s,busy:false,leaving:false},raw});s=blank();raw=null;
+    suspended.set(s.accountId,{state:{...s,busy:false,leaving:false},raw});s=tabWorkbooks.get(id)||blank();tabWorkbooks.delete(id);raw=null;
+   }else if(!s.accountId){
+    // Unopened tab notes belong to the identity that wrote them, including guests.
+    // Returning to that identity restores them without opening storage or an API.
+    tabWorkbooks.set(previous,{...s,busy:false,leaving:false});s=tabWorkbooks.get(id)||blank();tabWorkbooks.delete(id);raw=null;
    }
    s={...s,busy:false};emit();
   },
@@ -72,13 +80,20 @@ export function createFounderWorkspace({storage,request,uuid=()=>crypto.randomUU
    s={...s,book:book(next),error:'',status:s.accountId?'Unsaved changes on this device':'Held in this tab only'};
    try{persist();}catch(e){fail(e);}emit();
   },
+  replace(next){
+   if(s.leaving)throw Error('Finish the account change before editing.');
+   const replacement=book(next);
+   contextToken++;
+   s={...s,book:replacement,error:'',status:s.accountId?'Unsaved changes on this device':'Held in this tab only'};
+   try{persist();}catch(e){fail(e);}emit();
+  },
   async open(id){
    if(id!==identity||!id)throw Error('Sign in before opening your private founder workspace.');
    if(s.accountId){await refresh();return;}
    const held=suspended.get(id);
    if(held){
     if(hasWork(s.book)&&!same(s.book,held.state.book))throw Error('Export your separate tab notes before reopening the retained account copy.');
-    s=held.state;raw=held.raw;suspended.delete(id);emit();
+    contextToken++;s=held.state;raw=held.raw;suspended.delete(id);emit();
     try{persist();}catch(e){fail(e);return;}
     if(s.pending){s={...s,status:'Reconcile the retained exact save before continuing.'};emit();return;}
     await refresh();return;
@@ -87,8 +102,8 @@ export function createFounderWorkspace({storage,request,uuid=()=>crypto.randomUU
    try{
     raw=storage.getItem(founderDeviceKey(id));cached=raw?parseDevice(raw,id):null;
     if(cached&&hasWork(s.book)&&!same(s.book,cached.book))throw Error('A separate device workbook exists. Export your tab notes, then clear the tab before opening that copy.');
-   }catch(e){s={...s,accountId:id,known:false,rawBackup:raw};fail(e);return;}
-   s={...s,...(cached||{accountId:id}),rawBackup:null,error:''};emit();
+   }catch(e){contextToken++;s={...s,accountId:id,known:false,rawBackup:raw};fail(e);return;}
+   contextToken++;s={...s,...(cached||{accountId:id}),rawBackup:null,error:''};emit();
    try{persist();}catch(e){fail(e);return;}
    if(s.pending){s={...s,status:'A previous save has an uncertain result. Reconcile that exact save before continuing.'};emit();return;}
    await refresh();
@@ -98,12 +113,14 @@ export function createFounderWorkspace({storage,request,uuid=()=>crypto.randomUU
    scope();if(s.busy||s.pending||!s.incoming)throw Error('Wait for the current action.');
    if(s.recovery)throw Error('Export or restore the existing recovery copy, then explicitly remove it before replacing another copy.');
    const remote=s.incoming;
+   if(which==='cloud'&&!same(s.book,remote.book))contextToken++;
    s={...s,recovery:which==='cloud'&&hasWork(s.book)?s.book:which==='local'&&hasWork(remote.book)?remote.book:null,book:which==='cloud'?remote.book:s.book,base:remote.book,revision:remote.revision,known:true,incoming:null,error:'',status:which==='cloud'?'Saved copy opened; previous notes kept in device recovery':'Your copy kept for an explicit save; cloud copy kept in device recovery'};
    try{persist();}catch(e){fail(e);}emit();
   },
   restoreRecovery(){
    scope();if(s.busy||s.pending||!s.recovery)throw Error('Reconcile any save first.');
    if(founderDirty(s))throw Error('Save or export your current edits before restoring the recovery copy.');
+   if(!same(s.book,s.recovery))contextToken++;
    s={...s,book:s.recovery,error:'',status:'Recovery copy restored locally; save explicitly to update your account'};
    try{persist();}catch(e){fail(e);}emit();
   },
@@ -137,11 +154,19 @@ export function createFounderWorkspace({storage,request,uuid=()=>crypto.randomUU
    const key=founderDeviceKey(id);
    if(storage.getItem(key)!==raw)throw Error('The device copy changed. Reopen it before choosing to remove it.');
    storage.removeItem(key);if(storage.getItem(key)!==null)throw Error('The device copy could not be removed.');
-   epoch++;s=blank();raw=null;emit();
+   epoch++;contextToken++;s=blank();raw=null;emit();
   },
   prepareExit(id){if(s.accountId===id){if(s.busy||founderDirty(s)||s.recovery)throw Error('Save or export and resolve your Founder hub device/recovery copy before signing out.');s={...s,leaving:true};emit();}},
   cancelExit(){s={...s,leaving:false};emit();},
-  finishExit(id){suspended.delete(id);if(s.accountId===id){epoch++;identity=null;s=blank();raw=null;emit();}},
+  finishExit(id,{deleted=false}={}){
+   suspended.delete(id);
+   const exiting=s.accountId===id||identity===id;
+   if(deleted)tabWorkbooks.delete(id);
+   else if(identity===id&&!s.accountId)tabWorkbooks.set(id,{...s,busy:false,leaving:false});
+   if(exiting){epoch++;contextToken++;identity=null;s=tabWorkbooks.get(null)||blank();tabWorkbooks.delete(null);raw=null;}
+   if(deleted)onDeleteIdentity(id);
+   if(exiting)emit();
+  },
  };
  stores.add(api);return api;
 }
@@ -156,6 +181,6 @@ export function finishFounderExit(storage,id,expected,{deleted=false}={}){
  const key=founderDeviceKey(id);let removed=false;
  try{if(deleted||storage.getItem(key)===expected){storage.removeItem(key);removed=storage.getItem(key)===null;}}
  catch{/* The account action already succeeded. Keep any failed device cleanup explicit. */}
- finally{for(const store of stores)store.finishExit(id);}
+ finally{for(const store of stores)store.finishExit(id,{deleted});}
  return removed;
 }

@@ -1,6 +1,6 @@
 # Sponsor Intel operator checkpoint
 
-Updated **11 November 2026, 17:29 UTC**. Read `DAILY_OPERATOR.md` first. This records observations and open gates; it never clears a hold. The morning checkpoint is preserved in `history/OPERATOR_CHECKPOINT-2026-11-11-1036.md`. Current details: `OPERATIONS-2026-11-11.md`, `SPONSOR_ATLAS-2026-11-11.md`, `SPONSOR_ATLAS_EVIDENCE-2026-11-11.md`, `XML_PARSER_PATCH-2026-11-11.md`, `MARKETING_DECISION_RECOVERY-2026-11-11.md` and the dated receipts linked below.
+Updated **11 November 2026, 17:55 UTC**. Read `DAILY_OPERATOR.md` first. This records observations and open gates; it never clears a hold. The morning checkpoint is preserved in `history/OPERATOR_CHECKPOINT-2026-11-11-1036.md`. Current details: `OPERATIONS-2026-11-11.md`, `SPONSOR_ATLAS-2026-11-11.md`, `SPONSOR_ATLAS_EVIDENCE-2026-11-11.md`, `XML_PARSER_PATCH-2026-11-11.md`, `MARKETING_DECISION_RECOVERY-2026-11-11.md`, `FOUNDER_FINANCIAL_SCENARIOS-2026-11-11.md` and the dated receipts linked below.
 
 ## Authority and current service failure
 
@@ -69,3 +69,9 @@ Disk preflight: **25 GiB**; approximately **20.6 GiB** remained after preserving
 ## Prepared decision-save recovery
 
 The non-schedule Marketing desk form now preserves one exact uncertain hold/review/delivery request across retries, desk refreshes and omission from the latest-50 list. A later access/rate-limit rejection retains the earlier unknown request; acknowledgement followed by a failed read offers refresh only. Freshly read receipt fields replace old form values, and schedule revision resets remain intact. Seven focused tests, **876 full tracked-source tests**, build/21 prerenders/browser budgets/dry run and **15 browser checks / 14 fictional scenarios** pass. All original unknown outcomes and review/permission limits remain. This is local prepared **2.99.0**, **not deployed**; it establishes no real provider delivery. See `MARKETING_DECISION_RECOVERY-2026-11-11.md`. The active goal has concrete local progress; wider verified company enrichment still needs readable controls/capacity, and live integration retains its recovery gates.
+
+## Prepared Founder cash workbench
+
+A bounded stage-three workbench now compares user-entered base/downside cash assumptions, shows exact monthly balances and provides an explicitly appended or downloaded dated summary. Raw inputs remain in per-identity tab memory; account/guest switches hide other work, confirmed deletion clears that identity, and workbook replacement retains the scenario behind an explicit reuse choice. The private-work audit also repaired tab-only note isolation and initial identity timing. **904 full tests**, TypeScript/build, 21 prerenders, browser budgets/dry run and **15 fictional browser checks** pass. Exact download bytes, mobile layout and A/B/guest cleanup were verified. Initial browser failures are retained.
+
+This is prepared **2.99.0, not deployed**. No dependency, schema, saving activation, official-source renewal or production request was added. Existing fees/status remain expired, and no financial/visa outcome is inferred. The main branch is still not a qualified 2.98.16 deployment candidate. See `FOUNDER_FINANCIAL_SCENARIOS-2026-11-11.md` and its aggregate receipt; company enrichment and all live recovery gates remain open.

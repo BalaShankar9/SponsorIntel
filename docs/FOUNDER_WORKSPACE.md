@@ -33,3 +33,11 @@ Activation requires verified database capacity, the documented read-only recover
 Current live rollback reference is 2.98.5 Worker `7307c8e5-3743-4140-ab2f-a33741e5112b`. After any future activation, rolling back the Worker must retain the additive tables and private data; it does not undo saves or deletions. The old UI cannot access saved Founder workbooks, so rollback availability/export needs an explicit handoff. Never restore production or drop these tables automatically.
 
 Structured evidence attachments/references, multiple projects, dated milestones, validation/financial workbenches, broader verified directory coverage and independent legal/usefulness acceptance remain open. This increment saves the existing workbook; it does not complete stage two or the full Founder plan.
+
+## Prepared tab privacy and cash-plan update — 11 November
+
+The cash workbench described in `FOUNDER_FINANCIAL_SCENARIOS-2026-11-11.md` is a local increment to this prepared release. Its raw numeric/evidence inputs never enter the workbook, browser persistence or server payload. Only an explicitly appended summary becomes existing `notes.finances` text. Exact export formats and the two prepared database tables are unchanged.
+
+Tab-only workbooks now follow the current identity even before private saving is opened. Signing in hides the guest copy; changing accounts hides the preceding account's tab copy. Returning to the same identity restores its tab notes without any read/write request or storage access. Ordinary sign-out preserves that hidden tab memory; confirmed account deletion clears the deleted identity's workbook and calculator drafts, even if unrelated browser-copy cleanup reports failure. An initial account-change render is masked until the workspace identity matches. Closing/reloading can still lose all tab-only work.
+
+The original 30 October release references above remain historical. Current live version, recovery evidence and gates are recorded in `OPERATOR_CHECKPOINT.md`. This increment does not deploy or enable saving and does not renew official-source dates.
