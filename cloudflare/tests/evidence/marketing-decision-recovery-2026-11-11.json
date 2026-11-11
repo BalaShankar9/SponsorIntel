@@ -1,0 +1,135 @@
+{
+  "recorded_at": "2026-11-11T17:30:09.228665+00:00",
+  "change": "Exact-request recovery for non-schedule marketing decisions",
+  "status": "prepared_not_deployed",
+  "base_head": "e83019a7f4388b11fa12adc341a7bf7a761398c3",
+  "validation_scope": "isolated tracked prepared 2.99.0 source; not exact live 2.98.16 qualification",
+  "node": "24.19.0",
+  "focused_tests": {
+    "passed": 7,
+    "ledger": "actual decideBrief and fictional SQLite"
+  },
+  "full_suite": {
+    "passed": 876,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "duration_ms": 68975.121958
+  },
+  "build": {
+    "typescript": true,
+    "vite": true,
+    "prerendered_pages": 21,
+    "browser_budgets": true,
+    "deployment_dry_run": true
+  },
+  "browser": {
+    "observed_at": "2026-11-11T17:29:22.230Z",
+    "passed": 15,
+    "fictional_scenarios": 14,
+    "checks": [
+      "held: committed lost acknowledgement retains exact request through global refresh, keyboard retry creates one event/receipt and preserves original observation",
+      "reviewed: committed lost acknowledgement retains exact request through global refresh, keyboard retry creates one event/receipt and preserves original observation",
+      "published: committed lost acknowledgement retains exact request through global refresh, keyboard retry creates one event/receipt and preserves original observation",
+      "uncertain: committed lost acknowledgement retains exact request through global refresh, keyboard retry creates one event/receipt and preserves original observation",
+      "Pending decision remains available when refreshed latest-50 results omit its brief, and exact replay creates no duplicate",
+      "403: rejection of a later retry does not clear the earlier uncertain request; eventual replay retains the same bytes and one receipt",
+      "429: rejection of a later retry does not clear the earlier uncertain request; eventual replay retains the same bytes and one receipt",
+      "Acknowledged write plus failed GET offers only refresh; refresh sends no second POST",
+      "Real self-review rejection unlocks editing and a new corrected decision key",
+      "Rapid double activation sends one in-flight request and one event",
+      "Acknowledged replay resets inputs from the latest receipt, preserves a concurrent newer observation and clears stale URL/outcome",
+      "Existing schedule save transitions to enabled delivery controls and a distinct observation receipt",
+      "A changed reviewed revision clears unsent schedule input and attestations without recording a schedule",
+      "390px pending decision has no horizontal overflow and the retry remains keyboard-focusable and operable",
+      "No external page/server requests or browser exceptions"
+    ],
+    "external_page_requests": 0,
+    "external_server_requests": 0,
+    "browser_errors": 0,
+    "mobile_width": 390,
+    "keyboard_recovery": true,
+    "visual_inspection": "Fictional mobile pending form is readable; controls fit without horizontal overflow.",
+    "source_sha256": {
+      "src/marketing-desk.tsx": "81cb791b14c81094f8b746054274a1c9ad70f601ffdd211ea864b2b029441ca0",
+      "src/marketing-schedule.tsx": "28a88b4af0467a756501f2ae979b56671f35d58d18e86a5a2a829df6c1bd9939",
+      "shared/marketing-decision-save.js": "ab23f831c6480f4981ab5eb0ed638cd4b299df155ab937913c81078f763f1662",
+      "shared/marketing-schedule-save.js": "3f35d415052b9d1116bb465978779a3cee1499001dd6e6993fb313fd6e3f957c",
+      "worker/marketing.js": "b36ef5910f39e801ee50b9682b0c530f5077dddb054263d51822d6717da73113",
+      "tests/fixtures/marketing-decision-preview.mjs": "44aa39a64ca251fdff4933f48f8e5270e9380d8aff3eeb07ed3bec8baaa9767c",
+      "tests/marketing-decision-browser.mjs": "8f4dc75c947cccecb06f19d6f9b18c0834f3be515cc89dd04e4bbe7a2514fc3e"
+    }
+  },
+  "owned_source_sha256": {
+    "src/marketing-desk.tsx": "81cb791b14c81094f8b746054274a1c9ad70f601ffdd211ea864b2b029441ca0",
+    "src/marketing-desk.css": "bc977719400b9dd914510bb58aaee78e7389d44e8306e86f9736d0e437db3a8c",
+    "shared/marketing-decision-save.js": "ab23f831c6480f4981ab5eb0ed638cd4b299df155ab937913c81078f763f1662",
+    "shared/marketing-decision-save.d.ts": "d0f4cd69e19af47397a9827d1bba754f785242ad11a1fd2a46f94b0177141e9b",
+    "tests/marketing-decision-save.test.mjs": "91f9384ba0c4e04fe36112f3e4ea2beb8724bd88ddb1917b6624a9d79a7fc912"
+  },
+  "harness_attempts": [
+    {
+      "attempt": 1,
+      "success": false,
+      "error": "page.waitForFunction: Timeout 8000ms exceeded.",
+      "sha256": "87f83ebac1713c5e559345aa8e590bb7728802a28e0e614f68e09c0bbe89f4c7"
+    },
+    {
+      "attempt": 2,
+      "success": false,
+      "error": "locator.waitFor: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('details.marketing-card').locator('form.marketing-decision').first().getByRole('button', { name: 'Retry this same decision', exact: true }) to be visible\u001b[22m\n",
+      "sha256": "af94f5f0497e6981109d164c625a7cb8457c1455f22ca349ee8ed006de0bd2bc"
+    },
+    {
+      "attempt": 3,
+      "success": false,
+      "error": "Expected values to be strictly equal:\n\nfalse !== true\n",
+      "sha256": "65ad0e9c8e658c1d38ec7628f3a1ffc14ab5f6799a1d0675c91f6af2efde1b5a"
+    },
+    {
+      "attempt": 4,
+      "success": true,
+      "error": null,
+      "sha256": "e11a3fe6d589e681813eb93d3b43c1a193672705c0d13b886efc1639684a3209"
+    },
+    {
+      "attempt": 5,
+      "success": true,
+      "error": null,
+      "sha256": "3fca713ff2b88acb1bbc46a6ae330a0cc61daa449a05546c9d339c261f213487"
+    },
+    {
+      "attempt": 6,
+      "success": true,
+      "error": null,
+      "sha256": "1681cac96c9eaa7744a51e2bcbda01fa952b9d153de835271ee661f027d564bb"
+    }
+  ],
+  "same_day_dependency_review": {
+    "package_sha256": "51238ebe138a5d815f380f577d0d7698178998ffb70d31486347c1cae9691f5f",
+    "lock_sha256": "c8b04e869026958060f0d0549e3b5371737287d2f153aa25e258da29224b9bf0",
+    "unchanged_from_xml_patch": true,
+    "known_advisories_at_retained_review": 0
+  },
+  "boundaries": {
+    "production_writes": 0,
+    "provider_sends_or_schedules": 0,
+    "model_calls": 0,
+    "google_reads": 0,
+    "source_collections": 0,
+    "migrations": 0,
+    "worker_deployments": 0,
+    "durable_pending_request_storage": false,
+    "independent_content_quality_acceptance": false
+  },
+  "remaining_gates": [
+    "Current recovery/schema and sustainable capacity",
+    "Original business workflow evidence",
+    "Exact live-source release qualification"
+  ],
+  "agent_assisted_review": {
+    "initial_findings": 4,
+    "addressed": 4,
+    "independent_business_quality_review": false
+  }
+}
