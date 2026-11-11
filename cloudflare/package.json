@@ -17,7 +17,7 @@
     "better-auth": "1.7.7",
     "docx": "9.8.1",
     "entities": "8.0.0",
-    "fast-xml-parser": "5.11.2",
+    "fast-xml-parser": "5.12.0",
     "htmlparser2": "12.0.0",
     "jspdf": "4.2.1",
     "lucide-react": "0.468.0",

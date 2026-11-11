@@ -1,6 +1,12 @@
 # Development-tool security and local recovery
 
-## Dependency review — 11 November 2026
+## Prepared dependency patch — 11 November 2026, afternoon
+
+The bounded follow-up below is now implemented locally: **fast-xml-parser 5.12.0**, **strnum 2.5.1** and **is-unsafe 2.0.3**. Clean installation, 17 focused checks, all **869** tracked-source tests, TypeScript/build, 21 prerenders, browser budgets and deployment dry run pass. The updated lockfile audit reports **zero known advisories**. The new regression fails on the prior parser and passes on the patched one. The application's inspected parser still does not enable the advisory's non-default `stopNodes` option.
+
+This validates the isolated **prepared 2.99.0** source, not a reconstructed 2.98.16 runtime candidate. **Not deployed.** Current production capacity/recovery and original-supervisor holds remain. The stalled initial install, clean-install evidence, preserved old dependencies and source-reconstruction limitation are documented in `XML_PARSER_PATCH-2026-11-11.md`; aggregate receipt: `cloudflare/tests/evidence/xml-parser-security-2026-11-11.json`. Unrelated worktree edits and the private archive are preserved.
+
+## Initial dependency review — 11 November 2026, 15:55 UTC
 
 The atlas work adds no dependency or application-runtime change. A fresh npm audit reports **one low advisory**, not zero: fast-xml-parser 5.11.2 is in [GHSA-474x-hrwr-fgx4](https://github.com/NaturalIntelligence/fast-xml-parser/security/advisories/GHSA-474x-hrwr-fgx4), published 3 November, patched in 5.12.0. The maintainer describes excess CPU on malformed input with the non-default `stopNodes` option. The only inspected application `XMLParser` construction, in `worker/jobs.js`'s university reader, does not enable `stopNodes` and rejects invalid XML first. This is a configuration/exposure assessment, not a claim that the package has no vulnerabilities or that a patch is deployed. Retain a bounded dependency-update follow-up with feed-regression and release validation; do not deploy the combined prepared branch to remove an audit warning.
 

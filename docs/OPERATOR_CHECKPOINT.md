@@ -1,6 +1,6 @@
 # Sponsor Intel operator checkpoint
 
-Updated **11 November 2026, 15:55 UTC**. Read `DAILY_OPERATOR.md` first. This records observations and open gates; it never clears a hold. The morning checkpoint is preserved in `history/OPERATOR_CHECKPOINT-2026-11-11-1036.md`. Current details: `OPERATIONS-2026-11-11.md`, `SPONSOR_ATLAS-2026-11-11.md` and the dated receipts linked below.
+Updated **11 November 2026, 16:30 UTC**. Read `DAILY_OPERATOR.md` first. This records observations and open gates; it never clears a hold. The morning checkpoint is preserved in `history/OPERATOR_CHECKPOINT-2026-11-11-1036.md`. Current details: `OPERATIONS-2026-11-11.md`, `SPONSOR_ATLAS-2026-11-11.md`, `XML_PARSER_PATCH-2026-11-11.md` and the dated receipts linked below.
 
 ## Authority and current service failure
 
@@ -38,7 +38,7 @@ Last independently verified deployment: **2.98.16**, Worker **61cc4114-a9a3-4cef
 
 The 2.98.16 school traversal preserves exact catalogue/parser/identity/visa checks and holds; 55 focused tests/build/prerenders/dry run are historical local evidence. The 2.98.15 source-dispatch uncertainty guard retains original rows/create identities. Neither proves sustained capacity or original-supervisor recovery. Read their release notes before dependent work.
 
-The **2.98.17 city-query optimization remains prepared, uncommitted and not deployed**. Its 4 November read-only query analytics and fictional cost test do not prove present savings or recovery. This heartbeat did not resume its build or change its code. Other existing admin/monitor/auth/research-manifest worktree edits are unrelated and preserved. No source, manifest, schema or dependency change belongs to today's observation record.
+The **2.98.17 city-query optimization remains prepared, uncommitted and not deployed**. Its 4 November read-only query analytics and fictional cost test do not prove present savings or recovery. The morning heartbeat did not resume its build or change its code. Other existing admin/monitor/auth/research-manifest worktree edits are unrelated and preserved. The afternoon dependency patch below is separate from the morning read-only observation record.
 
 ## Product, review and publishing holds
 
@@ -60,4 +60,6 @@ Learning: 17 topics/15 resources, review due **20 November**. Founder foundation
 
 Actual post-limit data recovery; a complete current recovery/schema observation; owner capacity decision and authoritative original-supervisor evidence; genuine scheduled source outcomes; current register and authenticated overdue reviews; exact extension permission and separate store acceptance. Keep requests, model calls, sends and source ceilings unchanged. No subsequent owner decision may be overridden by this checkpoint.
 
-Disk preflight: **25 GiB**. The afternoon local atlas build/tests added no dependencies or production mutation. The private local-state archive, unrelated code and `outputs/` are preserved. Current npm audit reports one low fast-xml-parser advisory requiring non-default `stopNodes`, which the inspected application call does not enable; see `TOOLCHAIN_SECURITY.md`. GitHub exact-head evidence is recorded on open/draft/unmerged PR #1 after push; local checks cannot clear its billing lock. Sustainable capacity, current recovery/schema and original-supervisor acceptance remain unresolved despite the owner-resumed development goal.
+The afternoon security follow-up updates fast-xml-parser **5.11.2 → 5.12.0** and two required transitives; no other package versions change. The clean install and **17 focused / 869 full tracked-source tests**, build, 21 prerenders, browser budgets and dry run pass on Node 24.19.0. Audit: **zero known advisories**. The prior low advisory requires non-default `stopNodes`, which the inspected application call does not enable. **Not deployed:** this is prepared 2.99.0 validation, not exact live 2.98.16 release qualification. The older isolated live-source directory is unavailable; its aggregate manifest/commit alone must not substitute for that qualification. See `XML_PARSER_PATCH-2026-11-11.md` and `TOOLCHAIN_SECURITY.md`.
+
+Disk preflight: **25 GiB**; approximately **20.6 GiB** remained after preserving the old whole dependency directory and installing the tested copy. The atlas itself adds no dependencies. The private local-state archive, unrelated code, raw failed-install evidence and `outputs/` remain preserved. GitHub exact-head evidence is recorded on open/draft/unmerged PR #1 after push; local checks cannot clear its billing lock. Sustainable capacity, current recovery/schema and original-supervisor acceptance remain unresolved despite the owner-resumed development goal.
