@@ -1,0 +1,29 @@
+# Candidate sources for sponsor research
+
+The complete company atlas can display possible supporting records from an already-retained public organisation directory. These are research pointers, separate from the atlas's historical field claims and from any current business approval. This advances the entity-resolution and coverage work in `SPONSOR_COMPANY_ATLAS_PLAN.md`; it does not complete a business profile or authorise a new network collector.
+
+## First source and exact matching
+
+The first supported input is the existing `cloudflare/worker/advisers-data.json` together with its retained original `iaa-organisations.xlsx` workbook. Its retained metadata identifies an Immigration Advice Authority organisation spreadsheet dated **9 July 2026**, published **25 September**, and imported **5 October**. Preserve all three calendar dates separately. Import date is not a page-observation timestamp; neither a new atlas build nor today's sponsor register renews this older source. This feature makes no current adviser-authorisation, service-availability or suitability claim.
+
+Only a whitespace-normalized, case-folded **full name** can create a candidate. No punctuation removal, company-suffix substitution, fuzzy similarity, domain guess, shared address or inferred parent/subsidiary matching is used. An exact name can still refer to different organisations. Preserve every matching sponsor location; a single matched register entry does not establish identity, and multiple matches must remain explicitly ambiguous.
+
+Both inputs are validated before candidates are attached. The workbook bytes must match the retained attachment digest, and its complete named organisation/identifier sequence must agree with the retained JSON. Each candidate retains its JSON record position, original worksheet row, name, external record identifier and original website-cell text. Source dates, source/attachment URLs, attribution and separate JSON/workbook digests remain available. This verifies retained files, not a fresh download or the current contents of an organisation website. The independent workbook reconciliation belongs in the dated acceptance receipt.
+
+The candidate collection is bound to the exact sponsor CSV digest. Each linked subject includes its full key, exact name/town/county and complete source-row set. Earlier-only register entries cannot inherit candidates matched to the latest snapshot. A new register snapshot requires a newly computed candidate join; neither a candidate nor an old field claim silently transfers across a changed identity.
+
+## Presentation, export and privacy
+
+Show **Name match — identity unverified** beside each possible source. The dossier must explain the missing legal-identity verification and, where applicable, the number of same-name sponsor locations. Source age remains visible. A reported website belongs to the retained source record; it is not populated as this sponsor's official website. The earlier JSON import changed some website values, including adding schemes. This feature uses the independently reconciled original worksheet values instead. HTTP values and scheme-less values are not silently upgraded to HTTPS. Candidate website values containing credentials, query parameters or fragments are rejected before output, without publishing or inventing a redacted original. Among accepted values, only addresses passing the existing safe-link policy become external links; bare, HTTP and malformed public website strings remain literal text without execution.
+
+The optional research-pointer filter narrows the existing directory view. It does not widen ordinary register-name search with candidate aliases, domains or identifiers. Candidate coverage is reported separately from retained field claims and current verified business coverage. A missing candidate does not mean a company has no website, a regulator record or a real operating business.
+
+Export only the selected dossier's candidates, exact bindings and the supporting source provenance, preserving date precision, ambiguity and raw reported website values. Do not copy the directory's authorisation levels, approval dates, individual advisers, addresses or contact details into this feature. No applicant, customer, private review, credential, production actor/request identity or approval state belongs in the candidate packet. The offline atlas makes no background requests and saves no private account workspace.
+
+## Review and operational boundary
+
+After current operational controls and capacity are readable, a candidate can guide a bounded review of the original legal entity, current sponsor entry, relevant public register and actual business website. Establish the relationship using identifiers and original legal notices; confirm source rights and dates. The existing authenticated Business identities desk remains the approval route with immutable corrections, concurrency protection and exact-request replay. The 500-record live insertion ceiling is unchanged.
+
+Candidate generation consumes already-retained local files and adds no discovery lead, public job, source activation, model call or permission. It cannot approve an identity, create a current regulated-adviser badge, release a source/advert hold, infer a vacancy's employer or sponsorship, contact a company or submit an application. Future network enrichment must inspect the actual controls and remaining shared allowances first. Unknown capacity does not become permission to fetch.
+
+Use `build-sponsor-dossiers.py --adviser-candidates <retained-json> --adviser-workbook <retained-xlsx>` with the existing complete-register arguments. Both candidate inputs must be supplied together. Leaving both options absent preserves the prior register/evidence/history behavior. The dated acceptance record identifies actual full-data, browser and original-source checks; implementation alone is not successful execution or verified company coverage.

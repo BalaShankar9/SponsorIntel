@@ -9,6 +9,9 @@ from pathlib import Path
 import tempfile
 import unittest
 import copy
+import contextlib
+import zipfile
+from xml.sax.saxutils import escape
 from unittest.mock import patch
 
 
@@ -70,6 +73,47 @@ def review_packet(dataset):
     packet["schema_version"] = 2
     packet["observations"][0].update(evidence_kind="retained_operator_review", observed_at=None, reviewed_on="2026-10-08")
     return packet
+
+
+def adviser_source(items=None):
+    items = items if items is not None else [adviser_item("Fictional Limited", "F201900001", "https://example.org/")]
+    return {"as_of": "2026-07-09", "published": "2026-09-25", "imported_at": "2026-10-05",
+            "source": builder.ADVISER_PUBLICATION,
+            "attachment": "https://assets.publishing.service.gov.uk/media/fictional/IAA_09.07.26.xlsx",
+            "sha256": hashlib.sha256(adviser_workbook(items)).hexdigest(), "licence": "Contains public sector information licensed under the Open Government Licence v3.0.",
+            "items": items}
+
+
+def adviser_item(name, ident, website=""):
+    return {"name": name, "id": ident, "website": website, "level": "Level 2", "approved": "2018-01-02"}
+
+
+def adviser_workbook(items, replacements=None):
+    ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+    rows = [["Organisation Name", "Organisation Number", "Regulated Level", "Organisation Website", "Earliest Approval Date"]]
+    rows.extend([[item.get(key, "") for key in ["name", "id", "level", "website", "approved"]] for item in items])
+    sheet = '<worksheet xmlns="' + ns + '"><sheetData>'
+    for number, values in enumerate(rows, start=1):
+        sheet += '<row r="' + str(number) + '">'
+        for column, value in zip("ABCDE", values):
+            sheet += '<c r="' + column + str(number) + '" t="inlineStr"><is><t>' + escape(str(value)) + '</t></is></c>'
+        sheet += '</row>'
+    sheet += '</sheetData></worksheet>'
+    files = {
+        "xl/workbook.xml": '<workbook xmlns="' + ns + '" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="IAA Registered Organisations" sheetId="1" r:id="rId1"/></sheets></workbook>',
+        "xl/_rels/workbook.xml.rels": '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>',
+        "xl/sharedStrings.xml": '<sst xmlns="' + ns + '"/>', "xl/worksheets/sheet1.xml": sheet,
+    }
+    files.update(replacements or {})
+    target = io.BytesIO()
+    with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        for name, content in files.items():
+            archive.writestr(zipfile.ZipInfo(name, date_time=(2026, 1, 1, 0, 0, 0)), content)
+    return target.getvalue()
+
+
+def add_candidates(dataset, raw, **kwargs):
+    return builder.add_adviser_candidates(dataset, raw, adviser_workbook(json.loads(raw)["items"]), **kwargs)
 
 
 class RegisterDossiersTests(unittest.TestCase):
@@ -736,6 +780,274 @@ class RetainedReviewDateTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 builder.build_pack(source, URL, DAY, OBSERVED, root / "invalid", template, evidence)
             self.assertFalse((root / "invalid").exists())
+
+
+class AdviserCandidateTests(unittest.TestCase):
+    def baseline(self):
+        return data([["Fictional Limited", "Cardiff", "", "A", "SW"]])
+
+    def reject(self, mutate):
+        result = self.baseline(); original = copy.deepcopy(result); source = adviser_source(); mutate(source)
+        with self.assertRaises(ValueError):
+            add_candidates(result, packet_bytes(source), validation_at="2026-11-11T19:00:00Z")
+        self.assertEqual(result, original)
+
+    def test_exact_full_name_join_preserves_ambiguity_and_register_binding(self):
+        result = data([["EXAMPLE  Limited", "Cardiff", "", "A", "SW"], ["Example Limited", "Leeds", "", "A", "SW"],
+                       ["Other Ltd", "Cardiff", "", "A", "SW"]])
+        baseline = copy.deepcopy(result)
+        source = adviser_source([adviser_item("Example Limited", "F201900001", "http://example.org"),
+                                 adviser_item("Other Ltd", "F201900002", "https://other.example.org/"),
+                                 adviser_item("Unmatched", "N201900003")])
+        raw = packet_bytes(source); add_candidates(result, raw)
+        candidates = result.pop("candidates")
+        self.assertEqual(result, baseline)
+        self.assertEqual(candidates["register_sha256"], baseline["meta"]["source_sha256"])
+        self.assertEqual(candidates["matching_method"], "whitespace_normalized_casefolded_full_name_only")
+        self.assertEqual(candidates["counts"], {"source_records": 3, "matched_source_records": 2, "matched_register_entries": 3,
+                         "multiple_entry_source_records": 1, "unmatched_source_records": 1, "newly_verified_businesses": 0})
+        first = candidates["records"][0]
+        self.assertEqual(first["name"], "Example Limited")
+        self.assertEqual(first["source_record_number"], 1)
+        self.assertEqual(first["match_status"], "multiple_register_entries")
+        self.assertEqual(len(first["matched_entry_keys"]), 2)
+        self.assertEqual(first["website_as_recorded"], "http://example.org")
+        self.assertIsNone(first["website_link"])
+        for row in baseline["entries"]:
+            subject = candidates["subjects"][row[0]]
+            self.assertEqual([subject[k] for k in ["entry_key", "name", "city", "county", "source_rows"]], [*row[:4], row[5]])
+        self.assertEqual(candidates["sources"][0]["retained_file_sha256"], hashlib.sha256(raw).hexdigest())
+        self.assertEqual(candidates["sources"][0]["declared_attachment_sha256"], source["sha256"])
+
+    def test_names_do_not_fuzzily_match_suffixes_punctuation_substrings_or_unicode(self):
+        names = ["Example Limited", "A-B Ltd", "Café", "Straße Limited"]
+        result = data([[name, "Town", "", "A", "SW"] for name in names])
+        source = adviser_source([adviser_item(name, f"F20190000{i}") for i,name in enumerate(
+            ["Example Ltd", "Example", "A B Ltd", "Cafe\u0301", "STRASSE LIMITED"], start=1)])
+        add_candidates(result, packet_bytes(source))
+        self.assertEqual(result["candidates"]["counts"]["matched_source_records"], 1)
+        self.assertEqual(result["candidates"]["records"][0]["name"], "STRASSE LIMITED")
+        self.assertEqual(result["candidates"]["records"][0]["source_record_number"], 5)
+
+    def test_source_dates_stay_date_only_and_discarded_authority_fields_never_escape(self):
+        result = self.baseline(); source = adviser_source()
+        add_candidates(result, packet_bytes(source))
+        candidate = result["candidates"]; provenance = candidate["sources"][0]
+        self.assertEqual([provenance[k] for k in ["as_of", "published_on", "imported_on"]], ["2026-07-09", "2026-09-25", "2026-10-05"])
+        text = json.dumps(candidate)
+        for forbidden in ['"approved"', '"level"', '"observed_at"', '"reviewed_on"', "Level 2", "2018-01-02"]:
+            self.assertNotIn(forbidden, text)
+        self.assertEqual(result["meta"]["coverage"]["business_identity"], "not_collected")
+
+    def test_untrusted_websites_are_retained_only_as_text_without_protocol_repair(self):
+        urls = ["http://example.org", "javascript:alert(1)", "http:/www.example.org/", "www.example.org", ""]
+        for website in urls:
+            result = self.baseline(); source = adviser_source([adviser_item("Fictional Limited", "F201900001", website)])
+            add_candidates(result, packet_bytes(source))
+            record = result["candidates"]["records"][0]
+            self.assertEqual(record["website_as_recorded"], website)
+            self.assertIsNone(record["website_link"])
+        result = self.baseline(); source = adviser_source()
+        add_candidates(result, packet_bytes(source))
+        self.assertEqual(result["candidates"]["records"][0]["website_link"], "https://example.org/")
+
+    def test_invalid_dates_metadata_types_and_extra_sensitive_fields_fail_closed(self):
+        for bad in ["2026-02-30", "2026-7-09", "2026-07-09T00:00:00Z", True, None, "2026-11-12"]:
+            for field in ["as_of", "published", "imported_at"]:
+                with self.subTest(field=field,bad=bad): self.reject(lambda s: s.update({field:bad}))
+        mutations = [lambda s: s.update(as_of="2026-10-04"), lambda s: s.update(imported_at="2026-09-24"),
+                     lambda s: s.update(source="https://example.org/"), lambda s: s.update(attachment="https://example.org/data.xlsx"),
+                     lambda s: s.update(sha256="missing"), lambda s: s.update(actor="owner"),
+                     lambda s: s["items"][0].update(contact="private"), lambda s: s["items"][0].update(address="private"),
+                     lambda s: s["items"][0].update(website=None), lambda s: s["items"][0].update(id=123),
+                     lambda s: s["items"][0].update(name="Bad\nName"), lambda s: s["items"][0].update(name=" "),
+                     lambda s: s["items"][0].update(level={"unexpected":"value"}), lambda s: s.update(items=[])]
+        for mutate in mutations: self.reject(mutate)
+
+    def test_entire_source_and_bounds_are_checked_before_any_candidates_are_attached(self):
+        # An invalid unmatched record at the end must not be skipped.
+        self.reject(lambda s: s["items"].append({**adviser_item("No match", "F201900002"), "private_note":"hidden"}))
+        self.reject(lambda s: s["items"].append(dict(s["items"][0])))
+        self.reject(lambda s: s["items"][0].update(website="x" * 1501))
+        result = self.baseline(); original = copy.deepcopy(result); raw = packet_bytes(adviser_source())
+        for constant,value in [("MAX_ADVISER_BYTES",len(raw)-1),("MAX_ADVISER_RECORDS",0),
+                               ("MAX_CANDIDATE_RECORDS",0),("MAX_CANDIDATE_SUBJECTS",0)]:
+            with patch.object(builder,constant,value), self.assertRaises(ValueError): add_candidates(result,raw)
+            self.assertEqual(result,original)
+        duplicate_key=raw.replace(b'"name": "Fictional Limited"',b'"name": "Fictional Limited", "name": "Hidden"')
+        with self.assertRaisesRegex(ValueError,"Duplicate JSON"): add_candidates(result,duplicate_key)
+        self.assertEqual(result,original)
+
+    def test_no_overlap_is_complete_result_and_same_name_multiple_source_ids_are_retained(self):
+        result = self.baseline(); add_candidates(result,packet_bytes(adviser_source([adviser_item("No overlap","F201900001")])))
+        self.assertEqual(result["candidates"]["records"],[])
+        self.assertEqual(result["candidates"]["subjects"],{})
+        self.assertEqual(result["candidates"]["counts"]["unmatched_source_records"],1)
+        result=self.baseline(); source=adviser_source([adviser_item("Fictional Limited","F201900001"),adviser_item("Fictional Limited","N201900002")])
+        add_candidates(result,packet_bytes(source))
+        self.assertEqual(len(result["candidates"]["subjects"][result["entries"][0][0]]["candidate_ids"]),2)
+        self.assertEqual(len(result["candidates"]["records"]),2)
+
+    def test_deterministic_ids_preserve_existing_claims_and_comparison_and_refuse_replay(self):
+        result=self.baseline(); builder.add_retained_evidence(result,packet_bytes(review_packet(result)))
+        builder.add_register_comparison(result,csv_bytes([["Fictional Limited","Cardiff","","B","SW"]]),EARLIER_URL,EARLIER_DAY,EARLIER_OBSERVED)
+        original=copy.deepcopy(result); raw=packet_bytes(adviser_source())
+        add_candidates(result,raw)
+        candidates=result.pop("candidates")
+        self.assertEqual(result,original)
+        second=copy.deepcopy(original); add_candidates(second,raw)
+        self.assertEqual(second["candidates"],candidates)
+        unchanged=copy.deepcopy(second)
+        with self.assertRaises(ValueError): add_candidates(second,raw)
+        self.assertEqual(second,unchanged)
+
+    def test_candidate_pack_hashes_literal_data_and_invalid_input_leaves_output_absent(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder); source=root/'source.csv'; advisers=root/'advisers.json'; template=root/'template.html'; out=root/'pack'
+            hostile='</script><img src=x onerror="alert(1)">'
+            source.write_bytes(csv_bytes([[hostile,"Cardiff","","A","SW"]])); template.write_text(TEMPLATE)
+            retained=adviser_source([adviser_item(hostile,"F201900001","javascript:alert(1)")]); advisers.write_bytes(packet_bytes(retained)); (root/'original.xlsx').write_bytes(adviser_workbook(retained['items']))
+            receipt=builder.build_pack(source,URL,DAY,OBSERVED,out,template,adviser_candidates_path=advisers, adviser_workbook_path=root/'original.xlsx')
+            self.assertEqual(receipt['candidate_sources']['business_fields_populated'],0)
+            self.assertFalse(receipt['candidate_sources']['regulatory_status_inferred'])
+            self.assertEqual(receipt['retained_evidence_entries'],0)
+            output=json.loads((out/'data.json').read_text()); self.assertEqual(output['candidates']['records'][0]['name'],hostile)
+            self.assertNotIn('<img',(out/'index.html').read_text())
+            readme=(out/'README.md').read_text(); self.assertIn('A single match is still unverified',readme)
+            self.assertIn('verified original XLSX SHA-256',readme)
+            for name,integrity in receipt['files'].items(): self.assertEqual(hashlib.sha256((out/name).read_bytes()).hexdigest(),integrity['sha256'])
+            before=(out/'receipt.json').read_bytes()
+            with self.assertRaises(ValueError): builder.build_pack(source,URL,DAY,OBSERVED,out,template,adviser_candidates_path=advisers, adviser_workbook_path=root/'original.xlsx')
+            self.assertEqual((out/'receipt.json').read_bytes(),before)
+            retained['items'][0]['private_note']='never import'; advisers.write_bytes(packet_bytes(retained))
+            with self.assertRaises(ValueError): builder.build_pack(source,URL,DAY,OBSERVED,root/'invalid',template,adviser_candidates_path=advisers, adviser_workbook_path=root/'original.xlsx')
+            self.assertFalse((root/'invalid').exists())
+
+
+class AdviserWorkbookTests(unittest.TestCase):
+    def fixture(self):
+        return [adviser_item("Fictional Limited", "F201900001", "https://example.org/")]
+
+    def changed_member(self, member, transform):
+        raw = adviser_workbook(self.fixture())
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            changed = transform(archive.read(member))
+        return adviser_workbook(self.fixture(), {member: changed})
+
+    def test_original_literals_and_worksheet_rows_survive_prior_json_transformation(self):
+        original = [adviser_item(" Fictional Limited ", "F201900001", "www.example.org"),
+                    adviser_item("", "F201900002", "https://unnamed.example.org"),
+                    adviser_item("Other Limited", "F201900003", "http:/www.other.example.org/")]
+        workbook = adviser_workbook(original)
+        source = adviser_source([adviser_item("Fictional Limited", "F201900001", "https://www.example.org"),
+                                 adviser_item("Other Limited", "F201900003", "")])
+        source["sha256"] = hashlib.sha256(workbook).hexdigest()
+        result = data([[name, "Town", "", "A", "SW"] for name in ["Fictional Limited", "Other Limited"]])
+        raw = packet_bytes(source)
+        builder.add_adviser_candidates(result, raw, workbook)
+        candidates = result["candidates"]; records = candidates["records"]; provenance = candidates["sources"][0]
+        self.assertEqual([item["source_record_number"] for item in records], [1, 2])
+        self.assertEqual([item["source_worksheet_row"] for item in records], [2, 4])
+        self.assertEqual([item["website_as_recorded"] for item in records], ["www.example.org", "http:/www.other.example.org/"])
+        self.assertTrue(all(item["website_link"] is None for item in records))
+        self.assertEqual(records[0]["name"], " Fictional Limited ")
+        self.assertEqual(provenance["worksheet_data_rows"], 3)
+        self.assertEqual(provenance["unnamed_worksheet_rows"], 1)
+        self.assertEqual(provenance["verified_attachment_sha256"], source["sha256"])
+        self.assertNotEqual(provenance["retained_file_sha256"], source["sha256"])
+        self.assertEqual(provenance["id"], "iaa-" + hashlib.sha256(builder.compact_json(
+            [hashlib.sha256(raw).hexdigest(), source["sha256"]]).encode()).hexdigest())
+
+    def test_digest_and_complete_named_sequence_must_reconcile_before_mutation(self):
+        items = [*self.fixture(), adviser_item("Unmatched", "F201900002")]
+        source = adviser_source(items); workbook = adviser_workbook(items)
+        for mutate in [lambda s: s.update(sha256="f" * 64),
+                       lambda s: s["items"].reverse(),
+                       lambda s: s["items"].pop(),
+                       lambda s: s["items"][1].update(name="Different"),
+                       lambda s: s["items"][1].update(id="F201900003")]:
+            invalid = copy.deepcopy(source); mutate(invalid)
+            result = data([["Fictional Limited", "Town", "", "A", "SW"]]); before = copy.deepcopy(result)
+            with self.assertRaises(ValueError): builder.add_adviser_candidates(result, packet_bytes(invalid), workbook)
+            self.assertEqual(result, before)
+
+    def test_selected_formulas_declarations_and_encoded_declarations_are_rejected(self):
+        member = "xl/worksheets/sheet1.xml"
+        cases = [lambda raw: raw.replace(b'<c r="D2" t="inlineStr">', b'<c r="D2" t="inlineStr"><f>HYPERLINK("https://example.org")</f>'),
+                 lambda raw: b'<!DOCTYPE worksheet [<!ENTITY fake "secret">]>' + raw,
+                 lambda raw: ('<?xml version="1.0" encoding="utf-16"?><!DOCTYPE worksheet [<!ENTITY fake "secret">]>' + raw.decode()).encode("utf-16"),
+                 lambda raw: raw.replace(b'<c r="D2" t="inlineStr"><is><t>https://example.org/</t></is></c>', b'<c r="D2" t="s"><v>999</v></c>')]
+        for transform in cases:
+            with self.subTest(transform=transform), self.assertRaises(ValueError):
+                builder.adviser_workbook_records(self.changed_member(member, transform))
+
+    def test_layout_relationships_and_row_cell_coordinates_fail_closed(self):
+        cases = [("xl/workbook.xml", lambda raw: raw.replace(b'IAA Registered Organisations', b'Unreviewed Sheet')),
+                 ("xl/_rels/workbook.xml.rels", lambda raw: raw.replace(b'Target="worksheets/sheet1.xml"', b'Target="https://example.org/sheet.xml" TargetMode="External"')),
+                 ("xl/worksheets/sheet1.xml", lambda raw: raw.replace(b'Organisation Website', b'Private contact')),
+                 ("xl/worksheets/sheet1.xml", lambda raw: raw.replace(b'<row r="2">', b'<row r="1">')),
+                 ("xl/worksheets/sheet1.xml", lambda raw: raw.replace(b'r="D2"', b'r="A2"')),
+                 ("xl/worksheets/sheet1.xml", lambda raw: raw.replace(b'r="D2"', b'r="D3"')),
+                 ("xl/worksheets/sheet1.xml", lambda raw: raw.replace(b'r="D2"', b'r="F2"'))]
+        for member, transform in cases:
+            with self.subTest(member=member), self.assertRaises(ValueError):
+                builder.adviser_workbook_records(self.changed_member(member, transform))
+
+    def test_archive_paths_duplicate_members_and_bounds_are_rejected(self):
+        raw = adviser_workbook(self.fixture())
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            members = [(item.filename, archive.read(item)) for item in archive.infolist()]
+        variants = [members + [("../outside.xml", b"x")], members + [("/absolute.xml", b"x")],
+                    members + [("xl\\escape.xml", b"x")], members + [members[0]],
+                    members + [(f"extra/{i}.xml", b"x") for i in range(65)]]
+        for entries in variants:
+            target = io.BytesIO()
+            with zipfile.ZipFile(target, "w") as archive:
+                for name, value in entries:
+                    with self.assertWarns(UserWarning) if name == entries[0][0] and archive.namelist() else contextlib.nullcontext():
+                        archive.writestr(name, value)
+            with self.assertRaises(ValueError): builder.adviser_workbook_records(target.getvalue())
+        for constant, maximum in [("MAX_ADVISER_WORKBOOK_BYTES", len(raw) - 1), ("MAX_WORKBOOK_XML_BYTES", 10)]:
+            with patch.object(builder, constant, maximum), self.assertRaises(ValueError): builder.adviser_workbook_records(raw)
+
+    def test_shared_strings_keep_literal_values_without_formula_execution(self):
+        member = "xl/worksheets/sheet1.xml"
+        workbook = self.changed_member(member, lambda raw: raw.replace(
+            b'<c r="D2" t="inlineStr"><is><t>https://example.org/</t></is></c>', b'<c r="D2" t="s"><v>0</v></c>'))
+        with zipfile.ZipFile(io.BytesIO(workbook)) as archive:
+            sheet = archive.read(member)
+        workbook = adviser_workbook(self.fixture(), {member: sheet,
+            "xl/sharedStrings.xml": '<sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><si><r><t>http://</t></r><r><t>example.org/</t></r></si></sst>'})
+        self.assertEqual(builder.adviser_workbook_records(workbook)["records"][0]["website"], "http://example.org/")
+
+    def test_both_optional_files_are_required_and_invalid_workbook_leaves_no_output(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder); csv_path = root / "source.csv"; advisers = root / "advisers.json"; workbook = root / "original.xlsx"; template = root / "template.html"
+            csv_path.write_bytes(csv_bytes([["Fictional Limited", "Town", "", "A", "SW"]])); template.write_text(TEMPLATE)
+            advisers.write_bytes(packet_bytes(adviser_source())); workbook.write_bytes(b"not an XLSX")
+            for index, options in enumerate([{"adviser_candidates_path": advisers}, {"adviser_workbook_path": workbook},
+                                            {"adviser_candidates_path": advisers, "adviser_workbook_path": workbook}]):
+                output = root / str(index)
+                with self.assertRaises(ValueError): builder.build_pack(csv_path, URL, DAY, OBSERVED, output, template, **options)
+                self.assertFalse(output.exists())
+
+    def test_private_website_components_fail_whole_candidate_build_without_partial_output(self):
+        private_values = ["https://user:secret@example.org", "https://example.org/?token=secret", "https://example.org/#secret",
+                          "https://127.0.0.1/", "https://example.local/", "file:///Users/fictional/private"]
+        for website in private_values:
+            items = [*self.fixture(), adviser_item("Other Limited", "F201900002", website)]
+            source = adviser_source(items); workbook = adviser_workbook(items)
+            result = data([[name, "Town", "", "A", "SW"] for name in ["Fictional Limited", "Other Limited"]]); before = copy.deepcopy(result)
+            with self.assertRaisesRegex(ValueError, "unsupported private URL components") as failure:
+                builder.add_adviser_candidates(result, packet_bytes(source), workbook)
+            self.assertNotIn(website, str(failure.exception))
+            self.assertEqual(result, before)
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder); csv_path = root / "source.csv"; advisers = root / "advisers.json"; original = root / "original.xlsx"; template = root / "template.html"; output = root / "pack"
+            csv_path.write_bytes(csv_bytes([[name, "Town", "", "A", "SW"] for name in ["Fictional Limited", "Other Limited"]]))
+            advisers.write_bytes(packet_bytes(source)); original.write_bytes(workbook); template.write_text(TEMPLATE)
+            with self.assertRaises(ValueError): builder.build_pack(csv_path, URL, DAY, OBSERVED, output, template, adviser_candidates_path=advisers, adviser_workbook_path=original)
+            self.assertFalse(output.exists())
 
 
 if __name__ == "__main__":
